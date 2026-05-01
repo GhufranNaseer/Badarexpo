@@ -71,15 +71,14 @@ body {
 /* --- MAIN NAVIGATION --- */
 .menu {
     display: flex;
-    gap: 30px;
+    /* gap: 30px; removed to prevent hover gaps */
     align-items: center;
     height: 100%;
-    /* Fill navbar height */
 }
 
 .nav-item {
     height: 100%;
-    /* Important for hover area */
+    padding: 0 15px; /* Replaces gap: 30px (15px on each side) */
     display: flex;
     align-items: center;
     position: relative;
@@ -119,49 +118,58 @@ body {
     /* Smoothly grows on hover */
 }
 
-/* --- MEGA MENU LOGIC --- */
-.dropdown {
-    position: static;
-    /* Important: Allows mega-menu to align to .navbar instead of .nav-item */
-}
-
-.mega-menu {
+/* --- SHARED MEGA MENU CONTAINER --- */
+.mega-menu-wrapper {
     position: absolute;
     top: 100%;
-    /* Exactly at the bottom of the navbar */
     left: 50%;
-    transform: translateX(-50%) translateY(15px);
-    width: 900px;
+    transform: translateX(-50%) translateY(10px);
+    width: 1150px;
     background: white;
-    display: flex;
-    gap: 30px;
-    padding: 35px;
     border-radius: 0 0 20px 20px;
     box-shadow: 0 40px 80px rgba(0, 0, 0, 0.15);
     border: 1px solid #eee;
     border-top: none;
-
+    
     opacity: 0;
     pointer-events: none;
     transition: opacity 0.3s ease, transform 0.3s ease;
+    z-index: 1001;
+    overflow: hidden;
 }
 
-/* Invisible Bridge to prevent closing on gap */
-.mega-menu::before {
-    content: "";
-    position: absolute;
-    top: -20px;
-    /* Covers the gap between navbar and menu */
-    left: 0;
-    right: 0;
-    height: 20px;
-    background: transparent;
-}
-
-.dropdown:hover .mega-menu {
+/* When the menu is active */
+.mega-menu-wrapper.active {
     opacity: 1;
     transform: translateX(-50%) translateY(0);
     pointer-events: auto;
+}
+
+/* Individual Content Blocks inside the wrapper */
+.mega-content {
+    display: none; /* Hidden by default */
+    gap: 40px;
+    padding: 40px;
+    animation: contentFadeIn 0.3s ease forwards;
+}
+
+.mega-content.active {
+    display: flex; /* Shown when active */
+}
+
+@keyframes contentFadeIn {
+    from { opacity: 0; transform: translateY(5px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Invisible Bridge */
+.mega-menu-wrapper::before {
+    content: "";
+    position: absolute;
+    top: -20px;
+    left: 0;
+    right: 0;
+    height: 20px;
 }
 
 /* Mega Menu Content */
@@ -189,6 +197,35 @@ body {
 .column a:hover {
     color: #e41f26;
     padding-left: 5px;
+}
+
+/* Bullet List Styling */
+.bullet-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.bullet-list li {
+    position: relative;
+    padding-left: 18px;
+    margin: 8px 0;
+}
+
+.bullet-list li::before {
+    content: "•";
+    position: absolute;
+    left: 0;
+    color: #e41f26;
+    font-weight: bold;
+    font-size: 18px;
+    line-height: 1;
+    top: 0;
+}
+
+.bullet-list a {
+    margin: 0 !important;
+    display: inline-block !important;
 }
 
 /* Visual Highlight Block */
