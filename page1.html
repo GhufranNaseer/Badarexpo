@@ -43,7 +43,7 @@
             <!-- TRIGGERS -->
             <div class="nav-item dropdown" data-target="services"><span>Services</span></div>
             <div class="nav-item dropdown" data-target="events"><span>Events</span></div>
-            
+
             <div class="nav-item"><span>Industries</span></div>
             <div class="nav-item"><span>Global Reach</span></div>
 
@@ -53,7 +53,7 @@
 
         <!-- SHARED MEGA MENU CONTAINER -->
         <div id="shared-mega-menu" class="mega-menu-wrapper">
-            
+
             <!-- SERVICES CONTENT -->
             <div id="content-services" class="mega-content">
                 <div class="column">
@@ -65,13 +65,27 @@
                 <div class="column">
                     <h4>Additional Services</h4>
                     <ul class="bullet-list">
-                        <li><a href="#" data-image="https://images.unsplash.com/photo-1540575861501-7cf05a4b125a?auto=format&fit=crop&q=80&w=800">Canopy Octanorm Building</a></li>
-                        <li><a href="#" data-image="https://images.unsplash.com/photo-1511578314322-379afb476865?auto=format&fit=crop&q=80&w=800">Stall Design & Fabrication</a></li>
-                        <li><a href="#" data-image="https://images.unsplash.com/photo-1517604931442-7e0c8ed2963c?auto=format&fit=crop&q=80&w=800">LED Screens</a></li>
-                        <li><a href="#" data-image="https://images.unsplash.com/photo-1531050171651-7184e6d43edb?auto=format&fit=crop&q=80&w=800">Audio Visual Equipment</a></li>
-                        <li><a href="#" data-image="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&q=80&w=800">Rental of Furniture</a></li>
-                        <li><a href="#" data-image="https://images.unsplash.com/photo-1485827404703-89b55fcc595e?auto=format&fit=crop&q=80&w=800">Interactive Kiosks</a></li>
-                        <li><a href="#" data-image="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?auto=format&fit=crop&q=80&w=800">Indoor Outdoor Advertising</a></li>
+                        <li><a href="#"
+                                data-image="https://images.unsplash.com/photo-1540575861501-7cf05a4b125a?auto=format&fit=crop&q=80&w=800">Canopy
+                                Octanorm Building</a></li>
+                        <li><a href="#"
+                                data-image="https://images.unsplash.com/photo-1511578314322-379afb476865?auto=format&fit=crop&q=80&w=800">Stall
+                                Design & Fabrication</a></li>
+                        <li><a href="#"
+                                data-image="https://images.unsplash.com/photo-1517604931442-7e0c8ed2963c?auto=format&fit=crop&q=80&w=800">LED
+                                Screens</a></li>
+                        <li><a href="#"
+                                data-image="https://images.unsplash.com/photo-1531050171651-7184e6d43edb?auto=format&fit=crop&q=80&w=800">Audio
+                                Visual Equipment</a></li>
+                        <li><a href="#"
+                                data-image="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&q=80&w=800">Rental
+                                of Furniture</a></li>
+                        <li><a href="#"
+                                data-image="https://images.unsplash.com/photo-1485827404703-89b55fcc595e?auto=format&fit=crop&q=80&w=800">Interactive
+                                Kiosks</a></li>
+                        <li><a href="#"
+                                data-image="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?auto=format&fit=crop&q=80&w=800">Indoor
+                                Outdoor Advertising</a></li>
                     </ul>
                 </div>
                 <div class="column">
@@ -81,7 +95,8 @@
                     <a href="#">Digital Production</a>
                 </div>
                 <div class="column highlight">
-                    <img src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d" alt="Services Highlight" id="service-highlight-img">
+                    <img src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d" alt="Services Highlight"
+                        id="service-highlight-img">
                     <strong>End-to-End Solutions</strong>
                     <p>We design and scale world-class exhibitions & industry platforms.</p>
                 </div>
@@ -146,13 +161,13 @@
 
         function showContent(targetId) {
             clearTimeout(hideTimeout);
-            
+
             // Show wrapper
             wrapper.classList.add('active');
-            
+
             // Hide all content blocks first
             contents.forEach(c => c.classList.remove('active'));
-            
+
             // Show the target content block
             const target = document.getElementById(`content-${targetId}`);
             if (target) {
@@ -164,7 +179,7 @@
             hideTimeout = setTimeout(() => {
                 wrapper.classList.remove('active');
                 contents.forEach(c => c.classList.remove('active'));
-            }, 300); // Increased delay for smoother transitions between items
+            }, 200); // Increased delay for smoother transitions between items
         }
 
         triggers.forEach(trigger => {
@@ -180,7 +195,7 @@
 
         // Image Switcher for Additional Services
         document.querySelectorAll('.bullet-list a').forEach(link => {
-            link.addEventListener('mouseenter', function() {
+            link.addEventListener('mouseenter', function () {
                 const newImage = this.getAttribute('data-image');
                 const highlightImg = document.getElementById('service-highlight-img');
                 highlightImg.style.opacity = '0.7';
