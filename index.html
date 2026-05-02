@@ -7,7 +7,7 @@
     <title>Badar Expo - Premier Event Management</title>
     <!-- Font Awesome for Social Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-    <link rel="stylesheet" href="page1.css">
+    <link rel="stylesheet" href="navbar.css">
 </head>
 
 <body>
@@ -31,24 +31,34 @@
     <nav class="navbar">
         <!-- BRAND LOGO -->
         <div class="logo">
-            <img src="images/logo/favicon.png" alt="Badar Expo Logo" class="logo-img">
+            <img src="images/logo/favicon.png" alt="Badar Expo Logo" class="logo-img" loading="lazy">
+        </div>
+
+        <!-- MOBILE TOGGLE -->
+        <div class="nav-toggle" id="mobile-menu-toggle">
+            <i class="fas fa-bars"></i>
         </div>
 
         <!-- NAVIGATION LINKS -->
-        <!-- NAVIGATION LINKS -->
-        <div class="menu">
+        <div class="menu" id="nav-menu">
             <div class="nav-item"><span>Home</span></div>
             <div class="nav-item"><span>About Us</span></div>
 
             <!-- TRIGGERS -->
-            <div class="nav-item dropdown" data-target="services"><span>Services</span></div>
-            <div class="nav-item dropdown" data-target="events"><span>Events</span></div>
+            <div class="nav-item dropdown" data-target="services"><span>Services <i class="fas fa-chevron-down"></i></span></div>
+            <div class="nav-item dropdown" data-target="events"><span>Events <i class="fas fa-chevron-down"></i></span></div>
 
             <div class="nav-item"><span>Industries</span></div>
             <div class="nav-item"><span>Global Reach</span></div>
 
-            <div class="nav-item dropdown" data-target="insights"><span>Insights</span></div>
+            <div class="nav-item dropdown" data-target="insights"><span>Insights <i class="fas fa-chevron-down"></i></span></div>
             <div class="nav-item"><span>Contact</span></div>
+
+            <!-- ACTION BUTTONS (Moved inside menu for mobile) -->
+            <div class="mobile-actions">
+                <button class="btn btn-dark">Visitor</button>
+                <button class="btn btn-light">Partner</button>
+            </div>
         </div>
 
         <!-- SHARED MEGA MENU CONTAINER -->
@@ -56,87 +66,132 @@
 
             <!-- SERVICES CONTENT -->
             <div id="content-services" class="mega-content">
-                <div class="column">
+                <div class="column dynamic-links">
                     <h4>Core Services</h4>
-                    <a href="#">Exhibition Management</a>
-                    <a href="#">Conference Management</a>
-                    <a href="#">Corporate Events</a>
+                    <a href="#" data-title="Exhibition Management"
+                        data-desc="Executing large-scale trade shows and world-class professional exhibitions."
+                        data-image="https://images.unsplash.com/photo-1531482615713-2afd69097998?auto=format&fit=crop&q=80&w=800">Exhibition
+                        Management</a>
+                    <a href="#" data-title="Conference Management"
+                        data-desc="Seamless planning and execution of corporate conferences and international seminars."
+                        data-image="https://images.unsplash.com/photo-1475721027785-f74eccf877e2?auto=format&fit=crop&q=80&w=800">Conference
+                        Management</a>
+                    <a href="#" data-title="Corporate Events"
+                        data-desc="Tailored corporate gatherings, brand launches, and award ceremonies."
+                        data-image="https://images.unsplash.com/photo-1511795409834-ef04bbd61622?auto=format&fit=crop&q=80&w=800">Corporate
+                        Events</a>
                 </div>
-                <div class="column">
+                <div class="column dynamic-links">
                     <h4>Additional Services</h4>
                     <ul class="bullet-list">
-                        <li><a href="#"
+                        <li><a href="#" data-title="Canopy Octanorm Building"
+                                data-desc="Standardized modular shell schemes for professional exhibitions and trade shows."
                                 data-image="https://images.unsplash.com/photo-1540575861501-7cf05a4b125a?auto=format&fit=crop&q=80&w=800">Canopy
                                 Octanorm Building</a></li>
-                        <li><a href="#"
+                        <li><a href="#" data-title="Stall Design & Fabrication"
+                                data-desc="Custom-built creative booths and designer stalls that make your brand stand out."
                                 data-image="https://images.unsplash.com/photo-1511578314322-379afb476865?auto=format&fit=crop&q=80&w=800">Stall
                                 Design & Fabrication</a></li>
-                        <li><a href="#"
+                        <li><a href="#" data-title="LED Screens"
+                                data-desc="High-definition LED walls and display panels for impactful visual storytelling."
                                 data-image="https://images.unsplash.com/photo-1517604931442-7e0c8ed2963c?auto=format&fit=crop&q=80&w=800">LED
                                 Screens</a></li>
-                        <li><a href="#"
+                        <li><a href="#" data-title="Audio Visual Equipment"
+                                data-desc="Professional sound, lighting, and projection systems tailored for any event size."
                                 data-image="https://images.unsplash.com/photo-1531050171651-7184e6d43edb?auto=format&fit=crop&q=80&w=800">Audio
                                 Visual Equipment</a></li>
-                        <li><a href="#"
+                        <li><a href="#" data-title="Rental of Furniture"
+                                data-desc="Premium lounge sets, sleek corporate furniture, and event seating solutions."
                                 data-image="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&q=80&w=800">Rental
                                 of Furniture</a></li>
-                        <li><a href="#"
+                        <li><a href="#" data-title="Interactive Kiosks"
+                                data-desc="Engage your audience with touch-screen technology and digital information points."
                                 data-image="https://images.unsplash.com/photo-1485827404703-89b55fcc595e?auto=format&fit=crop&q=80&w=800">Interactive
                                 Kiosks</a></li>
-                        <li><a href="#"
+                        <li><a href="#" data-title="Indoor Outdoor Advertising"
+                                data-desc="Strategic billboard placement and large-format signage to maximize brand reach."
                                 data-image="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?auto=format&fit=crop&q=80&w=800">Indoor
                                 Outdoor Advertising</a></li>
                     </ul>
                 </div>
-                <div class="column">
+                <div class="column dynamic-links">
                     <h4>Growth Services</h4>
-                    <a href="#">B2B Matchmaking</a>
-                    <a href="#">Event Marketing</a>
-                    <a href="#">Digital Production</a>
+                    <a href="#" data-title="B2B Matchmaking"
+                        data-desc="Connecting global buyers with suppliers through strategic high-level networking."
+                        data-image="https://images.unsplash.com/photo-1515162305114-8d3da7264627?auto=format&fit=crop&q=80&w=800">B2B
+                        Matchmaking</a>
+                    <a href="#" data-title="Event Marketing"
+                        data-desc="Innovative PR and media strategies designed to drive maximum event attendance."
+                        data-image="https://images.unsplash.com/photo-1557804506-669a67965ba0?auto=format&fit=crop&q=80&w=800">Event
+                        Marketing</a>
+                    <a href="#" data-title="Digital Production"
+                        data-desc="Creative content, live streaming, and digital solutions for the modern event landscape."
+                        data-image="https://images.unsplash.com/photo-1492724441997-5dc865305da7?auto=format&fit=crop&q=80&w=800">Digital
+                        Production</a>
                 </div>
                 <div class="column highlight">
-                    <img src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d" alt="Services Highlight"
-                        id="service-highlight-img">
-                    <strong>End-to-End Solutions</strong>
-                    <p>We design and scale world-class exhibitions & industry platforms.</p>
+                    <div class="highlight-content-box">
+                        <img src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d" alt="Services Highlight"
+                            class="dynamic-img" loading="lazy">
+                        <strong class="dynamic-title">End-to-End Solutions</strong>
+                        <p class="dynamic-desc">We design and scale world-class exhibitions & industry platforms.</p>
+                    </div>
                 </div>
             </div>
 
             <!-- EVENTS CONTENT -->
             <div id="content-events" class="mega-content">
-                <div class="column">
+                <div class="column dynamic-links">
                     <h4>Our Role</h4>
-                    <a href="#">Owned Events</a>
-                    <a href="#">Co-Organized</a>
-                    <a href="#">Managed Events</a>
+                    <a href="#" data-title="Owned Events"
+                        data-desc="Flagship trade fairs and industry-leading exhibitions fully conceptualized by Badar Expo."
+                        data-image="https://images.unsplash.com/photo-1540575861501-7cf05a4b125a?auto=format&fit=crop&q=80&w=800">Owned
+                        Events</a>
+                    <a href="#" data-title="Co-Organized"
+                        data-desc="Strategic partnerships with industry bodies to deliver high-impact global events."
+                        data-image="https://images.unsplash.com/photo-1511578314322-379afb476865?auto=format&fit=crop&q=80&w=800">Co-Organized</a>
+                    <a href="#" data-title="Managed Events"
+                        data-desc="Complete end-to-end event management solutions for third-party corporate and government clients."
+                        data-image="https://images.unsplash.com/photo-1531050171651-7184e6d43edb?auto=format&fit=crop&q=80&w=800">Managed
+                        Events</a>
                 </div>
-                <div class="column">
+                <div class="column dynamic-links">
                     <h4>Formats</h4>
-                    <a href="#">Exhibitions</a>
-                    <a href="#">Conferences</a>
-                    <a href="#">Industrial Forums</a>
+                    <a href="#" data-title="Exhibitions"
+                        data-desc="Creating massive B2B and B2C platforms that connect global suppliers with buyers."
+                        data-image="https://images.unsplash.com/photo-1531482615713-2afd69097998?auto=format&fit=crop&q=80&w=800">Exhibitions</a>
+                    <a href="#" data-title="Conferences"
+                        data-desc="Organizing world-class summits, technical seminars, and international conferences."
+                        data-image="https://images.unsplash.com/photo-1475721027785-f74eccf877e2?auto=format&fit=crop&q=80&w=800">Conferences</a>
+                    <a href="#" data-title="Industrial Forums"
+                        data-desc="Facilitating high-level dialogue between government and industry leaders."
+                        data-image="https://images.unsplash.com/photo-1515162305114-8d3da7264627?auto=format&fit=crop&q=80&w=800">Industrial
+                        Forums</a>
                 </div>
                 <div class="column highlight">
-                    <img src="https://images.unsplash.com/photo-1505373877841-8d25f7d46678" alt="Events Highlight">
-                    <strong>1500+ Events Delivered</strong>
-                    <p>Connecting industries, governments & global partners.</p>
+                    <div class="highlight-content-box">
+                        <img src="https://images.unsplash.com/photo-1505373877841-8d25f7d46678" alt="Events Highlight"
+                            class="dynamic-img" loading="lazy">
+                        <strong class="dynamic-title">1500+ Events Delivered</strong>
+                        <p class="dynamic-desc">Connecting industries, governments & global partners.</p>
+                    </div>
                 </div>
             </div>
 
             <!-- INSIGHTS CONTENT -->
             <div id="content-insights" class="mega-content">
                 <div class="insight-card">
-                    <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f" alt="Blog">
+                    <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f" alt="Blog" loading="lazy">
                     <h4>Blog</h4>
                     <p>Industry insights, event strategies & updates.</p>
                 </div>
                 <div class="insight-card">
-                    <img src="https://images.unsplash.com/photo-1505238680356-667803448bb6" alt="Media">
+                    <img src="https://images.unsplash.com/photo-1505238680356-667803448bb6" alt="Media" loading="lazy">
                     <h4>Media</h4>
                     <p>Press coverage, interviews & event highlights.</p>
                 </div>
                 <div class="insight-card">
-                    <img src="https://images.unsplash.com/photo-1492684223066-81342ee5ff30" alt="Gallery">
+                    <img src="https://images.unsplash.com/photo-1492684223066-81342ee5ff30" alt="Gallery" loading="lazy">
                     <h4>Gallery</h4>
                     <p>Moments captured from our mega events.</p>
                 </div>
@@ -144,7 +199,7 @@
 
         </div>
 
-        <!-- ACTION BUTTONS -->
+        <!-- ACTION BUTTONS (Desktop Only) -->
         <div class="actions">
             <button class="btn btn-dark">Visitor</button>
             <button class="btn btn-light">Partner</button>
@@ -156,30 +211,34 @@
         const contents = document.querySelectorAll('.mega-content');
         const triggers = document.querySelectorAll('.dropdown');
         const navbar = document.querySelector('.navbar');
+        const menuToggle = document.getElementById('mobile-menu-toggle');
+        const navMenu = document.getElementById('nav-menu');
 
         let hideTimeout;
 
+        // Mobile Menu Toggle
+        menuToggle.addEventListener('click', () => {
+            navMenu.classList.toggle('mobile-active');
+            menuToggle.querySelector('i').classList.toggle('fa-bars');
+            menuToggle.querySelector('i').classList.toggle('fa-xmark');
+        });
+
         function showContent(targetId) {
+            // Disable mega menu on mobile for better UX
+            if (window.innerWidth <= 1024) return;
+
             clearTimeout(hideTimeout);
-
-            // Show wrapper
             wrapper.classList.add('active');
-
-            // Hide all content blocks first
             contents.forEach(c => c.classList.remove('active'));
-
-            // Show the target content block
             const target = document.getElementById(`content-${targetId}`);
-            if (target) {
-                target.classList.add('active');
-            }
+            if (target) target.classList.add('active');
         }
 
         function hideMenu() {
             hideTimeout = setTimeout(() => {
                 wrapper.classList.remove('active');
                 contents.forEach(c => c.classList.remove('active'));
-            }, 200); // Increased delay for smoother transitions between items
+            }, 200);
         }
 
         triggers.forEach(trigger => {
@@ -188,25 +247,46 @@
                 showContent(targetId);
             });
             trigger.addEventListener('mouseleave', hideMenu);
+
+            // Mobile click support for dropdowns
+            trigger.addEventListener('click', (e) => {
+                if (window.innerWidth <= 1024) {
+                    trigger.classList.toggle('mobile-open');
+                }
+            });
         });
 
         wrapper.addEventListener('mouseenter', () => clearTimeout(hideTimeout));
         wrapper.addEventListener('mouseleave', hideMenu);
 
-        // Image Switcher for Additional Services
-        document.querySelectorAll('.bullet-list a').forEach(link => {
+        // Image & Content Switcher for Mega Menus
+        document.querySelectorAll('.mega-content .dynamic-links a').forEach(link => {
             link.addEventListener('mouseenter', function () {
                 const newImage = this.getAttribute('data-image');
-                const highlightImg = document.getElementById('service-highlight-img');
-                highlightImg.style.opacity = '0.7';
+                const newTitle = this.getAttribute('data-title');
+                const newDesc = this.getAttribute('data-desc');
+
+                const contentBlock = this.closest('.mega-content');
+                const highlightImg = contentBlock.querySelector('.dynamic-img');
+                const highlightTitle = contentBlock.querySelector('.dynamic-title');
+                const highlightDesc = contentBlock.querySelector('.dynamic-desc');
+                const highlightBox = contentBlock.querySelector('.highlight-content-box');
+
+                if (!highlightImg || !highlightBox) return;
+
+                highlightBox.style.opacity = '0';
+                highlightBox.style.transform = 'translateY(5px)';
+
                 setTimeout(() => {
                     highlightImg.src = newImage;
-                    highlightImg.style.opacity = '1';
-                }, 50);
+                    highlightTitle.innerText = newTitle;
+                    highlightDesc.innerText = newDesc;
+                    highlightBox.style.opacity = '1';
+                    highlightBox.style.transform = 'translateY(0)';
+                }, 150);
             });
         });
     </script>
-
 </body>
 
 </html>
