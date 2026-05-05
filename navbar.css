@@ -356,24 +356,32 @@ body.rtl-mode {
 @media screen and (max-width: 1024px) {
     /* Top Bar adjustments */
     .topbar {
-        padding: 5px 20px;
-        flex-direction: row; /* Keep it horizontal */
-        justify-content: center;
-        flex-wrap: wrap;
+        padding: 10px 15px;
+        flex-direction: column;
         height: auto;
-        gap: 10px;
+        gap: 8px;
+        justify-content: center;
+        align-items: center;
     }
     
     .topbar-left {
         width: 100%;
         justify-content: center;
+        gap: 15px;
         font-size: 11px;
+        flex-wrap: wrap; /* Allow phone/email to wrap if very narrow */
     }
 
     .topbar-right {
         display: flex !important;
         justify-content: center;
         width: 100%;
+        border-top: 1px solid rgba(255,255,255,0.1);
+        padding-top: 5px;
+    }
+    
+    .lang-dropdown {
+        margin-right: 0; /* Center it */
     }
     
     .topbar-right a {
