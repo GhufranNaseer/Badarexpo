@@ -130,13 +130,21 @@ body.rtl-mode {
     align-items: center;
     justify-content: space-between;
     padding: 0 60px;
-    height: 80px;
-    background: rgba(255, 255, 255, 0.95);
+    height: 100px;
+    background: rgba(255, 255, 255, 0.1); /* Transparent on desktop */
     backdrop-filter: blur(10px);
-    position: sticky;
-    top: 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    position: absolute;
+    top: 35px;
+    width: 100%;
     z-index: 1000;
-    border-bottom: 1px solid var(--border-light);
+    transition: var(--transition-smooth);
+}
+
+/* Glass effect for navbar when on top of hero */
+.navbar:not(.scrolled) {
+    background: rgba(255, 255, 255, 0.05);
+    color: var(--white);
 }
 
 .logo-img {
