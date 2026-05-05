@@ -453,34 +453,42 @@ body.rtl-mode {
     .menu {
         position: fixed;
         top: 120px;
-        left: 0; /* Base position is 0 */
+        left: 0;
         width: 100%;
         height: calc(100vh - 120px);
         background: var(--white);
         flex-direction: column;
         padding: 20px;
-        transform: translateX(-100%); /* Completely hidden off-screen */
-        visibility: hidden; /* Double protection */
-        transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), visibility 0.4s;
+        display: none; /* Completely remove from layout when inactive */
+        opacity: 0;
         z-index: 1999;
         border-top: 1px solid var(--border-light);
         overflow-y: auto;
         align-items: flex-start;
+        box-sizing: border-box;
     }
 
     .menu.mobile-active {
-        transform: translateX(0);
-        visibility: visible;
+        display: flex;
+        opacity: 1;
+        animation: slideDown 0.3s ease forwards;
+    }
+
+    @keyframes slideDown {
+        from { transform: translateY(-10px); opacity: 0; }
+        to { transform: translateY(0); opacity: 1; }
     }
 
     .nav-item {
         width: 100%;
+        max-width: 100%; /* Prevent overflow */
         height: auto;
         padding: 15px 0;
         border-bottom: 1px solid var(--border-light);
         flex-direction: column;
         align-items: flex-start;
         transition: background 0.3s;
+        overflow: hidden; /* Safety */
     }
     
     .nav-item span {
@@ -542,9 +550,12 @@ body.rtl-mode {
         gap: 12px;
         margin-top: 30px;
         width: 100%;
+        box-sizing: border-box;
     }
     
     .btn {
-        width: 100%;
+        width: 100% !important;
+        max-width: 100%;
+        box-sizing: border-box;
     }
 }
