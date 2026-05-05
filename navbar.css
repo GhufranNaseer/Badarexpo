@@ -23,11 +23,24 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0 60px;
-    height: 40px;
+    padding: 8px 60px;
+    /* Adjusted padding for better breathing space */
     background: var(--primary-red);
     color: var(--white);
-    font-size: 12px;
+    font-size: 13px;
+    /* Upgraded font size */
+    font-weight: 500;
+}
+
+.topbar a {
+    color: var(--white);
+    text-decoration: none;
+    opacity: 0.85;
+    transition: var(--transition-smooth);
+}
+
+.topbar a:hover {
+    opacity: 1;
 }
 
 .topbar-left,
@@ -35,6 +48,76 @@ body {
     display: flex;
     gap: 20px;
     align-items: center;
+}
+
+/* --- SIMPLE LANGUAGE DROPDOWN --- */
+.lang-dropdown {
+    position: relative;
+    display: inline-block;
+    margin-right: 15px;
+}
+
+.lang-btn {
+    background: none;
+    border: none;
+    color: var(--white);
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    padding: 5px 10px;
+    border-radius: 4px;
+    transition: 0.3s;
+}
+
+.lang-btn:hover {
+    background: rgba(255, 255, 255, 0.15);
+}
+
+.lang-list {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background: var(--white);
+    list-style: none;
+    padding: 10px 0;
+    margin: 5px 0 0 0;
+    border-radius: 8px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+    width: 150px;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(10px);
+    transition: 0.3s;
+    z-index: 10002;
+}
+
+.lang-dropdown:hover .lang-list,
+.lang-list.show {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.lang-list li {
+    padding: 10px 20px;
+    color: var(--text-dark);
+    font-size: 14px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.lang-list li:hover {
+    background: #f5f5f5;
+    color: var(--primary-red);
+}
+
+/* RTL Mode Support */
+body.rtl-mode {
+    direction: rtl;
+    text-align: right;
 }
 
 /* --- NAVBAR --- */
@@ -269,9 +352,32 @@ body {
     display: none !important;
 }
 
-@media screen and (max-width: 991px) {
+@media screen and (max-width: 1024px) {
+    /* Top Bar adjustments */
+    .topbar {
+        padding: 8px 20px;
+        flex-direction: column;
+        height: auto;
+        gap: 5px;
+    }
+    
+    .topbar-right {
+        display: none !important; /* Hide social icons on small screens to save space */
+    }
+
     .nav-toggle {
-        display: block !important;
+        display: flex !important;
+        align-items: center;
+        justify-content: center;
+        width: 40px;
+        height: 40px;
+        font-size: 20px;
+        cursor: pointer;
+    }
+
+    .navbar {
+        padding: 0 20px;
+        height: 70px;
     }
 
     .actions {
@@ -284,15 +390,19 @@ body {
 
     .menu {
         position: fixed;
-        top: 120px;
+        top: 0;
         left: -100%;
-        width: 100%;
-        height: calc(100vh - 120px);
+        width: 85%;
+        max-width: 320px;
+        height: 100vh;
         background: var(--white);
         flex-direction: column;
-        padding: 20px;
-        transition: left 0.4s ease;
+        padding: 80px 20px 40px;
+        transition: left 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         z-index: 999;
+        box-shadow: 20px 0 50px rgba(0,0,0,0.1);
+        overflow-y: auto;
+        align-items: flex-start;
     }
 
     .menu.mobile-active {
@@ -301,14 +411,28 @@ body {
 
     .nav-item {
         width: 100%;
+        height: auto;
         padding: 15px 0;
-        border-bottom: 1px solid #f5f5f5;
+        border-bottom: 1px solid var(--border-light);
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    .nav-item span {
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
     }
 
     .mobile-actions {
         display: flex !important;
         flex-direction: column;
-        gap: 10px;
-        margin-top: 20px;
+        gap: 12px;
+        margin-top: 30px;
+        width: 100%;
+    }
+    
+    .btn {
+        width: 100%;
     }
 }

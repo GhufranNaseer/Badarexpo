@@ -20,6 +20,17 @@
         </div>
 
         <div class="topbar-right">
+            <!-- Simple Language Dropdown -->
+            <div class="lang-dropdown">
+                <button class="lang-btn" id="lang-btn">
+                    <i class="fas fa-globe"></i> <span id="current-lang">EN</span> <i class="fas fa-chevron-down"></i>
+                </button>
+                <ul class="lang-list">
+                    <li data-lang="en">English</li>
+                    <li data-lang="ur">اردو (Urdu)</li>
+                    <li data-lang="ar">العربية (Arabic)</li>
+                </ul>
+            </div>
             <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
             <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
             <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
@@ -45,13 +56,16 @@
             <div class="nav-item"><span>About Us</span></div>
 
             <!-- TRIGGERS -->
-            <div class="nav-item dropdown" data-target="services"><span>Services <i class="fas fa-chevron-down"></i></span></div>
-            <div class="nav-item dropdown" data-target="events"><span>Events <i class="fas fa-chevron-down"></i></span></div>
+            <div class="nav-item dropdown" data-target="services"><span>Services <i
+                        class="fas fa-chevron-down"></i></span></div>
+            <div class="nav-item dropdown" data-target="events"><span>Events <i class="fas fa-chevron-down"></i></span>
+            </div>
 
             <div class="nav-item"><span>Industries</span></div>
             <div class="nav-item"><span>Global Reach</span></div>
 
-            <div class="nav-item dropdown" data-target="insights"><span>Insights <i class="fas fa-chevron-down"></i></span></div>
+            <div class="nav-item dropdown" data-target="insights"><span>Insights <i
+                        class="fas fa-chevron-down"></i></span></div>
             <div class="nav-item"><span>Contact</span></div>
 
             <!-- ACTION BUTTONS (Moved inside menu for mobile) -->
@@ -191,7 +205,8 @@
                     <p>Press coverage, interviews & event highlights.</p>
                 </div>
                 <div class="insight-card">
-                    <img src="https://images.unsplash.com/photo-1492684223066-81342ee5ff30" alt="Gallery" loading="lazy">
+                    <img src="https://images.unsplash.com/photo-1492684223066-81342ee5ff30" alt="Gallery"
+                        loading="lazy">
                     <h4>Gallery</h4>
                     <p>Moments captured from our mega events.</p>
                 </div>
@@ -206,87 +221,7 @@
         </div>
     </nav>
 
-    <script>
-        const wrapper = document.getElementById('shared-mega-menu');
-        const contents = document.querySelectorAll('.mega-content');
-        const triggers = document.querySelectorAll('.dropdown');
-        const navbar = document.querySelector('.navbar');
-        const menuToggle = document.getElementById('mobile-menu-toggle');
-        const navMenu = document.getElementById('nav-menu');
-
-        let hideTimeout;
-
-        // Mobile Menu Toggle
-        menuToggle.addEventListener('click', () => {
-            navMenu.classList.toggle('mobile-active');
-            menuToggle.querySelector('i').classList.toggle('fa-bars');
-            menuToggle.querySelector('i').classList.toggle('fa-xmark');
-        });
-
-        function showContent(targetId) {
-            // Disable mega menu on mobile for better UX
-            if (window.innerWidth <= 1024) return;
-
-            clearTimeout(hideTimeout);
-            wrapper.classList.add('active');
-            contents.forEach(c => c.classList.remove('active'));
-            const target = document.getElementById(`content-${targetId}`);
-            if (target) target.classList.add('active');
-        }
-
-        function hideMenu() {
-            hideTimeout = setTimeout(() => {
-                wrapper.classList.remove('active');
-                contents.forEach(c => c.classList.remove('active'));
-            }, 200);
-        }
-
-        triggers.forEach(trigger => {
-            trigger.addEventListener('mouseenter', () => {
-                const targetId = trigger.getAttribute('data-target');
-                showContent(targetId);
-            });
-            trigger.addEventListener('mouseleave', hideMenu);
-
-            // Mobile click support for dropdowns
-            trigger.addEventListener('click', (e) => {
-                if (window.innerWidth <= 1024) {
-                    trigger.classList.toggle('mobile-open');
-                }
-            });
-        });
-
-        wrapper.addEventListener('mouseenter', () => clearTimeout(hideTimeout));
-        wrapper.addEventListener('mouseleave', hideMenu);
-
-        // Image & Content Switcher for Mega Menus
-        document.querySelectorAll('.mega-content .dynamic-links a').forEach(link => {
-            link.addEventListener('mouseenter', function () {
-                const newImage = this.getAttribute('data-image');
-                const newTitle = this.getAttribute('data-title');
-                const newDesc = this.getAttribute('data-desc');
-
-                const contentBlock = this.closest('.mega-content');
-                const highlightImg = contentBlock.querySelector('.dynamic-img');
-                const highlightTitle = contentBlock.querySelector('.dynamic-title');
-                const highlightDesc = contentBlock.querySelector('.dynamic-desc');
-                const highlightBox = contentBlock.querySelector('.highlight-content-box');
-
-                if (!highlightImg || !highlightBox) return;
-
-                highlightBox.style.opacity = '0';
-                highlightBox.style.transform = 'translateY(5px)';
-
-                setTimeout(() => {
-                    highlightImg.src = newImage;
-                    highlightTitle.innerText = newTitle;
-                    highlightDesc.innerText = newDesc;
-                    highlightBox.style.opacity = '1';
-                    highlightBox.style.transform = 'translateY(0)';
-                }, 150);
-            });
-        });
-    </script>
+    <script src="main.js"></script>
 </body>
 
 </html>
