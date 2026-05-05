@@ -397,8 +397,8 @@ body.rtl-mode {
 
     .navbar {
         padding: 0 20px;
-        height: 70px;
-        justify-content: center; /* Center everything in the container */
+        height: 85px; /* Balanced height */
+        justify-content: center;
     }
 
     .logo {
@@ -406,17 +406,25 @@ body.rtl-mode {
         left: 50%;
         transform: translateX(-50%);
         z-index: 1001;
+        top: 50%; /* Center vertically */
+        transform: translate(-50%, -50%);
     }
     
     .logo-img {
-        height: 60px; /* Smaller logo for mobile */
+        height: 80px; /* Prominent but fits inside 85px navbar */
+        width: auto;
+        display: block;
+        filter: drop-shadow(0 5px 15px rgba(0,0,0,0.08));
+        transition: transform 0.3s ease;
     }
 
     .nav-toggle {
         position: absolute;
         left: 20px;
+        top: 50%;
+        transform: translateY(-50%);
         display: flex !important;
-        z-index: 2001; /* Higher than menu to stay clickable */
+        z-index: 2001;
     }
 
     .actions {
