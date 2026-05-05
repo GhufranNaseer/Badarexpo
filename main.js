@@ -49,10 +49,18 @@ const NavManager = {
                 }
             });
 
-            // Mobile click support for dropdowns (Sub-menu indicator)
+            // Mobile click support for dropdowns (Accordion behavior)
             trigger.addEventListener('click', (e) => {
                 if (window.innerWidth <= this.breakpoint) {
-                    trigger.classList.toggle('mobile-open');
+                    const isAlreadyOpen = trigger.classList.contains('mobile-open');
+                    
+                    // Close all other dropdowns first
+                    this.triggers.forEach(t => t.classList.remove('mobile-open'));
+                    
+                    // If it wasn't open, open it now
+                    if (!isAlreadyOpen) {
+                        trigger.classList.add('mobile-open');
+                    }
                 }
             });
         });
