@@ -348,33 +348,36 @@ body.rtl-mode {
 
 /* --- RESPONSIVE FIXES --- */
 .nav-toggle,
-.mobile-actions {
+.mobile-actions,
+.mobile-submenu {
     display: none !important;
 }
 
 @media screen and (max-width: 1024px) {
     /* Top Bar adjustments */
     .topbar {
-        padding: 10px 20px;
-        flex-direction: column;
+        padding: 5px 20px;
+        flex-direction: row; /* Keep it horizontal */
+        justify-content: center;
+        flex-wrap: wrap;
         height: auto;
-        gap: 8px;
-        text-align: center;
+        gap: 10px;
     }
     
     .topbar-left {
-        flex-direction: column;
-        gap: 5px;
-    }
-
-    .topbar-right a {
-        display: none !important; /* Hide social icons only */
+        width: 100%;
+        justify-content: center;
+        font-size: 11px;
     }
 
     .topbar-right {
-        display: flex !important; /* Keep language selector visible */
+        display: flex !important;
         justify-content: center;
         width: 100%;
+    }
+    
+    .topbar-right a {
+        display: none !important;
     }
 
     .navbar {
@@ -398,7 +401,7 @@ body.rtl-mode {
         position: absolute;
         left: 20px;
         display: flex !important;
-        z-index: 1001;
+        z-index: 2001; /* Higher than menu to stay clickable */
     }
 
     .actions {
@@ -420,7 +423,7 @@ body.rtl-mode {
         flex-direction: column;
         padding: 80px 20px 40px;
         transition: left 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-        z-index: 999;
+        z-index: 2000; /* Higher than logo and toggle */
         box-shadow: 20px 0 50px rgba(0,0,0,0.1);
         overflow-y: auto;
         align-items: flex-start;
@@ -474,7 +477,7 @@ body.rtl-mode {
     }
 
     .mobile-open .mobile-submenu {
-        display: block;
+        display: block !important;
     }
 
     .mobile-submenu li a {
