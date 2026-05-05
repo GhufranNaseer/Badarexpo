@@ -27,19 +27,26 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 8px 60px;
-    /* Adjusted padding for better breathing space */
-    background: var(--primary-red);
+    padding: 0 60px;
+    background: rgba(0, 0, 0, 0.2); 
     color: var(--white);
     font-size: 13px;
-    /* Upgraded font size */
     font-weight: 500;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 35px;
+    z-index: 1001;
+    box-sizing: border-box;
 }
 
-.topbar a {
-    color: var(--white);
+.topbar a, 
+.topbar .lang-btn, 
+.topbar .topbar-left span {
+    color: var(--white) !important;
     text-decoration: none;
-    opacity: 0.85;
+    opacity: 0.9;
     transition: var(--transition-smooth);
 }
 
@@ -131,20 +138,24 @@ body.rtl-mode {
     justify-content: space-between;
     padding: 0 60px;
     height: 100px;
-    background: rgba(255, 255, 255, 0.1); /* Transparent on desktop */
-    backdrop-filter: blur(10px);
+    background: rgba(0, 0, 0, 0.15); /* Darker transparent for contrast */
+    backdrop-filter: blur(15px);
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
     position: absolute;
-    top: 35px;
+    top: 35px; /* Height of Top Bar */
+    left: 0;
     width: 100%;
+    box-sizing: border-box; /* Crucial for overflow fix */
     z-index: 1000;
     transition: var(--transition-smooth);
+    color: var(--white); /* White text for readability */
 }
 
-/* Glass effect for navbar when on top of hero */
-.navbar:not(.scrolled) {
-    background: rgba(255, 255, 255, 0.05);
-    color: var(--white);
+/* Ensure links and icons inside navbar are white */
+.navbar .nav-item span,
+.navbar .actions .btn-light,
+.navbar .nav-toggle {
+    color: var(--white) !important;
 }
 
 .logo-img {
