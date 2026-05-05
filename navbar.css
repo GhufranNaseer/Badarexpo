@@ -354,34 +354,41 @@ body.rtl-mode {
 }
 
 @media screen and (max-width: 1024px) {
-    /* Top Bar adjustments */
+    /* Top Bar adjustments (Single Line) */
     .topbar {
-        padding: 10px 15px;
-        flex-direction: column;
-        height: auto;
-        gap: 8px;
-        justify-content: center;
+        padding: 0 15px;
+        flex-direction: row !important;
+        height: 35px; /* Fixed small height */
+        justify-content: space-between;
         align-items: center;
+        flex-wrap: nowrap; /* Prevent wrapping to second line */
     }
     
     .topbar-left {
-        width: 100%;
-        justify-content: center;
-        gap: 15px;
-        font-size: 11px;
-        flex-wrap: wrap; /* Allow phone/email to wrap if very narrow */
+        width: auto;
+        justify-content: flex-start;
+        gap: 10px;
+        font-size: 10px; /* Smaller font to fit everything */
+        white-space: nowrap;
     }
 
     .topbar-right {
         display: flex !important;
-        justify-content: center;
-        width: 100%;
-        border-top: 1px solid rgba(255,255,255,0.1);
-        padding-top: 5px;
+        justify-content: flex-end;
+        width: auto;
+        border: none;
+        padding: 0;
     }
     
     .lang-dropdown {
-        margin-right: 0; /* Center it */
+        margin-right: 0;
+    }
+
+    /* Hide one contact detail on very small screens if it still overflows */
+    @media screen and (max-width: 360px) {
+        .topbar-left span:nth-child(2) {
+            display: none; /* Hide email on extremely narrow phones */
+        }
     }
     
     .topbar-right a {
