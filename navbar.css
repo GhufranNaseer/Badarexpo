@@ -16,6 +16,10 @@ body {
     font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
     background-color: var(--white);
     color: var(--text-dark);
+    overflow-x: hidden !important;
+    max-width: 100% !important;
+    width: 100% !important;
+    position: relative;
 }
 
 /* --- TOP BAR --- */
@@ -354,30 +358,37 @@ body.rtl-mode {
 }
 
 @media screen and (max-width: 1024px) {
-    /* Top Bar adjustments (Single Line) */
+    /* Top Bar adjustments (Aggressive Fix) */
     .topbar {
-        padding: 0 15px;
+        padding: 0 10px;
         flex-direction: row !important;
-        height: 35px; /* Fixed small height */
+        height: 35px;
         justify-content: space-between;
         align-items: center;
-        flex-wrap: nowrap; /* Prevent wrapping to second line */
+        flex-wrap: nowrap;
+        width: 100%;
+        max-width: 100%;
+        overflow: hidden;
+        box-sizing: border-box;
     }
     
     .topbar-left {
-        width: auto;
-        justify-content: flex-start;
-        gap: 10px;
-        font-size: 10px; /* Smaller font to fit everything */
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        font-size: 8px; /* Extra small to ensure fit */
         white-space: nowrap;
+        max-width: 75%;
+        overflow: hidden;
+        text-overflow: ellipsis;
     }
 
     .topbar-right {
         display: flex !important;
         justify-content: flex-end;
+        align-items: center;
         width: auto;
-        border: none;
-        padding: 0;
+        max-width: 25%;
     }
     
     .lang-dropdown {
@@ -396,9 +407,13 @@ body.rtl-mode {
     }
 
     .navbar {
-        padding: 0 20px;
-        height: 85px; /* Balanced height */
+        padding: 0 15px;
+        height: 85px;
+        width: 100%;
+        max-width: 100%;
+        box-sizing: border-box;
         justify-content: center;
+        position: relative;
     }
 
     .logo {
@@ -437,23 +452,25 @@ body.rtl-mode {
 
     .menu {
         position: fixed;
-        top: 0;
-        left: -100%;
-        width: 85%;
-        max-width: 320px;
-        height: 100vh;
+        top: 120px;
+        left: 0; /* Base position is 0 */
+        width: 100%;
+        height: calc(100vh - 120px);
         background: var(--white);
         flex-direction: column;
-        padding: 80px 20px 40px;
-        transition: left 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-        z-index: 2000; /* Higher than logo and toggle */
-        box-shadow: 20px 0 50px rgba(0,0,0,0.1);
+        padding: 20px;
+        transform: translateX(-100%); /* Completely hidden off-screen */
+        visibility: hidden; /* Double protection */
+        transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), visibility 0.4s;
+        z-index: 1999;
+        border-top: 1px solid var(--border-light);
         overflow-y: auto;
         align-items: flex-start;
     }
 
     .menu.mobile-active {
-        left: 0;
+        transform: translateX(0);
+        visibility: visible;
     }
 
     .nav-item {
@@ -493,10 +510,12 @@ body.rtl-mode {
     .mobile-submenu {
         display: none;
         list-style: none;
-        padding: 10px 0 10px 15px;
+        padding: 5px 0 10px 20px;
         margin: 0;
         width: 100%;
-        animation: fadeIn 0.3s ease;
+        background: #fafafa;
+        border-radius: 4px;
+        margin-top: 5px;
     }
 
     .mobile-open .mobile-submenu {
@@ -505,15 +524,16 @@ body.rtl-mode {
 
     .mobile-submenu li a {
         display: block;
-        padding: 8px 0;
+        padding: 10px 0;
         text-decoration: none;
-        color: var(--text-muted);
+        color: var(--text-dark);
         font-size: 14px;
         font-weight: 500;
+        border-bottom: 1px solid #eee;
     }
     
-    .mobile-submenu li a:hover {
-        color: var(--primary-red);
+    .mobile-submenu li:last-child a {
+        border-bottom: none;
     }
 
     .mobile-actions {
