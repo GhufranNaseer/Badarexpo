@@ -4,7 +4,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Badar Expo - Premier Event Management</title>
+    <title>Badar Expo Solutions | Leading Event Management</title>
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <!-- Font Awesome for Social Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <link rel="stylesheet" href="navbar.css">
@@ -12,16 +15,13 @@
 </head>
 
 <body>
-
-    <!-- TOP INFORMATION BAR -->
+    <!-- TOP BAR -->
     <header class="topbar">
         <div class="topbar-left">
-            <span><i class="fas fa-phone"></i> +92 21 34821159</span>
+            <span><i class="fas fa-phone"></i> +92 21 3482 1159</span>
             <span><i class="fas fa-envelope"></i> info@badarexpo.com</span>
         </div>
-
         <div class="topbar-right">
-            <!-- Simple Language Dropdown -->
             <div class="lang-dropdown">
                 <button class="lang-btn" id="lang-btn">
                     <i class="fas fa-globe"></i> <span id="current-lang">EN</span> <i class="fas fa-chevron-down"></i>
@@ -32,26 +32,23 @@
                     <li data-lang="ar">العربية (Arabic)</li>
                 </ul>
             </div>
-            <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-            <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
-            <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-            <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+            <a href="#"><i class="fab fa-facebook-f"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-linkedin-in"></i></a>
         </div>
     </header>
 
-    <!-- MAIN NAVIGATION -->
+    <!-- NAVIGATION -->
     <nav class="navbar">
-        <!-- BRAND LOGO -->
         <div class="logo">
-            <img src="images/logo/favicon.png" alt="Badar Expo Logo" class="logo-img" loading="lazy">
+            <img src="images/logo/favicon.png" alt="Badar Expo Logo" class="logo-img">
         </div>
 
-        <!-- MOBILE TOGGLE -->
+        <!-- Hamburger Icon -->
         <div class="nav-toggle" id="mobile-menu-toggle">
             <i class="fas fa-bars"></i>
         </div>
 
-        <!-- NAVIGATION LINKS -->
         <div class="menu" id="nav-menu">
             <div class="nav-item"><span>Home</span></div>
             <div class="nav-item"><span>About Us</span></div>
@@ -78,14 +75,8 @@
             <div class="nav-item"><span>Industries</span></div>
             <div class="nav-item"><span>Global Reach</span></div>
 
-            <div class="nav-item dropdown" data-target="insights">
-                <span>Insights <i class="fas fa-chevron-down"></i></span>
-                <ul class="mobile-submenu">
-                    <li><a href="#">Media Gallery</a></li>
-                    <li><a href="#">Blogs</a></li>
-                    <li><a href="#">News & Updates</a></li>
-                </ul>
-            </div>
+            <div class="nav-item dropdown" data-target="insights"><span>Insights <i
+                        class="fas fa-chevron-down"></i></span></div>
             <div class="nav-item"><span>Contact</span></div>
 
             <!-- ACTION BUTTONS (Moved inside menu for mobile) -->
@@ -95,28 +86,24 @@
             </div>
         </div>
 
-        <!-- SHARED MEGA MENU CONTAINER -->
-        <div id="shared-mega-menu" class="mega-menu-wrapper">
-
+        <!-- MEGA MENU WRAPPER -->
+        <div class="mega-menu-wrapper" id="shared-mega-menu">
             <!-- SERVICES CONTENT -->
             <div id="content-services" class="mega-content">
                 <div class="column dynamic-links">
-                    <h4>Core Services</h4>
+                    <h4>Exhibition Management</h4>
                     <a href="#" data-title="Exhibition Management"
-                        data-desc="Executing large-scale trade shows and world-class professional exhibitions."
-                        data-image="https://images.unsplash.com/photo-1531482615713-2afd69097998?auto=format&fit=crop&q=80&w=800">Exhibition
-                        Management</a>
+                        data-desc="Complete exhibition solutions from concept to execution for B2B and B2C platforms."
+                        data-image="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&q=80&w=800">Management</a>
                     <a href="#" data-title="Conference Management"
-                        data-desc="Seamless planning and execution of corporate conferences and international seminars."
-                        data-image="https://images.unsplash.com/photo-1475721027785-f74eccf877e2?auto=format&fit=crop&q=80&w=800">Conference
-                        Management</a>
+                        data-desc="Organizing world-class summits, technical seminars, and international conferences."
+                        data-image="https://images.unsplash.com/photo-1540575861501-7cf05a4b125a?auto=format&fit=crop&q=80&w=800">Conferences</a>
                     <a href="#" data-title="Corporate Events"
-                        data-desc="Tailored corporate gatherings, brand launches, and award ceremonies."
-                        data-image="https://images.unsplash.com/photo-1511795409834-ef04bbd61622?auto=format&fit=crop&q=80&w=800">Corporate
-                        Events</a>
+                        data-desc="Bespoke events tailored to meet corporate objectives and brand positioning."
+                        data-image="https://images.unsplash.com/photo-1511578314322-379afb476865?auto=format&fit=crop&q=80&w=800">Corporate</a>
                 </div>
                 <div class="column dynamic-links">
-                    <h4>Additional Services</h4>
+                    <h4>Construction & Design</h4>
                     <ul class="bullet-list">
                         <li><a href="#" data-title="Canopy Octanorm Building"
                                 data-desc="Standardized modular shell schemes for professional exhibitions and trade shows."
@@ -136,7 +123,7 @@
                                 Visual Equipment</a></li>
                         <li><a href="#" data-title="Rental of Furniture"
                                 data-desc="Premium lounge sets, sleek corporate furniture, and event seating solutions."
-                                data-image="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&q=80&w=800">Rental
+                                data-image="https://images.unsplash.com/photo-1505373877841-8d25f7d46678?auto=format&fit=crop&q=80&w=800">Rental
                                 of Furniture</a></li>
                         <li><a href="#" data-title="Interactive Kiosks"
                                 data-desc="Engage your audience with touch-screen technology and digital information points."
@@ -144,8 +131,9 @@
                                 Kiosks</a></li>
                         <li><a href="#" data-title="Indoor Outdoor Advertising"
                                 data-desc="Strategic billboard placement and large-format signage to maximize brand reach."
-                                data-image="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?auto=format&fit=crop&q=80&w=800">Indoor
-                                Outdoor Advertising</a></li>
+                                data-image="https://images.unsplash.com/photo-1557804506-669a67965ba0?auto=format&fit=crop&q=80&w=800">Branding
+                                &
+                                Production</a></li>
                     </ul>
                 </div>
                 <div class="column dynamic-links">
@@ -160,7 +148,7 @@
                         Marketing</a>
                     <a href="#" data-title="Digital Production"
                         data-desc="Creative content, live streaming, and digital solutions for the modern event landscape."
-                        data-image="https://images.unsplash.com/photo-1492724441997-5dc865305da7?auto=format&fit=crop&q=80&w=800">Digital
+                        data-image="https://images.unsplash.com/photo-1533750349088-cd871a92f312?auto=format&fit=crop&q=80&w=800">Digital
                         Production</a>
                 </div>
                 <div class="column highlight">
