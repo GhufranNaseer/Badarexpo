@@ -87,6 +87,85 @@ body {
     background: rgba(255, 255, 255, 0.15);
 }
 
+/* Mega menu container should ALWAYS be solid white for readability */
+.mega-menu-wrapper {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background: var(--white) !important; /* Force solid white */
+    box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+    display: none;
+    z-index: 1001;
+    padding: 0; /* Padding is handled by mega-content */
+    border-top: 1px solid var(--border-light);
+}
+
+.mega-menu-wrapper.active {
+    display: block;
+}
+
+.mega-content {
+    display: none;
+    gap: 40px;
+    padding: 40px 60px;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.mega-content.active {
+    display: flex;
+}
+
+/* Ensure mega menu text is DARK */
+.mega-menu-wrapper h4,
+.mega-menu-wrapper a,
+.mega-menu-wrapper p,
+.mega-menu-wrapper strong {
+    color: var(--text-dark) !important;
+}
+
+.mega-menu-wrapper a:hover {
+    color: var(--primary-red) !important;
+}
+
+.column {
+    width: 250px;
+    flex-shrink: 0;
+}
+
+.column h4 {
+    margin-bottom: 15px;
+    font-size: 15px;
+    border-bottom: 2px solid #f5f5f5;
+    padding-bottom: 8px;
+}
+
+.column a {
+    display: block;
+    text-decoration: none;
+    color: var(--text-muted);
+    margin: 10px 0;
+    font-size: 13px;
+    transition: 0.2s;
+}
+
+.highlight {
+    background: var(--bg-light);
+    padding: 20px;
+    border-radius: 12px;
+    width: 320px;
+    flex-shrink: 0;
+}
+
+.highlight img {
+    width: 100%;
+    height: 180px;
+    border-radius: 8px;
+    margin-bottom: 12px;
+    object-fit: cover;
+}
+
 .lang-list {
     position: absolute;
     top: 100%;
@@ -205,136 +284,6 @@ body.rtl-mode {
     transform: scaleX(1);
 }
 
-/* --- MEGA MENU CONTAINER --- */
-.mega-menu-wrapper {
-    position: absolute;
-    top: 100%;
-    left: 50%;
-    transform: translateX(-50%) translateY(10px);
-    width: auto;
-    background: var(--white);
-    border-radius: 0 0 20px 20px;
-    box-shadow: var(--shadow-soft);
-    border: 1px solid var(--border-light);
-    border-top: none;
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity 0.3s, transform 0.3s;
-    z-index: 1001;
-}
-
-.mega-menu-wrapper.active {
-    opacity: 1;
-    transform: translateX(-50%) translateY(0);
-    pointer-events: auto;
-}
-
-.mega-content {
-    display: none;
-    gap: 40px;
-    padding: 40px;
-    animation: contentFadeIn 0.3s ease forwards;
-}
-
-.mega-content.active {
-    display: flex;
-}
-
-/* Menu Widths */
-#content-services {
-    width: 1100px;
-}
-
-#content-events {
-    width: 850px;
-}
-
-#content-insights {
-    width: 800px;
-}
-
-@keyframes contentFadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(5px);
-    }
-
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-/* Bridge for hover stability */
-.mega-menu-wrapper::before {
-    content: "";
-    position: absolute;
-    top: -20px;
-    left: 0;
-    right: 0;
-    height: 20px;
-}
-
-/* Columns */
-.column {
-    width: 220px;
-    flex-shrink: 0;
-}
-
-.column h4 {
-    margin-bottom: 15px;
-    font-size: 15px;
-    border-bottom: 2px solid #f5f5f5;
-    padding-bottom: 8px;
-}
-
-.column a {
-    display: block;
-    text-decoration: none;
-    color: var(--text-muted);
-    margin: 10px 0;
-    font-size: 13px;
-    transition: 0.2s;
-}
-
-.column a:hover {
-    color: var(--primary-red);
-    padding-left: 5px;
-}
-
-/* Highlights & Dynamic Content */
-.highlight {
-    background: var(--bg-light);
-    padding: 20px;
-    border-radius: 12px;
-    width: 300px;
-    flex-shrink: 0;
-}
-
-.highlight-content-box {
-    transition: opacity 0.3s, transform 0.3s;
-}
-
-.highlight img {
-    width: 100%;
-    height: 160px;
-    border-radius: 8px;
-    margin-bottom: 12px;
-    object-fit: cover;
-}
-
-.insight-card {
-    flex: 1;
-}
-
-.insight-card img {
-    width: 100%;
-    height: 120px;
-    object-fit: cover;
-    border-radius: 8px;
-    margin-bottom: 12px;
-}
-
 /* --- BUTTONS --- */
 .actions {
     display: flex;
@@ -361,12 +310,14 @@ body.rtl-mode {
 }
 
 .btn-light {
-    background: #f1f1f1;
-    color: #333;
+    background: var(--white);
+    color: var(--primary-red); /* Red text on white button */
+    border: 1px solid var(--white);
 }
 
 .btn-light:hover {
-    background: #ddd;
+    background: transparent;
+    color: var(--white) !important;
 }
 
 /* --- RESPONSIVE FIXES --- */
