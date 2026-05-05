@@ -375,10 +375,10 @@ body.rtl-mode {
     .topbar-left {
         display: flex;
         align-items: center;
-        gap: 6px;
-        font-size: 8px; /* Extra small to ensure fit */
+        gap: 8px;
+        font-size: 10.5px; /* Increased from 8px for clear readability */
         white-space: nowrap;
-        max-width: 75%;
+        max-width: 80%; /* Slightly more space */
         overflow: hidden;
         text-overflow: ellipsis;
     }
@@ -513,22 +513,6 @@ body.rtl-mode {
     /* Show hint of dropdown content when open */
     .nav-item.mobile-open {
         background: rgba(228, 31, 38, 0.02);
-    }
-
-    .mobile-submenu {
-        display: none;
-        list-style: none;
-        padding: 5px 0 10px 20px;
-        margin: 0;
-        width: 100%;
-        background: #fafafa;
-        border-radius: 4px;
-        margin-top: 5px;
-    }
-
-    .nav-item.mobile-open {
-        background: rgba(228, 31, 38, 0.03);
-        border-left: 3px solid var(--primary-red);
     }
 
     .mobile-submenu {
