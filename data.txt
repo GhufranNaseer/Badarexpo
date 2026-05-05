@@ -22,8 +22,8 @@ The website currently features a high-end Header and Navigation framework, focus
   * PERSISTENCE: Remembers user preference using LocalStorage.
   * RTL SUPPORT: Full Right-to-Left layout switching for Arabic and Urdu.
 
-- RESPONSIVE ADAPTATIONS (DESKTOP-FIRST): 
-  The site scales down to mobile using a hamburger menu and vertical stacking.
+- POLISHED RESPONSIVENESS (1024px Unified Breakpoint): 
+  Synchronized CSS and JS logic for a seamless transition between Desktop, Tablet, and Mobile. Includes body-scroll locking and mobile-optimized dropdowns.
 
 2. HOW IT HAS BEEN BUILT (TECHNICAL STACK)
 ------------------------------------------
@@ -46,7 +46,7 @@ The website currently features a high-end Header and Navigation framework, focus
 ----------------
 - MAIN CONTENT: Hero section and Body components.
 - LOGO: Replace favicon.png with high-res branding.
-- LOGIC POLISH: Address the 991px-1024px responsive gap.
+- INSIGHTS LOGIC: Extend dynamic swapping to the Insights category.
 
 5. PROPOSED SITE STRUCTURE
 --------------------------
