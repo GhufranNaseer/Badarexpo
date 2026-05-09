@@ -31,9 +31,16 @@ Objective: To ensure long-term scalability, maintainability, and clean code.
 - Before ending a session:
   1. Verify section-wise organization.
   2. Clean up ad-hoc styles.
-  3. Update 'data.txt' change logs.
+  3. Update 'data.txt' project archive (Append only; DO NOT overwrite or delete historical logs).
   4. Sync 'rules.txt' if new patterns are adopted.
+  5. Ensure 'data.txt' remains a sequential chronological record of all sessions.
+
+[6. SCALABILITY & USER CLARITY]
+- DESCRIPTIVE NAMING: Class names and JS functions MUST be self-explanatory (e.g., use 'event-card-container' instead of 'e-box').
+- READABILITY FIRST: Code must be written so the User (owner) can easily follow the logic and extend it for future ideas.
+- MODULAR FOUNDATION: Build every feature as a standalone module so new sections can be plugged in without breaking existing ones.
+- DOCUMENTATION: Maintain clear comments for "Why" something is done, not just "What".
 
 --------------------------------------------------------------------------------
-ARCHITECT'S NOTE: Build for the 10th page, not just the 1st.
+ARCHITECT'S NOTE: Build for the 10th page, not just the 1st. Make it readable for the human, not just the machine.
 ================================================================================

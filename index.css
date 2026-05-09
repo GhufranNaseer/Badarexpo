@@ -52,10 +52,10 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(to right, 
-        rgba(0, 0, 0, 0.8) 0%, 
-        rgba(0, 0, 0, 0.4) 40%, 
-        transparent 100%);
+    background: linear-gradient(to right,
+            rgba(0, 0, 0, 0.8) 0%,
+            rgba(0, 0, 0, 0.4) 40%,
+            transparent 100%);
     z-index: 2;
 }
 
@@ -75,7 +75,7 @@ body {
     margin-bottom: 25px;
     text-transform: uppercase;
     letter-spacing: -1px;
-    text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
 }
 
 .hero-content p {
@@ -127,8 +127,15 @@ body {
    ANIMATIONS
    ========================= */
 @keyframes fadeInUp {
-    from { opacity: 0; transform: translateY(30px); }
-    to { opacity: 1; transform: translateY(0); }
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 /* =========================
@@ -141,9 +148,9 @@ body {
     }
 
     .hero-overlay {
-        background: linear-gradient(to bottom, 
-            rgba(0, 0, 0, 0.4) 0%, 
-            rgba(0, 0, 0, 0.7) 100%);
+        background: linear-gradient(to bottom,
+                rgba(0, 0, 0, 0.4) 0%,
+                rgba(0, 0, 0, 0.7) 100%);
     }
 
     .hero-content {
@@ -170,12 +177,280 @@ body {
     }
 }
 
+/* ========================= FEATURED INSIGHTS SECTION (Senior Dev V2) ========================= */
+.insights-section {
+    width: 100%;
+    padding: 80px 20px 100px;
+    background: #0a0a0a;
+}
+
+.insights-section .container {
+    max-width: 1300px;
+    margin: auto;
+}
+
+.section-title {
+    text-align: center;
+    font-size: 42px;
+    font-weight: 700;
+    margin-bottom: 55px;
+    color: var(--white);
+}
+
+.insights-section .cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 28px;
+}
+
+.card {
+    position: relative;
+    isolation: isolate;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    min-height: 720px;
+    padding: 30px;
+    border-radius: 0px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+}
+
+.card::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.35);
+    z-index: 1;
+}
+
+.card-content {
+    position: relative;
+    z-index: 5;
+}
+
+.card .tag {
+    font-size: 12px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    opacity: .9;
+    color: var(--white);
+}
+
+.card h3 {
+    font-size: 34px;
+    line-height: 1.3;
+    font-weight: 600;
+    color: var(--white);
+}
+
+/* --- Card 1 Logic --- */
+.card1 {
+    background: linear-gradient(135deg, rgba(255, 79, 135, 0.6), rgba(106, 0, 255, 0.6)),
+        url('https://media.licdn.com/dms/image/v2/D4D22AQH1C_dXUZEAYQ/feedshare-shrink_800/B4DZ2Q4B4HJgAc-/0/1776252100523?e=1779926400&v=beta&t=u1wTtPqBXcZ4wrCUasPpLIJpSSNSbHZum-Ef2GnOySI');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.card1 .shape1 {
+    position: absolute;
+    right: -50px;
+    bottom: -40px;
+    z-index: 0;
+    width: 230px;
+    height: 230px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #ff9cc6, #ff4f87);
+    opacity: .9;
+}
+
+.card1 .shape2 {
+    position: absolute;
+    top: 40px;
+    left: -40px;
+    z-index: 0;
+    width: 140px;
+    height: 140px;
+    border-radius: 50%;
+    border: 2px solid rgba(255, 255, 255, 0.2);
+}
+
+/* --- Card 2 Logic --- */
+.card2 {
+    background: linear-gradient(180deg, #4d00a8, #b300ff);
+}
+
+.card2 .glass {
+    position: absolute;
+    top: 70px;
+    left: 50%;
+    z-index: 0;
+    width: 280px;
+    height: 280px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.12);
+    backdrop-filter: blur(15px);
+    transform: translateX(-50%);
+}
+
+.card2 .ring {
+    position: absolute;
+    top: -40px;
+    right: -40px;
+    z-index: 0;
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+    border: 25px solid rgba(255, 255, 255, 0.08);
+}
+
+/* --- Card 3 Logic --- */
+.card3 {
+    background: radial-gradient(circle at top, #d68fff, #704dff, #38245e);
+}
+
+.card3 .blob {
+    position: absolute;
+    right: -20px;
+    bottom: -40px;
+    z-index: 0;
+    width: 260px;
+    height: 260px;
+    background: rgba(255, 255, 255, 0.13);
+    border-radius: 58% 42% 70% 30% / 30% 52% 48% 70%;
+    backdrop-filter: blur(10px);
+}
+
+.card3 .small-circle {
+    position: absolute;
+    top: 40px;
+    left: 40px;
+    z-index: 0;
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.15);
+}
+
+/* --- Card 4 Logic --- */
+.card4 {
+    background: linear-gradient(180deg, #0052ff, #07195d);
+}
+
+.card4 .wave {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    z-index: 0;
+    width: 100%;
+    height: 150px;
+    background: rgba(255, 255, 255, 0.08);
+    clip-path: ellipse(70% 100% at 50% 100%);
+}
+
+.card4 .circle {
+    position: absolute;
+    top: 30px;
+    right: -40px;
+    z-index: 0;
+    width: 160px;
+    height: 160px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.08);
+}
+
+/* --- Card 5 Logic --- */
+.card5 {
+    background: linear-gradient(180deg, #02040f, #4d5ea8);
+}
+
+.card5 .lines {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    background: repeating-linear-gradient(135deg, transparent 0, transparent 12px, rgba(255, 255, 255, 0.06) 13px, rgba(255, 255, 255, 0.06) 15px);
+}
+
+.card5 .glow {
+    position: absolute;
+    right: -60px;
+    bottom: -80px;
+    z-index: 0;
+    width: 220px;
+    height: 220px;
+    background: #8f9cff;
+    filter: blur(90px);
+    opacity: .35;
+}
+
+/* --- Card 6 Logic --- */
+.card6 {
+    background: linear-gradient(180deg, #0d1f52, #1f4f92);
+}
+
+.card6 .diamond {
+    position: absolute;
+    top: 60px;
+    right: -60px;
+    z-index: 0;
+    width: 180px;
+    height: 180px;
+    background: rgba(255, 255, 255, 0.08);
+    transform: rotate(45deg);
+    border-radius: 20px;
+}
+
+.card6 .circle2 {
+    position: absolute;
+    bottom: 30px;
+    left: -30px;
+    z-index: 0;
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.12);
+}
+
+@media(max-width:992px) {
+    .insights-section .cards {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media(max-width:768px) {
+    .section-title {
+        font-size: 32px;
+    }
+
+    .insights-section .cards {
+        grid-template-columns: 1fr;
+    }
+
+    .card {
+        min-height: 350px;
+    }
+
+    .card h3 {
+        font-size: 28px;
+    }
+}
+
 /* =============================================================================
    STATISTICS SECTION
    ============================================================================= */
 .stats {
     padding: 100px 0;
-    background: #0f0f0f; /* Premium Dark Background */
+    background: #0f0f0f;
+    /* Premium Dark Background */
     position: relative;
     overflow: hidden;
 }
@@ -254,7 +529,7 @@ body {
         grid-template-columns: 1fr;
         padding: 0 20px;
     }
-    
+
     .stat-number {
         font-size: 42px;
     }
@@ -352,7 +627,7 @@ body {
 .visual-box img {
     width: 100%;
     border-radius: 30px;
-    box-shadow: 0 30px 60px rgba(0,0,0,0.1);
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.1);
 }
 
 .experience-badge {
@@ -382,8 +657,15 @@ body {
 }
 
 @keyframes float {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-10px); }
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-10px);
+    }
 }
 
 /* =============================================================================
@@ -418,13 +700,13 @@ body {
     background: var(--white);
     padding: 50px;
     border-radius: 24px;
-    border: 1px solid rgba(0,0,0,0.03);
+    border: 1px solid rgba(0, 0, 0, 0.03);
     transition: var(--transition-smooth);
 }
 
 .service-card:hover {
     transform: translateY(-10px);
-    box-shadow: 0 20px 50px rgba(0,0,0,0.05);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.05);
 }
 
 .card-icon {
@@ -469,11 +751,11 @@ body {
         gap: 60px;
         text-align: center;
     }
-    
+
     .about-features {
         justify-content: center;
     }
-    
+
     .experience-badge {
         right: 0;
         bottom: -20px;
@@ -484,7 +766,7 @@ body {
     .grid-container {
         grid-template-columns: 1fr;
     }
-    
+
     .service-card {
         padding: 30px;
     }
