@@ -147,132 +147,39 @@ const NavManager = {
 
         setTimeout(() => {
             highlightImg.src = newImage;
-            if (window.innerWidth > 1024) this.closeMobileMenu();
-        });
-    },
-
-    handleDynamicSwitch(e) {
-        const link = e.target;
-        const img = link.getAttribute('data-img');
-        const title = link.getAttribute('data-title');
-        const desc = link.getAttribute('data-desc');
-        const targetId = link.getAttribute('data-target');
-
-        if (targetId) {
-            const container = document.getElementById(targetId);
-            if (container) {
-                const targetImg = container.querySelector('.dynamic-img');
-                const targetTitle = container.querySelector('.dynamic-title');
-                const targetDesc = container.querySelector('.dynamic-desc');
-
-                if (targetImg && img) targetImg.src = img;
-                if (targetTitle && title) targetTitle.innerText = title;
-                if (targetDesc && desc) targetDesc.innerText = desc;
-            }
-        }
-    },
-
-    toggleMobileMenu() {
-        this.navMenu.classList.toggle('mobile-active');
-        const icon = this.menuToggle.querySelector('i');
-        const isActive = this.navMenu.classList.contains('mobile-active');
-
-        icon.classList.toggle('fa-bars', !isActive);
-        icon.classList.toggle('fa-xmark', isActive);
-        document.body.style.overflow = isActive ? 'hidden' : '';
+            if (highlightTitle) highlightTitle.innerText = newTitle;
+            if (highlightDesc) highlightDesc.innerText = newDesc;
+            
+            // Smooth fade in
+            highlightBox.style.opacity = '1';
+            highlightBox.style.transform = 'translateY(0)';
+        }, 150);
     },
 
     closeMobileMenu() {
         this.navMenu.classList.remove('mobile-active');
         const icon = this.menuToggle.querySelector('i');
-        if (icon) {
-            icon.classList.add('fa-bars');
-            icon.classList.remove('fa-xmark');
-        }
+        icon.classList.add('fa-bars');
+        icon.classList.remove('fa-xmark');
         document.body.style.overflow = '';
     }
 };
 
-// ========================= SEARCH SYSTEM =========================
-const SearchManager = {
-    init() {
-        this.trigger = document.getElementById('search-trigger');
-        this.overlay = document.getElementById('search-overlay');
-        this.closeBtn = document.getElementById('search-close');
-        this.input = document.getElementById('search-input');
-
-        if (this.trigger) this.bindEvents();
-    },
-
-    bindEvents() {
-        this.trigger.addEventListener('click', () => this.openSearch());
-        this.closeBtn.addEventListener('click', () => this.closeSearch());
-        
-        // Escape key to close
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape') this.closeSearch();
-        });
-    },
-
-    openSearch() {
-        this.overlay.classList.add('active');
-        document.body.style.overflow = 'hidden';
-        setTimeout(() => this.input.focus(), 300);
-    },
-
-    closeSearch() {
-        this.overlay.classList.remove('active');
-        document.body.style.overflow = '';
-    }
-};
-
-// ========================= STATISTICS COUNTER =========================
-const StatsManager = {
-    init() {
-        this.counters = document.querySelectorAll('.stat-number');
-        if (this.counters.length === 0) return;
-        
-        this.observerOptions = { threshold: 0.5 };
-        this.observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    this.startCounting(entry.target);
-                    this.observer.unobserve(entry.target);
-                }
-            });
-        }, this.observerOptions);
-
-        this.counters.forEach(counter => this.observer.observe(counter));
-    },
-
-    startCounting(el) {
-        const target = +el.getAttribute('data-target');
-        const duration = 2000;
-        const startTime = performance.now();
-
-        const update = (currentTime) => {
-            const elapsed = currentTime - startTime;
-            const progress = Math.min(elapsed / duration, 1);
-            const easeOutQuad = (t) => t * (2 - t);
-            const currentNumber = Math.floor(easeOutQuad(progress) * target);
-
-            el.innerText = currentNumber;
-            if (progress < 1) requestAnimationFrame(update);
-            else el.innerText = target;
-        };
-
-        requestAnimationFrame(update);
-    }
-// ========================= LANGUAGE MANAGER =========================
+// =============================================================================
+// LANGUAGE MANAGER LOGIC
+// =============================================================================
 const LangManager = {
     init() {
+        this.cacheDOM();
+        this.bindEvents();
+        this.applySavedLanguage();
+    },
+
+    cacheDOM() {
         this.langBtn = document.getElementById('lang-btn');
         this.langList = document.querySelector('.lang-list');
         this.currentLangText = document.getElementById('current-lang');
         this.langOptions = document.querySelectorAll('.lang-list li');
-        
-        this.bindEvents();
-        this.applySavedLanguage();
     },
 
     bindEvents() {
@@ -318,32 +225,10 @@ const LangManager = {
     }
 };
 
-// ========================= FEATURED INSIGHTS =========================
-const InsightsManager = {
-    init() {
-        this.cards = document.querySelectorAll(".card");
-        if (this.cards.length === 0) return;
-
-        this.cards.forEach(card => {
-            card.addEventListener("mousemove", (e) => {
-                const rect = card.getBoundingClientRect();
-                const x = e.clientX - rect.left;
-                const y = e.clientY - rect.top;
-                card.style.backgroundPosition = `${x / 8}px ${y / 8}px`;
-            });
-
-            card.addEventListener("mouseleave", () => {
-                card.style.backgroundPosition = "center";
-            });
-        });
-    }
-};
-
-// ========================= INITIALIZE ALL MODULES =========================
+// =========================
+// INITIALIZE
+// =========================
 document.addEventListener('DOMContentLoaded', () => {
     NavManager.init();
-    SearchManager.init();
-    StatsManager.init();
-    InsightsManager.init();
     LangManager.init();
 });
