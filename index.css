@@ -239,91 +239,113 @@ body {
 }
 
 .card-content {
+    /* 1. Layout */
     position: relative;
     z-index: 5;
-    /* Pushing even further down for a dramatic upward reveal */
-    transform: translateY(80px); 
+    /* 4. Interaction */
+    transform: translateY(80px);
     transition: transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .card:hover .card-content {
-    /* Large lift to reveal space below for the description */
-    transform: translateY(-10px); 
+    /* 4. Interaction */
+    transform: translateY(-10px);
 }
 
 .card .tag {
+    /* 1. Layout */
+    display: inline-block;
+    /* 2. Box Model */
+    padding: 4px 12px;
+    margin-bottom: 12px;
+    border-radius: 4px;
+    /* 3. Visuals */
     font-size: 12px;
     font-weight: bold;
     letter-spacing: 1px;
-    margin-bottom: 12px;
     text-transform: uppercase;
     color: #ffffff;
     background: rgba(255, 255, 255, 0.15);
-    padding: 4px 12px;
-    border-radius: 4px;
-    display: inline-block;
+    /* 4. Interaction */
     transition: opacity 0.4s ease;
 }
 
 .card h3 {
+    /* 3. Visuals */
     font-size: 28px;
     line-height: 1.2;
     font-weight: 700;
     margin: 0;
     color: var(--white);
+    /* 4. Interaction */
     transition: transform 0.6s ease;
 }
 
-/* Natural Reveal - Description appears in the space created by h3's lift */
+/* Premium Description Reveal */
 .card-description {
+    /* 1. Layout */
+    visibility: hidden;
+    /* 2. Box Model */
+    margin-top: 15px;
+    /* 3. Visuals */
     font-size: 15px;
     line-height: 1.6;
     color: rgba(255, 255, 255, 0.7);
-    margin-top: 15px;
     opacity: 0;
-    visibility: hidden;
-    /* Description starts even lower to create a staggered entry */
-    transform: translateY(30px); 
+    /* 4. Interaction */
+    transform: translateY(30px);
     transition: opacity 0.6s ease, transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .card:hover .card-description {
-    opacity: 1;
+    /* 1. Layout */
     visibility: visible;
+    /* 3. Visuals */
+    opacity: 1;
+    /* 4. Interaction */
     transform: translateY(0);
-    transition-delay: 0.2s; /* Reveals as h3 reaches its peak */
+    transition-delay: 0.2s;
 }
 
 /* Premium Read More Link */
 .card-link {
+    /* 1. Layout */
     display: inline-flex;
     align-items: center;
+    visibility: hidden;
+    /* 2. Box Model */
     gap: 10px;
     margin-top: 25px;
+    /* 3. Visuals */
     font-size: 14px;
     font-weight: 700;
     color: #ffffff;
     text-transform: uppercase;
     letter-spacing: 1px;
     opacity: 0;
-    visibility: hidden;
-    transform: translateX(-20px); /* Slides in from left slightly */
+    /* 4. Interaction */
+    transform: translateX(-20px);
     transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .card-link i {
+    /* 4. Interaction */
     transition: transform 0.3s ease;
 }
 
 .card:hover .card-link {
-    opacity: 1;
+    /* 1. Layout */
     visibility: visible;
+    /* 3. Visuals */
+    opacity: 1;
+    /* 4. Interaction */
     transform: translateX(0);
-    transition-delay: 0.4s; /* Revealed last for a perfect sequence */
+    transition-delay: 0.4s;
 }
 
 .card-link:hover i {
-    transform: translateX(5px); /* Micro-interaction on arrow hover */
+    /* 4. Interaction */
+    transform: translateX(5px);
 }
 
 /* --- Card 1 Logic --- */
