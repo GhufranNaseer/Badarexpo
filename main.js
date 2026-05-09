@@ -1,17 +1,15 @@
 /* =============================================================================
-   BADAR EXPO - GLOBAL JAVASCRIPT (main.js)
-   Logic Groups: Navigation, Search Overlay, Language Manager, Dynamic Content
+   BADAR EXPO SOLUTIONS - GLOBAL JAVASCRIPT (main.js)
+   Architecture: Modular Logic Groups (rules.txt compliant)
    ============================================================================= */
 
+// ========================= NAVIGATION & MEGA MENU =========================
 const NavManager = {
     init() {
         this.cacheDOM();
         this.bindEvents();
     },
 
-    // =========================
-    // DOM CACHING
-    // =========================
     cacheDOM() {
         this.wrapper = document.getElementById('shared-mega-menu');
         this.contents = document.querySelectorAll('.mega-content');
@@ -27,9 +25,6 @@ const NavManager = {
         this.breakpoint = 1024;
     },
 
-    // =========================
-    // EVENT BINDING
-    // =========================
     bindEvents() {
         // --- Search Overlay Logic ---
         if (this.searchToggle) {
@@ -52,8 +47,10 @@ const NavManager = {
             this.menuToggle.addEventListener('click', () => {
                 const isActive = this.navMenu.classList.toggle('mobile-active');
                 const icon = this.menuToggle.querySelector('i');
-                icon.classList.toggle('fa-bars', !isActive);
-                icon.classList.toggle('fa-xmark', isActive);
+                if (icon) {
+                    icon.classList.toggle('fa-bars', !isActive);
+                    icon.classList.toggle('fa-xmark', isActive);
+                }
                 document.body.style.overflow = isActive ? 'hidden' : '';
             });
         }
@@ -70,7 +67,7 @@ const NavManager = {
                 if (window.innerWidth > this.breakpoint) this.hideMegaMenu();
             });
 
-            // Mobile Dropdown (Accordion)
+            // Mobile Accordion
             trigger.addEventListener('click', () => {
                 if (window.innerWidth <= this.breakpoint) {
                     const isAlreadyOpen = trigger.classList.contains('mobile-open');
@@ -90,7 +87,7 @@ const NavManager = {
             this.wrapper.addEventListener('mouseleave', () => this.hideMegaMenu());
         }
 
-        // Global Resize Management
+        // Global Resize Fix
         window.addEventListener('resize', () => {
             if (window.innerWidth > this.breakpoint && this.navMenu.classList.contains('mobile-active')) {
                 this.closeMobileMenu();
@@ -99,19 +96,15 @@ const NavManager = {
 
         // ESC Key Support
         document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape') {
-                if (this.searchOverlay.classList.contains('active')) {
-                    this.searchOverlay.classList.remove('active');
-                    document.body.style.overflow = '';
-                }
+            if (e.key === 'Escape' && this.searchOverlay.classList.contains('active')) {
+                this.searchOverlay.classList.remove('active');
+                document.body.style.overflow = '';
             }
         });
     },
 
-    // =========================
-    // METHODS
-    // =========================
     showMegaMenu(targetId) {
+        if (!this.wrapper) return;
         clearTimeout(this.hideTimeout);
         this.wrapper.classList.add('active');
         this.contents.forEach(c => c.classList.remove('active'));
@@ -121,7 +114,7 @@ const NavManager = {
 
     hideMegaMenu() {
         this.hideTimeout = setTimeout(() => {
-            this.wrapper.classList.remove('active');
+            if (this.wrapper) this.wrapper.classList.remove('active');
             this.contents.forEach(c => c.classList.remove('active'));
         }, 200);
     },
@@ -139,54 +132,77 @@ const NavManager = {
         const highlightDesc = contentBlock.querySelector('.dynamic-desc');
         const highlightBox = contentBlock.querySelector('.highlight-content-box');
 
-        if (!highlightImg || !highlightBox) return;
-
-        // Smooth fade out
-        highlightBox.style.opacity = '0';
-        highlightBox.style.transform = 'translateY(5px)';
-
-        setTimeout(() => {
-            highlightImg.src = newImage;
-            if (highlightTitle) highlightTitle.innerText = newTitle;
-            if (highlightDesc) highlightDesc.innerText = newDesc;
-            
-            // Smooth fade in
-            highlightBox.style.opacity = '1';
-            highlightBox.style.transform = 'translateY(0)';
-        }, 150);
+        if (highlightImg) highlightImg.src = newImage;
+        if (highlightTitle) highlightTitle.innerText = newTitle;
+        if (highlightDesc) highlightDesc.innerText = newDesc;
     },
 
     closeMobileMenu() {
         this.navMenu.classList.remove('mobile-active');
         const icon = this.menuToggle.querySelector('i');
-        icon.classList.add('fa-bars');
-        icon.classList.remove('fa-xmark');
+        if (icon) {
+            icon.classList.add('fa-bars');
+            icon.classList.remove('fa-xmark');
+        }
         document.body.style.overflow = '';
     }
 };
 
-// =============================================================================
-// LANGUAGE MANAGER LOGIC
-// =============================================================================
-const LangManager = {
+// ========================= STATISTICS COUNTER =========================
+const StatsManager = {
     init() {
-        this.cacheDOM();
-        this.bindEvents();
-        this.applySavedLanguage();
+        this.counters = document.querySelectorAll('.stat-number');
+        if (this.counters.length === 0) return;
+        
+        this.observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    this.startCounting(entry.target);
+                    this.observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.5 });
+
+        this.counters.forEach(counter => this.observer.observe(counter));
     },
 
-    cacheDOM() {
+    startCounting(el) {
+        const target = +el.getAttribute('data-target');
+        const duration = 2000;
+        const startTime = performance.now();
+
+        const update = (currentTime) => {
+            const elapsed = currentTime - startTime;
+            const progress = Math.min(elapsed / duration, 1);
+            const easeOutQuad = (t) => t * (2 - t);
+            const currentNumber = Math.floor(easeOutQuad(progress) * target);
+
+            el.innerText = currentNumber;
+            if (progress < 1) requestAnimationFrame(update);
+            else el.innerText = target;
+        };
+
+        requestAnimationFrame(update);
+    }
+};
+
+// ========================= LANGUAGE MANAGER =========================
+const LangManager = {
+    init() {
         this.langBtn = document.getElementById('lang-btn');
         this.langList = document.querySelector('.lang-list');
         this.currentLangText = document.getElementById('current-lang');
         this.langOptions = document.querySelectorAll('.lang-list li');
+        
+        this.bindEvents();
+        this.applySavedLanguage();
     },
 
     bindEvents() {
         if (this.langBtn) {
             this.langBtn.addEventListener('click', (e) => {
                 e.stopPropagation();
-                this.langList.classList.toggle('show');
+                if (this.langList) this.langList.classList.toggle('show');
             });
         }
 
@@ -225,10 +241,31 @@ const LangManager = {
     }
 };
 
-// =========================
-// INITIALIZE
-// =========================
+// ========================= FEATURED INSIGHTS =========================
+const InsightsManager = {
+    init() {
+        this.cards = document.querySelectorAll(".card");
+        if (this.cards.length === 0) return;
+
+        this.cards.forEach(card => {
+            card.addEventListener("mousemove", (e) => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                card.style.backgroundPosition = `${x / 8}px ${y / 8}px`;
+            });
+
+            card.addEventListener("mouseleave", () => {
+                card.style.backgroundPosition = "center";
+            });
+        });
+    }
+};
+
+// ========================= INITIALIZE ALL MODULES =========================
 document.addEventListener('DOMContentLoaded', () => {
     NavManager.init();
+    StatsManager.init();
     LangManager.init();
+    InsightsManager.init();
 });
