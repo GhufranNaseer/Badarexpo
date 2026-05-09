@@ -5,9 +5,10 @@
     --text-muted: #555;
     --bg-light: #f9f9f9;
     --white: #ffffff;
-    --transition-smooth: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    --shadow-soft: 0 40px 80px rgba(0, 0, 0, 0.1);
-    --border-light: #eee;
+    --transition-smooth: 0.35s cubic-bezier(0.4, 0, 0.2, 1); /* Premium industry standard curve */
+    --transition-fast: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    --shadow-soft: 0 15px 40px rgba(0, 0, 0, 0.08);
+    --border-light: rgba(0, 0, 0, 0.05);
 }
 
 /* --- GLOBAL & RESET --- */
@@ -89,20 +90,21 @@ body {
     padding: 10px 0;
     margin: 5px 0 0 0;
     border-radius: 8px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+    box-shadow: var(--shadow-soft);
     width: 150px;
     opacity: 0;
     visibility: hidden;
-    transform: translateY(10px);
-    transition: 0.3s;
+    transform: translate3d(0, 10px, 0);
+    transition: opacity var(--transition-fast), transform var(--transition-fast), visibility var(--transition-fast);
     z-index: 10002;
+    will-change: transform, opacity;
 }
 
 .lang-dropdown:hover .lang-list,
 .lang-list.show {
     opacity: 1;
     visibility: visible;
-    transform: translateY(0);
+    transform: translate3d(0, 0, 0);
 }
 
 .lang-list li {
@@ -191,7 +193,7 @@ body.rtl-mode {
     position: absolute;
     top: 100%;
     left: 50%;
-    transform: translateX(-50%) translateY(10px);
+    transform: translate3d(-50%, 15px, 0); /* GPU Accelerated */
     width: auto;
     background: var(--white);
     border-radius: 0 0 20px 20px;
@@ -200,13 +202,15 @@ body.rtl-mode {
     border-top: none;
     opacity: 0;
     pointer-events: none;
-    transition: opacity 0.3s, transform 0.3s;
+    transition: opacity var(--transition-smooth), transform var(--transition-smooth);
     z-index: 1001;
+    will-change: transform, opacity;
+    backface-visibility: hidden;
 }
 
 .mega-menu-wrapper.active {
     opacity: 1;
-    transform: translateX(-50%) translateY(0);
+    transform: translate3d(-50%, 0, 0);
     pointer-events: auto;
 }
 
@@ -454,31 +458,30 @@ body.rtl-mode {
 
     .menu {
         position: fixed;
-        top: 68.5px; /* Precision alignment beneath the 70px navbar */
+        top: 68.5px;
         left: 0;
         width: 100%;
         height: calc(100vh - 68.5px);
         background: var(--white);
         flex-direction: column;
         padding: 20px;
-        display: none; /* Completely remove from layout when inactive */
+        display: none;
         opacity: 0;
         z-index: 1999;
         border-top: 1px solid var(--border-light);
         overflow-y: auto;
         align-items: flex-start;
         box-sizing: border-box;
+        transform: translate3d(0, -15px, 0); /* Pre-position for hardware acceleration */
+        transition: opacity var(--transition-smooth), transform var(--transition-smooth);
+        will-change: transform, opacity;
+        backface-visibility: hidden;
     }
 
     .menu.mobile-active {
         display: flex;
         opacity: 1;
-        animation: slideDown 0.3s ease forwards;
-    }
-
-    @keyframes slideDown {
-        from { transform: translateY(-10px); opacity: 0; }
-        to { transform: translateY(0); opacity: 1; }
+        transform: translate3d(0, 0, 0);
     }
 
     .nav-item {
