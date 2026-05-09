@@ -16,11 +16,38 @@ const NavManager = {
         this.navbar = document.querySelector('.navbar');
         this.menuToggle = document.getElementById('mobile-menu-toggle');
         this.navMenu = document.getElementById('nav-menu');
+        this.searchToggle = document.getElementById('search-toggle');
+        this.searchClose = document.getElementById('search-close');
+        this.searchOverlay = document.getElementById('search-overlay');
+        this.searchInput = document.getElementById('search-input');
         this.hideTimeout = null;
         this.breakpoint = 1024; // Unified Breakpoint
     },
 
     bindEvents() {
+        // Search Overlay Toggle
+        if (this.searchToggle) {
+            this.searchToggle.addEventListener('click', () => {
+                this.searchOverlay.classList.add('active');
+                setTimeout(() => this.searchInput.focus(), 400);
+                document.body.style.overflow = 'hidden';
+            });
+        }
+
+        if (this.searchClose) {
+            this.searchClose.addEventListener('click', () => {
+                this.searchOverlay.classList.remove('active');
+                document.body.style.overflow = '';
+            });
+        }
+
+        // Close on ESC
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && this.searchOverlay.classList.contains('active')) {
+                this.searchOverlay.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+        });
         // Mobile Menu Toggle
         if (this.menuToggle) {
             this.menuToggle.addEventListener('click', () => {
@@ -164,8 +191,9 @@ const LangManager = {
         if (this.langOptions) {
             this.langOptions.forEach(opt => {
                 opt.addEventListener('click', (e) => {
-                    const lang = e.target.getAttribute('data-lang');
+                    const lang = e.currentTarget.getAttribute('data-lang');
                     this.switchLanguage(lang);
+                    if (this.langList) this.langList.classList.remove('show');
                 });
             });
         }

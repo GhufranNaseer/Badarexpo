@@ -230,16 +230,23 @@
         </div>
 
         <!-- ACTION BUTTONS (Desktop Only) -->
-        <div class="actions">
-            <button class="btn btn-dark">Visitor</button>
-            <button class="btn btn-light">Partner</button>
+        <div class="nav-right-icons">
+            <div class="search-trigger" id="search-toggle">
+                <i class="fas fa-magnifying-glass"></i>
+                <span class="search-text">Search</span>
+            </div>
+
+            <div class="actions">
+                <button class="btn btn-dark">Visitor</button>
+                <button class="btn btn-light">Partner</button>
+            </div>
         </div>
     </nav>
 
     <!-- HERO SECTION -->
     <section class="hero">
         <video autoplay muted loop playsinline class="hero-video">
-            <source src="Media/Enabling a digital tomorrow - Systems Limited_2.mp4" type="video/mp4">
+            <source src="Media/BXSS-TVC-15.March_.24-LR.mp4" type="video/mp4">
             Your browser does not support the video tag.
         </video>
         <div class="hero-overlay"></div>
@@ -253,6 +260,28 @@
             </div>
         </div>
     </section>
+
+    <!-- SEARCH OVERLAY -->
+    <div class="search-overlay" id="search-overlay">
+        <div class="search-close" id="search-close">
+            <i class="fas fa-xmark"></i>
+        </div>
+        <div class="search-container">
+            <div class="search-box">
+                <input type="text" placeholder="Search events, services, or insights..." id="search-input">
+                <i class="fas fa-magnifying-glass search-icon-inner"></i>
+            </div>
+            <div class="search-suggestions">
+                <h4>Quick Links</h4>
+                <div class="suggestion-tags">
+                    <span>#IDEAS2024</span>
+                    <span>#Exhibitions</span>
+                    <span>#Conferences</span>
+                    <span>#CorporateEvents</span>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <script src="main.js"></script>
 </body>
