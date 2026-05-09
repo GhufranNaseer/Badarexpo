@@ -614,6 +614,33 @@ body {
 }
 
 /* --- Responsive Stats --- */
+/* MOBILE: Horizontal Carousel Mode for Insights */
+@media (max-width: 1024px) {
+    .cards {
+        display: flex !important; /* Force flex for horizontal layout */
+        overflow-x: auto !important;
+        scroll-snap-type: x mandatory;
+        padding: 20px 15px !important;
+        gap: 20px !important;
+        /* Custom scrollbar behavior */
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+        scroll-behavior: smooth;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .cards::-webkit-scrollbar {
+        display: none;
+    }
+
+    .cards .card {
+        flex: 0 0 85% !important; /* Each card takes 85% of screen */
+        min-width: 85%;
+        scroll-snap-align: center;
+        margin-bottom: 0 !important; /* Remove bottom margin in carousel */
+    }
+}
+
 @media screen and (max-width: 1024px) {
     .stats-container {
         grid-template-columns: repeat(2, 1fr);
