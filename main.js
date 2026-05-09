@@ -166,6 +166,56 @@ const NavManager = {
 };
 
 // =============================================================================
+// STATISTICS COUNTER LOGIC
+// =============================================================================
+const StatsManager = {
+    init() {
+        this.counters = document.querySelectorAll('.stat-number');
+        if (this.counters.length === 0) return;
+        
+        this.observerOptions = {
+            threshold: 0.5 // Start when 50% of the section is visible
+        };
+
+        this.observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    this.startCounting(entry.target);
+                    this.observer.unobserve(entry.target);
+                }
+            });
+        }, this.observerOptions);
+
+        this.counters.forEach(counter => this.observer.observe(counter));
+    },
+
+    startCounting(el) {
+        const target = +el.getAttribute('data-target');
+        const duration = 2000; // 2 seconds
+        const startTime = performance.now();
+
+        const update = (currentTime) => {
+            const elapsed = currentTime - startTime;
+            const progress = Math.min(elapsed / duration, 1);
+            
+            // Easing function for smoother finish
+            const easeOutQuad = (t) => t * (2 - t);
+            const currentNumber = Math.floor(easeOutQuad(progress) * target);
+
+            el.innerText = currentNumber;
+
+            if (progress < 1) {
+                requestAnimationFrame(update);
+            } else {
+                el.innerText = target;
+            }
+        };
+
+        requestAnimationFrame(update);
+    }
+};
+
+// =============================================================================
 // LANGUAGE MANAGER LOGIC
 // =============================================================================
 const LangManager = {
@@ -230,5 +280,6 @@ const LangManager = {
 // =========================
 document.addEventListener('DOMContentLoaded', () => {
     NavManager.init();
+    StatsManager.init();
     LangManager.init();
 });
