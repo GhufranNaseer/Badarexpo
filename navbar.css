@@ -368,7 +368,7 @@ body.rtl-mode {
         flex-wrap: nowrap;
         width: 100%;
         max-width: 100%;
-        overflow: hidden;
+        overflow: visible; /* Changed from hidden to allow dropdown visibility */
         box-sizing: border-box;
     }
     
@@ -408,12 +408,14 @@ body.rtl-mode {
 
     .navbar {
         padding: 0 15px;
-        height: 85px;
+        height: 70px; /* Reduced from 85px for a cleaner look */
         width: 100%;
         max-width: 100%;
         box-sizing: border-box;
         justify-content: center;
-        position: relative;
+        position: sticky; /* Frozen/Sticky on scroll */
+        top: 0;
+        z-index: 1000;
     }
 
     .logo {
@@ -452,10 +454,10 @@ body.rtl-mode {
 
     .menu {
         position: fixed;
-        top: 120px;
+        top: 68.5px; /* Precision alignment beneath the 70px navbar */
         left: 0;
         width: 100%;
-        height: calc(100vh - 120px);
+        height: calc(100vh - 68.5px);
         background: var(--white);
         flex-direction: column;
         padding: 20px;
@@ -481,14 +483,14 @@ body.rtl-mode {
 
     .nav-item {
         width: 100%;
-        max-width: 100%; /* Prevent overflow */
+        max-width: 100%; 
         height: auto;
         padding: 15px 0;
         border-bottom: 1px solid var(--border-light);
         flex-direction: column;
         align-items: flex-start;
         transition: background 0.3s;
-        overflow: hidden; /* Safety */
+        /* Removed overflow: hidden to prevent submenu clipping */
     }
     
     .nav-item span {
@@ -563,10 +565,11 @@ body.rtl-mode {
         margin-top: 30px;
         width: 100%;
         box-sizing: border-box;
+        align-items: center; /* Balanced center alignment */
     }
     
     .btn {
-        width: 100% !important;
+        width: 78% !important; /* Optimized width for mobile balance */
         max-width: 100%;
         box-sizing: border-box;
     }
