@@ -247,18 +247,8 @@ const InsightsManager = {
         this.cards = document.querySelectorAll(".card");
         if (this.cards.length === 0) return;
 
-        this.cards.forEach(card => {
-            card.addEventListener("mousemove", (e) => {
-                const rect = card.getBoundingClientRect();
-                const x = e.clientX - rect.left;
-                const y = e.clientY - rect.top;
-                card.style.backgroundPosition = `${x / 8}px ${y / 8}px`;
-            });
-
-            card.addEventListener("mouseleave", () => {
-                card.style.backgroundPosition = "center";
-            });
-        });
+        // Background tracking removed to keep images still on hover
+        console.log("Insights Manager: Static backgrounds initialized.");
     }
 };
 
