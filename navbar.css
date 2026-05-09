@@ -1,7 +1,11 @@
-/* --- DESIGN TOKENS --- */
+/* =============================================================================
+   GLOBAL NAVIGATION COMPONENT (navbar.css)
+   Contains: Topbar, Navbar, Mega Menu, Search Overlay, Language Toggle
+   ============================================================================= */
+
 :root {
     --primary-red: #e41f26;
-    --text-dark: #111;
+    --text-dark: #1a1a1a;
     --text-muted: #555;
     --bg-light: #f9f9f9;
     --white: #ffffff;
@@ -12,40 +16,43 @@
     --border-light: rgba(0, 0, 0, 0.05);
 }
 
-/* --- GLOBAL & RESET --- */
+/* =========================
+   GLOBAL RESET & BASE
+   ========================= */
 body {
     margin: 0;
-    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    font-family: 'Inter', sans-serif;
     background-color: var(--white);
     color: var(--text-dark);
-    overflow-x: hidden !important;
-    max-width: 100% !important;
-    width: 100% !important;
-    position: relative;
+    overflow-x: hidden;
 }
 
 /* --- TOP BAR --- */
+/* =========================
+   TOPBAR & LANGUAGE LOGIC
+   ========================= */
 .topbar {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 8px 60px;
-    /* Adjusted padding for better breathing space */
+    padding: 0 60px;
+    height: 40px;
     background: var(--primary-red);
+    /* Restored Signature Red */
     color: var(--white);
     font-size: 13px;
-    /* Upgraded font size */
     font-weight: 500;
 }
 
 .topbar a {
     color: var(--white);
     text-decoration: none;
-    opacity: 0.85;
+    opacity: 0.9;
     transition: var(--transition-smooth);
 }
 
 .topbar a:hover {
+    color: var(--white);
     opacity: 1;
 }
 
@@ -194,8 +201,9 @@ body.rtl-mode {
     top: 100%;
     left: 50%;
     transform: translate3d(-50%, 15px, 0);
-    /* GPU Accelerated */
     width: auto;
+    max-width: 95vw;
+    /* Safety constraint to prevent screen overflow */
     background: var(--white);
     border-radius: 0 0 20px 20px;
     box-shadow: var(--shadow-soft);
@@ -207,6 +215,7 @@ body.rtl-mode {
     z-index: 1001;
     will-change: transform, opacity;
     backface-visibility: hidden;
+    /* overflow: hidden; Removed to prevent highlight box clipping */
 }
 
 .mega-menu-wrapper.active {
@@ -215,10 +224,18 @@ body.rtl-mode {
     pointer-events: auto;
 }
 
+/* Dynamic Content Containers */
 .mega-content {
     display: none;
-    gap: 40px;
     padding: 40px;
+    gap: 40px;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: flex-start;
+    justify-content: flex-start;
+    /* Grouped to the left with consistent gaps */
+    max-height: 85vh;
+    overflow-y: auto;
     animation: contentFadeIn 0.3s ease forwards;
 }
 
@@ -226,17 +243,20 @@ body.rtl-mode {
     display: flex;
 }
 
-/* Menu Widths */
+/* Dynamic Widths based on content + 40px padding */
 #content-services {
-    width: 1100px;
+    width: max-content;
+    max-width: 95vw;
 }
 
 #content-events {
-    width: 850px;
+    width: max-content;
+    max-width: 95vw;
 }
 
 #content-insights {
     width: 800px;
+    max-width: 95vw;
 }
 
 @keyframes contentFadeIn {
@@ -294,7 +314,7 @@ body.rtl-mode {
 }
 
 .search-close:hover {
-    background: rgba(0,0,0,0.05);
+    background: rgba(0, 0, 0, 0.05);
     color: var(--primary-red);
     transform: rotate(90deg);
 }
@@ -316,7 +336,8 @@ body.rtl-mode {
     border: none;
     background: transparent;
     border-bottom: 3px solid var(--text-dark);
-    padding: 15px 65px 15px 0; /* Increased padding to prevent icon overlap */
+    padding: 15px 65px 15px 0;
+    /* Increased padding to prevent icon overlap */
     font-size: 32px;
     font-weight: 700;
     color: var(--text-dark);
@@ -361,6 +382,16 @@ body.rtl-mode {
     margin-bottom: 20px;
 }
 
+.highlight-content-box {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    height: 100%;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    /* Supports JS animations */
+    will-change: transform, opacity;
+}
+
 .suggestion-tags {
     display: flex;
     flex-wrap: wrap;
@@ -385,13 +416,97 @@ body.rtl-mode {
 }
 
 /* Mobile Adjustments for Search */
-@media screen and (max-width: 768px) {
-    .search-box input {
-        font-size: 22px;
+@media screen and (max-width: 1024px) {
+
+    /* Top Bar adjustments (Aggressive Fix from Git) */
+    .topbar {
+        padding: 0 10px;
+        flex-direction: row !important;
+        height: 35px;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: nowrap;
+        width: 100%;
+        max-width: 100%;
+        overflow: hidden;
+        box-sizing: border-box;
     }
-    .search-close {
-        top: 20px;
-        right: 20px;
+
+    .topbar-left {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        font-size: 8.5px;
+        /* Aggressive scaling to prevent wrap */
+        white-space: nowrap;
+        max-width: 75%;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    .topbar-right {
+        display: flex !important;
+        justify-content: flex-end;
+        align-items: center;
+        width: auto;
+        max-width: 25%;
+    }
+
+    .lang-dropdown {
+        margin-right: 0;
+    }
+
+    /* Hide one contact detail on very small screens if it still overflows */
+    @media screen and (max-width: 360px) {
+        .topbar-left span:nth-child(2) {
+            display: none;
+            /* Hide email on extremely narrow phones */
+        }
+    }
+
+    .topbar-right a {
+        display: none !important;
+    }
+
+    .navbar {
+        padding: 0 15px;
+        height: 70px;
+        /* Reduced from 85px for a cleaner look */
+        width: 100%;
+        max-width: 100%;
+        box-sizing: border-box;
+        justify-content: center;
+        position: sticky;
+        /* Frozen/Sticky on scroll */
+        top: 0;
+        z-index: 1000;
+    }
+
+    .logo {
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: 1001;
+        top: 50%;
+        /* Center vertically */
+        transform: translate(-50%, -50%);
+    }
+
+    .logo-img {
+        height: 100px;
+        /* Prominent but fits inside 85px navbar */
+        width: auto;
+        display: block;
+        filter: drop-shadow(0 5px 15px rgba(0, 0, 0, 0.08));
+        transition: transform 0.3s ease;
+    }
+
+    .nav-toggle {
+        position: absolute;
+        left: 20px;
+        top: 50%;
+        transform: translateY(-50%);
+        display: flex !important;
     }
 }
 
@@ -405,7 +520,7 @@ body.rtl-mode {
     height: 20px;
 }
 
-/* Columns */
+/* Columns & Links */
 .column {
     width: 220px;
     flex-shrink: 0;
@@ -415,7 +530,9 @@ body.rtl-mode {
     margin-bottom: 15px;
     font-size: 15px;
     border-bottom: 2px solid #f5f5f5;
+    /* Exact Git Divider */
     padding-bottom: 8px;
+    color: var(--text-dark);
 }
 
 .column a {
@@ -424,25 +541,40 @@ body.rtl-mode {
     color: var(--text-muted);
     margin: 10px 0;
     font-size: 13px;
-    transition: 0.2s;
+    transition: all 0.2s;
 }
 
 .column a:hover {
     color: var(--primary-red);
     padding-left: 5px;
+    /* Exact Original Interactive Feel */
 }
 
-/* Highlights & Dynamic Content */
+/* Bullet List Styling (Restored from Git) */
+.bullet-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.bullet-list li {
+    margin: 0;
+    padding: 0;
+}
+
+/* Highlights & Dynamic Content (Git Exact Match) */
 .highlight {
     background: var(--bg-light);
     padding: 20px;
     border-radius: 12px;
     width: 300px;
     flex-shrink: 0;
+    /* margin-left: auto; Removed to prevent sticking to right border */
 }
 
 .highlight-content-box {
     transition: opacity 0.3s, transform 0.3s;
+    will-change: transform, opacity;
 }
 
 .highlight img {
@@ -451,6 +583,20 @@ body.rtl-mode {
     border-radius: 8px;
     margin-bottom: 12px;
     object-fit: cover;
+}
+
+.highlight strong {
+    display: block;
+    font-size: 16px;
+    margin-bottom: 5px;
+    color: var(--text-dark);
+}
+
+.highlight p {
+    font-size: 13px;
+    color: var(--text-muted);
+    line-height: 1.4;
+    margin: 0;
 }
 
 .insight-card {
@@ -472,7 +618,8 @@ body.rtl-mode {
 }
 
 .search-trigger {
-    font-size: 18px; /* Balanced icon size */
+    font-size: 18px;
+    /* Balanced icon size */
     color: var(--text-dark);
     cursor: pointer;
     transition: var(--transition-smooth);
@@ -630,7 +777,8 @@ body.rtl-mode {
         transform: translateY(-50%);
         display: flex !important;
         z-index: 2001;
-        font-size: 20px; /* Reduced to match search icon weight */
+        font-size: 20px;
+        /* Reduced to match search icon weight */
         cursor: pointer;
         color: var(--text-dark);
     }
@@ -640,7 +788,8 @@ body.rtl-mode {
         right: 20px;
         top: 50%;
         transform: translateY(-50%);
-        font-size: 20px; /* Matched with hamburger icon */
+        font-size: 20px;
+        /* Matched with hamburger icon */
         z-index: 2001;
         padding: 5px;
         color: var(--text-dark);

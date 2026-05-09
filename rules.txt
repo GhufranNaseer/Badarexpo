@@ -1,0 +1,39 @@
+================================================================================
+BADAR EXPO SOLUTIONS - REPOSITORY ARCHITECTURE & RULES (rules.txt)
+================================================================================
+Version: 1.0.0
+Objective: To ensure long-term scalability, maintainability, and clean code.
+--------------------------------------------------------------------------------
+
+[1. REPOSITORY STRUCTURE & FILING]
+- GLOBAL COMPONENTS: Styles used on every page (Navbar, Footer, Modals) MUST remain in dedicated files (e.g., 'navbar.css').
+- PAGE-SPECIFIC STYLES: Styles unique to a page (e.g., Landing Page sections) MUST live in 'index.css'.
+- MODULAR LOGIC: JavaScript must be grouped by functionality (Navigation, Animations, Form Handling).
+
+[2. CODING STANDARDS & NAMING]
+- NAMING: Use kebab-case for CSS classes (e.g., 'nav-toggle', 'search-overlay').
+- COMMENTS: Every major section MUST be demarcated by standardized comment blocks:
+  * HTML: <!-- ========================= SECTION NAME ========================= -->
+  * CSS: /* ========================= SECTION NAME ========================= */
+  * JS: // ========================= LOGIC GROUP =========================
+
+[3. CSS PHILOSOPHY (BEM-LITE)]
+- Avoid "magic numbers" (fixed widths/heights) where possible.
+- Use CSS Variables (--primary-red, --transition-smooth) for all tokens.
+- Priority: 1. Transforms/Opacity -> 2. Flex/Grid -> 3. Layout Properties.
+
+[4. PERFORMANCE & ACCESSIBILITY]
+- Hardware Acceleration: Use 'will-change' on elements with complex transitions.
+- Semantic HTML: Use <nav>, <section>, <article>, <header>, <footer> tags.
+- Image Loading: Use 'loading="lazy"' for non-critical below-the-fold images.
+
+[5. MAINTENANCE WORKFLOW]
+- Before ending a session:
+  1. Verify section-wise organization.
+  2. Clean up ad-hoc styles.
+  3. Update 'data.txt' change logs.
+  4. Sync 'rules.txt' if new patterns are adopted.
+
+--------------------------------------------------------------------------------
+ARCHITECT'S NOTE: Build for the 10th page, not just the 1st.
+================================================================================

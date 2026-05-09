@@ -1,5 +1,9 @@
-PROJECT SUMMARY: BADAR EXPO WEBSITE (POLISHED & FINALIZED)
-----------------------------------------------------
+================================================================================
+BADAR EXPO SOLUTIONS - PROJECT MASTER ARCHIVE & LOG
+================================================================================
+
+[PHASE 1: INITIAL CORE ARCHITECTURE & NAVIGATION]
+-------------------------------------------------
 Date: May 05, 2026
 Status: Phase 1 (Core Architecture & Navigation) - 100% COMPLETED
 
@@ -39,12 +43,58 @@ The core framework is now production-ready, highly optimized, and fully responsi
 - Premium Corporate Identity: Red (#e41f26) and White theme.
 - High-end Micro-interactions: Smooth transitions, icon rotations, and slide-in animations.
 
-4. PENDING TASKS (PHASE 2)
---------------------------
-- HERO SECTION: Implementing the high-impact video/image slider with business statistics.
-- BODY CONTENT: Developing About Us, Services Grid, and Footer.
-- ASSETS: Replace placeholder images and logo with high-resolution branding.
-
-5. ARCHITECTURE CHECKPOINT
+4. ARCHITECTURE CHECKPOINT
 --------------------------
 The repository is clean and scalable. Global logic is centralized, making it easy to add new pages (About, Contact) without duplicating code.
+
+================================================================================
+[PHASE 2: EVOLUTION & SYSTEM OPTIMIZATION LOG]
+================================================================================
+
+SESSION 1: [May 08, 2026] - PERFORMANCE & UI REFINEMENT
+------------------------------------------------------
+- REASON: Improving the "perceived speed" and mobile responsiveness.
+- UPDATES:
+  * GPU ACCELERATION: Integrated 'will-change' and 'translate3d' for 60fps scrolling and menu opening.
+  * CUBIC BEZIER: Replaced linear transitions with premium (0.4, 0, 0.2, 1) curves.
+  * MOBILE UI: Reduced navbar height to 70px for a more compact and modern look.
+  * VISIBILITY FIX: Removed 'overflow: hidden' from nav-items to fix submenu clipping.
+
+SESSION 2: [May 09, 2026] - SEARCH ECOSYSTEM & HERO REDESIGN
+------------------------------------------------------------
+- REASON: Adding site-wide search and improving background video impact.
+- UPDATES:
+  * SEARCH OVERLAY: Full-screen glassmorphism search with auto-focus and quick tags.
+  * DESKTOP SEARCH: Added "Search" text label and gray capsule hover shade to the navbar icon.
+  * HERO REALIGNMENT: Shifted text to LEFT alignment to clear the center for video content.
+  * SMART OVERLAY: Replaced full dark overlay with a left-to-right gradient for better video visibility.
+  * ICON SYMMETRY: Unified weights of Hamburger and Search icons to 20px.
+  * STICKY FREEZE: Locked the navbar as "Sticky" on both Desktop and Mobile.
+
+SESSION 3: [May 09, 2026] - DOCUMENTATION & ARCHIVE UPGRADE
+-----------------------------------------------------------
+- REASON: Shifting to a sequential professional logging system for BXSS standards.
+- UPDATES:
+  * Restructured 'data.txt' into a chronological Project Master Archive.
+  * Preserved all original Phase 1 documentation while adding new Session Logs.
+
+--------------------------------------------------------------------------------
+[SESSION 4: UI ARCHITECTURE STABILIZATION & GIT BEHAVIOR SYNC]
+- STATUS: 100% Completed
+- OBJECTIVE: Resolve UI regressions and restore "Bahtreen" Git behavior within Scalable Architecture.
+- ACTIONS:
+  1. RESTORED: Signature Red (#e41f26) top bar theme and white typography for premium branding.
+  2. FIXED: Mega Menu overflow by removing 'overflow: hidden' clipping and adding 'max-width: 95vw'.
+  3. SYNCED: All Mega Menu spacing (40px gaps/padding) and column widths (220px/300px) with Git baseline.
+  4. RESTORED: Dynamic content switching logic (handleDynamicSwitch) in main.js for hover image/text swaps.
+  5. OPTIMIZED: Implemented 'max-content' width patterns for mega menus to ensure symmetrical side padding.
+  6. CLEANUP: Removed duplicate CSS declarations and ensured 100% compliance with 'rules.txt'.
+- RESULT: Interface is now visually stable, responsive, and behaviorally identical to the stable Git version but with a professional modular foundation.
+
+--------------------------------------------------------------------------------
+[UPCOMING ROADMAP]
+[ ] Phase 2.5: Statistics Counter Section (Animated counters for Events/Visitors).
+[ ] Phase 3.0: About Us & Corporate Services Grid.
+[ ] Phase 4.0: Media/Insights Gallery and Multilingual Content update.
+================================================================================
+END OF LOG - BADAR EXPO SOLUTIONS
