@@ -252,10 +252,82 @@ const InsightsManager = {
     }
 };
 
+// ========================= MEDIA GALLERY (PHASE 4.0) =========================
+const GalleryManager = {
+    init() {
+        this.filterBtns = document.querySelectorAll('.filter-btn');
+        this.galleryItems = document.querySelectorAll('.gallery-item');
+        this.lightbox = document.getElementById('lightbox');
+        this.lightboxImg = document.getElementById('lightbox-img');
+        this.lightboxClose = document.querySelector('.lightbox-close');
+        
+        if (!this.galleryItems.length) return;
+
+        this.bindEvents();
+    },
+
+    bindEvents() {
+        // Filtering Logic
+        this.filterBtns.forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                this.filterBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                this.filterGallery(btn.getAttribute('data-filter'));
+            });
+        });
+
+        // Lightbox Open
+        this.galleryItems.forEach(item => {
+            item.addEventListener('click', () => {
+                const img = item.querySelector('img');
+                const title = item.querySelector('h4').innerText;
+                this.openLightbox(img.src, title);
+            });
+        });
+
+        // Lightbox Close
+        if (this.lightboxClose) {
+            this.lightboxClose.addEventListener('click', () => this.closeLightbox());
+        }
+        if (this.lightbox) {
+            this.lightbox.addEventListener('click', (e) => {
+                if (e.target === this.lightbox) this.closeLightbox();
+            });
+        }
+    },
+
+    filterGallery(filter) {
+        this.galleryItems.forEach(item => {
+            const category = item.getAttribute('data-category');
+            if (filter === 'all' || filter === category) {
+                item.style.display = 'block';
+                // Trigger a small animation for entry
+                item.style.animation = 'fadeIn 0.5s ease forwards';
+            } else {
+                item.style.display = 'none';
+            }
+        });
+    },
+
+    openLightbox(src, title) {
+        if (!this.lightbox) return;
+        this.lightboxImg.src = src;
+        this.lightbox.classList.add('active');
+        document.body.style.overflow = 'hidden'; // Prevent scroll
+    },
+
+    closeLightbox() {
+        if (!this.lightbox) return;
+        this.lightbox.classList.remove('active');
+        document.body.style.overflow = 'auto'; // Restore scroll
+    }
+};
+
 // ========================= INITIALIZE ALL MODULES =========================
 document.addEventListener('DOMContentLoaded', () => {
     NavManager.init();
     StatsManager.init();
     LangManager.init();
     InsightsManager.init();
+    GalleryManager.init();
 });

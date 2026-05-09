@@ -470,6 +470,121 @@
         </div>
     </section>
 
+    <!-- ========================= MEDIA GALLERY (PHASE 4.0) ========================= -->
+    <section class="media-gallery section-padding" id="gallery">
+        <div class="container">
+            <div class="grid-header">
+                <span class="section-tag">Visual Journey</span>
+                <h2>Experience Excellence</h2>
+                <p>A glimpse into Pakistan's most impactful exhibitions and corporate events.</p>
+            </div>
+            
+            <!-- Gallery Filters -->
+            <div class="gallery-filters">
+                <button class="filter-btn active" data-filter="all">All</button>
+                <button class="filter-btn" data-filter="events">Major Events</button>
+                <button class="filter-btn" data-filter="corporate">Corporate</button>
+                <button class="filter-btn" data-filter="videos">Videos</button>
+            </div>
+
+            <!-- Gallery Grid -->
+            <div class="gallery-grid" id="gallery-grid">
+                <!-- Gallery Item 1 (Wide) -->
+                <div class="gallery-item span-2" data-category="events">
+                    <div class="gallery-img-container">
+                        <img src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?q=80&w=2070&auto=format&fit=crop" alt="Event Exhibition">
+                        <div class="gallery-overlay">
+                            <div class="gallery-info">
+                                <span class="gallery-tag">Events</span>
+                                <h4>IDEAS 2024 Showcase</h4>
+                            </div>
+                            <div class="gallery-icon"><i class="fas fa-expand"></i></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Gallery Item 2 -->
+                <div class="gallery-item video-item" data-category="videos">
+                    <div class="gallery-img-container">
+                        <img src="https://images.unsplash.com/photo-1492684223066-81342ee5ff30?q=80&w=2070&auto=format&fit=crop" alt="Corporate Video">
+                        <div class="gallery-overlay">
+                            <div class="gallery-info">
+                                <span class="gallery-tag">Video</span>
+                                <h4>ITCN Asia Highlights</h4>
+                            </div>
+                            <div class="gallery-icon"><i class="fas fa-play"></i></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Gallery Item 3 -->
+                <div class="gallery-item" data-category="corporate">
+                    <div class="gallery-img-container">
+                        <img src="https://images.unsplash.com/photo-1511578314322-379afb476865?q=80&w=2069&auto=format&fit=crop" alt="Conference Room">
+                        <div class="gallery-overlay">
+                            <div class="gallery-info">
+                                <span class="gallery-tag">Corporate</span>
+                                <h4>Strategic Planning 2024</h4>
+                            </div>
+                            <div class="gallery-icon"><i class="fas fa-expand"></i></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Gallery Item 4 -->
+                <div class="gallery-item" data-category="events">
+                    <div class="gallery-img-container">
+                        <img src="https://images.unsplash.com/photo-1505373877841-8d25f7d46678?q=80&w=2012&auto=format&fit=crop" alt="Tech Expo">
+                        <div class="gallery-overlay">
+                            <div class="gallery-info">
+                                <span class="gallery-tag">Events</span>
+                                <h4>Tech Innovation Summit</h4>
+                            </div>
+                            <div class="gallery-icon"><i class="fas fa-expand"></i></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Gallery Item 5 (Tall) -->
+                <div class="gallery-item row-2" data-category="corporate">
+                    <div class="gallery-img-container">
+                        <img src="https://images.unsplash.com/photo-1517457373958-b7bdd4587205?q=80&w=2069&auto=format&fit=crop" alt="Networking Event">
+                        <div class="gallery-overlay">
+                            <div class="gallery-info">
+                                <span class="gallery-tag">Corporate</span>
+                                <h4>Industry Networking</h4>
+                            </div>
+                            <div class="gallery-icon"><i class="fas fa-expand"></i></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Gallery Item 6 -->
+                <div class="gallery-item" data-category="videos">
+                    <div class="gallery-img-container">
+                        <img src="https://images.unsplash.com/photo-1475721027187-402ad2989a38?q=80&w=2073&auto=format&fit=crop" alt="Behind the scenes">
+                        <div class="gallery-overlay">
+                            <div class="gallery-info">
+                                <span class="gallery-tag">Video</span>
+                                <h4>Behind the Scenes: My Karachi</h4>
+                            </div>
+                            <div class="gallery-icon"><i class="fas fa-play"></i></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- LIGHTBOX (Hidden by default) -->
+    <div class="lightbox" id="lightbox">
+        <span class="lightbox-close">&times;</span>
+        <div class="lightbox-content">
+            <img src="" alt="Full View" id="lightbox-img">
+            <div class="lightbox-caption" id="lightbox-caption"></div>
+        </div>
+    </div>
+
     <script src="main.js"></script>
 </body>
 
