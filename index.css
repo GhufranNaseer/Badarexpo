@@ -555,125 +555,160 @@ body {
 }
 
 /* =============================================================================
-   STATISTICS SECTION
+   STATISTICS SECTION (DEVELOPER PROVIDED)
    ============================================================================= */
-.stats {
-    padding: 100px 0;
-    background: #0f0f0f;
-    /* Premium Dark Background */
-    position: relative;
-    overflow: hidden;
+.stats-section {
+    width: 100%;
+    padding: 120px 20px;
+    background: #fdfdfd;
 }
 
-.stats-container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 40px;
+/* TOP AREA */
+.testi-top-area {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 40px;
+    margin-bottom: 90px;
+    flex-wrap: wrap;
+}
+
+/* BUTTONS */
+.testi-btns {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    margin-top: 10px;
+}
+
+.testi-btn {
+    border: none;
+    outline: none;
+    cursor: pointer;
+    transition: 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+    font-size: 16px;
+    font-weight: 700;
+    border-radius: 50px;
+    height: 58px;
+    padding: 0 34px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.demo-btn {
+    background: #fff;
+    border: 1.5px solid #d6d6d6;
+    color: #172033;
+    gap: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
+}
+
+.demo-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+    border-color: #172033;
+}
+
+.testi-play-icon {
+    width: 22px;
+    height: 22px;
+    border: 1.5px solid #172033;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 10px;
+    padding-left: 2px;
+}
+
+.start-btn {
+    background: #2d3a52;
+    color: #fff;
+    box-shadow: 0 10px 20px rgba(45, 58, 82, 0.18);
+}
+
+.start-btn:hover {
+    transform: translateY(-3px);
+    background: #1f2a3d;
+    box-shadow: 0 14px 30px rgba(45, 58, 82, 0.25);
+}
+
+/* STATS GRID */
+.stats-grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    gap: 30px;
+    gap: 55px;
 }
 
-.stat-item {
-    background: rgba(255, 255, 255, 0.03);
-    border: 1px solid rgba(255, 255, 255, 0.05);
-    padding: 50px 30px;
-    border-radius: 24px;
-    text-align: center;
+.stat-box {
     position: relative;
-    transition: var(--transition-smooth);
-    backdrop-filter: blur(10px);
-}
-
-.stat-item:hover {
-    transform: translateY(-10px);
-    background: rgba(255, 255, 255, 0.05);
-    border-color: var(--primary-red);
-}
-
-.stat-icon {
-    font-size: 40px;
-    margin-bottom: 25px;
-    background: linear-gradient(135deg, var(--primary-red), #ff4d4d);
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
-    color: transparent;
-    display: inline-block;
+    padding-top: 25px;
 }
 
 .stat-number {
-    font-size: 56px;
-    font-weight: 800;
-    color: var(--white);
+    font-size: 45px;
+    font-weight: 650;
+    color: #e21d24;
     line-height: 1;
-    display: inline-block;
+    margin-bottom: 18px;
+    letter-spacing: -3px;
 }
 
-.stat-plus {
-    display: inline-block;
-    font-size: 32px;
-    color: var(--primary-red);
+.stat-title {
+    font-size: 24px;
     font-weight: 700;
-    vertical-align: top;
-    margin-top: 5px;
-    margin-left: 2px;
+    color: #1d2433;
+    margin-bottom: 12px;
 }
 
-.stat-label {
-    margin-top: 15px;
-    font-size: 14px;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    color: rgba(255, 255, 255, 0.6);
-    font-weight: 600;
+.stat-desc {
+    font-size: 16px;
+    line-height: 1.8;
+    color: #6e6e6e;
 }
 
-/* --- Responsive Stats --- */
-/* MOBILE: Horizontal Carousel Mode for Insights */
-@media (max-width: 1024px) {
-    .cards {
-        display: flex !important;
-        /* Force flex for horizontal layout */
-        overflow-x: auto !important;
-        scroll-snap-type: x mandatory;
-        padding: 20px 15px !important;
-        gap: 20px !important;
-        /* Custom scrollbar behavior */
-        -ms-overflow-style: none;
-        scrollbar-width: none;
-        scroll-behavior: smooth;
-        -webkit-overflow-scrolling: touch;
-    }
-
-    .cards::-webkit-scrollbar {
-        display: none;
-    }
-
-    .cards .card {
-        flex: 0 0 85% !important;
-        /* Each card takes 85% of screen */
-        min-width: 85%;
-        scroll-snap-align: center;
-        margin-bottom: 0 !important;
-        /* Remove bottom margin in carousel */
-    }
+/* TOP LINE ANIMATION */
+.stat-box::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0%;
+    height: 4px;
+    background: #2d3a52;
+    border-radius: 10px;
+    transition: 1.5s cubic-bezier(0.165, 0.84, 0.44, 1);
 }
 
-@media screen and (max-width: 1024px) {
-    .stats-container {
+.stat-box.active::before {
+    width: 70px;
+}
+
+/* RESPONSIVE */
+@media(max-width: 1200px) {
+    .stats-grid {
         grid-template-columns: repeat(2, 1fr);
+        gap: 60px 40px;
     }
 }
 
-@media screen and (max-width: 600px) {
-    .stats-container {
-        grid-template-columns: 1fr;
-        padding: 0 20px;
+@media(max-width: 768px) {
+    .stats-section {
+        padding: 80px 20px;
+    }
+
+    .testi-top-area {
+        margin-bottom: 60px;
     }
 
     .stat-number {
-        font-size: 42px;
+        font-size: 62px;
+    }
+
+    .stats-grid {
+        grid-template-columns: 1fr;
+        gap: 55px;
     }
 }
 
@@ -1247,6 +1282,7 @@ body {
 /* =============================================================================
    EVENTS SHOWCASE SLIDER
    ============================================================================= */
+/* ========================= EVENTS SHOWCASE SLIDER ========================= */
 .evt-slider-section {
     background: transparent;
     padding: 80px 0 60px;
@@ -1429,9 +1465,7 @@ body {
 
 
 
-/* =============================================================================
-   NEW SERVICES CAROUSEL (STICKY SCROLL)
-   ============================================================================= */
+/* ========================= SERVICES STICKY CAROUSEL ========================= */
 .services-scroll-track {
     position: relative;
     height: 300vh;
@@ -1675,7 +1709,8 @@ body {
 }
 
 .testi-small-heading {
-    color: #e41f26; /* Adjusted to project brand red */
+    color: #e41f26;
+    /* Adjusted to project brand red */
     font-size: 14px;
     font-weight: 600;
     margin-bottom: 14px;
@@ -1701,9 +1736,11 @@ body {
 
 .testi-slider-window {
     width: 100%;
-    max-width: 1240px; /* 4 cards (285) + 3 gaps (32) = 1236px approx */
+    max-width: 1240px;
+    /* 4 cards (285) + 3 gaps (32) = 1236px approx */
     overflow: hidden;
-    padding: 60px 0 30px; /* Increased top padding to accommodate overflowing profile images */
+    padding: 60px 0 30px;
+    /* Increased top padding to accommodate overflowing profile images */
 }
 
 .testi-cards-wrapper {
@@ -1750,7 +1787,8 @@ body {
 .testimonial-card {
     position: relative;
     width: 285px;
-    flex: 0 0 285px; /* Fixed width for carousel */
+    flex: 0 0 285px;
+    /* Fixed width for carousel */
     background: #fff;
     border-radius: 20px;
     padding: 80px 32px 40px;
@@ -1819,7 +1857,8 @@ body {
     width: 8px;
     height: 8px;
     border-radius: 50%;
-    background: #e41f26; /* Project Red */
+    background: #e41f26;
+    /* Project Red */
 }
 
 /* SECOND CARD BLUE STARS */

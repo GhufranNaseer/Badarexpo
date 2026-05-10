@@ -151,38 +151,60 @@ const NavManager = {
 // ========================= STATISTICS COUNTER =========================
 const StatsManager = {
     init() {
-        this.counters = document.querySelectorAll('.stat-number');
-        if (this.counters.length === 0) return;
-        
-        this.observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
+        const counters = document.querySelectorAll(".counter");
+        const statBoxes = document.querySelectorAll(".stat-box");
+        if (!statBoxes.length) return;
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
                 if (entry.isIntersecting) {
-                    this.startCounting(entry.target);
-                    this.observer.unobserve(entry.target);
+                    const counter = entry.target.querySelector(".counter");
+                    const target = +counter.getAttribute("data-target");
+
+                    entry.target.classList.add("active");
+
+                    let count = 0;
+                    const speed = target / 120;
+
+                    const updateCounter = () => {
+                        count += speed;
+                        if (count < target) {
+                            // FORMATTING Logic from Developer
+                            if (target === 420) {
+                                counter.innerHTML = Math.floor(count) + "%";
+                            } else if (target === 21200) {
+                                counter.innerHTML = (count / 1000).toFixed(1) + "K";
+                            } else if (target === 110) {
+                                counter.innerHTML = Math.floor(count) + "X";
+                            } else if (target === 16000000) {
+                                counter.innerHTML = Math.floor(count / 1000000) + "M";
+                            } else {
+                                counter.innerHTML = Math.floor(count);
+                            }
+                            requestAnimationFrame(updateCounter);
+                        } else {
+                            // FINAL VALUES
+                            if (target === 420) {
+                                counter.innerHTML = "420%";
+                            } else if (target === 21200) {
+                                counter.innerHTML = "21.2K";
+                            } else if (target === 110) {
+                                counter.innerHTML = "110X";
+                            } else if (target === 16000000) {
+                                counter.innerHTML = "16M";
+                            } else {
+                                counter.innerHTML = target;
+                            }
+                        }
+                    };
+
+                    updateCounter();
+                    observer.unobserve(entry.target);
                 }
             });
-        }, { threshold: 0.5 });
+        }, { threshold: 0.4 });
 
-        this.counters.forEach(counter => this.observer.observe(counter));
-    },
-
-    startCounting(el) {
-        const target = +el.getAttribute('data-target');
-        const duration = 2000;
-        const startTime = performance.now();
-
-        const update = (currentTime) => {
-            const elapsed = currentTime - startTime;
-            const progress = Math.min(elapsed / duration, 1);
-            const easeOutQuad = (t) => t * (2 - t);
-            const currentNumber = Math.floor(easeOutQuad(progress) * target);
-
-            el.innerText = currentNumber;
-            if (progress < 1) requestAnimationFrame(update);
-            else el.innerText = target;
-        };
-
-        requestAnimationFrame(update);
+        statBoxes.forEach((box) => observer.observe(box));
     }
 };
 
@@ -417,11 +439,7 @@ const ServicesCarouselManager = {
     }
 };
 
-// ========================= EVENTS SHOWCASE SLIDER MANAGER (PREMIUM LERP & INFINITE) =========================
-/**
- * Logic: Triple-cloned track with Lerp (Linear Interpolation) for buttery motion.
- * Direction is always preserved. Teleportation happens silently in virtual space.
- */
+// ========================= EVENTS SHOWCASE SLIDER =========================
 const EventsSliderManager = {
     init() {
         this.slider = document.getElementById('evt-slider');
