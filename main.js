@@ -323,6 +323,33 @@ const GalleryManager = {
     }
 };
 
+// ========================= SCROLL TO TOP MANAGER =========================
+const ScrollTopManager = {
+    init() {
+        this.btn = document.getElementById('scrollTopBtn');
+        if (!this.btn) return;
+
+        this.bindEvents();
+    },
+
+    bindEvents() {
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 300) {
+                this.btn.classList.add('show');
+            } else {
+                this.btn.classList.remove('show');
+            }
+        });
+
+        this.btn.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+    }
+};
+
 // ========================= INITIALIZE ALL MODULES =========================
 document.addEventListener('DOMContentLoaded', () => {
     NavManager.init();
@@ -330,4 +357,5 @@ document.addEventListener('DOMContentLoaded', () => {
     LangManager.init();
     InsightsManager.init();
     GalleryManager.init();
+    ScrollTopManager.init();
 });

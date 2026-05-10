@@ -127,3 +127,8 @@ END OF LOG - BADAR EXPO SOLUTIONS
 - Added premium glassmorphism overlays and rotating hover icons to grid items.
 - Developed full-screen responsive Lightbox with background blur and scale animations.
 - Audited index.css to ensure 100% compliance with property ordering rules (Layout > Box Model > Visuals > Interaction).
+
+[2026-05-10 05:35] UI REFINEMENTS
+- Fixed CSS vendor prefix warnings for WebKit background clips.
+- Added glassmorphism Scroll-to-Top button with smooth scroll logic.
+- Aligned Media Gallery header typography with global .grid-header standards.
