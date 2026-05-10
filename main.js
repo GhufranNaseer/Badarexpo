@@ -350,6 +350,64 @@ const ScrollTopManager = {
     }
 };
 
+// ========================= NEW SERVICES CAROUSEL MANAGER (STICKY SCROLL) =========================
+const ServicesCarouselManager = {
+    init() {
+        this.track = document.getElementById("services-scroll-track");
+        this.cardsContainer = document.getElementById("svc-cards");
+        if (!this.track || !this.cardsContainer) return;
+
+        this.ticking = false;
+        
+        // Calculate the maximum horizontal scroll distance
+        this.calculateMaxScroll();
+
+        this.bindEvents();
+    },
+
+    calculateMaxScroll() {
+        // Full scrollable width of the cards minus the visible viewport width
+        this.maxScroll = this.cardsContainer.scrollWidth - window.innerWidth;
+        if (this.maxScroll < 0) this.maxScroll = 0;
+    },
+
+    bindEvents() {
+        window.addEventListener("resize", () => {
+            this.calculateMaxScroll();
+            this.onScroll();
+        });
+
+        window.addEventListener("scroll", () => {
+            if (!this.ticking) {
+                window.requestAnimationFrame(() => {
+                    this.onScroll();
+                    this.ticking = false;
+                });
+                this.ticking = true;
+            }
+        });
+    },
+
+    onScroll() {
+        const trackRect = this.track.getBoundingClientRect();
+        
+        // The track's available scrolling height minus one viewport
+        const totalScrollableHeight = trackRect.height - window.innerHeight;
+        
+        // Calculate progress based on how far the top of the track has moved past the top of the viewport
+        let progress = -trackRect.top / totalScrollableHeight;
+        
+        // Clamp progress between 0 and 1
+        progress = Math.max(0, Math.min(1, progress));
+        
+        // Map progress to horizontal translation
+        const translateX = progress * -this.maxScroll;
+        
+        // Apply transform via hardware acceleration
+        this.cardsContainer.style.transform = `translate3d(${translateX}px, 0, 0)`;
+    }
+};
+
 // ========================= INITIALIZE ALL MODULES =========================
 document.addEventListener('DOMContentLoaded', () => {
     NavManager.init();
@@ -358,4 +416,5 @@ document.addEventListener('DOMContentLoaded', () => {
     InsightsManager.init();
     GalleryManager.init();
     ScrollTopManager.init();
+    ServicesCarouselManager.init();
 });

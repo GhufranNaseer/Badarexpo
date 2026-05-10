@@ -1,0 +1,90 @@
+=====================================================
+BADAR EXPO SOLUTIONS (BXSS) - WEBSITE STRUCTURE
+=====================================================
+This document contains the complete navigation hierarchy, top bar details, and menu structure of the Badar Expo Solutions website.
+
+1. TOP BAR (Pre-header)
+-----------------------------------------------------
+- Contact: 
+  * Phone: +92 21 3482 1159
+  * Email: info@badarexpo.com
+- Language Switcher: English (EN), Urdu (UR), Arabic (AR)
+- Social Links: Facebook, LinkedIn, Instagram, YouTube
+
+2. MAIN NAVIGATION (Mega Menu & Mobile Sidebar)
+-----------------------------------------------------
+- Home
+- About Us
+- Services (Dropdown / Mega Menu)
+    -> Exhibition Management
+       * Exhibition Management
+       * Conference Management
+       * Corporate Events
+    -> Construction & Design
+       * Canopy Octanorm Building
+       * Stall Design & Fabrication
+       * LED Screens
+       * Audio Visual Equipment
+       * Rental of Furniture
+       * Interactive Kiosks
+       * Indoor Outdoor Advertising (Branding & Production)
+    -> Growth Services
+       * B2B Matchmaking
+       * Event Marketing
+       * Digital Production
+- Events (Dropdown / Mega Menu)
+    -> Our Role
+       * Owned Events
+       * Co-Organized
+       * Managed Events
+    -> Formats
+       * Exhibitions
+       * Conferences
+       * Industrial Forums
+- Industries
+- Global Reach
+- Insights (Dropdown / Mega Menu)
+    * Blog (Industry insights, event strategies)
+    * Media (Press coverage, interviews)
+    * Gallery (Moments captured from mega events)
+- Contact
+
+3. ACTION BUTTONS & UTILITIES
+-----------------------------------------------------
+- Search Button (Desktop navbar)
+- "Visitor" Button (Primary CTA)
+- "Partner" Button (Secondary CTA)
+
+4. INDUSTRY LIST (Comprehensive)
+-----------------------------------------------------
+Complete list of industries served by Badar Expo Solutions:
+- Artificial Intelligence (AI)
+- Automotives
+- Banking & Finance
+- Build & Construction
+- Ceramics
+- Chemical & Pharmaceutical
+- Dairy & Poultry
+- Defence & Security
+- Education
+- Electrical & Electronics
+- Energy (Oil, Gas & Alternative)
+- Engineering
+- Food & Agriculture
+- Gems & Jewellery
+- Healthcare & Medical Equipment
+- Hospitality
+- Human Resource
+- Interiors & Accessories
+- Leather & Textiles
+- Logistics & Supply Chain
+- Manufacturing & Industrial
+- Mining & Minerals
+- Printing & Packaging
+- Real Estate & Housing
+- Smart City & Urban Planning
+- Sports & Fitness Equipment
+- Trade & Enterprise
+
+=====================================================
+This structure represents the global header of the website. The mega menus use a dynamic JS hover/click architecture to reveal the sub-links and their associated descriptions/images.

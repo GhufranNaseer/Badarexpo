@@ -1230,3 +1230,171 @@ body {
     transform: translateY(-5px);
     box-shadow: 0 10px 20px rgba(228, 31, 38, 0.3);
 }
+
+/* =============================================================================
+   NEW SERVICES CAROUSEL (STICKY SCROLL)
+   ============================================================================= */
+.services-scroll-track {
+    position: relative;
+    height: 300vh; /* Determines the duration of the horizontal scroll */
+}
+
+.new-services-carousel.sticky-section {
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    background: #151515;
+    color: #fff;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.nsc-container {
+    max-width: 1300px;
+    margin: 0 auto;
+    padding: 0 40px;
+    width: 100%;
+}
+
+.nsc-header-center {
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.nsc-header-center h4 {
+    letter-spacing: 4px;
+    font-size: 14px;
+    color: #aaa;
+    text-transform: uppercase;
+    position: relative;
+    display: inline-block;
+}
+
+.nsc-header-center h4::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 40px;
+    height: 2px;
+    background: var(--primary-red);
+}
+
+.nsc-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 50px;
+    margin-bottom: 60px;
+}
+
+.nsc-left h2 {
+    font-size: 42px;
+    font-weight: 800;
+    line-height: 1.2;
+    margin: 0;
+    color: #fff;
+}
+
+.nsc-highlight {
+    background: linear-gradient(90deg, #ff2d95, #00c2ff);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+}
+
+.nsc-right p {
+    max-width: 500px;
+    color: #ccc;
+    line-height: 1.6;
+    font-size: 15px;
+    margin: 0;
+}
+
+/* CAROUSEL WRAPPER */
+.svc-cards-wrapper {
+    width: 100%;
+    overflow: hidden; /* Hide overflow since we transform */
+}
+
+/* CARDS ROW (HORIZONTAL) */
+.svc-cards {
+    display: flex;
+    gap: 25px;
+    padding-bottom: 40px;
+    will-change: transform; /* Hardware acceleration for JS animation */
+}
+
+/* Spacer to align first item with container while allowing it to scroll to screen edge */
+.svc-cards::before,
+.svc-cards::after {
+    content: '';
+    flex-shrink: 0;
+    width: max(15px, calc((100vw - 1300px) / 2 + 15px)); /* Account for 25px flex gap to equal 40px total */
+}
+
+/* CARD */
+.svc-card {
+    min-width: 320px;
+    height: 360px;
+    padding: 25px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    position: relative;
+    border-radius: 15px;
+    transition: 0.3s ease;
+    overflow: hidden;
+    flex-shrink: 0;
+}
+
+.svc-card:hover {
+    transform: translateY(-10px);
+}
+
+/* Colors */
+.svc-pink { background: #d61a7f; }
+.svc-blue { background: #00a6d6; }
+.svc-yellow { background: #c9b21f; }
+
+/* Icon */
+.svc-icon {
+    position: absolute;
+    top: 25px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 40px;
+}
+
+/* Text */
+.svc-card h3 {
+    font-size: 18px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    color: #fff;
+    margin: 0;
+    text-align: center;
+}
+
+/* Responsive */
+@media(max-width: 1000px) {
+    .nsc-top {
+        flex-direction: column;
+        gap: 20px;
+    }
+    .svc-card {
+        min-width: 280px;
+        height: 320px;
+    }
+}
+
+@media(max-width: 600px) {
+    .svc-card {
+        min-width: 260px;
+        height: 300px;
+    }
+}
