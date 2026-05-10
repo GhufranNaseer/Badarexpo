@@ -1339,9 +1339,10 @@ body {
 
 /* CARD */
 .svc-card {
-    min-width: 400px;
-    height: 460px;
-    padding: 35px;
+    width: 320px;
+    min-width: 320px;
+    height: 360px;
+    padding: 25px;
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
@@ -1364,20 +1365,35 @@ body {
 /* Icon */
 .svc-icon {
     position: absolute;
-    top: 35px;
+    top: 25px;
     left: 50%;
     transform: translateX(-50%);
-    font-size: 55px;
+    font-size: 40px;
 }
 
 /* Text */
 .svc-card h3 {
-    font-size: 22px;
-    font-weight: 800;
+    font-size: 18px;
+    font-weight: 700;
     letter-spacing: 1px;
     color: #fff;
     margin: 0;
     text-align: center;
+}
+
+.svc-card p {
+    font-size: 13px;
+    color: rgba(255, 255, 255, 0.75);
+    text-align: center;
+    margin: 8px 0 0 0;
+    line-height: 1.4;
+    font-weight: 400;
+    
+    /* Strictly limit the text to 3 lines so it never ruins the card size */
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
 }
 
 /* Responsive */
