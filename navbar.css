@@ -158,6 +158,7 @@ body.rtl-mode {
 .menu {
     display: flex;
     align-items: center;
+    padding: 0px 0px 0px 100px;
 }
 
 .nav-item {
@@ -175,6 +176,16 @@ body.rtl-mode {
 .nav-item span {
     position: relative;
     padding: 5px 0;
+}
+
+.nav-item .fa-chevron-down {
+    font-size: 13px;
+    margin-left: 5px;
+    opacity: 0.8;
+}
+
+.lang-btn .fa-chevron-down {
+    font-size: 13px;
 }
 
 /* Hover Underline */

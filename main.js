@@ -562,6 +562,43 @@ const EventsSliderManager = {
     }
 };
 
+// ========================= TESTIMONIALS MANAGER =========================
+const TestimonialsManager = {
+    init() {
+        const cards = document.querySelectorAll(".testimonial-card");
+        if (!cards.length) return;
+
+        // Using IntersectionObserver for a professional scroll-triggered animation
+        const observerOptions = {
+            threshold: 0.2
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const card = entry.target;
+                    const index = Array.from(cards).indexOf(card);
+                    
+                    setTimeout(() => {
+                        card.style.opacity = "1";
+                        card.style.transform = "translateY(0px)";
+                    }, index * 150);
+
+                    observer.unobserve(card); // Only animate once
+                }
+            });
+        }, observerOptions);
+
+        cards.forEach(card => {
+            // Initial state for animation
+            card.style.opacity = "0";
+            card.style.transform = "translateY(40px)";
+            card.style.transition = "all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1)";
+            observer.observe(card);
+        });
+    }
+};
+
 // ========================= INITIALIZE ALL MODULES =========================
 document.addEventListener('DOMContentLoaded', () => {
     NavManager.init();
@@ -572,4 +609,5 @@ document.addEventListener('DOMContentLoaded', () => {
     ScrollTopManager.init();
     ServicesCarouselManager.init();
     EventsSliderManager.init();
+    TestimonialsManager.init();
 });
