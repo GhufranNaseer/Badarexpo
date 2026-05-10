@@ -1339,9 +1339,9 @@ body {
 
 /* CARD */
 .svc-card {
-    min-width: 320px;
-    height: 360px;
-    padding: 25px;
+    min-width: 400px;
+    height: 460px;
+    padding: 35px;
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
@@ -1364,16 +1364,16 @@ body {
 /* Icon */
 .svc-icon {
     position: absolute;
-    top: 25px;
+    top: 35px;
     left: 50%;
     transform: translateX(-50%);
-    font-size: 40px;
+    font-size: 55px;
 }
 
 /* Text */
 .svc-card h3 {
-    font-size: 18px;
-    font-weight: 700;
+    font-size: 22px;
+    font-weight: 800;
     letter-spacing: 1px;
     color: #fff;
     margin: 0;

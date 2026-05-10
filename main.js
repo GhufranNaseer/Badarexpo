@@ -357,12 +357,16 @@ const ServicesCarouselManager = {
         this.cardsContainer = document.getElementById("svc-cards");
         if (!this.track || !this.cardsContainer) return;
 
-        this.ticking = false;
+        this.targetTranslateX = 0;
+        this.currentTranslateX = 0;
         
         // Calculate the maximum horizontal scroll distance
         this.calculateMaxScroll();
 
         this.bindEvents();
+        
+        // Start the continuous render loop for smooth lerp
+        this.render();
     },
 
     calculateMaxScroll() {
@@ -374,21 +378,15 @@ const ServicesCarouselManager = {
     bindEvents() {
         window.addEventListener("resize", () => {
             this.calculateMaxScroll();
-            this.onScroll();
+            this.updateTarget();
         });
 
         window.addEventListener("scroll", () => {
-            if (!this.ticking) {
-                window.requestAnimationFrame(() => {
-                    this.onScroll();
-                    this.ticking = false;
-                });
-                this.ticking = true;
-            }
-        });
+            this.updateTarget();
+        }, { passive: true });
     },
 
-    onScroll() {
+    updateTarget() {
         const trackRect = this.track.getBoundingClientRect();
         
         // The track's available scrolling height minus one viewport
@@ -400,11 +398,22 @@ const ServicesCarouselManager = {
         // Clamp progress between 0 and 1
         progress = Math.max(0, Math.min(1, progress));
         
-        // Map progress to horizontal translation
-        const translateX = progress * -this.maxScroll;
+        // Update the target horizontal translation
+        this.targetTranslateX = progress * -this.maxScroll;
+    },
+    
+    render() {
+        // Linear interpolation (lerp) for buttery smooth momentum
+        // 0.08 is the easing factor. Lower = smoother/slower, Higher = snappier
+        this.currentTranslateX += (this.targetTranslateX - this.currentTranslateX) * 0.08;
         
-        // Apply transform via hardware acceleration
-        this.cardsContainer.style.transform = `translate3d(${translateX}px, 0, 0)`;
+        // Only update the DOM if the difference is noticeable (optimizes performance)
+        if (Math.abs(this.targetTranslateX - this.currentTranslateX) > 0.05) {
+            this.cardsContainer.style.transform = `translate3d(${this.currentTranslateX}px, 0, 0)`;
+        }
+        
+        // Loop recursively
+        requestAnimationFrame(this.render.bind(this));
     }
 };
 
