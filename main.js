@@ -562,35 +562,104 @@ const EventsSliderManager = {
     }
 };
 
-// ========================= TESTIMONIALS MANAGER =========================
+// ========================= TESTIMONIALS MANAGER (INFINITE CAROUSEL) =========================
 const TestimonialsManager = {
     init() {
-        const cards = document.querySelectorAll(".testimonial-card");
-        if (!cards.length) return;
+        this.track = document.getElementById('testi-track');
+        this.prevBtn = document.getElementById('testi-prev');
+        this.nextBtn = document.getElementById('testi-next');
+        if (!this.track) return;
 
-        // Using IntersectionObserver for a professional scroll-triggered animation
-        const observerOptions = {
-            threshold: 0.2
-        };
+        this.cards = Array.from(this.track.querySelectorAll('.testimonial-card'));
+        this.originalCount = this.cards.length;
+        
+        // 1. Clone set for infinite effect
+        this.cards.forEach(card => {
+            const clone = card.cloneNode(true);
+            clone.classList.add('is-clone');
+            this.track.appendChild(clone);
+        });
 
+        this.allCards = Array.from(this.track.querySelectorAll('.testimonial-card'));
+        this.currentIndex = 0;
+        this.isTransitioning = false;
+
+        // 2. Dimensions
+        this.updateDimensions();
+        window.addEventListener('resize', () => this.updateDimensions());
+
+        // 3. Navigation
+        this.nextBtn.addEventListener('click', () => this.move(1));
+        this.prevBtn.addEventListener('click', () => this.move(-1));
+
+        // 4. Initial Entrance Animation (Intersection Observer)
+        this.setupEntranceAnimation();
+    },
+
+    updateDimensions() {
+        if (this.allCards.length < 2) return;
+        this.cardWidth = this.allCards[0].offsetWidth;
+        this.gap = 32; // from CSS
+        this.step = this.cardWidth + this.gap;
+    },
+
+    move(direction) {
+        if (this.isTransitioning) return;
+        this.isTransitioning = true;
+        
+        this.currentIndex += direction;
+        this.updatePosition();
+
+        // 5. Infinite Teleport Logic
+        setTimeout(() => {
+            // If we reached the start of the cloned set (moving forward)
+            if (this.currentIndex >= this.originalCount) {
+                this.currentIndex = 0;
+                this.track.style.transition = 'none';
+                this.updatePosition();
+                // Force reflow
+                this.track.offsetHeight;
+                this.track.style.transition = 'transform 0.6s cubic-bezier(0.23, 1, 0.32, 1)';
+            }
+            // If we moved before the first real card (moving backward)
+            if (this.currentIndex < 0) {
+                this.currentIndex = this.originalCount - 1;
+                this.track.style.transition = 'none';
+                this.updatePosition();
+                this.track.offsetHeight;
+                this.track.style.transition = 'transform 0.6s cubic-bezier(0.23, 1, 0.32, 1)';
+            }
+            this.isTransitioning = false;
+        }, 600);
+    },
+
+    updatePosition() {
+        const x = -(this.currentIndex * this.step);
+        this.track.style.transform = `translate3d(${x}px, 0, 0)`;
+    },
+
+    setupEntranceAnimation() {
+        const observerOptions = { threshold: 0.2 };
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
-                    const card = entry.target;
-                    const index = Array.from(cards).indexOf(card);
-                    
-                    setTimeout(() => {
-                        card.style.opacity = "1";
-                        card.style.transform = "translateY(0px)";
-                    }, index * 150);
-
-                    observer.unobserve(card); // Only animate once
+                    this.allCards.forEach((card, i) => {
+                        if (i < this.originalCount) { // Only animate first set
+                            setTimeout(() => {
+                                card.style.opacity = "1";
+                                card.style.transform = "translateY(0px)";
+                            }, i * 100);
+                        } else {
+                            card.style.opacity = "1";
+                            card.style.transform = "translateY(0px)";
+                        }
+                    });
+                    observer.disconnect();
                 }
             });
         }, observerOptions);
 
-        cards.forEach(card => {
-            // Initial state for animation
+        this.allCards.forEach(card => {
             card.style.opacity = "0";
             card.style.transform = "translateY(40px)";
             card.style.transition = "all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1)";

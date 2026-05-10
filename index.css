@@ -1691,19 +1691,66 @@ body {
     margin-bottom: 90px;
 }
 
+.testi-slider-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+}
+
+.testi-slider-window {
+    width: 100%;
+    max-width: 1240px; /* 4 cards (285) + 3 gaps (32) = 1236px approx */
+    overflow: hidden;
+    padding: 60px 0 30px; /* Increased top padding to accommodate overflowing profile images */
+}
+
 .testi-cards-wrapper {
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: flex-start;
     gap: 32px;
-    flex-wrap: wrap;
-    margin-top: 40px;
+    flex-wrap: nowrap;
+    transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+    will-change: transform;
+}
+
+/* NAVIGATION BUTTONS */
+.testi-nav-btn {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    border: 1px solid #ddd;
+    background: #fff;
+    color: #333;
+    font-size: 18px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    z-index: 10;
+    flex-shrink: 0;
+}
+
+.testi-nav-btn:hover {
+    background: #e41f26;
+    color: #fff;
+    border-color: #e41f26;
+    box-shadow: 0 5px 15px rgba(228, 31, 38, 0.3);
+}
+
+.testi-nav-btn:disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
 }
 
 /* CARD */
 .testimonial-card {
     position: relative;
     width: 285px;
+    flex: 0 0 285px; /* Fixed width for carousel */
     background: #fff;
     border-radius: 20px;
     padding: 80px 32px 40px;
