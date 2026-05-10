@@ -1245,6 +1245,191 @@ body {
 }
 
 /* =============================================================================
+   EVENTS SHOWCASE SLIDER
+   ============================================================================= */
+.evt-slider-section {
+    background: transparent;
+    padding: 80px 0 60px;
+    overflow: hidden;
+    position: relative;
+}
+
+.evt-slider-header {
+    text-align: center;
+    margin-bottom: 50px;
+    padding: 0 20px;
+}
+
+.evt-slider-header h2 {
+    font-size: clamp(22px, 3vw, 36px);
+    font-weight: 800;
+    color: #050404;
+    max-width: 700px;
+    margin: 10px auto 0;
+    line-height: 1.3;
+}
+
+.evt-slider-wrapper {
+    width: 100%;
+    position: relative;
+}
+
+/* SLIDER WINDOW */
+.evt-slider {
+    width: 100%;
+    overflow: hidden;
+    /* Hide the track outside this window */
+    position: relative;
+    padding: 40px 0;
+}
+
+/* SLIDER TRACK — The moving part */
+.evt-slider-track {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    will-change: transform;
+    transform: translate3d(0, 0, 0);
+    /* We'll use JS for the smooth movement, so no CSS transition here to avoid conflict with Lerp */
+}
+
+.evt-slider::-webkit-scrollbar {
+    display: none;
+}
+
+/* CARD — ultra-large LED-screen size */
+.evt-card {
+    position: relative;
+    flex: 0 0 1100px;
+    height: 600px;
+    border-radius: 30px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    filter: brightness(0.55);
+    flex-shrink: 0;
+}
+
+/* ACTIVE CARD — maximum cinematic view */
+.evt-card.active {
+    flex: 0 0 1200px;
+    height: 650px;
+    filter: brightness(1);
+    /* box-shadow: 0 40px 100px rgba(0, 0, 0, 0.4); */
+}
+
+/* IMAGE */
+.evt-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* DARK GRADIENT OVERLAY — Softened to be less "muddy" */
+.evt-card::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0) 50%);
+}
+
+/* TAG */
+.evt-tag {
+    position: absolute;
+    top: 24px;
+    left: 24px;
+    z-index: 2;
+    background: rgba(180, 26, 31, 0.9);
+    color: #fff;
+    padding: 6px 14px;
+    border-radius: 6px;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+/* CONTENT */
+.evt-content {
+    position: absolute;
+    left: 28px;
+    bottom: 35px;
+    z-index: 2;
+    color: #fff;
+    width: 70%;
+}
+
+.evt-content h2 {
+    font-size: 18px;
+    line-height: 1.5;
+    margin-bottom: 14px;
+    font-weight: 700;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    /* better readability */
+}
+
+.evt-arrow {
+    font-size: 28px;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+/* NAVIGATION BAR */
+.evt-navigation {
+    position: relative;
+    margin: 35px auto 0;
+    width: fit-content;
+    background: #1a1a1a;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    padding: 12px 28px;
+    border-radius: 50px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.evt-nav-btn {
+    font-size: 26px;
+    cursor: pointer;
+    user-select: none;
+    color: #aaa;
+    transition: color 0.2s;
+    line-height: 1;
+}
+
+.evt-nav-btn:hover {
+    color: #fff;
+}
+
+.evt-counter {
+    font-size: 16px;
+    color: #ccc;
+}
+
+/* RESPONSIVE */
+@media (max-width: 950px) {
+    .evt-slider {
+        padding: 20px 20px;
+    }
+
+    .evt-card {
+        flex: 0 0 85vw;
+        height: 420px;
+    }
+
+    .evt-card.active {
+        flex: 0 0 90vw;
+        height: 450px;
+    }
+
+    .evt-content h2 {
+        font-size: 15px;
+    }
+}
+
+
+
+/* =============================================================================
    NEW SERVICES CAROUSEL (STICKY SCROLL)
    ============================================================================= */
 .services-scroll-track {
@@ -1357,34 +1542,41 @@ body {
 /* CARD */
 .svc-card {
     width: 320px;
+    background-image: url('https://img.magnific.com/free-photo/excited-audience-watching-confetti-fireworks-having-fun-music-festival-night-copy-space_637285-559.jpg?semt=ais_hybrid&w=740&q=80');
     min-width: 320px;
     height: 360px;
     padding: 25px;
     display: flex;
     flex-direction: column;
-    justify-content: flex-end;
+    justify-content: space-between;
     position: relative;
     border-radius: 15px;
     transition: 0.3s ease;
     overflow: hidden;
-    flex-shrink: 0;
+    padding-bottom: 70px;
+    /* extra room to avoid overlap */
 }
 
 .svc-card:hover {
     /* Hover effect disabled */
 }
 
+
+
 /* Colors */
 .svc-pink {
-    background: #B83F6E; /* Deep raspberry – upscale vibe */
+    background: #B83F6E;
+    /* Deep raspberry – upscale vibe */
 }
 
 .svc-blue {
-    background: #1A5276; /* Dark navy – sophisticated */
+    background: #1A5276;
+    /* Dark navy – sophisticated */
 }
 
 .svc-yellow {
-    background: #B7950B; /* Rich gold – premium accent */
+    background: #B7950B;
+    /* Rich gold – premium accent */
 }
 
 /* Icon */
@@ -1419,6 +1611,31 @@ body {
     -webkit-line-clamp: 3;
     -webkit-box-orient: vertical;
     overflow: hidden;
+}
+
+/* Read More button inside cards */
+.read-more-btn {
+    position: absolute;
+    bottom: 15px;
+    right: 15px;
+    background: rgba(255, 255, 255, 0.1);
+    color: #fff;
+    border: 1px solid #fff;
+    padding: 6px 12px;
+    font-size: 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+    z-index: 2;
+    /* ensure button stays on top */
+}
+
+.read-more-btn:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.read-more-btn:hover {
+    background: rgba(255, 255, 255, 0.2);
 }
 
 /* Responsive */

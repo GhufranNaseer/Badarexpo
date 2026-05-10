@@ -417,6 +417,151 @@ const ServicesCarouselManager = {
     }
 };
 
+// ========================= EVENTS SHOWCASE SLIDER MANAGER (PREMIUM LERP & INFINITE) =========================
+/**
+ * Logic: Triple-cloned track with Lerp (Linear Interpolation) for buttery motion.
+ * Direction is always preserved. Teleportation happens silently in virtual space.
+ */
+const EventsSliderManager = {
+    init() {
+        this.slider = document.getElementById('evt-slider');
+        this.track  = document.getElementById('evt-slider-track');
+        if (!this.slider || !this.track) return;
+
+        this.currentEl = document.getElementById('evt-current');
+        this.totalEl   = document.getElementById('evt-total');
+        this.nextBtn   = document.getElementById('evt-next');
+        this.prevBtn   = document.getElementById('evt-prev');
+
+        // 1. Setup Clones (1 Set before, 1 Set after)
+        this.originals = Array.from(this.track.querySelectorAll('.evt-card'));
+        this.count     = this.originals.length;
+        this.totalEl.textContent = this.count;
+
+        // Clone originals twice to create [Clone Set][Real Set][Clone Set]
+        this.originals.forEach(card => {
+            const cloneBefore = card.cloneNode(true);
+            const cloneAfter  = card.cloneNode(true);
+            cloneBefore.classList.add('is-clone');
+            cloneAfter.classList.add('is-clone');
+            this.track.prepend(cloneBefore);
+            this.track.append(cloneAfter);
+        });
+
+        this.allCards = Array.from(this.track.querySelectorAll('.evt-card'));
+        this.realOffset = this.count; // The index where the real slides start
+        
+        // 2. Motion State
+        this.activeIndex = 0; // Current active real slide (0-4)
+        this.targetX     = 0;
+        this.currentX    = 0;
+        this.lerp        = 0.08; // Smoothness factor (0.05 - 0.1)
+        
+        // 3. Dimensions
+        this.updateDimensions();
+        window.addEventListener('resize', () => this.updateDimensions());
+
+        // 4. Initial Position
+        this.jumpToReal(0);
+        this.currentX = this.targetX;
+        this.applyTransform();
+
+        // 5. Interaction
+        this.allCards.forEach((card, i) => {
+            card.addEventListener('click', () => {
+                // Map any clone click to its real index counterpart
+                const realIdx = ((i - this.realOffset) % this.count + this.count) % this.count;
+                this.jumpToReal(realIdx);
+            });
+        });
+
+        this.nextBtn.addEventListener('click', () => this.next());
+        this.prevBtn.addEventListener('click', () => this.prev());
+
+        // 6. Animation Loop
+        this.animate();
+    },
+
+    updateDimensions() {
+        // Calculate the width of one full set of slides
+        // We assume all slides + gaps are equal. 
+        // More robust: calculate distance between first and second slide
+        if (this.allCards.length < 2) return;
+        this.slideStep = this.allCards[1].offsetLeft - this.allCards[0].offsetLeft;
+        this.fullSetWidth = this.slideStep * this.count;
+    },
+
+    jumpToReal(index) {
+        this.activeIndex = index;
+        const domIndex = index + this.realOffset;
+        const card = this.allCards[domIndex];
+        
+        // Target: Center the card in the slider window
+        this.targetX = -(card.offsetLeft - (this.slider.offsetWidth / 2) + (card.offsetWidth / 2));
+        
+        // Update UI
+        this.allCards.forEach(c => c.classList.remove('active'));
+        this.allCards[domIndex].classList.add('active');
+        this.currentEl.textContent = this.activeIndex + 1;
+    },
+
+    next() {
+        this.activeIndex++;
+        // If we go past the real set, we just keep incrementing activeIndex
+        // The teleport logic in animate() will handle the wrap-around
+        const domIndex = this.activeIndex + this.realOffset;
+        const card = this.allCards[domIndex];
+        this.targetX = -(card.offsetLeft - (this.slider.offsetWidth / 2) + (card.offsetWidth / 2));
+        
+        // Wrap logic for index display only
+        const displayIdx = (this.activeIndex % this.count + this.count) % this.count;
+        this.currentEl.textContent = displayIdx + 1;
+        
+        // Update active class (find real matching card)
+        this.allCards.forEach(c => c.classList.remove('active'));
+        this.allCards[domIndex].classList.add('active');
+    },
+
+    prev() {
+        this.activeIndex--;
+        const domIndex = this.activeIndex + this.realOffset;
+        const card = this.allCards[domIndex];
+        this.targetX = -(card.offsetLeft - (this.slider.offsetWidth / 2) + (card.offsetWidth / 2));
+        
+        const displayIdx = (this.activeIndex % this.count + this.count) % this.count;
+        this.currentEl.textContent = displayIdx + 1;
+
+        this.allCards.forEach(c => c.classList.remove('active'));
+        this.allCards[domIndex].classList.add('active');
+    },
+
+    applyTransform() {
+        this.track.style.transform = `translate3d(${this.currentX}px, 0, 0)`;
+    },
+
+    animate() {
+        // Interpolation
+        this.currentX += (this.targetX - this.currentX) * this.lerp;
+        this.applyTransform();
+
+        // 7. SEAMLESS TELEPORTATION
+        // If we've drifted into the start clones (left side)
+        if (this.targetX > -this.slideStep * (this.realOffset - 1)) {
+            this.targetX  -= this.fullSetWidth;
+            this.currentX -= this.fullSetWidth;
+            this.activeIndex += this.count;
+        }
+        // If we've drifted into the end clones (right side)
+        else if (this.targetX < -this.slideStep * (this.realOffset + this.count)) {
+            this.targetX  += this.fullSetWidth;
+            this.currentX += this.fullSetWidth;
+            this.activeIndex -= this.count;
+        }
+
+        requestAnimationFrame(() => this.animate());
+    }
+};
+
 // ========================= INITIALIZE ALL MODULES =========================
 document.addEventListener('DOMContentLoaded', () => {
     NavManager.init();
@@ -426,4 +571,5 @@ document.addEventListener('DOMContentLoaded', () => {
     GalleryManager.init();
     ScrollTopManager.init();
     ServicesCarouselManager.init();
+    EventsSliderManager.init();
 });
