@@ -1371,7 +1371,7 @@ body {
 }
 
 .svc-card:hover {
-    transform: translateY(-10px);
+    /* Hover effect disabled */
 }
 
 /* Colors */
