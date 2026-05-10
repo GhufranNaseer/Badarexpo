@@ -554,6 +554,32 @@ body {
     }
 }
 
+/* MOBILE: Horizontal Carousel Mode for Featured Insights */
+@media (max-width: 1024px) {
+    .insights-section .cards {
+        display: flex !important;
+        overflow-x: auto !important;
+        scroll-snap-type: x mandatory;
+        padding: 20px 15px !important;
+        gap: 20px !important;
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+        scroll-behavior: smooth;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .insights-section .cards::-webkit-scrollbar {
+        display: none;
+    }
+
+    .insights-section .card {
+        flex: 0 0 85% !important;
+        min-width: 85%;
+        scroll-snap-align: center;
+        margin-bottom: 0 !important;
+    }
+}
+
 /* =============================================================================
    STATISTICS SECTION (DEVELOPER PROVIDED)
    ============================================================================= */
