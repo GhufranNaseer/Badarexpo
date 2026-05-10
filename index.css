@@ -532,11 +532,24 @@ body {
     }
 
     .card {
-        min-height: 350px;
+        min-height: 450px;
     }
 
     .card h3 {
-        font-size: 28px;
+        font-size: 18px;
+        line-height: 1.4;
+    }
+    
+    .card .tag {
+        font-size: 10px;
+        padding: 4px 10px;
+        margin-bottom: 8px;
+    }
+    
+    .card-description {
+        font-size: 13px;
+        line-height: 1.5;
+        margin-top: 10px;
     }
 }
 
