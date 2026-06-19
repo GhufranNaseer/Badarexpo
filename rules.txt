@@ -41,6 +41,66 @@ Objective: To ensure long-term scalability, maintainability, and clean code.
 - MODULAR FOUNDATION: Build every feature as a standalone module so new sections can be plugged in without breaking existing ones.
 - DOCUMENTATION: Maintain clear comments for "Why" something is done, not just "What".
 
+[7. SITE MATERIAL INTEGRATION WORKFLOW]
+
+PURPOSE:
+
+* Jab User "site-material.txt" file provide kare, to us file ko integration source maana jayega.
+* "site-material.txt" me HTML, CSS, JavaScript aur related assets ka code ho sakta hai jo kisi naye section ya feature ka part hoga.
+
+MANDATORY PROCESS:
+
+1. Sab se pehle "rules.txt", "data.txt" aur "website_structure.txt" ko review karo taa ke project architecture, existing patterns aur page structure samajh aa sake.
+2. "site-material.txt" se relevant HTML, CSS aur JavaScript ko extract karo.
+3. User conversation me jis page aur section ka naam de, usi location par code integrate karo.
+4. Agar User page aur section specify na kare to pehle clarification lo.
+
+INTEGRATION RULES:
+
+* HTML code ko target page ke specified section me integrate karo.
+* CSS code ko project structure ke mutabiq respective stylesheet me place karo.
+* JavaScript code ko functionality-based organization follow karte hue respective JS file me integrate karo.
+* Har major addition ke liye existing comment convention maintain karo:
+
+  * HTML: <!-- ========================= SECTION NAME ========================= -->
+  * CSS: /* ========================= SECTION NAME ========================= */
+  * JS: // ========================= LOGIC GROUP =========================
+
+CONFLICT PREVENTION:
+
+* Nayi classes, IDs aur JavaScript functions ko existing project code se conflict nahi karna chahiye.
+* Zarurat par prefix-based naming ya unique descriptive naming use karo.
+* Existing functionality ko overwrite, break ya modify mat karo jab tak User explicitly instruction na de.
+
+STATIC WEBSITE ASSUMPTION:
+
+* Website HTML/CSS/JavaScript based static project hai.
+* Kisi server, build process, package installation, framework setup ya deployment ki zaroorat nahi.
+* Integration ka focus sirf code placement aur compatibility par hoga.
+* User manually HTML files browser (Chrome) me open karke testing karega.
+
+OUTPUT REQUIREMENT:
+
+* Final response me clearly bataya jaye:
+
+  1. Kaun sa HTML code kis file aur section me add hua.
+  2. Kaun sa CSS code kis file me add hua.
+  3. Kaun sa JavaScript code kis file me add hua.
+  4. Agar kisi naming conflict ko avoid karne ke liye changes kiye gaye hain to unki detail di jaye.
+
+MODULAR SECTION POLICY:
+
+* "site-material.txt" ko standalone module maana jaye.
+* Har integration future scalability ko madde nazar rakh kar ki jaye.
+* Naya section existing website architecture ke sath seamlessly plug-in hona chahiye bina existing sections ko affect kiye.
+
+IMPORTANT:
+
+* Sirf required aur relevant code integrate karo.
+* Dummy, duplicate, unused ya demo code ko project me add na karo.
+* Existing project structure aur maintainability ko hamesha priority di jaye.
+
+
 --------------------------------------------------------------------------------
 ARCHITECT'S NOTE: Build for the 10th page, not just the 1st. Make it readable for the human, not just the machine.
 ================================================================================

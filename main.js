@@ -277,15 +277,35 @@ const InsightsManager = {
 // ========================= MEDIA GALLERY (PHASE 4.0) =========================
 const GalleryManager = {
     init() {
+        this.grid = document.getElementById('gallery-grid');
         this.filterBtns = document.querySelectorAll('.filter-btn');
-        this.galleryItems = document.querySelectorAll('.gallery-item');
         this.lightbox = document.getElementById('lightbox');
         this.lightboxImg = document.getElementById('lightbox-img');
         this.lightboxClose = document.querySelector('.lightbox-close');
         
-        if (!this.galleryItems.length) return;
+        if (!this.grid) return;
+        this.originalItems = Array.from(this.grid.querySelectorAll('.gallery-item'));
+        if (!this.originalItems.length) return;
 
+        // Setup Infinite Carousel by duplicating cards
+        this.setupInfiniteCarousel();
+
+        this.scrollInterval = null;
+        this.isHovered = false;
+        
         this.bindEvents();
+        this.startAutoScroll();
+    },
+
+    setupInfiniteCarousel() {
+        // Clone all original items and append them to allow smooth infinite loop scrolling
+        this.originalItems.forEach(item => {
+            const clone = item.cloneNode(true);
+            clone.classList.add('is-clone');
+            this.grid.appendChild(clone);
+        });
+        
+        this.galleryItems = document.querySelectorAll('.gallery-item');
     },
 
     bindEvents() {
@@ -298,13 +318,25 @@ const GalleryManager = {
             });
         });
 
-        // Lightbox Open
-        this.galleryItems.forEach(item => {
-            item.addEventListener('click', () => {
+        // Lightbox Open (delegated or set directly on elements including clones)
+        this.grid.addEventListener('click', (e) => {
+            const item = e.target.closest('.gallery-item');
+            if (item) {
                 const img = item.querySelector('img');
                 const title = item.querySelector('h4').innerText;
                 this.openLightbox(img.src, title);
-            });
+            }
+        });
+
+        // Hover Pausing Logic
+        this.grid.addEventListener('mouseenter', () => {
+            this.isHovered = true;
+            this.stopAutoScroll();
+        });
+
+        this.grid.addEventListener('mouseleave', () => {
+            this.isHovered = false;
+            this.startAutoScroll();
         });
 
         // Lightbox Close
@@ -318,17 +350,46 @@ const GalleryManager = {
         }
     },
 
+    startAutoScroll() {
+        if (this.scrollInterval) clearInterval(this.scrollInterval);
+        
+        this.scrollInterval = setInterval(() => {
+            if (this.isHovered) return;
+
+            const scrollAmount = 350; // Scroll offset step
+            const maxScroll = this.grid.scrollWidth / 2; // Threshold representing original items width
+
+            // If we scroll past the end of the original set, immediately wrap around to start
+            if (this.grid.scrollLeft >= maxScroll) {
+                this.grid.scrollLeft = 0;
+            }
+
+            this.grid.scrollBy({
+                left: scrollAmount,
+                behavior: 'smooth'
+            });
+        }, 2000);
+    },
+
+    stopAutoScroll() {
+        if (this.scrollInterval) {
+            clearInterval(this.scrollInterval);
+            this.scrollInterval = null;
+        }
+    },
+
     filterGallery(filter) {
         this.galleryItems.forEach(item => {
             const category = item.getAttribute('data-category');
             if (filter === 'all' || filter === category) {
                 item.style.display = 'block';
-                // Trigger a small animation for entry
                 item.style.animation = 'fadeIn 0.5s ease forwards';
             } else {
                 item.style.display = 'none';
             }
         });
+        // Reset scroll position on filter change
+        this.grid.scrollLeft = 0;
     },
 
     openLightbox(src, title) {
@@ -336,12 +397,14 @@ const GalleryManager = {
         this.lightboxImg.src = src;
         this.lightbox.classList.add('active');
         document.body.style.overflow = 'hidden'; // Prevent scroll
+        this.stopAutoScroll();
     },
 
     closeLightbox() {
         if (!this.lightbox) return;
         this.lightbox.classList.remove('active');
         document.body.style.overflow = 'auto'; // Restore scroll
+        if (!this.isHovered) this.startAutoScroll();
     }
 };
 
@@ -686,6 +749,96 @@ const TestimonialsManager = {
     }
 };
 
+// ========================= PLATFORM FEATURES SHOWCASE =========================
+const PlatformFeaturesManager = {
+    init() {
+        this.track      = document.getElementById('pfs-cards-track');
+        this.dotsWrap   = document.getElementById('pfs-dots-container');
+        this.prevBtn    = document.getElementById('pfs-prev-btn');
+        this.nextBtn    = document.getElementById('pfs-next-btn');
+
+        if (!this.track || !this.prevBtn || !this.nextBtn) return;
+
+        this.cards      = Array.from(this.track.querySelectorAll('.pfs-card'));
+        this.totalCards = this.cards.length;
+        this.current    = 0; // current slide index (left-most visible card)
+
+        this.calcPerView();
+        this.buildDots();
+        this.updateUI();
+
+        // Button events
+        this.prevBtn.addEventListener('click', () => this.slide(-1));
+        this.nextBtn.addEventListener('click', () => this.slide(1));
+
+        // Recalculate on resize
+        window.addEventListener('resize', () => {
+            this.calcPerView();
+            // Clamp current so we never show blank space after resize
+            const maxIdx = this.totalCards - this.perView;
+            if (this.current > maxIdx) this.current = Math.max(0, maxIdx);
+            this.buildDots();
+            this.updateUI();
+        });
+    },
+
+    // ---- How many full cards are visible at once? ----
+    calcPerView() {
+        const w = window.innerWidth;
+        if (w <= 768) {
+            this.perView = 1;
+        } else if (w <= 1200) {
+            this.perView = 2;
+        } else {
+            this.perView = 4;
+        }
+        // Max steps we can scroll
+        this.maxIndex = Math.max(0, this.totalCards - this.perView);
+    },
+
+    // ---- Pixel width of one card + its gap (gap = 24px from CSS) ----
+    getCardStep() {
+        if (!this.cards[0]) return 0;
+        const gap = 24;
+        return this.cards[0].getBoundingClientRect().width + gap;
+    },
+
+    // ---- Build one dot per "page" ----
+    buildDots() {
+        if (!this.dotsWrap) return;
+        this.dotsWrap.innerHTML = '';
+
+        // Number of distinct pages = maxIndex + 1
+        const pageCount = this.maxIndex + 1;
+        for (let i = 0; i < pageCount; i++) {
+            const dot = document.createElement('div');
+            dot.className = 'pfs-dot';
+            dot.addEventListener('click', () => { this.current = i; this.updateUI(); });
+            this.dotsWrap.appendChild(dot);
+        }
+    },
+
+    // ---- Move by direction (-1 or +1) ----
+    slide(dir) {
+        this.current = Math.max(0, Math.min(this.maxIndex, this.current + dir));
+        this.updateUI();
+    },
+
+    // ---- Apply transform + sync dots + toggle button states ----
+    updateUI() {
+        const step = this.getCardStep();
+        this.track.style.transform = `translateX(-${this.current * step}px)`;
+
+        // Dots
+        const dots = this.dotsWrap ? this.dotsWrap.querySelectorAll('.pfs-dot') : [];
+        dots.forEach((d, i) => d.classList.toggle('pfs-dot-active', i === this.current));
+
+        // Button opacity hints
+        this.prevBtn.style.opacity = this.current === 0           ? '0.35' : '1';
+        this.nextBtn.style.opacity = this.current >= this.maxIndex ? '0.35' : '1';
+    }
+};
+
 // ========================= INITIALIZE ALL MODULES =========================
 document.addEventListener('DOMContentLoaded', () => {
     NavManager.init();
@@ -697,4 +850,6 @@ document.addEventListener('DOMContentLoaded', () => {
     ServicesCarouselManager.init();
     EventsSliderManager.init();
     TestimonialsManager.init();
+    PlatformFeaturesManager.init();
 });
+

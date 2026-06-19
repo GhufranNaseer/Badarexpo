@@ -738,6 +738,557 @@ body {
     }
 }
 
+/* ========================= PLATFORM FEATURES SHOWCASE ========================= */
+:root {
+    --pfs-bg: #d7d7d7;
+    --pfs-text: #0b0b0b;
+    --pfs-muted: #3a3a3a;
+    --pfs-card-radius: 8px;
+}
+
+.pfs-section {
+    background: var(--pfs-bg);
+    color: var(--pfs-text);
+    padding: 80px 0;
+    overflow-x: hidden;
+}
+
+.pfs-wrapper {
+    width: min(96vw, 1840px);
+    margin: 0 auto;
+}
+
+.pfs-top {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: start;
+    margin-bottom: 70px;
+    padding: 0 10px;
+}
+
+.pfs-title {
+    font-size: 3.85rem;
+    font-weight: 400;
+    letter-spacing: -2px;
+    line-height: 1;
+}
+
+.pfs-lead {
+    max-width: 560px;
+    font-size: 17px;
+    line-height: 1.35;
+    margin-top: 6px;
+    color: #111;
+}
+
+/* Viewport that clips the scrolling card track */
+.pfs-cards-slider-wrap {
+    position: relative;
+    overflow: hidden;
+}
+
+/* The scrolling track — flex row, never wraps */
+.pfs-cards {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    gap: 24px;
+    transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    will-change: transform;
+}
+
+.pfs-card {
+    /* Fixed card width: 4 visible + partial peek of next */
+    flex: 0 0 calc((100% - 3 * 24px) / 4);
+    height: 585px;
+    border-radius: var(--pfs-card-radius);
+    position: relative;
+    overflow: hidden;
+    background: #222;
+    /* CSS-driven hover lift (replaces JS inline styles) */
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+    cursor: pointer;
+}
+
+.pfs-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 18px 40px rgba(0, 0, 0, 0.35);
+}
+
+.pfs-card::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+}
+
+.pfs-card .pfs-card-content {
+    position: absolute;
+    left: 20px;
+    right: 20px;
+    top: 18px;
+    z-index: 3;
+    color: #fff;
+}
+
+.pfs-card h3 {
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 8px;
+}
+
+.pfs-card p {
+    font-size: 12px;
+    line-height: 1.35;
+    max-width: 280px;
+    opacity: .95;
+}
+
+.pfs-arrow {
+    position: absolute;
+    right: 18px;
+    bottom: 14px;
+    font-size: 34px;
+    color: #f5f5f5;
+    font-weight: 300;
+    z-index: 10;
+}
+
+.pfs-contacts {
+    background:
+        radial-gradient(circle at 55% 70%, rgba(255, 255, 255, .15), transparent 22%),
+        linear-gradient(180deg, #0b0305 0%, #080305 38%, #2e2626 100%);
+}
+
+.pfs-contacts .pfs-sphere {
+    position: absolute;
+    width: 210px;
+    height: 210px;
+    border-radius: 50%;
+    background:
+        radial-gradient(circle at 35% 35%, #d8d8d8, #bcbcbc 50%, #8e8e8e 75%, #6d6d6d 100%);
+    left: 120px;
+    bottom: 55px;
+    filter: drop-shadow(0 28px 12px rgba(0, 0, 0, .45));
+}
+
+.pfs-contacts .pfs-shadow {
+    position: absolute;
+    width: 260px;
+    height: 42px;
+    background: rgba(0, 0, 0, .6);
+    border-radius: 50%;
+    left: 70px;
+    bottom: 42px;
+    filter: blur(10px);
+}
+
+.pfs-panel {
+    position: absolute;
+    background: #f0f0f0;
+    border-radius: 10px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, .15);
+}
+
+.pfs-subscribers {
+    left: 36px;
+    top: 223px;
+    width: 108px;
+    padding: 12px 14px;
+}
+
+.pfs-subscribers .pfs-sub-t {
+    font-size: 10px;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+.pfs-subscribers .pfs-sub-n {
+    font-size: 22px;
+}
+
+.pfs-subscribers .pfs-sub-g {
+    font-size: 9px;
+    color: #4fa96b;
+    margin-top: 6px;
+}
+
+.pfs-newsletter {
+    left: 72px;
+    top: 262px;
+    width: 252px;
+    height: 118px;
+    background: #b291bd;
+    color: #f7edf8;
+    padding: 16px;
+}
+
+.pfs-newsletter .pfs-news-tiny {
+    font-size: 10px;
+    text-align: center;
+    opacity: .8;
+}
+
+.pfs-newsletter .pfs-news-big {
+    font-family: Georgia, serif;
+    font-size: 25px;
+    text-align: center;
+    margin-top: 2px;
+}
+
+.pfs-newsletter .pfs-news-field {
+    position: absolute;
+    left: 18px;
+    right: 18px;
+    bottom: 18px;
+    height: 26px;
+    background: #efe6f0;
+    border-radius: 4px;
+}
+
+.pfs-newsletter .pfs-news-btn {
+    position: absolute;
+    right: 21px;
+    bottom: 21px;
+    height: 20px;
+    width: 70px;
+    border-radius: 3px;
+    background: #4c155c;
+    font-size: 7px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.pfs-email-pill {
+    position: absolute;
+    right: 32px;
+    width: 118px;
+    height: 26px;
+    border-radius: 30px;
+    background: #ececec;
+    font-size: 10px;
+    display: flex;
+    align-items: center;
+    padding: 0 10px;
+}
+
+.pfs-p1 {
+    bottom: 170px;
+}
+
+.pfs-p2 {
+    bottom: 136px;
+}
+
+.pfs-p3 {
+    bottom: 102px;
+}
+
+.pfs-campaigns {
+    background:
+        linear-gradient(90deg, rgba(255, 255, 255, .06), rgba(255, 255, 255, 0)),
+        linear-gradient(180deg, #655f61 0%, #5d5758 100%);
+}
+
+.pfs-campaigns .pfs-mail {
+    position: absolute;
+    width: 54px;
+    height: 24px;
+    border-radius: 30px;
+    background: #ececec;
+    left: 32px;
+    top: 360px;
+    font-size: 9px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.pfs-news-card {
+    position: absolute;
+    left: 110px;
+    top: 220px;
+    width: 245px;
+    height: 250px;
+    background: #ece7e2;
+    border-radius: 16px;
+    box-shadow: 0 12px 30px rgba(0, 0, 0, .12);
+    overflow: hidden;
+}
+
+.pfs-news-card .pfs-news-head {
+    font-size: 8px;
+    font-weight: 700;
+    text-align: center;
+    padding-top: 14px;
+}
+
+.pfs-news-card .pfs-news-title {
+    font-family: Georgia, serif;
+    font-size: 18px;
+    text-align: center;
+    margin-top: 18px;
+    line-height: 1.15;
+    color: #2d2d2d;
+}
+
+.pfs-news-card .pfs-news-img {
+    width: 155px;
+    height: 82px;
+    margin: 18px auto 0;
+    background:
+        repeating-linear-gradient(90deg, #474747 0 8px, #d3d3d3 8px 16px);
+    border-radius: 2px;
+}
+
+.pfs-metric {
+    position: absolute;
+    right: 36px;
+    width: 96px;
+    height: 54px;
+    background: #ededed;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.pfs-metric small {
+    font-size: 7px;
+    opacity: .6;
+    font-weight: 700;
+}
+
+.pfs-metric strong {
+    font-size: 18px;
+}
+
+.pfs-m1 {
+    top: 186px;
+}
+
+.pfs-m2 {
+    top: 244px;
+}
+
+.pfs-extensions {
+    background:
+        radial-gradient(circle at 75% 20%, rgba(255, 255, 255, .18), transparent 18%),
+        linear-gradient(90deg, #17191d 0%, #1e2125 48%, #434446 100%);
+}
+
+.pfs-icon {
+    position: absolute;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    color: #fff;
+}
+
+.pfs-i1 {
+    width: 64px;
+    height: 64px;
+    background: #2faa4e;
+    left: 118px;
+    top: 245px;
+    font-size: 38px;
+}
+
+.pfs-i2 {
+    width: 78px;
+    height: 78px;
+    background: #3774ff;
+    left: 154px;
+    top: 315px;
+    font-size: 40px;
+}
+
+.pfs-i3 {
+    width: 46px;
+    height: 46px;
+    background: #f26c22;
+    left: 88px;
+    top: 353px;
+    font-size: 24px;
+}
+
+.pfs-i4 {
+    width: 54px;
+    height: 54px;
+    background: #58d083;
+    left: 288px;
+    top: 390px;
+    font-size: 28px;
+}
+
+.pfs-i5 {
+    width: 42px;
+    height: 42px;
+    background: #1729b4;
+    left: 224px;
+    top: 430px;
+    font-size: 18px;
+}
+
+.pfs-blur {
+    filter: blur(5px);
+    opacity: .55;
+}
+
+.pfs-i6 {
+    width: 48px;
+    height: 48px;
+    background: #22374e;
+    left: 250px;
+    top: 278px;
+}
+
+.pfs-i7 {
+    width: 42px;
+    height: 42px;
+    background: #dedede;
+    left: 325px;
+    top: 205px;
+    color: #999;
+}
+
+.pfs-payments {
+    background:
+        linear-gradient(180deg, #8f8f8f 0%, #9d9d9d 70%, #b0b0b0 100%);
+}
+
+.pfs-payments::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background:
+        radial-gradient(circle at 35% 120%, rgba(255, 255, 255, .25) 0 35%, transparent 36%),
+        radial-gradient(circle at 65% 130%, rgba(255, 255, 255, .18) 0 35%, transparent 36%);
+}
+
+.pfs-logo-grid {
+    position: absolute;
+    left: 104px;
+    top: 222px;
+    display: grid;
+    grid-template-columns: repeat(3, 68px);
+    gap: 14px;
+}
+
+.pfs-logo {
+    height: 48px;
+    background: #efefef;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 12px;
+    color: #222;
+}
+
+.pfs-logo.pfs-logo-pink {
+    background: #f2b8c8;
+}
+
+.pfs-logo.pfs-logo-green {
+    background: #c9f1e2;
+}
+
+.pfs-logo.pfs-logo-blue {
+    color: #16398d;
+}
+
+.pfs-controls {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 12px;
+    padding: 32px 12px 0;
+}
+
+.pfs-dots {
+    display: flex;
+    gap: 7px;
+    margin-right: auto;
+    margin-left: 48%;
+}
+
+.pfs-dot {
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: #8d8d8d;
+    cursor: pointer;
+    transition: width 0.3s ease, background 0.3s ease;
+}
+
+.pfs-dot.pfs-dot-active {
+    width: 28px;
+    border-radius: 20px;
+    background: #6b6b6b;
+}
+
+.pfs-navbtn {
+    width: 32px;
+    height: 32px;
+    border: 1.5px solid #9a9a9a;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #333;
+    font-size: 18px;
+    cursor: pointer;
+    transition: opacity 0.25s ease, border-color 0.25s ease, background 0.25s ease;
+    user-select: none;
+}
+
+.pfs-navbtn:hover {
+    background: #e0e0e0;
+    border-color: #666;
+}
+
+@media (max-width: 1200px) {
+    .pfs-top {
+        grid-template-columns: 1fr;
+    }
+
+    .pfs-lead {
+        margin-top: 20px;
+    }
+
+    /* Show 2 cards at a time on tablet */
+    .pfs-card {
+        flex: 0 0 calc((100% - 24px) / 2);
+    }
+}
+
+@media (max-width: 768px) {
+    .pfs-wrapper {
+        width: 94vw;
+    }
+
+    .pfs-title {
+        font-size: 2.7rem;
+    }
+
+    /* Show 1 card at a time on mobile */
+    .pfs-card {
+        flex: 0 0 100%;
+        height: 520px;
+    }
+
+    .pfs-dots {
+        margin-left: 0;
+    }
+}
+
 /* =============================================================================
    ABOUT US SECTION
    ============================================================================= */
@@ -1010,56 +1561,54 @@ body {
     box-shadow: 0 10px 20px rgba(228, 31, 38, 0.2);
 }
 
+.gallery-wrapper {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    padding: 10px 0;
+}
+
 .gallery-grid {
     display: flex;
-    overflow-x: auto;
-    scroll-snap-type: x mandatory;
+    flex-wrap: nowrap;
     gap: 30px;
-    padding-bottom: 40px;
-    /* Space for scrollbar */
+    padding-bottom: 20px;
+    overflow-x: auto;
     scroll-behavior: smooth;
-    scrollbar-width: thin;
-    scrollbar-color: var(--primary-red) rgba(0, 0, 0, 0.05);
+    -ms-overflow-style: none;
+    /* IE and Edge */
+    scrollbar-width: none;
+    /* Firefox */
 }
 
-/* Premium Desktop Scrollbar */
 .gallery-grid::-webkit-scrollbar {
-    height: 8px;
-}
-
-.gallery-grid::-webkit-scrollbar-track {
-    background: rgba(0, 0, 0, 0.05);
-    border-radius: 10px;
-}
-
-.gallery-grid::-webkit-scrollbar-thumb {
-    background: var(--primary-red);
-    border-radius: 10px;
+    display: none;
+    /* Chrome, Safari and Opera */
 }
 
 .gallery-item {
     position: relative;
-    flex: 0 0 auto;
+    flex: 0 0 450px;
     width: 450px;
-    /* Standard Desktop Width */
-    height: 500px;
-    /* Large, interactive height */
+    height: 400px;
     overflow: hidden;
     border-radius: 20px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
     cursor: pointer;
-    scroll-snap-align: center;
     transition: all 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
 }
 
+/* Remove bento-specific grid layout rules */
 .gallery-item.span-2 {
+    flex: 0 0 800px;
     width: 800px;
-    /* Wide Feature Image for Desktop */
 }
 
 .gallery-item.row-2 {
-    /* Kept standard width for tall images in horizontal flow */
+    flex: 0 0 450px;
     width: 450px;
+    height: 400px;
+    /* Keep standard height in single-row horizontal slider */
 }
 
 .gallery-item:hover {
@@ -1219,42 +1768,51 @@ body {
     transform: rotate(90deg);
 }
 
-/* --- Responsive Media Gallery (Carousel Mode) --- */
+/* --- Responsive Media Gallery --- */
 @media screen and (max-width: 1024px) {
     .gallery-grid {
-        display: flex !important;
-        /* Force flex for horizontal layout */
-        overflow-x: auto !important;
-        scroll-snap-type: x mandatory;
-        padding: 20px 15px !important;
-        gap: 15px !important;
-        /* Custom scrollbar behavior */
-        -ms-overflow-style: none;
-        scrollbar-width: none;
-        scroll-behavior: smooth;
-        -webkit-overflow-scrolling: touch;
-    }
-
-    .gallery-grid::-webkit-scrollbar {
-        display: none;
+        gap: 20px;
+        padding: 20px 0;
     }
 
     .gallery-item {
-        flex: 0 0 85% !important;
-        /* Each card takes 85% of screen */
-        min-width: 85%;
-        height: 350px !important;
-        /* Fixed height for consistency */
-        scroll-snap-align: center;
+        flex: 0 0 380px;
+        width: 380px;
+        height: 340px;
     }
 
-    /* Disable span and row effects in carousel mode */
     .gallery-item.span-2 {
-        grid-column: auto;
+        flex: 0 0 650px;
+        width: 650px;
     }
 
     .gallery-item.row-2 {
-        grid-row: auto;
+        flex: 0 0 380px;
+        width: 380px;
+        height: 340px;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .gallery-grid {
+        gap: 15px;
+    }
+
+    .gallery-item {
+        flex: 0 0 300px;
+        width: 300px;
+        height: 280px;
+    }
+
+    .gallery-item.span-2 {
+        flex: 0 0 480px;
+        width: 480px;
+    }
+
+    .gallery-item.row-2 {
+        flex: 0 0 300px;
+        width: 300px;
+        height: 280px;
     }
 }
 
