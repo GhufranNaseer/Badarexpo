@@ -352,7 +352,7 @@ body {
 /* --- Card 1 Logic --- */
 .card1 {
     background: linear-gradient(135deg, rgba(255, 79, 135, 0.6), rgba(106, 0, 255, 0.6)),
-        url('https://media.licdn.com/dms/image/v2/D4D22AQH1C_dXUZEAYQ/feedshare-shrink_800/B4DZ2Q4B4HJgAc-/0/1776252100523?e=1779926400&v=beta&t=u1wTtPqBXcZ4wrCUasPpLIJpSSNSbHZum-Ef2GnOySI');
+        url('images/portfolio/ideas-exhibition.jpg');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -383,7 +383,11 @@ body {
 
 /* --- Card 2 Logic --- */
 .card2 {
-    background: linear-gradient(180deg, #4d00a8, #b300ff);
+    background: linear-gradient(180deg, rgba(77, 0, 168, 0.6), rgba(179, 0, 255, 0.6)),
+        url('images/portfolio/itcn-asia-generated.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
 }
 
 .card2 .glass {
@@ -412,7 +416,11 @@ body {
 
 /* --- Card 3 Logic --- */
 .card3 {
-    background: radial-gradient(circle at top, #d68fff, #704dff, #38245e);
+    background: radial-gradient(circle at top, rgba(214, 143, 255, 0.6), rgba(112, 77, 255, 0.6), rgba(56, 36, 94, 0.6)),
+        url('images/portfolio/bxss-powerhouse-generated.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
 }
 
 .card3 .blob {
@@ -440,7 +448,11 @@ body {
 
 /* --- Card 4 Logic --- */
 .card4 {
-    background: linear-gradient(180deg, #0052ff, #07195d);
+    background: linear-gradient(180deg, rgba(0, 82, 255, 0.6), rgba(7, 25, 93, 0.6)),
+        url('images/portfolio/my-karachi-generated.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
 }
 
 .card4 .wave {
@@ -467,7 +479,11 @@ body {
 
 /* --- Card 5 Logic --- */
 .card5 {
-    background: linear-gradient(180deg, #02040f, #4d5ea8);
+    background: linear-gradient(180deg, rgba(2, 4, 15, 0.6), rgba(77, 94, 168, 0.6)),
+        url('images/portfolio/b2b-industrial-generated.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
 }
 
 .card5 .lines {
@@ -491,7 +507,11 @@ body {
 
 /* --- Card 6 Logic --- */
 .card6 {
-    background: linear-gradient(180deg, #0d1f52, #1f4f92);
+    background: linear-gradient(180deg, rgba(13, 31, 82, 0.6), rgba(31, 79, 146, 0.6)),
+        url('images/portfolio/textile-asia-generated.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
 }
 
 .card6 .diamond {
