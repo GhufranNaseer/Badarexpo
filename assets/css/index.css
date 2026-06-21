@@ -352,7 +352,7 @@ body {
 /* --- Card 1 Logic --- */
 .card1 {
     background: linear-gradient(135deg, rgba(255, 79, 135, 0.6), rgba(106, 0, 255, 0.6)),
-        url('../images/portfolio/ideas-exhibition.jpg');
+        url('../images/portfolio/ideas-exhibition.webp');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -384,7 +384,7 @@ body {
 /* --- Card 2 Logic --- */
 .card2 {
     background: linear-gradient(180deg, rgba(77, 0, 168, 0.6), rgba(179, 0, 255, 0.6)),
-        url('../images/portfolio/itcn-asia-generated.png');
+        url('../images/portfolio/itcn-asia-generated.webp');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -417,7 +417,7 @@ body {
 /* --- Card 3 Logic --- */
 .card3 {
     background: radial-gradient(circle at top, rgba(214, 143, 255, 0.6), rgba(112, 77, 255, 0.6), rgba(56, 36, 94, 0.6)),
-        url('../images/portfolio/bxss-powerhouse-generated.png');
+        url('../images/portfolio/bxss-powerhouse-generated.webp');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -449,7 +449,7 @@ body {
 /* --- Card 4 Logic --- */
 .card4 {
     background: linear-gradient(180deg, rgba(0, 82, 255, 0.6), rgba(7, 25, 93, 0.6)),
-        url('../images/portfolio/my-karachi-generated.png');
+        url('../images/portfolio/my-karachi-generated.webp');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -480,7 +480,7 @@ body {
 /* --- Card 5 Logic --- */
 .card5 {
     background: linear-gradient(180deg, rgba(2, 4, 15, 0.6), rgba(77, 94, 168, 0.6)),
-        url('../images/portfolio/b2b-industrial-generated.png');
+        url('../images/portfolio/b2b-industrial-generated.webp');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -508,7 +508,7 @@ body {
 /* --- Card 6 Logic --- */
 .card6 {
     background: linear-gradient(180deg, rgba(13, 31, 82, 0.6), rgba(31, 79, 146, 0.6)),
-        url('../images/portfolio/textile-asia-generated.png');
+        url('../images/portfolio/textile-asia-generated.webp');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
