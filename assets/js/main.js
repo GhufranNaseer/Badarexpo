@@ -839,6 +839,115 @@ const PlatformFeaturesManager = {
     }
 };
 
+// ========================= WHAT WE DO SPLIT SHOWCASE =========================
+const SplitServiceManager = {
+    init() {
+        this.section = document.getElementById('services');
+        this.navBtns = document.querySelectorAll('.split-nav-btn');
+        this.dynamicImg = document.getElementById('dynamic-img');
+        this.dynamicLabel = document.getElementById('dynamic-label');
+        this.dynamicHeadline = document.getElementById('dynamic-headline');
+        this.dynamicDesc = document.getElementById('dynamic-desc');
+        this.panelContent = document.querySelector('.split-visuals .panel-content');
+        
+        if (!this.navBtns.length || !this.dynamicImg || !this.section) return;
+
+        this.activeIndex = 0;
+        this.bindEvents();
+    },
+
+    activateTab(index) {
+        if (index === this.activeIndex) return;
+        this.activeIndex = index;
+
+        const targetBtn = this.navBtns[index];
+        if (!targetBtn) return;
+
+        // Remove active class from all
+        this.navBtns.forEach(b => b.classList.remove('active'));
+        targetBtn.classList.add('active');
+        
+        // Get data attributes
+        const newImg = targetBtn.getAttribute('data-img');
+        const newLabel = targetBtn.getAttribute('data-label');
+        const newHeadline = targetBtn.getAttribute('data-headline');
+        const newDesc = targetBtn.getAttribute('data-desc');
+
+        // Fade out elements
+        this.dynamicImg.classList.add('fading-out');
+        this.panelContent.classList.add('fading-out');
+
+        setTimeout(() => {
+            // Update content
+            this.dynamicImg.src = newImg;
+            this.dynamicLabel.innerText = newLabel;
+            this.dynamicHeadline.innerText = newHeadline;
+            this.dynamicDesc.innerText = newDesc;
+
+            const removeFade = () => {
+                this.dynamicImg.classList.remove('fading-out');
+                this.panelContent.classList.remove('fading-out');
+            };
+
+            if (this.dynamicImg.complete) {
+                removeFade();
+            } else {
+                this.dynamicImg.onload = removeFade;
+                setTimeout(removeFade, 100);
+            }
+        }, 400);
+    },
+
+    bindEvents() {
+        // Scroll Event for Desktop Sticky Section
+        window.addEventListener('scroll', () => {
+            if (window.innerWidth < 992) return;
+
+            const rect = this.section.getBoundingClientRect();
+            const maxScroll = rect.height - window.innerHeight;
+            const scrollTop = -rect.top;
+
+            if (scrollTop >= 0 && scrollTop <= maxScroll) {
+                let progress = scrollTop / maxScroll;
+                progress = Math.max(0, Math.min(1, progress));
+                
+                const total = this.navBtns.length;
+                let index = Math.floor(progress * total);
+                if (index >= total) index = total - 1;
+                
+                this.activateTab(index);
+            } else if (scrollTop < 0) {
+                this.activateTab(0);
+            } else if (scrollTop > maxScroll) {
+                this.activateTab(this.navBtns.length - 1);
+            }
+        }, { passive: true });
+
+        // Click Event
+        this.navBtns.forEach((btn, index) => {
+            btn.addEventListener('click', () => {
+                if (window.innerWidth >= 992) {
+                    const sectionTop = this.section.getBoundingClientRect().top + window.scrollY;
+                    const maxScroll = this.section.offsetHeight - window.innerHeight;
+                    const total = this.navBtns.length;
+                    
+                    // Scroll to the exact middle of the segment to ensure it activates
+                    const segmentHeight = maxScroll / total;
+                    const targetScroll = sectionTop + (segmentHeight * index) + (segmentHeight / 2);
+                    
+                    window.scrollTo({
+                        top: targetScroll,
+                        behavior: 'smooth'
+                    });
+                } else {
+                    // Mobile behavior: just activate directly without scrolling
+                    this.activateTab(index);
+                }
+            });
+        });
+    }
+};
+
 // ========================= INITIALIZE ALL MODULES =========================
 document.addEventListener('DOMContentLoaded', () => {
     NavManager.init();
@@ -851,5 +960,6 @@ document.addEventListener('DOMContentLoaded', () => {
     EventsSliderManager.init();
     TestimonialsManager.init();
     PlatformFeaturesManager.init();
+    SplitServiceManager.init();
 });
 
