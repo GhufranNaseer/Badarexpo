@@ -351,8 +351,7 @@ body {
 
 /* --- Card 1 Logic --- */
 .card1 {
-    background: linear-gradient(135deg, rgba(255, 79, 135, 0.6), rgba(106, 0, 255, 0.6)),
-        url('../images/portfolio/ideas-exhibition.webp');
+    background: url('../images/portfolio/ideas-exhibition.webp');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -383,8 +382,8 @@ body {
 
 /* --- Card 2 Logic --- */
 .card2 {
-    background: linear-gradient(180deg, rgba(77, 0, 168, 0.6), rgba(179, 0, 255, 0.6)),
-        url('../images/portfolio/itcn-asia-generated.webp');
+    /* background: linear-gradient(180deg, rgba(77, 0, 168, 0.6), rgba(179, 0, 255, 0.6)), */
+    background: url('../images/portfolio/itcn-asia-generated.webp');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -416,8 +415,8 @@ body {
 
 /* --- Card 3 Logic --- */
 .card3 {
-    background: radial-gradient(circle at top, rgba(214, 143, 255, 0.6), rgba(112, 77, 255, 0.6), rgba(56, 36, 94, 0.6)),
-        url('../images/portfolio/bxss-powerhouse-generated.webp');
+    /* background: radial-gradient(circle at top, rgba(214, 143, 255, 0.6), rgba(112, 77, 255, 0.6), rgba(56, 36, 94, 0.6)), */
+    background: url('../images/portfolio/bxss-powerhouse-generated.webp');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -448,8 +447,8 @@ body {
 
 /* --- Card 4 Logic --- */
 .card4 {
-    background: linear-gradient(180deg, rgba(0, 82, 255, 0.6), rgba(7, 25, 93, 0.6)),
-        url('../images/portfolio/my-karachi-generated.webp');
+    /* background: linear-gradient(180deg, rgba(0, 82, 255, 0.6), rgba(7, 25, 93, 0.6)), */
+    background: url('../images/portfolio/my-karachi-generated.webp');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -479,8 +478,8 @@ body {
 
 /* --- Card 5 Logic --- */
 .card5 {
-    background: linear-gradient(180deg, rgba(2, 4, 15, 0.6), rgba(77, 94, 168, 0.6)),
-        url('../images/portfolio/b2b-industrial-generated.webp');
+    /* background: linear-gradient(180deg, rgba(2, 4, 15, 0.6), rgba(77, 94, 168, 0.6)), */
+    background: url('../images/portfolio/b2b-industrial-generated.webp');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -507,8 +506,8 @@ body {
 
 /* --- Card 6 Logic --- */
 .card6 {
-    background: linear-gradient(180deg, rgba(13, 31, 82, 0.6), rgba(31, 79, 146, 0.6)),
-        url('../images/portfolio/textile-asia-generated.webp');
+    /* background: linear-gradient(180deg, rgba(13, 31, 82, 0.6), rgba(31, 79, 146, 0.6)), */
+    background: url('../images/portfolio/textile-asia-generated.webp');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -1509,7 +1508,7 @@ body {
     transition: all 0.3s ease;
     font-family: 'Inter', sans-serif;
     border-radius: 12px;
-    box-shadow: 0 4px 20px rgba(0,0,0,0.04);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
 }
 
 .split-nav-btn:hover {
@@ -1542,7 +1541,7 @@ body {
 }
 
 .split-nav-btn.active .nav-num {
-    color: rgba(255,255,255,0.5);
+    color: rgba(255, 255, 255, 0.5);
 }
 
 .split-nav-btn.active .nav-title,
@@ -1583,7 +1582,7 @@ body {
 .panel-overlay {
     position: absolute;
     inset: 0;
-    background: linear-gradient(to top, rgba(10,17,40,0.95) 0%, rgba(10,17,40,0.3) 50%, rgba(0,0,0,0.1) 100%);
+    background: linear-gradient(to top, rgba(10, 17, 40, 0.95) 0%, rgba(10, 17, 40, 0.3) 50%, rgba(0, 0, 0, 0.1) 100%);
 }
 
 .panel-content {
@@ -1620,7 +1619,7 @@ body {
 
 .panel-desc {
     font-size: 14px;
-    color: rgba(255,255,255,0.8);
+    color: rgba(255, 255, 255, 0.8);
     margin-bottom: 20px;
     line-height: 1.6;
     max-width: 90%;
@@ -1648,7 +1647,7 @@ body {
         height: 250vh;
         padding: 0;
     }
-    
+
     .split-sticky-wrapper {
         position: sticky;
         top: 0;
@@ -1663,24 +1662,24 @@ body {
         flex-direction: row;
         gap: 50px;
     }
-    
+
     .split-nav {
         flex: 3.5;
     }
-    
+
     .split-visuals {
         flex: 6.5;
     }
-    
+
     .split-nav-btn {
         border-radius: 0;
         background: transparent;
-        border-left: 3px solid rgba(0,0,0,0.08);
+        border-left: 3px solid rgba(0, 0, 0, 0.08);
         box-shadow: none;
         padding: 30px 0 30px 25px;
         position: relative;
     }
-    
+
     .split-nav-btn::after {
         content: '';
         position: absolute;
@@ -1688,56 +1687,56 @@ body {
         left: 25px;
         right: 0;
         height: 1px;
-        background: rgba(0,0,0,0.06);
+        background: rgba(0, 0, 0, 0.06);
     }
-    
+
     .split-nav-btn:hover {
         background: transparent;
         padding-left: 35px;
     }
-    
+
     .nav-arrow {
         color: var(--primary-red);
         opacity: 0;
         transform: translateX(-10px);
         transition: all 0.3s ease;
     }
-    
+
     .split-nav-btn.active {
         background: transparent;
         border-left: 3px solid var(--primary-red);
         padding-left: 35px;
     }
-    
+
     .split-nav-btn.active .nav-num,
     .split-nav-btn.active .nav-title {
         color: #0a1128;
     }
-    
+
     .split-nav-btn.active .nav-arrow {
         opacity: 1;
         transform: translateX(0);
     }
-    
+
     .split-panel {
         background: transparent;
         padding: 0;
     }
-    
+
     .panel-inner {
         height: 550px;
         border-radius: 20px;
-        box-shadow: 0 25px 50px rgba(0,0,0,0.15);
+        box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
     }
-    
+
     .panel-content {
         padding: 50px;
     }
-    
+
     .panel-headline {
         font-size: 36px;
     }
-    
+
     .panel-desc {
         font-size: 16px;
         max-width: 500px;
@@ -1748,9 +1747,11 @@ body {
     .split-header h2 {
         font-size: 32px;
     }
+
     .split-container {
         padding: 0 20px;
     }
+
     .split-header {
         padding: 0 20px;
     }
@@ -2714,4 +2715,3 @@ body {
         max-width: 350px;
     }
 }
-
