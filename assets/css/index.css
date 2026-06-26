@@ -1657,13 +1657,19 @@ body {
         height: 100vh;
         display: flex;
         flex-direction: column;
-        justify-content: center;
-        padding-top: 80px;
+        justify-content: flex-start;
+        padding-top: clamp(40px, 8vh, 100px);
+        box-sizing: border-box;
+    }
+
+    .split-header {
+        margin-bottom: clamp(30px, 4vh, 60px);
     }
 
     .split-container {
         flex-direction: row;
-        gap: 50px;
+        gap: clamp(30px, 4vw, 50px);
+        align-items: center;
     }
 
     .split-nav {
@@ -1679,7 +1685,7 @@ body {
         background: transparent;
         border-left: 3px solid rgba(0, 0, 0, 0.08);
         box-shadow: none;
-        padding: 30px 0 30px 25px;
+        padding: clamp(15px, 2vh, 30px) 0 clamp(15px, 2vh, 30px) 25px;
         position: relative;
     }
 
@@ -1727,17 +1733,18 @@ body {
     }
 
     .panel-inner {
-        height: 550px;
+        height: min(550px, calc(100vh - 250px));
+        min-height: 350px;
         border-radius: 20px;
         box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
     }
 
     .panel-content {
-        padding: 50px;
+        padding: clamp(20px, 4vh, 50px);
     }
 
     .panel-headline {
-        font-size: 36px;
+        font-size: clamp(24px, 3vw, 36px);
     }
 
     .panel-desc {
