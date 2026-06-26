@@ -149,7 +149,7 @@ body.rtl-mode {
 }
 
 .logo-img {
-    height: 100px;
+    height: 60px;
     width: auto;
     display: block;
 }
@@ -504,8 +504,8 @@ body.rtl-mode {
     }
 
     .logo-img {
-        height: 100px;
-        /* Prominent but fits inside 85px navbar */
+        height: 50px;
+        /* Prominent but fits inside navbar */
         width: auto;
         display: block;
         filter: drop-shadow(0 5px 15px rgba(0, 0, 0, 0.08));
@@ -773,8 +773,8 @@ body.rtl-mode {
     }
 
     .logo-img {
-        height: 100px;
-        /* Prominent but fits inside 85px navbar */
+        height: 50px;
+        /* Prominent but fits inside navbar */
         width: auto;
         display: block;
         filter: drop-shadow(0 5px 15px rgba(0, 0, 0, 0.08));
@@ -950,4 +950,21 @@ body.rtl-mode {
         max-width: 100%;
         box-sizing: border-box;
     }
+}
+
+/* KEYBOARD ACCESSIBILITY: Visible Focus States */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible,
+[role="button"]:focus-visible,
+.filter-btn:focus-visible,
+.read-more-btn:focus-visible,
+.pfs-navbtn:focus-visible,
+.evt-nav-btn:focus-visible,
+.testi-nav-btn:focus-visible,
+.split-nav-btn:focus-visible {
+    outline: 3px solid var(--primary-red, #e41f26) !important;
+    outline-offset: 3px !important;
 }

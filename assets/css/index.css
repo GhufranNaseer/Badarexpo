@@ -2228,7 +2228,7 @@ body {
     width: 70%;
 }
 
-.evt-content h2 {
+.evt-content h3 {
     font-size: 18px;
     line-height: 1.5;
     margin-bottom: 14px;
@@ -2291,7 +2291,7 @@ body {
         height: 450px;
     }
 
-    .evt-content h2 {
+    .evt-content h3 {
         font-size: 15px;
     }
 }
@@ -2424,6 +2424,20 @@ body {
     /* extra room to avoid overlap */
 }
 
+.svc-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        to top,
+        rgba(0, 0, 0, 0.78) 0%,
+        rgba(0, 0, 0, 0.28) 70%,
+        rgba(0, 0, 0, 0.08) 100%
+    );
+    z-index: 1;
+    pointer-events: none;
+}
+
 .svc-card:hover {
     /* Hover effect disabled */
 }
@@ -2463,6 +2477,8 @@ body {
     color: #fff;
     margin: 0;
     text-align: left;
+    position: relative;
+    z-index: 2;
 }
 
 .svc-card p {
@@ -2478,6 +2494,8 @@ body {
     -webkit-line-clamp: 3;
     -webkit-box-orient: vertical;
     overflow: hidden;
+    position: relative;
+    z-index: 2;
 }
 
 /* Read More button inside cards */
@@ -2714,4 +2732,21 @@ body {
         width: 100%;
         max-width: 350px;
     }
+}
+
+/* KEYBOARD ACCESSIBILITY: Visible Focus States */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible,
+[role="button"]:focus-visible,
+.filter-btn:focus-visible,
+.read-more-btn:focus-visible,
+.pfs-navbtn:focus-visible,
+.evt-nav-btn:focus-visible,
+.testi-nav-btn:focus-visible,
+.split-nav-btn:focus-visible {
+    outline: 3px solid var(--primary-red, #e41f26) !important;
+    outline-offset: 3px !important;
 }
