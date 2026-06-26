@@ -201,8 +201,19 @@ END OF LOG - BADAR EXPO SOLUTIONS
   7. LINK VERIFICATION: Developed a path validation script to verify that all referenced local assets resolve correctly, resulting in 100% valid links.
 - RESULT: The website is completely presentable, showing the real event portfolio with high-performance local images.
 ================================================================================
+[SESSION 12: CEO SECTION INTEGRATION & RESPONSIVE LAYOUT FIXES]
+- STATUS: 100% Completed
+- OBJECTIVE: Integrate the CEO message section, resolve major overlapping layout bugs, and repurpose the features showcase.
+- ACTIONS:
+  1. CEO SECTION INTEGRATION: Extracted the CEO section HTML/CSS from 'site-material.txt' and placed it seamlessly below the "Trusted by Industry Leaders" section, maintaining proper layout gaps and styling.
+  2. TEXT ADJUSTMENTS: Removed the "$4.2B Assets Under Management" text as requested to better align with the company profile.
+  3. MEDIA GALLERY REMOVAL: Cleanly removed the "Media Gallery" section (including HTML, CSS, and the GalleryManager JS) to declutter the site.
+  4. 'WHAT WE DO' OVERFLOW FIX: Fixed a critical Y-axis overflow/overlap issue where the `.split-visuals` was escaping its container. Utilized responsive `clamp()` and `calc(100vh - 250px)` heights to ensure the sticky wrapper fits perfectly inside shorter desktop/tablet screens without bleeding into upper/lower sections.
+  5. SCROLL RESTORATION: Restored the original dynamic scrolling effect of the split section that was lost during initial overflow fixes. Adjusted flexbox alignment to `justify-content: flex-start` to eliminate the visual overlap bug without breaking functionality.
+  6. UPCOMING EVENTS REPURPOSE: Converted the 'Platform Features Showcase' section into an 'Upcoming Events & Exhibitions' section by modifying the title, lead text, and semantic IDs, preserving the original cards as requested placeholders.
+- RESULT: The layout is highly polished, the CEO section is perfectly integrated, critical responsive overlapping bugs in the sticky sections are fully resolved, and the events section is themed correctly.
+================================================================================
 END OF LOG - BADAR EXPO SOLUTIONS
-
 
 
 
