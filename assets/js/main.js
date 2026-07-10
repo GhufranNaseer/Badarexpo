@@ -67,14 +67,27 @@ const NavManager = {
                 if (window.innerWidth > this.breakpoint) this.hideMegaMenu();
             });
 
-            // Mobile Accordion
-            trigger.addEventListener('click', () => {
-                if (window.innerWidth <= this.breakpoint) {
-                    const isAlreadyOpen = trigger.classList.contains('mobile-open');
-                    this.triggers.forEach(t => t.classList.remove('mobile-open'));
-                    if (!isAlreadyOpen) trigger.classList.add('mobile-open');
-                }
-            });
+            // Mobile Accordion & Desktop Parent Navigation
+            const dropdownLink = trigger.querySelector('a');
+            if (dropdownLink) {
+                dropdownLink.addEventListener('click', (e) => {
+                    if (window.innerWidth <= this.breakpoint) {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        const isAlreadyOpen = trigger.classList.contains('mobile-open');
+                        this.triggers.forEach(t => t.classList.remove('mobile-open'));
+                        if (!isAlreadyOpen) trigger.classList.add('mobile-open');
+                    }
+                });
+            } else {
+                trigger.addEventListener('click', (e) => {
+                    if (window.innerWidth <= this.breakpoint) {
+                        const isAlreadyOpen = trigger.classList.contains('mobile-open');
+                        this.triggers.forEach(t => t.classList.remove('mobile-open'));
+                        if (!isAlreadyOpen) trigger.classList.add('mobile-open');
+                    }
+                });
+            }
         });
 
         // Dynamic Switcher for Mega Menu Highlights
