@@ -188,9 +188,18 @@ body.rtl-mode {
 }
 
 .nav-item .fa-chevron-down {
-    font-size: 13px;
-    margin-left: 5px;
-    opacity: 0.8;
+    font-size: 10px;
+    margin-left: 6px;
+    opacity: 0.6;
+    transition: transform var(--transition-smooth), opacity var(--transition-smooth), color var(--transition-smooth);
+    vertical-align: middle;
+    display: inline-block;
+}
+
+.nav-item:hover .fa-chevron-down {
+    transform: rotate(180deg);
+    opacity: 1;
+    color: var(--primary-red);
 }
 
 .lang-btn .fa-chevron-down {
@@ -563,6 +572,29 @@ body.rtl-mode {
     /* Exact Git Divider */
     padding-bottom: 8px;
     color: var(--text-dark);
+}
+
+.column h4 a {
+    color: inherit;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    transition: color var(--transition-smooth), padding-left var(--transition-smooth);
+}
+
+.column h4 a:hover {
+    color: var(--primary-red);
+    padding-left: 4px;
+}
+
+.column h4 a i {
+    transition: transform var(--transition-smooth), color var(--transition-smooth);
+}
+
+.column h4 a:hover i {
+    transform: translateX(3px);
+    color: var(--primary-red);
 }
 
 .column a {

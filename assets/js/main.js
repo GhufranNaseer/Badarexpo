@@ -134,6 +134,7 @@ const NavManager = {
 
     handleDynamicSwitch(link) {
         const newImage = link.getAttribute('data-image');
+        if (!newImage) return;
         const newTitle = link.getAttribute('data-title');
         const newDesc = link.getAttribute('data-desc');
 
