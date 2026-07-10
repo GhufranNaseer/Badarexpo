@@ -1,0 +1,881 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Services | Badar Expo Solutions - Event & Exhibition Management Pakistan</title>
+
+    <!-- SEO & Search Engine Description -->
+    <meta name="description"
+        content="Explore Badar Expo Solutions' complete range of event and exhibition services — exhibition management, corporate events, conferences, stall design & fabrication, and more.">
+    <meta name="keywords"
+        content="Badar Expo Services, Exhibition Management Karachi, Corporate Events Pakistan, Stall Fabrication, Conference Management, BXSS Services">
+
+    <link rel="canonical" href="https://website.testing-production.com/services.html">
+
+    <!-- PERFORMANCE: DNS Prefetch & Preconnect -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+
+    <!-- Favicon / Title Icon -->
+    <link rel="icon" type="image/webp" href="assets/images/logo/favicon.webp">
+
+    <!-- Google Fonts with Swap for Fast Text Rendering -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <!-- ========================= GLOBAL STYLES (shared with Home & Events) ========================= -->
+    <link rel="stylesheet" href="assets/css/navbar.css">
+    <link rel="stylesheet" href="assets/css/footer.css">
+
+    <!-- ========================= PAGE SPECIFIC STYLES (services.html) ========================= -->
+    <link rel="stylesheet" href="assets/css/services.css">
+</head>
+
+<body>
+    <!-- ========================= [TEMPLATE: header.php START] ========================= -->
+    <!-- TOP BAR -->
+    <header class="topbar">
+        <div class="topbar-left">
+            <span><i class="fas fa-phone"></i> +92 21 3482 1159</span>
+            <span><i class="fas fa-envelope"></i> info@badarexpo.com</span>
+        </div>
+        <div class="topbar-right">
+            <div class="lang-dropdown">
+                <button class="lang-btn" id="lang-btn">
+                    <i class="fas fa-globe"></i> <span id="current-lang">EN</span> <i class="fas fa-chevron-down"></i>
+                </button>
+                <ul class="lang-list">
+                    <li data-lang="en">English</li>
+                    <li data-lang="ur">اردو (Urdu)</li>
+                    <li data-lang="ar">العربية (Arabic)</li>
+                </ul>
+            </div>
+            <a href="#"><i class="fab fa-facebook-f"></i></a>
+            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-youtube"></i></a>
+        </div>
+    </header>
+
+    <!-- NAVIGATION -->
+    <nav class="navbar">
+        <div class="logo">
+            <a href="index.html"><img src="assets/images/logo/favicon.webp" alt="Badar Expo Logo" class="logo-img"></a>
+        </div>
+
+        <!-- Hamburger Icon -->
+        <div class="nav-toggle" id="mobile-menu-toggle">
+            <i class="fas fa-bars"></i>
+        </div>
+
+        <div class="menu" id="nav-menu">
+            <div class="nav-item"><a href="index.html"><span>Home</span></a></div>
+            <div class="nav-item"><a href="about.html"><span>About Us</span></a></div>
+
+            <!-- TRIGGERS -->
+            <div class="nav-item dropdown active-nav" data-target="services">
+                <span>Services <i class="fas fa-chevron-down"></i></span>
+                <ul class="mobile-submenu">
+                    <li><a href="exhibitionmanagement.html">Exhibition Management</a></li>
+                    <li><a href="exhibitionmanagement.html#conference">Conference Management</a></li>
+                    <li><a href="exhibitionmanagement.html#corporate">Corporate Events</a></li>
+                    <li><a href="construction-design.html">Construction &amp; Design</a></li>
+                    <li><a href="growthservices.html">Growth Services</a></li>
+                </ul>
+            </div>
+            <div class="nav-item dropdown " data-target="events">
+                <span>Events <i class="fas fa-chevron-down"></i></span>
+                <ul class="mobile-submenu">
+                    <li><a href="events.html#our-role">Owned Events</a></li>
+                    <li><a href="events.html#our-role">Co-Organized</a></li>
+                    <li><a href="events.html#our-role">Managed Events</a></li>
+                </ul>
+            </div>
+
+            <div class="nav-item"><a href="#"><span>Industries</span></a></div>
+            <div class="nav-item"><a href="#"><span>Global Reach</span></a></div>
+
+            <div class="nav-item dropdown" data-target="insights">
+                <span>Insights <i class="fas fa-chevron-down"></i></span>
+                <ul class="mobile-submenu">
+                    <li><a href="#">Media Gallery</a></li>
+                    <li><a href="#">Blogs</a></li>
+                    <li><a href="#">News &amp; Updates</a></li>
+                </ul>
+            </div>
+            <div class="nav-item "><a href="contact.html"><span>Contact</span></a></div>
+
+            <!-- ACTION BUTTONS (Moved inside menu for mobile) -->
+            <div class="mobile-actions">
+                <button class="btn btn-dark">Visitor</button>
+                <button class="btn btn-light">Partner</button>
+            </div>
+        </div>
+
+        <!-- MEGA MENU WRAPPER -->
+        <div class="mega-menu-wrapper" id="shared-mega-menu">
+            <!-- SERVICES CONTENT -->
+            <div id="content-services" class="mega-content">
+                <div class="column dynamic-links">
+                    <h4>Exhibition Management</h4>
+                    <a href="exhibitionmanagement.html" data-title="Exhibition Management"
+                        data-desc="Complete exhibition solutions from concept to execution for B2B and B2C platforms."
+                        data-image="assets/images/portfolio/ieee-exhibition.webp">Management</a>
+                    <a href="exhibitionmanagement.html#conference" data-title="Conference Management"
+                        data-desc="Organizing world-class summits, technical seminars, and international conferences."
+                        data-image="assets/images/portfolio/ieee-seminar.webp">Conferences</a>
+                    <a href="exhibitionmanagement.html#corporate" data-title="Corporate Events"
+                        data-desc="Bespoke events tailored to meet corporate objectives and brand positioning."
+                        data-image="assets/images/portfolio/ziauddin-convocation.webp">Corporate</a>
+                </div>
+                <div class="column dynamic-links">
+                    <h4>Construction &amp; Design</h4>
+                    <ul class="bullet-list">
+                        <li><a href="construction-design.html#canopy" data-title="Canopy Octanorm Building"
+                                data-desc="Standardized modular shell schemes for professional exhibitions and trade shows."
+                                data-image="assets/images/portfolio/ieee-booth.webp">Canopy Octanorm Building</a></li>
+                        <li><a href="construction-design.html#stall" data-title="Stall Design &amp; Fabrication"
+                                data-desc="Custom-built creative booths and designer stalls that make your brand stand out."
+                                data-image="assets/images/portfolio/ieee-booth.webp">Stall Design &amp; Fabrication</a></li>
+                        <li><a href="construction-design.html#led" data-title="LED Screens"
+                                data-desc="High-definition LED walls and display panels for impactful visual storytelling."
+                                data-image="assets/images/portfolio/concert-stage.webp">LED Screens</a></li>
+                        <li><a href="construction-design.html#av" data-title="Audio Visual Equipment"
+                                data-desc="Professional sound, lighting, and projection systems tailored for any event size."
+                                data-image="assets/images/portfolio/concert-stage.webp">Audio Visual Equipment</a></li>
+                        <li><a href="construction-design.html#furniture" data-title="Rental of Furniture"
+                                data-desc="Premium lounge sets, sleek corporate furniture, and event seating solutions."
+                                data-image="assets/images/portfolio/ieee-exhibition.webp">Rental of Furniture</a></li>
+                        <li><a href="construction-design.html#kiosks" data-title="Interactive Kiosks"
+                                data-desc="Engage your audience with touch-screen technology and digital information points."
+                                data-image="assets/images/portfolio/ieee-kiosk.webp">Interactive Kiosks</a></li>
+                        <li><a href="construction-design.html#branding" data-title="Indoor Outdoor Advertising"
+                                data-desc="Strategic billboard placement and large-format signage to maximize brand reach."
+                                data-image="assets/images/portfolio/global-sme-banner.webp">Branding &amp; Production</a></li>
+                    </ul>
+                </div>
+                <div class="column dynamic-links">
+                    <h4>Growth Services</h4>
+                    <a href="growthservices.html#pillars" data-title="B2B Matchmaking"
+                        data-desc="Connecting global buyers with suppliers through strategic high-level networking."
+                        data-image="assets/images/portfolio/china-embassy.webp">B2B Matchmaking</a>
+                    <a href="growthservices.html#pillars" data-title="Event Marketing"
+                        data-desc="Innovative PR and media strategies designed to drive maximum event attendance."
+                        data-image="assets/images/portfolio/global-sme-banner.webp">Event Marketing</a>
+                    <a href="growthservices.html#pillars" data-title="Digital Production"
+                        data-desc="Creative content, live streaming, and digital solutions for the modern event landscape."
+                        data-image="assets/images/portfolio/concert-stage.webp">Digital Production</a>
+                </div>
+                <div class="column highlight">
+                    <div class="highlight-content-box">
+                        <img src="assets/images/portfolio/ieee-exhibition.webp" alt="Services Highlight"
+                            class="dynamic-img" loading="lazy" width="300" height="160">
+                        <strong class="dynamic-title">End-to-End Solutions</strong>
+                        <p class="dynamic-desc">We design and scale world-class exhibitions &amp; industry platforms.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- EVENTS CONTENT -->
+            <div id="content-events" class="mega-content">
+                <div class="column dynamic-links">
+                    <h4>Our Role</h4>
+                    <a href="events.html#our-role" data-title="Owned Events" data-desc="Flagship trade fairs and industry-leading exhibitions fully conceptualized by Badar Expo." data-image="assets/images/portfolio/ieee-exhibition.webp">Owned Events</a>
+                    <a href="events.html#our-role" data-title="Co-Organized" data-desc="Strategic partnerships with industry bodies to deliver high-impact global events." data-image="assets/images/portfolio/ideas-exhibition.webp">Co-Organized</a>
+                    <a href="events.html#our-role" data-title="Managed Events" data-desc="Complete end-to-end event management solutions for third-party corporate and government clients." data-image="assets/images/portfolio/ziauddin-convocation.webp">Managed Events</a>
+                </div>
+                <div class="column dynamic-links">
+                    <h4>Formats</h4>
+                    <a href="events.html#formats" data-title="Exhibitions" data-desc="Creating massive B2B and B2C platforms that connect global suppliers with buyers." data-image="assets/images/portfolio/dalfa-cattle-show.webp">Exhibitions</a>
+                    <a href="events.html#formats" data-title="Conferences" data-desc="Organizing world-class summits, technical seminars, and international conferences." data-image="assets/images/portfolio/ieee-seminar.webp">Conferences</a>
+                    <a href="events.html#formats" data-title="Industrial Forums" data-desc="Facilitating high-level dialogue between government and industry leaders." data-image="assets/images/portfolio/saudi-delegation.webp">Industrial Forums</a>
+                </div>
+                <div class="column highlight">
+                    <div class="highlight-content-box">
+                        <img src="assets/images/portfolio/ideas-seminar.webp" alt="Events Highlight" class="dynamic-img"
+                            loading="lazy" width="300" height="160">
+                        <strong class="dynamic-title">1500+ Events Delivered</strong>
+                        <p class="dynamic-desc">Connecting industries, governments &amp; global partners.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- INSIGHTS CONTENT -->
+            <div id="content-insights" class="mega-content">
+                <div class="insight-card">
+                    <img src="assets/images/portfolio/global-sme-banner.webp" alt="Blog" loading="lazy">
+                    <h4>Blog</h4>
+                    <p>Industry insights, event strategies &amp; updates.</p>
+                </div>
+                <div class="insight-card">
+                    <img src="assets/images/portfolio/china-embassy.webp" alt="Media" loading="lazy">
+                    <h4>Media</h4>
+                    <p>Press coverage, interviews &amp; event highlights.</p>
+                </div>
+                <div class="insight-card">
+                    <img src="assets/images/portfolio/concert-audience.webp" alt="Gallery" loading="lazy">
+                    <h4>Gallery</h4>
+                    <p>Moments captured from our mega events.</p>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- ACTION BUTTONS (Desktop Only) -->
+        <div class="nav-right-icons">
+            <div class="search-trigger" id="search-toggle">
+                <i class="fas fa-magnifying-glass"></i>
+                <span class="search-text">Search</span>
+            </div>
+
+            <div class="actions">
+                <button class="btn btn-dark">Visitor</button>
+                <button class="btn btn-light">Partner</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- SEARCH OVERLAY -->
+    <div class="search-overlay" id="search-overlay">
+        <div class="search-close" id="search-close">
+            <i class="fas fa-xmark"></i>
+        </div>
+        <div class="search-container">
+            <div class="search-box">
+                <input type="text" placeholder="Search events, services, or insights..." id="search-input">
+                <i class="fas fa-magnifying-glass search-icon-inner"></i>
+            </div>
+            <div class="search-suggestions">
+                <h4>Quick Links</h4>
+                <div class="suggestion-tags">
+                    <span>#Exhibitions</span>
+                    <span>#Conferences</span>
+                    <span>#CorporateEvents</span>
+                    <span>#StallFabrication</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- ========================= [TEMPLATE: header.php END] ========================= -->
+
+    <!-- ========================= SERVICES HERO ========================= -->
+    <section class="svc-hero">
+        <!-- Background Video -->
+        <video class="svc-hero-video-bg" autoplay loop muted playsinline>
+            <source src="https://badarexpo.evergreen.com.pk/assets/videos/banner1.mp4" type="video/mp4">
+        </video>
+        <!-- Background Video Overlay for readability -->
+        <div class="svc-hero-video-overlay"></div>
+
+        <div class="svc-container">
+            <div class="svc-breadcrumb">
+                <a href="index.html">Home</a>
+                <i class="fas fa-chevron-right" style="font-size:10px;"></i>
+                <span class="current">Services</span>
+            </div>
+
+            <div class="svc-hero-inner">
+                <span class="svc-badge"><i class="fas fa-star"></i> Trusted Since 2000</span>
+                <h1>End-to-End Event & <span>Exhibition Solutions</span> Built to Perform</h1>
+                <p>From strategy and stall fabrication to marketing and on-ground execution — Badar Expo Solutions
+                    delivers every service required to turn an idea into a world-class event, exhibition, or
+                    corporate platform.</p>
+                <div class="svc-hero-btns">
+                    <a href="#services-grid" class="svc-btn svc-btn-primary"><i class="fas fa-list"></i> Explore Services</a>
+                    <a href="#svc-cta" class="svc-btn svc-btn-outline"><i class="fas fa-phone"></i> Request Proposal</a>
+                </div>
+            </div>
+
+            <div class="svc-hero-stats svc-reveal">
+                <div class="svc-hero-stat">
+                    <div class="num"><span>25+</span></div>
+                    <div class="lbl">Years of Experience</div>
+                </div>
+                <div class="svc-hero-stat">
+                    <div class="num"><span>150+</span></div>
+                    <div class="lbl">Events Delivered</div>
+                </div>
+                <div class="svc-hero-stat">
+                    <div class="num"><span>300+</span></div>
+                    <div class="lbl">Corporate Clients</div>
+                </div>
+                <div class="svc-hero-stat">
+                    <div class="num"><span>20+</span></div>
+                    <div class="lbl">Service Categories</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========================= SERVICES OVERVIEW ========================= -->
+    <section class="svc-overview">
+        <div class="svc-container">
+            <div class="svc-overview-grid svc-reveal">
+                <div>
+                    <span class="svc-tag">Complete Portfolio</span>
+                    <h2 class="svc-h2">One Partner. Every Service Your Event Needs.</h2>
+                </div>
+                <div>
+                    <p>Badar Expo Solutions provides complete, end-to-end event management under one roof — so you
+                        never have to coordinate multiple vendors. Our in-house teams cover exhibition management,
+                        stall design & fabrication, digital production, PR, registration, and technical execution
+                        for corporate, government, and international clients.</p>
+                    <ul class="svc-overview-list">
+                        <li><i class="fas fa-circle-check"></i> Single point of contact from concept to reporting</li>
+                        <li><i class="fas fa-circle-check"></i> In-house fabrication & production capabilities</li>
+                        <li><i class="fas fa-circle-check"></i> Dedicated project managers for every mandate</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========================= MAIN SERVICES GRID ========================= -->
+    <section class="svc-grid-section" id="services-grid">
+        <div class="svc-container">
+            <div class="svc-section-head svc-reveal">
+                <div>
+                    <span class="svc-tag">What We Do</span>
+                    <h2 class="svc-h2">Our Core Services</h2>
+                </div>
+                <p>A complete suite of services designed to build trust, showcase expertise, and deliver measurable
+                    results for every kind of event.</p>
+            </div>
+
+            <div class="svc-cards-grid">
+                <div class="svc-card svc-reveal">
+                    <div class="svc-card-icon"><i class="fas fa-building-columns"></i></div>
+                    <h3>Exhibition Management</h3>
+                    <p>Complete B2B and B2C exhibition solutions from concept and floor planning to on-ground
+                        delivery.</p>
+                    <ul class="svc-card-highlights">
+                        <li><i class="fas fa-check"></i>Floor plan & hall design</li>
+                        <li><i class="fas fa-check"></i>Exhibitor coordination</li>
+                        <li><i class="fas fa-check"></i>International standards</li>
+                    </ul>
+                    <div class="svc-card-footer">
+                        <a href="#svc-cta" class="svc-card-link">Learn More</a>
+                        <span class="svc-card-arrow"><i class="fas fa-arrow-up-right"></i></span>
+                    </div>
+                </div>
+
+                <div class="svc-card svc-reveal">
+                    <div class="svc-card-icon"><i class="fas fa-users-rectangle"></i></div>
+                    <h3>Corporate Events</h3>
+                    <p>Bespoke corporate experiences tailored to brand positioning, launches, and business
+                        objectives.</p>
+                    <ul class="svc-card-highlights">
+                        <li><i class="fas fa-check"></i>Product launches</li>
+                        <li><i class="fas fa-check"></i>Award ceremonies</li>
+                        <li><i class="fas fa-check"></i>Brand activations</li>
+                    </ul>
+                    <div class="svc-card-footer">
+                        <a href="#svc-cta" class="svc-card-link">Learn More</a>
+                        <span class="svc-card-arrow"><i class="fas fa-arrow-up-right"></i></span>
+                    </div>
+                </div>
+
+                <div class="svc-card svc-reveal">
+                    <div class="svc-card-icon"><i class="fas fa-microphone-lines"></i></div>
+                    <h3>Conferences & Seminars</h3>
+                    <p>World-class summits, technical seminars, and international conferences managed end-to-end.</p>
+                    <ul class="svc-card-highlights">
+                        <li><i class="fas fa-check"></i>Speaker & delegate management</li>
+                        <li><i class="fas fa-check"></i>AV & simultaneous translation</li>
+                        <li><i class="fas fa-check"></i>Registration desks</li>
+                    </ul>
+                    <div class="svc-card-footer">
+                        <a href="#svc-cta" class="svc-card-link">Learn More</a>
+                        <span class="svc-card-arrow"><i class="fas fa-arrow-up-right"></i></span>
+                    </div>
+                </div>
+
+                <div class="svc-card svc-reveal">
+                    <div class="svc-card-icon"><i class="fas fa-drafting-compass"></i></div>
+                    <h3>Stall Design & Fabrication</h3>
+                    <p>Custom-built creative booths, Octanorm shells, and designer stalls that make brands stand out.</p>
+                    <ul class="svc-card-highlights">
+                        <li><i class="fas fa-check"></i>Custom & modular builds</li>
+                        <li><i class="fas fa-check"></i>In-house fabrication</li>
+                        <li><i class="fas fa-check"></i>3D visualization</li>
+                    </ul>
+                    <div class="svc-card-footer">
+                        <a href="#svc-cta" class="svc-card-link">Learn More</a>
+                        <span class="svc-card-arrow"><i class="fas fa-arrow-up-right"></i></span>
+                    </div>
+                </div>
+
+                <div class="svc-card svc-reveal">
+                    <div class="svc-card-icon"><i class="fas fa-clapperboard"></i></div>
+                    <h3>Event Production</h3>
+                    <p>Professional sound, lighting, LED walls, and staging for concerts, galas, and large-format
+                        events.</p>
+                    <ul class="svc-card-highlights">
+                        <li><i class="fas fa-check"></i>Stage & set design</li>
+                        <li><i class="fas fa-check"></i>LED screens & AV</li>
+                        <li><i class="fas fa-check"></i>Technical crews</li>
+                    </ul>
+                    <div class="svc-card-footer">
+                        <a href="#svc-cta" class="svc-card-link">Learn More</a>
+                        <span class="svc-card-arrow"><i class="fas fa-arrow-up-right"></i></span>
+                    </div>
+                </div>
+
+                <div class="svc-card svc-reveal">
+                    <div class="svc-card-icon"><i class="fas fa-bullhorn"></i></div>
+                    <h3>PR & Digital Marketing</h3>
+                    <p>Innovative PR, media strategy, and digital production designed to maximize event attendance.</p>
+                    <ul class="svc-card-highlights">
+                        <li><i class="fas fa-check"></i>Media & press coverage</li>
+                        <li><i class="fas fa-check"></i>Social & digital campaigns</li>
+                        <li><i class="fas fa-check"></i>Live streaming</li>
+                    </ul>
+                    <div class="svc-card-footer">
+                        <a href="#svc-cta" class="svc-card-link">Learn More</a>
+                        <span class="svc-card-arrow"><i class="fas fa-arrow-up-right"></i></span>
+                    </div>
+                </div>
+
+                <div class="svc-card svc-reveal">
+                    <div class="svc-card-icon"><i class="fas fa-handshake"></i></div>
+                    <h3>B2B Matchmaking</h3>
+                    <p>Connecting global buyers with suppliers through strategic, high-level business networking.</p>
+                    <ul class="svc-card-highlights">
+                        <li><i class="fas fa-check"></i>Delegation management</li>
+                        <li><i class="fas fa-check"></i>Buyer-seller meetings</li>
+                        <li><i class="fas fa-check"></i>Trade facilitation</li>
+                    </ul>
+                    <div class="svc-card-footer">
+                        <a href="#svc-cta" class="svc-card-link">Learn More</a>
+                        <span class="svc-card-arrow"><i class="fas fa-arrow-up-right"></i></span>
+                    </div>
+                </div>
+
+                <div class="svc-card svc-reveal">
+                    <div class="svc-card-icon"><i class="fas fa-landmark"></i></div>
+                    <h3>Government & Institutional Events</h3>
+                    <p>Protocol-compliant management for government pavilions, forums, and delegation visits.</p>
+                    <ul class="svc-card-highlights">
+                        <li><i class="fas fa-check"></i>Protocol & security coordination</li>
+                        <li><i class="fas fa-check"></i>Pavilion management</li>
+                        <li><i class="fas fa-check"></i>VIP handling</li>
+                    </ul>
+                    <div class="svc-card-footer">
+                        <a href="#svc-cta" class="svc-card-link">Learn More</a>
+                        <span class="svc-card-arrow"><i class="fas fa-arrow-up-right"></i></span>
+                    </div>
+                </div>
+
+                <div class="svc-card svc-reveal">
+                    <div class="svc-card-icon"><i class="fas fa-clipboard-check"></i></div>
+                    <h3>Registration & Visitor Management</h3>
+                    <p>Seamless registration, badging, and visitor flow systems for exhibitions and conferences.</p>
+                    <ul class="svc-card-highlights">
+                        <li><i class="fas fa-check"></i>Digital check-in</li>
+                        <li><i class="fas fa-check"></i>Badge printing</li>
+                        <li><i class="fas fa-check"></i>Real-time reporting</li>
+                    </ul>
+                    <div class="svc-card-footer">
+                        <a href="#svc-cta" class="svc-card-link">Learn More</a>
+                        <span class="svc-card-arrow"><i class="fas fa-arrow-up-right"></i></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========================= WHY CHOOSE BADAR EXPO ========================= -->
+    <section class="svc-why">
+        <div class="svc-container">
+            <div class="svc-reveal">
+                <span class="svc-tag">Why Badar Expo</span>
+                <h2 class="svc-h2">Built On Trust, Delivered With Precision</h2>
+            </div>
+
+            <div class="svc-why-grid">
+                <div class="svc-why-card svc-reveal">
+                    <i class="fas fa-award"></i>
+                    <h4>25+ Years Experience</h4>
+                    <p>A proven track record delivering premium events and exhibitions since 2000.</p>
+                </div>
+                <div class="svc-why-card svc-reveal">
+                    <i class="fas fa-user-tie"></i>
+                    <h4>Dedicated Project Managers</h4>
+                    <p>A single point of contact overseeing your mandate from kickoff to reporting.</p>
+                </div>
+                <div class="svc-why-card svc-reveal">
+                    <i class="fas fa-palette"></i>
+                    <h4>In-House Creative Team</h4>
+                    <p>Design, fabrication, and digital production capabilities under one roof.</p>
+                </div>
+                <div class="svc-why-card svc-reveal">
+                    <i class="fas fa-map-location-dot"></i>
+                    <h4>Nationwide Operations</h4>
+                    <p>Delivery capability across Karachi, Lahore, Islamabad, and beyond.</p>
+                </div>
+                <div class="svc-why-card svc-reveal">
+                    <i class="fas fa-gears"></i>
+                    <h4>Custom Solutions</h4>
+                    <p>Every engagement is scoped around your objectives — never a one-size-fits-all package.</p>
+                </div>
+                <div class="svc-why-card svc-reveal">
+                    <i class="fas fa-globe"></i>
+                    <h4>International Standards</h4>
+                    <p>Global best practices applied to local execution for consistent, reliable outcomes.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========================= INDUSTRIES WE SERVE ========================= -->
+    <section class="svc-industries">
+        <div class="svc-container">
+            <div class="svc-reveal">
+                <span class="svc-tag">Industries</span>
+                <h2 class="svc-h2">Industries We Serve</h2>
+            </div>
+
+            <div class="svc-industries-grid">
+                <div class="svc-industry-chip svc-reveal"><i class="fas fa-heart-pulse"></i> Healthcare & Medical</div>
+                <div class="svc-industry-chip svc-reveal"><i class="fas fa-oil-well"></i> Oil, Gas & Energy</div>
+                <div class="svc-industry-chip svc-reveal"><i class="fas fa-helmet-safety"></i> Construction & Real Estate</div>
+                <div class="svc-industry-chip svc-reveal"><i class="fas fa-graduation-cap"></i> Education</div>
+                <div class="svc-industry-chip svc-reveal"><i class="fas fa-landmark-dome"></i> Government</div>
+                <div class="svc-industry-chip svc-reveal"><i class="fas fa-microchip"></i> Technology & AI</div>
+                <div class="svc-industry-chip svc-reveal"><i class="fas fa-wheat-awn"></i> Food & Agriculture</div>
+                <div class="svc-industry-chip svc-reveal"><i class="fas fa-shirt"></i> Textile & Fashion</div>
+                <div class="svc-industry-chip svc-reveal"><i class="fas fa-car"></i> Automotive</div>
+                <div class="svc-industry-chip svc-reveal"><i class="fas fa-industry"></i> Manufacturing</div>
+                <div class="svc-industry-chip svc-reveal"><i class="fas fa-building-shield"></i> Defence & Security</div>
+                <div class="svc-industry-chip svc-reveal"><i class="fas fa-sack-dollar"></i> Banking & Finance</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========================= COMPLETE EVENT SOLUTIONS (PROCESS) ========================= -->
+    <section class="svc-process">
+        <div class="svc-container">
+            <div class="svc-reveal">
+                <span class="svc-tag">Our Process</span>
+                <h2 class="svc-h2">Complete Event Solutions, Start to Finish</h2>
+                <p class="svc-process-sub">Every project follows a structured workflow so nothing is left to
+                    chance — from the first concept meeting to the final report.</p>
+            </div>
+
+            <div class="svc-process-track svc-reveal">
+                <div class="svc-process-step"><div class="svc-process-num">1</div><h5>Concept</h5><p>Objectives & strategy</p></div>
+                <div class="svc-process-step"><div class="svc-process-num">2</div><h5>Planning</h5><p>Timeline & budget</p></div>
+                <div class="svc-process-step"><div class="svc-process-num">3</div><h5>Design</h5><p>Creative & layout</p></div>
+                <div class="svc-process-step"><div class="svc-process-num">4</div><h5>Production</h5><p>Build & fabrication</p></div>
+                <div class="svc-process-step"><div class="svc-process-num">5</div><h5>Marketing</h5><p>PR & promotion</p></div>
+                <div class="svc-process-step"><div class="svc-process-num">6</div><h5>Execution</h5><p>On-ground delivery</p></div>
+                <div class="svc-process-step"><div class="svc-process-num">7</div><h5>Reporting</h5><p>Results & insights</p></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========================= NUMBERS THAT MATTER ========================= -->
+    <section class="svc-numbers">
+        <div class="svc-container">
+            <div class="svc-reveal" style="text-align:center;">
+                <span class="svc-tag" style="justify-content:center;">By The Numbers</span>
+                <h2 class="svc-h2">Numbers That Matter</h2>
+            </div>
+
+            <div class="svc-numbers-grid svc-reveal">
+                <div>
+                    <div class="svc-num svc-counter" data-target="150">0</div>
+                    <div class="svc-num-label">Events</div>
+                </div>
+                <div>
+                    <div class="svc-num svc-counter" data-target="5000">0</div>
+                    <div class="svc-num-label">Exhibitors</div>
+                </div>
+                <div>
+                    <div class="svc-num svc-counter" data-target="2" data-suffix="M+">0</div>
+                    <div class="svc-num-label">Visitors</div>
+                </div>
+                <div>
+                    <div class="svc-num svc-counter" data-target="25">0</div>
+                    <div class="svc-num-label">Years</div>
+                </div>
+                <div>
+                    <div class="svc-num svc-counter" data-target="300">0</div>
+                    <div class="svc-num-label">Corporate Clients</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========================= FAQ ========================= -->
+    <section class="svc-faq">
+        <div class="svc-container">
+            <div class="svc-reveal" style="text-align:center;">
+                <span class="svc-tag" style="justify-content:center;">FAQs</span>
+                <h2 class="svc-h2">Frequently Asked Questions</h2>
+            </div>
+
+            <div class="svc-faq-wrap svc-reveal">
+                <div class="svc-faq-item active">
+                    <div class="svc-faq-q">How do I organize an event with Badar Expo Solutions? <i class="fas fa-plus"></i></div>
+                    <div class="svc-faq-a"><p>Simply reach out through our contact form or hotline. A dedicated
+                        project manager will schedule a consultation, understand your objectives, and prepare a
+                        proposal covering scope, timeline, and budget.</p></div>
+                </div>
+                <div class="svc-faq-item">
+                    <div class="svc-faq-q">Can you manage international exhibitions? <i class="fas fa-plus"></i></div>
+                    <div class="svc-faq-a"><p>Yes. We regularly coordinate international delegations, government
+                        pavilions, and cross-border exhibitor logistics for global exhibitions and trade fairs.</p></div>
+                </div>
+                <div class="svc-faq-item">
+                    <div class="svc-faq-q">Do you provide stall design and fabrication in-house? <i class="fas fa-plus"></i></div>
+                    <div class="svc-faq-a"><p>Yes, our in-house fabrication team handles custom builds, Octanorm
+                        shell schemes, LED integration, and furniture rental — so quality and timelines stay under
+                        our control.</p></div>
+                </div>
+                <div class="svc-faq-item">
+                    <div class="svc-faq-q">Can you manage complete conferences and seminars? <i class="fas fa-plus"></i></div>
+                    <div class="svc-faq-a"><p>Absolutely. We handle speaker coordination, AV production, delegate
+                        registration, and on-ground execution for conferences of any scale.</p></div>
+                </div>
+                <div class="svc-faq-item">
+                    <div class="svc-faq-q">How can I become an exhibitor at your events? <i class="fas fa-plus"></i></div>
+                    <div class="svc-faq-a"><p>Visit our Events page to view upcoming exhibitions, or contact our
+                        team directly for booth availability, pricing, and participation packages.</p></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========================= CALL TO ACTION ========================= -->
+    <section class="svc-cta" id="svc-cta">
+        <div class="svc-container">
+            <div class="svc-cta-card">
+                <span class="svc-badge"><i class="fas fa-paper-plane"></i> Let's Talk</span>
+                <h2>Let's Build Your Next <span>Event</span> Together</h2>
+                <p>Tell us about your project and our team will get back to you with a tailored proposal within 24
+                    hours.</p>
+                <div class="svc-cta-btns">
+                    <a href="mailto:info@badarexpo.com" class="svc-btn svc-btn-primary"><i class="fas fa-file-lines"></i> Request Proposal</a>
+                    <a href="tel:+922134821159" class="svc-btn svc-btn-outline"><i class="fas fa-calendar-check"></i> Book Consultation</a>
+                    <a href="#" class="svc-btn svc-btn-outline"><i class="fas fa-comments"></i> Contact Team</a>
+                </div>
+                <div class="svc-cta-contacts">
+                    <a href="tel:+922134821159" class="svc-cta-contact-item"><i class="fas fa-phone"></i> +92 21 3482 1159</a>
+                    <a href="mailto:info@badarexpo.com" class="svc-cta-contact-item"><i class="fas fa-envelope"></i> info@badarexpo.com</a>
+                    <span class="svc-cta-contact-item"><i class="fas fa-location-dot"></i> Karachi, Pakistan</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========================= [TEMPLATE: footer.php START] ========================= -->
+    <!-- ========================= GLOBAL FOOTER ========================= -->
+    <footer class="footer-shell">
+        <div class="footer">
+
+            <!-- TOP -->
+            <div class="footer-top">
+
+                <button class="footer-aws-btn" onclick="document.getElementById('svc-cta').scrollIntoView({behavior:'smooth'})">
+                    Get a Free Quote
+                </button>
+
+                <button class="footer-language-btn">
+                    <svg fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+                        <circle cx="12" cy="12" r="9"></circle>
+                        <path d="M3 12h18"></path>
+                        <path d="M12 3c3 3 4.5 6 4.5 9s-1.5 6-4.5 9c-3-3-4.5-6-4.5-9s1.5-6 4.5-9z"></path>
+                    </svg>
+                    English
+                    <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                        <path d="M6 9l6 6 6-6" />
+                    </svg>
+                </button>
+
+            </div>
+
+            <!-- LINKS -->
+            <div class="footer-grid">
+
+                <div class="footer-column">
+                    <h3>Our Services</h3>
+                    <ul>
+                        <li><a href="#services-grid">Exhibition Management</a></li>
+                        <li><a href="#services-grid">Trade Show Organizing</a></li>
+                        <li><a href="#services-grid">Corporate Events</a></li>
+                        <li><a href="#services-grid">Product Launches</a></li>
+                        <li><a href="#services-grid">Government Pavilions</a></li>
+                        <li><a href="#services-grid">International Expos</a></li>
+                        <li><a href="#services-grid">Conference &amp; Summits</a></li>
+                        <li><a href="#services-grid">Award Ceremonies</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-column">
+                    <h3>Industries</h3>
+                    <ul>
+                        <li><a href="#">Textile &amp; Fashion</a></li>
+                        <li><a href="#">Food &amp; Beverage</a></li>
+                        <li><a href="#">Technology &amp; Innovation</a></li>
+                        <li><a href="#">Healthcare &amp; Pharma</a></li>
+                        <li><a href="#">Agriculture &amp; Livestock</a></li>
+                        <li><a href="#">Construction &amp; Real Estate</a></li>
+                        <li><a href="#">Defence &amp; Security</a></li>
+                        <li><a href="#">Education &amp; Training</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-column">
+                    <h3>Company</h3>
+                    <ul>
+                        <li><a href="#">About BXSS</a></li>
+                        <li><a href="#">Our Portfolio</a></li>
+                        <li><a href="#">Media Gallery</a></li>
+                        <li><a href="#">Client Testimonials</a></li>
+                        <li><a href="#">Our Partners</a></li>
+                        <li><a href="#">Careers</a></li>
+                        <li><a href="#">News &amp; Updates</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-column">
+                    <h3>Contact Us</h3>
+                    <ul>
+                        <li><a href="#svc-cta">Get a Quote</a></li>
+                        <li><a href="#svc-cta">Request a Callback</a></li>
+                        <li><a href="tel:+922135820001">+92-21-3582-0001</a></li>
+                        <li><a href="mailto:info@badarexpo.com">info@badarexpo.com</a></li>
+                        <li><a href="#">Karachi Head Office</a></li>
+                        <li><a href="#">Lahore Office</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms &amp; Conditions</a></li>
+                    </ul>
+                </div>
+
+            </div>
+
+            <!-- BACK TOP -->
+            <div class="footer-back-top" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+                Back to top
+                <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                    <path d="M12 19V5" />
+                    <path d="M5 12l7-7 7 7" />
+                </svg>
+            </div>
+
+            <!-- BOTTOM -->
+            <div class="footer-bottom">
+
+                <div class="footer-left-bottom">
+
+                    <div class="footer-equal-text">
+                        Badar Expo Solutions (BXSS) — Pakistan's Premier Event &amp; Exhibition Management Company,
+                        proudly serving clients since 2000 across South Asia and internationally.
+                    </div>
+
+                    <div class="footer-bottom-links">
+                        <a href="#">Privacy Policy</a>
+                        <a href="#">Terms of Service</a>
+                        <a href="#">Cookie Preferences</a>
+                    </div>
+
+                    <div class="footer-copyright">
+                        © 2026, Badar Expo Solutions (BXSS). All rights reserved.
+                    </div>
+
+                </div>
+
+                <!-- SOCIALS -->
+                <div class="footer-socials">
+
+                    <!-- X -->
+                    <div class="footer-social">
+                        <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
+                            <path
+                                d="M18.9 2H22l-6.76 7.72L23 22h-6.12l-4.8-6.27L6.58 22H3.46l7.23-8.26L1 2h6.28l4.34 5.72L18.9 2z" />
+                        </svg>
+                    </div>
+
+                    <!-- Facebook -->
+                    <div class="footer-social">
+                        <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
+                            <path
+                                d="M13.5 22v-8h2.7l.4-3h-3.1V9.1c0-.9.3-1.5 1.6-1.5H17V4.9c-.3 0-1.3-.1-2.5-.1-2.5 0-4.2 1.5-4.2 4.3V11H7.5v3h2.8v8h3.2z" />
+                        </svg>
+                    </div>
+
+                    <!-- LinkedIn -->
+                    <div class="footer-social">
+                        <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
+                            <path
+                                d="M4.98 3.5A2.48 2.48 0 1 1 5 8.46a2.48 2.48 0 0 1-.02-4.96zM3 9h4v12H3zm7 0h3.8v1.7h.1c.53-1 1.82-2.1 3.74-2.1 4 0 4.76 2.63 4.76 6.05V21h-4v-5.6c0-1.33-.02-3.05-1.86-3.05-1.86 0-2.14 1.45-2.14 2.95V21h-4z" />
+                        </svg>
+                    </div>
+
+                    <!-- Instagram -->
+                    <div class="footer-social">
+                        <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
+                            <path d="M12 7a5 5 0 100 10 5 5 0 000-10zm0 8.2A3.2 3.2 0 1112 8.8a3.2 3.2 0 010 6.4z" />
+                            <path
+                                d="M17.5 2h-11A4.5 4.5 0 002 6.5v11A4.5 4.5 0 006.5 22h11a4.5 4.5 0 004.5-4.5v-11A4.5 4.5 0 0017.5 2zm2.7 15.5a2.7 2.7 0 01-2.7 2.7h-11a2.7 2.7 0 01-2.7-2.7v-11a2.7 2.7 0 012.7-2.7h11a2.7 2.7 0 012.7 2.7z" />
+                            <circle cx="18" cy="6" r="1" />
+                        </svg>
+                    </div>
+
+                    <!-- Twitch -->
+                    <div class="footer-social">
+                        <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
+                            <path
+                                d="M3 2l-1 4v13h5v3l3-3h4l7-7V2H3zm16 9l-4 4h-4l-3 3v-3H4V4h15v7zm-3-5h-2v5h2V6zm-5 0H9v5h2V6z" />
+                        </svg>
+                    </div>
+
+                    <!-- YouTube -->
+                    <div class="footer-social">
+                        <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
+                            <path
+                                d="M23 12s0-3.5-.45-5.18a2.9 2.9 0 00-2.04-2.05C18.82 4.3 12 4.3 12 4.3s-6.82 0-8.51.47A2.9 2.9 0 001.45 6.8C1 8.5 1 12 1 12s0 3.5.45 5.18a2.9 2.9 0 002.04 2.05c1.69.47 8.51.47 8.51.47s6.82 0 8.51-.47a2.9 2.9 0 002.04-2.05C23 15.5 23 12 23 12zm-13 3.7V8.3l6.3 3.7z" />
+                        </svg>
+                    </div>
+
+                    <!-- Podcast -->
+                    <div class="footer-social">
+                        <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
+                            <path
+                                d="M12 2a8 8 0 00-8 8c0 3.3 2 6.1 4.8 7.3l.8-2a5.9 5.9 0 01-3.6-5.3A6 6 0 1118 10a5.9 5.9 0 01-3.6 5.3l.8 2A8 8 0 0020 10a8 8 0 00-8-8zm0 6a2 2 0 00-2 2c0 .9.6 1.7 1.4 1.9L10 22h4l-1.4-10.1A2 2 0 0014 10a2 2 0 00-2-2z" />
+                        </svg>
+                    </div>
+
+                    <!-- Mail -->
+                    <div class="footer-social">
+                        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <rect x="3" y="5" width="18" height="14" />
+                            <path d="M3 7l9 7 9-7" />
+                        </svg>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+    </footer>
+
+    <!-- Scroll to Top Button -->
+    <button id="scrollTopBtn" class="scroll-top-btn" aria-label="Scroll to top">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- Shared global nav/footer/scroll-top logic (identical to Home & Events pages) -->
+    <script src="assets/js/main.js"></script>
+
+    <!-- ========================= [TEMPLATE: footer.php END] ========================= -->
+</body>
+
+</html>

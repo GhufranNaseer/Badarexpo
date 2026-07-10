@@ -1,0 +1,157 @@
+/* =============================================================================
+   GLOBAL COMPONENT: INNER PAGE HERO (page-hero.css)
+   Used on every interior page (Events, About, Services, Industries, Global
+   Reach, Insights, Contact) to keep a single, consistent, easily-scalable
+   banner pattern across the entire site. Per rules.txt Section 1, this is a
+   GLOBAL component (shared across pages) and therefore lives in its own file.
+   ============================================================================= */
+
+/* =========================
+   BREADCRUMB STRIP
+   ========================= */
+.page-breadcrumb-bar {
+    background: var(--bg-light);
+    border-bottom: 1px solid var(--border-light);
+}
+
+.page-breadcrumb {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 14px 60px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text-muted);
+}
+
+.page-breadcrumb a {
+    color: var(--text-muted);
+    text-decoration: none;
+    transition: var(--transition-fast);
+}
+
+.page-breadcrumb a:hover {
+    color: var(--primary-red);
+}
+
+.page-breadcrumb .crumb-sep {
+    opacity: 0.5;
+    font-size: 11px;
+}
+
+.page-breadcrumb .crumb-current {
+    color: var(--primary-red);
+}
+
+/* =========================
+   HERO BANNER
+   ========================= */
+.page-hero {
+    position: relative;
+    width: 100%;
+    height: 52vh;
+    min-height: 380px;
+    max-height: 560px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    color: var(--white);
+    background-color: #000;
+}
+
+.page-hero-bg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 1;
+}
+
+.page-hero-overlay {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    background: linear-gradient(115deg,
+            rgba(10, 10, 10, 0.88) 0%,
+            rgba(10, 10, 10, 0.62) 45%,
+            rgba(228, 31, 38, 0.35) 100%);
+}
+
+.page-hero-content {
+    position: relative;
+    z-index: 3;
+    max-width: 1400px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 0 60px;
+    animation: pageHeroFadeUp 1s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@keyframes pageHeroFadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(24px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.page-hero-tag {
+    display: inline-block;
+    color: var(--white);
+    background: var(--primary-red);
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    padding: 6px 16px;
+    border-radius: 30px;
+    margin-bottom: 20px;
+}
+
+.page-hero-content h1 {
+    font-size: clamp(2.2rem, 4.4vw, 3.4rem);
+    font-weight: 800;
+    line-height: 1.15;
+    max-width: 800px;
+    margin-bottom: 18px;
+    text-shadow: 0 2px 12px rgba(0, 0, 0, 0.35);
+}
+
+.page-hero-content p {
+    font-size: clamp(1rem, 1.3vw, 1.1rem);
+    max-width: 620px;
+    opacity: 0.92;
+    line-height: 1.7;
+}
+
+/* =========================
+   RESPONSIVE (PAGE HERO)
+   ========================= */
+@media screen and (max-width: 1024px) {
+    .page-breadcrumb {
+        padding: 12px 30px;
+    }
+
+    .page-hero-content {
+        padding: 0 30px;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .page-hero {
+        height: 46vh;
+        min-height: 320px;
+    }
+
+    .page-breadcrumb {
+        padding: 10px 20px;
+        font-size: 12px;
+    }
+}
