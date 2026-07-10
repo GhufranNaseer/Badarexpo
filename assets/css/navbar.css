@@ -149,9 +149,13 @@ body.rtl-mode {
 }
 
 .logo-img {
-    height: 60px;
+    height: 100px;
     width: auto;
     display: block;
+    margin-top: -10px;    /* Center the logo vertically by offsetting 10px top and bottom */
+    margin-bottom: -10px;
+    position: relative;
+    z-index: 1005;
 }
 
 /* --- NAVIGATION --- */

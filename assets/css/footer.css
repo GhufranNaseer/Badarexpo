@@ -197,10 +197,14 @@
     color: #ffffff;
     opacity: .95;
     transition: .2s;
+    cursor: pointer;
+    text-decoration: none;
 }
 
 .footer-social:hover {
-    transform: translateY(-2px);
+    transform: translateY(-3px);
+    opacity: 1;
+    color: #ffffff;
 }
 
 /* =========================
