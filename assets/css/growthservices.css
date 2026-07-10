@@ -1,0 +1,1249 @@
+* {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        :root {
+            --gs-brand-red: #e41f26;
+            --gs-brand-red-hover: #c7171d;
+            --gs-red-glow: rgba(228, 31, 38, 0.15);
+            --gs-red-glow-soft: rgba(228, 31, 38, 0.06);
+            --gs-bg-dark: #0a0a0a;
+            --gs-bg-card: #141414;
+            --gs-bg-card-light: #1f1f1f;
+            --gs-green: #10b981;
+            --gs-green-glow: rgba(16, 185, 129, 0.12);
+            --gs-white: #ffffff;
+            --gs-slate-50: #f9f9f9;
+            --gs-slate-100: #ededed;
+            --gs-slate-300: #d1d1d1;
+            --gs-slate-500: #707070;
+            --gs-slate-800: #1a1a1a;
+            --gs-border-dark: rgba(255, 255, 255, 0.08);
+            --gs-border-light: rgba(0, 0, 0, 0.08);
+            --gs-sans: 'Inter', sans-serif;
+            --gs-transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        /* Scoped to avoid breaking navbar/footer */
+        #gs-page {
+            font-family: var(--gs-sans);
+            color: var(--gs-slate-800);
+            background-color: var(--gs-white);
+            overflow-x: hidden;
+        }
+
+        #gs-page .gs-container {
+            max-width: 1240px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        #gs-page img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        /* Eyebrows & Typography */
+        #gs-page .gs-eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--gs-brand-red);
+            margin-bottom: 16px;
+        }
+
+        #gs-page .gs-sec-title {
+            font-size: clamp(30px, 4vw, 46px);
+            font-weight: 800;
+            line-height: 1.15;
+            letter-spacing: -1px;
+            color: var(--gs-bg-dark);
+        }
+
+        #gs-page .gs-sec-title.light-text {
+            color: var(--gs-white);
+        }
+
+        #gs-page .gs-sec-desc {
+            font-size: clamp(15px, 2vw, 17px);
+            color: var(--gs-slate-500);
+            margin-top: 16px;
+            max-width: 600px;
+            line-height: 1.6;
+        }
+
+        #gs-page .gs-sec-desc.light-desc {
+            color: var(--gs-slate-300);
+        }
+
+        /* Buttons scoped to use the correct red theme */
+        #gs-page .gs-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 12px 24px;
+            font-size: 14px;
+            font-weight: 700;
+            text-decoration: none;
+            border-radius: 6px;
+            transition: var(--gs-transition);
+            cursor: pointer;
+            border: 1.5px solid transparent;
+        }
+
+        #gs-page .gs-btn-red {
+            background-color: var(--gs-brand-red);
+            color: var(--gs-white);
+            border-color: var(--gs-brand-red);
+        }
+
+        #gs-page .gs-btn-red:hover {
+            background-color: var(--gs-brand-red-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(228, 31, 38, 0.25);
+        }
+
+        #gs-page .gs-btn-outline {
+            background-color: transparent;
+            color: var(--gs-white);
+            border-color: rgba(255, 255, 255, 0.25);
+        }
+
+        #gs-page .gs-btn-outline:hover {
+            border-color: var(--gs-white);
+            background-color: rgba(255, 255, 255, 0.08);
+        }
+
+        #gs-page .gs-btn-outline-dark {
+            background-color: transparent;
+            color: var(--gs-bg-dark);
+            border-color: rgba(0, 0, 0, 0.2);
+        }
+
+        #gs-page .gs-btn-outline-dark:hover {
+            border-color: var(--gs-bg-dark);
+            background-color: rgba(0, 0, 0, 0.04);
+        }
+
+        /* Scroll Animations */
+        #gs-page .gs-fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        #gs-page .gs-fade-in.animated {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ==========================================
+           1. HERO SECTION (Premium Red/Dark Brand Theme)
+           ========================================== */
+        #gs-page .hero-section {
+            background: radial-gradient(circle at 50% 0%, var(--gs-bg-card) 0%, var(--gs-bg-dark) 100%);
+            color: var(--gs-white);
+            padding: 100px 0 60px 0;
+            position: relative;
+            text-align: center;
+        }
+
+        #gs-page .hero-section::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-image: linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px), linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+            background-size: 40px 40px;
+            background-position: center top;
+            pointer-events: none;
+        }
+
+        #gs-page .hero-content-wrap {
+            max-width: 850px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+        }
+
+        #gs-page .hero-badge {
+            background-color: var(--gs-red-glow-soft);
+            border: 1px solid rgba(228, 31, 38, 0.3);
+            color: var(--gs-brand-red);
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            padding: 6px 14px;
+            border-radius: 100px;
+            display: inline-block;
+            margin-bottom: 24px;
+        }
+
+        #gs-page .hero-section h1 {
+            font-size: clamp(36px, 5vw, 62px);
+            font-weight: 900;
+            line-height: 1.1;
+            letter-spacing: -2px;
+            margin-bottom: 24px;
+        }
+
+        #gs-page .hero-section h1 span {
+            color: var(--gs-brand-red);
+        }
+
+        #gs-page .hero-section p {
+            font-size: clamp(16px, 2vw, 19px);
+            color: var(--gs-slate-300);
+            line-height: 1.6;
+            margin-bottom: 36px;
+        }
+
+        #gs-page .hero-btns {
+            display: flex;
+            justify-content: center;
+            gap: 16px;
+            flex-wrap: wrap;
+            margin-bottom: 60px;
+        }
+
+        /* Centered High Fidelity Red Theme Dashboard */
+        #gs-page .dashboard-showcase {
+            background-color: rgba(20, 20, 20, 0.8);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 16px;
+            padding: 24px;
+            backdrop-filter: blur(12px);
+            max-width: 1000px;
+            margin: 0 auto;
+            box-shadow: 0 24px 60px rgba(0, 0, 0, 0.6);
+            text-align: left;
+            position: relative;
+            z-index: 3;
+        }
+
+        #gs-page .dash-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            padding-bottom: 16px;
+            margin-bottom: 24px;
+        }
+
+        #gs-page .dash-controls {
+            display: flex;
+            gap: 8px;
+        }
+
+        #gs-page .dash-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+        }
+
+        #gs-page .dash-dot-red { background-color: var(--gs-brand-red); }
+        #gs-page .dash-dot-yellow { background-color: #f59e0b; }
+        #gs-page .dash-dot-green { background-color: #10b981; }
+
+        #gs-page .dash-title {
+            font-size: 11px;
+            color: var(--gs-slate-500);
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            font-weight: 600;
+        }
+
+        #gs-page .dash-status {
+            font-size: 11px;
+            color: var(--gs-green);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-weight: 600;
+        }
+
+        #gs-page .dash-status::before {
+            content: '';
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background-color: var(--gs-green);
+            animation: dashPulse 2s infinite;
+        }
+
+        @keyframes dashPulse {
+            0% { opacity: 0.3; }
+            50% { opacity: 1; }
+            100% { opacity: 0.3; }
+        }
+
+        #gs-page .dash-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 24px;
+        }
+
+        #gs-page .dash-chart-panel {
+            background-color: rgba(255, 255, 255, 0.01);
+            border: 1px solid rgba(255, 255, 255, 0.04);
+            border-radius: 10px;
+            padding: 20px;
+        }
+
+        #gs-page .dash-chart-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        #gs-page .dash-chart-label {
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--gs-slate-300);
+        }
+
+        #gs-page .dash-chart-legend {
+            display: flex;
+            gap: 12px;
+            font-size: 11px;
+            color: var(--gs-slate-500);
+            font-weight: 500;
+        }
+
+        #gs-page .dash-legend-item {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        #gs-page .dash-legend-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+        }
+
+        #gs-page .dash-chart-bars {
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-between;
+            height: 180px;
+            padding-top: 20px;
+            position: relative;
+        }
+
+        #gs-page .dash-chart-line-bg {
+            position: absolute;
+            left: 0; right: 0;
+            height: 1px;
+            background-color: rgba(255, 255, 255, 0.04);
+        }
+
+        #gs-page .dash-bar-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 10%;
+            height: 100%;
+            justify-content: flex-end;
+        }
+
+        #gs-page .dash-bar-fill {
+            width: 100%;
+            border-radius: 4px 4px 0 0;
+            background: linear-gradient(to top, var(--gs-brand-red), #ff4d5a);
+            transition: height 1.5s cubic-bezier(0.16, 1, 0.3, 1);
+            position: relative;
+        }
+
+        #gs-page .dash-bar-fill.accent-bar {
+            background: linear-gradient(to top, #444, #666);
+        }
+
+        #gs-page .dash-bar-tooltip {
+            position: absolute;
+            top: -28px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: var(--gs-white);
+            color: var(--gs-bg-dark);
+            font-size: 10px;
+            font-weight: 700;
+            padding: 2px 6px;
+            border-radius: 4px;
+            opacity: 0;
+            transition: opacity 0.2s;
+            pointer-events: none;
+            white-space: nowrap;
+        }
+
+        #gs-page .dash-bar-container:hover .dash-bar-tooltip {
+            opacity: 1;
+        }
+
+        #gs-page .dash-bar-label {
+            font-size: 10px;
+            color: var(--gs-slate-500);
+            margin-top: 8px;
+            font-weight: 500;
+        }
+
+        #gs-page .dash-stats-panel {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        #gs-page .dash-stat-card {
+            background-color: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 8px;
+            padding: 16px;
+            transition: var(--gs-transition);
+        }
+
+        #gs-page .dash-stat-card:hover {
+            border-color: var(--gs-brand-red);
+            background-color: rgba(255, 255, 255, 0.04);
+        }
+
+        #gs-page .dash-stat-title {
+            font-size: 11px;
+            color: var(--gs-slate-500);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 4px;
+            font-weight: 600;
+        }
+
+        #gs-page .dash-stat-value {
+            font-size: 26px;
+            font-weight: 800;
+            color: var(--gs-white);
+        }
+
+        #gs-page .dash-stat-value span {
+            color: var(--gs-brand-red);
+        }
+
+        #gs-page .dash-stat-growth {
+            font-size: 11px;
+            color: var(--gs-green);
+            margin-top: 4px;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        /* Micro Stats Bar */
+        #gs-page .hero-metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            margin-top: 60px;
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+            padding-top: 40px;
+        }
+
+        #gs-page .hero-metric-item {
+            text-align: center;
+        }
+
+        #gs-page .hero-metric-num {
+            font-size: 36px;
+            font-weight: 800;
+            color: var(--gs-white);
+        }
+
+        #gs-page .hero-metric-num span {
+            color: var(--gs-brand-red);
+        }
+
+        #gs-page .hero-metric-lbl {
+            font-size: 12px;
+            color: var(--gs-slate-500);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 8px;
+            font-weight: 600;
+        }
+
+        /* ==========================================
+           2. ECOSYSTEM & STORYTELLING FLOW
+           ========================================== */
+        #gs-page .ecosystem-section {
+            padding: 100px 0;
+            background-color: var(--gs-slate-50);
+        }
+
+        #gs-page .sec-intro-centered {
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto 60px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        /* Unique Horizontal Interactive Journey Map */
+        #gs-page .journey-map-container {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            position: relative;
+            margin-top: 40px;
+        }
+
+        #gs-page .journey-map-container::before {
+            content: '';
+            position: absolute;
+            top: 40px;
+            left: 10%;
+            right: 10%;
+            height: 2px;
+            background-color: var(--gs-slate-300);
+            z-index: 1;
+        }
+
+        #gs-page .journey-card {
+            background-color: var(--gs-white);
+            border: 1px solid var(--gs-slate-300);
+            border-radius: 12px;
+            padding: 30px 24px;
+            text-align: center;
+            position: relative;
+            z-index: 2;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+            transition: var(--gs-transition);
+        }
+
+        #gs-page .journey-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 16px 40px rgba(228, 31, 38, 0.08);
+            border-color: var(--gs-brand-red);
+        }
+
+        #gs-page .journey-card-step {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background-color: var(--gs-slate-800);
+            color: var(--gs-white);
+            font-weight: 700;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            border: 4px solid var(--gs-slate-50);
+            transition: var(--gs-transition);
+        }
+
+        #gs-page .journey-card:hover .journey-card-step {
+            background-color: var(--gs-brand-red);
+            color: var(--gs-white);
+        }
+
+        #gs-page .journey-card h4 {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--gs-bg-dark);
+            margin-bottom: 12px;
+        }
+
+        #gs-page .journey-card p {
+            font-size: 13.5px;
+            color: var(--gs-slate-500);
+            line-height: 1.5;
+        }
+
+        /* ==========================================
+           3. THREE CORE PILLARS SECTION (Side-by-side Cards)
+           ========================================== */
+        #gs-page .pillars-section {
+            padding: 100px 0;
+            background-color: var(--gs-white);
+        }
+
+        #gs-page .pillars-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        #gs-page .pillar-card {
+            background-color: var(--gs-slate-50);
+            border: 1px solid var(--gs-slate-100);
+            border-radius: 16px;
+            padding: 40px 30px;
+            position: relative;
+            transition: var(--gs-transition);
+            display: flex;
+            flex-direction: column;
+        }
+
+        #gs-page .pillar-card:hover {
+            background-color: var(--gs-bg-dark);
+            border-color: var(--gs-bg-dark);
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        #gs-page .pillar-card-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 12px;
+            background-color: rgba(228, 31, 38, 0.08);
+            color: var(--gs-brand-red);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            margin-bottom: 30px;
+            transition: var(--gs-transition);
+        }
+
+        #gs-page .pillar-card:hover .pillar-card-icon {
+            background-color: var(--gs-white);
+            color: var(--gs-brand-red) !important;
+            transform: scale(1.1);
+        }
+
+        #gs-page .pillar-card h3 {
+            font-size: 22px;
+            font-weight: 800;
+            color: var(--gs-bg-dark);
+            margin-bottom: 16px;
+            transition: var(--gs-transition);
+        }
+
+        #gs-page .pillar-card:hover h3 {
+            color: var(--gs-white);
+        }
+
+        #gs-page .pillar-card p {
+            font-size: 14.5px;
+            color: var(--gs-slate-500);
+            line-height: 1.6;
+            margin-bottom: 24px;
+            transition: var(--gs-transition);
+        }
+
+        #gs-page .pillar-card:hover p {
+            color: var(--gs-slate-300);
+        }
+
+        #gs-page .pillar-features {
+            list-style: none;
+            margin-bottom: 30px;
+            margin-top: auto;
+        }
+
+        #gs-page .pillar-features li {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 13.5px;
+            color: var(--gs-slate-800);
+            padding: 8px 0;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.04);
+            transition: var(--gs-transition);
+        }
+
+        #gs-page .pillar-card:hover .pillar-features li {
+            color: var(--gs-slate-300);
+            border-bottom-color: rgba(255, 255, 255, 0.05);
+        }
+
+        #gs-page .pillar-features li i {
+            color: var(--gs-brand-red);
+            font-size: 12px;
+        }
+
+        /* ==========================================
+           4. INTERACTIVE LEAD GEN FUNNEL SIMULATOR
+           ========================================== */
+        #gs-page .funnel-section {
+            padding: 100px 0;
+            background-color: var(--gs-bg-dark);
+            color: var(--gs-white);
+            position: relative;
+        }
+
+        #gs-page .funnel-grid {
+            display: grid;
+            grid-template-columns: 1.1fr 0.9fr;
+            gap: 60px;
+            align-items: center;
+            margin-top: 50px;
+        }
+
+        /* Interactive pyramid design (Red theme) */
+        #gs-page .funnel-pyramid {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+        }
+
+        #gs-page .funnel-tier {
+            width: var(--width);
+            height: 52px;
+            background-color: rgba(255, 255, 255, 0.02);
+            border: 1.5px solid rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 24px;
+            cursor: pointer;
+            transition: var(--gs-transition);
+        }
+
+        #gs-page .funnel-tier:hover, #gs-page .funnel-tier.active-tier {
+            background-color: var(--gs-red-glow);
+            border-color: var(--gs-brand-red);
+            box-shadow: 0 0 20px var(--gs-red-glow);
+            transform: scale(1.02);
+        }
+
+        #gs-page .funnel-tier-label {
+            font-weight: 700;
+            font-size: 14px;
+        }
+
+        #gs-page .funnel-tier-percent {
+            font-size: 12px;
+            font-weight: 700;
+            color: var(--gs-brand-red);
+        }
+
+        /* Funnel details panel on the right */
+        #gs-page .funnel-info-panel {
+            background-color: var(--gs-bg-card);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 16px;
+            padding: 40px;
+        }
+
+        #gs-page .funnel-panel-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            padding-bottom: 20px;
+            margin-bottom: 24px;
+        }
+
+        #gs-page .funnel-panel-title h4 {
+            font-size: 20px;
+            font-weight: 800;
+        }
+
+        #gs-page .funnel-panel-title span {
+            font-size: 11px;
+            color: var(--gs-slate-500);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 4px;
+            display: block;
+            font-weight: 600;
+        }
+
+        #gs-page .funnel-panel-icon {
+            width: 44px;
+            height: 44px;
+            border-radius: 8px;
+            background-color: var(--gs-red-glow);
+            color: var(--gs-brand-red);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+        }
+
+        #gs-page .funnel-panel-body p {
+            font-size: 14.5px;
+            color: var(--gs-slate-300);
+            line-height: 1.6;
+            margin-bottom: 24px;
+        }
+
+        #gs-page .funnel-panel-tactics-title {
+            font-size: 11px;
+            color: var(--gs-brand-red);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 12px;
+            font-weight: 700;
+        }
+
+        #gs-page .funnel-panel-tactics {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        #gs-page .funnel-tactic-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 13.5px;
+            color: var(--gs-white);
+        }
+
+        #gs-page .funnel-tactic-item i {
+            color: var(--gs-brand-red);
+            font-size: 12px;
+        }
+
+        /* ==========================================
+           5. INTERACTIVE ROI CALCULATOR (Red Theme)
+           ========================================== */
+        #gs-page .calculator-section {
+            padding: 100px 0;
+            background-color: var(--gs-slate-50);
+        }
+
+        #gs-page .calculator-box {
+            background-color: var(--gs-white);
+            border: 1px solid var(--gs-slate-300);
+            border-radius: 20px;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.05);
+            max-width: 900px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1.1fr 0.9fr;
+            overflow: hidden;
+        }
+
+        #gs-page .calc-inputs {
+            padding: 40px;
+            border-right: 1px solid var(--gs-slate-100);
+        }
+
+        #gs-page .calc-group {
+            margin-bottom: 30px;
+        }
+
+        #gs-page .calc-label {
+            display: flex;
+            justify-content: space-between;
+            font-weight: 700;
+            font-size: 14px;
+            color: var(--gs-bg-dark);
+            margin-bottom: 12px;
+        }
+
+        #gs-page .calc-label span {
+            color: var(--gs-brand-red);
+            font-weight: 700;
+        }
+
+        #gs-page .calc-slider {
+            width: 100%;
+            height: 6px;
+            border-radius: 3px;
+            background-color: var(--gs-slate-100);
+            outline: none;
+            -webkit-appearance: none;
+        }
+
+        #gs-page .calc-slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            background-color: var(--gs-brand-red);
+            cursor: pointer;
+            transition: transform 0.1s;
+        }
+
+        #gs-page .calc-slider::-webkit-slider-thumb:hover {
+            transform: scale(1.2);
+        }
+
+        #gs-page .calc-select {
+            width: 100%;
+            padding: 12px 16px;
+            border: 1.5px solid var(--gs-slate-300);
+            border-radius: 6px;
+            background-color: var(--gs-white);
+            font-weight: 500;
+            font-size: 14px;
+            color: var(--gs-bg-dark);
+            outline: none;
+        }
+
+        #gs-page .calc-results {
+            background-color: var(--gs-bg-dark);
+            color: var(--gs-white);
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        #gs-page .calc-results-header {
+            font-size: 11px;
+            color: var(--gs-slate-500);
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin-bottom: 30px;
+            font-weight: 700;
+        }
+
+        #gs-page .calc-output-item {
+            margin-bottom: 24px;
+        }
+
+        #gs-page .calc-output-lbl {
+            font-size: 12px;
+            color: var(--gs-slate-300);
+            margin-bottom: 4px;
+            font-weight: 500;
+        }
+
+        #gs-page .calc-output-num {
+            font-size: 32px;
+            font-weight: 800;
+            color: var(--gs-white);
+        }
+
+        #gs-page .calc-output-num span {
+            color: var(--gs-brand-red);
+        }
+
+        #gs-page .calc-note {
+            font-size: 11px;
+            color: var(--gs-slate-500);
+            line-height: 1.4;
+            margin-top: auto;
+        }
+
+        /* ==========================================
+           6. CASE STUDIES & SUCCESS CARD DECK
+           ========================================== */
+        #gs-page .case-studies-section {
+            padding: 100px 0;
+            background-color: var(--gs-white);
+        }
+
+        #gs-page .cases-deck {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        #gs-page .case-deck-card {
+            background-color: var(--gs-white);
+            border: 1px solid var(--gs-slate-300);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02);
+            transition: var(--gs-transition);
+        }
+
+        #gs-page .case-deck-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 16px 40px rgba(0, 0, 0, 0.08);
+            border-color: var(--gs-slate-300);
+        }
+
+        #gs-page .case-deck-img {
+            height: 200px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        #gs-page .case-deck-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+
+        #gs-page .case-deck-card:hover .case-deck-img img {
+            transform: scale(1.05);
+        }
+
+        #gs-page .case-deck-badge {
+            position: absolute;
+            top: 16px;
+            left: 16px;
+            background-color: var(--gs-bg-dark);
+            color: var(--gs-brand-red);
+            font-size: 9px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            padding: 4px 10px;
+            border-radius: 4px;
+        }
+
+        #gs-page .case-deck-body {
+            padding: 24px;
+        }
+
+        #gs-page .case-deck-body h4 {
+            font-size: 18px;
+            font-weight: 800;
+            line-height: 1.3;
+            color: var(--gs-bg-dark);
+            margin-bottom: 12px;
+        }
+
+        #gs-page .case-deck-body p {
+            font-size: 13.5px;
+            color: var(--gs-slate-500);
+            line-height: 1.5;
+            margin-bottom: 20px;
+        }
+
+        #gs-page .case-deck-metric {
+            background-color: var(--gs-green-glow);
+            border-left: 3px solid var(--gs-green);
+            padding: 10px 14px;
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--gs-green);
+        }
+
+        /* ==========================================
+           7. FAQ ACCORDION (Glassmorphic Styles)
+           ========================================== */
+        #gs-page .faq-section {
+            padding: 100px 0;
+            background-color: var(--gs-slate-50);
+        }
+
+        #gs-page .faq-accordion {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        #gs-page .faq-item {
+            background-color: var(--gs-white);
+            border: 1px solid var(--gs-slate-300);
+            border-radius: 8px;
+            margin-bottom: 12px;
+            overflow: hidden;
+            transition: var(--gs-transition);
+        }
+
+        #gs-page .faq-item.faq-active {
+            border-color: var(--gs-brand-red);
+            box-shadow: 0 4px 20px rgba(228, 31, 38, 0.05);
+        }
+
+        #gs-page .faq-trigger {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 24px;
+            cursor: pointer;
+            font-weight: 700;
+            font-size: 15.5px;
+            color: var(--gs-bg-dark);
+            user-select: none;
+        }
+
+        #gs-page .faq-trigger i {
+            font-size: 14px;
+            color: var(--gs-slate-500);
+            transition: var(--gs-transition);
+        }
+
+        #gs-page .faq-item.faq-active .faq-trigger i {
+            transform: rotate(45deg);
+            color: var(--gs-brand-red);
+        }
+
+        #gs-page .faq-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        #gs-page .faq-content p {
+            padding: 0 24px 20px 24px;
+            margin-top: -4px;
+            font-size: 14px;
+            color: var(--gs-slate-500);
+            line-height: 1.6;
+        }
+
+        /* ==========================================
+           8. PREMIUM CTA CARD & CONTACT INFO
+           ========================================== */
+        #gs-page .cta-section {
+            padding: 100px 0;
+            background-color: var(--gs-white);
+        }
+
+        #gs-page .cta-card {
+            background: radial-gradient(circle at 100% 100%, var(--gs-bg-card) 0%, var(--gs-bg-dark) 100%);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 20px;
+            padding: 60px 48px;
+            color: var(--gs-white);
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 60px;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
+        }
+
+        #gs-page .cta-card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-image: linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px), linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+            background-size: 30px 30px;
+            pointer-events: none;
+        }
+
+        #gs-page .cta-left-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        #gs-page .cta-left-content h2 {
+            font-size: clamp(26px, 3.5vw, 42px);
+            font-weight: 800;
+            line-height: 1.15;
+            margin-bottom: 16px;
+        }
+
+        #gs-page .cta-left-content h2 span {
+            color: var(--gs-brand-red);
+        }
+
+        #gs-page .cta-left-content p {
+            font-size: 15px;
+            color: var(--gs-slate-300);
+            line-height: 1.6;
+            margin-bottom: 30px;
+        }
+
+        #gs-page .cta-actions {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+
+        #gs-page .cta-right-info {
+            background-color: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            padding: 30px;
+            position: relative;
+            z-index: 2;
+        }
+
+        #gs-page .cta-info-title {
+            font-size: 11px;
+            color: var(--gs-brand-red);
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+
+        #gs-page .cta-info-row {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            padding: 12px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        #gs-page .cta-info-row:last-child {
+            border-bottom: none;
+        }
+
+        #gs-page .cta-info-row i {
+            color: var(--gs-brand-red);
+            font-size: 16px;
+            margin-top: 3px;
+        }
+
+        #gs-page .cta-info-text strong {
+            display: block;
+            font-size: 12px;
+            color: var(--gs-slate-500);
+            margin-bottom: 2px;
+        }
+
+        #gs-page .cta-info-text a, #gs-page .cta-info-text span {
+            font-size: 14px;
+            color: var(--gs-white);
+            text-decoration: none;
+        }
+
+        #gs-page .cta-info-text a:hover {
+            color: var(--gs-brand-red);
+        }
+
+        /* ==========================================
+           RESPONSIVE LAYOUTS
+           ========================================== */
+        @media (max-width: 1024px) {
+            #gs-page .dash-grid {
+                grid-template-columns: 1fr;
+            }
+            #gs-page .pillars-grid {
+                grid-template-columns: 1fr;
+                gap: 24px;
+            }
+            #gs-page .funnel-grid {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+            #gs-page .calculator-box {
+                grid-template-columns: 1fr;
+            }
+            #gs-page .calc-inputs {
+                border-right: none;
+                border-bottom: 1px solid var(--gs-slate-100);
+            }
+            #gs-page .cases-deck {
+                grid-template-columns: 1fr 1fr;
+            }
+            #gs-page .cta-card {
+                grid-template-columns: 1fr;
+                padding: 40px 30px;
+            }
+            #gs-page .journey-map-container {
+                grid-template-columns: 1fr 1fr;
+                gap: 30px;
+            }
+            #gs-page .journey-map-container::before {
+                display: none;
+            }
+        }
+
+        @media (max-width: 768px) {
+            #gs-page .hero-metrics-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 30px;
+            }
+            #gs-page .cases-deck {
+                grid-template-columns: 1fr;
+            }
+            #gs-page .journey-map-container {
+                grid-template-columns: 1fr;
+            }
+        }
