@@ -1,0 +1,631 @@
+/* =============================================================================
+   CONSTRUCTION & DESIGN — DESIGN TOKENS
+   Same brand tokens as Home/Events/Services (--primary-red #e41f26) but an
+   industrial "engineering blueprint" visual language: steel/graphite tones,
+   diagonal cuts, corner brackets, monospace technical labels, dashed paths.
+   This is intentionally NOT the services.html card-grid/white-section language.
+   ============================================================================= */
+:root {
+    --cd-red: var(--primary-red, #e41f26);
+    --cd-ink: #0b0d0f;
+    --cd-steel: #14181c;
+    --cd-steel-2: #1d2226;
+    --cd-graphite: #2a3036;
+    --cd-line: rgba(255, 255, 255, 0.09);
+    --cd-line-soft: rgba(0, 0, 0, 0.08);
+    --cd-paper: #f4f3f0;
+    --cd-paper-2: #ebe9e4;
+    --cd-text: #1a1a1a;
+    --cd-muted: #5b5f63;
+    --cd-muted-light: rgba(255, 255, 255, 0.62);
+    --cd-mono: 'Space Mono', monospace;
+    --cd-ease: 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+#cd-page * { box-sizing: border-box; }
+
+#cd-page {
+    font-family: 'Inter', sans-serif;
+    color: var(--cd-text);
+    line-height: 1.6;
+    overflow-x: hidden;
+    background: var(--cd-paper);
+}
+
+#cd-page .cd-container {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 40px;
+}
+
+#cd-page .cd-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-family: var(--cd-mono);
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2.5px;
+    color: var(--cd-red);
+}
+#cd-page .cd-eyebrow .cd-eyebrow-num {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 22px; height: 22px;
+    border: 1px solid var(--cd-red);
+    font-size: 10px;
+}
+#cd-page .cd-eyebrow-dark { color: #ff6b6f; }
+
+#cd-page .cd-h2 {
+    font-size: clamp(28px, 3.2vw, 44px);
+    font-weight: 800;
+    line-height: 1.15;
+    letter-spacing: -0.5px;
+    margin: 14px 0 0;
+}
+#cd-page .cd-h2-light { color: #fff; }
+#cd-page .cd-sub {
+    max-width: 620px;
+    color: var(--cd-muted);
+    margin-top: 16px;
+    font-size: 15.5px;
+}
+#cd-page .cd-sub-light { color: var(--cd-muted-light); }
+
+/* Corner bracket decoration - technical drawing feel */
+#cd-page .cd-bracket { position: relative; }
+#cd-page .cd-bracket::before,
+#cd-page .cd-bracket::after {
+    content: "";
+    position: absolute;
+    width: 22px; height: 22px;
+    border-color: var(--cd-red);
+    opacity: 0.85;
+    z-index: 2;
+}
+#cd-page .cd-bracket::before {
+    top: -1px; left: -1px;
+    border-top: 2px solid var(--cd-red);
+    border-left: 2px solid var(--cd-red);
+}
+#cd-page .cd-bracket::after {
+    bottom: -1px; right: -1px;
+    border-bottom: 2px solid var(--cd-red);
+    border-right: 2px solid var(--cd-red);
+}
+
+/* Blueprint grid background */
+#cd-page .cd-blueprint-bg {
+    background-image:
+        linear-gradient(var(--cd-line) 1px, transparent 1px),
+        linear-gradient(90deg, var(--cd-line) 1px, transparent 1px);
+    background-size: 42px 42px;
+}
+
+#cd-page .cd-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 15px 28px;
+    font-weight: 700;
+    font-size: 14px;
+    text-decoration: none;
+    border: 1.5px solid transparent;
+    transition: var(--cd-ease);
+    white-space: nowrap;
+}
+#cd-page .cd-btn-primary { background: var(--cd-red); color: #fff; border-color: var(--cd-red); }
+#cd-page .cd-btn-primary:hover { background: #c81a20; transform: translateY(-2px); }
+#cd-page .cd-btn-outline { background: transparent; color: #fff; border-color: rgba(255,255,255,0.35); }
+#cd-page .cd-btn-outline:hover { border-color: #fff; background: rgba(255,255,255,0.08); }
+#cd-page .cd-btn-outline-dark { color: var(--cd-text); border-color: rgba(0,0,0,0.2); }
+#cd-page .cd-btn-outline-dark:hover { border-color: var(--cd-text); background: rgba(0,0,0,0.04); }
+
+/* Scroll reveal */
+#cd-page .cd-reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.8s cubic-bezier(0.4,0,0.2,1), transform 0.8s cubic-bezier(0.4,0,0.2,1); }
+#cd-page .cd-reveal.cd-in { opacity: 1; transform: translateY(0); }
+
+/* ========================= 1. HERO — split, industrial ========================= */
+#cd-page .cd-hero {
+    position: relative;
+    background: var(--cd-ink);
+    color: #fff;
+    padding: 46px 0 0;
+    overflow: hidden;
+}
+#cd-page .cd-hero-top {
+    position: relative;
+    z-index: 3;
+}
+#cd-page .cd-breadcrumb {
+    display: flex; align-items: center; gap: 10px;
+    font-size: 13px; color: rgba(255,255,255,0.5);
+    margin-bottom: 34px;
+}
+#cd-page .cd-breadcrumb a { color: rgba(255,255,255,0.75); text-decoration: none; }
+#cd-page .cd-breadcrumb .current { color: var(--cd-red); font-weight: 600; }
+
+#cd-page .cd-hero-split {
+    display: grid;
+    grid-template-columns: 1.05fr 0.95fr;
+    gap: 60px;
+    align-items: center;
+    padding-bottom: 0;
+    position: relative;
+}
+#cd-page .cd-hero-left { padding-bottom: 70px; }
+#cd-page .cd-hero-badge {
+    display: inline-flex; align-items: center; gap: 10px;
+    font-family: var(--cd-mono);
+    font-size: 12px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase;
+    padding: 8px 16px;
+    border: 1px solid rgba(255,255,255,0.25);
+    color: #fff;
+    margin-bottom: 26px;
+}
+#cd-page .cd-hero-badge i { color: var(--cd-red); }
+#cd-page .cd-hero-left h1 {
+    font-size: clamp(34px, 4.6vw, 58px);
+    font-weight: 800;
+    line-height: 1.08;
+    letter-spacing: -1px;
+    margin: 0 0 22px;
+}
+#cd-page .cd-hero-left h1 span { color: var(--cd-red); }
+#cd-page .cd-hero-left p {
+    color: rgba(255,255,255,0.62);
+    font-size: 16.5px;
+    max-width: 480px;
+    margin-bottom: 34px;
+}
+#cd-page .cd-hero-btns { display: flex; gap: 14px; flex-wrap: wrap; }
+
+/* Right: stacked industrial image panel */
+#cd-page .cd-hero-visual {
+    position: relative;
+    height: 560px;
+}
+#cd-page .cd-hero-img-main {
+    position: absolute;
+    top: 0; right: 0;
+    width: 82%; height: 78%;
+    object-fit: cover;
+    filter: grayscale(15%) contrast(1.05);
+    clip-path: polygon(6% 0, 100% 0, 100% 100%, 0 100%);
+}
+#cd-page .cd-hero-img-sub {
+    position: absolute;
+    bottom: 0; left: 0;
+    width: 54%; height: 46%;
+    object-fit: cover;
+    border: 6px solid var(--cd-ink);
+}
+#cd-page .cd-hero-float-card {
+    position: absolute;
+    bottom: 24px; right: 24px;
+    background: rgba(11,13,15,0.88);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255,255,255,0.15);
+    padding: 18px 22px;
+    display: flex; align-items: center; gap: 14px;
+    max-width: 240px;
+}
+#cd-page .cd-hero-float-card i { color: var(--cd-red); font-size: 22px; }
+#cd-page .cd-hero-float-card strong { display: block; font-size: 14px; }
+#cd-page .cd-hero-float-card span { font-size: 12.5px; color: rgba(255,255,255,0.55); }
+
+#cd-page .cd-hero-stats {
+    position: relative;
+    z-index: 3;
+    border-top: 1px solid rgba(255,255,255,0.1);
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+}
+#cd-page .cd-hero-stat {
+    padding: 26px 40px;
+    border-right: 1px solid rgba(255,255,255,0.1);
+    font-family: var(--cd-mono);
+}
+#cd-page .cd-hero-stat:last-child { border-right: none; }
+#cd-page .cd-hero-stat .num { font-size: 28px; font-weight: 700; color: #fff; }
+#cd-page .cd-hero-stat .num span { color: var(--cd-red); }
+#cd-page .cd-hero-stat .lbl { font-size: 12px; color: rgba(255,255,255,0.5); text-transform: uppercase; letter-spacing: 1px; margin-top: 4px; font-family: 'Inter', sans-serif; }
+
+#cd-page .cd-hero .cd-blueprint-bg { position: absolute; inset: 0; opacity: 0.5; z-index: 1; }
+#cd-page .cd-hero-fade { position: absolute; inset: 0; background: radial-gradient(circle at 75% 30%, rgba(228,31,38,0.14), transparent 55%); z-index: 2; }
+
+/* ========================= 2. CONCEPT TO REALITY — horizontal zigzag journey ========================= */
+#cd-page .cd-journey { background: var(--cd-paper); padding: 110px 0; position: relative; }
+#cd-page .cd-journey-head { text-align: center; max-width: 640px; margin: 0 auto 70px; }
+#cd-page .cd-journey-head .cd-eyebrow { justify-content: center; width: 100%; }
+#cd-page .cd-journey-head p.cd-sub { margin-left: auto; margin-right: auto; }
+
+#cd-page .cd-journey-track {
+    display: flex;
+    overflow-x: auto;
+    gap: 0;
+    padding: 20px 4px 30px;
+    scrollbar-width: thin;
+}
+#cd-page .cd-journey-track::-webkit-scrollbar { height: 6px; }
+#cd-page .cd-journey-track::-webkit-scrollbar-thumb { background: rgba(0,0,0,0.2); }
+
+#cd-page .cd-jstep {
+    flex: 0 0 168px;
+    text-align: center;
+    position: relative;
+    padding-top: 0;
+}
+#cd-page .cd-jstep:nth-child(even) { margin-top: 64px; }
+#cd-page .cd-jstep-connector {
+    position: relative;
+    height: 2px;
+    flex: 0 0 40px;
+    align-self: center;
+    background-image: linear-gradient(90deg, var(--cd-muted) 50%, transparent 50%);
+    background-size: 10px 2px;
+    top: 33px;
+}
+#cd-page .cd-jstep-icon {
+    width: 66px; height: 66px;
+    border-radius: 50%;
+    background: var(--cd-ink);
+    color: #fff;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 22px;
+    margin: 0 auto 16px;
+    position: relative;
+    border: 2px solid var(--cd-ink);
+    transition: var(--cd-ease);
+}
+#cd-page .cd-jstep:hover .cd-jstep-icon { background: var(--cd-red); border-color: var(--cd-red); transform: scale(1.08); }
+#cd-page .cd-jstep-num { font-family: var(--cd-mono); font-size: 11px; color: var(--cd-red); font-weight: 700; }
+#cd-page .cd-jstep h5 { font-size: 14.5px; font-weight: 700; margin: 6px 0 4px; }
+#cd-page .cd-jstep p { font-size: 12.5px; color: var(--cd-muted); margin: 0; padding: 0 6px;}
+
+/* ========================= 3. CONSTRUCTION CAPABILITIES — alternating image rows ========================= */
+#cd-page .cd-cap { background: var(--cd-ink); padding: 100px 0; }
+#cd-page .cd-cap-head { display: flex; justify-content: space-between; align-items: flex-end; gap: 40px; margin-bottom: 64px; flex-wrap: wrap; }
+#cd-page .cd-cap-head .cd-sub { color: rgba(255,255,255,0.55); margin-top: 16px; }
+
+#cd-page .cd-cap-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: center;
+    padding: 54px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+#cd-page .cd-cap-row:last-child { border-bottom: none; }
+#cd-page .cd-cap-row:nth-child(even) .cd-cap-media { order: 2; }
+#cd-page .cd-cap-row:nth-child(even) .cd-cap-copy { order: 1; }
+
+#cd-page .cd-cap-media { position: relative; height: 300px; }
+#cd-page .cd-cap-media img {
+    width: 100%; height: 100%; object-fit: cover;
+    clip-path: polygon(0 0, 100% 0, 100% 88%, 92% 100%, 0 100%);
+}
+#cd-page .cd-cap-index {
+    position: absolute; top: -18px; left: -14px;
+    font-family: var(--cd-mono);
+    font-size: 46px; font-weight: 700;
+    color: transparent;
+    -webkit-text-stroke: 1.5px rgba(255,255,255,0.35);
+}
+
+#cd-page .cd-cap-copy .cd-eyebrow { color: var(--cd-red); }
+#cd-page .cd-cap-copy h3 { color: #fff; font-size: 26px; font-weight: 800; margin: 12px 0 12px; letter-spacing: -0.3px; }
+#cd-page .cd-cap-copy p.cd-desc { color: rgba(255,255,255,0.58); font-size: 15px; margin-bottom: 20px; max-width: 460px; }
+
+#cd-page .cd-cap-stats { display: flex; gap: 30px; margin-bottom: 22px; }
+#cd-page .cd-cap-stats div strong { display: block; font-family: var(--cd-mono); color: #fff; font-size: 20px; }
+#cd-page .cd-cap-stats div span { font-size: 11.5px; color: rgba(255,255,255,0.45); text-transform: uppercase; letter-spacing: 1px; }
+
+#cd-page .cd-cap-highlights { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 24px; }
+#cd-page .cd-cap-highlights span {
+    font-size: 12px; color: rgba(255,255,255,0.75);
+    border: 1px solid rgba(255,255,255,0.18);
+    padding: 6px 12px;
+}
+#cd-page .cd-cap-link { color: #fff; font-weight: 700; font-size: 14px; text-decoration: none; display: inline-flex; align-items: center; gap: 8px; border-bottom: 1px solid var(--cd-red); padding-bottom: 4px; }
+#cd-page .cd-cap-link:hover { gap: 12px; }
+#cd-page .cd-cap-link i { color: var(--cd-red); }
+
+/* ========================= 4. FEATURED PROJECTS — bento gallery ========================= */
+#cd-page .cd-gallery { background: var(--cd-paper); padding: 100px 0; }
+#cd-page .cd-gallery-head { text-align: center; max-width: 640px; margin: 0 auto 56px; }
+#cd-page .cd-gallery-head .cd-eyebrow { justify-content: center; width: 100%; }
+#cd-page .cd-gallery-head .cd-sub { margin-left: auto; margin-right: auto; }
+
+#cd-page .cd-bento {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-auto-rows: 130px;
+    gap: 14px;
+}
+#cd-page .cd-bento-item { grid-column: span 2; grid-row: span 2; }
+#cd-page .cd-bento-item.cd-tall { grid-row: span 3; }
+#cd-page .cd-bento-item.cd-wide { grid-column: span 4; grid-row: span 2; }
+#cd-page .cd-bento-item.cd-small { grid-column: span 2; grid-row: span 1; }
+
+#cd-page .cd-bento-card {
+    position: relative;
+    width: 100%; height: 100%;
+    overflow: hidden;
+    cursor: pointer;
+}
+#cd-page .cd-bento-card img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.7s cubic-bezier(0.16,1,0.3,1); }
+#cd-page .cd-bento-card:hover img { transform: scale(1.08); }
+#cd-page .cd-bento-overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(0deg, rgba(11,13,15,0.92) 0%, rgba(11,13,15,0.1) 55%, transparent 100%);
+    display: flex; flex-direction: column; justify-content: flex-end;
+    padding: 20px;
+    opacity: 0; transition: opacity 0.4s ease;
+}
+#cd-page .cd-bento-card:hover .cd-bento-overlay { opacity: 1; }
+#cd-page .cd-bento-overlay span.cd-tag-sm { font-family: var(--cd-mono); font-size: 11px; color: var(--cd-red); text-transform: uppercase; letter-spacing: 1px; }
+#cd-page .cd-bento-overlay strong { color: #fff; font-size: 17px; display: block; margin-top: 4px; }
+
+/* ========================= 5. CONSTRUCTION PROCESS — vertical timeline ========================= */
+#cd-page .cd-timeline { background: var(--cd-ink); padding: 110px 0; }
+#cd-page .cd-timeline-head { text-align: center; max-width: 640px; margin: 0 auto 70px; }
+#cd-page .cd-timeline-head .cd-eyebrow { justify-content: center; width: 100%; }
+#cd-page .cd-timeline-head .cd-sub { margin-left: auto; margin-right: auto; }
+
+#cd-page .cd-tl-wrap { position: relative; max-width: 900px; margin: 0 auto; }
+#cd-page .cd-tl-line {
+    position: absolute; left: 50%; top: 0; bottom: 0;
+    width: 2px;
+    background: rgba(255,255,255,0.14);
+    transform: translateX(-50%);
+}
+#cd-page .cd-tl-item {
+    position: relative;
+    display: grid;
+    grid-template-columns: 1fr 60px 1fr;
+    align-items: center;
+    padding: 24px 0;
+}
+#cd-page .cd-tl-item .cd-tl-content { padding: 0 30px; }
+#cd-page .cd-tl-item:nth-child(odd) .cd-tl-content { text-align: right; grid-column: 1; }
+#cd-page .cd-tl-item:nth-child(odd) .cd-tl-spacer { grid-column: 3; }
+#cd-page .cd-tl-item:nth-child(even) .cd-tl-content { text-align: left; grid-column: 3; }
+#cd-page .cd-tl-item:nth-child(even) .cd-tl-spacer { grid-column: 1; }
+#cd-page .cd-tl-node {
+    grid-column: 2;
+    width: 46px; height: 46px;
+    border-radius: 50%;
+    background: var(--cd-ink);
+    border: 2px solid var(--cd-red);
+    color: var(--cd-red);
+    font-family: var(--cd-mono); font-weight: 700; font-size: 15px;
+    display: flex; align-items: center; justify-content: center;
+    z-index: 2;
+}
+#cd-page .cd-tl-content h5 { color: #fff; font-size: 17px; font-weight: 700; margin: 0 0 6px; }
+#cd-page .cd-tl-content p { color: rgba(255,255,255,0.5); font-size: 13.5px; margin: 0; }
+
+@media (max-width: 720px) {
+    #cd-page .cd-tl-line { left: 22px; }
+    #cd-page .cd-tl-item { grid-template-columns: 46px 1fr; }
+    #cd-page .cd-tl-item .cd-tl-node { grid-column: 1; }
+    #cd-page .cd-tl-item:nth-child(odd) .cd-tl-content,
+    #cd-page .cd-tl-item:nth-child(even) .cd-tl-content { grid-column: 2; text-align: left; padding: 0 0 0 20px; }
+    #cd-page .cd-tl-item .cd-tl-spacer { display: none; }
+}
+
+/* ========================= 6. WORKSHOP & PRODUCTION FACILITY — image tiles ========================= */
+#cd-page .cd-workshop { background: var(--cd-paper); padding: 100px 0; }
+#cd-page .cd-workshop-head { display: flex; justify-content: space-between; align-items: flex-end; gap: 40px; margin-bottom: 56px; flex-wrap: wrap; }
+
+#cd-page .cd-wtiles { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+#cd-page .cd-wtile {
+    position: relative;
+    height: 220px;
+    overflow: hidden;
+    background: var(--cd-ink);
+}
+#cd-page .cd-wtile img { width: 100%; height: 100%; object-fit: cover; opacity: 0.55; transition: var(--cd-ease); }
+#cd-page .cd-wtile:hover img { opacity: 0.8; transform: scale(1.06); }
+#cd-page .cd-wtile-label {
+    position: absolute; inset: 0;
+    display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px;
+    text-align: center;
+    color: #fff;
+}
+#cd-page .cd-wtile-label i { font-size: 26px; color: var(--cd-red); }
+#cd-page .cd-wtile-label span { font-weight: 700; font-size: 14.5px; letter-spacing: 0.3px; }
+
+/* ========================= 7. EQUIPMENT INVENTORY — dense compact strip ========================= */
+#cd-page .cd-inventory { background: #fff; padding: 90px 0; border-top: 1px solid var(--cd-line-soft); border-bottom: 1px solid var(--cd-line-soft); }
+#cd-page .cd-inv-head { display: flex; justify-content: space-between; align-items: flex-end; gap: 40px; margin-bottom: 46px; flex-wrap: wrap; }
+#cd-page .cd-inv-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 1px; background: var(--cd-line-soft); border: 1px solid var(--cd-line-soft); }
+#cd-page .cd-inv-item {
+    background: #fff;
+    padding: 26px 18px;
+    text-align: center;
+    transition: var(--cd-ease);
+}
+#cd-page .cd-inv-item:hover { background: var(--cd-ink); }
+#cd-page .cd-inv-item:hover i, #cd-page .cd-inv-item:hover span, #cd-page .cd-inv-item:hover strong { color: #fff; }
+#cd-page .cd-inv-item i { font-size: 24px; color: var(--cd-red); margin-bottom: 12px; display: block; }
+#cd-page .cd-inv-item strong { display: block; font-size: 13.5px; font-weight: 700; margin-bottom: 3px; }
+#cd-page .cd-inv-item span { font-size: 11.5px; color: var(--cd-muted); font-family: var(--cd-mono); }
+
+/* ========================= 8. WHY OUR BUILD QUALITY — comparison table ========================= */
+#cd-page .cd-compare { background: var(--cd-paper-2); padding: 100px 0; }
+#cd-page .cd-compare-head { text-align: center; max-width: 640px; margin: 0 auto 56px; }
+#cd-page .cd-compare-head .cd-eyebrow { justify-content: center; width: 100%; }
+#cd-page .cd-compare-head .cd-sub { margin-left: auto; margin-right: auto; }
+
+#cd-page .cd-ctable { max-width: 900px; margin: 0 auto; border: 1px solid var(--cd-line-soft); background: #fff; }
+#cd-page .cd-ctable-head { display: grid; grid-template-columns: 1.2fr 1fr 1fr; }
+#cd-page .cd-ctable-head div { padding: 20px 24px; font-family: var(--cd-mono); font-size: 12px; text-transform: uppercase; letter-spacing: 1px; }
+#cd-page .cd-ctable-head div:first-child { color: var(--cd-muted); }
+#cd-page .cd-ctable-head div:nth-child(2) { color: var(--cd-muted); text-align: center; border-left: 1px solid var(--cd-line-soft); }
+#cd-page .cd-ctable-head div:nth-child(3) { background: var(--cd-ink); color: #fff; text-align: center; }
+#cd-page .cd-ctable-row { display: grid; grid-template-columns: 1.2fr 1fr 1fr; border-top: 1px solid var(--cd-line-soft); }
+#cd-page .cd-ctable-row div { padding: 20px 24px; font-size: 14px; display: flex; align-items: center; gap: 10px; }
+#cd-page .cd-ctable-row div:first-child { font-weight: 600; }
+#cd-page .cd-ctable-row div:nth-child(2) { color: var(--cd-muted); justify-content: center; border-left: 1px solid var(--cd-line-soft); text-align: center; }
+#cd-page .cd-ctable-row div:nth-child(3) { background: rgba(228,31,38,0.04); font-weight: 700; justify-content: center; text-align: center; }
+#cd-page .cd-ctable-row div:nth-child(2) i { color: #c0392b; }
+#cd-page .cd-ctable-row div:nth-child(3) i { color: #1a8f4c; }
+
+@media (max-width: 720px) {
+    #cd-page .cd-ctable-head, #cd-page .cd-ctable-row { grid-template-columns: 1fr; }
+    #cd-page .cd-ctable-head div:nth-child(2), #cd-page .cd-ctable-row div:nth-child(2) { border-left: none; border-top: 1px solid var(--cd-line-soft); }
+}
+
+/* ========================= 9. INDUSTRIES SERVED — marquee ========================= */
+#cd-page .cd-marquee-sec { background: var(--cd-ink); padding: 70px 0; overflow: hidden; }
+#cd-page .cd-marquee-head { text-align: center; margin-bottom: 40px; }
+#cd-page .cd-marquee-head .cd-eyebrow { justify-content: center; width: 100%; }
+#cd-page .cd-marquee-track { display: flex; width: max-content; animation: cdMarquee 32s linear infinite; }
+#cd-page .cd-marquee-track:hover { animation-play-state: paused; }
+#cd-page .cd-marquee-item {
+    display: flex; align-items: center; gap: 12px;
+    padding: 0 36px;
+    color: rgba(255,255,255,0.65);
+    font-size: 17px; font-weight: 600;
+    border-right: 1px solid rgba(255,255,255,0.12);
+    white-space: nowrap;
+}
+#cd-page .cd-marquee-item i { color: var(--cd-red); font-size: 15px; }
+@keyframes cdMarquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+/* ========================= 10. SAFETY STANDARDS — badges ========================= */
+#cd-page .cd-safety { background: var(--cd-paper); padding: 90px 0; }
+#cd-page .cd-safety-head { text-align: center; max-width: 640px; margin: 0 auto 50px; }
+#cd-page .cd-safety-head .cd-eyebrow { justify-content: center; width: 100%; }
+#cd-page .cd-safety-head .cd-sub { margin-left: auto; margin-right: auto; }
+#cd-page .cd-safety-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 20px; }
+#cd-page .cd-safety-badge {
+    text-align: center;
+    padding: 30px 16px;
+    border: 1px solid var(--cd-line-soft);
+    background: #fff;
+    transition: var(--cd-ease);
+}
+#cd-page .cd-safety-badge:hover { border-color: var(--cd-red); transform: translateY(-4px); }
+#cd-page .cd-safety-badge .cd-badge-ring {
+    width: 58px; height: 58px;
+    border-radius: 50%;
+    border: 2px solid var(--cd-red);
+    display: flex; align-items: center; justify-content: center;
+    margin: 0 auto 14px;
+}
+#cd-page .cd-safety-badge i { color: var(--cd-red); font-size: 22px; }
+#cd-page .cd-safety-badge span { font-size: 13px; font-weight: 700; }
+
+/* ========================= 11. BEFORE & AFTER — drag slider ========================= */
+#cd-page .cd-ba { background: var(--cd-paper-2); padding: 100px 0; }
+#cd-page .cd-ba-head { text-align: center; max-width: 640px; margin: 0 auto 50px; }
+#cd-page .cd-ba-head .cd-eyebrow { justify-content: center; width: 100%; }
+#cd-page .cd-ba-head .cd-sub { margin-left: auto; margin-right: auto; }
+
+#cd-page .cd-ba-frame {
+    position: relative;
+    max-width: 940px;
+    margin: 0 auto;
+    height: 480px;
+    overflow: hidden;
+    cursor: ew-resize;
+    user-select: none;
+}
+#cd-page .cd-ba-frame img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; pointer-events: none; }
+#cd-page .cd-ba-after { z-index: 1; }
+#cd-page .cd-ba-before-wrap { position: absolute; inset: 0; width: 50%; overflow: hidden; z-index: 2; }
+#cd-page .cd-ba-before-wrap img { width: 940px; max-width: none; height: 100%; }
+#cd-page .cd-ba-handle {
+    position: absolute; top: 0; bottom: 0; left: 50%;
+    width: 3px; background: var(--cd-red);
+    z-index: 3; transform: translateX(-50%);
+}
+#cd-page .cd-ba-handle-btn {
+    position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+    width: 46px; height: 46px; border-radius: 50%;
+    background: var(--cd-red); color: #fff;
+    display: flex; align-items: center; justify-content: center; gap: 4px;
+    font-size: 13px;
+}
+#cd-page .cd-ba-tag { position: absolute; top: 18px; z-index: 4; font-family: var(--cd-mono); font-size: 11px; text-transform: uppercase; letter-spacing: 1px; color: #fff; background: rgba(11,13,15,0.7); padding: 6px 12px; }
+#cd-page .cd-ba-tag.cd-ba-tag-l { left: 18px; }
+#cd-page .cd-ba-tag.cd-ba-tag-r { right: 18px; }
+
+@media (max-width: 720px) {
+    #cd-page .cd-ba-frame { height: 320px; }
+    #cd-page .cd-ba-before-wrap img { width: 100vw; }
+}
+
+/* ========================= 12. FAQ — accent accordion ========================= */
+#cd-page .cd-faq { background: #fff; padding: 100px 0; }
+#cd-page .cd-faq-head { text-align: center; max-width: 640px; margin: 0 auto 50px; }
+#cd-page .cd-faq-head .cd-eyebrow { justify-content: center; width: 100%; }
+#cd-page .cd-faq-head .cd-sub { margin-left: auto; margin-right: auto; }
+
+#cd-page .cd-faq-list { max-width: 820px; margin: 0 auto; }
+#cd-page .cd-faq-item { border-left: 3px solid var(--cd-line-soft); margin-bottom: 2px; transition: border-color 0.3s; }
+#cd-page .cd-faq-item.cd-active { border-left-color: var(--cd-red); }
+#cd-page .cd-faq-q {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 22px 26px;
+    cursor: pointer;
+    font-weight: 700; font-size: 15.5px;
+}
+#cd-page .cd-faq-q .cd-faq-num { font-family: var(--cd-mono); color: var(--cd-red); font-size: 13px; margin-right: 14px; }
+#cd-page .cd-faq-q i { color: var(--cd-muted); transition: transform 0.3s; flex-shrink: 0; margin-left: 16px; }
+#cd-page .cd-faq-item.cd-active .cd-faq-q i { transform: rotate(45deg); color: var(--cd-red); }
+#cd-page .cd-faq-a { max-height: 0; overflow: hidden; transition: max-height 0.4s cubic-bezier(0.4,0,0.2,1); }
+#cd-page .cd-faq-a p { padding: 0 26px 24px 26px; margin: 0; color: var(--cd-muted); font-size: 14.5px; max-width: 680px; }
+
+/* ========================= 13. PREMIUM CTA — engineering blueprint ========================= */
+#cd-page .cd-cta { position: relative; background: var(--cd-ink); color: #fff; padding: 110px 0; overflow: hidden; }
+#cd-page .cd-cta .cd-blueprint-bg { position: absolute; inset: 0; opacity: 0.5; }
+#cd-page .cd-cta-inner { position: relative; z-index: 2; display: grid; grid-template-columns: 1.2fr 1fr; gap: 60px; align-items: center; }
+#cd-page .cd-cta-left .cd-eyebrow { color: var(--cd-red); margin-bottom: 18px; }
+#cd-page .cd-cta-left h2 { font-size: clamp(28px, 3.6vw, 42px); font-weight: 800; line-height: 1.15; margin: 0 0 18px; }
+#cd-page .cd-cta-left h2 span { color: var(--cd-red); }
+#cd-page .cd-cta-left p { color: rgba(255,255,255,0.6); max-width: 460px; margin-bottom: 30px; }
+#cd-page .cd-cta-btns { display: flex; gap: 14px; flex-wrap: wrap; }
+
+#cd-page .cd-cta-right { border: 1px solid rgba(255,255,255,0.15); padding: 34px; background: rgba(255,255,255,0.03); }
+#cd-page .cd-cta-right-row { display: flex; align-items: center; gap: 16px; padding: 16px 0; border-bottom: 1px solid rgba(255,255,255,0.1); }
+#cd-page .cd-cta-right-row:last-child { border-bottom: none; }
+#cd-page .cd-cta-right-row i { color: var(--cd-red); font-size: 18px; width: 24px; }
+#cd-page .cd-cta-right-row a, #cd-page .cd-cta-right-row span { color: #fff; text-decoration: none; font-size: 14.5px; }
+
+@media (max-width: 900px) {
+    #cd-page .cd-cta-inner { grid-template-columns: 1fr; }
+}
+
+/* ========================= RESPONSIVE — global for this page ========================= */
+@media (max-width: 1024px) {
+    #cd-page .cd-hero-split { grid-template-columns: 1fr; }
+    #cd-page .cd-hero-visual { height: 380px; margin-top: 40px; }
+    #cd-page .cd-hero-stats { grid-template-columns: repeat(2, 1fr); }
+    #cd-page .cd-hero-stat:nth-child(2) { border-right: none; }
+    #cd-page .cd-cap-row { grid-template-columns: 1fr; gap: 26px; }
+    #cd-page .cd-cap-row:nth-child(even) .cd-cap-media,
+    #cd-page .cd-cap-row:nth-child(even) .cd-cap-copy { order: initial; }
+    #cd-page .cd-bento { grid-template-columns: repeat(2, 1fr); }
+    #cd-page .cd-bento-item.cd-wide { grid-column: span 2; }
+    #cd-page .cd-wtiles { grid-template-columns: repeat(2, 1fr); }
+    #cd-page .cd-inv-grid { grid-template-columns: repeat(3, 1fr); }
+    #cd-page .cd-safety-grid { grid-template-columns: repeat(3, 1fr); }
+}
+
+@media (max-width: 640px) {
+    #cd-page .cd-container { padding: 0 20px; }
+    #cd-page .cd-hero-stats { grid-template-columns: repeat(2, 1fr); }
+    #cd-page .cd-hero-stat { padding: 20px; }
+    #cd-page .cd-cap-head, #cd-page .cd-workshop-head, #cd-page .cd-inv-head { flex-direction: column; align-items: flex-start; }
+    #cd-page .cd-bento { grid-template-columns: 1fr 1fr; grid-auto-rows: 110px; }
+    #cd-page .cd-inv-grid { grid-template-columns: repeat(2, 1fr); }
+    #cd-page .cd-safety-grid { grid-template-columns: repeat(2, 1fr); }
+    #cd-page .cd-marquee-item { font-size: 14px; padding: 0 22px; }
+}
