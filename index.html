@@ -625,16 +625,18 @@
 
     <!-- ========================= [TEMPLATE PART: services-grid.php START] ========================= -->
     <!-- ========================= CORPORATE SERVICES SHOWCASE ========================= -->
+    <!-- ========================= CORPORATE SERVICES SHOWCASE ========================= -->
     <section class="what-we-do-split" id="services">
         <div class="split-sticky-wrapper">
             <div class="split-header">
                 <span class="section-tag">WHAT WE DO</span>
                 <h2>Our Core Competencies</h2>
-                <p class="split-subtitle">Strategic exhibitions, conferences, and industry platforms designed to
-                    create
+                <p class="split-subtitle">Strategic exhibitions, conferences, and industry platforms designed to create
                     meaningful business impact.</p>
             </div>
-            <div class="split-container">
+
+            <!-- DESKTOP LAYOUT (>=1024px) -->
+            <div class="split-container desktop-only-split">
                 <!-- Left Side: Navigation Buttons -->
                 <div class="split-nav">
                     <button class="split-nav-btn active" data-img="assets/images/portfolio/ieee-exhibition.webp"
@@ -666,6 +668,7 @@
                         <i class="fas fa-arrow-right nav-arrow"></i>
                     </button>
                 </div>
+
                 <!-- Right Side: Single Dynamic Visual Panel -->
                 <div class="split-visuals">
                     <div class="split-panel" id="dynamic-split-panel">
@@ -675,9 +678,7 @@
                             <div class="panel-overlay"></div>
                             <div class="panel-content">
                                 <span id="dynamic-label" class="panel-label">EXHIBITION MANAGEMENT</span>
-                                <h3 id="dynamic-headline" class="panel-headline">Connecting Global Buyers &amp;
-                                    Suppliers
-                                </h3>
+                                <h3 id="dynamic-headline" class="panel-headline">Connecting Global Buyers &amp; Suppliers</h3>
                                 <p id="dynamic-desc" class="panel-desc">Conceptualizing and executing large-scale B2B
                                     and B2C trade fairs that connect global buyers and suppliers.</p>
                                 <a href="#" class="panel-cta">Explore Service <i class="fas fa-arrow-right"></i></a>
@@ -686,6 +687,61 @@
                     </div>
                 </div>
             </div>
+
+            <!-- MOBILE/TABLET SCROLLSTACK LAYOUT (<1024px) -->
+            <div class="split-stack-container mobile-only-split">
+                <div class="split-stack-cards" id="split-stack-cards">
+                    <!-- Card 1 -->
+                    <div class="split-stack-card" style="--card-index: 0;">
+                        <div class="stack-card-inner" style="background-image: url('assets/images/portfolio/ieee-exhibition.webp');">
+                            <div class="stack-card-overlay"></div>
+                            <div class="stack-card-content">
+                                <span class="stack-card-label">EXHIBITION MANAGEMENT</span>
+                                <h3 class="stack-card-headline">Connecting Global Buyers &amp; Suppliers</h3>
+                                <p class="stack-card-desc">Conceptualizing and executing large-scale B2B and B2C trade fairs that connect global buyers and suppliers.</p>
+                                <a href="#" class="stack-card-cta">Explore Service <i class="fas fa-arrow-right"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Card 2 -->
+                    <div class="split-stack-card" style="--card-index: 1;">
+                        <div class="stack-card-inner" style="background-image: url('assets/images/portfolio/ieee-seminar.webp');">
+                            <div class="stack-card-overlay"></div>
+                            <div class="stack-card-content">
+                                <span class="stack-card-label">CONFERENCE MANAGEMENT</span>
+                                <h3 class="stack-card-headline">World-Class International Summits</h3>
+                                <p class="stack-card-desc">Providing seamless end-to-end management for international summits, corporate seminars, and technical forums.</p>
+                                <a href="#" class="stack-card-cta">Explore Service <i class="fas fa-arrow-right"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Card 3 -->
+                    <div class="split-stack-card" style="--card-index: 2;">
+                        <div class="stack-card-inner" style="background-image: url('assets/images/portfolio/saudi-delegation.webp');">
+                            <div class="stack-card-overlay"></div>
+                            <div class="stack-card-content">
+                                <span class="stack-card-label">INDUSTRIAL FORUMS</span>
+                                <h3 class="stack-card-headline">Driving Industrial Innovation</h3>
+                                <p class="stack-card-desc">Facilitating high-level dialogue between governments and industry leaders to drive industrial innovation.</p>
+                                <a href="#" class="stack-card-cta">Explore Service <i class="fas fa-arrow-right"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Card 4 -->
+                    <div class="split-stack-card" style="--card-index: 3;">
+                        <div class="stack-card-inner" style="background-image: url('assets/images/portfolio/ziauddin-convocation.webp');">
+                            <div class="stack-card-overlay"></div>
+                            <div class="stack-card-content">
+                                <span class="stack-card-label">MANAGED EVENTS</span>
+                                <h3 class="stack-card-headline">Complete Event Management</h3>
+                                <p class="stack-card-desc">Complete event management solutions for corporate clients, government bodies, and international organizations.</p>
+                                <a href="#" class="stack-card-cta">Explore Service <i class="fas fa-arrow-right"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
         </div>
     </section>
     <!-- ========================= [TEMPLATE PART: services-grid.php END] ========================= -->
@@ -693,78 +749,78 @@
     <!-- ========================= [TEMPLATE PART: events-showcase.php START] ========================= -->
     <!-- ========================= EVENTS SHOWCASE SLIDER ========================= -->
     <section class="evt-slider-section" id="events-showcase">
-        <div class="evt-slider-header">
-            <span class="section-tag">Our Events</span>
-            <h2>Milestones That Defined Pakistan's Exhibition Landscape</h2>
-            <a href="events.html" class="evt-view-all">View All Events <i class="fas fa-arrow-right"></i></a>
-        </div>
+    <div class="evt-slider-header">
+        <span class="section-tag">Our Events</span>
+        <h2>Milestones That Defined Pakistan's Exhibition Landscape</h2>
+        <a href="events.html" class="evt-view-all">View All Events <i class="fas fa-arrow-right"></i></a>
+    </div>
 
-        <div class="evt-slider-wrapper">
-            <div class="evt-slider" id="evt-slider">
-                <div class="evt-slider-track" id="evt-slider-track">
-                    <!-- SLIDE 1 -->
-                    <div class="evt-card">
-                        <img src="assets/images/portfolio/ideas-exhibition.webp" alt="IDEAS 2024">
-                        <div class="evt-tag">Defense</div>
-                        <div class="evt-content">
-                            <h3>IDEAS 2024 — Pakistan's Premier International Defense Exhibition</h3>
-                            <div class="evt-arrow">→</div>
-                        </div>
+    <div class="evt-slider-wrapper">
+        <div class="evt-slider" id="evt-slider">
+            <div class="evt-slider-track" id="evt-slider-track">
+                <!-- SLIDE 1 -->
+                <div class="evt-card">
+                    <img src="assets/images/portfolio/ideas-exhibition.webp" alt="IDEAS 2024">
+                    <div class="evt-tag">Defense</div>
+                    <div class="evt-content">
+                        <h3>IDEAS 2024 — Pakistan's Premier International Defense Exhibition</h3>
+                        <div class="evt-arrow">→</div>
                     </div>
+                </div>
 
-                    <!-- SLIDE 2 -->
-                    <div class="evt-card">
-                        <img src="assets/images/portfolio/ieee-exhibition.webp" alt="IEEEP Fair 2025">
-                        <div class="evt-tag">Engineering</div>
-                        <div class="evt-content">
-                            <h3>IEEEP Fair 2025 — Pakistan's Electrical & Electronics Engineering Expo</h3>
-                            <div class="evt-arrow">→</div>
-                        </div>
+                <!-- SLIDE 2 -->
+                <div class="evt-card">
+                    <img src="assets/images/portfolio/ieee-exhibition.webp" alt="IEEEP Fair 2025">
+                    <div class="evt-tag">Engineering</div>
+                    <div class="evt-content">
+                        <h3>IEEEP Fair 2025 — Pakistan's Electrical & Electronics Engineering Expo</h3>
+                        <div class="evt-arrow">→</div>
                     </div>
+                </div>
 
-                    <!-- SLIDE 3 (Active) -->
-                    <div class="evt-card active">
-                        <img src="assets/images/portfolio/concert-audience.webp" alt="Independence Celebrations">
-                        <div class="evt-tag">Entertainment</div>
-                        <div class="evt-content">
-                            <h3>Independence Celebrations — Mega Public Concerts & Cultural Shows</h3>
-                            <div class="evt-arrow">→</div>
-                        </div>
+                <!-- SLIDE 3 (Active) -->
+                <div class="evt-card active">
+                    <img src="assets/images/portfolio/concert-audience.webp" alt="Independence Celebrations">
+                    <div class="evt-tag">Entertainment</div>
+                    <div class="evt-content">
+                        <h3>Independence Celebrations — Mega Public Concerts & Cultural Shows</h3>
+                        <div class="evt-arrow">→</div>
                     </div>
+                </div>
 
-                    <!-- SLIDE 4 -->
-                    <div class="evt-card">
-                        <img src="assets/images/portfolio/dalfa-cattle-show.webp" alt="DALFA Cattle Show 2026">
-                        <div class="evt-tag">Agriculture</div>
-                        <div class="evt-content">
-                            <h3>DALFA Cattle Show 2026 — Pakistan's Largest Livestock Exhibition</h3>
-                            <div class="evt-arrow">→</div>
-                        </div>
+                <!-- SLIDE 4 -->
+                <div class="evt-card">
+                    <img src="assets/images/portfolio/dalfa-cattle-show.webp" alt="DALFA Cattle Show 2026">
+                    <div class="evt-tag">Agriculture</div>
+                    <div class="evt-content">
+                        <h3>DALFA Cattle Show 2026 — Pakistan's Largest Livestock Exhibition</h3>
+                        <div class="evt-arrow">→</div>
                     </div>
+                </div>
 
-                    <!-- SLIDE 5 -->
-                    <div class="evt-card">
-                        <img src="assets/images/portfolio/ptpl-champions.webp" alt="PTPL Grand Finale 2026">
-                        <div class="evt-tag">Sports</div>
-                        <div class="evt-content">
-                            <h3>PTPL Grand Finale 2026 — Mega Tapeball Cricket Championship</h3>
-                            <div class="evt-arrow">→</div>
-                        </div>
+                <!-- SLIDE 5 -->
+                <div class="evt-card">
+                    <img src="assets/images/portfolio/ptpl-champions.webp" alt="PTPL Grand Finale 2026">
+                    <div class="evt-tag">Sports</div>
+                    <div class="evt-content">
+                        <h3>PTPL Grand Finale 2026 — Mega Tapeball Cricket Championship</h3>
+                        <div class="evt-arrow">→</div>
                     </div>
                 </div>
             </div>
-
-            <!-- NAVIGATION -->
-            <div class="evt-navigation">
-                <div class="evt-nav-btn" id="evt-prev">‹</div>
-                <div class="evt-counter">
-                    <span id="evt-current">3</span> /
-                    <span id="evt-total">5</span>
-                </div>
-                <div class="evt-nav-btn" id="evt-next">›</div>
-            </div>
         </div>
-    </section>
+
+        <!-- NAVIGATION -->
+        <div class="evt-navigation">
+            <div class="evt-nav-btn" id="evt-prev">‹</div>
+            <div class="evt-counter">
+                <span id="evt-current">3</span> /
+                <span id="evt-total">5</span>
+            </div>
+            <div class="evt-nav-btn" id="evt-next">›</div>
+        </div>
+    </div>
+</section>
     <!-- ========================= [TEMPLATE PART: events-showcase.php END] ========================= -->
 
 
@@ -1335,6 +1391,7 @@
     </button>
 
     <script src="assets/js/main.js"></script>
+    <script src="assets/js/home.js"></script>
     <!-- ========================= [TEMPLATE: footer.php END] ========================= -->
 </body>
 
