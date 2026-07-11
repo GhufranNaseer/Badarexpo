@@ -843,9 +843,7 @@ const SplitServiceManager = {
         this.dynamicHeadline = document.getElementById('dynamic-headline');
         this.dynamicDesc = document.getElementById('dynamic-desc');
         this.panelContent = document.querySelector('.split-visuals .panel-content');
-
         if (!this.navBtns.length || !this.dynamicImg || !this.section) return;
-
         this.activeIndex = 0;
         this.bindEvents();
     },
@@ -853,7 +851,6 @@ const SplitServiceManager = {
     activateTab(index) {
         if (index === this.activeIndex) return;
         this.activeIndex = index;
-
         const targetBtn = this.navBtns[index];
         if (!targetBtn) return;
 
@@ -896,7 +893,6 @@ const SplitServiceManager = {
         // Scroll Event for Desktop Sticky Section
         window.addEventListener('scroll', () => {
             if (window.innerWidth < 992) return;
-
             const rect = this.section.getBoundingClientRect();
             const maxScroll = rect.height - window.innerHeight;
             const scrollTop = -rect.top;
@@ -904,11 +900,9 @@ const SplitServiceManager = {
             if (scrollTop >= 0 && scrollTop <= maxScroll) {
                 let progress = scrollTop / maxScroll;
                 progress = Math.max(0, Math.min(1, progress));
-
                 const total = this.navBtns.length;
                 let index = Math.floor(progress * total);
                 if (index >= total) index = total - 1;
-
                 this.activateTab(index);
             } else if (scrollTop < 0) {
                 this.activateTab(0);
@@ -924,17 +918,15 @@ const SplitServiceManager = {
                     const sectionTop = this.section.getBoundingClientRect().top + window.scrollY;
                     const maxScroll = this.section.offsetHeight - window.innerHeight;
                     const total = this.navBtns.length;
-
                     // Scroll to the exact middle of the segment to ensure it activates
                     const segmentHeight = maxScroll / total;
                     const targetScroll = sectionTop + (segmentHeight * index) + (segmentHeight / 2);
-
                     window.scrollTo({
                         top: targetScroll,
                         behavior: 'smooth'
                     });
                 } else {
-                    // Mobile behavior: just activate directly without scrolling
+                    // Mobile/tablet behavior: just activate directly without scrolling
                     this.activateTab(index);
                 }
             });
