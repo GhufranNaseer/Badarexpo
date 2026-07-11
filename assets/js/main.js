@@ -20,21 +20,29 @@ const NavManager = {
         this.searchClose = document.getElementById('search-close');
         this.searchOverlay = document.getElementById('search-overlay');
         this.searchInput = document.getElementById('search-input');
+
+        // Language dropdown (was present in HTML/CSS but had NO JS wiring at all
+        // in the original code — the button did nothing when clicked).
+        this.langBtn = document.getElementById('lang-btn');
+        this.langList = document.querySelector('.lang-list');
+        this.langItems = document.querySelectorAll('.lang-list li');
+        this.currentLangText = document.getElementById('current-lang');
+
         this.hideTimeout = null;
         this.breakpoint = 1024;
     },
 
     bindEvents() {
         // --- Search Overlay Logic ---
-        if (this.searchToggle) {
+        if (this.searchToggle && this.searchOverlay) {
             this.searchToggle.addEventListener('click', () => {
                 this.searchOverlay.classList.add('active');
-                setTimeout(() => this.searchInput.focus(), 400);
+                setTimeout(() => this.searchInput && this.searchInput.focus(), 400);
                 document.body.style.overflow = 'hidden';
             });
         }
 
-        if (this.searchClose) {
+        if (this.searchClose && this.searchOverlay) {
             this.searchClose.addEventListener('click', () => {
                 this.searchOverlay.classList.remove('active');
                 document.body.style.overflow = '';
@@ -42,7 +50,7 @@ const NavManager = {
         }
 
         // --- Mobile Menu Logic ---
-        if (this.menuToggle) {
+        if (this.menuToggle && this.navMenu) {
             this.menuToggle.addEventListener('click', () => {
                 const isActive = this.navMenu.classList.toggle('mobile-active');
                 const icon = this.menuToggle.querySelector('i');
@@ -79,7 +87,7 @@ const NavManager = {
                     }
                 });
             } else {
-                trigger.addEventListener('click', (e) => {
+                trigger.addEventListener('click', () => {
                     if (window.innerWidth <= this.breakpoint) {
                         const isAlreadyOpen = trigger.classList.contains('mobile-open');
                         this.triggers.forEach(t => t.classList.remove('mobile-open'));
@@ -99,18 +107,51 @@ const NavManager = {
             this.wrapper.addEventListener('mouseleave', () => this.hideMegaMenu());
         }
 
+        // --- Language Dropdown Logic (newly added — previously non-functional) ---
+        if (this.langBtn && this.langList) {
+            this.langBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                this.langList.classList.toggle('show');
+            });
+
+            this.langItems.forEach(item => {
+                item.addEventListener('click', () => {
+                    const langCode = item.getAttribute('data-lang');
+                    if (this.currentLangText) this.currentLangText.textContent = langCode.toUpperCase();
+                    document.body.classList.toggle('rtl-mode', langCode === 'ur' || langCode === 'ar');
+                    this.langList.classList.remove('show');
+                });
+            });
+        }
+
+        // Close mega menu / language dropdown on outside click (helps on touch devices)
+        document.addEventListener('click', (e) => {
+            if (this.langList && this.langBtn &&
+                !this.langList.contains(e.target) && !this.langBtn.contains(e.target)) {
+                this.langList.classList.remove('show');
+            }
+        });
+
         // Global Resize Fix
         window.addEventListener('resize', () => {
-            if (window.innerWidth > this.breakpoint && this.navMenu.classList.contains('mobile-active')) {
+            if (window.innerWidth > this.breakpoint && this.navMenu && this.navMenu.classList.contains('mobile-active')) {
                 this.closeMobileMenu();
+            }
+            // Also make sure a lingering mega menu doesn't get stuck open
+            // when resizing down into the mobile breakpoint.
+            if (window.innerWidth <= this.breakpoint) {
+                this.hideMegaMenu();
             }
         });
 
         // ESC Key Support
         document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape' && this.searchOverlay.classList.contains('active')) {
-                this.searchOverlay.classList.remove('active');
-                document.body.style.overflow = '';
+            if (e.key === 'Escape') {
+                if (this.searchOverlay && this.searchOverlay.classList.contains('active')) {
+                    this.searchOverlay.classList.remove('active');
+                    document.body.style.overflow = '';
+                }
+                if (this.langList) this.langList.classList.remove('show');
             }
         });
     },
@@ -143,7 +184,6 @@ const NavManager = {
         const highlightImg = contentBlock.querySelector('.dynamic-img');
         const highlightTitle = contentBlock.querySelector('.dynamic-title');
         const highlightDesc = contentBlock.querySelector('.dynamic-desc');
-        const highlightBox = contentBlock.querySelector('.highlight-content-box');
 
         if (highlightImg) highlightImg.src = newImage;
         if (highlightTitle) highlightTitle.innerText = newTitle;
@@ -151,11 +191,14 @@ const NavManager = {
     },
 
     closeMobileMenu() {
+        if (!this.navMenu) return;
         this.navMenu.classList.remove('mobile-active');
-        const icon = this.menuToggle.querySelector('i');
-        if (icon) {
-            icon.classList.add('fa-bars');
-            icon.classList.remove('fa-xmark');
+        if (this.menuToggle) {
+            const icon = this.menuToggle.querySelector('i');
+            if (icon) {
+                icon.classList.add('fa-bars');
+                icon.classList.remove('fa-xmark');
+            }
         }
         document.body.style.overflow = '';
     }
@@ -221,60 +264,7 @@ const StatsManager = {
     }
 };
 
-// ========================= LANGUAGE MANAGER =========================
-const LangManager = {
-    init() {
-        this.langBtn = document.getElementById('lang-btn');
-        this.langList = document.querySelector('.lang-list');
-        this.currentLangText = document.getElementById('current-lang');
-        this.langOptions = document.querySelectorAll('.lang-list li');
 
-        this.bindEvents();
-        this.applySavedLanguage();
-    },
-
-    bindEvents() {
-        if (this.langBtn) {
-            this.langBtn.addEventListener('click', (e) => {
-                e.stopPropagation();
-                if (this.langList) this.langList.classList.toggle('show');
-            });
-        }
-
-        document.addEventListener('click', () => {
-            if (this.langList) this.langList.classList.remove('show');
-        });
-
-        if (this.langOptions) {
-            this.langOptions.forEach(opt => {
-                opt.addEventListener('click', (e) => {
-                    const lang = e.currentTarget.getAttribute('data-lang');
-                    this.switchLanguage(lang);
-                });
-            });
-        }
-    },
-
-    switchLanguage(lang) {
-        localStorage.setItem('user_lang', lang);
-        this.applyLanguage(lang);
-    },
-
-    applyLanguage(lang) {
-        if (this.currentLangText) this.currentLangText.innerText = lang.toUpperCase();
-        if (lang === 'ur' || lang === 'ar') {
-            document.body.classList.add('rtl-mode');
-            document.body.dir = 'rtl';
-        } else {
-            document.body.classList.remove('rtl-mode');
-            document.body.dir = 'ltr';
-        }
-    },
-
-    applySavedLanguage() {
-        this.applyLanguage(localStorage.getItem('user_lang') || 'en');
-    }
-};
 
 // ========================= SCROLL TO TOP MANAGER =========================
 const ScrollTopManager = {
@@ -476,7 +466,6 @@ const SplitServiceManager = {
 document.addEventListener('DOMContentLoaded', () => {
     NavManager.init();
     StatsManager.init();
-    LangManager.init();
     ScrollTopManager.init();
     SplitServiceManager.init();
 });

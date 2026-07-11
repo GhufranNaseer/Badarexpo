@@ -10,7 +10,6 @@
     --bg-light: #f9f9f9;
     --white: #ffffff;
     --transition-smooth: 0.35s cubic-bezier(0.4, 0, 0.2, 1);
-    /* Premium industry standard curve */
     --transition-fast: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
     --shadow-soft: 0 15px 40px rgba(0, 0, 0, 0.08);
     --border-light: rgba(0, 0, 0, 0.05);
@@ -19,18 +18,19 @@
 /* =========================
    GLOBAL RESET & BASE
    ========================= */
+* {
+    box-sizing: border-box;
+}
+
 body {
     margin: 0;
-    font-family: 'Inter', sans-serif;
+    font-family: 'Inter', Arial, sans-serif;
     background-color: var(--white);
     color: var(--text-dark);
     overflow-x: hidden;
 }
 
 /* --- TOP BAR --- */
-/* =========================
-   TOPBAR & LANGUAGE LOGIC
-   ========================= */
 .topbar {
     display: flex;
     justify-content: space-between;
@@ -38,7 +38,6 @@ body {
     padding: 0 60px;
     height: 40px;
     background: var(--primary-red);
-    /* Restored Signature Red */
     color: var(--white);
     font-size: 13px;
     font-weight: 500;
@@ -152,7 +151,7 @@ body.rtl-mode {
     height: 100px;
     width: auto;
     display: block;
-    margin-top: -10px;    /* Center the logo vertically by offsetting 10px top and bottom */
+    margin-top: -10px;
     margin-bottom: -10px;
     position: relative;
     z-index: 1005;
@@ -162,7 +161,7 @@ body.rtl-mode {
 .menu {
     display: flex;
     align-items: center;
-    padding: 0px 0px 0px 100px;
+    padding: 0 0 0 100px;
 }
 
 .nav-item {
@@ -210,7 +209,6 @@ body.rtl-mode {
     font-size: 13px;
 }
 
-/* Hover Underline */
 .nav-item span::after {
     content: "";
     position: absolute;
@@ -228,8 +226,6 @@ body.rtl-mode {
     transform: scaleX(1);
 }
 
-/* Current Page Indicator (applied via .active-nav on the matching nav-item
-   of whichever page is currently open, e.g. Events on events.html) */
 .nav-item.active-nav {
     color: var(--primary-red);
 }
@@ -246,7 +242,6 @@ body.rtl-mode {
     transform: translate3d(-50%, 15px, 0);
     width: auto;
     max-width: 95vw;
-    /* Safety constraint to prevent screen overflow */
     background: var(--white);
     border-radius: 0 0 20px 20px;
     box-shadow: var(--shadow-soft);
@@ -255,10 +250,9 @@ body.rtl-mode {
     opacity: 0;
     pointer-events: none;
     transition: opacity var(--transition-smooth), transform var(--transition-smooth);
-    z-index: 1001;
+    z-index: 101;
     will-change: transform, opacity;
     backface-visibility: hidden;
-    /* overflow: hidden; Removed to prevent highlight box clipping */
 }
 
 .mega-menu-wrapper.active {
@@ -267,7 +261,15 @@ body.rtl-mode {
     pointer-events: auto;
 }
 
-/* Dynamic Content Containers */
+.mega-menu-wrapper::before {
+    content: "";
+    position: absolute;
+    top: -20px;
+    left: 0;
+    right: 0;
+    height: 20px;
+}
+
 .mega-content {
     display: none;
     padding: 40px;
@@ -276,7 +278,6 @@ body.rtl-mode {
     flex-wrap: nowrap;
     align-items: flex-start;
     justify-content: flex-start;
-    /* Grouped to the left with consistent gaps */
     max-height: 85vh;
     overflow-y: auto;
     animation: contentFadeIn 0.3s ease forwards;
@@ -286,7 +287,6 @@ body.rtl-mode {
     display: flex;
 }
 
-/* Dynamic Widths based on content + 40px padding */
 #content-services {
     width: max-content;
     max-width: 95vw;
@@ -312,6 +312,182 @@ body.rtl-mode {
         opacity: 1;
         transform: translateY(0);
     }
+}
+
+.column {
+    width: 220px;
+    flex-shrink: 0;
+}
+
+.column h4 {
+    margin-bottom: 15px;
+    font-size: 15px;
+    border-bottom: 2px solid #f5f5f5;
+    padding-bottom: 8px;
+    color: var(--text-dark);
+}
+
+.column h4 a {
+    color: inherit;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    transition: color var(--transition-smooth), padding-left var(--transition-smooth);
+}
+
+.column h4 a:hover {
+    color: var(--primary-red);
+    padding-left: 4px;
+}
+
+.column h4 a i {
+    transition: transform var(--transition-smooth), color var(--transition-smooth);
+}
+
+.column h4 a:hover i {
+    transform: translateX(3px);
+    color: var(--primary-red);
+}
+
+.column a {
+    display: block;
+    text-decoration: none;
+    color: var(--text-muted);
+    margin: 10px 0;
+    font-size: 13px;
+    transition: all 0.2s;
+}
+
+.column a:hover {
+    color: var(--primary-red);
+    padding-left: 5px;
+}
+
+.bullet-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.bullet-list li {
+    margin: 0;
+    padding: 0;
+}
+
+.highlight {
+    background: var(--bg-light);
+    padding: 20px;
+    border-radius: 12px;
+    width: 300px;
+    flex-shrink: 0;
+}
+
+.highlight-content-box {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    height: 100%;
+    transition: opacity 0.3s, transform 0.3s;
+    will-change: transform, opacity;
+}
+
+.highlight img {
+    width: 100%;
+    height: 160px;
+    border-radius: 8px;
+    margin-bottom: 12px;
+    object-fit: cover;
+    background: #e5e5e5;
+}
+
+.highlight strong {
+    display: block;
+    font-size: 16px;
+    margin-bottom: 5px;
+    color: var(--text-dark);
+}
+
+.highlight p {
+    font-size: 13px;
+    color: var(--text-muted);
+    line-height: 1.4;
+    margin: 0;
+}
+
+.insight-card {
+    flex: 1;
+}
+
+.insight-card img {
+    width: 100%;
+    height: 120px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-bottom: 12px;
+    background: #e5e5e5;
+}
+
+.nav-right-icons {
+    display: flex;
+    align-items: center;
+    gap: 25px;
+}
+
+.search-trigger {
+    font-size: 18px;
+    color: var(--text-dark);
+    cursor: pointer;
+    transition: var(--transition-smooth);
+    padding: 8px 15px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    border-radius: 50px;
+}
+
+.search-text {
+    font-size: 15px;
+    font-weight: 500;
+}
+
+.search-trigger:hover {
+    color: var(--primary-red);
+    background: rgba(0, 0, 0, 0.05);
+}
+
+/* --- BUTTONS --- */
+.actions {
+    display: flex;
+    gap: 15px;
+}
+
+.btn {
+    padding: 10px 24px;
+    border-radius: 30px;
+    border: none;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 14px;
+    transition: 0.3s;
+}
+
+.btn-dark {
+    background: var(--text-dark);
+    color: var(--white);
+}
+
+.btn-dark:hover {
+    background: var(--primary-red);
+}
+
+.btn-light {
+    background: #f1f1f1;
+    color: #333;
+}
+
+.btn-light:hover {
+    background: #ddd;
 }
 
 /* --- SEARCH OVERLAY --- */
@@ -380,7 +556,6 @@ body.rtl-mode {
     background: transparent;
     border-bottom: 3px solid var(--text-dark);
     padding: 15px 65px 15px 0;
-    /* Increased padding to prevent icon overlap */
     font-size: 32px;
     font-weight: 700;
     color: var(--text-dark);
@@ -425,16 +600,6 @@ body.rtl-mode {
     margin-bottom: 20px;
 }
 
-.highlight-content-box {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-    height: 100%;
-    transition: opacity 0.3s ease, transform 0.3s ease;
-    /* Supports JS animations */
-    will-change: transform, opacity;
-}
-
 .suggestion-tags {
     display: flex;
     flex-wrap: wrap;
@@ -458,312 +623,41 @@ body.rtl-mode {
     transform: translateY(-3px);
 }
 
-/* Mobile Adjustments for Search */
-@media screen and (max-width: 1024px) {
-
-    /* Top Bar adjustments (Aggressive Fix from Git) */
-    .topbar {
-        padding: 0 10px;
-        flex-direction: row !important;
-        height: 35px;
-        justify-content: space-between;
-        align-items: center;
-        flex-wrap: nowrap;
-        width: 100%;
-        max-width: 100%;
-        overflow: hidden;
-        box-sizing: border-box;
-    }
-
-    .topbar-left {
-        display: flex;
-        align-items: center;
-        gap: 6px;
-        font-size: 8.5px;
-        /* Aggressive scaling to prevent wrap */
-        white-space: nowrap;
-        max-width: 75%;
-        overflow: hidden;
-        text-overflow: ellipsis;
-    }
-
-    .topbar-right {
-        display: flex !important;
-        justify-content: flex-end;
-        align-items: center;
-        width: auto;
-        max-width: 25%;
-    }
-
-    .lang-dropdown {
-        margin-right: 0;
-    }
-
-    /* Hide one contact detail on very small screens if it still overflows */
-    @media screen and (max-width: 360px) {
-        .topbar-left span:nth-child(2) {
-            display: none;
-            /* Hide email on extremely narrow phones */
-        }
-    }
-
-    .topbar-right a {
-        display: none !important;
-    }
-
-    .navbar {
-        padding: 0 15px;
-        height: 70px;
-        /* Reduced from 85px for a cleaner look */
-        width: 100%;
-        max-width: 100%;
-        box-sizing: border-box;
-        justify-content: center;
-        position: sticky;
-        /* Frozen/Sticky on scroll */
-        top: 0;
-        z-index: 1000;
-    }
-
-    .logo {
-        position: absolute;
-        left: 50%;
-        transform: translateX(-50%);
-        z-index: 1001;
-        top: 50%;
-        /* Center vertically */
-        transform: translate(-50%, -50%);
-    }
-
-    .logo-img {
-        height: 50px;
-        /* Prominent but fits inside navbar */
-        width: auto;
-        display: block;
-        filter: drop-shadow(0 5px 15px rgba(0, 0, 0, 0.08));
-        transition: transform 0.3s ease;
-    }
-
-    .nav-toggle {
-        position: absolute;
-        left: 20px;
-        top: 50%;
-        transform: translateY(-50%);
-        display: flex !important;
-    }
-}
-
-/* Bridge for hover stability */
-.mega-menu-wrapper::before {
-    content: "";
-    position: absolute;
-    top: -20px;
-    left: 0;
-    right: 0;
-    height: 20px;
-}
-
-/* Columns & Links */
-.column {
-    width: 220px;
-    flex-shrink: 0;
-}
-
-.column h4 {
-    margin-bottom: 15px;
-    font-size: 15px;
-    border-bottom: 2px solid #f5f5f5;
-    /* Exact Git Divider */
-    padding-bottom: 8px;
-    color: var(--text-dark);
-}
-
-.column h4 a {
-    color: inherit;
-    text-decoration: none;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    transition: color var(--transition-smooth), padding-left var(--transition-smooth);
-}
-
-.column h4 a:hover {
-    color: var(--primary-red);
-    padding-left: 4px;
-}
-
-.column h4 a i {
-    transition: transform var(--transition-smooth), color var(--transition-smooth);
-}
-
-.column h4 a:hover i {
-    transform: translateX(3px);
-    color: var(--primary-red);
-}
-
-.column a {
-    display: block;
-    text-decoration: none;
-    color: var(--text-muted);
-    margin: 10px 0;
-    font-size: 13px;
-    transition: all 0.2s;
-}
-
-.column a:hover {
-    color: var(--primary-red);
-    padding-left: 5px;
-    /* Exact Original Interactive Feel */
-}
-
-/* Bullet List Styling (Restored from Git) */
-.bullet-list {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-}
-
-.bullet-list li {
-    margin: 0;
-    padding: 0;
-}
-
-/* Highlights & Dynamic Content (Git Exact Match) */
-.highlight {
-    background: var(--bg-light);
-    padding: 20px;
-    border-radius: 12px;
-    width: 300px;
-    flex-shrink: 0;
-    /* margin-left: auto; Removed to prevent sticking to right border */
-}
-
-.highlight-content-box {
-    transition: opacity 0.3s, transform 0.3s;
-    will-change: transform, opacity;
-}
-
-.highlight img {
-    width: 100%;
-    height: 160px;
-    border-radius: 8px;
-    margin-bottom: 12px;
-    object-fit: cover;
-}
-
-.highlight strong {
-    display: block;
-    font-size: 16px;
-    margin-bottom: 5px;
-    color: var(--text-dark);
-}
-
-.highlight p {
-    font-size: 13px;
-    color: var(--text-muted);
-    line-height: 1.4;
-    margin: 0;
-}
-
-.insight-card {
-    flex: 1;
-}
-
-.insight-card img {
-    width: 100%;
-    height: 120px;
-    object-fit: cover;
-    border-radius: 8px;
-    margin-bottom: 12px;
-}
-
-.nav-right-icons {
-    display: flex;
-    align-items: center;
-    gap: 25px;
-}
-
-.search-trigger {
-    font-size: 18px;
-    /* Balanced icon size */
-    color: var(--text-dark);
-    cursor: pointer;
-    transition: var(--transition-smooth);
-    padding: 8px 15px;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    border-radius: 50px;
-    /* Capsule look on hover */
-}
-
-.search-text {
-    font-size: 15px;
-    font-weight: 500;
-}
-
-.search-trigger:hover {
-    color: var(--primary-red);
-    background: rgba(0, 0, 0, 0.05);
-    /* Subtle gray shade */
-}
-
-/* --- BUTTONS --- */
-.actions {
-    display: flex;
-    gap: 15px;
-}
-
-.btn {
-    padding: 10px 24px;
-    border-radius: 30px;
-    border: none;
-    cursor: pointer;
-    font-weight: 600;
-    font-size: 14px;
-    transition: 0.3s;
-}
-
-.btn-dark {
-    background: var(--text-dark);
-    color: var(--white);
-}
-
-.btn-dark:hover {
-    background: var(--primary-red);
-}
-
-.btn-light {
-    background: #f1f1f1;
-    color: #333;
-}
-
-.btn-light:hover {
-    background: #ddd;
-}
-
-/* --- RESPONSIVE FIXES --- */
+/* --- MOBILE-ONLY ELEMENTS: hidden by default on desktop --- */
 .nav-toggle,
 .mobile-actions,
 .mobile-submenu {
     display: none !important;
 }
 
+/* KEYBOARD ACCESSIBILITY: Visible Focus States */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible,
+[role="button"]:focus-visible {
+    outline: 3px solid var(--primary-red);
+    outline-offset: 3px;
+}
+
+/* =============================================================================
+   RESPONSIVE — single consolidated breakpoint set
+   (The original code had this same @media(max-width:1024px) block duplicated
+   twice with slightly different, conflicting values — e.g. .topbar-left had
+   overflow:hidden in one copy and overflow:visible in the other, which broke
+   the text-ellipsis truncation. Merged into one clean block below.)
+   ============================================================================= */
 @media screen and (max-width: 1024px) {
 
-    /* Top Bar adjustments (Aggressive Fix) */
     .topbar {
-        padding: 0 10px;
-        flex-direction: row !important;
-        height: 35px;
+        padding: 0 12px;
+        height: 34px;
         justify-content: space-between;
         align-items: center;
         flex-wrap: nowrap;
         width: 100%;
-        max-width: 100%;
-        overflow: visible;
-        /* Changed from hidden to allow dropdown visibility */
-        box-sizing: border-box;
+        overflow: hidden;
     }
 
     .topbar-left {
@@ -771,10 +665,8 @@ body.rtl-mode {
         align-items: center;
         gap: 8px;
         font-size: 10.5px;
-        /* Increased from 8px for clear readability */
         white-space: nowrap;
         max-width: 80%;
-        /* Slightly more space */
         overflow: hidden;
         text-overflow: ellipsis;
     }
@@ -787,32 +679,20 @@ body.rtl-mode {
         max-width: 25%;
     }
 
-    .lang-dropdown {
-        margin-right: 0;
-    }
-
-    /* Hide one contact detail on very small screens if it still overflows */
-    @media screen and (max-width: 360px) {
-        .topbar-left span:nth-child(2) {
-            display: none;
-            /* Hide email on extremely narrow phones */
-        }
-    }
-
     .topbar-right a {
         display: none !important;
+    }
+
+    .lang-dropdown {
+        margin-right: 0;
     }
 
     .navbar {
         padding: 0 15px;
         height: 70px;
-        /* Reduced from 85px for a cleaner look */
         width: 100%;
-        max-width: 100%;
-        box-sizing: border-box;
         justify-content: center;
         position: sticky;
-        /* Frozen/Sticky on scroll */
         top: 0;
         z-index: 1000;
     }
@@ -820,18 +700,16 @@ body.rtl-mode {
     .logo {
         position: absolute;
         left: 50%;
-        transform: translateX(-50%);
-        z-index: 1001;
         top: 50%;
-        /* Center vertically */
         transform: translate(-50%, -50%);
+        z-index: 1001;
     }
 
     .logo-img {
-        height: 50px;
-        /* Prominent but fits inside navbar */
+        height: 80px;
         width: auto;
         display: block;
+        margin: 0;
         filter: drop-shadow(0 5px 15px rgba(0, 0, 0, 0.08));
         transition: transform 0.3s ease;
     }
@@ -844,7 +722,6 @@ body.rtl-mode {
         display: flex !important;
         z-index: 2001;
         font-size: 20px;
-        /* Reduced to match search icon weight */
         cursor: pointer;
         color: var(--text-dark);
     }
@@ -855,7 +732,6 @@ body.rtl-mode {
         top: 50%;
         transform: translateY(-50%);
         font-size: 20px;
-        /* Matched with hamburger icon */
         z-index: 2001;
         padding: 5px;
         color: var(--text-dark);
@@ -863,7 +739,6 @@ body.rtl-mode {
 
     .search-text {
         display: none;
-        /* Hide text on mobile */
     }
 
     .actions {
@@ -889,9 +764,7 @@ body.rtl-mode {
         border-top: 1px solid var(--border-light);
         overflow-y: auto;
         align-items: flex-start;
-        box-sizing: border-box;
         transform: translate3d(0, -15px, 0);
-        /* Pre-position for hardware acceleration */
         transition: opacity var(--transition-smooth), transform var(--transition-smooth);
         will-change: transform, opacity;
         backface-visibility: hidden;
@@ -905,14 +778,12 @@ body.rtl-mode {
 
     .nav-item {
         width: 100%;
-        max-width: 100%;
         height: auto;
         padding: 15px 0;
         border-bottom: 1px solid var(--border-light);
         flex-direction: column;
         align-items: flex-start;
         transition: background 0.3s;
-        /* Removed overflow: hidden to prevent submenu clipping */
     }
 
     .nav-item span {
@@ -924,7 +795,6 @@ body.rtl-mode {
         padding-right: 10px;
     }
 
-    /* Mobile Dropdown Indicator Rotation */
     .nav-item.dropdown span i {
         transition: transform 0.3s;
     }
@@ -934,7 +804,6 @@ body.rtl-mode {
         color: var(--primary-red);
     }
 
-    /* Show hint of dropdown content when open */
     .nav-item.mobile-open {
         background: rgba(228, 31, 38, 0.02);
     }
@@ -943,12 +812,9 @@ body.rtl-mode {
         display: none;
         list-style: none;
         padding: 5px 0 10px 25px;
-        /* Indented for hierarchy */
         margin: 0;
         width: 100%;
         background: transparent;
-        border-radius: 0;
-        margin-top: 0;
     }
 
     .mobile-open .mobile-submenu {
@@ -994,32 +860,65 @@ body.rtl-mode {
         gap: 12px;
         margin-top: 30px;
         width: 100%;
-        box-sizing: border-box;
         align-items: center;
-        /* Balanced center alignment */
     }
 
-    .btn {
+    .mobile-actions .btn {
         width: 78% !important;
-        /* Optimized width for mobile balance */
         max-width: 100%;
-        box-sizing: border-box;
+    }
+
+    .search-container {
+        padding: 0 20px;
+    }
+
+    .search-box input {
+        font-size: 24px;
+        padding: 12px 45px 12px 0;
     }
 }
 
-/* KEYBOARD ACCESSIBILITY: Visible Focus States */
-a:focus-visible,
-button:focus-visible,
-input:focus-visible,
-select:focus-visible,
-textarea:focus-visible,
-[role="button"]:focus-visible,
-.filter-btn:focus-visible,
-.read-more-btn:focus-visible,
-.pfs-navbtn:focus-visible,
-.evt-nav-btn:focus-visible,
-.testi-nav-btn:focus-visible,
-.split-nav-btn:focus-visible {
-    outline: 3px solid var(--primary-red, #e41f26) !important;
-    outline-offset: 3px !important;
+/* SMALL TABLET / LARGE PHONE */
+@media screen and (max-width: 600px) {
+    .topbar-left {
+        font-size: 10px;
+        gap: 6px;
+    }
+
+    .search-box input {
+        font-size: 19px;
+    }
+
+    .search-close {
+        top: 20px;
+        right: 20px;
+        font-size: 24px;
+        width: 42px;
+        height: 42px;
+    }
+
+    .suggestion-tags span {
+        padding: 8px 16px;
+        font-size: 13px;
+    }
+}
+
+/* SMALL PHONE */
+@media screen and (max-width: 360px) {
+    .topbar-left span:nth-child(2) {
+        display: none;
+    }
+
+    .topbar {
+        padding: 0 10px;
+    }
+
+    .logo-img {
+        height: 80px;
+    }
+
+    .nav-toggle,
+    .search-trigger {
+        font-size: 18px;
+    }
 }
