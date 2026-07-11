@@ -62,7 +62,7 @@ const NavManager = {
                     this.showMegaMenu(trigger.getAttribute('data-target'));
                 }
             });
-            
+
             trigger.addEventListener('mouseleave', () => {
                 if (window.innerWidth > this.breakpoint) this.hideMegaMenu();
             });
@@ -229,7 +229,7 @@ const LangManager = {
         this.langList = document.querySelector('.lang-list');
         this.currentLangText = document.getElementById('current-lang');
         this.langOptions = document.querySelectorAll('.lang-list li');
-        
+
         this.bindEvents();
         this.applySavedLanguage();
     },
@@ -277,16 +277,7 @@ const LangManager = {
     }
 };
 
-// ========================= FEATURED INSIGHTS =========================
-const InsightsManager = {
-    init() {
-        this.cards = document.querySelectorAll(".card");
-        if (this.cards.length === 0) return;
 
-        // Background tracking removed to keep images still on hover
-        console.log("Insights Manager: Static backgrounds initialized.");
-    }
-};
 
 // ========================= SCROLL TO TOP MANAGER =========================
 const ScrollTopManager = {
@@ -319,19 +310,74 @@ const ScrollTopManager = {
 const ServicesCarouselManager = {
     init() {
         this.track = document.getElementById("services-scroll-track");
+        this.wrapper = document.getElementById("svc-cards-wrapper");
         this.cardsContainer = document.getElementById("svc-cards");
+        this.dotsContainer = document.getElementById("svc-mobile-dots");
         if (!this.track || !this.cardsContainer) return;
 
+        this.cards = Array.from(this.cardsContainer.children);
         this.targetTranslateX = 0;
         this.currentTranslateX = 0;
-        
-        // Calculate the maximum horizontal scroll distance
+        this.rafId = null;
+        this._onResize = null;
+        this._onScroll = null;
+        this._onWrapperScroll = null;
+
+        // Breakpoint matches the CSS @media (min-width: 1025px) rule.
+        // Below it, the CSS already switches to a native scroll-snap carousel,
+        // so the JS must NOT keep applying its own transform there.
+        this.mq = window.matchMedia("(min-width: 1025px)");
+        this.isDesktop = this.mq.matches;
+
+        this.buildMobileDots();
+        this.setupMode();
+
+        const handleChange = () => {
+            this.isDesktop = this.mq.matches;
+            this.teardownDesktop();
+            this.teardownMobile();
+            this.setupMode();
+        };
+        if (this.mq.addEventListener) {
+            this.mq.addEventListener("change", handleChange);
+        } else if (this.mq.addListener) {
+            // Safari < 14 fallback
+            this.mq.addListener(handleChange);
+        }
+    },
+
+    setupMode() {
+        if (this.isDesktop) {
+            this.enableDesktop();
+        } else {
+            this.enableMobile();
+        }
+    },
+
+    /* ---------- DESKTOP: sticky scroll-jack pan ---------- */
+    enableDesktop() {
         this.calculateMaxScroll();
 
-        this.bindEvents();
-        
-        // Start the continuous render loop for smooth lerp
-        this.render();
+        this._onResize = () => {
+            this.calculateMaxScroll();
+            this.updateTarget();
+        };
+        this._onScroll = () => this.updateTarget();
+
+        window.addEventListener("resize", this._onResize);
+        window.addEventListener("scroll", this._onScroll, { passive: true });
+
+        this.updateTarget();
+        this.startRender();
+    },
+
+    teardownDesktop() {
+        if (this._onResize) window.removeEventListener("resize", this._onResize);
+        if (this._onScroll) window.removeEventListener("scroll", this._onScroll);
+        this.stopRender();
+        this.cardsContainer.style.transform = "";
+        this.currentTranslateX = 0;
+        this.targetTranslateX = 0;
     },
 
     calculateMaxScroll() {
@@ -340,69 +386,137 @@ const ServicesCarouselManager = {
         if (this.maxScroll < 0) this.maxScroll = 0;
     },
 
-    bindEvents() {
-        window.addEventListener("resize", () => {
-            this.calculateMaxScroll();
-            this.updateTarget();
-        });
-
-        window.addEventListener("scroll", () => {
-            this.updateTarget();
-        }, { passive: true });
-    },
-
     updateTarget() {
         const trackRect = this.track.getBoundingClientRect();
-        
+
         // The track's available scrolling height minus one viewport
         const totalScrollableHeight = trackRect.height - window.innerHeight;
-        
+
         // Calculate progress based on how far the top of the track has moved past the top of the viewport
-        let progress = -trackRect.top / totalScrollableHeight;
-        
+        let progress = totalScrollableHeight > 0 ? -trackRect.top / totalScrollableHeight : 0;
+
         // Clamp progress between 0 and 1
         progress = Math.max(0, Math.min(1, progress));
-        
+
         // Update the target horizontal translation
         this.targetTranslateX = progress * -this.maxScroll;
     },
-    
-    render() {
-        // Linear interpolation (lerp) for buttery smooth momentum
-        // 0.08 is the easing factor. Lower = smoother/slower, Higher = snappier
-        this.currentTranslateX += (this.targetTranslateX - this.currentTranslateX) * 0.08;
-        
-        // Only update the DOM if the difference is noticeable (optimizes performance)
-        if (Math.abs(this.targetTranslateX - this.currentTranslateX) > 0.05) {
-            this.cardsContainer.style.transform = `translate3d(${this.currentTranslateX}px, 0, 0)`;
+
+    startRender() {
+        const loop = () => {
+            // Linear interpolation (lerp) for buttery smooth momentum
+            // 0.08 is the easing factor. Lower = smoother/slower, Higher = snappier
+            this.currentTranslateX += (this.targetTranslateX - this.currentTranslateX) * 0.08;
+
+            // Only update the DOM if the difference is noticeable (optimizes performance)
+            if (Math.abs(this.targetTranslateX - this.currentTranslateX) > 0.05) {
+                this.cardsContainer.style.transform = `translate3d(${this.currentTranslateX}px, 0, 0)`;
+            }
+
+            this.rafId = requestAnimationFrame(loop);
+        };
+        this.rafId = requestAnimationFrame(loop);
+    },
+
+    stopRender() {
+        if (this.rafId) cancelAnimationFrame(this.rafId);
+        this.rafId = null;
+    },
+
+    /* ---------- MOBILE / TABLET: native scroll-snap + progress dots ---------- */
+    enableMobile() {
+        if (!this.wrapper) return;
+        this._onWrapperScroll = () => this.updateActiveDot();
+        this.wrapper.addEventListener("scroll", this._onWrapperScroll, { passive: true });
+        this.updateActiveDot();
+    },
+
+    teardownMobile() {
+        if (this.wrapper && this._onWrapperScroll) {
+            this.wrapper.removeEventListener("scroll", this._onWrapperScroll);
         }
-        
-        // Loop recursively
-        requestAnimationFrame(this.render.bind(this));
+    },
+
+    buildMobileDots() {
+        if (!this.dotsContainer) return;
+        this.dotsContainer.innerHTML = "";
+        this.cards.forEach((_, i) => {
+            const dot = document.createElement("span");
+            dot.className = "pfs-dot-mini" + (i === 0 ? " active" : "");
+            this.dotsContainer.appendChild(dot);
+        });
+    },
+
+    updateActiveDot() {
+        if (!this.dotsContainer || !this.wrapper || this.cards.length === 0) return;
+        const wrapperCenter = this.wrapper.scrollLeft + this.wrapper.clientWidth / 2;
+        let closestIndex = 0;
+        let closestDistance = Infinity;
+        this.cards.forEach((card, i) => {
+            const cardCenter = card.offsetLeft + card.offsetWidth / 2;
+            const distance = Math.abs(cardCenter - wrapperCenter);
+            if (distance < closestDistance) {
+                closestDistance = distance;
+                closestIndex = i;
+            }
+        });
+        Array.from(this.dotsContainer.children).forEach((dot, i) => {
+            dot.classList.toggle("active", i === closestIndex);
+        });
     }
 };
 
+
+// ========================= HOME REVEAL ANIMATIONS =========================
+const HomeRevealManager = {
+    init() {
+        this.aboutRevealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('in-view');
+                    this.aboutRevealObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.15 });
+
+        document.querySelectorAll('.about-reveal').forEach(el => this.aboutRevealObserver.observe(el));
+
+        this.corporateRevealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('in-view');
+                    this.corporateRevealObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.1 });
+
+        const corporateContainer = document.querySelector('.corporate-services .editorial-container');
+        if (corporateContainer) {
+            this.corporateRevealObserver.observe(corporateContainer);
+        }
+    }
+};
 // ========================= EVENTS SHOWCASE SLIDER =========================
 const EventsSliderManager = {
     init() {
         this.slider = document.getElementById('evt-slider');
-        this.track  = document.getElementById('evt-slider-track');
+        this.track = document.getElementById('evt-slider-track');
         if (!this.slider || !this.track) return;
 
         this.currentEl = document.getElementById('evt-current');
-        this.totalEl   = document.getElementById('evt-total');
-        this.nextBtn   = document.getElementById('evt-next');
-        this.prevBtn   = document.getElementById('evt-prev');
+        this.totalEl = document.getElementById('evt-total');
+        this.nextBtn = document.getElementById('evt-next');
+        this.prevBtn = document.getElementById('evt-prev');
 
         // 1. Setup Clones (1 Set before, 1 Set after)
         this.originals = Array.from(this.track.querySelectorAll('.evt-card'));
-        this.count     = this.originals.length;
+        this.count = this.originals.length;
         this.totalEl.textContent = this.count;
 
         // Clone originals twice to create [Clone Set][Real Set][Clone Set]
         this.originals.forEach(card => {
             const cloneBefore = card.cloneNode(true);
-            const cloneAfter  = card.cloneNode(true);
+            const cloneAfter = card.cloneNode(true);
             cloneBefore.classList.add('is-clone');
             cloneAfter.classList.add('is-clone');
             this.track.prepend(cloneBefore);
@@ -411,13 +525,13 @@ const EventsSliderManager = {
 
         this.allCards = Array.from(this.track.querySelectorAll('.evt-card'));
         this.realOffset = this.count; // The index where the real slides start
-        
+
         // 2. Motion State
         this.activeIndex = 0; // Current active real slide (0-4)
-        this.targetX     = 0;
-        this.currentX    = 0;
-        this.lerp        = 0.08; // Smoothness factor (0.05 - 0.1)
-        
+        this.targetX = 0;
+        this.currentX = 0;
+        this.lerp = 0.08; // Smoothness factor (0.05 - 0.1)
+
         // 3. Dimensions
         this.updateDimensions();
         window.addEventListener('resize', () => this.updateDimensions());
@@ -456,10 +570,10 @@ const EventsSliderManager = {
         this.activeIndex = index;
         const domIndex = index + this.realOffset;
         const card = this.allCards[domIndex];
-        
+
         // Target: Center the card in the slider window
         this.targetX = -(card.offsetLeft - (this.slider.offsetWidth / 2) + (card.offsetWidth / 2));
-        
+
         // Update UI
         this.allCards.forEach(c => c.classList.remove('active'));
         this.allCards[domIndex].classList.add('active');
@@ -473,11 +587,11 @@ const EventsSliderManager = {
         const domIndex = this.activeIndex + this.realOffset;
         const card = this.allCards[domIndex];
         this.targetX = -(card.offsetLeft - (this.slider.offsetWidth / 2) + (card.offsetWidth / 2));
-        
+
         // Wrap logic for index display only
         const displayIdx = (this.activeIndex % this.count + this.count) % this.count;
         this.currentEl.textContent = displayIdx + 1;
-        
+
         // Update active class (find real matching card)
         this.allCards.forEach(c => c.classList.remove('active'));
         this.allCards[domIndex].classList.add('active');
@@ -488,7 +602,7 @@ const EventsSliderManager = {
         const domIndex = this.activeIndex + this.realOffset;
         const card = this.allCards[domIndex];
         this.targetX = -(card.offsetLeft - (this.slider.offsetWidth / 2) + (card.offsetWidth / 2));
-        
+
         const displayIdx = (this.activeIndex % this.count + this.count) % this.count;
         this.currentEl.textContent = displayIdx + 1;
 
@@ -508,13 +622,13 @@ const EventsSliderManager = {
         // 7. SEAMLESS TELEPORTATION
         // If we've drifted into the start clones (left side)
         if (this.targetX > -this.slideStep * (this.realOffset - 1)) {
-            this.targetX  -= this.fullSetWidth;
+            this.targetX -= this.fullSetWidth;
             this.currentX -= this.fullSetWidth;
             this.activeIndex += this.count;
         }
         // If we've drifted into the end clones (right side)
         else if (this.targetX < -this.slideStep * (this.realOffset + this.count)) {
-            this.targetX  += this.fullSetWidth;
+            this.targetX += this.fullSetWidth;
             this.currentX += this.fullSetWidth;
             this.activeIndex -= this.count;
         }
@@ -533,7 +647,7 @@ const TestimonialsManager = {
 
         this.cards = Array.from(this.track.querySelectorAll('.testimonial-card'));
         this.originalCount = this.cards.length;
-        
+
         // 1. Clone set for infinite effect
         this.cards.forEach(card => {
             const clone = card.cloneNode(true);
@@ -567,7 +681,7 @@ const TestimonialsManager = {
     move(direction) {
         if (this.isTransitioning) return;
         this.isTransitioning = true;
-        
+
         this.currentIndex += direction;
         this.updatePosition();
 
@@ -632,16 +746,16 @@ const TestimonialsManager = {
 // ========================= PLATFORM FEATURES SHOWCASE =========================
 const PlatformFeaturesManager = {
     init() {
-        this.track      = document.getElementById('pfs-cards-track');
-        this.dotsWrap   = document.getElementById('pfs-dots-container');
-        this.prevBtn    = document.getElementById('pfs-prev-btn');
-        this.nextBtn    = document.getElementById('pfs-next-btn');
+        this.track = document.getElementById('pfs-cards-track');
+        this.dotsWrap = document.getElementById('pfs-dots-container');
+        this.prevBtn = document.getElementById('pfs-prev-btn');
+        this.nextBtn = document.getElementById('pfs-next-btn');
 
         if (!this.track || !this.prevBtn || !this.nextBtn) return;
 
-        this.cards      = Array.from(this.track.querySelectorAll('.pfs-card'));
+        this.cards = Array.from(this.track.querySelectorAll('.pfs-card'));
         this.totalCards = this.cards.length;
-        this.current    = 0; // current slide index (left-most visible card)
+        this.current = 0; // current slide index (left-most visible card)
 
         this.calcPerView();
         this.buildDots();
@@ -714,7 +828,7 @@ const PlatformFeaturesManager = {
         dots.forEach((d, i) => d.classList.toggle('pfs-dot-active', i === this.current));
 
         // Button opacity hints
-        this.prevBtn.style.opacity = this.current === 0           ? '0.35' : '1';
+        this.prevBtn.style.opacity = this.current === 0 ? '0.35' : '1';
         this.nextBtn.style.opacity = this.current >= this.maxIndex ? '0.35' : '1';
     }
 };
@@ -729,7 +843,7 @@ const SplitServiceManager = {
         this.dynamicHeadline = document.getElementById('dynamic-headline');
         this.dynamicDesc = document.getElementById('dynamic-desc');
         this.panelContent = document.querySelector('.split-visuals .panel-content');
-        
+
         if (!this.navBtns.length || !this.dynamicImg || !this.section) return;
 
         this.activeIndex = 0;
@@ -746,7 +860,7 @@ const SplitServiceManager = {
         // Remove active class from all
         this.navBtns.forEach(b => b.classList.remove('active'));
         targetBtn.classList.add('active');
-        
+
         // Get data attributes
         const newImg = targetBtn.getAttribute('data-img');
         const newLabel = targetBtn.getAttribute('data-label');
@@ -790,11 +904,11 @@ const SplitServiceManager = {
             if (scrollTop >= 0 && scrollTop <= maxScroll) {
                 let progress = scrollTop / maxScroll;
                 progress = Math.max(0, Math.min(1, progress));
-                
+
                 const total = this.navBtns.length;
                 let index = Math.floor(progress * total);
                 if (index >= total) index = total - 1;
-                
+
                 this.activateTab(index);
             } else if (scrollTop < 0) {
                 this.activateTab(0);
@@ -810,11 +924,11 @@ const SplitServiceManager = {
                     const sectionTop = this.section.getBoundingClientRect().top + window.scrollY;
                     const maxScroll = this.section.offsetHeight - window.innerHeight;
                     const total = this.navBtns.length;
-                    
+
                     // Scroll to the exact middle of the segment to ensure it activates
                     const segmentHeight = maxScroll / total;
                     const targetScroll = sectionTop + (segmentHeight * index) + (segmentHeight / 2);
-                    
+
                     window.scrollTo({
                         top: targetScroll,
                         behavior: 'smooth'
@@ -1256,7 +1370,7 @@ const GsFunnelManager = {
                     funnelSubtitle.innerHTML = data.subtitle;
                     funnelIcon.className = "fas " + data.icon;
                     funnelDesc.innerHTML = data.desc;
-                    
+
                     funnelTactics.innerHTML = '';
                     data.tactics.forEach(tactic => {
                         const item = document.createElement('div');
@@ -1310,22 +1424,22 @@ const GsFaqManager = {
         faqItems.forEach(item => {
             const trigger = item.querySelector('.faq-trigger');
             const content = item.querySelector('.faq-content');
-            
+
             trigger.addEventListener('click', () => {
                 const isActive = item.classList.contains('faq-active');
-                
+
                 faqItems.forEach(i => {
                     i.classList.remove('faq-active');
                     i.querySelector('.faq-content').style.maxHeight = null;
                 });
-                
+
                 if (!isActive) {
                     item.classList.add('faq-active');
                     content.style.maxHeight = content.scrollHeight + 'px';
                 }
             });
         });
-        
+
         // Pre-open the first one
         const firstItem = faqItems[0];
         const firstContent = firstItem.querySelector('.faq-content');
@@ -1672,7 +1786,7 @@ const EmVisitorJourneyManager = {
             // Update line progress
             const isMobile = window.innerWidth <= 768;
             const pct = (idx / (journeyNodes.length - 1)) * 100;
-            
+
             if (isMobile) {
                 journeyProgress.style.height = pct + '%';
                 journeyProgress.style.width = '2px';
@@ -1740,14 +1854,14 @@ const EmKpiCounterManager = {
     init() {
         const kpiVals = document.querySelectorAll('#em-page .kpi-val');
         if (!kpiVals.length) return;
-        
+
         const animateKPI = (el) => {
             const target = parseInt(el.getAttribute('data-target'), 10);
             const suffix = el.getAttribute('data-suffix') || '';
             const format = el.getAttribute('data-format') || '';
             let current = 0;
             const increment = Math.ceil(target / 100);
-            
+
             const step = () => {
                 current += increment;
                 if (current < target) {
@@ -1787,22 +1901,22 @@ const EmFaqManager = {
         faqItems.forEach(item => {
             const trigger = item.querySelector('.faq-trigger');
             const content = item.querySelector('.faq-content');
-            
+
             trigger.addEventListener('click', () => {
                 const isActive = item.classList.contains('faq-active');
-                
+
                 faqItems.forEach(i => {
                     i.classList.remove('faq-active');
                     i.querySelector('.faq-content').style.maxHeight = null;
                 });
-                
+
                 if (!isActive) {
                     item.classList.add('faq-active');
                     content.style.maxHeight = content.scrollHeight + 'px';
                 }
             });
         });
-        
+
         // Pre-open first FAQ
         const firstFaq = faqItems[0];
         if (firstFaq) {
@@ -1815,6 +1929,72 @@ const EmFaqManager = {
     }
 };
 
+
+// ========================= FEATURED INSIGHTS =========================
+const InsightsManager = {
+    init() {
+        // 1. Scroll Reveal Animation for Cards
+        const cards = document.querySelectorAll('.insights-section .card');
+
+        cards.forEach(card => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(40px)';
+            card.style.transition = 'opacity 0.6s cubic-bezier(0.2, 0.8, 0.2, 1), transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1)';
+        });
+
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.15
+        };
+
+        const cardObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const index = Array.from(cards).indexOf(entry.target);
+                    const delay = (index % 3) * 150; // Stagger effect
+
+                    setTimeout(() => {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }, delay);
+
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        cards.forEach(card => cardObserver.observe(card));
+
+        // 2. Subtle 3D Tilt Effect on Mouse Move (skipped on touch devices)
+        const isTouchDevice = window.matchMedia('(hover: none) and (pointer: coarse)').matches;
+
+        if (!isTouchDevice) {
+            cards.forEach(card => {
+                card.addEventListener('mousemove', (e) => {
+                    const rect = card.getBoundingClientRect();
+                    const x = e.clientX - rect.left;
+                    const y = e.clientY - rect.top;
+
+                    const centerX = rect.width / 2;
+                    const centerY = rect.height / 2;
+
+                    const rotateX = ((y - centerY) / centerY) * -5;
+                    const rotateY = ((x - centerX) / centerX) * 5;
+
+                    card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)`;
+                    card.style.transition = 'transform 0.1s ease';
+                });
+
+                card.addEventListener('mouseleave', () => {
+                    card.style.transform = '';
+                    card.style.transition = 'transform 0.4s ease, box-shadow 0.4s ease, border-color 0.4s ease';
+                });
+            });
+        }
+    }
+};
+
 // ========================= INITIALIZE ALL MODULES =========================
 document.addEventListener('DOMContentLoaded', () => {
     NavManager.init();
@@ -1823,6 +2003,7 @@ document.addEventListener('DOMContentLoaded', () => {
     InsightsManager.init();
     ScrollTopManager.init();
     ServicesCarouselManager.init();
+    HomeRevealManager.init();
     EventsSliderManager.init();
     TestimonialsManager.init();
     PlatformFeaturesManager.init();
@@ -1830,7 +2011,7 @@ document.addEventListener('DOMContentLoaded', () => {
     EventRoleManager.init();
     EventsFilterManager.init();
     FaqAccordionManager.init();
-    
+
     // Services Page specific initializations (from services.html)
     SvcFaqManager.init();
     SvcRevealManager.init();

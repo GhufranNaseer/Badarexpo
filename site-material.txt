@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Featured Insights</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<style>
+/* =============================================================================
+   FEATURED INSIGHTS / NEWSROOM SECTION
+   ============================================================================= */
+.insights-section {
+    padding: 100px 0;
+    background: #080808;
+    color: #fff;
+    overflow: hidden;
+}
+
+.insights-section .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 24px;
+}
+
+.insights-section .section-title {
+    text-align: center;
+    font-size: clamp(32px, 5vw, 48px);
+    font-weight: 800;
+    margin-bottom: 60px;
+    background: linear-gradient(90deg, #fff, #999);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    letter-spacing: -1px;
+}
+
+.insights-section .cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 30px;
+}
+
+/* Base Card Style */
+.insights-section .card {
+    position: relative;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 24px;
+    padding: 35px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    transition: transform 0.4s ease, box-shadow 0.4s ease, border-color 0.4s ease;
+    cursor: pointer;
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    min-height: 380px;
+}
+
+.insights-section .card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+    border-color: rgba(255, 255, 255, 0.15);
+}
+
+.insights-section .card-content {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.insights-section .tag {
+    align-self: flex-start;
+    padding: 6px 14px;
+    border-radius: 30px;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    margin-bottom: 20px;
+}
+
+.insights-section .card h3 {
+    font-size: 20px;
+    line-height: 1.4;
+    font-weight: 700;
+    margin: 0 0 15px 0;
+    color: #fff;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.insights-section .card-description {
+    font-size: 14px;
+    line-height: 1.6;
+    color: #a0a0a0;
+    margin: 0;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.insights-section .card-link {
+    margin-top: auto;
+    font-size: 14px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #fff;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    opacity: 0.7;
+    padding-top: 20px;
+}
+
+.insights-section .card:hover .card-link {
+    opacity: 1;
+    transform: translateX(5px);
+}
+
+/* =============================================================================
+   CARD BACKGROUND SHAPES (Abstract Glassmorphism)
+   ============================================================================= */
+.insights-section .card > div[class^="shape"],
+.insights-section .card > div[class="glass"],
+.insights-section .card > div[class="ring"],
+.insights-section .card > div[class="blob"],
+.insights-section .card > div[class="small-circle"],
+.insights-section .card > div[class="wave"],
+.insights-section .card > div[class="circle"],
+.insights-section .card > div[class="lines"],
+.insights-section .card > div[class="glow"],
+.insights-section .card > div[class="diamond"],
+.insights-section .card > div[class="circle2"] {
+    position: absolute;
+    z-index: 1;
+    pointer-events: none;
+    transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Card 1 */
+.insights-section .card1 .shape1 {
+    width: 200px;
+    height: 200px;
+    background: radial-gradient(circle, #ff2e63 0%, transparent 70%);
+    top: -50px;
+    right: -50px;
+    opacity: 0.4;
+    filter: blur(30px);
+}
+.insights-section .card1 .shape2 {
+    width: 150px;
+    height: 150px;
+    background: radial-gradient(circle, #08d9d6 0%, transparent 70%);
+    bottom: -30px;
+    left: -30px;
+    opacity: 0.3;
+    filter: blur(40px);
+}
+.insights-section .card1:hover .shape1 { transform: scale(1.3) translate(-20px, 20px); opacity: 0.6; }
+
+/* Card 2 */
+.insights-section .card2 .glass {
+    width: 250px;
+    height: 250px;
+    background: radial-gradient(circle, #6c5ce7 0%, transparent 60%);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    opacity: 0.2;
+    filter: blur(45px);
+}
+.insights-section .card2 .ring {
+    width: 120px;
+    height: 120px;
+    border: 2px solid rgba(108, 92, 231, 0.3);
+    border-radius: 50%;
+    top: -20px;
+    right: -20px;
+}
+.insights-section .card2:hover .glass { opacity: 0.4; transform: translate(-50%, -50%) scale(1.2); }
+.insights-section .card2:hover .ring { transform: scale(1.1) rotate(15deg); border-color: rgba(108, 92, 231, 0.6); }
+
+/* Card 3 */
+.insights-section .card3 .blob {
+    width: 300px;
+    height: 300px;
+    background: radial-gradient(circle, #f9ca24 0%, transparent 60%);
+    bottom: -100px;
+    right: -50px;
+    opacity: 0.25;
+    filter: blur(50px);
+}
+.insights-section .card3 .small-circle {
+    width: 40px;
+    height: 40px;
+    background: #f0932b;
+    border-radius: 50%;
+    top: 30px;
+    left: 30px;
+    opacity: 0.8;
+    box-shadow: 0 0 20px #f0932b;
+}
+.insights-section .card3:hover .blob { opacity: 0.4; transform: translate(-30px, -30px); }
+.insights-section .card3:hover .small-circle { transform: translateY(20px) scale(0.8); }
+
+/* Card 4 */
+.insights-section .card4 .wave {
+    width: 100%;
+    height: 150px;
+    background: linear-gradient(180deg, transparent, rgba(232, 67, 147, 0.2));
+    bottom: 0;
+    left: 0;
+}
+.insights-section .card4 .circle {
+    width: 180px;
+    height: 180px;
+    background: radial-gradient(circle, #00cec9 0%, transparent 70%);
+    top: -40px;
+    left: -40px;
+    opacity: 0.3;
+    filter: blur(40px);
+}
+.insights-section .card4:hover .wave { background: linear-gradient(180deg, transparent, rgba(232, 67, 147, 0.4)); height: 180px; }
+.insights-section .card4:hover .circle { transform: scale(1.2); opacity: 0.5; }
+
+/* Card 5 */
+.insights-section .card5 .lines {
+    width: 100%;
+    height: 100%;
+    background: repeating-linear-gradient(45deg, transparent, transparent 10px, rgba(255,255,255,0.02) 10px, rgba(255,255,255,0.02) 20px);
+    top: 0;
+    left: 0;
+}
+.insights-section .card5 .glow {
+    width: 200px;
+    height: 200px;
+    background: radial-gradient(circle, #fd79a8 0%, transparent 60%);
+    bottom: -50px;
+    left: 50%;
+    transform: translateX(-50%);
+    opacity: 0.2;
+    filter: blur(40px);
+}
+.insights-section .card5:hover .glow { opacity: 0.5; transform: translateX(-50%) translateY(-20px); }
+
+/* Card 6 */
+.insights-section .card6 .diamond {
+    width: 100px;
+    height: 100px;
+    background: rgba(0, 184, 148, 0.2);
+    border: 1px solid rgba(0, 184, 148, 0.4);
+    transform: rotate(45deg);
+    top: -20px;
+    right: 40px;
+}
+.insights-section .card6 .circle2 {
+    width: 250px;
+    height: 250px;
+    background: radial-gradient(circle, #ffeaa7 0%, transparent 60%);
+    bottom: -80px;
+    left: -50px;
+    opacity: 0.15;
+    filter: blur(40px);
+}
+.insights-section .card6:hover .diamond { transform: rotate(90deg) scale(1.2); background: rgba(0, 184, 148, 0.4); }
+.insights-section .card6:hover .circle2 { opacity: 0.3; transform: scale(1.1); }
+
+/* =============================================================================
+   RESPONSIVE — TABLET & LAPTOP (≤1024px)
+   ============================================================================= */
+@media (max-width: 1024px) {
+    .insights-section {
+        padding: 80px 0;
+    }
+    .insights-section .cards {
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 24px;
+    }
+    .insights-section .card {
+        padding: 30px;
+        min-height: 340px;
+    }
+}
+
+/* =============================================================================
+   RESPONSIVE — TABLET / SMALL LAPTOP (≤768px)
+   ============================================================================= */
+@media (max-width: 768px) {
+    .insights-section {
+        padding: 60px 0;
+    }
+    .insights-section .container {
+        padding: 0 20px;
+    }
+    .insights-section .section-title {
+        margin-bottom: 40px;
+    }
+    .insights-section .cards {
+        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+        gap: 20px;
+    }
+    .insights-section .card {
+        padding: 26px;
+        min-height: 300px;
+        border-radius: 20px;
+    }
+    .insights-section .card h3 {
+        font-size: 18px;
+    }
+    .insights-section .card-description {
+        font-size: 13.5px;
+    }
+}
+
+/* =============================================================================
+   RESPONSIVE — MOBILE (≤600px) — single column stack
+   ============================================================================= */
+@media (max-width: 600px) {
+    .insights-section {
+        padding: 50px 0;
+    }
+    .insights-section .container {
+        padding: 0 16px;
+    }
+    .insights-section .section-title {
+        margin-bottom: 32px;
+        letter-spacing: -0.5px;
+    }
+    .insights-section .cards {
+        grid-template-columns: 1fr;
+        gap: 18px;
+    }
+    .insights-section .card {
+        padding: 24px 20px;
+        min-height: auto;
+        border-radius: 18px;
+    }
+    .insights-section .card h3 {
+        font-size: 18px;
+        -webkit-line-clamp: unset;
+    }
+    .insights-section .card-description {
+        font-size: 14px;
+        -webkit-line-clamp: unset;
+    }
+    .insights-section .tag {
+        font-size: 10px;
+        padding: 5px 12px;
+        margin-bottom: 14px;
+    }
+    .insights-section .card-link {
+        padding-top: 14px;
+    }
+}
+
+/* =============================================================================
+   RESPONSIVE — SMALL MOBILE (≤400px)
+   ============================================================================= */
+@media (max-width: 400px) {
+    .insights-section .container {
+        padding: 0 12px;
+    }
+    .insights-section .card {
+        padding: 20px 16px;
+    }
+    .insights-section .card h3 {
+        font-size: 17px;
+    }
+}
+
+/* Disable heavy hover-only transforms on touch devices so tap doesn't get stuck mid-animation */
+@media (hover: none) and (pointer: coarse) {
+    .insights-section .card:hover {
+        transform: none;
+        box-shadow: none;
+    }
+}
+</style>
+</head>
+<body>
+
+<section class="insights-section">
+        <div class="container">
+            <h2 class="section-title">Featured Insights</h2>
+            <div class="cards">
+                <!-- CARD 1 -->
+                <article class="card card1">
+                    <div class="shape1"></div>
+                    <div class="shape2"></div>
+                    <div class="card-content">
+                        <div class="tag">Newsroom</div>
+                        <h3>Pakistan's Premier Defense Exhibition IDEAS 2024 Successfully Organized by Badar Expo</h3>
+                        <p class="card-description">IDEAS 2024 brought together global defense industry leaders,
+                            showcasing Pakistan's growing capabilities in defense production and international
+                            collaboration.</p>
+                        <div class="card-link">Read More <i class="fas fa-arrow-right"></i></div>
+                    </div>
+                </article>
+
+                <!-- CARD 2 -->
+                <article class="card card2">
+                    <div class="glass"></div>
+                    <div class="ring"></div>
+                    <div class="card-content">
+                        <div class="tag">Newsroom</div>
+                        <h3>ITCN Asia 2024: Badar Expo Sets New Benchmark for Tech Exhibitions in the Region</h3>
+                        <p class="card-description">As the largest tech event in Pakistan, ITCN Asia 2024 facilitated
+                            millions in investment and digital transformation across the regional IT landscape.</p>
+                        <div class="card-link">Read More <i class="fas fa-arrow-right"></i></div>
+                    </div>
+                </article>
+
+                <!-- CARD 3 -->
+                <article class="card card3">
+                    <div class="blob"></div>
+                    <div class="small-circle"></div>
+                    <div class="card-content">
+                        <div class="tag">Newsroom</div>
+                        <h3>Badar Expo Solutions Recognized as the Leading Event Management Powerhouse in Pakistan</h3>
+                        <p class="card-description">BXSS continues to dominate the industry by delivering world-class
+                            exhibition management services and setting excellence standards for two decades.</p>
+                        <div class="card-link">Read More <i class="fas fa-arrow-right"></i></div>
+                    </div>
+                </article>
+
+                <!-- CARD 4 -->
+                <article class="card card4">
+                    <div class="wave"></div>
+                    <div class="circle"></div>
+                    <div class="card-content">
+                        <div class="tag">Newsroom</div>
+                        <h3>Driving Domestic Trade: My Karachi Exhibition 2024 Sees Record Footfall and B2B Success</h3>
+                        <p class="card-description">The 'My Karachi' exhibition became a vital bridge for local
+                            industries to connect with consumers, driving significant domestic trade volume in 2024.</p>
+                        <div class="card-link">Read More <i class="fas fa-arrow-right"></i></div>
+                    </div>
+                </article>
+
+                <!-- CARD 5 -->
+                <article class="card card5">
+                    <div class="lines"></div>
+                    <div class="glow"></div>
+                    <div class="card-content">
+                        <div class="tag">Blog</div>
+                        <h3>The Strategic Role of B2B Exhibitions in Boosting Pakistan's Industrial Growth</h3>
+                        <p class="card-description">Exploring how high-impact B2B forums organized by Badar Expo act as
+                            catalysts for export growth and industrial innovation in Pakistan.</p>
+                        <div class="card-link">Read More <i class="fas fa-arrow-right"></i></div>
+                    </div>
+                </article>
+
+                <!-- CARD 6 -->
+                <article class="card card6">
+                    <div class="diamond"></div>
+                    <div class="circle2"></div>
+                    <div class="card-content">
+                        <div class="tag">Case Study</div>
+                        <h3>Empowering the Textile Sector: Insights from the 20th Textile Asia International Expo</h3>
+                        <p class="card-description">A deep dive into how Textile Asia 2024 provided local manufacturers
+                            with global reach and access to cutting-edge international machinery.</p>
+                        <div class="card-link">Read More <i class="fas fa-arrow-right"></i></div>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+<script>
+// =============================================================================
+//   FEATURED INSIGHTS / NEWSROOM JAVASCRIPT (Scroll Reveal & 3D Tilt)
+// =============================================================================
+document.addEventListener('DOMContentLoaded', () => {
+    
+    // 1. Scroll Reveal Animation for Cards
+    const cards = document.querySelectorAll('.insights-section .card');
+    
+    cards.forEach(card => {
+        card.style.opacity = '0';
+        card.style.transform = 'translateY(40px)';
+        card.style.transition = 'opacity 0.6s cubic-bezier(0.2, 0.8, 0.2, 1), transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1)';
+    });
+
+    const observerOptions = {
+        root: null,
+        rootMargin: '0px',
+        threshold: 0.15
+    };
+
+    const cardObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const index = Array.from(cards).indexOf(entry.target);
+                const delay = (index % 3) * 150; // Stagger effect
+                
+                setTimeout(() => {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }, delay);
+                
+                observer.unobserve(entry.target);
+            }
+        });
+    }, observerOptions);
+
+    cards.forEach(card => cardObserver.observe(card));
+
+    // 2. Subtle 3D Tilt Effect on Mouse Move (skipped on touch devices)
+    const isTouchDevice = window.matchMedia('(hover: none) and (pointer: coarse)').matches;
+
+    if (!isTouchDevice) {
+        cards.forEach(card => {
+            card.addEventListener('mousemove', (e) => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                
+                const centerX = rect.width / 2;
+                const centerY = rect.height / 2;
+                
+                const rotateX = ((y - centerY) / centerY) * -5;
+                const rotateY = ((x - centerX) / centerX) * 5;
+                
+                card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)`;
+                card.style.transition = 'transform 0.1s ease';
+            });
+
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = '';
+                card.style.transition = 'transform 0.4s ease, box-shadow 0.4s ease, border-color 0.4s ease';
+            });
+        });
+    }
+});
+</script>
+
+</body>
+</html>
