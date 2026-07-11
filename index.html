@@ -62,236 +62,180 @@
 
 <body>
     <!-- ========================= [TEMPLATE: header.php START] ========================= -->
-    <!-- TOP BAR -->
-    <header class="topbar">
-        <div class="topbar-left">
-            <span><i class="fas fa-phone"></i> +92 21 3482 1159</span>
-            <span><i class="fas fa-envelope"></i> info@badarexpo.com</span>
+<!-- TOP BAR -->
+<header class="topbar">
+    <div class="topbar-left">
+        <span><i class="fas fa-phone"></i> +92 21 3482 1159</span>
+        <span><i class="fas fa-envelope"></i> info@badarexpo.com</span>
+    </div>
+    <div class="topbar-right">
+        <div class="lang-dropdown">
+            <button class="lang-btn" id="lang-btn">
+                <i class="fas fa-globe"></i> <span id="current-lang">EN</span> <i class="fas fa-chevron-down"></i>
+            </button>
+            <ul class="lang-list">
+                <li data-lang="en">English</li>
+                <li data-lang="ur">اردو (Urdu)</li>
+                <li data-lang="ar">العربية (Arabic)</li>
+            </ul>
         </div>
-        <div class="topbar-right">
-            <div class="lang-dropdown">
-                <button class="lang-btn" id="lang-btn">
-                    <i class="fas fa-globe"></i> <span id="current-lang">EN</span> <i class="fas fa-chevron-down"></i>
-                </button>
-                <ul class="lang-list">
-                    <li data-lang="en">English</li>
-                    <li data-lang="ur">اردو (Urdu)</li>
-                    <li data-lang="ar">العربية (Arabic)</li>
+        <a href="https://www.facebook.com/BXSSpakistan/" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+        <a href="https://www.linkedin.com/company/bxsspakistan" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+        <a href="https://www.instagram.com/bxsspakistan/" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+        <a href="https://www.youtube.com/@BXSSpakistan" target="_blank" rel="noopener noreferrer" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+        <a href="https://x.com/BXSSpakistan" target="_blank" rel="noopener noreferrer" aria-label="X (Twitter)"><i class="fab fa-x-twitter"></i></a>
+        <a href="https://www.tiktok.com/@badarexpo" target="_blank" rel="noopener noreferrer" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+    </div>
+</header>
+
+<!-- NAVIGATION -->
+<nav class="navbar">
+    <div class="logo">
+        <a href="index.html"><img src="assets/images/logo/favicon.webp" alt="Badar Expo Logo" class="logo-img"></a>
+    </div>
+
+    <!-- Hamburger Icon -->
+    <div class="nav-toggle" id="mobile-menu-toggle">
+        <i class="fas fa-bars"></i>
+    </div>
+
+    <div class="menu" id="nav-menu">
+        <div class="nav-item active-nav"><a href="index.html"><span>Home</span></a></div>
+        <div class="nav-item"><a href="about.html"><span>About Us</span></a></div>
+
+        <div class="nav-item dropdown" data-target="services">
+            <a href="services.html"><span>Services <i class="fas fa-chevron-down"></i></span></a>
+            <ul class="mobile-submenu">
+                <li><a href="exhibitionmanagement.html">Exhibition Management</a></li>
+                <li><a href="exhibitionmanagement.html#conference">Conference Management</a></li>
+                <li><a href="exhibitionmanagement.html#corporate">Corporate Events</a></li>
+                <li><a href="construction-design.html">Construction &amp; Design</a></li>
+                <li><a href="growthservices.html">Growth Services</a></li>
+            </ul>
+        </div>
+        <div class="nav-item dropdown" data-target="events">
+            <a href="events.html"><span>Events <i class="fas fa-chevron-down"></i></span></a>
+            <ul class="mobile-submenu">
+                <li><a href="events.html#our-role">Owned Events</a></li>
+                <li><a href="events.html#our-role">Co-Organized</a></li>
+                <li><a href="events.html#our-role">Managed Events</a></li>
+            </ul>
+        </div>
+
+        <div class="nav-item"><a href="#"><span>Industries</span></a></div>
+        <div class="nav-item"><a href="#"><span>Global Reach</span></a></div>
+
+        <div class="nav-item dropdown" data-target="insights">
+            <span>Insights <i class="fas fa-chevron-down"></i></span>
+            <ul class="mobile-submenu">
+                <li><a href="#">Media Gallery</a></li>
+                <li><a href="#">Blogs</a></li>
+                <li><a href="#">News &amp; Updates</a></li>
+            </ul>
+        </div>
+        <div class="nav-item"><a href="contact.html"><span>Contact</span></a></div>
+
+        <!-- ACTION BUTTONS (Moved inside menu for mobile) -->
+        <div class="mobile-actions">
+            <button class="btn btn-dark">Visitor</button>
+            <button class="btn btn-light">Partner</button>
+        </div>
+    </div>
+
+    <!-- MEGA MENU WRAPPER -->
+    <div class="mega-menu-wrapper" id="shared-mega-menu">
+        <!-- SERVICES CONTENT -->
+        <div id="content-services" class="mega-content">
+            <div class="column dynamic-links">
+                <h4><a href="exhibitionmanagement.html">Exhibition Management <i class="fas fa-chevron-right" style="font-size: 10px; opacity: 0.6;"></i></a></h4>
+                <a href="exhibitionmanagement.html" data-title="Exhibition Management" data-desc="Complete exhibition solutions from concept to execution for B2B and B2C platforms." data-image="assets/images/portfolio/ieee-exhibition.webp">Management</a>
+                <a href="exhibitionmanagement.html#conference" data-title="Conference Management" data-desc="Organizing world-class summits, technical seminars, and international conferences." data-image="assets/images/portfolio/ieee-seminar.webp">Conferences</a>
+                <a href="exhibitionmanagement.html#corporate" data-title="Corporate Events" data-desc="Bespoke events tailored to meet corporate objectives and brand positioning." data-image="assets/images/portfolio/ziauddin-convocation.webp">Corporate</a>
+            </div>
+            <div class="column dynamic-links">
+                <h4><a href="construction-design.html">Construction &amp; Design <i class="fas fa-chevron-right" style="font-size: 10px; opacity: 0.6;"></i></a></h4>
+                <ul class="bullet-list">
+                    <li><a href="construction-design.html#canopy" data-title="Canopy Octanorm Building" data-desc="Standardized modular shell schemes for professional exhibitions and trade shows." data-image="assets/images/portfolio/ieee-booth.webp">Canopy Octanorm Building</a></li>
+                    <li><a href="construction-design.html#stall" data-title="Stall Design &amp; Fabrication" data-desc="Custom-built creative booths and designer stalls that make your brand stand out." data-image="assets/images/portfolio/ieee-booth.webp">Stall Design &amp; Fabrication</a></li>
+                    <li><a href="construction-design.html#led" data-title="LED Screens" data-desc="High-definition LED walls and display panels for impactful visual storytelling." data-image="assets/images/portfolio/concert-stage.webp">LED Screens</a></li>
+                    <li><a href="construction-design.html#av" data-title="Audio Visual Equipment" data-desc="Professional sound, lighting, and projection systems tailored for any event size." data-image="assets/images/portfolio/concert-stage.webp">Audio Visual Equipment</a></li>
+                    <li><a href="construction-design.html#furniture" data-title="Rental of Furniture" data-desc="Premium lounge sets, sleek corporate furniture, and event seating solutions." data-image="assets/images/portfolio/ieee-exhibition.webp">Rental of Furniture</a></li>
+                    <li><a href="construction-design.html#kiosks" data-title="Interactive Kiosks" data-desc="Engage your audience with touch-screen technology and digital information points." data-image="assets/images/portfolio/ieee-kiosk.webp">Interactive Kiosks</a></li>
+                    <li><a href="construction-design.html#branding" data-title="Indoor Outdoor Advertising" data-desc="Strategic billboard placement and large-format signage to maximize brand reach." data-image="assets/images/portfolio/global-sme-banner.webp">Branding &amp; Production</a></li>
                 </ul>
             </div>
-            <a href="https://www.facebook.com/BXSSpakistan/" target="_blank" rel="noopener noreferrer"
-                aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-            <a href="https://www.linkedin.com/company/bxsspakistan" target="_blank" rel="noopener noreferrer"
-                aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-            <a href="https://www.instagram.com/bxsspakistan/" target="_blank" rel="noopener noreferrer"
-                aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-            <a href="https://www.youtube.com/@BXSSpakistan" target="_blank" rel="noopener noreferrer"
-                aria-label="YouTube"><i class="fab fa-youtube"></i></a>
-            <a href="https://x.com/BXSSpakistan" target="_blank" rel="noopener noreferrer" aria-label="X (Twitter)"><i
-                    class="fab fa-x-twitter"></i></a>
-            <a href="https://www.tiktok.com/@badarexpo" target="_blank" rel="noopener noreferrer" aria-label="TikTok"><i
-                    class="fab fa-tiktok"></i></a>
-        </div>
-    </header>
-
-    <!-- NAVIGATION -->
-    <nav class="navbar">
-        <div class="logo">
-            <a href="index.html"><img src="assets/images/logo/favicon.webp" alt="Badar Expo Logo" class="logo-img"></a>
-        </div>
-
-        <!-- Hamburger Icon -->
-        <div class="nav-toggle" id="mobile-menu-toggle">
-            <i class="fas fa-bars"></i>
-        </div>
-
-        <div class="menu" id="nav-menu">
-            <div class="nav-item active-nav"><a href="index.html"><span>Home</span></a></div>
-            <div class="nav-item"><a href="about.html"><span>About Us</span></a></div>
-
-
-            <div class="nav-item dropdown " data-target="services">
-                <a href="services.html"><span>Services <i class="fas fa-chevron-down"></i></span></a>
-                <ul class="mobile-submenu">
-                    <li><a href="exhibitionmanagement.html">Exhibition Management</a></li>
-                    <li><a href="exhibitionmanagement.html#conference">Conference Management</a></li>
-                    <li><a href="exhibitionmanagement.html#corporate">Corporate Events</a></li>
-                    <li><a href="construction-design.html">Construction &amp; Design</a></li>
-                    <li><a href="growthservices.html">Growth Services</a></li>
-                </ul>
+            <div class="column dynamic-links">
+                <h4><a href="growthservices.html">Growth Services <i class="fas fa-chevron-right" style="font-size: 10px; opacity: 0.6;"></i></a></h4>
+                <a href="growthservices.html#pillars" data-title="B2B Matchmaking" data-desc="Connecting global buyers with suppliers through strategic high-level networking." data-image="assets/images/portfolio/china-embassy.webp">B2B Matchmaking</a>
+                <a href="growthservices.html#pillars" data-title="Event Marketing" data-desc="Innovative PR and media strategies designed to drive maximum event attendance." data-image="assets/images/portfolio/global-sme-banner.webp">Event Marketing</a>
+                <a href="growthservices.html#pillars" data-title="Digital Production" data-desc="Creative content, live streaming, and digital solutions for the modern event landscape." data-image="assets/images/portfolio/concert-stage.webp">Digital Production</a>
             </div>
-            <div class="nav-item dropdown " data-target="events">
-                <a href="events.html"><span>Events <i class="fas fa-chevron-down"></i></span></a>
-                <ul class="mobile-submenu">
-                    <li><a href="events.html#our-role">Owned Events</a></li>
-                    <li><a href="events.html#our-role">Co-Organized</a></li>
-                    <li><a href="events.html#our-role">Managed Events</a></li>
-                </ul>
-            </div>
-
-            <div class="nav-item"><a href="#"><span>Industries</span></a></div>
-            <div class="nav-item"><a href="#"><span>Global Reach</span></a></div>
-
-            <div class="nav-item dropdown" data-target="insights">
-                <span>Insights <i class="fas fa-chevron-down"></i></span>
-                <ul class="mobile-submenu">
-                    <li><a href="#">Media Gallery</a></li>
-                    <li><a href="#">Blogs</a></li>
-                    <li><a href="#">News &amp; Updates</a></li>
-                </ul>
-            </div>
-            <div class="nav-item "><a href="contact.html"><span>Contact</span></a></div>
-
-            <!-- ACTION BUTTONS (Moved inside menu for mobile) -->
-            <div class="mobile-actions">
-                <button class="btn btn-dark">Visitor</button>
-                <button class="btn btn-light">Partner</button>
+            <div class="column highlight">
+                <div class="highlight-content-box">
+                    <img src="assets/images/portfolio/ieee-exhibition.webp" alt="Services Highlight" class="dynamic-img" loading="lazy" width="300" height="160">
+                    <strong class="dynamic-title">End-to-End Solutions</strong>
+                    <p class="dynamic-desc">We design and scale world-class exhibitions &amp; industry platforms.</p>
+                </div>
             </div>
         </div>
 
-        <!-- MEGA MENU WRAPPER -->
-        <div class="mega-menu-wrapper" id="shared-mega-menu">
-            <!-- SERVICES CONTENT -->
-            <div id="content-services" class="mega-content">
-                <div class="column dynamic-links">
-                    <h4><a href="exhibitionmanagement.html">Exhibition Management <i class="fas fa-chevron-right"
-                                style="font-size: 10px; opacity: 0.6;"></i></a></h4>
-                    <a href="exhibitionmanagement.html" data-title="Exhibition Management"
-                        data-desc="Complete exhibition solutions from concept to execution for B2B and B2C platforms."
-                        data-image="assets/images/portfolio/ieee-exhibition.webp">Management</a>
-                    <a href="exhibitionmanagement.html#conference" data-title="Conference Management"
-                        data-desc="Organizing world-class summits, technical seminars, and international conferences."
-                        data-image="assets/images/portfolio/ieee-seminar.webp">Conferences</a>
-                    <a href="exhibitionmanagement.html#corporate" data-title="Corporate Events"
-                        data-desc="Bespoke events tailored to meet corporate objectives and brand positioning."
-                        data-image="assets/images/portfolio/ziauddin-convocation.webp">Corporate</a>
-                </div>
-                <div class="column dynamic-links">
-                    <h4><a href="construction-design.html">Construction &amp; Design <i class="fas fa-chevron-right"
-                                style="font-size: 10px; opacity: 0.6;"></i></a></h4>
-                    <ul class="bullet-list">
-                        <li><a href="construction-design.html#canopy" data-title="Canopy Octanorm Building"
-                                data-desc="Standardized modular shell schemes for professional exhibitions and trade shows."
-                                data-image="assets/images/portfolio/ieee-booth.webp">Canopy Octanorm Building</a></li>
-                        <li><a href="construction-design.html#stall" data-title="Stall Design &amp; Fabrication"
-                                data-desc="Custom-built creative booths and designer stalls that make your brand stand out."
-                                data-image="assets/images/portfolio/ieee-booth.webp">Stall Design &amp; Fabrication</a>
-                        </li>
-                        <li><a href="construction-design.html#led" data-title="LED Screens"
-                                data-desc="High-definition LED walls and display panels for impactful visual storytelling."
-                                data-image="assets/images/portfolio/concert-stage.webp">LED Screens</a></li>
-                        <li><a href="construction-design.html#av" data-title="Audio Visual Equipment"
-                                data-desc="Professional sound, lighting, and projection systems tailored for any event size."
-                                data-image="assets/images/portfolio/concert-stage.webp">Audio Visual Equipment</a></li>
-                        <li><a href="construction-design.html#furniture" data-title="Rental of Furniture"
-                                data-desc="Premium lounge sets, sleek corporate furniture, and event seating solutions."
-                                data-image="assets/images/portfolio/ieee-exhibition.webp">Rental of Furniture</a></li>
-                        <li><a href="construction-design.html#kiosks" data-title="Interactive Kiosks"
-                                data-desc="Engage your audience with touch-screen technology and digital information points."
-                                data-image="assets/images/portfolio/ieee-kiosk.webp">Interactive Kiosks</a></li>
-                        <li><a href="construction-design.html#branding" data-title="Indoor Outdoor Advertising"
-                                data-desc="Strategic billboard placement and large-format signage to maximize brand reach."
-                                data-image="assets/images/portfolio/global-sme-banner.webp">Branding &amp;
-                                Production</a></li>
-                    </ul>
-                </div>
-                <div class="column dynamic-links">
-                    <h4><a href="growthservices.html">Growth Services <i class="fas fa-chevron-right"
-                                style="font-size: 10px; opacity: 0.6;"></i></a></h4>
-                    <a href="growthservices.html#pillars" data-title="B2B Matchmaking"
-                        data-desc="Connecting global buyers with suppliers through strategic high-level networking."
-                        data-image="assets/images/portfolio/china-embassy.webp">B2B Matchmaking</a>
-                    <a href="growthservices.html#pillars" data-title="Event Marketing"
-                        data-desc="Innovative PR and media strategies designed to drive maximum event attendance."
-                        data-image="assets/images/portfolio/global-sme-banner.webp">Event Marketing</a>
-                    <a href="growthservices.html#pillars" data-title="Digital Production"
-                        data-desc="Creative content, live streaming, and digital solutions for the modern event landscape."
-                        data-image="assets/images/portfolio/concert-stage.webp">Digital Production</a>
-                </div>
-                <div class="column highlight">
-                    <div class="highlight-content-box">
-                        <img src="assets/images/portfolio/ieee-exhibition.webp" alt="Services Highlight"
-                            class="dynamic-img" loading="lazy" width="300" height="160">
-                        <strong class="dynamic-title">End-to-End Solutions</strong>
-                        <p class="dynamic-desc">We design and scale world-class exhibitions &amp; industry platforms.
-                        </p>
-                    </div>
-                </div>
+        <!-- EVENTS CONTENT -->
+        <div id="content-events" class="mega-content">
+            <div class="column dynamic-links">
+                <h4><a href="events.html#our-role">Our Role <i class="fas fa-chevron-right" style="font-size: 10px; opacity: 0.6;"></i></a></h4>
+                <a href="events.html#our-role" data-title="Owned Events" data-desc="Flagship trade fairs and industry-leading exhibitions fully conceptualized by Badar Expo." data-image="assets/images/portfolio/ieee-exhibition.webp">Owned Events</a>
+                <a href="events.html#our-role" data-title="Co-Organized" data-desc="Strategic partnerships with industry bodies to deliver high-impact global events." data-image="assets/images/portfolio/ideas-exhibition.webp">Co-Organized</a>
+                <a href="events.html#our-role" data-title="Managed Events" data-desc="Complete end-to-end event management solutions for third-party corporate and government clients." data-image="assets/images/portfolio/ziauddin-convocation.webp">Managed Events</a>
             </div>
-
-            <!-- EVENTS CONTENT -->
-            <div id="content-events" class="mega-content">
-                <div class="column dynamic-links">
-                    <h4><a href="events.html#our-role">Our Role <i class="fas fa-chevron-right"
-                                style="font-size: 10px; opacity: 0.6;"></i></a></h4>
-                    <a href="events.html#our-role" data-title="Owned Events"
-                        data-desc="Flagship trade fairs and industry-leading exhibitions fully conceptualized by Badar Expo."
-                        data-image="assets/images/portfolio/ieee-exhibition.webp">Owned Events</a>
-                    <a href="events.html#our-role" data-title="Co-Organized"
-                        data-desc="Strategic partnerships with industry bodies to deliver high-impact global events."
-                        data-image="assets/images/portfolio/ideas-exhibition.webp">Co-Organized</a>
-                    <a href="events.html#our-role" data-title="Managed Events"
-                        data-desc="Complete end-to-end event management solutions for third-party corporate and government clients."
-                        data-image="assets/images/portfolio/ziauddin-convocation.webp">Managed Events</a>
-                </div>
-                <div class="column dynamic-links">
-                    <h4><a href="events.html#formats">Formats <i class="fas fa-chevron-right"
-                                style="font-size: 10px; opacity: 0.6;"></i></a></h4>
-                    <a href="events.html#formats" data-title="Exhibitions"
-                        data-desc="Creating massive B2B and B2C platforms that connect global suppliers with buyers."
-                        data-image="assets/images/portfolio/dalfa-cattle-show.webp">Exhibitions</a>
-                    <a href="events.html#formats" data-title="Conferences"
-                        data-desc="Organizing world-class summits, technical seminars, and international conferences."
-                        data-image="assets/images/portfolio/ieee-seminar.webp">Conferences</a>
-                    <a href="events.html#formats" data-title="Industrial Forums"
-                        data-desc="Facilitating high-level dialogue between government and industry leaders."
-                        data-image="assets/images/portfolio/saudi-delegation.webp">Industrial Forums</a>
-                </div>
-                <div class="column highlight">
-                    <div class="highlight-content-box">
-                        <img src="assets/images/portfolio/ideas-seminar.webp" alt="Events Highlight" class="dynamic-img"
-                            loading="lazy" width="300" height="160">
-                        <strong class="dynamic-title">1500+ Events Delivered</strong>
-                        <p class="dynamic-desc">Connecting industries, governments &amp; global partners.</p>
-                    </div>
-                </div>
+            <div class="column dynamic-links">
+                <h4><a href="events.html#formats">Formats <i class="fas fa-chevron-right" style="font-size: 10px; opacity: 0.6;"></i></a></h4>
+                <a href="events.html#formats" data-title="Exhibitions" data-desc="Creating massive B2B and B2C platforms that connect global suppliers with buyers." data-image="assets/images/portfolio/dalfa-cattle-show.webp">Exhibitions</a>
+                <a href="events.html#formats" data-title="Conferences" data-desc="Organizing world-class summits, technical seminars, and international conferences." data-image="assets/images/portfolio/ieee-seminar.webp">Conferences</a>
+                <a href="events.html#formats" data-title="Industrial Forums" data-desc="Facilitating high-level dialogue between government and industry leaders." data-image="assets/images/portfolio/saudi-delegation.webp">Industrial Forums</a>
             </div>
-
-            <!-- INSIGHTS CONTENT -->
-            <div id="content-insights" class="mega-content">
-                <div class="insight-card">
-                    <img src="assets/images/portfolio/global-sme-banner.webp" alt="Blog" loading="lazy">
-                    <h4>Blog</h4>
-                    <p>Industry insights, event strategies &amp; updates.</p>
+            <div class="column highlight">
+                <div class="highlight-content-box">
+                    <img src="assets/images/portfolio/ideas-seminar.webp" alt="Events Highlight" class="dynamic-img" loading="lazy" width="300" height="160">
+                    <strong class="dynamic-title">1500+ Events Delivered</strong>
+                    <p class="dynamic-desc">Connecting industries, governments &amp; global partners.</p>
                 </div>
-                <div class="insight-card">
-                    <img src="assets/images/portfolio/china-embassy.webp" alt="Media" loading="lazy">
-                    <h4>Media</h4>
-                    <p>Press coverage, interviews &amp; event highlights.</p>
-                </div>
-                <div class="insight-card">
-                    <img src="assets/images/portfolio/concert-audience.webp" alt="Gallery" loading="lazy">
-                    <h4>Gallery</h4>
-                    <p>Moments captured from our mega events.</p>
-                </div>
-            </div>
-
-        </div>
-
-        <!-- ACTION BUTTONS (Desktop Only) -->
-        <div class="nav-right-icons">
-            <div class="search-trigger" id="search-toggle">
-                <i class="fas fa-magnifying-glass"></i>
-                <span class="search-text">Search</span>
-            </div>
-
-            <div class="actions">
-                <button class="btn btn-dark">Visitor</button>
-                <button class="btn btn-light">Partner</button>
             </div>
         </div>
-    </nav>
-    <!-- ========================= [TEMPLATE: header.php END] ========================= -->
+
+        <!-- INSIGHTS CONTENT -->
+        <div id="content-insights" class="mega-content">
+            <div class="insight-card">
+                <img src="assets/images/portfolio/global-sme-banner.webp" alt="Blog" loading="lazy">
+                <h4>Blog</h4>
+                <p>Industry insights, event strategies &amp; updates.</p>
+            </div>
+            <div class="insight-card">
+                <img src="assets/images/portfolio/china-embassy.webp" alt="Media" loading="lazy">
+                <h4>Media</h4>
+                <p>Press coverage, interviews &amp; event highlights.</p>
+            </div>
+            <div class="insight-card">
+                <img src="assets/images/portfolio/concert-audience.webp" alt="Gallery" loading="lazy">
+                <h4>Gallery</h4>
+                <p>Moments captured from our mega events.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- ACTION BUTTONS (Desktop Only) -->
+    <div class="nav-right-icons">
+        <div class="search-trigger" id="search-toggle">
+            <i class="fas fa-magnifying-glass"></i>
+            <span class="search-text">Search</span>
+        </div>
+
+        <div class="actions">
+            <button class="btn btn-dark">Visitor</button>
+            <button class="btn btn-light">Partner</button>
+        </div>
+    </div>
+</nav>
+<!-- ========================= [TEMPLATE: header.php END] ========================= -->
 
     <!-- ========================= [TEMPLATE PART: hero-slider.php START] ========================= -->
     <!-- HERO SECTION -->
@@ -317,9 +261,7 @@
 
     <!-- SEARCH OVERLAY -->
     <div class="search-overlay" id="search-overlay">
-        <div class="search-close" id="search-close">
-            <i class="fas fa-xmark"></i>
-        </div>
+    <div class="search-close" id="search-close"><i class="fas fa-xmark"></i></div>
         <div class="search-container">
             <div class="search-box">
                 <input type="text" placeholder="Search events, services, or insights..." id="search-input">
