@@ -1,0 +1,636 @@
+/* =============================================================================
+   BADAR EXPO SOLUTIONS - HOMEPAGE JAVASCRIPT (home.js)
+   ============================================================================= */
+
+// ========================= NEW SERVICES CAROUSEL MANAGER (STICKY SCROLL) =========================
+const ServicesCarouselManager = {
+    init() {
+        this.track = document.getElementById("services-scroll-track");
+        this.wrapper = document.getElementById("svc-cards-wrapper");
+        this.cardsContainer = document.getElementById("svc-cards");
+        this.dotsContainer = document.getElementById("svc-mobile-dots");
+        if (!this.track || !this.cardsContainer) return;
+
+        this.cards = Array.from(this.cardsContainer.children);
+        this.targetTranslateX = 0;
+        this.currentTranslateX = 0;
+        this.rafId = null;
+        this._onResize = null;
+        this._onScroll = null;
+        this._onWrapperScroll = null;
+
+        // Breakpoint matches the CSS @media (min-width: 1025px) rule.
+        // Below it, the CSS already switches to a native scroll-snap carousel,
+        // so the JS must NOT keep applying its own transform there.
+        this.mq = window.matchMedia("(min-width: 1025px)");
+        this.isDesktop = this.mq.matches;
+
+        this.buildMobileDots();
+        this.setupMode();
+
+        const handleChange = () => {
+            this.isDesktop = this.mq.matches;
+            this.teardownDesktop();
+            this.teardownMobile();
+            this.setupMode();
+        };
+        if (this.mq.addEventListener) {
+            this.mq.addEventListener("change", handleChange);
+        } else if (this.mq.addListener) {
+            // Safari < 14 fallback
+            this.mq.addListener(handleChange);
+        }
+    },
+
+    setupMode() {
+        if (this.isDesktop) {
+            this.enableDesktop();
+        } else {
+            this.enableMobile();
+        }
+    },
+
+    /* ---------- DESKTOP: sticky scroll-jack pan ---------- */
+    enableDesktop() {
+        this.calculateMaxScroll();
+
+        this._onResize = () => {
+            this.calculateMaxScroll();
+            this.updateTarget();
+        };
+        this._onScroll = () => this.updateTarget();
+
+        window.addEventListener("resize", this._onResize);
+        window.addEventListener("scroll", this._onScroll, { passive: true });
+
+        this.updateTarget();
+        this.startRender();
+    },
+
+    teardownDesktop() {
+        if (this._onResize) window.removeEventListener("resize", this._onResize);
+        if (this._onScroll) window.removeEventListener("scroll", this._onScroll);
+        this.stopRender();
+        this.cardsContainer.style.transform = "";
+        this.currentTranslateX = 0;
+        this.targetTranslateX = 0;
+    },
+
+    calculateMaxScroll() {
+        // Full scrollable width of the cards minus the visible viewport width
+        this.maxScroll = this.cardsContainer.scrollWidth - window.innerWidth;
+        if (this.maxScroll < 0) this.maxScroll = 0;
+    },
+
+    updateTarget() {
+        const trackRect = this.track.getBoundingClientRect();
+
+        // The track's available scrolling height minus one viewport
+        const totalScrollableHeight = trackRect.height - window.innerHeight;
+
+        // Calculate progress based on how far the top of the track has moved past the top of the viewport
+        let progress = totalScrollableHeight > 0 ? -trackRect.top / totalScrollableHeight : 0;
+
+        // Clamp progress between 0 and 1
+        progress = Math.max(0, Math.min(1, progress));
+
+        // Update the target horizontal translation
+        this.targetTranslateX = progress * -this.maxScroll;
+    },
+
+    startRender() {
+        const loop = () => {
+            // Linear interpolation (lerp) for buttery smooth momentum
+            // 0.08 is the easing factor. Lower = smoother/slower, Higher = snappier
+            this.currentTranslateX += (this.targetTranslateX - this.currentTranslateX) * 0.08;
+
+            // Only update the DOM if the difference is noticeable (optimizes performance)
+            if (Math.abs(this.targetTranslateX - this.currentTranslateX) > 0.05) {
+                this.cardsContainer.style.transform = `translate3d(${this.currentTranslateX}px, 0, 0)`;
+            }
+
+            this.rafId = requestAnimationFrame(loop);
+        };
+        this.rafId = requestAnimationFrame(loop);
+    },
+
+    stopRender() {
+        if (this.rafId) cancelAnimationFrame(this.rafId);
+        this.rafId = null;
+    },
+
+    /* ---------- MOBILE / TABLET: native scroll-snap + progress dots ---------- */
+    enableMobile() {
+        if (!this.wrapper) return;
+        this._onWrapperScroll = () => this.updateActiveDot();
+        this.wrapper.addEventListener("scroll", this._onWrapperScroll, { passive: true });
+        this.updateActiveDot();
+    },
+
+    teardownMobile() {
+        if (this.wrapper && this._onWrapperScroll) {
+            this.wrapper.removeEventListener("scroll", this._onWrapperScroll);
+        }
+    },
+
+    buildMobileDots() {
+        if (!this.dotsContainer) return;
+        this.dotsContainer.innerHTML = "";
+        this.cards.forEach((_, i) => {
+            const dot = document.createElement("span");
+            dot.className = "pfs-dot-mini" + (i === 0 ? " active" : "");
+            this.dotsContainer.appendChild(dot);
+        });
+    },
+
+    updateActiveDot() {
+        if (!this.dotsContainer || !this.wrapper || this.cards.length === 0) return;
+        const wrapperCenter = this.wrapper.scrollLeft + this.wrapper.clientWidth / 2;
+        let closestIndex = 0;
+        let closestDistance = Infinity;
+        this.cards.forEach((card, i) => {
+            const cardCenter = card.offsetLeft + card.offsetWidth / 2;
+            const distance = Math.abs(cardCenter - wrapperCenter);
+            if (distance < closestDistance) {
+                closestDistance = distance;
+                closestIndex = i;
+            }
+        });
+        Array.from(this.dotsContainer.children).forEach((dot, i) => {
+            dot.classList.toggle("active", i === closestIndex);
+        });
+    }
+};
+
+// ========================= HOME REVEAL ANIMATIONS =========================
+const HomeRevealManager = {
+    init() {
+        this.aboutRevealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('in-view');
+                    this.aboutRevealObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.15 });
+
+        document.querySelectorAll('.about-reveal').forEach(el => this.aboutRevealObserver.observe(el));
+
+        this.corporateRevealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('in-view');
+                    this.corporateRevealObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.1 });
+
+        const corporateContainer = document.querySelector('.corporate-services .editorial-container');
+        if (corporateContainer) {
+            this.corporateRevealObserver.observe(corporateContainer);
+        }
+    }
+};
+
+// ========================= EVENTS SHOWCASE SLIDER =========================
+const EventsSliderManager = {
+    init() {
+        this.slider = document.getElementById('evt-slider');
+        this.track = document.getElementById('evt-slider-track');
+        if (!this.slider || !this.track) return;
+
+        this.currentEl = document.getElementById('evt-current');
+        this.totalEl = document.getElementById('evt-total');
+        this.nextBtn = document.getElementById('evt-next');
+        this.prevBtn = document.getElementById('evt-prev');
+
+        // Setup Clones (1 Set before, 1 Set after)
+        this.originals = Array.from(this.track.querySelectorAll('.evt-card'));
+        this.count = this.originals.length;
+        this.totalEl.textContent = this.count;
+
+        // ------------------------------------------------------------------
+        // BUG FIX: previously each clone was prepended one-by-one inside the
+        // forEach loop. Because prepend() always inserts at the very front,
+        // repeatedly prepending in forward order (0,1,2,3,4) silently
+        // REVERSED the "before" clone set to (4,3,2,1,0). That mismatch is
+        // what caused the erratic jumps / wrong slide showing whenever the
+        // slider teleported backwards through the loop.
+        //
+        // Fix: build the "before" and "after" clone sets in two document
+        // fragments (in the correct original order) and insert each
+        // fragment as a single block. This guarantees both clone sets keep
+        // the same 0,1,2,3,4 order as the real slides.
+        // ------------------------------------------------------------------
+        const beforeFrag = document.createDocumentFragment();
+        const afterFrag = document.createDocumentFragment();
+
+        this.originals.forEach(card => {
+            const cloneBefore = card.cloneNode(true);
+            const cloneAfter = card.cloneNode(true);
+            cloneBefore.classList.add('is-clone');
+            cloneAfter.classList.add('is-clone');
+            beforeFrag.appendChild(cloneBefore);
+            afterFrag.appendChild(cloneAfter);
+        });
+
+        this.track.insertBefore(beforeFrag, this.track.firstChild);
+        this.track.appendChild(afterFrag);
+
+        this.allCards = Array.from(this.track.querySelectorAll('.evt-card'));
+        this.realOffset = this.count; // The index where the real slides start
+
+        // Motion State
+        this.activeIndex = 0; // Current active real slide (0-4)
+        this.targetX = 0;
+        this.currentX = 0;
+        this.lerp = 0.08; // Smoothness factor
+
+        // Dimensions
+        this.updateDimensions();
+        window.addEventListener('resize', () => {
+            this.updateDimensions();
+            // Re-center on the currently active slide after a resize so the
+            // slider doesn't drift out of alignment when card sizes change
+            // at different breakpoints.
+            this.jumpToReal(((this.activeIndex % this.count) + this.count) % this.count);
+        });
+
+        // Initial Position
+        this.jumpToReal(0);
+        this.currentX = this.targetX;
+        this.applyTransform();
+
+        // Interaction
+        this.allCards.forEach((card, i) => {
+            card.addEventListener('click', () => {
+                const realIdx = ((i - this.realOffset) % this.count + this.count) % this.count;
+                this.jumpToReal(realIdx);
+            });
+        });
+
+        this.nextBtn.addEventListener('click', () => this.next());
+        this.prevBtn.addEventListener('click', () => this.prev());
+
+        // Animation Loop
+        this.animate();
+    },
+
+    updateDimensions() {
+        if (this.allCards.length < 2) return;
+        this.slideStep = this.allCards[1].offsetLeft - this.allCards[0].offsetLeft;
+    },
+
+    jumpToReal(index) {
+        this.activeIndex = index;
+        const domIndex = index + this.realOffset;
+        const card = this.allCards[domIndex];
+
+        // Target: Center the card in the slider window
+        this.targetX = -(card.offsetLeft - (this.slider.offsetWidth / 2) + (card.offsetWidth / 2));
+
+        // Update UI
+        this.allCards.forEach(c => c.classList.remove('active'));
+        this.allCards[domIndex].classList.add('active');
+        this.currentEl.textContent = this.activeIndex + 1;
+    },
+
+    // ------------------------------------------------------------------
+    // BUG FIX: the previous "seamless teleportation" relied on a single
+    // pre-computed pixel value (slideStep * count) to decide when/how far
+    // to snap back after looping. Any tiny rounding mismatch between that
+    // assumed value and the real rendered layout would accumulate a little
+    // more on every loop — which is exactly why a specific slide (e.g.
+    // "IEEEP Fair 2025") would drift out of place every few loops, then
+    // "self correct" once you went backward and forward again.
+    //
+    // Fix: next()/prev() now re-anchor activeIndex back into the safe
+    // [0, count-1] range IMMEDIATELY (every click), using the REAL,
+    // freshly-measured pixel offset between the two DOM cards involved
+    // (old clone-set position vs the equivalent slide in the middle set).
+    // Because this delta is measured directly from the DOM every time
+    // (not assumed from a cached constant), there is no rounding drift —
+    // ever — no matter how long you hold down next/prev.
+    // ------------------------------------------------------------------
+    moveTo(newActiveIndex) {
+        this.activeIndex = newActiveIndex;
+        let domIndex = this.activeIndex + this.realOffset;
+        let card = this.allCards[domIndex];
+        this.targetX = -(card.offsetLeft - (this.slider.offsetWidth / 2) + (card.offsetWidth / 2));
+
+        this.allCards.forEach(c => c.classList.remove('active'));
+        card.classList.add('active');
+
+        const displayIdx = ((this.activeIndex % this.count) + this.count) % this.count;
+        this.currentEl.textContent = displayIdx + 1;
+
+        // Re-anchor if we've wandered into clone territory
+        if (this.activeIndex >= this.count || this.activeIndex < 0) {
+            const oldDomIndex = domIndex;
+            const wrappedIndex = ((this.activeIndex % this.count) + this.count) % this.count;
+            const newDomIndex = wrappedIndex + this.realOffset;
+            const delta = this.allCards[newDomIndex].offsetLeft - this.allCards[oldDomIndex].offsetLeft;
+
+            // Shift both currentX and targetX by the exact same real delta
+            // so the on-screen position doesn't move even a single pixel —
+            // only the internal bookkeeping (activeIndex/domIndex) changes.
+            this.currentX -= delta;
+            this.targetX -= delta;
+            this.activeIndex = wrappedIndex;
+
+            this.allCards.forEach(c => c.classList.remove('active'));
+            this.allCards[newDomIndex].classList.add('active');
+        }
+
+        this.applyTransform();
+    },
+
+    next() {
+        this.moveTo(this.activeIndex + 1);
+    },
+
+    prev() {
+        this.moveTo(this.activeIndex - 1);
+    },
+
+    applyTransform() {
+        this.track.style.transform = `translate3d(${this.currentX}px, 0, 0)`;
+    },
+
+    animate() {
+        this.currentX += (this.targetX - this.currentX) * this.lerp;
+        this.applyTransform();
+        requestAnimationFrame(() => this.animate());
+    }
+};
+
+// ========================= TESTIMONIALS MANAGER (INFINITE CAROUSEL) =========================
+const TestimonialsManager = {
+    init() {
+        this.track = document.getElementById('testi-track');
+        this.prevBtn = document.getElementById('testi-prev');
+        this.nextBtn = document.getElementById('testi-next');
+        if (!this.track) return;
+
+        this.cards = Array.from(this.track.querySelectorAll('.testimonial-card'));
+        this.originalCount = this.cards.length;
+
+        // 1. Clone set for infinite effect
+        this.cards.forEach(card => {
+            const clone = card.cloneNode(true);
+            clone.classList.add('is-clone');
+            this.track.appendChild(clone);
+        });
+
+        this.allCards = Array.from(this.track.querySelectorAll('.testimonial-card'));
+        this.currentIndex = 0;
+        this.isTransitioning = false;
+
+        // 2. Dimensions
+        this.updateDimensions();
+        window.addEventListener('resize', () => this.updateDimensions());
+
+        // 3. Navigation
+        this.nextBtn.addEventListener('click', () => this.move(1));
+        this.prevBtn.addEventListener('click', () => this.move(-1));
+
+        // 4. Initial Entrance Animation (Intersection Observer)
+        this.setupEntranceAnimation();
+    },
+
+    updateDimensions() {
+        if (this.allCards.length < 2) return;
+        this.cardWidth = this.allCards[0].offsetWidth;
+        this.gap = 32; // from CSS
+        this.step = this.cardWidth + this.gap;
+    },
+
+    move(direction) {
+        if (this.isTransitioning) return;
+        this.isTransitioning = true;
+
+        this.currentIndex += direction;
+        this.updatePosition();
+
+        // 5. Infinite Teleport Logic
+        setTimeout(() => {
+            // If we reached the start of the cloned set (moving forward)
+            if (this.currentIndex >= this.originalCount) {
+                this.currentIndex = 0;
+                this.track.style.transition = 'none';
+                this.updatePosition();
+                // Force reflow
+                this.track.offsetHeight;
+                this.track.style.transition = 'transform 0.6s cubic-bezier(0.23, 1, 0.32, 1)';
+            }
+            // If we moved before the first real card (moving backward)
+            if (this.currentIndex < 0) {
+                this.currentIndex = this.originalCount - 1;
+                this.track.style.transition = 'none';
+                this.updatePosition();
+                this.track.offsetHeight;
+                this.track.style.transition = 'transform 0.6s cubic-bezier(0.23, 1, 0.32, 1)';
+            }
+            this.isTransitioning = false;
+        }, 600);
+    },
+
+    updatePosition() {
+        const x = -(this.currentIndex * this.step);
+        this.track.style.transform = `translate3d(${x}px, 0, 0)`;
+    },
+
+    setupEntranceAnimation() {
+        const observerOptions = { threshold: 0.2 };
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    this.allCards.forEach((card, i) => {
+                        if (i < this.originalCount) { // Only animate first set
+                            setTimeout(() => {
+                                card.style.opacity = "1";
+                                card.style.transform = "translateY(0px)";
+                            }, i * 100);
+                        } else {
+                            card.style.opacity = "1";
+                            card.style.transform = "translateY(0px)";
+                        }
+                    });
+                    observer.disconnect();
+                }
+            });
+        }, observerOptions);
+
+        this.allCards.forEach(card => {
+            card.style.opacity = "0";
+            card.style.transform = "translateY(40px)";
+            card.style.transition = "all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1)";
+            observer.observe(card);
+        });
+    }
+};
+
+// ========================= PLATFORM FEATURES SHOWCASE =========================
+const PlatformFeaturesManager = {
+    init() {
+        this.track = document.getElementById('pfs-cards-track');
+        this.dotsWrap = document.getElementById('pfs-dots-container');
+        this.prevBtn = document.getElementById('pfs-prev-btn');
+        this.nextBtn = document.getElementById('pfs-next-btn');
+
+        if (!this.track || !this.prevBtn || !this.nextBtn) return;
+
+        this.cards = Array.from(this.track.querySelectorAll('.pfs-card'));
+        this.totalCards = this.cards.length;
+        this.current = 0; // current slide index (left-most visible card)
+
+        this.calcPerView();
+        this.buildDots();
+        this.updateUI();
+
+        // Button events
+        this.prevBtn.addEventListener('click', () => this.slide(-1));
+        this.nextBtn.addEventListener('click', () => this.slide(1));
+
+        // Recalculate on resize
+        window.addEventListener('resize', () => {
+            this.calcPerView();
+            // Clamp current so we never show blank space after resize
+            const maxIdx = this.totalCards - this.perView;
+            if (this.current > maxIdx) this.current = Math.max(0, maxIdx);
+            this.buildDots();
+            this.updateUI();
+        });
+    },
+
+    // ---- How many full cards are visible at once? ----
+    calcPerView() {
+        const w = window.innerWidth;
+        if (w <= 768) {
+            this.perView = 1;
+        } else if (w <= 1200) {
+            this.perView = 2;
+        } else {
+            this.perView = 4;
+        }
+        // Max steps we can scroll
+        this.maxIndex = Math.max(0, this.totalCards - this.perView);
+    },
+
+    // ---- Pixel width of one card + its gap (gap = 24px from CSS) ----
+    getCardStep() {
+        if (!this.cards[0]) return 0;
+        const gap = 24;
+        return this.cards[0].getBoundingClientRect().width + gap;
+    },
+
+    // ---- Build one dot per "page" ----
+    buildDots() {
+        if (!this.dotsWrap) return;
+        this.dotsWrap.innerHTML = '';
+
+        // Number of distinct pages = maxIndex + 1
+        const pageCount = this.maxIndex + 1;
+        for (let i = 0; i < pageCount; i++) {
+            const dot = document.createElement('div');
+            dot.className = 'pfs-dot';
+            dot.addEventListener('click', () => { this.current = i; this.updateUI(); });
+            this.dotsWrap.appendChild(dot);
+        }
+    },
+
+    // ---- Move by direction (-1 or +1) ----
+    slide(dir) {
+        this.current = Math.max(0, Math.min(this.maxIndex, this.current + dir));
+        this.updateUI();
+    },
+
+    // ---- Apply transform + sync dots + toggle button states ----
+    updateUI() {
+        const step = this.getCardStep();
+        this.track.style.transform = `translateX(-${this.current * step}px)`;
+
+        // Dots
+        const dots = this.dotsWrap ? this.dotsWrap.querySelectorAll('.pfs-dot') : [];
+        dots.forEach((d, i) => d.classList.toggle('pfs-dot-active', i === this.current));
+
+        // Button opacity hints
+        this.prevBtn.style.opacity = this.current === 0 ? '0.35' : '1';
+        this.nextBtn.style.opacity = this.current >= this.maxIndex ? '0.35' : '1';
+    }
+};
+
+// ========================= FEATURED INSIGHTS =========================
+const InsightsManager = {
+    init() {
+        // 1. Scroll Reveal Animation for Cards
+        const cards = document.querySelectorAll('.insights-section .card');
+
+        cards.forEach(card => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(40px)';
+            card.style.transition = 'opacity 0.6s cubic-bezier(0.2, 0.8, 0.2, 1), transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1)';
+        });
+
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.15
+        };
+
+        const cardObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const index = Array.from(cards).indexOf(entry.target);
+                    const delay = (index % 3) * 150; // Stagger effect
+
+                    setTimeout(() => {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }, delay);
+
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        cards.forEach(card => cardObserver.observe(card));
+
+        // 2. Subtle 3D Tilt Effect on Mouse Move (skipped on touch devices)
+        const isTouchDevice = window.matchMedia('(hover: none) and (pointer: coarse)').matches;
+
+        if (!isTouchDevice) {
+            cards.forEach(card => {
+                card.addEventListener('mousemove', (e) => {
+                    const rect = card.getBoundingClientRect();
+                    const x = e.clientX - rect.left;
+                    const y = e.clientY - rect.top;
+
+                    const centerX = rect.width / 2;
+                    const centerY = rect.height / 2;
+
+                    const rotateX = ((y - centerY) / centerY) * -5;
+                    const rotateY = ((x - centerX) / centerX) * 5;
+
+                    card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)`;
+                    card.style.transition = 'transform 0.1s ease';
+                });
+
+                card.addEventListener('mouseleave', () => {
+                    card.style.transform = '';
+                    card.style.transition = 'transform 0.4s ease, box-shadow 0.4s ease, border-color 0.4s ease';
+                });
+            });
+        }
+    }
+};
+
+// ========================= INITIALIZE ALL MODULES =========================
+document.addEventListener('DOMContentLoaded', () => {
+    ServicesCarouselManager.init();
+    HomeRevealManager.init();
+    EventsSliderManager.init();
+    TestimonialsManager.init();
+    PlatformFeaturesManager.init();
+    InsightsManager.init();
+});
