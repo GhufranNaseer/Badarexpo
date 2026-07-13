@@ -3168,3 +3168,455 @@ button:focus-visible,
     outline: 3px solid #e41f26;
     outline-offset: 3px;
 }
+
+/* ==========================================
+   CEO SECTION CSS (Appended from scrap.txt)
+   ========================================== */
+.ceo-section {
+    display: flex;
+    justify-content: space-between;
+    min-height: 80vh;
+    background: #0a0a0a;
+    color: #f0ece4;
+    font-family: 'Inter', sans-serif;
+}
+
+.ceo-image-col {
+    width: 40%;
+    position: relative;
+    overflow: hidden;
+    flex-shrink: 0;
+}
+
+.ceo-image-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to right, transparent 60%, #0a0a0a 100%);
+    z-index: 2;
+}
+
+.ceo-photo {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top center;
+    display: block;
+    filter: grayscale(15%);
+}
+
+.ceo-content-col {
+    width: 55%;
+    padding: 4rem 4.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.ceo-section .top-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 2rem;
+}
+
+.ceo-section .badge-line {
+    width: 32px;
+    height: 1px;
+    background: #ed1414;
+}
+
+.ceo-section .badge-text {
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    color: #ed1414;
+    text-transform: uppercase;
+}
+
+.ceo-section .ceo-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 48px;
+    font-weight: 400;
+    color: #f0ece4;
+    line-height: 1.1;
+    margin: 0 0 0.5rem 0;
+    letter-spacing: -0.5px;
+}
+
+.ceo-section .ceo-designation {
+    font-size: 13px;
+    font-weight: 300;
+    letter-spacing: 0.15em;
+    color: #9a9590;
+    text-transform: uppercase;
+    margin: 0 0 2rem 0;
+}
+
+.ceo-section .divider {
+    width: 48px;
+    height: 1px;
+    background: #2a2a2a;
+    margin-bottom: 2rem;
+}
+
+.ceo-section .ceo-quote {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    font-weight: 400;
+    font-style: italic;
+    color: #e7dfdf;
+    line-height: 1.6;
+    margin: 0 0 2rem 0;
+    padding-left: 1.5rem;
+    border-left: 1px solid #bd0000;
+}
+
+.ceo-section .ceo-message {
+    font-size: 14px;
+    font-weight: 300;
+    color: #9a9590;
+    line-height: 1.9;
+    margin: 0 0 2.5rem 0;
+    max-width: 520px;
+}
+
+.ceo-section .stats-row {
+    display: flex;
+    gap: 3rem;
+    margin-bottom: 2.5rem;
+    padding-top: 2rem;
+    border-top: 1px solid #1e1e1e;
+}
+
+.ceo-section .stat-item {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.ceo-section .stat-number {
+    font-family: 'Playfair Display', serif;
+    font-size: 36px;
+    font-weight: 400;
+    color: #f0ece4;
+    line-height: 1;
+    letter-spacing: -1px;
+}
+
+.ceo-section .stat-label {
+    font-size: 10px;
+    font-weight: 400;
+    letter-spacing: 0.15em;
+    color: #5a5550;
+    text-transform: uppercase;
+}
+
+.ceo-section .stat-divider {
+    width: 1px;
+    background: #1e1e1e;
+    align-self: stretch;
+}
+
+.ceo-section .signature-block {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.ceo-section .signature-svg {
+    width: 160px;
+    height: 56px;
+    margin-bottom: 4px;
+}
+
+.ceo-section .signature-name {
+    font-size: 13px;
+    font-weight: 400;
+    color: #f0ece4;
+    letter-spacing: 0.05em;
+}
+
+.ceo-section .signature-title {
+    font-size: 11px;
+    font-weight: 300;
+    color: #9d9a9a;
+    letter-spacing: 0.1em;
+}
+
+/* ====================================================================
+   RESPONSIVE LAYER
+   ==================================================================== */
+
+.ceo-section,
+.ceo-section * {
+    box-sizing: border-box;
+}
+
+.ceo-section {
+    overflow-x: hidden;
+}
+
+.ceo-section .stat-label {
+    overflow-wrap: break-word;
+}
+
+@media (max-width: 1024px) {
+    .ceo-section .ceo-content-col {
+        padding: 4rem 3rem 4rem 3rem;
+    }
+
+    .ceo-section .ceo-name {
+        font-size: clamp(34px, 4.6vw, 48px);
+    }
+
+    .ceo-section .ceo-quote {
+        font-size: clamp(18px, 2.3vw, 22px);
+    }
+
+    .ceo-section .ceo-message {
+        font-size: clamp(13px, 1.6vw, 14px);
+        max-width: 100%;
+    }
+
+    .ceo-section .stats-row {
+        gap: 2rem;
+        flex-wrap: wrap;
+    }
+
+    .ceo-section .stat-item {
+        flex: 1 1 auto;
+        min-width: 130px;
+    }
+
+    .ceo-section .stat-number {
+        font-size: clamp(28px, 3.6vw, 36px);
+    }
+}
+
+@media (max-width: 820px) {
+    .ceo-section .ceo-content-col {
+        padding: 3.5rem 2.25rem;
+    }
+
+    .ceo-section .top-badge {
+        margin-bottom: 2rem;
+    }
+
+    .ceo-section .ceo-name {
+        font-size: clamp(30px, 5vw, 38px);
+        margin-bottom: 0.4rem;
+    }
+
+    .ceo-section .ceo-designation {
+        margin-bottom: 2.25rem;
+    }
+
+    .ceo-section .divider {
+        margin-bottom: 2.25rem;
+    }
+
+    .ceo-section .ceo-quote {
+        margin-bottom: 2.25rem;
+        padding-left: 1.25rem;
+    }
+
+    .ceo-section .ceo-message {
+        margin-bottom: 2.25rem;
+    }
+
+    .ceo-section .stats-row {
+        gap: 1.5rem;
+        margin-bottom: 2.25rem;
+        padding-top: 2rem;
+    }
+
+    .ceo-section .stat-item {
+        min-width: 110px;
+    }
+
+    .ceo-section .stat-label {
+        font-size: 9px;
+        letter-spacing: 0.12em;
+    }
+}
+
+@media (max-width: 768px) {
+    .ceo-section {
+        flex-direction: column;
+        min-height: auto;
+    }
+
+    /* Fixed height to accommodate full image body/shoulders and reset position */
+    .ceo-section .ceo-image-col {
+        width: 100%;
+        height: clamp(480px, 68vh, 620px);
+    }
+
+    .ceo-section .ceo-photo {
+        object-position: top center;
+    }
+
+    .ceo-section .ceo-image-overlay {
+        background: linear-gradient(to bottom, transparent 55%, #0a0a0a 100%);
+    }
+
+    .ceo-section .ceo-content-col {
+        width: 100%;
+        padding: 3rem 2rem;
+    }
+
+    .ceo-section .ceo-name {
+        font-size: clamp(30px, 7vw, 38px);
+    }
+
+    .ceo-section .ceo-quote {
+        font-size: clamp(17px, 4vw, 20px);
+    }
+
+    .ceo-section .ceo-message {
+        line-height: 1.8;
+    }
+
+    .ceo-section .stats-row {
+        flex-wrap: wrap;
+        row-gap: 1.5rem;
+    }
+}
+
+@media (max-width: 480px) {
+
+    /* Fixed scaled-up height for small mobile devices */
+    .ceo-section .ceo-image-col {
+        height: clamp(350px, 60vh, 450px);
+    }
+
+    .ceo-section .ceo-content-col {
+        padding: 2.5rem 1.5rem;
+    }
+
+    .ceo-section .top-badge {
+        margin-bottom: 1.75rem;
+    }
+
+    .ceo-section .badge-text {
+        font-size: 9px;
+    }
+
+    .ceo-section .ceo-name {
+        font-size: clamp(26px, 8vw, 32px);
+    }
+
+    .ceo-section .ceo-designation {
+        font-size: 11px;
+        margin-bottom: 2rem;
+    }
+
+    .ceo-section .divider {
+        margin-bottom: 2rem;
+    }
+
+    .ceo-section .ceo-quote {
+        font-size: clamp(16px, 5vw, 18px);
+        padding-left: 1rem;
+        margin-bottom: 2rem;
+        line-height: 1.5;
+    }
+
+    .ceo-section .ceo-message {
+        font-size: 13px;
+        line-height: 1.75;
+        margin-bottom: 2.5rem;
+    }
+
+    .ceo-section .stats-row {
+        flex-direction: column;
+        gap: 1.25rem;
+        padding-top: 1.75rem;
+        margin-bottom: 2.5rem;
+    }
+
+    .ceo-section .stat-item {
+        min-width: 0;
+        width: 100%;
+        padding-top: 1rem;
+        border-top: 1px solid #1e1e1e;
+    }
+
+    .ceo-section .stat-item:first-child {
+        padding-top: 0;
+        border-top: none;
+    }
+
+    .ceo-section .stat-divider {
+        display: none;
+    }
+
+    .ceo-section .stat-number {
+        font-size: 28px;
+    }
+
+    .ceo-section .signature-svg {
+        width: 150px;
+        height: 52px;
+    }
+}
+
+@media (max-width: 360px) {
+
+    /* Fixed scaled-up height for smallest mobile devices */
+    .ceo-section .ceo-image-col {
+        height: 320px;
+    }
+
+    .ceo-section .ceo-content-col {
+        padding: 2rem 1.25rem;
+    }
+
+    .ceo-section .badge-line {
+        width: 24px;
+    }
+
+    .ceo-section .badge-text {
+        font-size: 8px;
+        letter-spacing: 0.15em;
+    }
+
+    .ceo-section .ceo-name {
+        font-size: 24px;
+    }
+
+    .ceo-section .ceo-designation {
+        font-size: 10px;
+    }
+
+    .ceo-section .ceo-quote {
+        font-size: 15px;
+        padding-left: 0.85rem;
+    }
+
+    .ceo-section .ceo-message {
+        font-size: 12px;
+        line-height: 1.7;
+    }
+
+    .ceo-section .stat-number {
+        font-size: 24px;
+    }
+
+    .ceo-section .stat-label {
+        font-size: 9px;
+    }
+
+    .ceo-section .signature-svg {
+        width: 135px;
+        height: 48px;
+    }
+
+    .ceo-section .signature-name {
+        font-size: 12px;
+    }
+
+    .ceo-section .signature-title {
+        font-size: 10px;
+    }
+}
