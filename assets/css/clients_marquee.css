@@ -1,6 +1,15 @@
-/* ========================= CLIENTS MARQUEE SECTION ========================= */
+body {
+    margin: 0;
+    font-family: 'Inter', Arial, sans-serif;
+    background: #fff;
+}
+
+/* ========================= CLIENTS MARQUEE SECTION =========================
+   Fluid sizing via clamp() so it scales smoothly at ANY viewport width
+   (phone, tablet, laptop, desktop) instead of only jumping at one
+   breakpoint like the original code did. */
 .clients-section {
-    padding: 80px 0;
+    padding: clamp(40px, 8vw, 80px) 0;
     background: #fff;
     overflow: hidden;
     position: relative;
@@ -10,11 +19,12 @@
 
 .clients-header {
     text-align: center;
-    margin-bottom: 60px;
+    margin-bottom: clamp(28px, 6vw, 60px);
+    padding: 0 20px;
 }
 
 .clients-header h2 {
-    font-size: 14px;
+    font-size: clamp(11.5px, 2vw, 14px);
     text-transform: uppercase;
     letter-spacing: 2px;
     color: #888;
@@ -36,7 +46,7 @@
     display: flex;
     align-items: center;
     width: max-content;
-    gap: 100px;
+    gap: clamp(36px, 7vw, 100px);
     animation: marquee-scroll 40s linear infinite;
     will-change: transform;
 }
@@ -48,8 +58,8 @@
 
 .marquee-item {
     flex: 0 0 auto;
-    width: 180px;
-    height: 80px;
+    width: clamp(100px, 16vw, 180px);
+    height: clamp(46px, 8vw, 80px);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -62,12 +72,25 @@
     max-height: 100%;
     object-fit: contain;
     filter: grayscale(1) opacity(0.6);
-    transition: all 0.4s ease;
+    transition: filter 0.45s ease, opacity 0.45s ease, transform 0.45s ease;
 }
 
+/* Hover (manual) still works as before */
 .marquee-item:hover img {
     filter: grayscale(0) opacity(1);
     transform: scale(1.1);
+}
+
+/* -----------------------------------------------------------------------
+   NEW: "in-focus" state — applied by JS to whichever logo is currently
+   passing through the horizontal center of the marquee. It gets colored
+   in, and automatically returns to grayscale once it drifts away from
+   center, because the JS below constantly re-evaluates which item is
+   closest to center on every animation frame.
+   ----------------------------------------------------------------------- */
+.marquee-item.in-focus img {
+    filter: grayscale(0) opacity(1);
+    transform: scale(1.08);
 }
 
 @keyframes marquee-scroll {
@@ -79,17 +102,75 @@
     }
 }
 
-/* Responsive Adjustments */
-@media (max-width: 768px) {
-    .clients-section {
-        padding: 50px 0;
+/* Respect users who prefer reduced motion: stop the scroll and just show
+   everything colored, instead of forcing an animation on them. */
+@media (prefers-reduced-motion: reduce) {
+    .marquee-track {
+        animation: none;
     }
-    .marquee-item {
-        width: 140px;
-        height: 60px;
+    .marquee-item img {
+        filter: grayscale(0) opacity(1);
+    }
+}
+
+/* =============================================================================
+   RESPONSIVE — fine-tuning on top of the fluid clamp() sizing above.
+   Animation *duration* can't be expressed with clamp(), so it's stepped
+   at a couple of breakpoints instead (fewer, larger items need less time
+   to feel "fast" on small screens).
+
+   MOBILE LOGO SIZE: the earlier version shrank logos down to 80-92px on
+   phones, which packed 3 tiny logos into view at once and made them hard
+   to actually see/recognize. Logos are now kept large enough that only
+   about 1.5-2 are visible at a time (one clear, one gently peeking in from
+   the edge) — a proper "showcase" feel instead of a cramped strip.
+
+   SPEED FIX: shrinking the item size AND cutting animation-duration at the
+   same time (as the previous version did) made the marquee's actual pixel
+   speed FASTER on mobile than on desktop — smaller items covering the same
+   -50% translate distance in less time is a speed increase, not a size
+   change. The durations below are recalculated per breakpoint so the
+   on-screen scroll speed (px/sec) stays roughly consistent with desktop
+   instead of accelerating as the screen gets smaller.
+   ============================================================================= */
+@media (max-width: 900px) {
+    .marquee-track {
+        animation-duration: 30s;
+    }
+}
+
+@media (max-width: 600px) {
+    .clients-section {
+        padding: 36px 0;
     }
     .marquee-track {
-        gap: 60px;
+        animation-duration: 28s;
+        gap: 44px;
+    }
+    .marquee-item {
+        width: 150px;
+        height: 64px;
+    }
+}
+
+@media (max-width: 420px) {
+    .marquee-track {
+        gap: 38px;
         animation-duration: 25s;
+    }
+    .marquee-item {
+        width: 136px;
+        height: 58px;
+    }
+}
+
+@media (max-width: 340px) {
+    .marquee-track {
+        gap: 30px;
+        animation-duration: 22s;
+    }
+    .marquee-item {
+        width: 124px;
+        height: 52px;
     }
 }
