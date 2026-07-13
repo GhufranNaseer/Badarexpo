@@ -611,68 +611,119 @@ const PlatformFeaturesManager = {
 
 // ========================= FEATURED INSIGHTS =========================
 const InsightsManager = {
-    init() {
-        // 1. Scroll Reveal Animation for Cards
-        const cards = document.querySelectorAll('.insights-section .card');
+            init() {
+                // 1. Scroll Reveal Animation for Cards
+                const cards = document.querySelectorAll('.insights-section .card');
 
-        cards.forEach(card => {
-            card.style.opacity = '0';
-            card.style.transform = 'translateY(40px)';
-            card.style.transition = 'opacity 0.6s cubic-bezier(0.2, 0.8, 0.2, 1), transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1)';
-        });
+                // Mobile pe cards horizontal carousel ki tarah chalti hain (see CSS: max-width:1024px).
+                // Wahan hide-then-reveal-on-scroll animation confusing hai: baad wale cards
+                // screen se bahar hone ki wajah se invisible reh jaate hain, aur first-time
+                // visitor ko pata hi nahi chalta ke swipe karke aur cards dekhi ja sakti hain.
+                // Is liye carousel mode mein hum sab cards turant visible kar dete hain —
+                // desktop grid ka reveal-on-scroll waisay ka waisay rehta hai.
+                const isCarouselMode = window.matchMedia('(max-width: 1024px)').matches;
 
-        const observerOptions = {
-            root: null,
-            rootMargin: '0px',
-            threshold: 0.15
-        };
+                if (isCarouselMode) {
+                    cards.forEach(card => {
+                        card.style.opacity = '1';
+                        card.style.transform = 'translateY(0)';
+                    });
+                } else {
+                    cards.forEach(card => {
+                        card.style.opacity = '0';
+                        card.style.transform = 'translateY(40px)';
+                        card.style.transition = 'opacity 0.6s cubic-bezier(0.2, 0.8, 0.2, 1), transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1)';
+                    });
 
-        const cardObserver = new IntersectionObserver((entries, observer) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    const index = Array.from(cards).indexOf(entry.target);
-                    const delay = (index % 3) * 150; // Stagger effect
+                    const observerOptions = {
+                        root: null,
+                        rootMargin: '0px',
+                        threshold: 0.15
+                    };
 
-                    setTimeout(() => {
-                        entry.target.style.opacity = '1';
-                        entry.target.style.transform = 'translateY(0)';
-                    }, delay);
+                    const cardObserver = new IntersectionObserver((entries, observer) => {
+                        entries.forEach(entry => {
+                            if (entry.isIntersecting) {
+                                const index = Array.from(cards).indexOf(entry.target);
+                                const delay = (index % 3) * 150; // Stagger effect
 
-                    observer.unobserve(entry.target);
+                                setTimeout(() => {
+                                    entry.target.style.opacity = '1';
+                                    entry.target.style.transform = 'translateY(0)';
+                                }, delay);
+
+                                observer.unobserve(entry.target);
+                            }
+                        });
+                    }, observerOptions);
+
+                    cards.forEach(card => cardObserver.observe(card));
                 }
-            });
-        }, observerOptions);
 
-        cards.forEach(card => cardObserver.observe(card));
+                // 2. Subtle 3D Tilt Effect on Mouse Move (skipped on touch devices)
+                const isTouchDevice = window.matchMedia('(hover: none) and (pointer: coarse)').matches;
 
-        // 2. Subtle 3D Tilt Effect on Mouse Move (skipped on touch devices)
-        const isTouchDevice = window.matchMedia('(hover: none) and (pointer: coarse)').matches;
+                if (!isTouchDevice) {
+                    cards.forEach(card => {
+                        card.addEventListener('mousemove', (e) => {
+                            const rect = card.getBoundingClientRect();
+                            const x = e.clientX - rect.left;
+                            const y = e.clientY - rect.top;
 
-        if (!isTouchDevice) {
-            cards.forEach(card => {
-                card.addEventListener('mousemove', (e) => {
-                    const rect = card.getBoundingClientRect();
-                    const x = e.clientX - rect.left;
-                    const y = e.clientY - rect.top;
+                            const centerX = rect.width / 2;
+                            const centerY = rect.height / 2;
 
-                    const centerX = rect.width / 2;
-                    const centerY = rect.height / 2;
+                            const rotateX = ((y - centerY) / centerY) * -5;
+                            const rotateY = ((x - centerX) / centerX) * 5;
 
-                    const rotateX = ((y - centerY) / centerY) * -5;
-                    const rotateY = ((x - centerX) / centerX) * 5;
+                            card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)`;
+                            card.style.transition = 'transform 0.1s ease';
+                        });
 
-                    card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)`;
-                    card.style.transition = 'transform 0.1s ease';
-                });
+                        card.addEventListener('mouseleave', () => {
+                            card.style.transform = '';
+                            card.style.transition = 'transform 0.4s ease, box-shadow 0.4s ease, border-color 0.4s ease';
+                        });
+                    });
+                }
 
-                card.addEventListener('mouseleave', () => {
-                    card.style.transform = '';
-                    card.style.transition = 'transform 0.4s ease, box-shadow 0.4s ease, border-color 0.4s ease';
-                });
-            });
-        }
-    }
-};
+                // 3. Click/Tap Toggle logic for touch devices (reveal description on click/tap)
+                const isTouch = window.matchMedia('(hover: none), (pointer: coarse)').matches;
+                if (isTouch) {
+                    cards.forEach(card => {
+                        card.addEventListener('click', (e) => {
+                            // If user clicked the "Read More" link, let it proceed
+                            if (e.target.closest('.card-link')) {
+                                return;
+                            }
+
+                            if (!card.classList.contains('active')) {
+                                // Prevent default actions / routing
+                                e.preventDefault();
+                                e.stopPropagation();
+
+                                // Close all other active cards
+                                cards.forEach(c => c.classList.remove('active'));
+
+                                // Open clicked card
+                                card.classList.add('active');
+                            } else {
+                                // Toggle off if clicked again
+                                e.preventDefault();
+                                card.classList.remove('active');
+                            }
+                        });
+                    });
+
+                    // Close any active card when clicking outside
+                    document.addEventListener('click', (e) => {
+                        if (!e.target.closest('.card')) {
+                            cards.forEach(card => card.classList.remove('active'));
+                        }
+                    });
+                }
+            }
+        };
 
 
 // ========================= CLIENTS MARQUEE CENTER-FOCUS =========================
