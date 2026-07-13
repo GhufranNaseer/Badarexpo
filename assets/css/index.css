@@ -333,7 +333,7 @@ body {
 
         /* --- Card Background & Decorative Shapes --- */
         .card1 {
-            background: url('https://images.unsplash.com/photo-1540575467063-178a50c2df87?auto=format&fit=crop&q=80&w=800');
+            background: url('../images/portfolio/ideas-exhibition.webp');
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
@@ -363,7 +363,7 @@ body {
         }
 
         .card2 {
-            background: url('https://images.unsplash.com/photo-1508962914676-134849a727f0?auto=format&fit=crop&q=80&w=800');
+            background: url('../images/portfolio/itcn-asia-generated.webp');
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
@@ -394,7 +394,7 @@ body {
         }
 
         .card3 {
-            background: url('https://images.unsplash.com/photo-1511578314322-379afb476865?auto=format&fit=crop&q=80&w=800');
+            background: url('../images/portfolio/bxss-powerhouse-generated.webp');
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
@@ -424,7 +424,7 @@ body {
         }
 
         .card4 {
-            background: url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&q=80&w=800');
+            background: url('../images/portfolio/my-karachi-generated.webp');
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
@@ -453,7 +453,7 @@ body {
         }
 
         .card5 {
-            background: url('https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&q=80&w=800');
+            background: url('../images/portfolio/b2b-industrial-generated.webp');
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
@@ -479,7 +479,7 @@ body {
         }
 
         .card6 {
-            background: url('https://images.unsplash.com/photo-1524295981977-62f3974c27a5?auto=format&fit=crop&q=80&w=800');
+            background: url('../images/portfolio/textile-asia-generated.webp');
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
