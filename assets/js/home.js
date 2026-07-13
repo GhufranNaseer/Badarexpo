@@ -375,34 +375,86 @@ const TestimonialsManager = {
         this.cards = Array.from(this.track.querySelectorAll('.testimonial-card'));
         this.originalCount = this.cards.length;
 
-        // 1. Clone set for infinite effect
+        // ------------------------------------------------------------------
+        // BUG FIX: the original code only cloned an "after" set, so the
+        // slider could only loop seamlessly going FORWARD. Clicking "prev"
+        // from the very first card animated the track into empty space
+        // (nothing existed before index 0 in the DOM) before instantly
+        // snapping to the last card — a visible glitch.
+        //
+        // Fix: build BOTH a "before" and an "after" clone set, each in the
+        // correct original order via a DocumentFragment (a naive per-item
+        // prepend() would silently reverse the "before" set's order — a
+        // mistake worth avoiding here too).
+        // ------------------------------------------------------------------
+        const beforeFrag = document.createDocumentFragment();
+        const afterFrag = document.createDocumentFragment();
         this.cards.forEach(card => {
-            const clone = card.cloneNode(true);
-            clone.classList.add('is-clone');
-            this.track.appendChild(clone);
+            const cloneBefore = card.cloneNode(true);
+            const cloneAfter = card.cloneNode(true);
+            cloneBefore.classList.add('is-clone');
+            cloneAfter.classList.add('is-clone');
+            beforeFrag.appendChild(cloneBefore);
+            afterFrag.appendChild(cloneAfter);
         });
+        this.track.insertBefore(beforeFrag, this.track.firstChild);
+        this.track.appendChild(afterFrag);
 
         this.allCards = Array.from(this.track.querySelectorAll('.testimonial-card'));
-        this.currentIndex = 0;
+        this.realOffset = this.originalCount; // where the real (non-clone) cards start in the DOM
+        this.currentIndex = 0; // always kept within [0, originalCount - 1]
         this.isTransitioning = false;
 
-        // 2. Dimensions
         this.updateDimensions();
-        window.addEventListener('resize', () => this.updateDimensions());
+        this.setPositionInstant();
 
-        // 3. Navigation
+        window.addEventListener('resize', () => {
+            this.updateDimensions();
+            // BUG FIX: card width is fluid/responsive at some breakpoints
+            // (e.g. mobile). The original code recalculated dimensions on
+            // resize but never reapplied the transform, so resizing could
+            // leave the slider showing a partially cut-off card until the
+            // next click. Re-snap instantly (no visible transition) instead.
+            this.setPositionInstant();
+        });
+
         this.nextBtn.addEventListener('click', () => this.move(1));
         this.prevBtn.addEventListener('click', () => this.move(-1));
 
-        // 4. Initial Entrance Animation (Intersection Observer)
         this.setupEntranceAnimation();
     },
 
     updateDimensions() {
         if (this.allCards.length < 2) return;
-        this.cardWidth = this.allCards[0].offsetWidth;
-        this.gap = 32; // from CSS
+        // BUG FIX: gap was hardcoded to 32, but the CSS changes it to 25px
+        // at the 1200px breakpoint — the hardcoded value silently went out
+        // of sync with the real layout, causing cards to be mis-positioned
+        // (partially cut off) on tablet widths. Read it from the actual
+        // computed style instead, so it always matches whatever the CSS
+        // currently says, at any breakpoint.
+        const trackStyles = getComputedStyle(this.track);
+        const parsedGap = parseFloat(trackStyles.columnGap || trackStyles.gap);
+        this.gap = Number.isFinite(parsedGap) ? parsedGap : 32;
+        this.cardWidth = this.allCards[this.realOffset].offsetWidth;
         this.step = this.cardWidth + this.gap;
+    },
+
+    domIndexFor(index) {
+        return index + this.realOffset;
+    },
+
+    updatePosition() {
+        const domIndex = this.domIndexFor(this.currentIndex);
+        const x = -(domIndex * this.step);
+        this.track.style.transform = `translate3d(${x}px, 0, 0)`;
+    },
+
+    setPositionInstant() {
+        const restoreTransition = this.track.style.transition || 'transform 0.6s cubic-bezier(0.23, 1, 0.32, 1)';
+        this.track.style.transition = 'none';
+        this.updatePosition();
+        this.track.offsetHeight; // force reflow
+        this.track.style.transition = restoreTransition;
     },
 
     move(direction) {
@@ -412,32 +464,21 @@ const TestimonialsManager = {
         this.currentIndex += direction;
         this.updatePosition();
 
-        // 5. Infinite Teleport Logic
+        // Infinite teleport: once the animation finishes, if we've drifted
+        // into a clone set, snap (invisibly, no transition) back into the
+        // real [0, originalCount-1] range. Because every card — real or
+        // clone — has the identical fixed width/gap, this step-based jump
+        // is exact with no accumulated drift.
         setTimeout(() => {
-            // If we reached the start of the cloned set (moving forward)
             if (this.currentIndex >= this.originalCount) {
                 this.currentIndex = 0;
-                this.track.style.transition = 'none';
-                this.updatePosition();
-                // Force reflow
-                this.track.offsetHeight;
-                this.track.style.transition = 'transform 0.6s cubic-bezier(0.23, 1, 0.32, 1)';
-            }
-            // If we moved before the first real card (moving backward)
-            if (this.currentIndex < 0) {
+                this.setPositionInstant();
+            } else if (this.currentIndex < 0) {
                 this.currentIndex = this.originalCount - 1;
-                this.track.style.transition = 'none';
-                this.updatePosition();
-                this.track.offsetHeight;
-                this.track.style.transition = 'transform 0.6s cubic-bezier(0.23, 1, 0.32, 1)';
+                this.setPositionInstant();
             }
             this.isTransitioning = false;
         }, 600);
-    },
-
-    updatePosition() {
-        const x = -(this.currentIndex * this.step);
-        this.track.style.transform = `translate3d(${x}px, 0, 0)`;
     },
 
     setupEntranceAnimation() {
@@ -446,11 +487,19 @@ const TestimonialsManager = {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     this.allCards.forEach((card, i) => {
-                        if (i < this.originalCount) { // Only animate first set
+                        // BUG FIX: with the new "before" clone set added,
+                        // the real cards no longer start at index 0 — they
+                        // start at `realOffset`. The original check
+                        // (`i < originalCount`) would have staggered the
+                        // BEFORE-CLONES instead of the actual visible real
+                        // cards. Use the real range explicitly.
+                        const isRealCard = i >= this.realOffset && i < this.realOffset + this.originalCount;
+                        if (isRealCard) {
+                            const staggerIndex = i - this.realOffset;
                             setTimeout(() => {
                                 card.style.opacity = "1";
                                 card.style.transform = "translateY(0px)";
-                            }, i * 100);
+                            }, staggerIndex * 100);
                         } else {
                             card.style.opacity = "1";
                             card.style.transform = "translateY(0px)";
@@ -625,6 +674,106 @@ const InsightsManager = {
     }
 };
 
+
+// ========================= CLIENTS MARQUEE CENTER-FOCUS =========================
+const ClientsMarqueeManager = {
+    init() {
+        const container = document.getElementById('marquee-container');
+        const track = document.getElementById('marquee-track');
+        if (!container || !track) return;
+
+        const items = Array.from(track.querySelectorAll('.marquee-item'));
+        if (!items.length) return;
+
+        const CHECK_INTERVAL = 90; // ms between real measurements (~11/sec)
+
+        let rafId = null;
+        let lastFocused = null;
+        let lastCheck = 0;
+        let containerLeft = 0;
+        let containerRight = 0;
+        let containerCenterX = 0;
+
+        const measureContainer = () => {
+            const rect = container.getBoundingClientRect();
+            containerLeft = rect.left;
+            containerRight = rect.right;
+            containerCenterX = rect.left + rect.width / 2;
+        };
+
+        const setFocused = (newItem) => {
+            if (newItem === lastFocused) return;
+            if (lastFocused) lastFocused.classList.remove('in-focus');
+            if (newItem) newItem.classList.add('in-focus');
+            lastFocused = newItem;
+        };
+
+        const tick = (now) => {
+            rafId = requestAnimationFrame(tick);
+
+            // Nothing moves while paused (e.g. hovering the marquee) — skip all
+            // measurement work and leave whatever was already highlighted.
+            if (getComputedStyle(track).animationPlayState === 'paused') return;
+
+            if (now - lastCheck < CHECK_INTERVAL) return;
+            lastCheck = now;
+
+            let containingItem = null;
+            let closestItem = null;
+            let closestDist = Infinity;
+
+            for (const item of items) {
+                const rect = item.getBoundingClientRect();
+
+                // Skip items fully outside the visible container.
+                if (rect.right < containerLeft || rect.left > containerRight) continue;
+
+                // Exact match: this item's box currently spans the center point.
+                if (rect.left <= containerCenterX && rect.right >= containerCenterX) {
+                    containingItem = item;
+                    break;
+                }
+
+                const itemCenterX = rect.left + rect.width / 2;
+                const dist = Math.abs(itemCenterX - containerCenterX);
+                if (dist < closestDist) {
+                    closestDist = dist;
+                    closestItem = item;
+                }
+            }
+
+            setFocused(containingItem || closestItem);
+        };
+
+        measureContainer();
+
+        let resizeTimer = null;
+        window.addEventListener('resize', () => {
+            clearTimeout(resizeTimer);
+            resizeTimer = setTimeout(measureContainer, 150);
+        });
+
+        // Respect prefers-reduced-motion: don't bother running the highlight
+        // loop if the marquee itself isn't animating.
+        const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        if (!prefersReducedMotion) {
+            rafId = requestAnimationFrame(tick);
+        }
+
+        // Pause the highlight loop when the tab isn't visible, to save battery/CPU.
+        document.addEventListener('visibilitychange', () => {
+            if (document.hidden) {
+                if (rafId) cancelAnimationFrame(rafId);
+                rafId = null;
+            } else if (!rafId && !prefersReducedMotion) {
+                lastCheck = 0;
+                rafId = requestAnimationFrame(tick);
+            }
+        });
+    }
+};
+
+
 // ========================= INITIALIZE ALL MODULES =========================
 document.addEventListener('DOMContentLoaded', () => {
     ServicesCarouselManager.init();
@@ -633,4 +782,5 @@ document.addEventListener('DOMContentLoaded', () => {
     TestimonialsManager.init();
     PlatformFeaturesManager.init();
     InsightsManager.init();
+    ClientsMarqueeManager.init();
 });
