@@ -59,7 +59,7 @@
   text-transform: uppercase;
 }
 
-.ceo-name {
+.ceo-section .ceo-name {
   font-family: 'Playfair Display', serif;
   font-size: 48px;
   font-weight: 400;
@@ -69,7 +69,7 @@
   letter-spacing: -0.5px;
 }
 
-.ceo-designation {
+.ceo-section .ceo-designation {
   font-size: 13px;
   font-weight: 300;
   letter-spacing: 0.15em;
@@ -85,7 +85,7 @@
   margin-bottom: 2rem;
 }
 
-.ceo-quote {
+.ceo-section .ceo-quote {
   font-family: 'Playfair Display', serif;
   font-size: 22px;
   font-weight: 400;
@@ -97,7 +97,7 @@
   border-left: 1px solid #bd0000;
 }
 
-.ceo-message {
+.ceo-section .ceo-message {
   font-size: 14px;
   font-weight: 300;
   color: #9a9590;
@@ -106,7 +106,7 @@
   max-width: 520px;
 }
 
-.stats-row {
+.ceo-section .stats-row {
   display: flex;
   gap: 3rem;
   margin-bottom: 2.5rem;
@@ -114,13 +114,13 @@
   border-top: 1px solid #1e1e1e;
 }
 
-.stat-item {
+.ceo-section .stat-item {
   display: flex;
   flex-direction: column;
   gap: 6px;
 }
 
-.stat-number {
+.ceo-section .stat-number {
   font-family: 'Playfair Display', serif;
   font-size: 36px;
   font-weight: 400;
@@ -129,7 +129,7 @@
   letter-spacing: -1px;
 }
 
-.stat-label {
+.ceo-section .stat-label {
   font-size: 10px;
   font-weight: 400;
   letter-spacing: 0.15em;
@@ -137,32 +137,32 @@
   text-transform: uppercase;
 }
 
-.stat-divider {
+.ceo-section .stat-divider {
   width: 1px;
   background: #1e1e1e;
   align-self: stretch;
 }
 
-.signature-block {
+.ceo-section .signature-block {
   display: flex;
   flex-direction: column;
   gap: 6px;
 }
 
-.signature-svg {
+.ceo-section .signature-svg {
   width: 160px;
   height: 56px;
   margin-bottom: 4px;
 }
 
-.signature-name {
+.ceo-section .signature-name {
   font-size: 13px;
   font-weight: 400;
   color: #f0ece4;
   letter-spacing: 0.05em;
 }
 
-.signature-title {
+.ceo-section .signature-title {
   font-size: 11px;
   font-weight: 300;
   color: #9d9a9a;

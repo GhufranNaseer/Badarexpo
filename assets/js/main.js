@@ -207,7 +207,6 @@ const NavManager = {
 // ========================= STATISTICS COUNTER =========================
 const StatsManager = {
     init() {
-        const counters = document.querySelectorAll(".counter");
         const statBoxes = document.querySelectorAll(".stat-box");
         if (!statBoxes.length) return;
 
@@ -215,6 +214,7 @@ const StatsManager = {
             entries.forEach((entry) => {
                 if (entry.isIntersecting) {
                     const counter = entry.target.querySelector(".counter");
+                    if (!counter) return;
                     const target = +counter.getAttribute("data-target");
 
                     entry.target.classList.add("active");
@@ -225,7 +225,6 @@ const StatsManager = {
                     const updateCounter = () => {
                         count += speed;
                         if (count < target) {
-                            // FORMATTING Logic from Developer
                             if (target === 420) {
                                 counter.innerHTML = Math.floor(count) + "%";
                             } else if (target === 21200) {
@@ -239,7 +238,6 @@ const StatsManager = {
                             }
                             requestAnimationFrame(updateCounter);
                         } else {
-                            // FINAL VALUES
                             if (target === 420) {
                                 counter.innerHTML = "420%";
                             } else if (target === 21200) {
