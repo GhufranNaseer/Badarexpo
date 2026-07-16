@@ -53,184 +53,238 @@
 
 <body>
     <!-- ========================= [TEMPLATE: header.php START] ========================= -->
-<!-- TOP BAR -->
-<header class="topbar">
-    <div class="topbar-left">
-        <span><i class="fas fa-phone"></i> +92 21 3482 1159</span>
-        <span><i class="fas fa-envelope"></i> info@badarexpo.com</span>
-    </div>
-    <div class="topbar-right">
-        <div class="lang-dropdown">
-            <button class="lang-btn" id="lang-btn">
-                <i class="fas fa-globe"></i> <span id="current-lang">EN</span> <i class="fas fa-chevron-down"></i>
-            </button>
-            <ul class="lang-list">
-                <li data-lang="en">English</li>
-                <li data-lang="ur">اردو (Urdu)</li>
-                <li data-lang="ar">العربية (Arabic)</li>
-            </ul>
+    <!-- TOP BAR -->
+    <header class="topbar">
+        <div class="topbar-left">
+            <span><i class="fas fa-phone"></i> +92 21 3482 1159</span>
+            <span><i class="fas fa-envelope"></i> info@badarexpo.com</span>
         </div>
-        <a href="https://www.facebook.com/BXSSpakistan/" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-        <a href="https://www.linkedin.com/company/bxsspakistan" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-        <a href="https://www.instagram.com/bxsspakistan/" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-        <a href="https://www.youtube.com/@BXSSpakistan" target="_blank" rel="noopener noreferrer" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
-        <a href="https://x.com/BXSSpakistan" target="_blank" rel="noopener noreferrer" aria-label="X (Twitter)"><i class="fab fa-x-twitter"></i></a>
-        <a href="https://www.tiktok.com/@badarexpo" target="_blank" rel="noopener noreferrer" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
-    </div>
-</header>
-
-<!-- NAVIGATION -->
-<nav class="navbar">
-    <div class="logo">
-        <a href="index.html"><img src="assets/images/logo/favicon.webp" alt="Badar Expo Logo" class="logo-img"></a>
-    </div>
-
-    <!-- Hamburger Icon -->
-    <div class="nav-toggle" id="mobile-menu-toggle">
-        <i class="fas fa-bars"></i>
-    </div>
-
-    <div class="menu" id="nav-menu">
-        <div class="nav-item active-nav"><a href="index.html"><span>Home</span></a></div>
-        <div class="nav-item"><a href="about.html"><span>About Us</span></a></div>
-
-        <div class="nav-item dropdown" data-target="services">
-            <a href="services.html"><span>Services <i class="fas fa-chevron-down"></i></span></a>
-            <ul class="mobile-submenu">
-                <li><a href="exhibitionmanagement.html">Exhibition Management</a></li>
-                <li><a href="exhibitionmanagement.html#conference">Conference Management</a></li>
-                <li><a href="exhibitionmanagement.html#corporate">Corporate Events</a></li>
-                <li><a href="construction-design.html">Construction &amp; Design</a></li>
-                <li><a href="growthservices.html">Growth Services</a></li>
-            </ul>
-        </div>
-        <div class="nav-item dropdown" data-target="events">
-            <a href="events.html"><span>Events <i class="fas fa-chevron-down"></i></span></a>
-            <ul class="mobile-submenu">
-                <li><a href="events.html#our-role">Owned Events</a></li>
-                <li><a href="events.html#our-role">Co-Organized</a></li>
-                <li><a href="events.html#our-role">Managed Events</a></li>
-            </ul>
-        </div>
-
-        <div class="nav-item"><a href="#"><span>Industries</span></a></div>
-        <div class="nav-item"><a href="#"><span>Global Reach</span></a></div>
-
-        <div class="nav-item dropdown" data-target="insights">
-            <span>Insights <i class="fas fa-chevron-down"></i></span>
-            <ul class="mobile-submenu">
-                <li><a href="#">Media Gallery</a></li>
-                <li><a href="#">Blogs</a></li>
-                <li><a href="#">News &amp; Updates</a></li>
-            </ul>
-        </div>
-        <div class="nav-item"><a href="contact.html"><span>Contact</span></a></div>
-
-        <!-- ACTION BUTTONS (Moved inside menu for mobile) -->
-        <div class="mobile-actions">
-            <button class="btn btn-dark">Visitor</button>
-            <button class="btn btn-light">Partner</button>
-        </div>
-    </div>
-
-    <!-- MEGA MENU WRAPPER -->
-    <div class="mega-menu-wrapper" id="shared-mega-menu">
-        <!-- SERVICES CONTENT -->
-        <div id="content-services" class="mega-content">
-            <div class="column dynamic-links">
-                <h4><a href="exhibitionmanagement.html">Exhibition Management <i class="fas fa-chevron-right" style="font-size: 10px; opacity: 0.6;"></i></a></h4>
-                <a href="exhibitionmanagement.html" data-title="Exhibition Management" data-desc="Complete exhibition solutions from concept to execution for B2B and B2C platforms." data-image="assets/images/portfolio/ieee-exhibition.webp">Management</a>
-                <a href="exhibitionmanagement.html#conference" data-title="Conference Management" data-desc="Organizing world-class summits, technical seminars, and international conferences." data-image="assets/images/portfolio/ieee-seminar.webp">Conferences</a>
-                <a href="exhibitionmanagement.html#corporate" data-title="Corporate Events" data-desc="Bespoke events tailored to meet corporate objectives and brand positioning." data-image="assets/images/portfolio/ziauddin-convocation.webp">Corporate</a>
-            </div>
-            <div class="column dynamic-links">
-                <h4><a href="construction-design.html">Construction &amp; Design <i class="fas fa-chevron-right" style="font-size: 10px; opacity: 0.6;"></i></a></h4>
-                <ul class="bullet-list">
-                    <li><a href="construction-design.html#canopy" data-title="Canopy Octanorm Building" data-desc="Standardized modular shell schemes for professional exhibitions and trade shows." data-image="assets/images/portfolio/ieee-booth.webp">Canopy Octanorm Building</a></li>
-                    <li><a href="construction-design.html#stall" data-title="Stall Design &amp; Fabrication" data-desc="Custom-built creative booths and designer stalls that make your brand stand out." data-image="assets/images/portfolio/ieee-booth.webp">Stall Design &amp; Fabrication</a></li>
-                    <li><a href="construction-design.html#led" data-title="LED Screens" data-desc="High-definition LED walls and display panels for impactful visual storytelling." data-image="assets/images/portfolio/concert-stage.webp">LED Screens</a></li>
-                    <li><a href="construction-design.html#av" data-title="Audio Visual Equipment" data-desc="Professional sound, lighting, and projection systems tailored for any event size." data-image="assets/images/portfolio/concert-stage.webp">Audio Visual Equipment</a></li>
-                    <li><a href="construction-design.html#furniture" data-title="Rental of Furniture" data-desc="Premium lounge sets, sleek corporate furniture, and event seating solutions." data-image="assets/images/portfolio/ieee-exhibition.webp">Rental of Furniture</a></li>
-                    <li><a href="construction-design.html#kiosks" data-title="Interactive Kiosks" data-desc="Engage your audience with touch-screen technology and digital information points." data-image="assets/images/portfolio/ieee-kiosk.webp">Interactive Kiosks</a></li>
-                    <li><a href="construction-design.html#branding" data-title="Indoor Outdoor Advertising" data-desc="Strategic billboard placement and large-format signage to maximize brand reach." data-image="assets/images/portfolio/global-sme-banner.webp">Branding &amp; Production</a></li>
+        <div class="topbar-right">
+            <div class="lang-dropdown">
+                <button class="lang-btn" id="lang-btn">
+                    <i class="fas fa-globe"></i> <span id="current-lang">EN</span> <i class="fas fa-chevron-down"></i>
+                </button>
+                <ul class="lang-list">
+                    <li data-lang="en">English</li>
+                    <li data-lang="ur">اردو (Urdu)</li>
+                    <li data-lang="ar">العربية (Arabic)</li>
                 </ul>
             </div>
-            <div class="column dynamic-links">
-                <h4><a href="growthservices.html">Growth Services <i class="fas fa-chevron-right" style="font-size: 10px; opacity: 0.6;"></i></a></h4>
-                <a href="growthservices.html#pillars" data-title="B2B Matchmaking" data-desc="Connecting global buyers with suppliers through strategic high-level networking." data-image="assets/images/portfolio/china-embassy.webp">B2B Matchmaking</a>
-                <a href="growthservices.html#pillars" data-title="Event Marketing" data-desc="Innovative PR and media strategies designed to drive maximum event attendance." data-image="assets/images/portfolio/global-sme-banner.webp">Event Marketing</a>
-                <a href="growthservices.html#pillars" data-title="Digital Production" data-desc="Creative content, live streaming, and digital solutions for the modern event landscape." data-image="assets/images/portfolio/concert-stage.webp">Digital Production</a>
+            <a href="https://www.facebook.com/BXSSpakistan/" target="_blank" rel="noopener noreferrer"
+                aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://www.linkedin.com/company/bxsspakistan" target="_blank" rel="noopener noreferrer"
+                aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+            <a href="https://www.instagram.com/bxsspakistan/" target="_blank" rel="noopener noreferrer"
+                aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="https://www.youtube.com/@BXSSpakistan" target="_blank" rel="noopener noreferrer"
+                aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+            <a href="https://x.com/BXSSpakistan" target="_blank" rel="noopener noreferrer" aria-label="X (Twitter)"><i
+                    class="fab fa-x-twitter"></i></a>
+            <a href="https://www.tiktok.com/@badarexpo" target="_blank" rel="noopener noreferrer" aria-label="TikTok"><i
+                    class="fab fa-tiktok"></i></a>
+        </div>
+    </header>
+
+    <!-- NAVIGATION -->
+    <nav class="navbar">
+        <div class="logo">
+            <a href="index.html"><img src="assets/images/logo/favicon.webp" alt="Badar Expo Logo" class="logo-img"></a>
+        </div>
+
+        <!-- Hamburger Icon -->
+        <div class="nav-toggle" id="mobile-menu-toggle">
+            <i class="fas fa-bars"></i>
+        </div>
+
+        <div class="menu" id="nav-menu">
+            <div class="nav-item active-nav"><a href="index.html"><span>Home</span></a></div>
+            <div class="nav-item"><a href="about.html"><span>About Us</span></a></div>
+
+            <div class="nav-item dropdown" data-target="services">
+                <a href="services.html"><span>Services <i class="fas fa-chevron-down"></i></span></a>
+                <ul class="mobile-submenu">
+                    <li><a href="exhibitionmanagement.html">Exhibition Management</a></li>
+                    <li><a href="exhibitionmanagement.html#conference">Conference Management</a></li>
+                    <li><a href="exhibitionmanagement.html#corporate">Corporate Events</a></li>
+                    <li><a href="construction-design.html">Construction &amp; Design</a></li>
+                    <li><a href="growthservices.html">Growth Services</a></li>
+                </ul>
             </div>
-            <div class="column highlight">
-                <div class="highlight-content-box">
-                    <img src="assets/images/portfolio/ieee-exhibition.webp" alt="Services Highlight" class="dynamic-img" loading="lazy" width="300" height="160">
-                    <strong class="dynamic-title">End-to-End Solutions</strong>
-                    <p class="dynamic-desc">We design and scale world-class exhibitions &amp; industry platforms.</p>
+            <div class="nav-item dropdown" data-target="events">
+                <a href="events.html"><span>Events <i class="fas fa-chevron-down"></i></span></a>
+                <ul class="mobile-submenu">
+                    <li><a href="events.html#our-role">Owned Events</a></li>
+                    <li><a href="events.html#our-role">Co-Organized</a></li>
+                    <li><a href="events.html#our-role">Managed Events</a></li>
+                </ul>
+            </div>
+
+            <div class="nav-item"><a href="#"><span>Industries</span></a></div>
+            <div class="nav-item"><a href="#"><span>Global Reach</span></a></div>
+
+            <div class="nav-item dropdown" data-target="insights">
+                <span>Insights <i class="fas fa-chevron-down"></i></span>
+                <ul class="mobile-submenu">
+                    <li><a href="#">Media Gallery</a></li>
+                    <li><a href="#">Blogs</a></li>
+                    <li><a href="#">News &amp; Updates</a></li>
+                </ul>
+            </div>
+            <div class="nav-item"><a href="contact.html"><span>Contact</span></a></div>
+
+            <!-- ACTION BUTTONS (Moved inside menu for mobile) -->
+            <div class="mobile-actions">
+                <button class="btn btn-dark">Visitor</button>
+                <button class="btn btn-light">Partner</button>
+            </div>
+        </div>
+
+        <!-- MEGA MENU WRAPPER -->
+        <div class="mega-menu-wrapper" id="shared-mega-menu">
+            <!-- SERVICES CONTENT -->
+            <div id="content-services" class="mega-content">
+                <div class="column dynamic-links">
+                    <h4><a href="exhibitionmanagement.html">Exhibition Management <i class="fas fa-chevron-right"
+                                style="font-size: 10px; opacity: 0.6;"></i></a></h4>
+                    <a href="exhibitionmanagement.html" data-title="Exhibition Management"
+                        data-desc="Complete exhibition solutions from concept to execution for B2B and B2C platforms."
+                        data-image="assets/images/portfolio/ieee-exhibition.webp">Management</a>
+                    <a href="exhibitionmanagement.html#conference" data-title="Conference Management"
+                        data-desc="Organizing world-class summits, technical seminars, and international conferences."
+                        data-image="assets/images/portfolio/ieee-seminar.webp">Conferences</a>
+                    <a href="exhibitionmanagement.html#corporate" data-title="Corporate Events"
+                        data-desc="Bespoke events tailored to meet corporate objectives and brand positioning."
+                        data-image="assets/images/portfolio/ziauddin-convocation.webp">Corporate</a>
+                </div>
+                <div class="column dynamic-links">
+                    <h4><a href="construction-design.html">Construction &amp; Design <i class="fas fa-chevron-right"
+                                style="font-size: 10px; opacity: 0.6;"></i></a></h4>
+                    <ul class="bullet-list">
+                        <li><a href="construction-design.html#canopy" data-title="Canopy Octanorm Building"
+                                data-desc="Standardized modular shell schemes for professional exhibitions and trade shows."
+                                data-image="assets/images/portfolio/ieee-booth.webp">Canopy Octanorm Building</a></li>
+                        <li><a href="construction-design.html#stall" data-title="Stall Design &amp; Fabrication"
+                                data-desc="Custom-built creative booths and designer stalls that make your brand stand out."
+                                data-image="assets/images/portfolio/ieee-booth.webp">Stall Design &amp; Fabrication</a>
+                        </li>
+                        <li><a href="construction-design.html#led" data-title="LED Screens"
+                                data-desc="High-definition LED walls and display panels for impactful visual storytelling."
+                                data-image="assets/images/portfolio/concert-stage.webp">LED Screens</a></li>
+                        <li><a href="construction-design.html#av" data-title="Audio Visual Equipment"
+                                data-desc="Professional sound, lighting, and projection systems tailored for any event size."
+                                data-image="assets/images/portfolio/concert-stage.webp">Audio Visual Equipment</a></li>
+                        <li><a href="construction-design.html#furniture" data-title="Rental of Furniture"
+                                data-desc="Premium lounge sets, sleek corporate furniture, and event seating solutions."
+                                data-image="assets/images/portfolio/ieee-exhibition.webp">Rental of Furniture</a></li>
+                        <li><a href="construction-design.html#kiosks" data-title="Interactive Kiosks"
+                                data-desc="Engage your audience with touch-screen technology and digital information points."
+                                data-image="assets/images/portfolio/ieee-kiosk.webp">Interactive Kiosks</a></li>
+                        <li><a href="construction-design.html#branding" data-title="Indoor Outdoor Advertising"
+                                data-desc="Strategic billboard placement and large-format signage to maximize brand reach."
+                                data-image="assets/images/portfolio/global-sme-banner.webp">Branding &amp;
+                                Production</a></li>
+                    </ul>
+                </div>
+                <div class="column dynamic-links">
+                    <h4><a href="growthservices.html">Growth Services <i class="fas fa-chevron-right"
+                                style="font-size: 10px; opacity: 0.6;"></i></a></h4>
+                    <a href="growthservices.html#pillars" data-title="B2B Matchmaking"
+                        data-desc="Connecting global buyers with suppliers through strategic high-level networking."
+                        data-image="assets/images/portfolio/china-embassy.webp">B2B Matchmaking</a>
+                    <a href="growthservices.html#pillars" data-title="Event Marketing"
+                        data-desc="Innovative PR and media strategies designed to drive maximum event attendance."
+                        data-image="assets/images/portfolio/global-sme-banner.webp">Event Marketing</a>
+                    <a href="growthservices.html#pillars" data-title="Digital Production"
+                        data-desc="Creative content, live streaming, and digital solutions for the modern event landscape."
+                        data-image="assets/images/portfolio/concert-stage.webp">Digital Production</a>
+                </div>
+                <div class="column highlight">
+                    <div class="highlight-content-box">
+                        <img src="assets/images/portfolio/ieee-exhibition.webp" alt="Services Highlight"
+                            class="dynamic-img" loading="lazy" width="300" height="160">
+                        <strong class="dynamic-title">End-to-End Solutions</strong>
+                        <p class="dynamic-desc">We design and scale world-class exhibitions &amp; industry platforms.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- EVENTS CONTENT -->
+            <div id="content-events" class="mega-content">
+                <div class="column dynamic-links">
+                    <h4><a href="events.html#our-role">Our Role <i class="fas fa-chevron-right"
+                                style="font-size: 10px; opacity: 0.6;"></i></a></h4>
+                    <a href="events.html#our-role" data-title="Owned Events"
+                        data-desc="Flagship trade fairs and industry-leading exhibitions fully conceptualized by Badar Expo."
+                        data-image="assets/images/portfolio/ieee-exhibition.webp">Owned Events</a>
+                    <a href="events.html#our-role" data-title="Co-Organized"
+                        data-desc="Strategic partnerships with industry bodies to deliver high-impact global events."
+                        data-image="assets/images/portfolio/ideas-exhibition.webp">Co-Organized</a>
+                    <a href="events.html#our-role" data-title="Managed Events"
+                        data-desc="Complete end-to-end event management solutions for third-party corporate and government clients."
+                        data-image="assets/images/portfolio/ziauddin-convocation.webp">Managed Events</a>
+                </div>
+                <div class="column dynamic-links">
+                    <h4><a href="events.html#formats">Formats <i class="fas fa-chevron-right"
+                                style="font-size: 10px; opacity: 0.6;"></i></a></h4>
+                    <a href="events.html#formats" data-title="Exhibitions"
+                        data-desc="Creating massive B2B and B2C platforms that connect global suppliers with buyers."
+                        data-image="assets/images/portfolio/dalfa-cattle-show.webp">Exhibitions</a>
+                    <a href="events.html#formats" data-title="Conferences"
+                        data-desc="Organizing world-class summits, technical seminars, and international conferences."
+                        data-image="assets/images/portfolio/ieee-seminar.webp">Conferences</a>
+                    <a href="events.html#formats" data-title="Industrial Forums"
+                        data-desc="Facilitating high-level dialogue between government and industry leaders."
+                        data-image="assets/images/portfolio/saudi-delegation.webp">Industrial Forums</a>
+                </div>
+                <div class="column highlight">
+                    <div class="highlight-content-box">
+                        <img src="assets/images/portfolio/ideas-seminar.webp" alt="Events Highlight" class="dynamic-img"
+                            loading="lazy" width="300" height="160">
+                        <strong class="dynamic-title">1500+ Events Delivered</strong>
+                        <p class="dynamic-desc">Connecting industries, governments &amp; global partners.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- INSIGHTS CONTENT -->
+            <div id="content-insights" class="mega-content">
+                <div class="insight-card">
+                    <img src="assets/images/portfolio/global-sme-banner.webp" alt="Blog" loading="lazy">
+                    <h4>Blog</h4>
+                    <p>Industry insights, event strategies &amp; updates.</p>
+                </div>
+                <div class="insight-card">
+                    <img src="assets/images/portfolio/china-embassy.webp" alt="Media" loading="lazy">
+                    <h4>Media</h4>
+                    <p>Press coverage, interviews &amp; event highlights.</p>
+                </div>
+                <div class="insight-card">
+                    <img src="assets/images/portfolio/concert-audience.webp" alt="Gallery" loading="lazy">
+                    <h4>Gallery</h4>
+                    <p>Moments captured from our mega events.</p>
                 </div>
             </div>
         </div>
 
-        <!-- EVENTS CONTENT -->
-        <div id="content-events" class="mega-content">
-            <div class="column dynamic-links">
-                <h4><a href="events.html#our-role">Our Role <i class="fas fa-chevron-right" style="font-size: 10px; opacity: 0.6;"></i></a></h4>
-                <a href="events.html#our-role" data-title="Owned Events" data-desc="Flagship trade fairs and industry-leading exhibitions fully conceptualized by Badar Expo." data-image="assets/images/portfolio/ieee-exhibition.webp">Owned Events</a>
-                <a href="events.html#our-role" data-title="Co-Organized" data-desc="Strategic partnerships with industry bodies to deliver high-impact global events." data-image="assets/images/portfolio/ideas-exhibition.webp">Co-Organized</a>
-                <a href="events.html#our-role" data-title="Managed Events" data-desc="Complete end-to-end event management solutions for third-party corporate and government clients." data-image="assets/images/portfolio/ziauddin-convocation.webp">Managed Events</a>
+        <!-- ACTION BUTTONS (Desktop Only) -->
+        <div class="nav-right-icons">
+            <div class="search-trigger" id="search-toggle">
+                <i class="fas fa-magnifying-glass"></i>
+                <span class="search-text">Search</span>
             </div>
-            <div class="column dynamic-links">
-                <h4><a href="events.html#formats">Formats <i class="fas fa-chevron-right" style="font-size: 10px; opacity: 0.6;"></i></a></h4>
-                <a href="events.html#formats" data-title="Exhibitions" data-desc="Creating massive B2B and B2C platforms that connect global suppliers with buyers." data-image="assets/images/portfolio/dalfa-cattle-show.webp">Exhibitions</a>
-                <a href="events.html#formats" data-title="Conferences" data-desc="Organizing world-class summits, technical seminars, and international conferences." data-image="assets/images/portfolio/ieee-seminar.webp">Conferences</a>
-                <a href="events.html#formats" data-title="Industrial Forums" data-desc="Facilitating high-level dialogue between government and industry leaders." data-image="assets/images/portfolio/saudi-delegation.webp">Industrial Forums</a>
-            </div>
-            <div class="column highlight">
-                <div class="highlight-content-box">
-                    <img src="assets/images/portfolio/ideas-seminar.webp" alt="Events Highlight" class="dynamic-img" loading="lazy" width="300" height="160">
-                    <strong class="dynamic-title">1500+ Events Delivered</strong>
-                    <p class="dynamic-desc">Connecting industries, governments &amp; global partners.</p>
-                </div>
-            </div>
-        </div>
 
-        <!-- INSIGHTS CONTENT -->
-        <div id="content-insights" class="mega-content">
-            <div class="insight-card">
-                <img src="assets/images/portfolio/global-sme-banner.webp" alt="Blog" loading="lazy">
-                <h4>Blog</h4>
-                <p>Industry insights, event strategies &amp; updates.</p>
-            </div>
-            <div class="insight-card">
-                <img src="assets/images/portfolio/china-embassy.webp" alt="Media" loading="lazy">
-                <h4>Media</h4>
-                <p>Press coverage, interviews &amp; event highlights.</p>
-            </div>
-            <div class="insight-card">
-                <img src="assets/images/portfolio/concert-audience.webp" alt="Gallery" loading="lazy">
-                <h4>Gallery</h4>
-                <p>Moments captured from our mega events.</p>
+            <div class="actions">
+                <button class="btn btn-dark">Visitor</button>
+                <button class="btn btn-light">Partner</button>
             </div>
         </div>
-    </div>
-
-    <!-- ACTION BUTTONS (Desktop Only) -->
-    <div class="nav-right-icons">
-        <div class="search-trigger" id="search-toggle">
-            <i class="fas fa-magnifying-glass"></i>
-            <span class="search-text">Search</span>
-        </div>
-
-        <div class="actions">
-            <button class="btn btn-dark">Visitor</button>
-            <button class="btn btn-light">Partner</button>
-        </div>
-    </div>
-</nav>
-<!-- ========================= [TEMPLATE: header.php END] ========================= -->
+    </nav>
+    <!-- ========================= [TEMPLATE: header.php END] ========================= -->
 
     <!-- SEARCH OVERLAY -->
     <div class="search-overlay" id="search-overlay">
-    <div class="search-close" id="search-close"><i class="fas fa-xmark"></i></div>
+        <div class="search-close" id="search-close"><i class="fas fa-xmark"></i></div>
         <div class="search-container">
             <div class="search-box">
                 <input type="text" placeholder="Search events, services, or insights..." id="search-input">
@@ -242,7 +296,7 @@
                     <span>#IDEAS24</span>
                     <span>#Exhibitions</span>
                     <span>#Conferences</span>
-                    <span>#CorporateEvents</span>
+                    <span>#CorporateEventss</span>
                 </div>
             </div>
         </div>
@@ -261,14 +315,20 @@
     <!-- ========================= [SECTION 1: PREMIUM HERO] ========================= -->
     <section class="page-hero">
         <div class="page-hero-bg-container">
-            <div class="page-hero-bg" style="background-image: url('assets/images/portfolio/bxss-hq.webp');"></div>
+            <video autoplay muted loop playsinline>
+                <source
+                    src="https://res.cloudinary.com/dbxbhlped/video/upload/v1784203396/BXSS-TVC-15.March_.24-LR_o28hme.mp4"
+                    type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
             <div class="page-hero-overlay"></div>
         </div>
         <div class="evtpg-container page-hero-content">
             <div class="hero-left-col">
                 <span class="hero-badge">Get in Touch</span>
                 <h1>Connect With Our Experts</h1>
-                <p>Have an event to scale, a stall to fabricate, or a conference to organize? Reach out to Pakistan's premier exhibition and event organizers today.</p>
+                <p>Have an event to scale, a stall to fabricate, or a conference to organize? Reach out to Pakistan's
+                    premier exhibition and event organizers today.</p>
                 <div class="hero-ctas">
                     <a href="#contact-form-section" class="hero-btn hero-btn-primary">Send Inquiry</a>
                     <a href="#quick-contact" class="hero-btn hero-btn-outline">Office Coordinates</a>
@@ -299,7 +359,8 @@
             <div class="evtpg-head text-center">
                 <span class="evtpg-eyebrow">Quick Access</span>
                 <h2>Contact Information</h2>
-                <p>Reach our teams directly through any of the following channels or visit our corporate headquarters.</p>
+                <p>Reach our teams directly through any of the following channels or visit our corporate headquarters.
+                </p>
             </div>
 
             <div class="cntpg-cards-grid">
@@ -308,14 +369,16 @@
                     <div class="cntpg-card-icon"><i class="fas fa-map-marked-alt"></i></div>
                     <h3>Head Office Address</h3>
                     <p class="cntpg-card-info">C-175, Block 9, KDA Scheme No.1, Karsaz Road, Karachi, Pakistan</p>
-                    <a href="#map-section" class="cntpg-card-link">View Directions <i class="fas fa-arrow-right"></i></a>
+                    <a href="#map-section" class="cntpg-card-link">View Directions <i
+                            class="fas fa-arrow-right"></i></a>
                 </div>
 
                 <!-- Phone Card -->
                 <div class="cntpg-card">
                     <div class="cntpg-card-icon"><i class="fas fa-phone-alt"></i></div>
                     <h3>Phone Connections</h3>
-                    <p class="cntpg-card-info"><strong>UAN:</strong> +92 21 111 111 297<br><strong>Office:</strong> +92 21 3482 1159</p>
+                    <p class="cntpg-card-info"><strong>UAN:</strong> +92 21 111 111 297<br><strong>Office:</strong> +92
+                        21 3482 1159</p>
                     <a href="tel:+9221111111297" class="cntpg-card-link">Call Now <i class="fas fa-arrow-right"></i></a>
                 </div>
 
@@ -323,15 +386,18 @@
                 <div class="cntpg-card">
                     <div class="cntpg-card-icon"><i class="fas fa-envelope"></i></div>
                     <h3>Corporate Email</h3>
-                    <p class="cntpg-card-info"><strong>General:</strong> info@badarexpo.com<br><strong>Stall Booking:</strong> sales@badarexpo.com</p>
-                    <a href="mailto:info@badarexpo.com" class="cntpg-card-link">Send Email <i class="fas fa-arrow-right"></i></a>
+                    <p class="cntpg-card-info"><strong>General:</strong> info@badarexpo.com<br><strong>Stall
+                            Booking:</strong> sales@badarexpo.com</p>
+                    <a href="mailto:info@badarexpo.com" class="cntpg-card-link">Send Email <i
+                            class="fas fa-arrow-right"></i></a>
                 </div>
 
                 <!-- Business Hours Card -->
                 <div class="cntpg-card">
                     <div class="cntpg-card-icon"><i class="fas fa-clock"></i></div>
                     <h3>Business Hours</h3>
-                    <p class="cntpg-card-info"><strong>Monday - Saturday:</strong><br>09:00 AM to 06:00 PM<br><strong>Sunday:</strong> Closed</p>
+                    <p class="cntpg-card-info"><strong>Monday - Saturday:</strong><br>09:00 AM to 06:00
+                        PM<br><strong>Sunday:</strong> Closed</p>
                     <span class="cntpg-card-tag">Corporate Hours</span>
                 </div>
 
@@ -339,8 +405,10 @@
                 <div class="cntpg-card cntpg-card-accent">
                     <div class="cntpg-card-icon"><i class="fas fa-headset"></i></div>
                     <h3>Emergency & Support</h3>
-                    <p class="cntpg-card-info"><strong>Hotline:</strong> +92 300 0777 297<br><strong>Support:</strong> 24/7 Exhibitor Helpdesk</p>
-                    <a href="tel:+923000777297" class="cntpg-card-link">Contact Hotline <i class="fas fa-arrow-right"></i></a>
+                    <p class="cntpg-card-info"><strong>Hotline:</strong> +92 300 0777 297<br><strong>Support:</strong>
+                        24/7 Exhibitor Helpdesk</p>
+                    <a href="tel:+923000777297" class="cntpg-card-link">Contact Hotline <i
+                            class="fas fa-arrow-right"></i></a>
                 </div>
             </div>
         </div>
@@ -354,9 +422,11 @@
                 <div class="cntpg-form-container">
                     <div class="cntpg-form-header">
                         <h2>Send a Business Inquiry</h2>
-                        <p>Submit your event requirements, space bookings, or fabrication inquiries. Our representatives will get back to you within 24 business hours.</p>
+                        <p>Submit your event requirements, space bookings, or fabrication inquiries. Our representatives
+                            will get back to you within 24 business hours.</p>
                     </div>
-                    <form class="cntpg-form" action="#" method="POST" onsubmit="event.preventDefault(); alert('Thank you for contacting Badar Expo Solutions. Your request has been logged successfully!'); this.reset();">
+                    <form class="cntpg-form" action="#" method="POST"
+                        onsubmit="event.preventDefault(); alert('Thank you for contacting Badar Expo Solutions. Your request has been logged successfully!'); this.reset();">
                         <div class="form-row">
                             <div class="form-group">
                                 <label for="cnt_name">Full Name *</label>
@@ -382,7 +452,8 @@
                         <div class="form-row">
                             <div class="form-group">
                                 <label for="cnt_subject">Subject *</label>
-                                <input type="text" id="cnt_subject" required placeholder="Stall design booking / partnership proposal">
+                                <input type="text" id="cnt_subject" required
+                                    placeholder="Stall design booking / partnership proposal">
                             </div>
                             <div class="form-group">
                                 <label for="cnt_event_type">Event Category</label>
@@ -400,12 +471,14 @@
 
                         <div class="form-group">
                             <label for="cnt_message">Inquiry Details *</label>
-                            <textarea id="cnt_message" rows="5" required placeholder="Provide details about your required space dimensions, event names, or proposal parameters..."></textarea>
+                            <textarea id="cnt_message" rows="5" required
+                                placeholder="Provide details about your required space dimensions, event names, or proposal parameters..."></textarea>
                         </div>
 
                         <div class="form-consent">
                             <input type="checkbox" id="cnt_consent" required>
-                            <label for="cnt_consent">I consent to Badar Expo processing my data to address this inquiry. *</label>
+                            <label for="cnt_consent">I consent to Badar Expo processing my data to address this inquiry.
+                                *</label>
                         </div>
 
                         <button type="submit" class="hero-btn hero-btn-primary cntpg-submit-btn">
@@ -426,7 +499,8 @@
                             <div class="reason-icon"><i class="fas fa-briefcase"></i></div>
                             <div>
                                 <h4>Business & Corporate Services</h4>
-                                <p>Partner with us for end-to-end event management, strategic summits, and government exhibition contracts.</p>
+                                <p>Partner with us for end-to-end event management, strategic summits, and government
+                                    exhibition contracts.</p>
                             </div>
                         </div>
 
@@ -435,7 +509,8 @@
                             <div class="reason-icon"><i class="fas fa-border-all"></i></div>
                             <div>
                                 <h4>Stall Space Booking</h4>
-                                <p>Secure strategic booth locations inside premier exhibition layouts to maximize visitor footfall.</p>
+                                <p>Secure strategic booth locations inside premier exhibition layouts to maximize
+                                    visitor footfall.</p>
                             </div>
                         </div>
 
@@ -444,7 +519,8 @@
                             <div class="reason-icon"><i class="fas fa-handshake"></i></div>
                             <div>
                                 <h4>Event Sponsorship</h4>
-                                <p>Elevate your corporate brand presence to elite levels by sponsoring regional B2B trade shows.</p>
+                                <p>Elevate your corporate brand presence to elite levels by sponsoring regional B2B
+                                    trade shows.</p>
                             </div>
                         </div>
 
@@ -453,7 +529,8 @@
                             <div class="reason-icon"><i class="fas fa-bullhorn"></i></div>
                             <div>
                                 <h4>Media Partnerships</h4>
-                                <p>Establish media alignment networks, press coverage collaborations, and digital content distribution.</p>
+                                <p>Establish media alignment networks, press coverage collaborations, and digital
+                                    content distribution.</p>
                             </div>
                         </div>
 
@@ -462,7 +539,8 @@
                             <div class="reason-icon"><i class="fas fa-users"></i></div>
                             <div>
                                 <h4>Career & Team Expansion</h4>
-                                <p>Join BXSS, Pakistan's leading project production force. Submit credentials to our HR portal.</p>
+                                <p>Join BXSS, Pakistan's leading project production force. Submit credentials to our HR
+                                    portal.</p>
                             </div>
                         </div>
                     </div>
@@ -488,7 +566,8 @@
                 <div class="cntpg-map-details">
                     <span class="evtpg-eyebrow">On-Site Logistics</span>
                     <h2>Find Our Office</h2>
-                    <p>Visiting our corporate headquarters? Review office accessibility guidelines and locations details.</p>
+                    <p>Visiting our corporate headquarters? Review office accessibility guidelines and locations
+                        details.</p>
 
                     <div class="logistics-details">
                         <!-- Logistic Row 1 -->
@@ -496,7 +575,8 @@
                             <i class="fas fa-parking"></i>
                             <div>
                                 <h4>Visitor Parking</h4>
-                                <p>Free visitor parking is available directly in front of the BXSS HQ building and designated street zones.</p>
+                                <p>Free visitor parking is available directly in front of the BXSS HQ building and
+                                    designated street zones.</p>
                             </div>
                         </div>
 
@@ -505,7 +585,8 @@
                             <i class="fas fa-landmark"></i>
                             <div>
                                 <h4>Nearest Landmark</h4>
-                                <p>Conveniently situated adjacent to the PAF Museum, Karsaz and accessible from KDA Scheme 1 intersections.</p>
+                                <p>Conveniently situated adjacent to the PAF Museum, Karsaz and accessible from KDA
+                                    Scheme 1 intersections.</p>
                             </div>
                         </div>
 
@@ -514,8 +595,10 @@
                             <i class="fas fa-route"></i>
                             <div>
                                 <h4>Get Navigation Paths</h4>
-                                <p>Find exact route metrics from your current location using online navigation tools.</p>
-                                <a href="https://maps.google.com/maps?daddr=Badar+Expo+Solutions,+Karachi" target="_blank" class="hero-btn hero-btn-primary directions-btn">
+                                <p>Find exact route metrics from your current location using online navigation tools.
+                                </p>
+                                <a href="https://maps.google.com/maps?daddr=Badar+Expo+Solutions,+Karachi"
+                                    target="_blank" class="hero-btn hero-btn-primary directions-btn">
                                     Open Google Maps <i class="fas fa-external-link-alt"></i>
                                 </a>
                             </div>
@@ -532,7 +615,8 @@
             <div class="evtpg-head text-center">
                 <span class="evtpg-eyebrow">Service Standard</span>
                 <h2>Why Connect with Badar Expo</h2>
-                <p>We combine international service standards with local execution expertise to deliver unmatched exhibition success.</p>
+                <p>We combine international service standards with local execution expertise to deliver unmatched
+                    exhibition success.</p>
             </div>
 
             <div class="why-contact-grid">
@@ -540,42 +624,48 @@
                 <div class="why-card">
                     <div class="why-card-num">01</div>
                     <h3>Fast Response Times</h3>
-                    <p>Our dedicated operations desk evaluates and replies to all business inquiries within 24 business hours.</p>
+                    <p>Our dedicated operations desk evaluates and replies to all business inquiries within 24 business
+                        hours.</p>
                 </div>
 
                 <!-- Feature Card 2 -->
                 <div class="why-card">
                     <div class="why-card-num">02</div>
                     <h3>Experienced Team</h3>
-                    <p>Coordinate directly with seasoned event directors, graphic designers, and exhibition specialists.</p>
+                    <p>Coordinate directly with seasoned event directors, graphic designers, and exhibition specialists.
+                    </p>
                 </div>
 
                 <!-- Feature Card 3 -->
                 <div class="why-card">
                     <div class="why-card-num">03</div>
                     <h3>Dedicated Managers</h3>
-                    <p>Each client account receives an exclusive project coordinator overseeing stall design, operations, and services.</p>
+                    <p>Each client account receives an exclusive project coordinator overseeing stall design,
+                        operations, and services.</p>
                 </div>
 
                 <!-- Feature Card 4 -->
                 <div class="why-card">
                     <div class="why-card-num">04</div>
                     <h3>International Network</h3>
-                    <p>Connecting exhibitors to trade delegations, regional chambers, and foreign buying networks globally.</p>
+                    <p>Connecting exhibitors to trade delegations, regional chambers, and foreign buying networks
+                        globally.</p>
                 </div>
 
                 <!-- Feature Card 5 -->
                 <div class="why-card">
                     <div class="why-card-num">05</div>
                     <h3>Customized Solutions</h3>
-                    <p>Tailored exhibition booth structures, sponsorship options, and branding models designed to fit corporate goals.</p>
+                    <p>Tailored exhibition booth structures, sponsorship options, and branding models designed to fit
+                        corporate goals.</p>
                 </div>
 
                 <!-- Feature Card 6 -->
                 <div class="why-card">
                     <div class="why-card-num">06</div>
                     <h3>Professional Support</h3>
-                    <p>On-site support desk, technical coordinators, and fabrication crews assisting you during setup and show days.</p>
+                    <p>On-site support desk, technical coordinators, and fabrication crews assisting you during setup
+                        and show days.</p>
                 </div>
             </div>
         </div>
@@ -598,8 +688,10 @@
                     </div>
                     <h3>Exhibition Sales</h3>
                     <span class="team-role">Stall bookings & Sponsorships</span>
-                    <p>Coordinate space allocations, sponsorships, and shell scheme options inside upcoming trade fairs.</p>
-                    <a href="mailto:sales@badarexpo.com" class="team-cta-link"><i class="fas fa-envelope"></i> Contact Sales</a>
+                    <p>Coordinate space allocations, sponsorships, and shell scheme options inside upcoming trade fairs.
+                    </p>
+                    <a href="mailto:sales@badarexpo.com" class="team-cta-link"><i class="fas fa-envelope"></i> Contact
+                        Sales</a>
                 </div>
 
                 <!-- Team Card 2 -->
@@ -609,8 +701,10 @@
                     </div>
                     <h3>Marketing & PR</h3>
                     <span class="team-role">Media relations & Partnerships</span>
-                    <p>Discuss media coverage partnerships, corporate advertisement models, and public relations events.</p>
-                    <a href="mailto:marketing@badarexpo.com" class="team-cta-link"><i class="fas fa-envelope"></i> Contact PR</a>
+                    <p>Discuss media coverage partnerships, corporate advertisement models, and public relations events.
+                    </p>
+                    <a href="mailto:marketing@badarexpo.com" class="team-cta-link"><i class="fas fa-envelope"></i>
+                        Contact PR</a>
                 </div>
 
                 <!-- Team Card 3 -->
@@ -621,8 +715,10 @@
                         </div>
                         <h3>Event Operations</h3>
                         <span class="team-role">Fabrication & Logistics</span>
-                        <p>Discuss modular stall designs, custom booth fabrication parameters, logistics support, and screen options.</p>
-                        <a href="mailto:ops@badarexpo.com" class="team-cta-link"><i class="fas fa-envelope"></i> Contact Ops</a>
+                        <p>Discuss modular stall designs, custom booth fabrication parameters, logistics support, and
+                            screen options.</p>
+                        <a href="mailto:ops@badarexpo.com" class="team-cta-link"><i class="fas fa-envelope"></i> Contact
+                            Ops</a>
                     </div>
                 </div>
 
@@ -633,8 +729,10 @@
                     </div>
                     <h3>Exhibitor Support</h3>
                     <span class="team-role">General Helpdesk & Access</span>
-                    <p>Request B2B meeting matches, badges, visitor invitations, logistics coordination, and directory details.</p>
-                    <a href="mailto:support@badarexpo.com" class="team-cta-link"><i class="fas fa-envelope"></i> Contact Support</a>
+                    <p>Request B2B meeting matches, badges, visitor invitations, logistics coordination, and directory
+                        details.</p>
+                    <a href="mailto:support@badarexpo.com" class="team-cta-link"><i class="fas fa-envelope"></i> Contact
+                        Support</a>
                 </div>
 
                 <!-- Team Card 5 -->
@@ -644,8 +742,10 @@
                     </div>
                     <h3>Accounts & Billing</h3>
                     <span class="team-role">Payments & invoicing</span>
-                    <p>Address invoicing queries, payment transaction issues, tax certificates, and billing statements.</p>
-                    <a href="mailto:accounts@badarexpo.com" class="team-cta-link"><i class="fas fa-envelope"></i> Contact Accounts</a>
+                    <p>Address invoicing queries, payment transaction issues, tax certificates, and billing statements.
+                    </p>
+                    <a href="mailto:accounts@badarexpo.com" class="team-cta-link"><i class="fas fa-envelope"></i>
+                        Contact Accounts</a>
                 </div>
             </div>
         </div>
@@ -657,7 +757,8 @@
             <div class="evtpg-head text-center">
                 <span class="evtpg-eyebrow">FAQs</span>
                 <h2>Frequently Asked Questions</h2>
-                <p>Find answers to common questions about space booking, custom stall fabrication, and visitor access.</p>
+                <p>Find answers to common questions about space booking, custom stall fabrication, and visitor access.
+                </p>
             </div>
 
             <div class="evtpg-faq-list">
@@ -668,7 +769,10 @@
                         <span class="faq-toggle-icon"><i class="fas fa-plus"></i></span>
                     </div>
                     <div class="evtpg-faq-answer">
-                        <p>You can book spaces by selecting your preferred event on our calendar list and clicking the inquiry button, or by filling out the form at the bottom of this page. Our project coordinators will get in touch to assist you with floor layout availability, pricing, and shell schemes.</p>
+                        <p>You can book spaces by selecting your preferred event on our calendar list and clicking the
+                            inquiry button, or by filling out the form at the bottom of this page. Our project
+                            coordinators will get in touch to assist you with floor layout availability, pricing, and
+                            shell schemes.</p>
                     </div>
                 </div>
 
@@ -679,7 +783,10 @@
                         <span class="faq-toggle-icon"><i class="fas fa-plus"></i></span>
                     </div>
                     <div class="evtpg-faq-answer">
-                        <p>Badar Expo Solutions offers tiered sponsorship slots (Platinum, Gold, Silver, and Category sponsorships). Reach out directly to our Sales team via the corporate form or at sales@badarexpo.com to receive our comprehensive sponsorship catalog and branding matrices.</p>
+                        <p>Badar Expo Solutions offers tiered sponsorship slots (Platinum, Gold, Silver, and Category
+                            sponsorships). Reach out directly to our Sales team via the corporate form or at
+                            sales@badarexpo.com to receive our comprehensive sponsorship catalog and branding matrices.
+                        </p>
                     </div>
                 </div>
 
@@ -690,7 +797,9 @@
                         <span class="faq-toggle-icon"><i class="fas fa-plus"></i></span>
                     </div>
                     <div class="evtpg-faq-answer">
-                        <p>Visitor registration links go live on our website 30 days before each major trade show. You can register online to receive your electronic entry badge, or check in directly at the visitor registration desks on show days.</p>
+                        <p>Visitor registration links go live on our website 30 days before each major trade show. You
+                            can register online to receive your electronic entry badge, or check in directly at the
+                            visitor registration desks on show days.</p>
                     </div>
                 </div>
 
@@ -701,7 +810,9 @@
                         <span class="faq-toggle-icon"><i class="fas fa-plus"></i></span>
                     </div>
                     <div class="evtpg-faq-answer">
-                        <p>Absolutely. We provide dedicated support for foreign exhibitors, including customs clearance coordination for machinery displays, temporary visa invitation letters, translation services, hotel reservations, and pre-scheduled B2B buyer meetings.</p>
+                        <p>Absolutely. We provide dedicated support for foreign exhibitors, including customs clearance
+                            coordination for machinery displays, temporary visa invitation letters, translation
+                            services, hotel reservations, and pre-scheduled B2B buyer meetings.</p>
                     </div>
                 </div>
 
@@ -712,7 +823,9 @@
                         <span class="faq-toggle-icon"><i class="fas fa-plus"></i></span>
                     </div>
                     <div class="evtpg-faq-answer">
-                        <p>For custom stall design and structural fabrication, we recommend initiating designs 60 to 90 days before the show. This ensures adequate time for structural approvals, engineering reviews, material sourcing, and mock fabrication in our workshops.</p>
+                        <p>For custom stall design and structural fabrication, we recommend initiating designs 60 to 90
+                            days before the show. This ensures adequate time for structural approvals, engineering
+                            reviews, material sourcing, and mock fabrication in our workshops.</p>
                     </div>
                 </div>
             </div>
@@ -772,16 +885,23 @@
             <div class="evtpg-head text-center">
                 <span class="evtpg-eyebrow">Corporate Network</span>
                 <h2>Trusted by Industry Leaders</h2>
-                <p>Collaborating with government agencies, industry chambers, corporate houses, and media associations.</p>
+                <p>Collaborating with government agencies, industry chambers, corporate houses, and media associations.
+                </p>
             </div>
 
             <div class="partners-logo-grid">
-                <div class="partner-logo"><img src="assets/images/clients-logo/tdap.webp" alt="TDAP" loading="lazy"></div>
-                <div class="partner-logo"><img src="assets/images/clients-logo/depo.webp" alt="DEPO" loading="lazy"></div>
-                <div class="partner-logo"><img src="assets/images/clients-logo/abad.webp" alt="ABAD" loading="lazy"></div>
-                <div class="partner-logo"><img src="assets/images/clients-logo/kcc.webp" alt="Karachi Chamber of Commerce" loading="lazy"></div>
-                <div class="partner-logo"><img src="assets/images/clients-logo/papgai.webp" alt="PAPGAI" loading="lazy"></div>
-                <div class="partner-logo"><img src="assets/images/clients-logo/ideas26-150x150-1.webp" alt="IDEAS" loading="lazy"></div>
+                <div class="partner-logo"><img src="assets/images/clients-logo/tdap.webp" alt="TDAP" loading="lazy">
+                </div>
+                <div class="partner-logo"><img src="assets/images/clients-logo/depo.webp" alt="DEPO" loading="lazy">
+                </div>
+                <div class="partner-logo"><img src="assets/images/clients-logo/abad.webp" alt="ABAD" loading="lazy">
+                </div>
+                <div class="partner-logo"><img src="assets/images/clients-logo/kcc.webp"
+                        alt="Karachi Chamber of Commerce" loading="lazy"></div>
+                <div class="partner-logo"><img src="assets/images/clients-logo/papgai.webp" alt="PAPGAI" loading="lazy">
+                </div>
+                <div class="partner-logo"><img src="assets/images/clients-logo/ideas26-150x150-1.webp" alt="IDEAS"
+                        loading="lazy"></div>
             </div>
         </div>
     </section>
@@ -793,7 +913,8 @@
                 <div class="cntpg-cta-content">
                     <span class="cntpg-cta-eyebrow">Corporate Booking</span>
                     <h2>Let's Build Your Next Successful Event Together</h2>
-                    <p>Whether hosting a world-class summit or executing a custom shell scheme stall, BXSS delivers unmatched corporate excellence.</p>
+                    <p>Whether hosting a world-class summit or executing a custom shell scheme stall, BXSS delivers
+                        unmatched corporate excellence.</p>
                 </div>
                 <div class="cntpg-cta-buttons">
                     <a href="mailto:info@badarexpo.com" class="hero-btn hero-btn-primary">Schedule Meeting</a>
@@ -921,64 +1042,80 @@
 
                 </div>
 
-                                <!-- SOCIALS -->
+                <!-- SOCIALS -->
                 <div class="footer-socials">
 
                     <!-- Facebook -->
-                    <a href="https://www.facebook.com/BXSSpakistan/" target="_blank" rel="noopener noreferrer" class="footer-social" aria-label="Facebook">
+                    <a href="https://www.facebook.com/BXSSpakistan/" target="_blank" rel="noopener noreferrer"
+                        class="footer-social" aria-label="Facebook">
                         <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
-                            <path d="M13.5 22v-8h2.7l.4-3h-3.1V9.1c0-.9.3-1.5 1.6-1.5H17V4.9c-.3 0-1.3-.1-2.5-.1-2.5 0-4.2 1.5-4.2 4.3V11H7.5v3h2.8v8h3.2z" />
+                            <path
+                                d="M13.5 22v-8h2.7l.4-3h-3.1V9.1c0-.9.3-1.5 1.6-1.5H17V4.9c-.3 0-1.3-.1-2.5-.1-2.5 0-4.2 1.5-4.2 4.3V11H7.5v3h2.8v8h3.2z" />
                         </svg>
                     </a>
 
                     <!-- LinkedIn -->
-                    <a href="https://www.linkedin.com/company/bxsspakistan" target="_blank" rel="noopener noreferrer" class="footer-social" aria-label="LinkedIn">
+                    <a href="https://www.linkedin.com/company/bxsspakistan" target="_blank" rel="noopener noreferrer"
+                        class="footer-social" aria-label="LinkedIn">
                         <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
-                            <path d="M4.98 3.5A2.48 2.48 0 1 1 5 8.46a2.48 2.48 0 0 1-.02-4.96zM3 9h4v12H3zm7 0h3.8v1.7h.1c.53-1 1.82-2.1 3.74-2.1 4 0 4.76 2.63 4.76 6.05V21h-4v-5.6c0-1.33-.02-3.05-1.86-3.05-1.86 0-2.14 1.45-2.14 2.95V21h-4z" />
+                            <path
+                                d="M4.98 3.5A2.48 2.48 0 1 1 5 8.46a2.48 2.48 0 0 1-.02-4.96zM3 9h4v12H3zm7 0h3.8v1.7h.1c.53-1 1.82-2.1 3.74-2.1 4 0 4.76 2.63 4.76 6.05V21h-4v-5.6c0-1.33-.02-3.05-1.86-3.05-1.86 0-2.14 1.45-2.14 2.95V21h-4z" />
                         </svg>
                     </a>
 
                     <!-- Instagram -->
-                    <a href="https://www.instagram.com/bxsspakistan/" target="_blank" rel="noopener noreferrer" class="footer-social" aria-label="Instagram">
+                    <a href="https://www.instagram.com/bxsspakistan/" target="_blank" rel="noopener noreferrer"
+                        class="footer-social" aria-label="Instagram">
                         <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
                             <path d="M12 7a5 5 0 100 10 5 5 0 000-10zm0 8.2A3.2 3.2 0 1112 8.8a3.2 3.2 0 010 6.4z" />
-                            <path d="M17.5 2h-11A4.5 4.5 0 002 6.5v11A4.5 4.5 0 006.5 22h11a4.5 4.5 0 004.5-4.5v-11A4.5 4.5 0 0017.5 2zm2.7 15.5a2.7 2.7 0 01-2.7 2.7h-11a2.7 2.7 0 01-2.7-2.7v-11a2.7 2.7 0 012.7-2.7h11a2.7 2.7 0 012.7 2.7z" />
+                            <path
+                                d="M17.5 2h-11A4.5 4.5 0 002 6.5v11A4.5 4.5 0 006.5 22h11a4.5 4.5 0 004.5-4.5v-11A4.5 4.5 0 0017.5 2zm2.7 15.5a2.7 2.7 0 01-2.7 2.7h-11a2.7 2.7 0 01-2.7-2.7v-11a2.7 2.7 0 012.7-2.7h11a2.7 2.7 0 012.7 2.7z" />
                             <circle cx="18" cy="6" r="1" />
                         </svg>
                     </a>
 
                     <!-- X (Twitter) -->
-                    <a href="https://x.com/BXSSpakistan" target="_blank" rel="noopener noreferrer" class="footer-social" aria-label="X (Twitter)">
+                    <a href="https://x.com/BXSSpakistan" target="_blank" rel="noopener noreferrer" class="footer-social"
+                        aria-label="X (Twitter)">
                         <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
-                            <path d="M18.9 2H22l-6.76 7.72L23 22h-6.12l-4.8-6.27L6.58 22H3.46l7.23-8.26L1 2h6.28l4.34 5.72L18.9 2z" />
+                            <path
+                                d="M18.9 2H22l-6.76 7.72L23 22h-6.12l-4.8-6.27L6.58 22H3.46l7.23-8.26L1 2h6.28l4.34 5.72L18.9 2z" />
                         </svg>
                     </a>
 
                     <!-- YouTube -->
-                    <a href="https://www.youtube.com/@BXSSpakistan" target="_blank" rel="noopener noreferrer" class="footer-social" aria-label="YouTube">
+                    <a href="https://www.youtube.com/@BXSSpakistan" target="_blank" rel="noopener noreferrer"
+                        class="footer-social" aria-label="YouTube">
                         <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
-                            <path d="M23 12s0-3.5-.45-5.18a2.9 2.9 0 00-2.04-2.05C18.82 4.3 12 4.3 12 4.3s-6.82 0-8.51.47A2.9 2.9 0 001.45 6.8C1 8.5 1 12 1 12s0 3.5.45 5.18a2.9 2.9 0 002.04 2.05c1.69.47 8.51.47 8.51.47s6.82 0 8.51-.47a2.9 2.9 0 002.04-2.05C23 15.5 23 12 23 12zm-13 3.7V8.3l6.3 3.7z" />
+                            <path
+                                d="M23 12s0-3.5-.45-5.18a2.9 2.9 0 00-2.04-2.05C18.82 4.3 12 4.3 12 4.3s-6.82 0-8.51.47A2.9 2.9 0 001.45 6.8C1 8.5 1 12 1 12s0 3.5.45 5.18a2.9 2.9 0 002.04 2.05c1.69.47 8.51.47 8.51.47s6.82 0 8.51-.47a2.9 2.9 0 002.04-2.05C23 15.5 23 12 23 12zm-13 3.7V8.3l6.3 3.7z" />
                         </svg>
                     </a>
 
                     <!-- TikTok -->
-                    <a href="https://www.tiktok.com/@badarexpo" target="_blank" rel="noopener noreferrer" class="footer-social" aria-label="TikTok">
+                    <a href="https://www.tiktok.com/@badarexpo" target="_blank" rel="noopener noreferrer"
+                        class="footer-social" aria-label="TikTok">
                         <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
-                            <path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.27 6.27 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.84a8.2 8.2 0 004.79 1.52V6.9a4.85 4.85 0 01-1.02-.21z"/>
+                            <path
+                                d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.27 6.27 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.84a8.2 8.2 0 004.79 1.52V6.9a4.85 4.85 0 01-1.02-.21z" />
                         </svg>
                     </a>
 
                     <!-- Apple App Store -->
-                    <a href="https://apps.apple.com/pk/app/badar-expo/id6751605684" target="_blank" rel="noopener noreferrer" class="footer-social" aria-label="App Store">
+                    <a href="https://apps.apple.com/pk/app/badar-expo/id6751605684" target="_blank"
+                        rel="noopener noreferrer" class="footer-social" aria-label="App Store">
                         <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
-                            <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/>
+                            <path
+                                d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z" />
                         </svg>
                     </a>
 
                     <!-- Google Play -->
-                    <a href="https://play.google.com/store/apps/details?id=com.badarexpo.app" target="_blank" rel="noopener noreferrer" class="footer-social" aria-label="Google Play">
+                    <a href="https://play.google.com/store/apps/details?id=com.badarexpo.app" target="_blank"
+                        rel="noopener noreferrer" class="footer-social" aria-label="Google Play">
                         <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
-                            <path d="M3.18 23.76c.3.17.64.22.98.14l.1-.06 11.04-6.37-2.39-2.4-9.73 8.69zM.47 1.4A1.5 1.5 0 000 2.5v19c0 .4.13.78.37 1.09l.09.1 10.64-10.63v-.25L.47 1.4zM20.7 10.03l-2.65-1.53-2.67 2.67 2.67 2.67 2.67-1.55a1.5 1.5 0 000-2.26zm-17.52 13.73l.1-.06 10.62-10.62-2.39-2.4L1.04 21.5c.3.3.7.45 1.12.38l.02-.12z"/>
+                            <path
+                                d="M3.18 23.76c.3.17.64.22.98.14l.1-.06 11.04-6.37-2.39-2.4-9.73 8.69zM.47 1.4A1.5 1.5 0 000 2.5v19c0 .4.13.78.37 1.09l.09.1 10.64-10.63v-.25L.47 1.4zM20.7 10.03l-2.65-1.53-2.67 2.67 2.67 2.67 2.67-1.55a1.5 1.5 0 000-2.26zm-17.52 13.73l.1-.06 10.62-10.62-2.39-2.4L1.04 21.5c.3.3.7.45 1.12.38l.02-.12z" />
                         </svg>
                     </a>
 
