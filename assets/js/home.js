@@ -59,9 +59,14 @@ const ServicesCarouselManager = {
             this.updateTarget();
         };
         this._onScroll = () => this.updateTarget();
+        this._onLoad = () => {
+            this.calculateMaxScroll();
+            this.updateTarget();
+        };
 
         window.addEventListener("resize", this._onResize);
         window.addEventListener("scroll", this._onScroll, { passive: true });
+        window.addEventListener("load", this._onLoad);
 
         this.updateTarget();
         this.startRender();
@@ -70,6 +75,7 @@ const ServicesCarouselManager = {
     teardownDesktop() {
         if (this._onResize) window.removeEventListener("resize", this._onResize);
         if (this._onScroll) window.removeEventListener("scroll", this._onScroll);
+        if (this._onLoad) window.removeEventListener("load", this._onLoad);
         this.stopRender();
         this.cardsContainer.style.transform = "";
         this.currentTranslateX = 0;
@@ -77,19 +83,25 @@ const ServicesCarouselManager = {
     },
 
     calculateMaxScroll() {
-        // Full scrollable width of the cards minus the visible viewport width
-        this.maxScroll = this.cardsContainer.scrollWidth - window.innerWidth;
+        // Cache absolute layout metrics once during load/resize to avoid layout thrashing on scroll.
+        this.trackOffsetTop = this.track.offsetTop;
+        this.trackHeight = this.track.offsetHeight;
+        // Full scrollable width of the cards minus the visible viewport width (excluding scrollbars)
+        this.maxScroll = this.cardsContainer.scrollWidth - document.documentElement.clientWidth;
         if (this.maxScroll < 0) this.maxScroll = 0;
     },
 
     updateTarget() {
-        const trackRect = this.track.getBoundingClientRect();
+        // Read window.scrollY dynamically instead of calling track.getBoundingClientRect()
+        // on every scroll event, which triggers expensive layout calculations.
+        const scrollTop = window.scrollY || window.pageYOffset;
+        const trackTop = this.trackOffsetTop - scrollTop;
 
         // The track's available scrolling height minus one viewport
-        const totalScrollableHeight = trackRect.height - window.innerHeight;
+        const totalScrollableHeight = this.trackHeight - window.innerHeight;
 
         // Calculate progress based on how far the top of the track has moved past the top of the viewport
-        let progress = totalScrollableHeight > 0 ? -trackRect.top / totalScrollableHeight : 0;
+        let progress = totalScrollableHeight > 0 ? -trackTop / totalScrollableHeight : 0;
 
         // Clamp progress between 0 and 1
         progress = Math.max(0, Math.min(1, progress));
@@ -100,12 +112,14 @@ const ServicesCarouselManager = {
 
     startRender() {
         const loop = () => {
+            const diff = this.targetTranslateX - this.currentTranslateX;
             // Linear interpolation (lerp) for buttery smooth momentum
-            // 0.08 is the easing factor. Lower = smoother/slower, Higher = snappier
-            this.currentTranslateX += (this.targetTranslateX - this.currentTranslateX) * 0.08;
-
-            // Only update the DOM if the difference is noticeable (optimizes performance)
-            if (Math.abs(this.targetTranslateX - this.currentTranslateX) > 0.05) {
+            if (Math.abs(diff) > 0.05) {
+                this.currentTranslateX += diff * 0.08;
+                this.cardsContainer.style.transform = `translate3d(${this.currentTranslateX}px, 0, 0)`;
+            } else if (this.currentTranslateX !== this.targetTranslateX) {
+                // Ensure it settles exactly at the pixel-perfect final target
+                this.currentTranslateX = this.targetTranslateX;
                 this.cardsContainer.style.transform = `translate3d(${this.currentTranslateX}px, 0, 0)`;
             }
 
