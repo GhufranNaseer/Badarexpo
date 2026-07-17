@@ -2407,7 +2407,7 @@ body {
 
 .section-tag {
     display: inline-block;
-    color: var(--primary-red);
+    color: #C31A20;
     font-weight: 700;
     font-size: 13px;
     letter-spacing: 1px;
@@ -2713,7 +2713,7 @@ body {
     margin-bottom: 36px;
 }
 
-.nsc-header-center h4 {
+.nsc-header-center h2.nsc-eyebrow {
     letter-spacing: 4px;
     font-size: 13px;
     color: #aaa;
@@ -2723,7 +2723,7 @@ body {
     margin: 0;
 }
 
-.nsc-header-center h4::after {
+.nsc-header-center h2.nsc-eyebrow::after {
     content: '';
     position: absolute;
     bottom: -10px;
@@ -2943,7 +2943,7 @@ body {
         margin-bottom: 50px;
     }
 
-    .nsc-header-center h4 {
+    .nsc-header-center h2.nsc-eyebrow {
         font-size: 14px;
     }
 
@@ -3043,7 +3043,7 @@ body {
 }
 
 .testi-small-heading {
-    color: #e41f26;
+    color: #C31A20;
     font-size: 14px;
     font-weight: 600;
     margin-bottom: 14px;

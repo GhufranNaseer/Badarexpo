@@ -292,6 +292,8 @@
     </nav>
     <!-- ========================= [TEMPLATE: header.php END] ========================= -->
 
+    <main id="main-content">
+
     <!-- ========================= [TEMPLATE PART: hero-slider.php START] ========================= -->
     <!-- HERO SECTION -->
     <section class="hero">
@@ -299,6 +301,7 @@
             <source
                 src="https://res.cloudinary.com/dbxbhlped/video/upload/v1784203396/BXSS-TVC-15.March_.24-LR_o28hme.mp4"
                 type="video/mp4">
+            <track kind="captions" src="data:text/vtt," srclang="en" label="English" default>
             Your browser does not support the video tag.
             <source src="https://assets.mixkit.co/videos/preview/mixkit-large-business-center-at-night-4251-large.mp4"
                 type="video/mp4">
@@ -350,7 +353,7 @@
         <section class="new-services-carousel sticky-section">
             <div class="container nsc-container">
                 <div class="nsc-header-center">
-                    <h4>OUR SERVICES</h4>
+                    <h2 class="nsc-eyebrow">OUR SERVICES</h2>
                 </div>
                 <div class="nsc-top">
                     <div class="nsc-left">
@@ -1102,13 +1105,13 @@
         <div class="testi-container">
             <p class="testi-small-heading">Testimonials</p>
 
-            <h2 class="testi-main-heading">
+            <h3 class="testi-main-heading">
                 What Government Bodies and Industry<br>
                 Leaders Say After Working With Us
-            </h2>
+            </h3>
 
             <div class="testi-slider-wrapper">
-                <button class="testi-nav-btn prev" id="testi-prev"><i class="fas fa-chevron-left"></i></button>
+                <button class="testi-nav-btn prev" id="testi-prev" aria-label="Previous testimonial"><i class="fas fa-chevron-left"></i></button>
 
                 <div class="testi-slider-window">
                     <div class="testi-cards-wrapper" id="testi-track">
@@ -1256,11 +1259,12 @@
                     </div>
                 </div>
 
-                <button class="testi-nav-btn next" id="testi-next"><i class="fas fa-chevron-right"></i></button>
+                <button class="testi-nav-btn next" id="testi-next" aria-label="Next testimonial"><i class="fas fa-chevron-right"></i></button>
             </div>
         </div>
     </section>
     <!-- ========================= [TEMPLATE PART: testimonials-slider.php END] ========================= -->
+    </main>
 
     <!-- ========================= [TEMPLATE: footer.php START] ========================= -->
     <!-- ========================= GLOBAL FOOTER ========================= -->
