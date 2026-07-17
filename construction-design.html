@@ -23,7 +23,9 @@
     <link rel="icon" type="image/webp" href="assets/images/logo/favicon.webp">
 
     <!-- Google Fonts with Swap for Fast Text Rendering -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Space+Mono:wght@400;700&display=swap"
+        rel="stylesheet">
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
@@ -37,184 +39,238 @@
 
 <body>
     <!-- ========================= [TEMPLATE: header.php START] ========================= -->
-<!-- TOP BAR -->
-<header class="topbar">
-    <div class="topbar-left">
-        <span><i class="fas fa-phone"></i> +92 21 3482 1159</span>
-        <span><i class="fas fa-envelope"></i> info@badarexpo.com</span>
-    </div>
-    <div class="topbar-right">
-        <div class="lang-dropdown">
-            <button class="lang-btn" id="lang-btn">
-                <i class="fas fa-globe"></i> <span id="current-lang">EN</span> <i class="fas fa-chevron-down"></i>
-            </button>
-            <ul class="lang-list">
-                <li data-lang="en">English</li>
-                <li data-lang="ur">اردو (Urdu)</li>
-                <li data-lang="ar">العربية (Arabic)</li>
-            </ul>
+    <!-- TOP BAR -->
+    <header class="topbar">
+        <div class="topbar-left">
+            <span><i class="fas fa-phone"></i> +92 21 3482 1159</span>
+            <span><i class="fas fa-envelope"></i> info@badarexpo.com</span>
         </div>
-        <a href="https://www.facebook.com/BXSSpakistan/" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-        <a href="https://www.linkedin.com/company/bxsspakistan" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-        <a href="https://www.instagram.com/bxsspakistan/" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-        <a href="https://www.youtube.com/@BXSSpakistan" target="_blank" rel="noopener noreferrer" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
-        <a href="https://x.com/BXSSpakistan" target="_blank" rel="noopener noreferrer" aria-label="X (Twitter)"><i class="fab fa-x-twitter"></i></a>
-        <a href="https://www.tiktok.com/@badarexpo" target="_blank" rel="noopener noreferrer" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
-    </div>
-</header>
-
-<!-- NAVIGATION -->
-<nav class="navbar">
-    <div class="logo">
-        <a href="index.html"><img src="assets/images/logo/favicon.webp" alt="Badar Expo Logo" class="logo-img"></a>
-    </div>
-
-    <!-- Hamburger Icon -->
-    <div class="nav-toggle" id="mobile-menu-toggle">
-        <i class="fas fa-bars"></i>
-    </div>
-
-    <div class="menu" id="nav-menu">
-        <div class="nav-item active-nav"><a href="index.html"><span>Home</span></a></div>
-        <div class="nav-item"><a href="about.html"><span>About Us</span></a></div>
-
-        <div class="nav-item dropdown" data-target="services">
-            <a href="services.html"><span>Services <i class="fas fa-chevron-down"></i></span></a>
-            <ul class="mobile-submenu">
-                <li><a href="exhibitionmanagement.html">Exhibition Management</a></li>
-                <li><a href="exhibitionmanagement.html#conference">Conference Management</a></li>
-                <li><a href="exhibitionmanagement.html#corporate">Corporate Events</a></li>
-                <li><a href="construction-design.html">Construction &amp; Design</a></li>
-                <li><a href="growthservices.html">Growth Services</a></li>
-            </ul>
-        </div>
-        <div class="nav-item dropdown" data-target="events">
-            <a href="events.html"><span>Events <i class="fas fa-chevron-down"></i></span></a>
-            <ul class="mobile-submenu">
-                <li><a href="events.html#our-role">Owned Events</a></li>
-                <li><a href="events.html#our-role">Co-Organized</a></li>
-                <li><a href="events.html#our-role">Managed Events</a></li>
-            </ul>
-        </div>
-
-        <div class="nav-item"><a href="#"><span>Industries</span></a></div>
-        <div class="nav-item"><a href="#"><span>Global Reach</span></a></div>
-
-        <div class="nav-item dropdown" data-target="insights">
-            <span>Insights <i class="fas fa-chevron-down"></i></span>
-            <ul class="mobile-submenu">
-                <li><a href="#">Media Gallery</a></li>
-                <li><a href="#">Blogs</a></li>
-                <li><a href="#">News &amp; Updates</a></li>
-            </ul>
-        </div>
-        <div class="nav-item"><a href="contact.html"><span>Contact</span></a></div>
-
-        <!-- ACTION BUTTONS (Moved inside menu for mobile) -->
-        <div class="mobile-actions">
-            <button class="btn btn-dark">Visitor</button>
-            <button class="btn btn-light">Partner</button>
-        </div>
-    </div>
-
-    <!-- MEGA MENU WRAPPER -->
-    <div class="mega-menu-wrapper" id="shared-mega-menu">
-        <!-- SERVICES CONTENT -->
-        <div id="content-services" class="mega-content">
-            <div class="column dynamic-links">
-                <h4><a href="exhibitionmanagement.html">Exhibition Management <i class="fas fa-chevron-right" style="font-size: 10px; opacity: 0.6;"></i></a></h4>
-                <a href="exhibitionmanagement.html" data-title="Exhibition Management" data-desc="Complete exhibition solutions from concept to execution for B2B and B2C platforms." data-image="assets/images/portfolio/ieee-exhibition.webp">Management</a>
-                <a href="exhibitionmanagement.html#conference" data-title="Conference Management" data-desc="Organizing world-class summits, technical seminars, and international conferences." data-image="assets/images/portfolio/ieee-seminar.webp">Conferences</a>
-                <a href="exhibitionmanagement.html#corporate" data-title="Corporate Events" data-desc="Bespoke events tailored to meet corporate objectives and brand positioning." data-image="assets/images/portfolio/ziauddin-convocation.webp">Corporate</a>
-            </div>
-            <div class="column dynamic-links">
-                <h4><a href="construction-design.html">Construction &amp; Design <i class="fas fa-chevron-right" style="font-size: 10px; opacity: 0.6;"></i></a></h4>
-                <ul class="bullet-list">
-                    <li><a href="construction-design.html#canopy" data-title="Canopy Octanorm Building" data-desc="Standardized modular shell schemes for professional exhibitions and trade shows." data-image="assets/images/portfolio/ieee-booth.webp">Canopy Octanorm Building</a></li>
-                    <li><a href="construction-design.html#stall" data-title="Stall Design &amp; Fabrication" data-desc="Custom-built creative booths and designer stalls that make your brand stand out." data-image="assets/images/portfolio/ieee-booth.webp">Stall Design &amp; Fabrication</a></li>
-                    <li><a href="construction-design.html#led" data-title="LED Screens" data-desc="High-definition LED walls and display panels for impactful visual storytelling." data-image="assets/images/portfolio/concert-stage.webp">LED Screens</a></li>
-                    <li><a href="construction-design.html#av" data-title="Audio Visual Equipment" data-desc="Professional sound, lighting, and projection systems tailored for any event size." data-image="assets/images/portfolio/concert-stage.webp">Audio Visual Equipment</a></li>
-                    <li><a href="construction-design.html#furniture" data-title="Rental of Furniture" data-desc="Premium lounge sets, sleek corporate furniture, and event seating solutions." data-image="assets/images/portfolio/ieee-exhibition.webp">Rental of Furniture</a></li>
-                    <li><a href="construction-design.html#kiosks" data-title="Interactive Kiosks" data-desc="Engage your audience with touch-screen technology and digital information points." data-image="assets/images/portfolio/ieee-kiosk.webp">Interactive Kiosks</a></li>
-                    <li><a href="construction-design.html#branding" data-title="Indoor Outdoor Advertising" data-desc="Strategic billboard placement and large-format signage to maximize brand reach." data-image="assets/images/portfolio/global-sme-banner.webp">Branding &amp; Production</a></li>
+        <div class="topbar-right">
+            <div class="lang-dropdown">
+                <button class="lang-btn" id="lang-btn">
+                    <i class="fas fa-globe"></i> <span id="current-lang">EN</span> <i class="fas fa-chevron-down"></i>
+                </button>
+                <ul class="lang-list">
+                    <li data-lang="en">English</li>
+                    <li data-lang="ur">اردو (Urdu)</li>
+                    <li data-lang="ar">العربية (Arabic)</li>
                 </ul>
             </div>
-            <div class="column dynamic-links">
-                <h4><a href="growthservices.html">Growth Services <i class="fas fa-chevron-right" style="font-size: 10px; opacity: 0.6;"></i></a></h4>
-                <a href="growthservices.html#pillars" data-title="B2B Matchmaking" data-desc="Connecting global buyers with suppliers through strategic high-level networking." data-image="assets/images/portfolio/china-embassy.webp">B2B Matchmaking</a>
-                <a href="growthservices.html#pillars" data-title="Event Marketing" data-desc="Innovative PR and media strategies designed to drive maximum event attendance." data-image="assets/images/portfolio/global-sme-banner.webp">Event Marketing</a>
-                <a href="growthservices.html#pillars" data-title="Digital Production" data-desc="Creative content, live streaming, and digital solutions for the modern event landscape." data-image="assets/images/portfolio/concert-stage.webp">Digital Production</a>
+            <a href="https://www.facebook.com/BXSSpakistan/" target="_blank" rel="noopener noreferrer"
+                aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://www.linkedin.com/company/bxsspakistan" target="_blank" rel="noopener noreferrer"
+                aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+            <a href="https://www.instagram.com/bxsspakistan/" target="_blank" rel="noopener noreferrer"
+                aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="https://www.youtube.com/@BXSSpakistan" target="_blank" rel="noopener noreferrer"
+                aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+            <a href="https://x.com/BXSSpakistan" target="_blank" rel="noopener noreferrer" aria-label="X (Twitter)"><i
+                    class="fab fa-x-twitter"></i></a>
+            <a href="https://www.tiktok.com/@badarexpo" target="_blank" rel="noopener noreferrer" aria-label="TikTok"><i
+                    class="fab fa-tiktok"></i></a>
+        </div>
+    </header>
+
+    <!-- NAVIGATION -->
+    <nav class="navbar">
+        <div class="logo">
+            <a href="index.html"><img src="assets/images/logo/favicon.webp" alt="Badar Expo Logo" class="logo-img"></a>
+        </div>
+
+        <!-- Hamburger Icon -->
+        <div class="nav-toggle" id="mobile-menu-toggle">
+            <i class="fas fa-bars"></i>
+        </div>
+
+        <div class="menu" id="nav-menu">
+            <div class="nav-item active-nav"><a href="index.html"><span>Home</span></a></div>
+            <div class="nav-item"><a href="about.html"><span>About Us</span></a></div>
+
+            <div class="nav-item dropdown" data-target="services">
+                <a href="services.html"><span>Services <i class="fas fa-chevron-down"></i></span></a>
+                <ul class="mobile-submenu">
+                    <li><a href="exhibitionmanagement.html">Exhibition Management</a></li>
+                    <li><a href="exhibitionmanagement.html#conference">Conference Management</a></li>
+                    <li><a href="exhibitionmanagement.html#corporate">Corporate Events</a></li>
+                    <li><a href="construction-design.html">Construction &amp; Design</a></li>
+                    <li><a href="growthservices.html">Growth Services</a></li>
+                </ul>
             </div>
-            <div class="column highlight">
-                <div class="highlight-content-box">
-                    <img src="assets/images/portfolio/ieee-exhibition.webp" alt="Services Highlight" class="dynamic-img" loading="lazy" width="300" height="160">
-                    <strong class="dynamic-title">End-to-End Solutions</strong>
-                    <p class="dynamic-desc">We design and scale world-class exhibitions &amp; industry platforms.</p>
+            <div class="nav-item dropdown" data-target="events">
+                <a href="events.html"><span>Events <i class="fas fa-chevron-down"></i></span></a>
+                <ul class="mobile-submenu">
+                    <li><a href="events.html#our-role">Owned Events</a></li>
+                    <li><a href="events.html#our-role">Co-Organized</a></li>
+                    <li><a href="events.html#our-role">Managed Events</a></li>
+                </ul>
+            </div>
+
+            <div class="nav-item"><a href="#"><span>Industries</span></a></div>
+            <div class="nav-item"><a href="#"><span>International Projects</span></a></div>
+
+            <div class="nav-item dropdown" data-target="insights">
+                <span>Insights <i class="fas fa-chevron-down"></i></span>
+                <ul class="mobile-submenu">
+                    <li><a href="#">Media Gallery</a></li>
+                    <li><a href="#">Blogs</a></li>
+                    <li><a href="#">News &amp; Updates</a></li>
+                </ul>
+            </div>
+            <div class="nav-item"><a href="contact.html"><span>Contact</span></a></div>
+
+            <!-- ACTION BUTTONS (Moved inside menu for mobile) -->
+            <div class="mobile-actions">
+                <button class="btn btn-dark">Visitor</button>
+                <button class="btn btn-light">Partner</button>
+            </div>
+        </div>
+
+        <!-- MEGA MENU WRAPPER -->
+        <div class="mega-menu-wrapper" id="shared-mega-menu">
+            <!-- SERVICES CONTENT -->
+            <div id="content-services" class="mega-content">
+                <div class="column dynamic-links">
+                    <h4><a href="exhibitionmanagement.html">Exhibition Management <i class="fas fa-chevron-right"
+                                style="font-size: 10px; opacity: 0.6;"></i></a></h4>
+                    <a href="exhibitionmanagement.html" data-title="Exhibition Management"
+                        data-desc="Complete exhibition solutions from concept to execution for B2B and B2C platforms."
+                        data-image="assets/images/portfolio/ieee-exhibition.webp">Management</a>
+                    <a href="exhibitionmanagement.html#conference" data-title="Conference Management"
+                        data-desc="Organizing world-class summits, technical seminars, and international conferences."
+                        data-image="assets/images/portfolio/ieee-seminar.webp">Conferences</a>
+                    <a href="exhibitionmanagement.html#corporate" data-title="Corporate Events"
+                        data-desc="Bespoke events tailored to meet corporate objectives and brand positioning."
+                        data-image="assets/images/portfolio/ziauddin-convocation.webp">Corporate</a>
+                </div>
+                <div class="column dynamic-links">
+                    <h4><a href="construction-design.html">Construction &amp; Design <i class="fas fa-chevron-right"
+                                style="font-size: 10px; opacity: 0.6;"></i></a></h4>
+                    <ul class="bullet-list">
+                        <li><a href="construction-design.html#canopy" data-title="Canopy Octanorm Building"
+                                data-desc="Standardized modular shell schemes for professional exhibitions and trade shows."
+                                data-image="assets/images/portfolio/ieee-booth.webp">Canopy Octanorm Building</a></li>
+                        <li><a href="construction-design.html#stall" data-title="Stall Design &amp; Fabrication"
+                                data-desc="Custom-built creative booths and designer stalls that make your brand stand out."
+                                data-image="assets/images/portfolio/ieee-booth.webp">Stall Design &amp; Fabrication</a>
+                        </li>
+                        <li><a href="construction-design.html#led" data-title="LED Screens"
+                                data-desc="High-definition LED walls and display panels for impactful visual storytelling."
+                                data-image="assets/images/portfolio/concert-stage.webp">LED Screens</a></li>
+                        <li><a href="construction-design.html#av" data-title="Audio Visual Equipment"
+                                data-desc="Professional sound, lighting, and projection systems tailored for any event size."
+                                data-image="assets/images/portfolio/concert-stage.webp">Audio Visual Equipment</a></li>
+                        <li><a href="construction-design.html#furniture" data-title="Rental of Furniture"
+                                data-desc="Premium lounge sets, sleek corporate furniture, and event seating solutions."
+                                data-image="assets/images/portfolio/ieee-exhibition.webp">Rental of Furniture</a></li>
+                        <li><a href="construction-design.html#kiosks" data-title="Interactive Kiosks"
+                                data-desc="Engage your audience with touch-screen technology and digital information points."
+                                data-image="assets/images/portfolio/ieee-kiosk.webp">Interactive Kiosks</a></li>
+                        <li><a href="construction-design.html#branding" data-title="Indoor Outdoor Advertising"
+                                data-desc="Strategic billboard placement and large-format signage to maximize brand reach."
+                                data-image="assets/images/portfolio/global-sme-banner.webp">Branding &amp;
+                                Production</a></li>
+                    </ul>
+                </div>
+                <div class="column dynamic-links">
+                    <h4><a href="growthservices.html">Growth Services <i class="fas fa-chevron-right"
+                                style="font-size: 10px; opacity: 0.6;"></i></a></h4>
+                    <a href="growthservices.html#pillars" data-title="B2B Matchmaking"
+                        data-desc="Connecting global buyers with suppliers through strategic high-level networking."
+                        data-image="assets/images/portfolio/china-embassy.webp">B2B Matchmaking</a>
+                    <a href="growthservices.html#pillars" data-title="Event Marketing"
+                        data-desc="Innovative PR and media strategies designed to drive maximum event attendance."
+                        data-image="assets/images/portfolio/global-sme-banner.webp">Event Marketing</a>
+                    <a href="growthservices.html#pillars" data-title="Digital Production"
+                        data-desc="Creative content, live streaming, and digital solutions for the modern event landscape."
+                        data-image="assets/images/portfolio/concert-stage.webp">Digital Production</a>
+                </div>
+                <div class="column highlight">
+                    <div class="highlight-content-box">
+                        <img src="assets/images/portfolio/ieee-exhibition.webp" alt="Services Highlight"
+                            class="dynamic-img" loading="lazy" width="300" height="160">
+                        <strong class="dynamic-title">End-to-End Solutions</strong>
+                        <p class="dynamic-desc">We design and scale world-class exhibitions &amp; industry platforms.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- EVENTS CONTENT -->
+            <div id="content-events" class="mega-content">
+                <div class="column dynamic-links">
+                    <h4><a href="events.html#our-role">Our Role <i class="fas fa-chevron-right"
+                                style="font-size: 10px; opacity: 0.6;"></i></a></h4>
+                    <a href="events.html#our-role" data-title="Owned Events"
+                        data-desc="Flagship trade fairs and industry-leading exhibitions fully conceptualized by Badar Expo."
+                        data-image="assets/images/portfolio/ieee-exhibition.webp">Owned Events</a>
+                    <a href="events.html#our-role" data-title="Co-Organized"
+                        data-desc="Strategic partnerships with industry bodies to deliver high-impact global events."
+                        data-image="assets/images/portfolio/ideas-exhibition.webp">Co-Organized</a>
+                    <a href="events.html#our-role" data-title="Managed Events"
+                        data-desc="Complete end-to-end event management solutions for third-party corporate and government clients."
+                        data-image="assets/images/portfolio/ziauddin-convocation.webp">Managed Events</a>
+                </div>
+                <div class="column dynamic-links">
+                    <h4><a href="events.html#formats">Formats <i class="fas fa-chevron-right"
+                                style="font-size: 10px; opacity: 0.6;"></i></a></h4>
+                    <a href="events.html#formats" data-title="Exhibitions"
+                        data-desc="Creating massive B2B and B2C platforms that connect global suppliers with buyers."
+                        data-image="assets/images/portfolio/dalfa-cattle-show.webp">Exhibitions</a>
+                    <a href="events.html#formats" data-title="Conferences"
+                        data-desc="Organizing world-class summits, technical seminars, and international conferences."
+                        data-image="assets/images/portfolio/ieee-seminar.webp">Conferences</a>
+                    <a href="events.html#formats" data-title="Industrial Forums"
+                        data-desc="Facilitating high-level dialogue between government and industry leaders."
+                        data-image="assets/images/portfolio/saudi-delegation.webp">Industrial Forums</a>
+                </div>
+                <div class="column highlight">
+                    <div class="highlight-content-box">
+                        <img src="assets/images/portfolio/ideas-seminar.webp" alt="Events Highlight" class="dynamic-img"
+                            loading="lazy" width="300" height="160">
+                        <strong class="dynamic-title">1500+ Events Delivered</strong>
+                        <p class="dynamic-desc">Connecting industries, governments &amp; global partners.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- INSIGHTS CONTENT -->
+            <div id="content-insights" class="mega-content">
+                <div class="insight-card">
+                    <img src="assets/images/portfolio/global-sme-banner.webp" alt="Blog" loading="lazy">
+                    <h4>Blog</h4>
+                    <p>Industry insights, event strategies &amp; updates.</p>
+                </div>
+                <div class="insight-card">
+                    <img src="assets/images/portfolio/china-embassy.webp" alt="Media" loading="lazy">
+                    <h4>Media</h4>
+                    <p>Press coverage, interviews &amp; event highlights.</p>
+                </div>
+                <div class="insight-card">
+                    <img src="assets/images/portfolio/concert-audience.webp" alt="Gallery" loading="lazy">
+                    <h4>Gallery</h4>
+                    <p>Moments captured from our mega events.</p>
                 </div>
             </div>
         </div>
 
-        <!-- EVENTS CONTENT -->
-        <div id="content-events" class="mega-content">
-            <div class="column dynamic-links">
-                <h4><a href="events.html#our-role">Our Role <i class="fas fa-chevron-right" style="font-size: 10px; opacity: 0.6;"></i></a></h4>
-                <a href="events.html#our-role" data-title="Owned Events" data-desc="Flagship trade fairs and industry-leading exhibitions fully conceptualized by Badar Expo." data-image="assets/images/portfolio/ieee-exhibition.webp">Owned Events</a>
-                <a href="events.html#our-role" data-title="Co-Organized" data-desc="Strategic partnerships with industry bodies to deliver high-impact global events." data-image="assets/images/portfolio/ideas-exhibition.webp">Co-Organized</a>
-                <a href="events.html#our-role" data-title="Managed Events" data-desc="Complete end-to-end event management solutions for third-party corporate and government clients." data-image="assets/images/portfolio/ziauddin-convocation.webp">Managed Events</a>
+        <!-- ACTION BUTTONS (Desktop Only) -->
+        <div class="nav-right-icons">
+            <div class="search-trigger" id="search-toggle">
+                <i class="fas fa-magnifying-glass"></i>
+                <span class="search-text">Search</span>
             </div>
-            <div class="column dynamic-links">
-                <h4><a href="events.html#formats">Formats <i class="fas fa-chevron-right" style="font-size: 10px; opacity: 0.6;"></i></a></h4>
-                <a href="events.html#formats" data-title="Exhibitions" data-desc="Creating massive B2B and B2C platforms that connect global suppliers with buyers." data-image="assets/images/portfolio/dalfa-cattle-show.webp">Exhibitions</a>
-                <a href="events.html#formats" data-title="Conferences" data-desc="Organizing world-class summits, technical seminars, and international conferences." data-image="assets/images/portfolio/ieee-seminar.webp">Conferences</a>
-                <a href="events.html#formats" data-title="Industrial Forums" data-desc="Facilitating high-level dialogue between government and industry leaders." data-image="assets/images/portfolio/saudi-delegation.webp">Industrial Forums</a>
-            </div>
-            <div class="column highlight">
-                <div class="highlight-content-box">
-                    <img src="assets/images/portfolio/ideas-seminar.webp" alt="Events Highlight" class="dynamic-img" loading="lazy" width="300" height="160">
-                    <strong class="dynamic-title">1500+ Events Delivered</strong>
-                    <p class="dynamic-desc">Connecting industries, governments &amp; global partners.</p>
-                </div>
-            </div>
-        </div>
 
-        <!-- INSIGHTS CONTENT -->
-        <div id="content-insights" class="mega-content">
-            <div class="insight-card">
-                <img src="assets/images/portfolio/global-sme-banner.webp" alt="Blog" loading="lazy">
-                <h4>Blog</h4>
-                <p>Industry insights, event strategies &amp; updates.</p>
-            </div>
-            <div class="insight-card">
-                <img src="assets/images/portfolio/china-embassy.webp" alt="Media" loading="lazy">
-                <h4>Media</h4>
-                <p>Press coverage, interviews &amp; event highlights.</p>
-            </div>
-            <div class="insight-card">
-                <img src="assets/images/portfolio/concert-audience.webp" alt="Gallery" loading="lazy">
-                <h4>Gallery</h4>
-                <p>Moments captured from our mega events.</p>
+            <div class="actions">
+                <button class="btn btn-dark">Visitor</button>
+                <button class="btn btn-light">Partner</button>
             </div>
         </div>
-    </div>
-
-    <!-- ACTION BUTTONS (Desktop Only) -->
-    <div class="nav-right-icons">
-        <div class="search-trigger" id="search-toggle">
-            <i class="fas fa-magnifying-glass"></i>
-            <span class="search-text">Search</span>
-        </div>
-
-        <div class="actions">
-            <button class="btn btn-dark">Visitor</button>
-            <button class="btn btn-light">Partner</button>
-        </div>
-    </div>
-</nav>
-<!-- ========================= [TEMPLATE: header.php END] ========================= -->
+    </nav>
+    <!-- ========================= [TEMPLATE: header.php END] ========================= -->
 
     <!-- SEARCH OVERLAY -->
     <div class="search-overlay" id="search-overlay">
-    <div class="search-close" id="search-close"><i class="fas fa-xmark"></i></div>
+        <div class="search-close" id="search-close"><i class="fas fa-xmark"></i></div>
         <div class="search-container">
             <div class="search-box">
                 <input type="text" placeholder="Search events, services, or insights..." id="search-input">
@@ -233,847 +289,995 @@
     </div>
 
     <div id="cd-page">
-    <!-- ========================= 1. HERO - split / industrial ========================= -->
-    <!-- ========================= [TEMPLATE PART: cd-hero.php START] ========================= -->
-    <section class="cd-hero">
-        <div class="cd-blueprint-bg"></div>
-        <div class="cd-hero-fade"></div>
-        <div class="cd-container cd-hero-top">
-            <div class="cd-breadcrumb">
-                <a href="index.html">Home</a>
-                <i class="fas fa-chevron-right" style="font-size:9px;"></i>
-                <a href="services.html">Services</a>
-                <i class="fas fa-chevron-right" style="font-size:9px;"></i>
-                <span class="current">Construction & Design</span>
-            </div>
+        <!-- ========================= 1. HERO - split / industrial ========================= -->
+        <!-- ========================= [TEMPLATE PART: cd-hero.php START] ========================= -->
+        <section class="cd-hero">
+            <div class="cd-blueprint-bg"></div>
+            <div class="cd-hero-fade"></div>
+            <div class="cd-container cd-hero-top">
+                <div class="cd-breadcrumb">
+                    <a href="index.html">Home</a>
+                    <i class="fas fa-chevron-right" style="font-size:9px;"></i>
+                    <a href="services.html">Services</a>
+                    <i class="fas fa-chevron-right" style="font-size:9px;"></i>
+                    <span class="current">Construction & Design</span>
+                </div>
 
-            <div class="cd-hero-split">
-                <div class="cd-hero-left">
-                    <span class="cd-hero-badge"><i class="fas fa-hammer"></i> In-House Fabrication Division</span>
-                    <h1>We Don't Just Plan Exhibitions - <br>We <span>Build</span> Them.</h1>
-                    <p>From the first sketch to the final bolt, our engineers, fabricators and technicians construct every booth, stage and pavilion in-house - on time, on spec, on brand.</p>
-                    <div class="cd-hero-btns">
-                        <a href="#cd-capabilities" class="cd-btn cd-btn-primary"><i class="fas fa-drafting-compass"></i> Explore Capabilities</a>
-                        <a href="#cd-cta" class="cd-btn cd-btn-outline"><i class="fas fa-phone"></i> Talk To Our Engineers</a>
+                <div class="cd-hero-split">
+                    <div class="cd-hero-left">
+                        <span class="cd-hero-badge"><i class="fas fa-hammer"></i> In-House Fabrication Division</span>
+                        <h1>We Don't Just Plan Exhibitions - <br>We <span>Build</span> Them.</h1>
+                        <p>From the first sketch to the final bolt, our engineers, fabricators and technicians construct
+                            every booth, stage and pavilion in-house - on time, on spec, on brand.</p>
+                        <div class="cd-hero-btns">
+                            <a href="#cd-capabilities" class="cd-btn cd-btn-primary"><i
+                                    class="fas fa-drafting-compass"></i> Explore Capabilities</a>
+                            <a href="#cd-cta" class="cd-btn cd-btn-outline"><i class="fas fa-phone"></i> Talk To Our
+                                Engineers</a>
+                        </div>
                     </div>
-                </div>
-                <div class="cd-hero-visual cd-bracket">
-                    <img src="assets/images/portfolio/bxss-powerhouse-generated.webp" alt="Exhibition construction and fabrication" class="cd-hero-img-main" loading="lazy">
-                    <img src="assets/images/portfolio/service-stall-fabrication.webp" alt="Stall fabrication workshop" class="cd-hero-img-sub" loading="lazy">
-                    <div class="cd-hero-float-card">
-                        <i class="fas fa-ruler-combined"></i>
-                        <div><strong>40,000+ sq.ft</strong><span>Fabricated per year</span></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="cd-hero-stats">
-            <div class="cd-hero-stat"><div class="num"><span cd-count="150">0</span>+</div><div class="lbl">Structures Built</div></div>
-            <div class="cd-hero-stat"><div class="num"><span cd-count="25">0</span>+</div><div class="lbl">Years Fabricating</div></div>
-            <div class="cd-hero-stat"><div class="num"><span cd-count="60">0</span>+</div><div class="lbl">In-House Crew</div></div>
-            <div class="cd-hero-stat"><div class="num"><span cd-count="98">0</span>%</div><div class="lbl">On-Time Delivery</div></div>
-        </div>
-    </section>
-    <!-- ========================= [TEMPLATE PART: cd-hero.php END] ========================= -->
-
-    <!-- ========================= 2. FROM CONCEPT TO REALITY - horizontal journey ========================= -->
-    <!-- ========================= [TEMPLATE PART: cd-journey.php START] ========================= -->
-    <section class="cd-journey">
-        <div class="cd-container">
-            <div class="cd-journey-head cd-reveal">
-                <span class="cd-eyebrow"><span class="cd-eyebrow-num">02</span> The Journey</span>
-                <h2 class="cd-h2">From Concept To Reality</h2>
-                <p class="cd-sub">Every structure we build passes through the same disciplined engineering journey - nothing skipped, nothing improvised on-site.</p>
-            </div>
-
-            <div class="cd-journey-track cd-reveal">
-                <div class="cd-jstep">
-                    <div class="cd-jstep-num">01</div>
-                    <div class="cd-jstep-icon"><i class="fas fa-comments"></i></div>
-                    <h5>Client Brief</h5>
-                    <p>Objectives & brand goals</p>
-                </div>
-                <div class="cd-jstep-connector"></div>
-                <div class="cd-jstep">
-                    <div class="cd-jstep-num">02</div>
-                    <div class="cd-jstep-icon"><i class="fas fa-pencil-ruler"></i></div>
-                    <h5>Sketch</h5>
-                    <p>Concept exploration</p>
-                </div>
-                <div class="cd-jstep-connector"></div>
-                <div class="cd-jstep">
-                    <div class="cd-jstep-num">03</div>
-                    <div class="cd-jstep-icon"><i class="fas fa-drafting-compass"></i></div>
-                    <h5>CAD</h5>
-                    <p>Technical drawings</p>
-                </div>
-                <div class="cd-jstep-connector"></div>
-                <div class="cd-jstep">
-                    <div class="cd-jstep-num">04</div>
-                    <div class="cd-jstep-icon"><i class="fas fa-cube"></i></div>
-                    <h5>3D Visualization</h5>
-                    <p>Photoreal renders</p>
-                </div>
-                <div class="cd-jstep-connector"></div>
-                <div class="cd-jstep">
-                    <div class="cd-jstep-num">05</div>
-                    <div class="cd-jstep-icon"><i class="fas fa-swatchbook"></i></div>
-                    <h5>Material Selection</h5>
-                    <p>Finishes & fabrics</p>
-                </div>
-                <div class="cd-jstep-connector"></div>
-                <div class="cd-jstep">
-                    <div class="cd-jstep-num">06</div>
-                    <div class="cd-jstep-icon"><i class="fas fa-industry"></i></div>
-                    <h5>Fabrication</h5>
-                    <p>In-house workshop build</p>
-                </div>
-                <div class="cd-jstep-connector"></div>
-                <div class="cd-jstep">
-                    <div class="cd-jstep-num">07</div>
-                    <div class="cd-jstep-icon"><i class="fas fa-truck-fast"></i></div>
-                    <h5>Transport</h5>
-                    <p>Safe site logistics</p>
-                </div>
-                <div class="cd-jstep-connector"></div>
-                <div class="cd-jstep">
-                    <div class="cd-jstep-num">08</div>
-                    <div class="cd-jstep-icon"><i class="fas fa-screwdriver-wrench"></i></div>
-                    <h5>Installation</h5>
-                    <p>On-site assembly</p>
-                </div>
-                <div class="cd-jstep-connector"></div>
-                <div class="cd-jstep">
-                    <div class="cd-jstep-num">09</div>
-                    <div class="cd-jstep-icon"><i class="fas fa-flag-checkered"></i></div>
-                    <h5>Live Exhibition</h5>
-                    <p>Ready for visitors</p>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- ========================= [TEMPLATE PART: cd-journey.php END] ========================= -->
-
-    <!-- ========================= 3. CONSTRUCTION CAPABILITIES - alternating image rows ========================= -->
-    <!-- ========================= [TEMPLATE PART: cd-capabilities.php START] ========================= -->
-    <section class="cd-cap" id="cd-capabilities">
-        <div class="cd-container">
-            <div class="cd-cap-head cd-reveal">
-                <div>
-                    <span class="cd-eyebrow"><span class="cd-eyebrow-num">03</span> What We Build</span>
-                    <h2 class="cd-h2 cd-h2-light">Construction & Design Capabilities</h2>
-                </div>
-                <p class="cd-sub">Seven in-house disciplines, one accountable team - every capability engineered, fabricated and installed under our own roof.</p>
-            </div>
-
-            <div class="cd-cap-row cd-reveal" id="canopy">
-                <div class="cd-cap-media">
-                    <img src="assets/images/portfolio/ieee-exhibition.webp" alt="Canopy Octanorm Building" loading="lazy">
-                </div>
-                <div class="cd-cap-copy">
-                    <span class="cd-eyebrow">01 / 07</span>
-                    <h3>Canopy Octanorm Building</h3>
-                    <p class="cd-desc">Standardized modular shell-scheme systems engineered for speed, precision and reusability across large exhibition halls.</p>
-                    <div class="cd-cap-stats">
-                        <div><strong>320+</strong><span>Projects</span></div>
-                        <div><strong>180K</strong><span>Sq.Ft Covered</span></div>
-                    </div>
-                    <div class="cd-cap-highlights">
-                        <span>Modular Panels</span><span>Rapid Assembly</span><span>Reusable Frames</span>
-                    </div>
-                    <a href="#cd-cta" class="cd-cap-link">Learn More <i class="fas fa-arrow-right"></i></a>
-                </div>
-            </div>
-
-            <div class="cd-cap-row cd-reveal" id="stall">
-                <div class="cd-cap-media">
-                    <img src="assets/images/portfolio/service-stall-fabrication.webp" alt="Stall Design & Fabrication" loading="lazy">
-                </div>
-                <div class="cd-cap-copy">
-                    <span class="cd-eyebrow">02 / 07</span>
-                    <h3>Stall Design & Fabrication</h3>
-                    <p class="cd-desc">Custom-built, designer stalls fabricated in-house from CAD to final finish - built to make a brand impossible to ignore.</p>
-                    <div class="cd-cap-stats">
-                        <div><strong>250+</strong><span>Custom Builds</span></div>
-                        <div><strong>95K</strong><span>Sq.Ft Covered</span></div>
-                    </div>
-                    <div class="cd-cap-highlights">
-                        <span>Bespoke Design</span><span>Wood & Steel Frames</span><span>Brand Integration</span>
-                    </div>
-                    <a href="#cd-cta" class="cd-cap-link">Learn More <i class="fas fa-arrow-right"></i></a>
-                </div>
-            </div>
- 
-            <div class="cd-cap-row cd-reveal" id="led">
-                <div class="cd-cap-media">
-                    <img src="assets/images/portfolio/concert-stage.webp" alt="LED Screens" loading="lazy">
-                </div>
-                <div class="cd-cap-copy">
-                    <span class="cd-eyebrow">03 / 07</span>
-                    <h3>LED Screens</h3>
-                    <p class="cd-desc">High-definition indoor and outdoor LED walls rigged and calibrated by our own AV crew for flawless visual storytelling.</p>
-                    <div class="cd-cap-stats">
-                        <div><strong>180+</strong><span>Events Powered</span></div>
-                        <div><strong>2,400</strong><span>Sq.Ft LED Deployed</span></div>
-                    </div>
-                    <div class="cd-cap-highlights">
-                        <span>Indoor & Outdoor</span><span>Seamless Tiling</span><span>Live Content Ops</span>
-                    </div>
-                    <a href="#cd-cta" class="cd-cap-link">Learn More <i class="fas fa-arrow-right"></i></a>
-                </div>
-            </div>
- 
-            <div class="cd-cap-row cd-reveal" id="av">
-                <div class="cd-cap-media">
-                    <img src="assets/images/portfolio/global-sme-banner.webp" alt="Audio Visual Equipment" loading="lazy">
-                </div>
-                <div class="cd-cap-copy">
-                    <span class="cd-eyebrow">04 / 07</span>
-                    <h3>Audio Visual Equipment</h3>
-                    <p class="cd-desc">Professional sound, lighting and projection systems specified and operated for venues of any scale, indoors or out.</p>
-                    <div class="cd-cap-stats">
-                        <div><strong>400+</strong><span>Shows Run</span></div>
-                        <div><strong>60+</strong><span>In-House Technicians</span></div>
-                    </div>
-                    <div class="cd-cap-highlights">
-                        <span>Line Array Sound</span><span>Stage Lighting</span><span>Live Streaming</span>
-                    </div>
-                    <a href="#cd-cta" class="cd-cap-link">Learn More <i class="fas fa-arrow-right"></i></a>
-                </div>
-            </div>
- 
-            <div class="cd-cap-row cd-reveal" id="furniture">
-                <div class="cd-cap-media">
-                    <img src="assets/images/portfolio/ziauddin-convocation.webp" alt="Rental of Furniture" loading="lazy">
-                </div>
-                <div class="cd-cap-copy">
-                    <span class="cd-eyebrow">05 / 07</span>
-                    <h3>Rental of Furniture</h3>
-                    <p class="cd-desc">A large in-house inventory of lounge sets, corporate seating and event furniture, delivered, assembled and struck by our own team.</p>
-                    <div class="cd-cap-stats">
-                        <div><strong>12K+</strong><span>Furniture Units</span></div>
-                        <div><strong>300+</strong><span>Events Furnished</span></div>
-                    </div>
-                    <div class="cd-cap-highlights">
-                        <span>Premium Lounges</span><span>Registration Desks</span><span>VIP Seating</span>
-                    </div>
-                    <a href="#cd-cta" class="cd-cap-link">Learn More <i class="fas fa-arrow-right"></i></a>
-                </div>
-            </div>
- 
-            <div class="cd-cap-row cd-reveal" id="kiosks">
-                <div class="cd-cap-media">
-                    <img src="assets/images/portfolio/ieee-kiosk.webp" alt="Interactive Kiosks" loading="lazy">
-                </div>
-                <div class="cd-cap-copy">
-                    <span class="cd-eyebrow">06 / 07</span>
-                    <h3>Interactive Kiosks</h3>
-                    <p class="cd-desc">Touch-screen information points and registration kiosks built in-house and integrated with live event data systems.</p>
-                    <div class="cd-cap-stats">
-                        <div><strong>90+</strong><span>Kiosks Deployed</span></div>
-                        <div><strong>15+</strong><span>Custom Interfaces</span></div>
-                    </div>
-                    <div class="cd-cap-highlights">
-                        <span>Touchscreen Builds</span><span>Digital Check-In</span><span>Data Integration</span>
-                    </div>
-                    <a href="#cd-cta" class="cd-cap-link">Learn More <i class="fas fa-arrow-right"></i></a>
-                </div>
-            </div>
- 
-            <div class="cd-cap-row cd-reveal" id="branding">
-                <div class="cd-cap-media">
-                    <img src="assets/images/portfolio/b2b-industrial-generated.webp" alt="Branding & Production" loading="lazy">
-                </div>
-                <div class="cd-cap-copy">
-                    <span class="cd-eyebrow">07 / 07</span>
-                    <h3>Branding & Production</h3>
-                    <p class="cd-desc">Large-format signage, indoor-outdoor advertising and full production support - printed, mounted and finished by our own production floor.</p>
-                    <div class="cd-cap-stats">
-                        <div><strong>500+</strong><span>Branding Jobs</span></div>
-                        <div><strong>24hr</strong><span>Rapid Turnaround</span></div>
-                    </div>
-                    <div class="cd-cap-highlights">
-                        <span>Large-Format Print</span><span>Signage Mounting</span><span>Site Branding</span>
-                    </div>
-                    <a href="#cd-cta" class="cd-cap-link">Learn More <i class="fas fa-arrow-right"></i></a>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- ========================= [TEMPLATE PART: cd-capabilities.php END] ========================= -->
-
-    <!-- ========================= 4. FEATURED PROJECTS - bento gallery ========================= -->
-    <!-- ========================= [TEMPLATE PART: cd-projects.php START] ========================= -->
-    <section class="cd-gallery">
-        <div class="cd-container">
-            <div class="cd-gallery-head cd-reveal">
-                <span class="cd-eyebrow"><span class="cd-eyebrow-num">04</span> Portfolio</span>
-                <h2 class="cd-h2">Featured Construction Projects</h2>
-                <p class="cd-sub">A selection of halls, pavilions and stalls engineered and installed by our in-house build team.</p>
-            </div>
-
-            <div class="cd-bento cd-reveal">
-                <div class="cd-bento-item cd-wide">
-                    <div class="cd-bento-card">
-                        <img src="assets/images/portfolio/ieee-booth.webp" alt="IEEEP Fair booth construction" loading="lazy">
-                        <div class="cd-bento-overlay"><span class="cd-tag-sm">Custom Booth</span><strong>IEEEP Engineering Fair</strong></div>
-                    </div>
-                </div>
-                <div class="cd-bento-item cd-tall">
-                    <div class="cd-bento-card">
-                        <img src="assets/images/portfolio/itcn-asia-generated.webp" alt="ITCN Asia exhibition build" loading="lazy">
-                        <div class="cd-bento-overlay"><span class="cd-tag-sm">Exhibition Hall</span><strong>ITCN Asia</strong></div>
-                    </div>
-                </div>
-                <div class="cd-bento-item cd-small">
-                    <div class="cd-bento-card">
-                        <img src="assets/images/portfolio/service-exhibition-management.webp" alt="Health Care Expo build" loading="lazy">
-                        <div class="cd-bento-overlay"><span class="cd-tag-sm">Health Sector</span><strong>Health Care Expo</strong></div>
-                    </div>
-                </div>
-                <div class="cd-bento-item cd-small">
-                    <div class="cd-bento-card">
-                        <img src="assets/images/portfolio/b2b-industrial-generated.webp" alt="Oil and Gas Expo build" loading="lazy">
-                        <div class="cd-bento-overlay"><span class="cd-tag-sm">Industrial</span><strong>Oil & Gas Expo</strong></div>
-                    </div>
-                </div>
-                <div class="cd-bento-item">
-                    <div class="cd-bento-card">
-                        <img src="assets/images/portfolio/ideas-exhibition.webp" alt="IDEAS defence exhibition build" loading="lazy">
-                        <div class="cd-bento-overlay"><span class="cd-tag-sm">Defence Pavilion</span><strong>IDEAS Exhibition</strong></div>
-                    </div>
-                </div>
-                <div class="cd-bento-item">
-                    <div class="cd-bento-card">
-                        <img src="assets/images/portfolio/saudi-delegation.webp" alt="Government Pavilion build" loading="lazy">
-                        <div class="cd-bento-overlay"><span class="cd-tag-sm">Protocol Build</span><strong>Government Pavilion</strong></div>
+                    <div class="cd-hero-visual cd-bracket">
+                        <img src="assets/images/portfolio/bxss-powerhouse-generated.webp"
+                            alt="Exhibition construction and fabrication" class="cd-hero-img-main" loading="lazy">
+                        <img src="assets/images/portfolio/service-stall-fabrication.webp"
+                            alt="Stall fabrication workshop" class="cd-hero-img-sub" loading="lazy">
+                        <div class="cd-hero-float-card">
+                            <i class="fas fa-ruler-combined"></i>
+                            <div><strong>40,000+ sq.ft</strong><span>Fabricated per year</span></div>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
-    <!-- ========================= [TEMPLATE PART: cd-projects.php END] ========================= -->
 
-    <!-- ========================= 5. CONSTRUCTION PROCESS - vertical timeline ========================= -->
-    <!-- ========================= [TEMPLATE PART: cd-process.php START] ========================= -->
-    <section class="cd-timeline">
-        <div class="cd-container">
-            <div class="cd-timeline-head cd-reveal">
-                <span class="cd-eyebrow"><span class="cd-eyebrow-num">05</span> Our Process</span>
-                <h2 class="cd-h2 cd-h2-light">The Construction Process</h2>
-                <p class="cd-sub cd-sub-light">A disciplined, site-to-hall workflow - engineered so nothing is left to guesswork on installation day.</p>
-            </div>
-
-            <div class="cd-tl-wrap cd-reveal">
-                <div class="cd-tl-line"></div>
-
-                <div class="cd-tl-item">
-                    <div class="cd-tl-content"><h5>Site Visit</h5><p>On-ground assessment of hall, power and access points.</p></div>
-                    <div class="cd-tl-node">01</div>
-                    <div class="cd-tl-spacer"></div>
+            <div class="cd-hero-stats">
+                <div class="cd-hero-stat">
+                    <div class="num"><span cd-count="150">0</span>+</div>
+                    <div class="lbl">Structures Built</div>
                 </div>
-                <div class="cd-tl-item">
-                    <div class="cd-tl-spacer"></div>
-                    <div class="cd-tl-node">02</div>
-                    <div class="cd-tl-content"><h5>Measurements</h5><p>Precise dimensions captured for accurate fabrication.</p></div>
+                <div class="cd-hero-stat">
+                    <div class="num"><span cd-count="25">0</span>+</div>
+                    <div class="lbl">Years Fabricating</div>
                 </div>
-                <div class="cd-tl-item">
-                    <div class="cd-tl-content"><h5>CAD Drawing</h5><p>Technical layouts translated into build-ready drawings.</p></div>
-                    <div class="cd-tl-node">03</div>
-                    <div class="cd-tl-spacer"></div>
+                <div class="cd-hero-stat">
+                    <div class="num"><span cd-count="60">0</span>+</div>
+                    <div class="lbl">In-House Crew</div>
                 </div>
-                <div class="cd-tl-item">
-                    <div class="cd-tl-spacer"></div>
-                    <div class="cd-tl-node">04</div>
-                    <div class="cd-tl-content"><h5>3D Design</h5><p>Photoreal visualization for client sign-off.</p></div>
-                </div>
-                <div class="cd-tl-item">
-                    <div class="cd-tl-content"><h5>Material Planning</h5><p>Sourcing wood, steel, fabric and finish materials.</p></div>
-                    <div class="cd-tl-node">05</div>
-                    <div class="cd-tl-spacer"></div>
-                </div>
-                <div class="cd-tl-item">
-                    <div class="cd-tl-spacer"></div>
-                    <div class="cd-tl-node">06</div>
-                    <div class="cd-tl-content"><h5>Fabrication</h5><p>Built at our own workshop under strict QA.</p></div>
-                </div>
-                <div class="cd-tl-item">
-                    <div class="cd-tl-content"><h5>Quality Check</h5><p>Every panel and joint inspected before dispatch.</p></div>
-                    <div class="cd-tl-node">07</div>
-                    <div class="cd-tl-spacer"></div>
-                </div>
-                <div class="cd-tl-item">
-                    <div class="cd-tl-spacer"></div>
-                    <div class="cd-tl-node">08</div>
-                    <div class="cd-tl-content"><h5>Transport</h5><p>Secure logistics to venue with trained handling crew.</p></div>
-                </div>
-                <div class="cd-tl-item">
-                    <div class="cd-tl-content"><h5>Installation</h5><p>On-site assembly, testing and final handover.</p></div>
-                    <div class="cd-tl-node">09</div>
-                    <div class="cd-tl-spacer"></div>
+                <div class="cd-hero-stat">
+                    <div class="num"><span cd-count="98">0</span>%</div>
+                    <div class="lbl">On-Time Delivery</div>
                 </div>
             </div>
-        </div>
-    </section>
-    <!-- ========================= [TEMPLATE PART: cd-process.php END] ========================= -->
+        </section>
+        <!-- ========================= [TEMPLATE PART: cd-hero.php END] ========================= -->
 
-    <!-- ========================= 6. WORKSHOP & PRODUCTION FACILITY ========================= -->
-    <!-- ========================= [TEMPLATE PART: cd-workshop.php START] ========================= -->
-    <section class="cd-workshop">
-        <div class="cd-container">
-            <div class="cd-workshop-head cd-reveal">
-                <div>
-                    <span class="cd-eyebrow"><span class="cd-eyebrow-num">06</span> Behind The Build</span>
-                    <h2 class="cd-h2">Workshop & Production Facility</h2>
+        <!-- ========================= 2. FROM CONCEPT TO REALITY - horizontal journey ========================= -->
+        <!-- ========================= [TEMPLATE PART: cd-journey.php START] ========================= -->
+        <section class="cd-journey">
+            <div class="cd-container">
+                <div class="cd-journey-head cd-reveal">
+                    <span class="cd-eyebrow"><span class="cd-eyebrow-num">02</span> The Journey</span>
+                    <h2 class="cd-h2">From Concept To Reality</h2>
+                    <p class="cd-sub">Every structure we build passes through the same disciplined engineering journey -
+                        nothing skipped, nothing improvised on-site.</p>
                 </div>
-                <p class="cd-sub">A fully equipped, multi-zone production floor where every structure is fabricated before it ever reaches a hall.</p>
-            </div>
 
-            <div class="cd-wtiles cd-reveal">
-                <div class="cd-wtile">
-                    <img src="assets/images/portfolio/b2b-industrial-generated.webp" alt="Steel Fabrication" loading="lazy">
-                    <div class="cd-wtile-label"><i class="fas fa-bahai"></i><span>Steel Fabrication</span></div>
-                </div>
-                <div class="cd-wtile">
-                    <img src="assets/images/portfolio/service-stall-fabrication.webp" alt="Wood Workshop" loading="lazy">
-                    <div class="cd-wtile-label"><i class="fas fa-tree"></i><span>Wood Workshop</span></div>
-                </div>
-                <div class="cd-wtile">
-                    <img src="assets/images/portfolio/global-sme-banner.webp" alt="Printing" loading="lazy">
-                    <div class="cd-wtile-label"><i class="fas fa-print"></i><span>Printing</span></div>
-                </div>
-                <div class="cd-wtile">
-                    <img src="assets/images/portfolio/bxss-powerhouse-generated.webp" alt="Electrical" loading="lazy">
-                    <div class="cd-wtile-label"><i class="fas fa-bolt"></i><span>Electrical</span></div>
-                </div>
-                <div class="cd-wtile">
-                    <img src="assets/images/portfolio/itcn-asia-generated.webp" alt="Storage" loading="lazy">
-                    <div class="cd-wtile-label"><i class="fas fa-warehouse"></i><span>Storage</span></div>
-                </div>
-                <div class="cd-wtile">
-                    <img src="assets/images/portfolio/ieee-booth.webp" alt="Assembly" loading="lazy">
-                    <div class="cd-wtile-label"><i class="fas fa-people-carry-box"></i><span>Assembly</span></div>
-                </div>
-                <div class="cd-wtile">
-                    <img src="assets/images/portfolio/my-karachi-generated.webp" alt="Testing" loading="lazy">
-                    <div class="cd-wtile-label"><i class="fas fa-vial"></i><span>Testing</span></div>
-                </div>
-                <div class="cd-wtile" style="background:var(--cd-ink);">
-                    <div class="cd-wtile-label" style="position:static;height:100%;justify-content:center;">
-                        <i class="fas fa-arrow-up-right-from-square"></i>
-                        <span>Tour The Facility</span>
+                <div class="cd-journey-track cd-reveal">
+                    <div class="cd-jstep">
+                        <div class="cd-jstep-num">01</div>
+                        <div class="cd-jstep-icon"><i class="fas fa-comments"></i></div>
+                        <h5>Client Brief</h5>
+                        <p>Objectives & brand goals</p>
+                    </div>
+                    <div class="cd-jstep-connector"></div>
+                    <div class="cd-jstep">
+                        <div class="cd-jstep-num">02</div>
+                        <div class="cd-jstep-icon"><i class="fas fa-pencil-ruler"></i></div>
+                        <h5>Sketch</h5>
+                        <p>Concept exploration</p>
+                    </div>
+                    <div class="cd-jstep-connector"></div>
+                    <div class="cd-jstep">
+                        <div class="cd-jstep-num">03</div>
+                        <div class="cd-jstep-icon"><i class="fas fa-drafting-compass"></i></div>
+                        <h5>CAD</h5>
+                        <p>Technical drawings</p>
+                    </div>
+                    <div class="cd-jstep-connector"></div>
+                    <div class="cd-jstep">
+                        <div class="cd-jstep-num">04</div>
+                        <div class="cd-jstep-icon"><i class="fas fa-cube"></i></div>
+                        <h5>3D Visualization</h5>
+                        <p>Photoreal renders</p>
+                    </div>
+                    <div class="cd-jstep-connector"></div>
+                    <div class="cd-jstep">
+                        <div class="cd-jstep-num">05</div>
+                        <div class="cd-jstep-icon"><i class="fas fa-swatchbook"></i></div>
+                        <h5>Material Selection</h5>
+                        <p>Finishes & fabrics</p>
+                    </div>
+                    <div class="cd-jstep-connector"></div>
+                    <div class="cd-jstep">
+                        <div class="cd-jstep-num">06</div>
+                        <div class="cd-jstep-icon"><i class="fas fa-industry"></i></div>
+                        <h5>Fabrication</h5>
+                        <p>In-house workshop build</p>
+                    </div>
+                    <div class="cd-jstep-connector"></div>
+                    <div class="cd-jstep">
+                        <div class="cd-jstep-num">07</div>
+                        <div class="cd-jstep-icon"><i class="fas fa-truck-fast"></i></div>
+                        <h5>Transport</h5>
+                        <p>Safe site logistics</p>
+                    </div>
+                    <div class="cd-jstep-connector"></div>
+                    <div class="cd-jstep">
+                        <div class="cd-jstep-num">08</div>
+                        <div class="cd-jstep-icon"><i class="fas fa-screwdriver-wrench"></i></div>
+                        <h5>Installation</h5>
+                        <p>On-site assembly</p>
+                    </div>
+                    <div class="cd-jstep-connector"></div>
+                    <div class="cd-jstep">
+                        <div class="cd-jstep-num">09</div>
+                        <div class="cd-jstep-icon"><i class="fas fa-flag-checkered"></i></div>
+                        <h5>Live Exhibition</h5>
+                        <p>Ready for visitors</p>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
-    <!-- ========================= [TEMPLATE PART: cd-workshop.php END] ========================= -->
+        </section>
+        <!-- ========================= [TEMPLATE PART: cd-journey.php END] ========================= -->
 
-    <!-- ========================= 7. EQUIPMENT INVENTORY - compact grid ========================= -->
-    <!-- ========================= [TEMPLATE PART: cd-equipment.php START] ========================= -->
-    <section class="cd-inventory">
-        <div class="cd-container">
-            <div class="cd-inv-head cd-reveal">
-                <div>
-                    <span class="cd-eyebrow"><span class="cd-eyebrow-num">07</span> Equipment</span>
-                    <h2 class="cd-h2">Equipment Inventory</h2>
+        <!-- ========================= 3. CONSTRUCTION CAPABILITIES - alternating image rows ========================= -->
+        <!-- ========================= [TEMPLATE PART: cd-capabilities.php START] ========================= -->
+        <section class="cd-cap" id="cd-capabilities">
+            <div class="cd-container">
+                <div class="cd-cap-head cd-reveal">
+                    <div>
+                        <span class="cd-eyebrow"><span class="cd-eyebrow-num">03</span> What We Build</span>
+                        <h2 class="cd-h2 cd-h2-light">Construction & Design Capabilities</h2>
+                    </div>
+                    <p class="cd-sub">Seven in-house disciplines, one accountable team - every capability engineered,
+                        fabricated and installed under our own roof.</p>
                 </div>
-                <p class="cd-sub">Owned, maintained and dispatched from our own store - no third-party rental delays.</p>
-            </div>
 
-            <div class="cd-inv-grid cd-reveal">
-                <div class="cd-inv-item"><i class="fas fa-tv"></i><strong>LED Walls</strong><span>QTY 40+</span></div>
-                <div class="cd-inv-item"><i class="fas fa-lightbulb"></i><strong>Lighting</strong><span>QTY 300+</span></div>
-                <div class="cd-inv-item"><i class="fas fa-volume-high"></i><strong>Sound</strong><span>QTY 120+</span></div>
-                <div class="cd-inv-item"><i class="fas fa-couch"></i><strong>Furniture</strong><span>QTY 12,000+</span></div>
-                <div class="cd-inv-item"><i class="fas fa-cubes"></i><strong>Octanorm</strong><span>QTY 180K sq.ft</span></div>
-                <div class="cd-inv-item"><i class="fas fa-tablet-screen-button"></i><strong>Kiosks</strong><span>QTY 90+</span></div>
-                <div class="cd-inv-item"><i class="fas fa-tower-observation"></i><strong>Trussing</strong><span>QTY 5,000 ft</span></div>
-                <div class="cd-inv-item"><i class="fas fa-link"></i><strong>Rigging</strong><span>QTY 2,000 pts</span></div>
-                <div class="cd-inv-item"><i class="fas fa-display"></i><strong>Digital Displays</strong><span>QTY 60+</span></div>
-                <div class="cd-inv-item"><i class="fas fa-plug"></i><strong>Power Backup</strong><span>QTY 25+</span></div>
-            </div>
-        </div>
-    </section>
-    <!-- ========================= [TEMPLATE PART: cd-equipment.php END] ========================= -->
+                <div class="cd-cap-row cd-reveal" id="canopy">
+                    <div class="cd-cap-media">
+                        <img src="assets/images/portfolio/ieee-exhibition.webp" alt="Canopy Octanorm Building"
+                            loading="lazy">
+                    </div>
+                    <div class="cd-cap-copy">
+                        <span class="cd-eyebrow">01 / 07</span>
+                        <h3>Canopy Octanorm Building</h3>
+                        <p class="cd-desc">Standardized modular shell-scheme systems engineered for speed, precision and
+                            reusability across large exhibition halls.</p>
+                        <div class="cd-cap-stats">
+                            <div><strong>320+</strong><span>Projects</span></div>
+                            <div><strong>180K</strong><span>Sq.Ft Covered</span></div>
+                        </div>
+                        <div class="cd-cap-highlights">
+                            <span>Modular Panels</span><span>Rapid Assembly</span><span>Reusable Frames</span>
+                        </div>
+                        <a href="#cd-cta" class="cd-cap-link">Learn More <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
 
-    <!-- ========================= 8. WHY OUR BUILD QUALITY - comparison table ========================= -->
-    <!-- ========================= [TEMPLATE PART: cd-quality-compare.php START] ========================= -->
-    <section class="cd-compare">
-        <div class="cd-container">
-            <div class="cd-compare-head cd-reveal">
-                <span class="cd-eyebrow"><span class="cd-eyebrow-num">08</span> Build Quality</span>
-                <h2 class="cd-h2">Why Our Build Quality Stands Apart</h2>
-                <p class="cd-sub">The difference between a booth that looks fine in the render and one that survives four days on the floor.</p>
-            </div>
+                <div class="cd-cap-row cd-reveal" id="stall">
+                    <div class="cd-cap-media">
+                        <img src="assets/images/portfolio/service-stall-fabrication.webp"
+                            alt="Stall Design & Fabrication" loading="lazy">
+                    </div>
+                    <div class="cd-cap-copy">
+                        <span class="cd-eyebrow">02 / 07</span>
+                        <h3>Stall Design & Fabrication</h3>
+                        <p class="cd-desc">Custom-built, designer stalls fabricated in-house from CAD to final finish -
+                            built to make a brand impossible to ignore.</p>
+                        <div class="cd-cap-stats">
+                            <div><strong>250+</strong><span>Custom Builds</span></div>
+                            <div><strong>95K</strong><span>Sq.Ft Covered</span></div>
+                        </div>
+                        <div class="cd-cap-highlights">
+                            <span>Bespoke Design</span><span>Wood & Steel Frames</span><span>Brand Integration</span>
+                        </div>
+                        <a href="#cd-cta" class="cd-cap-link">Learn More <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
 
-            <div class="cd-ctable cd-reveal">
-                <div class="cd-ctable-head">
-                    <div>Comparison</div>
-                    <div>Others</div>
-                    <div>Badar Expo</div>
+                <div class="cd-cap-row cd-reveal" id="led">
+                    <div class="cd-cap-media">
+                        <img src="assets/images/portfolio/concert-stage.webp" alt="LED Screens" loading="lazy">
+                    </div>
+                    <div class="cd-cap-copy">
+                        <span class="cd-eyebrow">03 / 07</span>
+                        <h3>LED Screens</h3>
+                        <p class="cd-desc">High-definition indoor and outdoor LED walls rigged and calibrated by our own
+                            AV crew for flawless visual storytelling.</p>
+                        <div class="cd-cap-stats">
+                            <div><strong>180+</strong><span>Events Powered</span></div>
+                            <div><strong>2,400</strong><span>Sq.Ft LED Deployed</span></div>
+                        </div>
+                        <div class="cd-cap-highlights">
+                            <span>Indoor & Outdoor</span><span>Seamless Tiling</span><span>Live Content Ops</span>
+                        </div>
+                        <a href="#cd-cta" class="cd-cap-link">Learn More <i class="fas fa-arrow-right"></i></a>
+                    </div>
                 </div>
-                <div class="cd-ctable-row">
-                    <div>Delivery Timeline</div>
-                    <div><i class="fas fa-xmark"></i> Late Delivery</div>
-                    <div><i class="fas fa-check"></i> On-Time, Every Time</div>
-                </div>
-                <div class="cd-ctable-row">
-                    <div>Build Approach</div>
-                    <div><i class="fas fa-xmark"></i> Standard Booth</div>
-                    <div><i class="fas fa-check"></i> Custom Fabrication</div>
-                </div>
-                <div class="cd-ctable-row">
-                    <div>On-Ground Support</div>
-                    <div><i class="fas fa-xmark"></i> Basic Support</div>
-                    <div><i class="fas fa-check"></i> Complete Execution</div>
-                </div>
-                <div class="cd-ctable-row">
-                    <div>Materials Used</div>
-                    <div><i class="fas fa-xmark"></i> Normal Materials</div>
-                    <div><i class="fas fa-check"></i> Premium Materials</div>
-                </div>
-                <div class="cd-ctable-row">
-                    <div>Project Team</div>
-                    <div><i class="fas fa-xmark"></i> Small Team</div>
-                    <div><i class="fas fa-check"></i> Dedicated Project Team</div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- ========================= [TEMPLATE PART: cd-quality-compare.php END] ========================= -->
 
-    <!-- ========================= 9. INDUSTRIES SERVED - marquee ========================= -->
-    <!-- ========================= [TEMPLATE PART: cd-industries.php START] ========================= -->
-    <section class="cd-marquee-sec">
-        <div class="cd-container cd-marquee-head cd-reveal">
-            <span class="cd-eyebrow"><span class="cd-eyebrow-num">09</span> Industries Built For</span>
-        </div>
-        <div class="cd-marquee-track">
-            <div class="cd-marquee-item"><i class="fas fa-heart-pulse"></i> Healthcare & Medical</div>
-            <div class="cd-marquee-item"><i class="fas fa-oil-well"></i> Oil, Gas & Energy</div>
-            <div class="cd-marquee-item"><i class="fas fa-helmet-safety"></i> Construction & Real Estate</div>
-            <div class="cd-marquee-item"><i class="fas fa-landmark-dome"></i> Government</div>
-            <div class="cd-marquee-item"><i class="fas fa-microchip"></i> Technology & AI</div>
-            <div class="cd-marquee-item"><i class="fas fa-shirt"></i> Textile & Fashion</div>
-            <div class="cd-marquee-item"><i class="fas fa-car"></i> Automotive</div>
-            <div class="cd-marquee-item"><i class="fas fa-building-shield"></i> Defence & Security</div>
-            <!-- duplicate set for seamless loop -->
-            <div class="cd-marquee-item"><i class="fas fa-heart-pulse"></i> Healthcare & Medical</div>
-            <div class="cd-marquee-item"><i class="fas fa-oil-well"></i> Oil, Gas & Energy</div>
-            <div class="cd-marquee-item"><i class="fas fa-helmet-safety"></i> Construction & Real Estate</div>
-            <div class="cd-marquee-item"><i class="fas fa-landmark-dome"></i> Government</div>
-            <div class="cd-marquee-item"><i class="fas fa-microchip"></i> Technology & AI</div>
-            <div class="cd-marquee-item"><i class="fas fa-shirt"></i> Textile & Fashion</div>
-            <div class="cd-marquee-item"><i class="fas fa-car"></i> Automotive</div>
-            <div class="cd-marquee-item"><i class="fas fa-building-shield"></i> Defence & Security</div>
-        </div>
-    </section>
-    <!-- ========================= [TEMPLATE PART: cd-industries.php END] ========================= -->
+                <div class="cd-cap-row cd-reveal" id="av">
+                    <div class="cd-cap-media">
+                        <img src="assets/images/portfolio/global-sme-banner.webp" alt="Audio Visual Equipment"
+                            loading="lazy">
+                    </div>
+                    <div class="cd-cap-copy">
+                        <span class="cd-eyebrow">04 / 07</span>
+                        <h3>Audio Visual Equipment</h3>
+                        <p class="cd-desc">Professional sound, lighting and projection systems specified and operated
+                            for venues of any scale, indoors or out.</p>
+                        <div class="cd-cap-stats">
+                            <div><strong>400+</strong><span>Shows Run</span></div>
+                            <div><strong>60+</strong><span>In-House Technicians</span></div>
+                        </div>
+                        <div class="cd-cap-highlights">
+                            <span>Line Array Sound</span><span>Stage Lighting</span><span>Live Streaming</span>
+                        </div>
+                        <a href="#cd-cta" class="cd-cap-link">Learn More <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
 
-    <!-- ========================= 10. SAFETY STANDARDS - badges ========================= -->
-    <!-- ========================= [TEMPLATE PART: cd-safety.php START] ========================= -->
-    <section class="cd-safety">
-        <div class="cd-container">
-            <div class="cd-safety-head cd-reveal">
-                <span class="cd-eyebrow"><span class="cd-eyebrow-num">10</span> Safety First</span>
-                <h2 class="cd-h2">Safety Standards On Every Site</h2>
-                <p class="cd-sub">No structure leaves our workshop, and no crew steps on-site, without clearing these checks.</p>
-            </div>
-            <div class="cd-safety-grid cd-reveal">
-                <div class="cd-safety-badge"><div class="cd-badge-ring"><i class="fas fa-hard-hat"></i></div><span>Hard Hats</span></div>
-                <div class="cd-safety-badge"><div class="cd-badge-ring"><i class="fas fa-bolt"></i></div><span>Electrical Safety</span></div>
-                <div class="cd-safety-badge"><div class="cd-badge-ring"><i class="fas fa-fire-extinguisher"></i></div><span>Fire Safety</span></div>
-                <div class="cd-safety-badge"><div class="cd-badge-ring"><i class="fas fa-magnifying-glass-chart"></i></div><span>Quality Inspection</span></div>
-                <div class="cd-safety-badge"><div class="cd-badge-ring"><i class="fas fa-certificate"></i></div><span>ISO Practices</span></div>
-            </div>
-        </div>
-    </section>
-    <!-- ========================= [TEMPLATE PART: cd-safety.php END] ========================= -->
+                <div class="cd-cap-row cd-reveal" id="furniture">
+                    <div class="cd-cap-media">
+                        <img src="assets/images/portfolio/ziauddin-convocation.webp" alt="Rental of Furniture"
+                            loading="lazy">
+                    </div>
+                    <div class="cd-cap-copy">
+                        <span class="cd-eyebrow">05 / 07</span>
+                        <h3>Rental of Furniture</h3>
+                        <p class="cd-desc">A large in-house inventory of lounge sets, corporate seating and event
+                            furniture, delivered, assembled and struck by our own team.</p>
+                        <div class="cd-cap-stats">
+                            <div><strong>12K+</strong><span>Furniture Units</span></div>
+                            <div><strong>300+</strong><span>Events Furnished</span></div>
+                        </div>
+                        <div class="cd-cap-highlights">
+                            <span>Premium Lounges</span><span>Registration Desks</span><span>VIP Seating</span>
+                        </div>
+                        <a href="#cd-cta" class="cd-cap-link">Learn More <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
 
-    <!-- ========================= 11. BEFORE & AFTER - interactive slider ========================= -->
-    <!-- ========================= [TEMPLATE PART: cd-before-after.php START] ========================= -->
-    <section class="cd-ba">
-        <div class="cd-container">
-            <div class="cd-ba-head cd-reveal">
-                <span class="cd-eyebrow"><span class="cd-eyebrow-num">11</span> The Transformation</span>
-                <h2 class="cd-h2">Empty Hall To Finished Exhibition</h2>
-                <p class="cd-sub">Drag the slider to see what our fabrication team turns a bare hall into.</p>
-            </div>
+                <div class="cd-cap-row cd-reveal" id="kiosks">
+                    <div class="cd-cap-media">
+                        <img src="assets/images/portfolio/ieee-kiosk.webp" alt="Interactive Kiosks" loading="lazy">
+                    </div>
+                    <div class="cd-cap-copy">
+                        <span class="cd-eyebrow">06 / 07</span>
+                        <h3>Interactive Kiosks</h3>
+                        <p class="cd-desc">Touch-screen information points and registration kiosks built in-house and
+                            integrated with live event data systems.</p>
+                        <div class="cd-cap-stats">
+                            <div><strong>90+</strong><span>Kiosks Deployed</span></div>
+                            <div><strong>15+</strong><span>Custom Interfaces</span></div>
+                        </div>
+                        <div class="cd-cap-highlights">
+                            <span>Touchscreen Builds</span><span>Digital Check-In</span><span>Data Integration</span>
+                        </div>
+                        <a href="#cd-cta" class="cd-cap-link">Learn More <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
 
-            <div class="cd-ba-frame cd-reveal" id="cdBaFrame">
-                <span class="cd-ba-tag cd-ba-tag-l">Before</span>
-                <span class="cd-ba-tag cd-ba-tag-r">After</span>
-                <img src="assets/images/portfolio/ieee-exhibition.webp" alt="Finished exhibition hall" class="cd-ba-after" loading="lazy">
-                <div class="cd-ba-before-wrap" id="cdBaBeforeWrap">
-                    <img src="assets/images/portfolio/b2b-industrial-generated.webp" alt="Empty hall before construction" loading="lazy">
-                </div>
-                <div class="cd-ba-handle" id="cdBaHandle">
-                    <div class="cd-ba-handle-btn"><i class="fas fa-left-right"></i></div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- ========================= [TEMPLATE PART: cd-before-after.php END] ========================= -->
-
-    <!-- ========================= 12. FAQ - construction specific ========================= -->
-    <!-- ========================= [TEMPLATE PART: cd-faq.php START] ========================= -->
-    <section class="cd-faq">
-        <div class="cd-container">
-            <div class="cd-faq-head cd-reveal">
-                <span class="cd-eyebrow"><span class="cd-eyebrow-num">12</span> FAQs</span>
-                <h2 class="cd-h2">Construction & Fabrication FAQs</h2>
-                <p class="cd-sub">Common questions about how we design, build and install exhibition structures.</p>
-            </div>
-
-            <div class="cd-faq-list cd-reveal">
-                <div class="cd-faq-item cd-active">
-                    <div class="cd-faq-q"><span><span class="cd-faq-num">01</span>Do you fabricate stalls in-house or outsource?</span><i class="fas fa-plus"></i></div>
-                    <div class="cd-faq-a"><p>Everything is built at our own workshop - steel, wood, printing and electrical are all in-house, so quality, timelines and cost stay under our direct control.</p></div>
-                </div>
-                <div class="cd-faq-item">
-                    <div class="cd-faq-q"><span><span class="cd-faq-num">02</span>How long does a custom stall take to build?</span><i class="fas fa-plus"></i></div>
-                    <div class="cd-faq-a"><p>Depending on size and complexity, custom builds typically take 2–4 weeks from CAD sign-off to installation, with standard Octanorm builds turning around faster.</p></div>
-                </div>
-                <div class="cd-faq-item">
-                    <div class="cd-faq-q"><span><span class="cd-faq-num">03</span>Can you handle installation for international exhibitions?</span><i class="fas fa-plus"></i></div>
-                    <div class="cd-faq-a"><p>Yes, our teams coordinate transport, customs and on-site installation crews for exhibitions outside Pakistan, working with local partners where needed.</p></div>
-                </div>
-                <div class="cd-faq-item">
-                    <div class="cd-faq-q"><span><span class="cd-faq-num">04</span>What safety standards do your fabrication crews follow?</span><i class="fas fa-plus"></i></div>
-                    <div class="cd-faq-a"><p>All crews follow hard hat, electrical and fire safety protocols, with every structure passing a quality inspection before it is cleared for the exhibition floor.</p></div>
-                </div>
-                <div class="cd-faq-item">
-                    <div class="cd-faq-q"><span><span class="cd-faq-num">05</span>Do you provide 3D visualization before construction begins?</span><i class="fas fa-plus"></i></div>
-                    <div class="cd-faq-a"><p>Yes, every project moves through CAD drawing and photoreal 3D visualization for client approval before any material is cut in the workshop.</p></div>
+                <div class="cd-cap-row cd-reveal" id="branding">
+                    <div class="cd-cap-media">
+                        <img src="assets/images/portfolio/b2b-industrial-generated.webp" alt="Branding & Production"
+                            loading="lazy">
+                    </div>
+                    <div class="cd-cap-copy">
+                        <span class="cd-eyebrow">07 / 07</span>
+                        <h3>Branding & Production</h3>
+                        <p class="cd-desc">Large-format signage, indoor-outdoor advertising and full production support
+                            - printed, mounted and finished by our own production floor.</p>
+                        <div class="cd-cap-stats">
+                            <div><strong>500+</strong><span>Branding Jobs</span></div>
+                            <div><strong>24hr</strong><span>Rapid Turnaround</span></div>
+                        </div>
+                        <div class="cd-cap-highlights">
+                            <span>Large-Format Print</span><span>Signage Mounting</span><span>Site Branding</span>
+                        </div>
+                        <a href="#cd-cta" class="cd-cap-link">Learn More <i class="fas fa-arrow-right"></i></a>
+                    </div>
                 </div>
             </div>
-        </div>
-    </section>
-    <!-- ========================= [TEMPLATE PART: cd-faq.php END] ========================= -->
+        </section>
+        <!-- ========================= [TEMPLATE PART: cd-capabilities.php END] ========================= -->
 
-    <!-- ========================= 13. PREMIUM CTA - engineering ========================= -->
-    <!-- ========================= [TEMPLATE PART: cd-cta.php START] ========================= -->
-    <section class="cd-cta" id="cd-cta">
-        <div class="cd-blueprint-bg"></div>
-        <div class="cd-container cd-cta-inner">
-            <div class="cd-cta-left">
-                <span class="cd-eyebrow"><i class="fas fa-drafting-compass"></i> Let's Engineer It</span>
-                <h2>Have A Structure In Mind? <span>Let's Build It.</span></h2>
-                <p>Share your floor plan, brand brief or reference images - our engineers will respond with a build proposal, timeline and cost estimate within 24 hours.</p>
-                <div class="cd-cta-btns">
-                    <a href="mailto:info@badarexpo.com" class="cd-btn cd-btn-primary"><i class="fas fa-file-lines"></i> Request Build Proposal</a>
-                    <a href="tel:+922134821159" class="cd-btn cd-btn-outline"><i class="fas fa-phone"></i> Speak To An Engineer</a>
+        <!-- ========================= 4. FEATURED PROJECTS - bento gallery ========================= -->
+        <!-- ========================= [TEMPLATE PART: cd-projects.php START] ========================= -->
+        <section class="cd-gallery">
+            <div class="cd-container">
+                <div class="cd-gallery-head cd-reveal">
+                    <span class="cd-eyebrow"><span class="cd-eyebrow-num">04</span> Portfolio</span>
+                    <h2 class="cd-h2">Featured Construction Projects</h2>
+                    <p class="cd-sub">A selection of halls, pavilions and stalls engineered and installed by our
+                        in-house build team.</p>
+                </div>
+
+                <div class="cd-bento cd-reveal">
+                    <div class="cd-bento-item cd-wide">
+                        <div class="cd-bento-card">
+                            <img src="assets/images/portfolio/ieee-booth.webp" alt="IEEEP Fair booth construction"
+                                loading="lazy">
+                            <div class="cd-bento-overlay"><span class="cd-tag-sm">Custom Booth</span><strong>IEEEP
+                                    Engineering Fair</strong></div>
+                        </div>
+                    </div>
+                    <div class="cd-bento-item cd-tall">
+                        <div class="cd-bento-card">
+                            <img src="assets/images/portfolio/itcn-asia-generated.webp" alt="ITCN Asia exhibition build"
+                                loading="lazy">
+                            <div class="cd-bento-overlay"><span class="cd-tag-sm">Exhibition Hall</span><strong>ITCN
+                                    Asia</strong></div>
+                        </div>
+                    </div>
+                    <div class="cd-bento-item cd-small">
+                        <div class="cd-bento-card">
+                            <img src="assets/images/portfolio/service-exhibition-management.webp"
+                                alt="Health Care Expo build" loading="lazy">
+                            <div class="cd-bento-overlay"><span class="cd-tag-sm">Health Sector</span><strong>Health
+                                    Care Expo</strong></div>
+                        </div>
+                    </div>
+                    <div class="cd-bento-item cd-small">
+                        <div class="cd-bento-card">
+                            <img src="assets/images/portfolio/b2b-industrial-generated.webp"
+                                alt="Oil and Gas Expo build" loading="lazy">
+                            <div class="cd-bento-overlay"><span class="cd-tag-sm">Industrial</span><strong>Oil & Gas
+                                    Expo</strong></div>
+                        </div>
+                    </div>
+                    <div class="cd-bento-item">
+                        <div class="cd-bento-card">
+                            <img src="assets/images/portfolio/ideas-exhibition.webp"
+                                alt="IDEAS defence exhibition build" loading="lazy">
+                            <div class="cd-bento-overlay"><span class="cd-tag-sm">Defence Pavilion</span><strong>IDEAS
+                                    Exhibition</strong></div>
+                        </div>
+                    </div>
+                    <div class="cd-bento-item">
+                        <div class="cd-bento-card">
+                            <img src="assets/images/portfolio/saudi-delegation.webp" alt="Government Pavilion build"
+                                loading="lazy">
+                            <div class="cd-bento-overlay"><span class="cd-tag-sm">Protocol
+                                    Build</span><strong>Government Pavilion</strong></div>
+                        </div>
+                    </div>
                 </div>
             </div>
-            <div class="cd-cta-right">
-                <div class="cd-cta-right-row"><i class="fas fa-phone"></i><a href="tel:+922134821159">+92 21 3482 1159</a></div>
-                <div class="cd-cta-right-row"><i class="fas fa-envelope"></i><a href="mailto:info@badarexpo.com">info@badarexpo.com</a></div>
-                <div class="cd-cta-right-row"><i class="fas fa-location-dot"></i><span>Fabrication Workshop, Karachi</span></div>
-                <div class="cd-cta-right-row"><i class="fas fa-clock"></i><span>Mon – Sat, 9:00 AM – 7:00 PM</span></div>
+        </section>
+        <!-- ========================= [TEMPLATE PART: cd-projects.php END] ========================= -->
+
+        <!-- ========================= 5. CONSTRUCTION PROCESS - vertical timeline ========================= -->
+        <!-- ========================= [TEMPLATE PART: cd-process.php START] ========================= -->
+        <section class="cd-timeline">
+            <div class="cd-container">
+                <div class="cd-timeline-head cd-reveal">
+                    <span class="cd-eyebrow"><span class="cd-eyebrow-num">05</span> Our Process</span>
+                    <h2 class="cd-h2 cd-h2-light">The Construction Process</h2>
+                    <p class="cd-sub cd-sub-light">A disciplined, site-to-hall workflow - engineered so nothing is left
+                        to guesswork on installation day.</p>
+                </div>
+
+                <div class="cd-tl-wrap cd-reveal">
+                    <div class="cd-tl-line"></div>
+
+                    <div class="cd-tl-item">
+                        <div class="cd-tl-content">
+                            <h5>Site Visit</h5>
+                            <p>On-ground assessment of hall, power and access points.</p>
+                        </div>
+                        <div class="cd-tl-node">01</div>
+                        <div class="cd-tl-spacer"></div>
+                    </div>
+                    <div class="cd-tl-item">
+                        <div class="cd-tl-spacer"></div>
+                        <div class="cd-tl-node">02</div>
+                        <div class="cd-tl-content">
+                            <h5>Measurements</h5>
+                            <p>Precise dimensions captured for accurate fabrication.</p>
+                        </div>
+                    </div>
+                    <div class="cd-tl-item">
+                        <div class="cd-tl-content">
+                            <h5>CAD Drawing</h5>
+                            <p>Technical layouts translated into build-ready drawings.</p>
+                        </div>
+                        <div class="cd-tl-node">03</div>
+                        <div class="cd-tl-spacer"></div>
+                    </div>
+                    <div class="cd-tl-item">
+                        <div class="cd-tl-spacer"></div>
+                        <div class="cd-tl-node">04</div>
+                        <div class="cd-tl-content">
+                            <h5>3D Design</h5>
+                            <p>Photoreal visualization for client sign-off.</p>
+                        </div>
+                    </div>
+                    <div class="cd-tl-item">
+                        <div class="cd-tl-content">
+                            <h5>Material Planning</h5>
+                            <p>Sourcing wood, steel, fabric and finish materials.</p>
+                        </div>
+                        <div class="cd-tl-node">05</div>
+                        <div class="cd-tl-spacer"></div>
+                    </div>
+                    <div class="cd-tl-item">
+                        <div class="cd-tl-spacer"></div>
+                        <div class="cd-tl-node">06</div>
+                        <div class="cd-tl-content">
+                            <h5>Fabrication</h5>
+                            <p>Built at our own workshop under strict QA.</p>
+                        </div>
+                    </div>
+                    <div class="cd-tl-item">
+                        <div class="cd-tl-content">
+                            <h5>Quality Check</h5>
+                            <p>Every panel and joint inspected before dispatch.</p>
+                        </div>
+                        <div class="cd-tl-node">07</div>
+                        <div class="cd-tl-spacer"></div>
+                    </div>
+                    <div class="cd-tl-item">
+                        <div class="cd-tl-spacer"></div>
+                        <div class="cd-tl-node">08</div>
+                        <div class="cd-tl-content">
+                            <h5>Transport</h5>
+                            <p>Secure logistics to venue with trained handling crew.</p>
+                        </div>
+                    </div>
+                    <div class="cd-tl-item">
+                        <div class="cd-tl-content">
+                            <h5>Installation</h5>
+                            <p>On-site assembly, testing and final handover.</p>
+                        </div>
+                        <div class="cd-tl-node">09</div>
+                        <div class="cd-tl-spacer"></div>
+                    </div>
+                </div>
             </div>
-        </div>
-    </section>
-    <!-- ========================= [TEMPLATE PART: cd-cta.php END] ========================= -->
+        </section>
+        <!-- ========================= [TEMPLATE PART: cd-process.php END] ========================= -->
 
-    <!-- ========================= [TEMPLATE: footer.php START] ========================= -->
-    <!-- ========================= GLOBAL FOOTER ========================= -->
-    <footer class="footer-shell">
-        <div class="footer">
+        <!-- ========================= 6. WORKSHOP & PRODUCTION FACILITY ========================= -->
+        <!-- ========================= [TEMPLATE PART: cd-workshop.php START] ========================= -->
+        <section class="cd-workshop">
+            <div class="cd-container">
+                <div class="cd-workshop-head cd-reveal">
+                    <div>
+                        <span class="cd-eyebrow"><span class="cd-eyebrow-num">06</span> Behind The Build</span>
+                        <h2 class="cd-h2">Workshop & Production Facility</h2>
+                    </div>
+                    <p class="cd-sub">A fully equipped, multi-zone production floor where every structure is fabricated
+                        before it ever reaches a hall.</p>
+                </div>
 
-            <!-- TOP -->
-            <div class="footer-top">
+                <div class="cd-wtiles cd-reveal">
+                    <div class="cd-wtile">
+                        <img src="assets/images/portfolio/b2b-industrial-generated.webp" alt="Steel Fabrication"
+                            loading="lazy">
+                        <div class="cd-wtile-label"><i class="fas fa-bahai"></i><span>Steel Fabrication</span></div>
+                    </div>
+                    <div class="cd-wtile">
+                        <img src="assets/images/portfolio/service-stall-fabrication.webp" alt="Wood Workshop"
+                            loading="lazy">
+                        <div class="cd-wtile-label"><i class="fas fa-tree"></i><span>Wood Workshop</span></div>
+                    </div>
+                    <div class="cd-wtile">
+                        <img src="assets/images/portfolio/global-sme-banner.webp" alt="Printing" loading="lazy">
+                        <div class="cd-wtile-label"><i class="fas fa-print"></i><span>Printing</span></div>
+                    </div>
+                    <div class="cd-wtile">
+                        <img src="assets/images/portfolio/bxss-powerhouse-generated.webp" alt="Electrical"
+                            loading="lazy">
+                        <div class="cd-wtile-label"><i class="fas fa-bolt"></i><span>Electrical</span></div>
+                    </div>
+                    <div class="cd-wtile">
+                        <img src="assets/images/portfolio/itcn-asia-generated.webp" alt="Storage" loading="lazy">
+                        <div class="cd-wtile-label"><i class="fas fa-warehouse"></i><span>Storage</span></div>
+                    </div>
+                    <div class="cd-wtile">
+                        <img src="assets/images/portfolio/ieee-booth.webp" alt="Assembly" loading="lazy">
+                        <div class="cd-wtile-label"><i class="fas fa-people-carry-box"></i><span>Assembly</span></div>
+                    </div>
+                    <div class="cd-wtile">
+                        <img src="assets/images/portfolio/my-karachi-generated.webp" alt="Testing" loading="lazy">
+                        <div class="cd-wtile-label"><i class="fas fa-vial"></i><span>Testing</span></div>
+                    </div>
+                    <div class="cd-wtile" style="background:var(--cd-ink);">
+                        <div class="cd-wtile-label" style="position:static;height:100%;justify-content:center;">
+                            <i class="fas fa-arrow-up-right-from-square"></i>
+                            <span>Tour The Facility</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- ========================= [TEMPLATE PART: cd-workshop.php END] ========================= -->
 
-                <button class="footer-aws-btn" onclick="document.getElementById('cd-cta').scrollIntoView({behavior:'smooth'})">
-                    Get a Free Quote
-                </button>
+        <!-- ========================= 7. EQUIPMENT INVENTORY - compact grid ========================= -->
+        <!-- ========================= [TEMPLATE PART: cd-equipment.php START] ========================= -->
+        <section class="cd-inventory">
+            <div class="cd-container">
+                <div class="cd-inv-head cd-reveal">
+                    <div>
+                        <span class="cd-eyebrow"><span class="cd-eyebrow-num">07</span> Equipment</span>
+                        <h2 class="cd-h2">Equipment Inventory</h2>
+                    </div>
+                    <p class="cd-sub">Owned, maintained and dispatched from our own store - no third-party rental
+                        delays.</p>
+                </div>
 
-                <button class="footer-language-btn">
-                    <svg fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
-                        <circle cx="12" cy="12" r="9"></circle>
-                        <path d="M3 12h18"></path>
-                        <path d="M12 3c3 3 4.5 6 4.5 9s-1.5 6-4.5 9c-3-3-4.5-6-4.5-9s1.5-6 4.5-9z"></path>
+                <div class="cd-inv-grid cd-reveal">
+                    <div class="cd-inv-item"><i class="fas fa-tv"></i><strong>LED Walls</strong><span>QTY 40+</span>
+                    </div>
+                    <div class="cd-inv-item"><i class="fas fa-lightbulb"></i><strong>Lighting</strong><span>QTY
+                            300+</span></div>
+                    <div class="cd-inv-item"><i class="fas fa-volume-high"></i><strong>Sound</strong><span>QTY
+                            120+</span></div>
+                    <div class="cd-inv-item"><i class="fas fa-couch"></i><strong>Furniture</strong><span>QTY
+                            12,000+</span></div>
+                    <div class="cd-inv-item"><i class="fas fa-cubes"></i><strong>Octanorm</strong><span>QTY 180K
+                            sq.ft</span></div>
+                    <div class="cd-inv-item"><i class="fas fa-tablet-screen-button"></i><strong>Kiosks</strong><span>QTY
+                            90+</span></div>
+                    <div class="cd-inv-item"><i class="fas fa-tower-observation"></i><strong>Trussing</strong><span>QTY
+                            5,000 ft</span></div>
+                    <div class="cd-inv-item"><i class="fas fa-link"></i><strong>Rigging</strong><span>QTY 2,000
+                            pts</span></div>
+                    <div class="cd-inv-item"><i class="fas fa-display"></i><strong>Digital Displays</strong><span>QTY
+                            60+</span></div>
+                    <div class="cd-inv-item"><i class="fas fa-plug"></i><strong>Power Backup</strong><span>QTY
+                            25+</span></div>
+                </div>
+            </div>
+        </section>
+        <!-- ========================= [TEMPLATE PART: cd-equipment.php END] ========================= -->
+
+        <!-- ========================= 8. WHY OUR BUILD QUALITY - comparison table ========================= -->
+        <!-- ========================= [TEMPLATE PART: cd-quality-compare.php START] ========================= -->
+        <section class="cd-compare">
+            <div class="cd-container">
+                <div class="cd-compare-head cd-reveal">
+                    <span class="cd-eyebrow"><span class="cd-eyebrow-num">08</span> Build Quality</span>
+                    <h2 class="cd-h2">Why Our Build Quality Stands Apart</h2>
+                    <p class="cd-sub">The difference between a booth that looks fine in the render and one that survives
+                        four days on the floor.</p>
+                </div>
+
+                <div class="cd-ctable cd-reveal">
+                    <div class="cd-ctable-head">
+                        <div>Comparison</div>
+                        <div>Others</div>
+                        <div>Badar Expo</div>
+                    </div>
+                    <div class="cd-ctable-row">
+                        <div>Delivery Timeline</div>
+                        <div><i class="fas fa-xmark"></i> Late Delivery</div>
+                        <div><i class="fas fa-check"></i> On-Time, Every Time</div>
+                    </div>
+                    <div class="cd-ctable-row">
+                        <div>Build Approach</div>
+                        <div><i class="fas fa-xmark"></i> Standard Booth</div>
+                        <div><i class="fas fa-check"></i> Custom Fabrication</div>
+                    </div>
+                    <div class="cd-ctable-row">
+                        <div>On-Ground Support</div>
+                        <div><i class="fas fa-xmark"></i> Basic Support</div>
+                        <div><i class="fas fa-check"></i> Complete Execution</div>
+                    </div>
+                    <div class="cd-ctable-row">
+                        <div>Materials Used</div>
+                        <div><i class="fas fa-xmark"></i> Normal Materials</div>
+                        <div><i class="fas fa-check"></i> Premium Materials</div>
+                    </div>
+                    <div class="cd-ctable-row">
+                        <div>Project Team</div>
+                        <div><i class="fas fa-xmark"></i> Small Team</div>
+                        <div><i class="fas fa-check"></i> Dedicated Project Team</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- ========================= [TEMPLATE PART: cd-quality-compare.php END] ========================= -->
+
+        <!-- ========================= 9. INDUSTRIES SERVED - marquee ========================= -->
+        <!-- ========================= [TEMPLATE PART: cd-industries.php START] ========================= -->
+        <section class="cd-marquee-sec">
+            <div class="cd-container cd-marquee-head cd-reveal">
+                <span class="cd-eyebrow"><span class="cd-eyebrow-num">09</span> Industries Built For</span>
+            </div>
+            <div class="cd-marquee-track">
+                <div class="cd-marquee-item"><i class="fas fa-heart-pulse"></i> Healthcare & Medical</div>
+                <div class="cd-marquee-item"><i class="fas fa-oil-well"></i> Oil, Gas & Energy</div>
+                <div class="cd-marquee-item"><i class="fas fa-helmet-safety"></i> Construction & Real Estate</div>
+                <div class="cd-marquee-item"><i class="fas fa-landmark-dome"></i> Government</div>
+                <div class="cd-marquee-item"><i class="fas fa-microchip"></i> Technology & AI</div>
+                <div class="cd-marquee-item"><i class="fas fa-shirt"></i> Textile & Fashion</div>
+                <div class="cd-marquee-item"><i class="fas fa-car"></i> Automotive</div>
+                <div class="cd-marquee-item"><i class="fas fa-building-shield"></i> Defence & Security</div>
+                <!-- duplicate set for seamless loop -->
+                <div class="cd-marquee-item"><i class="fas fa-heart-pulse"></i> Healthcare & Medical</div>
+                <div class="cd-marquee-item"><i class="fas fa-oil-well"></i> Oil, Gas & Energy</div>
+                <div class="cd-marquee-item"><i class="fas fa-helmet-safety"></i> Construction & Real Estate</div>
+                <div class="cd-marquee-item"><i class="fas fa-landmark-dome"></i> Government</div>
+                <div class="cd-marquee-item"><i class="fas fa-microchip"></i> Technology & AI</div>
+                <div class="cd-marquee-item"><i class="fas fa-shirt"></i> Textile & Fashion</div>
+                <div class="cd-marquee-item"><i class="fas fa-car"></i> Automotive</div>
+                <div class="cd-marquee-item"><i class="fas fa-building-shield"></i> Defence & Security</div>
+            </div>
+        </section>
+        <!-- ========================= [TEMPLATE PART: cd-industries.php END] ========================= -->
+
+        <!-- ========================= 10. SAFETY STANDARDS - badges ========================= -->
+        <!-- ========================= [TEMPLATE PART: cd-safety.php START] ========================= -->
+        <section class="cd-safety">
+            <div class="cd-container">
+                <div class="cd-safety-head cd-reveal">
+                    <span class="cd-eyebrow"><span class="cd-eyebrow-num">10</span> Safety First</span>
+                    <h2 class="cd-h2">Safety Standards On Every Site</h2>
+                    <p class="cd-sub">No structure leaves our workshop, and no crew steps on-site, without clearing
+                        these checks.</p>
+                </div>
+                <div class="cd-safety-grid cd-reveal">
+                    <div class="cd-safety-badge">
+                        <div class="cd-badge-ring"><i class="fas fa-hard-hat"></i></div><span>Hard Hats</span>
+                    </div>
+                    <div class="cd-safety-badge">
+                        <div class="cd-badge-ring"><i class="fas fa-bolt"></i></div><span>Electrical Safety</span>
+                    </div>
+                    <div class="cd-safety-badge">
+                        <div class="cd-badge-ring"><i class="fas fa-fire-extinguisher"></i></div><span>Fire
+                            Safety</span>
+                    </div>
+                    <div class="cd-safety-badge">
+                        <div class="cd-badge-ring"><i class="fas fa-magnifying-glass-chart"></i></div><span>Quality
+                            Inspection</span>
+                    </div>
+                    <div class="cd-safety-badge">
+                        <div class="cd-badge-ring"><i class="fas fa-certificate"></i></div><span>ISO Practices</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- ========================= [TEMPLATE PART: cd-safety.php END] ========================= -->
+
+        <!-- ========================= 11. BEFORE & AFTER - interactive slider ========================= -->
+        <!-- ========================= [TEMPLATE PART: cd-before-after.php START] ========================= -->
+        <section class="cd-ba">
+            <div class="cd-container">
+                <div class="cd-ba-head cd-reveal">
+                    <span class="cd-eyebrow"><span class="cd-eyebrow-num">11</span> The Transformation</span>
+                    <h2 class="cd-h2">Empty Hall To Finished Exhibition</h2>
+                    <p class="cd-sub">Drag the slider to see what our fabrication team turns a bare hall into.</p>
+                </div>
+
+                <div class="cd-ba-frame cd-reveal" id="cdBaFrame">
+                    <span class="cd-ba-tag cd-ba-tag-l">Before</span>
+                    <span class="cd-ba-tag cd-ba-tag-r">After</span>
+                    <img src="assets/images/portfolio/ieee-exhibition.webp" alt="Finished exhibition hall"
+                        class="cd-ba-after" loading="lazy">
+                    <div class="cd-ba-before-wrap" id="cdBaBeforeWrap">
+                        <img src="assets/images/portfolio/b2b-industrial-generated.webp"
+                            alt="Empty hall before construction" loading="lazy">
+                    </div>
+                    <div class="cd-ba-handle" id="cdBaHandle">
+                        <div class="cd-ba-handle-btn"><i class="fas fa-left-right"></i></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- ========================= [TEMPLATE PART: cd-before-after.php END] ========================= -->
+
+        <!-- ========================= 12. FAQ - construction specific ========================= -->
+        <!-- ========================= [TEMPLATE PART: cd-faq.php START] ========================= -->
+        <section class="cd-faq">
+            <div class="cd-container">
+                <div class="cd-faq-head cd-reveal">
+                    <span class="cd-eyebrow"><span class="cd-eyebrow-num">12</span> FAQs</span>
+                    <h2 class="cd-h2">Construction & Fabrication FAQs</h2>
+                    <p class="cd-sub">Common questions about how we design, build and install exhibition structures.</p>
+                </div>
+
+                <div class="cd-faq-list cd-reveal">
+                    <div class="cd-faq-item cd-active">
+                        <div class="cd-faq-q"><span><span class="cd-faq-num">01</span>Do you fabricate stalls in-house
+                                or outsource?</span><i class="fas fa-plus"></i></div>
+                        <div class="cd-faq-a">
+                            <p>Everything is built at our own workshop - steel, wood, printing and electrical are all
+                                in-house, so quality, timelines and cost stay under our direct control.</p>
+                        </div>
+                    </div>
+                    <div class="cd-faq-item">
+                        <div class="cd-faq-q"><span><span class="cd-faq-num">02</span>How long does a custom stall take
+                                to build?</span><i class="fas fa-plus"></i></div>
+                        <div class="cd-faq-a">
+                            <p>Depending on size and complexity, custom builds typically take 2–4 weeks from CAD
+                                sign-off to installation, with standard Octanorm builds turning around faster.</p>
+                        </div>
+                    </div>
+                    <div class="cd-faq-item">
+                        <div class="cd-faq-q"><span><span class="cd-faq-num">03</span>Can you handle installation for
+                                international exhibitions?</span><i class="fas fa-plus"></i></div>
+                        <div class="cd-faq-a">
+                            <p>Yes, our teams coordinate transport, customs and on-site installation crews for
+                                exhibitions outside Pakistan, working with local partners where needed.</p>
+                        </div>
+                    </div>
+                    <div class="cd-faq-item">
+                        <div class="cd-faq-q"><span><span class="cd-faq-num">04</span>What safety standards do your
+                                fabrication crews follow?</span><i class="fas fa-plus"></i></div>
+                        <div class="cd-faq-a">
+                            <p>All crews follow hard hat, electrical and fire safety protocols, with every structure
+                                passing a quality inspection before it is cleared for the exhibition floor.</p>
+                        </div>
+                    </div>
+                    <div class="cd-faq-item">
+                        <div class="cd-faq-q"><span><span class="cd-faq-num">05</span>Do you provide 3D visualization
+                                before construction begins?</span><i class="fas fa-plus"></i></div>
+                        <div class="cd-faq-a">
+                            <p>Yes, every project moves through CAD drawing and photoreal 3D visualization for client
+                                approval before any material is cut in the workshop.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- ========================= [TEMPLATE PART: cd-faq.php END] ========================= -->
+
+        <!-- ========================= 13. PREMIUM CTA - engineering ========================= -->
+        <!-- ========================= [TEMPLATE PART: cd-cta.php START] ========================= -->
+        <section class="cd-cta" id="cd-cta">
+            <div class="cd-blueprint-bg"></div>
+            <div class="cd-container cd-cta-inner">
+                <div class="cd-cta-left">
+                    <span class="cd-eyebrow"><i class="fas fa-drafting-compass"></i> Let's Engineer It</span>
+                    <h2>Have A Structure In Mind? <span>Let's Build It.</span></h2>
+                    <p>Share your floor plan, brand brief or reference images - our engineers will respond with a build
+                        proposal, timeline and cost estimate within 24 hours.</p>
+                    <div class="cd-cta-btns">
+                        <a href="mailto:info@badarexpo.com" class="cd-btn cd-btn-primary"><i
+                                class="fas fa-file-lines"></i> Request Build Proposal</a>
+                        <a href="tel:+922134821159" class="cd-btn cd-btn-outline"><i class="fas fa-phone"></i> Speak To
+                            An Engineer</a>
+                    </div>
+                </div>
+                <div class="cd-cta-right">
+                    <div class="cd-cta-right-row"><i class="fas fa-phone"></i><a href="tel:+922134821159">+92 21 3482
+                            1159</a></div>
+                    <div class="cd-cta-right-row"><i class="fas fa-envelope"></i><a
+                            href="mailto:info@badarexpo.com">info@badarexpo.com</a></div>
+                    <div class="cd-cta-right-row"><i class="fas fa-location-dot"></i><span>Fabrication Workshop,
+                            Karachi</span></div>
+                    <div class="cd-cta-right-row"><i class="fas fa-clock"></i><span>Mon – Sat, 9:00 AM – 7:00 PM</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- ========================= [TEMPLATE PART: cd-cta.php END] ========================= -->
+
+        <!-- ========================= [TEMPLATE: footer.php START] ========================= -->
+        <!-- ========================= GLOBAL FOOTER ========================= -->
+        <footer class="footer-shell">
+            <div class="footer">
+
+                <!-- TOP -->
+                <div class="footer-top">
+
+                    <button class="footer-aws-btn"
+                        onclick="document.getElementById('cd-cta').scrollIntoView({behavior:'smooth'})">
+                        Get a Free Quote
+                    </button>
+
+                    <button class="footer-language-btn">
+                        <svg fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+                            <circle cx="12" cy="12" r="9"></circle>
+                            <path d="M3 12h18"></path>
+                            <path d="M12 3c3 3 4.5 6 4.5 9s-1.5 6-4.5 9c-3-3-4.5-6-4.5-9s1.5-6 4.5-9z"></path>
+                        </svg>
+                        English
+                        <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2"
+                            viewBox="0 0 24 24">
+                            <path d="M6 9l6 6 6-6" />
+                        </svg>
+                    </button>
+
+                </div>
+
+                <!-- LINKS -->
+                <div class="footer-grid">
+
+                    <div class="footer-column">
+                        <h3>Our Services</h3>
+                        <ul>
+                            <li><a href="services.html#services-grid">Exhibition Management</a></li>
+                            <li><a href="services.html#services-grid">Trade Show Organizing</a></li>
+                            <li><a href="services.html#services-grid">Corporate Events</a></li>
+                            <li><a href="services.html#services-grid">Product Launches</a></li>
+                            <li><a href="services.html#services-grid">Government Pavilions</a></li>
+                            <li><a href="services.html#services-grid">International Expos</a></li>
+                            <li><a href="services.html#services-grid">Conference &amp; Summits</a></li>
+                            <li><a href="services.html#services-grid">Award Ceremonies</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="footer-column">
+                        <h3>Industries</h3>
+                        <ul>
+                            <li><a href="#">Textile &amp; Fashion</a></li>
+                            <li><a href="#">Food &amp; Beverage</a></li>
+                            <li><a href="#">Technology &amp; Innovation</a></li>
+                            <li><a href="#">Healthcare &amp; Pharma</a></li>
+                            <li><a href="#">Agriculture &amp; Livestock</a></li>
+                            <li><a href="#">Construction &amp; Real Estate</a></li>
+                            <li><a href="#">Defence &amp; Security</a></li>
+                            <li><a href="#">Education &amp; Training</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="footer-column">
+                        <h3>Company</h3>
+                        <ul>
+                            <li><a href="#">About BXSS</a></li>
+                            <li><a href="#">Our Portfolio</a></li>
+                            <li><a href="#">Media Gallery</a></li>
+                            <li><a href="#">Client Testimonials</a></li>
+                            <li><a href="#">Our Partners</a></li>
+                            <li><a href="#">Careers</a></li>
+                            <li><a href="#">News &amp; Updates</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="footer-column">
+                        <h3>Contact Us</h3>
+                        <ul>
+                            <li><a href="#cd-cta">Get a Quote</a></li>
+                            <li><a href="#cd-cta">Request a Callback</a></li>
+                            <li><a href="tel:+922134821159">+92-21-3482-1159</a></li>
+                            <li><a href="mailto:info@badarexpo.com">info@badarexpo.com</a></li>
+                            <li><a href="#">Karachi Head Office</a></li>
+                            <li><a href="#">Lahore Office</a></li>
+                            <li><a href="#">Privacy Policy</a></li>
+                            <li><a href="#">Terms &amp; Conditions</a></li>
+                        </ul>
+                    </div>
+
+                </div>
+
+                <!-- BACK TOP -->
+                <div class="footer-back-top" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+                    Back to top
+                    <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                        <path d="M12 19V5" />
+                        <path d="M5 12l7-7 7 7" />
                     </svg>
-                    English
-                    <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                        <path d="M6 9l6 6 6-6" />
-                    </svg>
-                </button>
-
-            </div>
-
-            <!-- LINKS -->
-            <div class="footer-grid">
-
-                <div class="footer-column">
-                    <h3>Our Services</h3>
-                    <ul>
-                        <li><a href="services.html#services-grid">Exhibition Management</a></li>
-                        <li><a href="services.html#services-grid">Trade Show Organizing</a></li>
-                        <li><a href="services.html#services-grid">Corporate Events</a></li>
-                        <li><a href="services.html#services-grid">Product Launches</a></li>
-                        <li><a href="services.html#services-grid">Government Pavilions</a></li>
-                        <li><a href="services.html#services-grid">International Expos</a></li>
-                        <li><a href="services.html#services-grid">Conference &amp; Summits</a></li>
-                        <li><a href="services.html#services-grid">Award Ceremonies</a></li>
-                    </ul>
                 </div>
 
-                <div class="footer-column">
-                    <h3>Industries</h3>
-                    <ul>
-                        <li><a href="#">Textile &amp; Fashion</a></li>
-                        <li><a href="#">Food &amp; Beverage</a></li>
-                        <li><a href="#">Technology &amp; Innovation</a></li>
-                        <li><a href="#">Healthcare &amp; Pharma</a></li>
-                        <li><a href="#">Agriculture &amp; Livestock</a></li>
-                        <li><a href="#">Construction &amp; Real Estate</a></li>
-                        <li><a href="#">Defence &amp; Security</a></li>
-                        <li><a href="#">Education &amp; Training</a></li>
-                    </ul>
-                </div>
+                <!-- BOTTOM -->
+                <div class="footer-bottom">
 
-                <div class="footer-column">
-                    <h3>Company</h3>
-                    <ul>
-                        <li><a href="#">About BXSS</a></li>
-                        <li><a href="#">Our Portfolio</a></li>
-                        <li><a href="#">Media Gallery</a></li>
-                        <li><a href="#">Client Testimonials</a></li>
-                        <li><a href="#">Our Partners</a></li>
-                        <li><a href="#">Careers</a></li>
-                        <li><a href="#">News &amp; Updates</a></li>
-                    </ul>
-                </div>
+                    <div class="footer-left-bottom">
 
-                <div class="footer-column">
-                    <h3>Contact Us</h3>
-                    <ul>
-                        <li><a href="#cd-cta">Get a Quote</a></li>
-                        <li><a href="#cd-cta">Request a Callback</a></li>
-                        <li><a href="tel:+922134821159">+92-21-3482-1159</a></li>
-                        <li><a href="mailto:info@badarexpo.com">info@badarexpo.com</a></li>
-                        <li><a href="#">Karachi Head Office</a></li>
-                        <li><a href="#">Lahore Office</a></li>
-                        <li><a href="#">Privacy Policy</a></li>
-                        <li><a href="#">Terms &amp; Conditions</a></li>
-                    </ul>
-                </div>
+                        <div class="footer-equal-text">
+                            Badar Expo Solutions (BXSS) - Pakistan's Premier Event &amp; Exhibition Management Company,
+                            proudly serving clients since 2000 across South Asia and internationally.
+                        </div>
 
-            </div>
+                        <div class="download-buttons">
+                            <!-- APPLE -->
+                            <a href="https://apps.apple.com/pk/app/badar-expo/id6751605684" class="store-btn"
+                                target="_blank">
+                                <i class="fa-brands fa-apple store-btn-apple-icon"></i>
+                                <div class="store-btn-text">
+                                    <div class="store-btn-small">Download on the</div>
+                                    <div class="store-btn-big">App Store</div>
+                                </div>
+                            </a>
 
-            <!-- BACK TOP -->
-            <div class="footer-back-top" onclick="window.scrollTo({top:0,behavior:'smooth'})">
-                Back to top
-                <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                    <path d="M12 19V5" />
-                    <path d="M5 12l7-7 7 7" />
-                </svg>
-            </div>
+                            <!-- GOOGLE -->
+                            <a href="https://play.google.com/store/apps/details?id=com.badarexpo.app"
+                                class="store-btn google-play" target="_blank">
+                                <img src="https://upload.wikimedia.org/wikipedia/commons/d/d0/Google_Play_Arrow_logo.svg"
+                                    alt="Google Play logo">
+                                <div class="store-btn-text">
+                                    <div class="store-btn-small">GET IT ON</div>
+                                    <div class="store-btn-big">Google Play</div>
+                                </div>
+                            </a>
+                        </div>
 
-            <!-- BOTTOM -->
-            <div class="footer-bottom">
+                        <div class="footer-bottom-links">
+                            <a href="#">Privacy Policy</a>
+                            <a href="#">Terms of Service</a>
+                            <a href="#">Cookie Preferences</a>
+                        </div>
 
-                <div class="footer-left-bottom">
+                        <div class="footer-copyright">
+                            © 2026, Badar Expo Solutions (BXSS). All rights reserved.
+                        </div>
 
-                    <div class="footer-equal-text">
-                        Badar Expo Solutions (BXSS) - Pakistan's Premier Event &amp; Exhibition Management Company,
-                        proudly serving clients since 2000 across South Asia and internationally.
                     </div>
 
-                    <div class="download-buttons">
-                        <!-- APPLE -->
-                        <a href="https://apps.apple.com/pk/app/badar-expo/id6751605684" class="store-btn" target="_blank">
-                            <i class="fa-brands fa-apple store-btn-apple-icon"></i>
-                            <div class="store-btn-text">
-                                <div class="store-btn-small">Download on the</div>
-                                <div class="store-btn-big">App Store</div>
-                            </div>
+                    <!-- SOCIALS -->
+                    <div class="footer-socials">
+
+                        <!-- Facebook -->
+                        <a href="https://www.facebook.com/BXSSpakistan/" target="_blank" rel="noopener noreferrer"
+                            class="footer-social" aria-label="Facebook">
+                            <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
+                                <path
+                                    d="M13.5 22v-8h2.7l.4-3h-3.1V9.1c0-.9.3-1.5 1.6-1.5H17V4.9c-.3 0-1.3-.1-2.5-.1-2.5 0-4.2 1.5-4.2 4.3V11H7.5v3h2.8v8h3.2z" />
+                            </svg>
                         </a>
-                        
-                        <!-- GOOGLE -->
-                        <a href="https://play.google.com/store/apps/details?id=com.badarexpo.app" class="store-btn google-play" target="_blank">
-                            <img src="https://upload.wikimedia.org/wikipedia/commons/d/d0/Google_Play_Arrow_logo.svg" alt="Google Play logo">
-                            <div class="store-btn-text">
-                                <div class="store-btn-small">GET IT ON</div>
-                                <div class="store-btn-big">Google Play</div>
-                            </div>
+
+                        <!-- LinkedIn -->
+                        <a href="https://www.linkedin.com/company/bxsspakistan" target="_blank"
+                            rel="noopener noreferrer" class="footer-social" aria-label="LinkedIn">
+                            <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
+                                <path
+                                    d="M4.98 3.5A2.48 2.48 0 1 1 5 8.46a2.48 2.48 0 0 1-.02-4.96zM3 9h4v12H3zm7 0h3.8v1.7h.1c.53-1 1.82-2.1 3.74-2.1 4 0 4.76 2.63 4.76 6.05V21h-4v-5.6c0-1.33-.02-3.05-1.86-3.05-1.86 0-2.14 1.45-2.14 2.95V21h-4z" />
+                            </svg>
                         </a>
+
+                        <!-- Instagram -->
+                        <a href="https://www.instagram.com/bxsspakistan/" target="_blank" rel="noopener noreferrer"
+                            class="footer-social" aria-label="Instagram">
+                            <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
+                                <path
+                                    d="M12 7a5 5 0 100 10 5 5 0 000-10zm0 8.2A3.2 3.2 0 1112 8.8a3.2 3.2 0 010 6.4z" />
+                                <path
+                                    d="M17.5 2h-11A4.5 4.5 0 002 6.5v11A4.5 4.5 0 006.5 22h11a4.5 4.5 0 004.5-4.5v-11A4.5 4.5 0 0017.5 2zm2.7 15.5a2.7 2.7 0 01-2.7 2.7h-11a2.7 2.7 0 01-2.7-2.7v-11a2.7 2.7 0 012.7-2.7h11a2.7 2.7 0 012.7 2.7z" />
+                                <circle cx="18" cy="6" r="1" />
+                            </svg>
+                        </a>
+
+                        <!-- X (Twitter) -->
+                        <a href="https://x.com/BXSSpakistan" target="_blank" rel="noopener noreferrer"
+                            class="footer-social" aria-label="X (Twitter)">
+                            <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
+                                <path
+                                    d="M18.9 2H22l-6.76 7.72L23 22h-6.12l-4.8-6.27L6.58 22H3.46l7.23-8.26L1 2h6.28l4.34 5.72L18.9 2z" />
+                            </svg>
+                        </a>
+
+                        <!-- YouTube -->
+                        <a href="https://www.youtube.com/@BXSSpakistan" target="_blank" rel="noopener noreferrer"
+                            class="footer-social" aria-label="YouTube">
+                            <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
+                                <path
+                                    d="M23 12s0-3.5-.45-5.18a2.9 2.9 0 00-2.04-2.05C18.82 4.3 12 4.3 12 4.3s-6.82 0-8.51.47A2.9 2.9 0 001.45 6.8C1 8.5 1 12 1 12s0 3.5.45 5.18a2.9 2.9 0 002.04 2.05c1.69.47 8.51.47 8.51.47s6.82 0 8.51-.47a2.9 2.9 0 002.04-2.05C23 15.5 23 12 23 12zm-13 3.7V8.3l6.3 3.7z" />
+                            </svg>
+                        </a>
+
+                        <!-- TikTok -->
+                        <a href="https://www.tiktok.com/@badarexpo" target="_blank" rel="noopener noreferrer"
+                            class="footer-social" aria-label="TikTok">
+                            <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
+                                <path
+                                    d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.27 6.27 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.84a8.2 8.2 0 004.79 1.52V6.9a4.85 4.85 0 01-1.02-.21z" />
+                            </svg>
+                        </a>
+
+
+
                     </div>
-
-                    <div class="footer-bottom-links">
-                        <a href="#">Privacy Policy</a>
-                        <a href="#">Terms of Service</a>
-                        <a href="#">Cookie Preferences</a>
-                    </div>
-
-                    <div class="footer-copyright">
-                        © 2026, Badar Expo Solutions (BXSS). All rights reserved.
-                    </div>
-
-                </div>
-
-                                <!-- SOCIALS -->
-                <div class="footer-socials">
-
-                    <!-- Facebook -->
-                    <a href="https://www.facebook.com/BXSSpakistan/" target="_blank" rel="noopener noreferrer" class="footer-social" aria-label="Facebook">
-                        <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
-                            <path d="M13.5 22v-8h2.7l.4-3h-3.1V9.1c0-.9.3-1.5 1.6-1.5H17V4.9c-.3 0-1.3-.1-2.5-.1-2.5 0-4.2 1.5-4.2 4.3V11H7.5v3h2.8v8h3.2z" />
-                        </svg>
-                    </a>
-
-                    <!-- LinkedIn -->
-                    <a href="https://www.linkedin.com/company/bxsspakistan" target="_blank" rel="noopener noreferrer" class="footer-social" aria-label="LinkedIn">
-                        <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
-                            <path d="M4.98 3.5A2.48 2.48 0 1 1 5 8.46a2.48 2.48 0 0 1-.02-4.96zM3 9h4v12H3zm7 0h3.8v1.7h.1c.53-1 1.82-2.1 3.74-2.1 4 0 4.76 2.63 4.76 6.05V21h-4v-5.6c0-1.33-.02-3.05-1.86-3.05-1.86 0-2.14 1.45-2.14 2.95V21h-4z" />
-                        </svg>
-                    </a>
-
-                    <!-- Instagram -->
-                    <a href="https://www.instagram.com/bxsspakistan/" target="_blank" rel="noopener noreferrer" class="footer-social" aria-label="Instagram">
-                        <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
-                            <path d="M12 7a5 5 0 100 10 5 5 0 000-10zm0 8.2A3.2 3.2 0 1112 8.8a3.2 3.2 0 010 6.4z" />
-                            <path d="M17.5 2h-11A4.5 4.5 0 002 6.5v11A4.5 4.5 0 006.5 22h11a4.5 4.5 0 004.5-4.5v-11A4.5 4.5 0 0017.5 2zm2.7 15.5a2.7 2.7 0 01-2.7 2.7h-11a2.7 2.7 0 01-2.7-2.7v-11a2.7 2.7 0 012.7-2.7h11a2.7 2.7 0 012.7 2.7z" />
-                            <circle cx="18" cy="6" r="1" />
-                        </svg>
-                    </a>
-
-                    <!-- X (Twitter) -->
-                    <a href="https://x.com/BXSSpakistan" target="_blank" rel="noopener noreferrer" class="footer-social" aria-label="X (Twitter)">
-                        <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
-                            <path d="M18.9 2H22l-6.76 7.72L23 22h-6.12l-4.8-6.27L6.58 22H3.46l7.23-8.26L1 2h6.28l4.34 5.72L18.9 2z" />
-                        </svg>
-                    </a>
-
-                    <!-- YouTube -->
-                    <a href="https://www.youtube.com/@BXSSpakistan" target="_blank" rel="noopener noreferrer" class="footer-social" aria-label="YouTube">
-                        <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
-                            <path d="M23 12s0-3.5-.45-5.18a2.9 2.9 0 00-2.04-2.05C18.82 4.3 12 4.3 12 4.3s-6.82 0-8.51.47A2.9 2.9 0 001.45 6.8C1 8.5 1 12 1 12s0 3.5.45 5.18a2.9 2.9 0 002.04 2.05c1.69.47 8.51.47 8.51.47s6.82 0 8.51-.47a2.9 2.9 0 002.04-2.05C23 15.5 23 12 23 12zm-13 3.7V8.3l6.3 3.7z" />
-                        </svg>
-                    </a>
-
-                    <!-- TikTok -->
-                    <a href="https://www.tiktok.com/@badarexpo" target="_blank" rel="noopener noreferrer" class="footer-social" aria-label="TikTok">
-                        <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
-                            <path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.27 6.27 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.84a8.2 8.2 0 004.79 1.52V6.9a4.85 4.85 0 01-1.02-.21z"/>
-                        </svg>
-                    </a>
-
-                    
 
                 </div>
 
             </div>
+        </footer>
 
-        </div>
-    </footer>
-
-    <!-- Scroll to Top Button -->
-    <button id="scrollTopBtn" class="scroll-top-btn" aria-label="Scroll to top">
-        <i class="fas fa-arrow-up"></i>
-    </button>
+        <!-- Scroll to Top Button -->
+        <button id="scrollTopBtn" class="scroll-top-btn" aria-label="Scroll to top">
+            <i class="fas fa-arrow-up"></i>
+        </button>
 
     </div><!-- /#cd-page -->
 

@@ -222,7 +222,7 @@ END OF LOG - BADAR EXPO SOLUTIONS
 - STATUS: 100% Completed
 - OBJECTIVE: Build the first standalone inner page (Events) referenced by the mega menu, matching the homepage's visual quality with unique, purpose-built sections.
 - ACTIONS:
-  1. NEW GLOBAL COMPONENT: Created 'page-hero.css' for a reusable breadcrumb + hero-banner pattern intended for every future inner page (About, Services, Industries, Global Reach, Insights, Contact).
+  1. NEW GLOBAL COMPONENT: Created 'page-hero.css' for a reusable breadcrumb + hero-banner pattern intended for every future inner page (About, Services, Industries, International Projects, Insights, Contact).
   2. NEW PAGE FILE: Created 'events.html' reusing the exact global header, search overlay, and footer markup from index.html for 100% visual/behavioral consistency.
   3. NEW PAGE STYLESHEET: Created 'events.css' (page-specific, per rules.txt Section 1) with 7 unique sections: Trust Stat Strip, Our Role tab switcher, Event Formats cards, filterable Flagship Events portfolio grid, Upcoming Calendar timeline, 4-step Process timeline, and a closing CTA banner.
   4. NEW JS MODULES: Added 'EventRoleManager' (Our Role tab/image switcher) and 'EventsFilterManager' (portfolio category filter) to main.js, both guarded with early-return checks so they stay silent/inert on every other page.

@@ -52,7 +52,7 @@ below has been changed from the original.
        * Conferences
        * Industrial Forums
 - Industries
-- Global Reach
+- International Projects
 - Insights (Dropdown / Mega Menu)
     * Blog (Industry insights, event strategies)
     * Media (Press coverage, interviews)

@@ -124,7 +124,7 @@ Badarexpo website/
 - Page Hero / breadcrumb banner -> page-hero.css. Present on every inner
   page (not the home hero, which is index-specific).
 - CEO / Leadership Message section -> ceo_section.css. Currently used on
-  index.html; candidate for reuse on About/Global Reach pages later.
+  index.html; candidate for reuse on About/International Projects pages later.
 - Clients Marquee -> clients_marquee.css. Used on 2+ pages.
 - Featured Insights / Newsroom cards -> currently built inline as part of
   index.css (content-insights.php template part on index.html). Candidate
