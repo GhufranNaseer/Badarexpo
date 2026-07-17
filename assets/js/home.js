@@ -555,6 +555,71 @@ const PlatformFeaturesManager = {
         this.prevBtn.addEventListener('click', () => this.slide(-1));
         this.nextBtn.addEventListener('click', () => this.slide(1));
 
+        // Touch events for mobile swipe/drag
+        let startX = 0;
+        let startY = 0;
+        let currentX = 0;
+        let isDragging = false;
+        let isHorizontalSwipe = false;
+        let startTranslate = 0;
+
+        this.track.addEventListener('touchstart', (e) => {
+            isDragging = true;
+            startX = e.touches[0].clientX;
+            startY = e.touches[0].clientY;
+            isHorizontalSwipe = false;
+            this.track.classList.add('pfs-dragging');
+            startTranslate = -this.current * this.getCardStep();
+        }, { passive: true });
+
+        this.track.addEventListener('touchmove', (e) => {
+            if (!isDragging) return;
+            currentX = e.touches[0].clientX;
+            const currentY = e.touches[0].clientY;
+            const diffX = currentX - startX;
+            const diffY = currentY - startY;
+
+            // Determine if the user is swiping horizontally or vertically
+            if (!isHorizontalSwipe && Math.abs(diffX) > 10 && Math.abs(diffX) > Math.abs(diffY)) {
+                isHorizontalSwipe = true;
+            }
+
+            if (isHorizontalSwipe) {
+                if (e.cancelable) {
+                    e.preventDefault();
+                }
+                let translate = startTranslate + diffX;
+                // Dampen boundaries
+                const maxTranslate = -this.maxIndex * this.getCardStep();
+                if (translate > 0) {
+                    translate = translate * 0.3;
+                } else if (translate < maxTranslate) {
+                    translate = maxTranslate + (translate - maxTranslate) * 0.3;
+                }
+                this.track.style.transform = `translateX(${translate}px)`;
+            }
+        }, { passive: false });
+
+        this.track.addEventListener('touchend', () => {
+            if (!isDragging) return;
+            isDragging = false;
+            this.track.classList.remove('pfs-dragging');
+
+            if (isHorizontalSwipe) {
+                const diffX = currentX - startX;
+                const threshold = this.getCardStep() * 0.2; // 20% of card step
+
+                if (Math.abs(diffX) > threshold) {
+                    if (diffX > 0) {
+                        this.current = Math.max(0, this.current - 1);
+                    } else {
+                        this.current = Math.min(this.maxIndex, this.current + 1);
+                    }
+                }
+            }
+            this.updateUI();
+        });
+
         // Recalculate on resize
         window.addEventListener('resize', () => {
             this.calcPerView();
