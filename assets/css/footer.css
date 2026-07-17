@@ -300,3 +300,95 @@
     transform: translateY(-5px);
     box-shadow: 0 10px 20px rgba(228, 31, 38, 0.3);
 }
+
+/* =============================================================================
+   APP DOWNLOAD BUTTONS
+   ============================================================================= */
+.download-buttons {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 16px;
+    flex-wrap: wrap;
+    margin-bottom: 24px;
+}
+
+.store-btn {
+    width: 200px;
+    height: 58px;
+    background: #000;
+    color: #fff;
+    border: 1.5px solid #4a4a4a;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    padding: 10px 14px;
+    text-decoration: none;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+    box-sizing: border-box;
+}
+
+.store-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+    border-color: #888;
+}
+
+.store-btn-apple-icon {
+    font-size: 32px;
+    margin-right: 12px;
+    line-height: 1;
+}
+
+.store-btn-text {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.store-btn-small {
+    font-size: 9px;
+    letter-spacing: 0.3px;
+    opacity: 0.8;
+    text-transform: uppercase;
+    margin-bottom: 1px;
+    line-height: 1;
+}
+
+.store-btn-big {
+    font-size: 20px;
+    font-weight: 600;
+    line-height: 1.1;
+}
+
+.google-play img {
+    width: 28px;
+    margin-right: 12px;
+    height: auto;
+    display: block;
+}
+
+/* Responsive App Store buttons */
+@media (max-width: 768px) {
+    .download-buttons {
+        justify-content: center;
+        width: 100%;
+        gap: 12px;
+    }
+    .store-btn {
+        width: calc(50% - 6px);
+        max-width: 220px;
+        min-width: 160px;
+    }
+}
+
+@media (max-width: 480px) {
+    .download-buttons {
+        flex-direction: column;
+        align-items: center;
+    }
+    .store-btn {
+        width: 100%;
+        max-width: 240px;
+    }
+}
