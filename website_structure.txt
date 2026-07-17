@@ -110,8 +110,7 @@ Badarexpo website/
   exhibitionmanagement.html| exhibitionmanagement.css      | exhibitionmanagement.js
   growthservices.html      | growthservices.css            | growthservices.js
   events.html              | events.css                    | events.js
-  contact.html             | contact.css                    | main.js only (contact.js
-                            |                                | not yet created)
+  contact.html             | contact.css                   | contact.js
 
   Every page additionally loads: navbar.css, footer.css, page-hero.css,
   main.js, and (where used) ceo_section.css / clients_marquee.css.
@@ -154,16 +153,10 @@ mechanical. Current coverage:
 --------------------------------------------------------------------------------
 [6. KNOWN GAPS & DEBT (tracked, not fixed silently - rules.txt Section 16)]
 --------------------------------------------------------------------------------
-1. assets/js/contact.js does not exist. rules.txt Section 1 maps
-   contact.html -> assets/js/contact.js. contact.html currently loads only
-   main.js. If contact.html has no page-specific interactive behavior yet
-   (e.g. form validation, map embed), this is fine as-is; the moment it
-   does, create contact.js rather than growing main.js or inlining
-   <script> in contact.html.
-2. Breakpoint inconsistency across page CSS files (992px, 1200px, 1300px,
+1. Breakpoint inconsistency across page CSS files (992px, 1200px, 1300px,
    640px, 420px, etc.) - already logged as known debt in rules.txt
    Section 16. Not re-litigated here.
-3. Design tokens are still only formally defined in navbar.css :root
+2. Design tokens are still only formally defined in navbar.css :root
    rather than a dedicated tokens.css - already logged in rules.txt
    Section 3/16. Flagging again here only because it directly affects the
    future WordPress enqueue strategy (see wordpress-roadmap.txt).
