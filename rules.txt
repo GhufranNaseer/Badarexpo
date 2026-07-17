@@ -1,106 +1,338 @@
 ================================================================================
-BADAR EXPO SOLUTIONS - REPOSITORY ARCHITECTURE & RULES (rules.txt)
+BADAR EXPO SOLUTIONS (BXSS) - REPOSITORY ARCHITECTURE & RULES
 ================================================================================
-Version: 1.0.0
-Objective: To ensure long-term scalability, maintainability, and clean code.
+Version: 2.0.0
+Supersedes: 1.0.0
+Objective: Long-term scalability, zero technical debt, and a clean migration
+           path from static HTML/CSS/JS -> Custom WordPress Theme.
 --------------------------------------------------------------------------------
 
+[0. HOW TO USE THIS FILE]
+- This is the CONSTITUTION of the repository. Every AI session and every
+  developer session must read this file FIRST, before touching any code.
+- Reading order for any new session: rules.txt -> website_structure.txt ->
+  data.txt (last 1-2 sessions only) -> the specific file being edited.
+- If a rule here conflicts with a request in chat, the AI must flag the
+  conflict instead of silently breaking the rule.
+
+--------------------------------------------------------------------------------
 [1. REPOSITORY STRUCTURE & FILING]
-- GLOBAL COMPONENTS: Styles used on every page (Navbar, Footer, Modals) MUST remain in dedicated files (e.g., 'navbar.css').
-- PAGE-SPECIFIC STYLES: Styles unique to a page (e.g., Landing Page sections) MUST live in 'index.css'.
-- MODULAR LOGIC: JavaScript must be grouped by functionality (Navigation, Animations, Form Handling).
-
-[2. CODING STANDARDS & NAMING]
-- NAMING: Use kebab-case for CSS classes (e.g., 'nav-toggle', 'search-overlay').
-- COMMENTS: Every major section MUST be demarcated by standardized comment blocks:
-  * HTML: <!-- ========================= SECTION NAME ========================= -->
-  * CSS: /* ========================= SECTION NAME ========================= */
-  * JS: // ========================= LOGIC GROUP =========================
-
-[3. CSS PHILOSOPHY (BEM-LITE)]
-- Avoid "magic numbers" (fixed widths/heights) where possible.
-- Use CSS Variables (--primary-red, --transition-smooth) for all tokens.
-- Priority: 1. Transforms/Opacity -> 2. Flex/Grid -> 3. Layout Properties.
-
-[4. PERFORMANCE & ACCESSIBILITY]
-- Hardware Acceleration: Use 'will-change' on elements with complex transitions.
-- Semantic HTML: Use <nav>, <section>, <article>, <header>, <footer> tags.
-- Image Loading: Use 'loading="lazy"' for non-critical below-the-fold images.
-
-[5. MAINTENANCE WORKFLOW]
-- Before ending a session:
-  1. Verify section-wise organization.
-  2. Clean up ad-hoc styles.
-  3. Update 'data.txt' project archive (Append only; DO NOT overwrite or delete historical logs).
-  4. Sync 'rules.txt' if new patterns are adopted.
-  5. Ensure 'data.txt' remains a sequential chronological record of all sessions.
-
-[6. SCALABILITY & USER CLARITY]
-- DESCRIPTIVE NAMING: Class names and JS functions MUST be self-explanatory (e.g., use 'event-card-container' instead of 'e-box').
-- READABILITY FIRST: Code must be written so the User (owner) can easily follow the logic and extend it for future ideas.
-- MODULAR FOUNDATION: Build every feature as a standalone module so new sections can be plugged in without breaking existing ones.
-- DOCUMENTATION: Maintain clear comments for "Why" something is done, not just "What".
-
-[7. SITE MATERIAL INTEGRATION WORKFLOW]
-
-PURPOSE:
-
-* Jab User "site-material.txt" file provide kare, to us file ko integration source maana jayega.
-* "site-material.txt" me HTML, CSS, JavaScript aur related assets ka code ho sakta hai jo kisi naye section ya feature ka part hoga.
-
-MANDATORY PROCESS:
-
-1. Sab se pehle "rules.txt", "data.txt" aur "website_structure.txt" ko review karo taa ke project architecture, existing patterns aur page structure samajh aa sake.
-2. "site-material.txt" se relevant HTML, CSS aur JavaScript ko extract karo.
-3. User conversation me jis page aur section ka naam de, usi location par code integrate karo.
-4. Agar User page aur section specify na kare to pehle clarification lo.
-
-INTEGRATION RULES:
-
-* HTML code ko target page ke specified section me integrate karo.
-* CSS code ko project structure ke mutabiq respective stylesheet me place karo.
-* JavaScript code ko functionality-based organization follow karte hue respective JS file me integrate karo.
-* Har major addition ke liye existing comment convention maintain karo:
-
-  * HTML: <!-- ========================= SECTION NAME ========================= -->
-  * CSS: /* ========================= SECTION NAME ========================= */
-  * JS: // ========================= LOGIC GROUP =========================
-
-CONFLICT PREVENTION:
-
-* Nayi classes, IDs aur JavaScript functions ko existing project code se conflict nahi karna chahiye.
-* Zarurat par prefix-based naming ya unique descriptive naming use karo.
-* Existing functionality ko overwrite, break ya modify mat karo jab tak User explicitly instruction na de.
-
-STATIC WEBSITE ASSUMPTION:
-
-* Website HTML/CSS/JavaScript based static project hai.
-* Kisi server, build process, package installation, framework setup ya deployment ki zaroorat nahi.
-* Integration ka focus sirf code placement aur compatibility par hoga.
-* User manually HTML files browser (Chrome) me open karke testing karega.
-
-OUTPUT REQUIREMENT:
-
-* Final response me clearly bataya jaye:
-
-  1. Kaun sa HTML code kis file aur section me add hua.
-  2. Kaun sa CSS code kis file me add hua.
-  3. Kaun sa JavaScript code kis file me add hua.
-  4. Agar kisi naming conflict ko avoid karne ke liye changes kiye gaye hain to unki detail di jaye.
-
-MODULAR SECTION POLICY:
-
-* "site-material.txt" ko standalone module maana jaye.
-* Har integration future scalability ko madde nazar rakh kar ki jaye.
-* Naya section existing website architecture ke sath seamlessly plug-in hona chahiye bina existing sections ko affect kiye.
-
-IMPORTANT:
-
-* Sirf required aur relevant code integrate karo.
-* Dummy, duplicate, unused ya demo code ko project me add na karo.
-* Existing project structure aur maintainability ko hamesha priority di jaye.
-
+--------------------------------------------------------------------------------
+- ROOT: One HTML file per page. No sub-folders for pages (flat structure is
+  intentional -> maps 1:1 to future WordPress page-templates).
+- GLOBAL COMPONENTS: Markup/styles/scripts shared by every page (Navbar,
+  Topbar, Footer, Mega Menu, Search Overlay) MUST live in dedicated global
+  files only:
+    * assets/css/navbar.css
+    * assets/css/footer.css
+    * assets/css/page-hero.css   (shared page-header/breadcrumb banner)
+    * assets/js/main.js          (nav, language switcher, search overlay)
+- PAGE-SPECIFIC STYLES/SCRIPTS: Anything unique to one page MUST live in a
+  file named exactly after that page:
+    * index.html                -> assets/css/index.css               assets/js/home.js
+    * services.html             -> assets/css/services.css            assets/js/services.js
+    * construction-design.html  -> assets/css/construction-design.css assets/js/construction-design.js
+    * exhibitionmanagement.html -> assets/css/exhibitionmanagement.css assets/js/exhibitionmanagement.js
+    * growthservices.html       -> assets/css/growthservices.css      assets/js/growthservices.js
+    * events.html                -> assets/css/events.css              assets/js/events.js
+    * contact.html                -> assets/css/contact.css             assets/js/contact.js
+- SHARED "FEATURE" COMPONENTS used on 2+ pages but NOT on every page (e.g.
+  CEO Section, Clients Marquee) get their OWN dedicated file, named after the
+  component, not the page:
+    * assets/css/ceo_section.css
+    * assets/css/clients_marquee.css
+  Rule of thumb: 1 page only -> page file. 2+ pages -> component file.
+- ASSETS: assets/images, assets/js, assets/css only. No inline <style> blocks
+  in production HTML except where already documented as legacy (to be
+  migrated). No images committed outside assets/images.
+- NEVER create a new top-level folder without updating website_structure.txt
+  in the same session.
 
 --------------------------------------------------------------------------------
-ARCHITECT'S NOTE: Build for the 10th page, not just the 1st. Make it readable for the human, not just the machine.
+[2. FILE NAMING CONVENTIONS]
+--------------------------------------------------------------------------------
+- HTML/CSS/JS FILES: kebab-case, matches the page/component it represents
+  (e.g. construction-design.html, construction-design.css).
+- CSS CLASSES: kebab-case, BEM-lite, and PAGE-SCOPED with a short prefix to
+  guarantee zero collisions across 100+ future pages:
+    * Construction & Design page   -> cd-
+    * Services (parent) page       -> svc-
+    * Exhibition Management page   -> em-  (adopt going forward)
+    * Growth Services page         -> gs-  (adopt going forward)
+    * Events page                  -> ev-  (adopt going forward)
+    * Contact page                 -> ct-  (adopt going forward)
+  Global components (navbar, footer, page-hero) stay UNPREFIXED since they
+  are singletons that exist on every page (e.g. .navbar, .footer, .page-hero).
+- IDs: reserved for JS hooks and in-page anchors only, never for styling.
+  ID naming mirrors the class prefix (e.g. #cd-faq-panel-1).
+- JS FUNCTIONS/VARIABLES: camelCase. Module-level IIFEs or namespaced objects
+  only (see Section 5) - no unprefixed global variables.
+- IMAGE FILES: kebab-case, descriptive, no spaces (e.g. stall-design-01.jpg,
+  not IMG_2931.jpg). Rename on import if the source file is not compliant.
+
+--------------------------------------------------------------------------------
+[3. CSS PHILOSOPHY (BEM-LITE + DESIGN TOKENS)]
+--------------------------------------------------------------------------------
+- ALL color, spacing, radius, shadow and transition values MUST come from
+  CSS custom properties, never hardcoded hex/px in component rules.
+- CURRENT GLOBAL TOKENS (defined in navbar.css :root - the de-facto global
+  token file until a dedicated tokens.css is introduced, see Section 13):
+    --primary-red:        #e41f26
+    --text-dark:           #1a1a1a
+    --text-muted:           #555
+    --bg-light:             #f9f9f9
+    --white:                #ffffff
+    --transition-smooth:    0.35s cubic-bezier(0.4, 0, 0.2, 1)
+    --transition-fast:      0.2s cubic-bezier(0.4, 0, 0.2, 1)
+    --shadow-soft:          0 15px 40px rgba(0,0,0,0.08)
+    --border-light:         rgba(0,0,0,0.05)
+  Any NEW page/component that needs a token not listed here must ADD it to
+  this root block (not invent a local duplicate) and log it in data.txt.
+- Avoid magic numbers for widths/heights where a token or clamp() can do
+  the job instead.
+- Property order priority inside a rule block: 1. Transform/Opacity (perf)
+  2. Flex/Grid layout 3. Box model (padding/margin/border) 4. Visual
+  (color/background/shadow) 5. Everything else.
+- SPACING SYSTEM: standardize on an 8px base scale going forward
+  (8/16/24/32/48/64/96/128px) for any new section. Do not introduce new
+  arbitrary spacing values (e.g. 13px, 27px) unless matching an existing
+  legacy section pixel-for-pixel.
+- TYPOGRAPHY: Primary font is 'Inter' (400/500/600/700/800), loaded via
+  Google Fonts with preconnect in <head>. Any section using a secondary
+  display font (e.g. Playfair Display, Cormorant Garamond, DM Sans) must
+  document WHY in a CSS comment - the long-term goal is to converge on the
+  Inter-based red/black/white system for consistency across the site.
+
+--------------------------------------------------------------------------------
+[4. RESPONSIVE DESIGN RULES]
+--------------------------------------------------------------------------------
+- MOBILE-FIRST intent, desktop-first implementation is acceptable for now but
+  must converge on a SINGLE shared breakpoint scale going forward:
+    * Desktop:        > 1024px
+    * Tablet:          768px - 1024px
+    * Large Mobile:    480px - 768px
+    * Small Mobile:    < 480px
+- KNOWN DEBT: existing pages use inconsistent breakpoints (992px, 1200px,
+  1300px, 640px, 420px, etc. all appear across the codebase). Do NOT invent
+  another one-off breakpoint. New sections must snap to the 4-tier scale
+  above; legacy breakpoints are grandfathered until that section is
+  refactored.
+- Always pair layout breakpoints with a `@media (prefers-reduced-motion:
+  reduce)` block for any section using non-trivial animation.
+- Always test 320px (smallest common phone width) explicitly.
+
+--------------------------------------------------------------------------------
+[5. JAVASCRIPT STANDARDS]
+--------------------------------------------------------------------------------
+- MODULAR LOGIC: JS must be grouped by functionality (Navigation, Animations,
+  Form Handling, Sliders, Filters) using labeled section comments (see
+  Section 6).
+- Every page-specific JS file must be wrapped in an IIFE `(function(){...})()`
+  to avoid leaking variables/functions into the global scope and to avoid
+  collisions with main.js or other page scripts if a page is later merged.
+- Global/shared behavior (navbar toggle, mega menu, language switcher,
+  search overlay) stays in main.js ONLY. Never duplicate this logic inside a
+  page-specific file.
+- Use `DOMContentLoaded` (or defer + end-of-body placement, already the
+  convention) rather than inline onclick="" attributes in HTML.
+- Prefer `IntersectionObserver` for scroll-reveal/animate-on-scroll effects
+  over scroll event listeners, for performance.
+- No inline <script> blocks in production pages except tiny, page-critical
+  bootstrapping (e.g. structured data JSON-LD). All behavioral JS belongs in
+  assets/js/*.js.
+
+--------------------------------------------------------------------------------
+[6. COMMENT CONVENTIONS]
+--------------------------------------------------------------------------------
+Every major section MUST be demarcated with standardized comment blocks:
+  * HTML: <!-- ========================= SECTION NAME ========================= -->
+  * CSS:  /* ========================= SECTION NAME ========================= */
+  * JS:   // ========================= LOGIC GROUP =========================
+
+WORDPRESS-READY MARKER (already adopted on index.html - extend to every page
+going forward): wrap each reusable HTML section with future template-part
+markers so the eventual WP conversion is a mechanical extraction, not a
+rewrite:
+  <!-- ========================= [TEMPLATE PART: section-name.php START] ========================= -->
+  ... section markup ...
+  <!-- ========================= [TEMPLATE PART: section-name.php END] ========================= -->
+Use [TEMPLATE: header.php] / [TEMPLATE: footer.php] for the two global
+wrappers, and [TEMPLATE PART: x.php] for every reusable section in between.
+
+--------------------------------------------------------------------------------
+[7. ACCESSIBILITY RULES]
+--------------------------------------------------------------------------------
+- Semantic HTML always: <nav>, <header>, <main>, <section>, <article>,
+  <footer>, not generic <div> soup.
+- Every <img> needs a descriptive alt attribute (empty alt="" only for
+  purely decorative images).
+- Interactive elements (menu toggles, accordions, modals, sliders) need
+  correct aria-* attributes (aria-expanded, aria-controls, aria-label) and
+  must be operable by keyboard (Tab/Enter/Escape), not mouse-only.
+- Color contrast: body text on --bg-light / --white backgrounds must meet
+  WCAG AA (4.5:1) against --text-dark / --text-muted.
+- Respect `prefers-reduced-motion` for all non-essential animation.
+- Forms (contact.html) need associated <label> elements, not placeholder-only
+  labeling.
+
+--------------------------------------------------------------------------------
+[8. PERFORMANCE RULES]
+--------------------------------------------------------------------------------
+- Use `loading="lazy"` on all below-the-fold images; hero/first-viewport
+  images stay eager.
+- Use `will-change` sparingly and only on elements with active, complex
+  transitions (remove after the interaction, don't leave it on static
+  elements).
+- Prefer CSS transform/opacity for animation over top/left/width/height.
+- Compress and correctly size images before adding to assets/images (see
+  Section 10). No unoptimized multi-MB source images in the repo.
+- Videos in /Media are reference/marketing assets, not to be embedded
+  directly without compression + poster image + lazy-loading strategy.
+- Keep CSS/JS files free of dead/unused rules from earlier iterations;
+  delete, don't comment-out-and-leave.
+
+--------------------------------------------------------------------------------
+[9. SEO RULES]
+--------------------------------------------------------------------------------
+- Every page needs a unique <title>, meta description, canonical URL, and
+  Open Graph / Twitter Card block (already established pattern on index.html
+  - replicate on every page).
+- One <h1> per page, logical heading hierarchy after that (no skipped
+  levels).
+- Structured data (JSON-LD: Organization, LocalBusiness, BreadcrumbList,
+  Event where relevant) to be added per page as content stabilizes.
+- Descriptive, keyword-relevant alt text doubles as an SEO and accessibility
+  win - do both with one attribute.
+
+--------------------------------------------------------------------------------
+[10. IMAGE, SVG & ICON HANDLING]
+--------------------------------------------------------------------------------
+- Raster images live under assets/images/<category>/ (logo, portfolio,
+  clients-logo, etc.). Keep this folder categorized as it grows - do not
+  dump new images loose into assets/images root.
+- Prefer .webp for photographic content where feasible; keep .png only where
+  transparency is required and .svg is not possible.
+- Icons: Font Awesome (already loaded via CDN) is the default icon system.
+  Use inline SVG only for custom/brand marks that Font Awesome cannot
+  provide - never rasterize a simple icon.
+- SVGs used decoratively get `aria-hidden="true"`; SVGs conveying meaning get
+  a <title> or aria-label.
+
+--------------------------------------------------------------------------------
+[11. COMPONENT PHILOSOPHY & REUSABLE SECTIONS]
+--------------------------------------------------------------------------------
+- Before building a new section, check if an equivalent pattern already
+  exists (card grid, accordion/FAQ, stat strip, testimonial slider, marquee,
+  bento layout, before/after compare slider, timeline). Reuse the pattern
+  and its CSS conventions rather than inventing a parallel one.
+- A section is a good candidate for extraction into a shared component file
+  (Section 1) once it is used, or is planned to be used, on 2+ pages.
+- Every new component should be built assuming it will become a Gutenberg
+  block or ACF Flexible Content layout later (Section 13) - i.e. self-
+  contained markup, no dependency on sibling sections' internal state.
+
+--------------------------------------------------------------------------------
+[12. CONFLICT PREVENTION & MERGE STRATEGY]
+--------------------------------------------------------------------------------
+- New classes, IDs, and JS identifiers must never collide with existing ones.
+  Use the page-prefix system (Section 2) as the first line of defense.
+- Never overwrite, rename, or delete existing classes/functions/sections
+  without the user explicitly requesting it in that session.
+- When integrating externally-generated code (see
+  website_integration-material.txt), always grep the target file for the
+  incoming class/ID names first to confirm no collision before pasting.
+- Git is already initialized for this repo. Recommended flow going forward:
+  one commit per completed section/feature, descriptive commit messages
+  (e.g. "feat(construction-design): add before/after compare slider"),
+  never commit build artifacts or dependency folders (none currently exist -
+  keep it that way while the project stays static).
+
+--------------------------------------------------------------------------------
+[13. WORDPRESS PREPARATION PRINCIPLES]
+--------------------------------------------------------------------------------
+- Do NOT begin WordPress conversion work now. This section exists so every
+  decision taken today avoids creating rework later.
+- Template-part comment markers (Section 6) must be present on every section
+  of every page before conversion begins.
+- header.php / footer.php mapping is already implied by the existing
+  [TEMPLATE: header.php] / [TEMPLATE: footer.php] markers in index.html -
+  replicate the exact same header/footer markup and markers on every other
+  page (do not let per-page navbars drift out of sync).
+- Global CSS (navbar.css, footer.css, page-hero.css, and a future
+  tokens.css) maps to theme-wide enqueued styles. Page CSS (index.css,
+  services.css, etc.) maps to conditionally-enqueued template-specific
+  styles. Component CSS (ceo_section.css, clients_marquee.css) maps to
+  block/template-part specific styles enqueued only where the part is used.
+- Repeated content blocks (Industries list, Services mega-menu structure,
+  Testimonials, Clients marquee, Stats) are CPT/ACF Repeater candidates -
+  flag them, don't hardcode them deeper than necessary.
+- Full detail belongs in a dedicated future document (wordpress-roadmap.txt)
+  once page content is finalized - this section is the running checklist
+  until then.
+
+--------------------------------------------------------------------------------
+[14. AI DEVELOPMENT RULEBOOK]
+--------------------------------------------------------------------------------
+Any AI (this assistant or another) working on this repository must:
+  1. Read rules.txt, website_structure.txt, and the last 1-2 data.txt
+     sessions before making any change.
+  2. NEVER destroy or restructure existing architecture without explicit
+     instruction.
+  3. NEVER overwrite unrelated code while completing a requested task.
+  4. Always work within the naming/prefix/comment conventions of this file,
+     even if faster shortcuts are possible.
+  5. Always state, at the end of a response, which files were changed and
+     what was added/removed in each (see Section 15 checklist).
+  6. When integrating externally-supplied code (site-material.txt or pasted
+     snippets), follow website_integration-material.txt exactly.
+  7. When uncertain which page/section a request applies to, ASK before
+     guessing.
+  8. Treat this file as append/update-able but never silently contradict it
+     - if a new pattern is adopted, this file must be updated in the same
+     session (Section 15).
+
+--------------------------------------------------------------------------------
+[15. SESSION WORKFLOW & CHECKLISTS]
+--------------------------------------------------------------------------------
+BEFORE ENDING ANY SESSION:
+  1. Verify new code follows section-wise organization and naming/prefix
+     rules above.
+  2. Clean up ad-hoc/duplicate styles introduced during the session.
+  3. Append a new dated entry to data.txt (append-only, never overwrite or
+     delete historical logs).
+  4. Update rules.txt if a new pattern/token/prefix was adopted this
+     session (keep this file the single source of truth).
+  5. Update website_structure.txt if any file/folder was added, removed, or
+     repurposed.
+  6. State clearly in the final response which files are NEW vs MODIFIED
+     vs UNCHANGED - never regenerate or resend unchanged files.
+
+CODE REVIEW CHECKLIST (self-check before delivering code):
+  [ ] Correct file per Section 1 (global vs page vs component)
+  [ ] Naming/prefix rules followed (Section 2)
+  [ ] No hardcoded values that should be tokens (Section 3)
+  [ ] Responsive across the 4-tier breakpoint scale (Section 4)
+  [ ] JS wrapped/scoped, no global leaks (Section 5)
+  [ ] Section comment markers + template-part markers present (Section 6)
+  [ ] Alt text, aria attributes, keyboard support present (Section 7)
+  [ ] Lazy-loading and animation-perf rules followed (Section 8)
+  [ ] No collisions with existing classes/IDs/functions (Section 12)
+
+--------------------------------------------------------------------------------
+[16. TECHNICAL DEBT & BACKUP STRATEGY]
+--------------------------------------------------------------------------------
+- Known current debt (tracked, not urgent): inconsistent breakpoint values
+  across page CSS files (Section 4); some component prefixes not yet
+  adopted on older pages (em-, gs-, ev-, ct- - Section 2); design tokens
+  only formally defined in navbar.css rather than a dedicated tokens.css.
+- Do not silently "fix" legacy debt while doing unrelated work - log it here
+  or in data.txt instead, and fix it as its own explicit task.
+- Repository is git-tracked; that is the backup strategy for code. Large
+  binary assets (Media/*.mp4) should be reviewed periodically for whether
+  they belong in git history long-term or should move to external hosting
+  once the WordPress phase begins.
+
+--------------------------------------------------------------------------------
+ARCHITECT'S NOTE: Build for the 10th page and the 100th page, not just the
+1st. Make it readable for the human, not just the machine.
 ================================================================================
