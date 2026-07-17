@@ -38,6 +38,7 @@ Badarexpo website/
 |                                   or contain only unmerged material at any
 |                                   given time - never a permanent archive.
 |-- README.md
+|-- raw-assets/                    Orphaned raw-export assets (unreferenced/source-only)
 |
 |-- assets/
 |   |-- css/
@@ -69,7 +70,6 @@ Badarexpo website/
 |       |-- logo/                   Site logo variants
 |       |-- clients-logo/           Client/partner logos (marquee)
 |       |-- portfolio/              Project/event photography used across pages
-|       |-- (Images Website Badarexpo/ - UNSORTED, see Section 6, Known Gaps)
 |
 |-- Media/                          Raw marketing video files (.mp4) - reference
 |                                   assets only, not yet embedded/optimized
@@ -160,21 +160,10 @@ mechanical. Current coverage:
    (e.g. form validation, map embed), this is fine as-is; the moment it
    does, create contact.js rather than growing main.js or inlining
    <script> in contact.html.
-2. assets/images/Images Website Badarexpo/ is an unsorted raw-export
-   folder (61 files, WhatsApp/Facebook export filenames with spaces and
-   inconsistent casing, e.g. "WhatsApp Image 2026-04-24 at 5.08.09 PM
-   (3).jpeg"). It is NOT referenced anywhere in HTML/CSS/JS. It violates
-   the naming convention (rules.txt Section 2) and the "categorized
-   folders only" rule (rules.txt Section 10). This is a raw source dump,
-   not a production asset folder. Recommendation: move it OUT of
-   assets/images entirely (e.g. to a project-level /raw-assets/ or
-   /source-media/ folder that is git-ignored or kept outside the theme's
-   enqueue path), and only promote individual images into
-   assets/images/<category>/ once renamed to kebab-case and compressed.
-3. Breakpoint inconsistency across page CSS files (992px, 1200px, 1300px,
+2. Breakpoint inconsistency across page CSS files (992px, 1200px, 1300px,
    640px, 420px, etc.) - already logged as known debt in rules.txt
    Section 16. Not re-litigated here.
-4. Design tokens are still only formally defined in navbar.css :root
+3. Design tokens are still only formally defined in navbar.css :root
    rather than a dedicated tokens.css - already logged in rules.txt
    Section 3/16. Flagging again here only because it directly affects the
    future WordPress enqueue strategy (see wordpress-roadmap.txt).
