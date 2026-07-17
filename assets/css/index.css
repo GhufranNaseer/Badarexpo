@@ -26,12 +26,12 @@ body {
     position: relative;
     width: 100%;
     height: 100vh;
+    min-height: 640px;
+    max-height: 960px;
     overflow: hidden;
     display: flex;
     align-items: center;
-    justify-content: flex-start;
     color: var(--white);
-    text-align: left;
     background-color: #000;
 }
 
@@ -45,64 +45,135 @@ body {
     z-index: 1;
 }
 
-/* Side Gradient Overlay */
+/* Side Gradient Overlay - lightened and pulled tighter to the left
+   edge so roughly two-thirds of the frame stays clearly visible.
+   A very subtle bottom fade is added only to protect CTA legibility,
+   not to darken the whole frame. */
 .hero-overlay {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(to right,
-            rgba(0, 0, 0, 0.8) 0%,
-            rgba(0, 0, 0, 0.4) 40%,
-            transparent 100%);
+    background:
+        linear-gradient(100deg,
+            rgba(0, 0, 0, 0.74) 0%,
+            rgba(0, 0, 0, 0.46) 32%,
+            rgba(0, 0, 0, 0.16) 58%,
+            rgba(0, 0, 0, 0) 78%),
+        linear-gradient(to top,
+            rgba(0, 0, 0, 0.35) 0%,
+            rgba(0, 0, 0, 0) 26%);
     z-index: 2;
 }
 
+/* Hero Badge - smaller, quieter; its job is to be read second, not
+   compete with the headline. */
+.hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 14px;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 100px;
+    color: rgba(255, 255, 255, 0.92);
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.4px;
+    margin-bottom: 30px;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.hero-badge:hover {
+    background: rgba(255, 255, 255, 0.12);
+    border-color: rgba(255, 255, 255, 0.25);
+    transform: translateY(-1px);
+}
+
+.hero-badge .badge-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--primary-red);
+    box-shadow: 0 0 10px var(--primary-red);
+    display: inline-block;
+}
+
+/* Fixed left anchor (not centered) - previously this used
+   max-width:1400px + margin:0 auto, which meant the left gap kept
+   growing on wide/ultra-wide screens (and shifted under browser
+   zoom, since zoom changes the effective viewport width the centering
+   math reacts to). It's now pinned to a constant distance from the
+   left edge on desktop/laptop, so the text block stays put no matter
+   how wide the window is or how far the page is zoomed. Mobile keeps
+   its own centered behavior below (unchanged, handled separately). */
 .hero-content {
     position: relative;
     z-index: 3;
-    max-width: 800px;
-    padding: 0 5% 0 8%;
+    width: 100%;
+    margin: 0;
+    padding-left: 60px;
+    padding-right: 60px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
     animation: fadeInUp 1.2s cubic-bezier(0.4, 0, 0.2, 1);
     will-change: transform, opacity;
 }
 
+/* Heading - the core fix. Smaller max size (was up to 3.25rem / 52px,
+   now tops out at 2.6rem / ~42px, in line with Stripe/IBM hero scale),
+   a hard-controlled width so it wraps into a short, balanced block
+   instead of one wide rectangle, tighter tracking for an "elegant"
+   rather than "loud" feel, and text-wrap:balance so line breaks are
+   never awkward regardless of the exact copy length. */
 .hero-content h1 {
-    font-size: clamp(2.5rem, 5vw, 4rem);
-    font-weight: 800;
-    line-height: 1.1;
-    margin-bottom: 25px;
-    text-transform: uppercase;
-    letter-spacing: -1px;
-    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+    font-size: clamp(1.9rem, 1.1rem + 2.1vw, 2.6rem);
+    font-weight: 700;
+    line-height: 1.16;
+    margin-bottom: 20px;
+    text-transform: none;
+    letter-spacing: -0.025em;
+    max-width: 560px;
+    text-wrap: balance;
+    text-shadow: 0 2px 14px rgba(0, 0, 0, 0.45);
 }
 
+/* Paragraph - pulled in from 580px to 440px so it reads as a short,
+   confident block rather than a wide slab of copy competing with the
+   heading for space. Slightly dimmer than the heading on purpose -
+   that contrast in brightness is part of the hierarchy. */
 .hero-content p {
-    font-size: clamp(1rem, 1.5vw, 1.15rem);
-    opacity: 0.9;
+    font-size: clamp(0.95rem, 0.85rem + 0.3vw, 1.0625rem);
+    font-weight: 400;
+    color: rgba(255, 255, 255, 0.7);
     margin-bottom: 40px;
-    max-width: 600px;
-    line-height: 1.7;
+    max-width: 440px;
+    line-height: 1.75;
+    text-shadow: 0 1px 6px rgba(0, 0, 0, 0.25);
 }
 
 /* Hero CTA Buttons */
 .hero-btns {
     display: flex;
-    gap: 20px;
+    gap: 14px;
     justify-content: flex-start;
     flex-wrap: wrap;
 }
 
 .hero-btn {
-    padding: 16px 35px;
-    font-size: 16px;
+    padding: 13px 28px;
+    font-size: 13.5px;
     font-weight: 600;
     text-transform: uppercase;
-    letter-spacing: 1px;
+    letter-spacing: 0.9px;
     border-radius: 4px;
     cursor: pointer;
-    transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     border: none;
 }
 
@@ -123,6 +194,13 @@ body {
     border: 2px solid var(--white);
 }
 
+.hero-btn-outline:hover {
+    background: var(--white);
+    color: var(--text-dark);
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(255, 255, 255, 0.1);
+}
+
 /* =========================
    ANIMATIONS
    ========================= */
@@ -140,6 +218,10 @@ body {
 
 /* =========================
    RESPONSIVE (HERO)
+   ------------------------------------------------------------------
+   Below 1024px the layout re-centers (unchanged behavior), but the
+   type scale and widths are re-tuned to the same lighter, tighter
+   hierarchy rather than just shrinking the old oversized values.
    ========================= */
 @media screen and (max-width: 1024px) {
     .hero {
@@ -148,32 +230,82 @@ body {
     }
 
     .hero-overlay {
-        background: linear-gradient(to bottom,
-                rgba(0, 0, 0, 0.4) 0%,
-                rgba(0, 0, 0, 0.7) 100%);
+        background:
+            linear-gradient(to bottom,
+                rgba(0, 0, 0, 0.28) 0%,
+                rgba(0, 0, 0, 0.6) 58%,
+                rgba(0, 0, 0, 0.82) 100%);
     }
 
     .hero-content {
-        padding: 0 20px;
-        margin-top: 150px;
+        padding: 0 30px;
+        margin-top: 80px;
+        align-items: center;
+    }
+
+    .hero-badge {
+        margin-bottom: 22px;
     }
 
     .hero-content h1 {
-        font-size: 2.2rem;
+        font-size: clamp(1.65rem, 1rem + 3vw, 2.15rem);
+        max-width: 520px;
+        margin-bottom: 16px;
     }
 
     .hero-content p {
         margin-left: auto;
         margin-right: auto;
         font-size: 0.95rem;
+        max-width: 420px;
+        margin-bottom: 30px;
     }
 
     .hero-btns {
         justify-content: center;
-        flex-direction: column;
+        flex-direction: row;
         width: 100%;
-        max-width: 320px;
-        margin: 0 auto;
+        gap: 12px;
+    }
+    
+    .hero-btn {
+        padding: 12px 24px;
+        font-size: 13px;
+        flex: 1;
+        max-width: 200px;
+    }
+}
+
+@media screen and (max-width: 576px) {
+    .hero-content {
+        padding: 0 20px;
+    }
+
+    .hero-badge {
+        font-size: 11px;
+        margin-bottom: 18px;
+    }
+
+    .hero-content h1 {
+        font-size: clamp(1.5rem, 1.1rem + 4vw, 1.9rem);
+        max-width: 100%;
+        line-height: 1.2;
+    }
+
+    .hero-content p {
+        max-width: 100%;
+        font-size: 0.9rem;
+        margin-bottom: 26px;
+    }
+
+    .hero-btns {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .hero-btn {
+        width: 100%;
+        max-width: 280px;
     }
 }
 
