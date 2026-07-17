@@ -51,13 +51,15 @@
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <!-- ========================= GLOBAL STYLES ========================= -->
+    <link rel="preload" href="assets/css/navbar.css" as="style">
     <link rel="stylesheet" href="assets/css/navbar.css">
-    <link rel="stylesheet" href="assets/css/footer.css">
+    <link rel="stylesheet" href="assets/css/footer.css" media="print" onload="this.media='all'">
 
     <!-- ========================= PAGE SPECIFIC STYLES ========================= -->
+    <link rel="preload" href="assets/css/index.css" as="style">
     <link rel="stylesheet" href="assets/css/index.css">
-    <link rel="stylesheet" href="assets/css/clients_marquee.css">
-    <link rel="stylesheet" href="assets/css/ceo_section.css">
+    <link rel="stylesheet" href="assets/css/clients_marquee.css" media="print" onload="this.media='all'">
+    <link rel="stylesheet" href="assets/css/ceo_section.css" media="print" onload="this.media='all'">
 </head>
 
 <body>
@@ -97,7 +99,7 @@
     <!-- NAVIGATION -->
     <nav class="navbar">
         <div class="logo">
-            <a href="index.html"><img src="assets/images/logo/favicon.webp" alt="Badar Expo Logo" class="logo-img"></a>
+            <a href="index.html"><img src="assets/images/logo/favicon.webp" alt="Badar Expo Logo" class="logo-img" width="140" height="140" fetchpriority="high"></a>
         </div>
 
         <!-- Hamburger Icon -->
@@ -534,7 +536,7 @@
             <!-- PROOF ROW -->
             <div class="story-proof">
                 <div class="story-photo story-reveal">
-                    <img src="assets/images/portfolio/exhibition-floor-premium.png"
+                    <img src="assets/images/portfolio/exhibition-floor-premium.webp"
                         alt="Exhibition floor at Global SME Summit, Karachi, organized by Badar Expo Solutions"
                         loading="lazy">
                     <div class="story-photo-overlay"></div>
@@ -1011,36 +1013,36 @@
         <div class="marquee-container" id="marquee-container">
             <div class="marquee-track" id="marquee-track">
                 <!-- LOGO SET 1 -->
-                <div class="marquee-item"><img src="assets/images/clients-logo/tdap.webp" alt="TDAP"></div>
-                <div class="marquee-item"><img src="assets/images/clients-logo/depo.webp" alt="DEPO"></div>
-                <div class="marquee-item"><img src="assets/images/clients-logo/kcc.webp" alt="KCCI"></div>
-                <div class="marquee-item"><img src="assets/images/clients-logo/abad.webp" alt="ABAD"></div>
-                <div class="marquee-item"><img src="assets/images/clients-logo/papgai.webp" alt="PAPGAI"></div>
-                <div class="marquee-item"><img src="assets/images/clients-logo/ideas26-150x150-1.webp" alt="IDEAS">
+                <div class="marquee-item"><img src="assets/images/clients-logo/tdap.webp" alt="TDAP" width="150" height="80"></div>
+                <div class="marquee-item"><img src="assets/images/clients-logo/depo.webp" alt="DEPO" width="150" height="80"></div>
+                <div class="marquee-item"><img src="assets/images/clients-logo/kcc.webp" alt="KCCI" width="150" height="80"></div>
+                <div class="marquee-item"><img src="assets/images/clients-logo/abad.webp" alt="ABAD" width="150" height="80"></div>
+                <div class="marquee-item"><img src="assets/images/clients-logo/papgai.webp" alt="PAPGAI" width="150" height="80"></div>
+                <div class="marquee-item"><img src="assets/images/clients-logo/ideas26-150x150-1.webp" alt="IDEAS" width="150" height="80">
                 </div>
                 <div class="marquee-item"><img src="assets/images/clients-logo/DALFA-Acociation-01-1024x576-1.webp"
-                        alt="DALFA"></div>
+                        alt="DALFA" width="150" height="80"></div>
                 <div class="marquee-item"><img src="assets/images/clients-logo/PTBF-Logo-Updated-01-128x91-1.webp"
-                        alt="PTBF"></div>
+                        alt="PTBF" width="150" height="80"></div>
                 <div class="marquee-item"><img
-                        src="assets/images/clients-logo/Pi7_PIMEC-2025-Logo-without-date-whit.webp" alt="PIMEC"></div>
-                <div class="marquee-item"><img src="assets/images/clients-logo/logo.webp" alt="Client Logo"></div>
+                        src="assets/images/clients-logo/Pi7_PIMEC-2025-Logo-without-date-whit.webp" alt="PIMEC" width="150" height="80"></div>
+                <div class="marquee-item"><img src="assets/images/clients-logo/logo.webp" alt="Client Logo" width="150" height="80"></div>
 
                 <!-- DUPLICATE SET FOR SEAMLESS LOOP -->
-                <div class="marquee-item"><img src="assets/images/clients-logo/tdap.webp" alt="TDAP"></div>
-                <div class="marquee-item"><img src="assets/images/clients-logo/depo.webp" alt="DEPO"></div>
-                <div class="marquee-item"><img src="assets/images/clients-logo/kcc.webp" alt="KCCI"></div>
-                <div class="marquee-item"><img src="assets/images/clients-logo/abad.webp" alt="ABAD"></div>
-                <div class="marquee-item"><img src="assets/images/clients-logo/papgai.webp" alt="PAPGAI"></div>
-                <div class="marquee-item"><img src="assets/images/clients-logo/ideas26-150x150-1.webp" alt="IDEAS">
+                <div class="marquee-item"><img src="assets/images/clients-logo/tdap.webp" alt="TDAP" width="150" height="80"></div>
+                <div class="marquee-item"><img src="assets/images/clients-logo/depo.webp" alt="DEPO" width="150" height="80"></div>
+                <div class="marquee-item"><img src="assets/images/clients-logo/kcc.webp" alt="KCCI" width="150" height="80"></div>
+                <div class="marquee-item"><img src="assets/images/clients-logo/abad.webp" alt="ABAD" width="150" height="80"></div>
+                <div class="marquee-item"><img src="assets/images/clients-logo/papgai.webp" alt="PAPGAI" width="150" height="80"></div>
+                <div class="marquee-item"><img src="assets/images/clients-logo/ideas26-150x150-1.webp" alt="IDEAS" width="150" height="80">
                 </div>
                 <div class="marquee-item"><img src="assets/images/clients-logo/DALFA-Acociation-01-1024x576-1.webp"
-                        alt="DALFA"></div>
+                        alt="DALFA" width="150" height="80"></div>
                 <div class="marquee-item"><img src="assets/images/clients-logo/PTBF-Logo-Updated-01-128x91-1.webp"
-                        alt="PTBF"></div>
+                        alt="PTBF" width="150" height="80"></div>
                 <div class="marquee-item"><img
-                        src="assets/images/clients-logo/Pi7_PIMEC-2025-Logo-without-date-whit.webp" alt="PIMEC"></div>
-                <div class="marquee-item"><img src="assets/images/clients-logo/logo.webp" alt="Client Logo"></div>
+                        src="assets/images/clients-logo/Pi7_PIMEC-2025-Logo-without-date-whit.webp" alt="PIMEC" width="150" height="80"></div>
+                <div class="marquee-item"><img src="assets/images/clients-logo/logo.webp" alt="Client Logo" width="150" height="80"></div>
             </div>
         </div>
     </section>

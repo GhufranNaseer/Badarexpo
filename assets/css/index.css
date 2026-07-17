@@ -1129,7 +1129,7 @@ body {
     border-radius: 50%;
     background: #8d8d8d;
     cursor: pointer;
-    transition: width 0.3s ease, background 0.3s ease;
+    transition: background 0.3s ease;
     border: none;
     padding: 0;
 }
