@@ -1,0 +1,107 @@
+=====================================================
+BADAR EXPO SOLUTIONS (BXSS) - NAVIGATION & SITE CONTENT MAP
+=====================================================
+This document contains the CONTENT of the site's navigation system - what
+the top bar, main menu, mega menus, and industries list actually say. It is
+CONTENT documentation, not code architecture. For where the code that
+renders this navigation actually lives (navbar.css, main.js, template-part
+markers), see website_structure.txt Sections 2, 4 and 7.
+
+This file was migrated out of the old website_structure.txt so that
+document could be re-purposed as the technical repository map. No content
+below has been changed from the original.
+
+-----------------------------------------------------
+1. TOP BAR (Pre-header)
+-----------------------------------------------------
+- Contact:
+  * Phone: +92 21 3482 1159
+  * Email: info@badarexpo.com
+- Language Switcher: English (EN), Urdu (UR), Arabic (AR)
+- Social Links: Facebook, LinkedIn, Instagram, YouTube
+
+-----------------------------------------------------
+2. MAIN NAVIGATION (Mega Menu & Mobile Sidebar)
+-----------------------------------------------------
+- Home
+- About Us
+- Services (Dropdown / Mega Menu)
+    -> Exhibition Management
+       * Exhibition Management
+       * Conference Management
+       * Corporate Events
+    -> Construction & Design
+       * Canopy Octanorm Building
+       * Stall Design & Fabrication
+       * LED Screens
+       * Audio Visual Equipment
+       * Rental of Furniture
+       * Interactive Kiosks
+       * Indoor Outdoor Advertising (Branding & Production)
+    -> Growth Services
+       * B2B Matchmaking
+       * Event Marketing
+       * Digital Production
+- Events (Dropdown / Mega Menu)
+    -> Our Role
+       * Owned Events
+       * Co-Organized
+       * Managed Events
+    -> Formats
+       * Exhibitions
+       * Conferences
+       * Industrial Forums
+- Industries
+- Global Reach
+- Insights (Dropdown / Mega Menu)
+    * Blog (Industry insights, event strategies)
+    * Media (Press coverage, interviews)
+    * Gallery (Moments captured from mega events)
+- Contact
+
+-----------------------------------------------------
+3. ACTION BUTTONS & UTILITIES
+-----------------------------------------------------
+- Search Button (Desktop navbar)
+- "Visitor" Button (Primary CTA)
+- "Partner" Button (Secondary CTA)
+
+-----------------------------------------------------
+4. INDUSTRY LIST (Comprehensive)
+-----------------------------------------------------
+Complete list of industries served by Badar Expo Solutions:
+- Artificial Intelligence (AI)
+- Automotives
+- Banking & Finance
+- Build & Construction
+- Ceramics
+- Chemical & Pharmaceutical
+- Dairy & Poultry
+- Defence & Security
+- Education
+- Electrical & Electronics
+- Energy (Oil, Gas & Alternative)
+- Engineering
+- Food & Agriculture
+- Gems & Jewellery
+- Healthcare & Medical Equipment
+- Hospitality
+- Human Resource
+- Interiors & Accessories
+- Leather & Textiles
+- Logistics & Supply Chain
+- Manufacturing & Industrial
+- Mining & Minerals
+- Printing & Packaging
+- Real Estate & Housing
+- Smart City & Urban Planning
+- Sports & Fitness Equipment
+- Trade & Enterprise
+
+=====================================================
+This structure represents the global header of the website. The mega menus
+use a dynamic JS hover/click architecture (main.js) to reveal the
+sub-links and their associated descriptions/images. Future WordPress
+mapping: this entire structure is a Custom Menu + Mega Menu ACF Flexible
+Content candidate (see wordpress-roadmap.txt, Menus & Navigation section).
+=====================================================

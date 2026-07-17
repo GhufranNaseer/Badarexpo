@@ -1,0 +1,165 @@
+================================================================================
+BADAR EXPO SOLUTIONS (BXSS) - WORDPRESS CONVERSION ROADMAP
+================================================================================
+Version: 1.0.0
+Status: PLANNING DOCUMENT ONLY. No WordPress conversion work begins from
+this file. This is the checklist that makes the eventual conversion
+mechanical instead of a rewrite - referenced as a "future document" in
+rules.txt Section 13.
+
+--------------------------------------------------------------------------------
+[1. TEMPLATE HIERARCHY MAPPING]
+--------------------------------------------------------------------------------
+  Static file                | Future WP template
+  ----------------------------|--------------------------------------------
+  index.html                  | front-page.php
+  services.html                | page-services.php (or template: Services Hub)
+  construction-design.html     | page-construction-design.php
+  exhibitionmanagement.html    | page-exhibition-management.php
+  growthservices.html          | page-growth-services.php
+  events.html                   | page-events.php (or CPT archive if events
+                                 |   become individually manageable - see
+                                 |   Section 6)
+  contact.html                   | page-contact.php
+  [TEMPLATE: header.php]         | header.php
+  [TEMPLATE: footer.php]         | footer.php
+
+--------------------------------------------------------------------------------
+[2. TEMPLATE PARTS MAPPING]
+--------------------------------------------------------------------------------
+Every [TEMPLATE PART: x.php] marker (rules.txt Section 6) becomes a file
+under template-parts/, OR a registered Gutenberg block if the section
+needs to be reorderable/editable by a non-technical editor. Current
+markers already present on index.html:
+  hero-slider.php, services-grid.php, new-services-carousel.php,
+  about-summary.php, ceo-section.php, statistics-section.php,
+  events-showcase.php, testimonials-slider.php, clients-marquee.php,
+  content-insights.php, platform-features.php
+These 11 become the first wave of template-parts/*.php once conversion
+starts. The remaining 5 pages need marker coverage first (see
+website_structure.txt Section 5) before their sections can be mapped here.
+
+--------------------------------------------------------------------------------
+[3. ASSET ENQUEUE STRATEGY]
+--------------------------------------------------------------------------------
+- GLOBAL CSS (navbar.css, footer.css, page-hero.css, future tokens.css)
+  -> enqueued unconditionally in functions.php on every template.
+- COMPONENT CSS (ceo_section.css, clients_marquee.css, future
+  insights_section.css) -> enqueued conditionally, only on templates/
+  template-parts that actually output that component
+  (`is_page_template()` / `has_block()` checks).
+- PAGE CSS (index.css, services.css, ...) -> enqueued conditionally per
+  template, one enqueue call per page template.
+- JS follows the identical three-tier logic: main.js always loads;
+  component JS loads with its component; page JS loads with its page
+  template.
+- Design tokens: once tokens.css exists (rules.txt Section 3/16 debt item)
+  it becomes the FIRST global stylesheet enqueued, before navbar.css, so
+  every other stylesheet can rely on the custom properties being defined.
+
+--------------------------------------------------------------------------------
+[4. FUNCTIONS.PHP PLANNING (high-level, not implementation)]
+--------------------------------------------------------------------------------
+Anticipated responsibilities, to be implemented only when conversion
+begins:
+  - Theme setup (title-tag, post-thumbnails, html5 markup, nav menus)
+  - Conditional style/script enqueue per the strategy in Section 3
+  - Custom Post Type registration (Section 6 below)
+  - ACF field group registration or acf-json sync folder
+  - Custom nav menu locations: Primary Menu (mega menu), Footer Menu,
+    Language Switcher menu (or a custom polylang/WPML integration if
+    multilingual becomes a plugin-based solution instead of hand-rolled)
+  - Image size registration matching current portfolio/hero image ratios
+
+--------------------------------------------------------------------------------
+[5. MENUS & NAVIGATION]
+--------------------------------------------------------------------------------
+Full menu content lives in navigation-map.txt. Mapping:
+  - Top bar contact/social/language -> Theme Options (ACF Options Page) so
+    phone/email/social links are editable without touching template code.
+  - Main mega menu -> WordPress Custom Menu with a mega-menu walker class,
+    OR an ACF Flexible Content "Mega Menu Column" repeater if the
+    structure needs to stay editor-manageable.
+  - Industries list (26 items) -> strong CPT/Taxonomy candidate (Section
+    6) rather than a hardcoded menu, since industries are likely to be
+    referenced from multiple pages (industry landing pages, filters on
+    portfolio/events).
+
+--------------------------------------------------------------------------------
+[6. CUSTOM POST TYPE & TAXONOMY CANDIDATES]
+--------------------------------------------------------------------------------
+  Content block                | CPT / Taxonomy candidate
+  -------------------------------|----------------------------------------
+  Industries list (26 items)     | Taxonomy: `industry` (attached to
+                                  | Events/Portfolio CPTs for filtering)
+  Events (Owned/Co-Organized/     | CPT: `event`, with taxonomy
+  Managed, Exhibitions/           | `event-role` and `event-format`
+  Conferences/Forums)             |
+  Portfolio/case studies          | CPT: `portfolio` or `case-study`
+  Testimonials                    | CPT: `testimonial`
+  Clients / partner logos         | CPT: `client` (or ACF repeater if the
+                                  | list stays simple - decide based on
+                                  | whether clients ever need individual
+                                  | pages)
+  Insights (Blog / Media /        | CPT: `post` (Blog), CPT: `press` or
+  Gallery)                        | `media-mention` (Media), CPT: `gallery`
+                                  | or a taxonomy on an existing media CPT
+  Services mega-menu structure    | ACF Flexible Content on a `service`
+  (3 pillars x sub-items)         | CPT, OR kept as a hardcoded menu if
+                                  | sub-items rarely change - decide once
+                                  | content-editing frequency is known.
+  Stats strip (numbers)           | ACF Options Page repeater (site-wide
+                                  | stats, rarely change)
+
+Decision on CPT vs ACF-repeater-on-a-page for each of the above should be
+made when content volume and edit-frequency are known - not guessed now.
+
+--------------------------------------------------------------------------------
+[7. DYNAMIC FORMS]
+--------------------------------------------------------------------------------
+contact.html's form (currently static markup, no contact.js - see
+website_structure.txt Section 6) becomes either:
+  - A native WP + custom PHP handler, or
+  - A Contact Form 7 / WPForms/Fluent Forms integration (only if the site
+    later needs form-builder flexibility for non-technical editors).
+Decision deferred until the contact form's actual field requirements are
+finalized in the static site.
+
+--------------------------------------------------------------------------------
+[8. MEDIA HANDLING]
+--------------------------------------------------------------------------------
+- Media/*.mp4 marketing videos -> WP Media Library only after compression
+  and poster-image generation (rules.txt Section 8); large video should
+  seriously be considered for external hosting (YouTube/Vimeo embed or a
+  CDN) rather than self-hosted in wp-content/uploads, for performance.
+- assets/images/* -> migrates into the WP Media Library on a per-template
+  basis as templates are built, keeping the same category structure
+  (logo, portfolio, clients-logo) as folder-equivalent tags/categories if
+  the media library is organized with a plugin, otherwise flat with
+  descriptive filenames (already required by rules.txt Section 2).
+- The unsorted assets/images/Images Website Badarexpo/ folder (see
+  website_structure.txt Section 6, Known Gap #2) must be resolved -
+  cleaned, renamed, and either discarded or properly categorized - BEFORE
+  any media migration begins. Do not migrate raw export dumps into the
+  Media Library.
+
+--------------------------------------------------------------------------------
+[9. MULTILINGUAL (future)]
+--------------------------------------------------------------------------------
+Current EN/UR/AR switcher is hand-rolled in main.js/navbar.css. Future
+options: WPML, Polylang, or a headless translation layer. No action now;
+noting only so the hand-rolled switcher isn't mistaken for the permanent
+solution when conversion begins.
+
+--------------------------------------------------------------------------------
+[10. WOOCOMMERCE (future, optional)]
+--------------------------------------------------------------------------------
+Not currently in scope anywhere in the static site. If ever required
+(e.g. paid event registration/ticketing), evaluate WooCommerce vs a
+lighter events-ticketing plugin at that time - do not pre-build product
+schema now.
+
+================================================================================
+END OF FILE - do not begin implementation from this document without an
+explicit instruction to start the WordPress conversion phase.
+================================================================================

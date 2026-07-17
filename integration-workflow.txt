@@ -1,0 +1,202 @@
+================================================================================
+BADAR EXPO SOLUTIONS (BXSS) - INTEGRATION WORKFLOW
+================================================================================
+Version: 1.0.0
+Governs: how content in site-material.txt (the staging inbox) gets merged
+into the real repository by an AI or a developer.
+Subordinate to: rules.txt (if anything here conflicts with rules.txt,
+rules.txt wins).
+
+--------------------------------------------------------------------------------
+[0. PURPOSE]
+--------------------------------------------------------------------------------
+site-material.txt is a DROP ZONE, not a source file. New sections are
+generated there - by you, by another developer, or by another AI - as a
+single self-contained HTML file (its own <head>, its own <style>, its own
+inline JS for prototyping). Nothing in site-material.txt is ever live on
+the actual website. This document defines exactly how that throwaway
+prototype becomes real, integrated, rules.txt-compliant code - and how the
+inbox gets cleared afterward.
+
+The single most important rule: an AI must NEVER copy-paste the raw
+<style> block or the raw HTML body of site-material.txt straight into a
+page or a CSS file. Every integration is a rewrite, not a transplant.
+
+--------------------------------------------------------------------------------
+[1. INTAKE - BEFORE TOUCHING ANY REPO FILE]
+--------------------------------------------------------------------------------
+Step 1 - Identify the section.
+  Read site-material.txt top to bottom. Identify the section's purpose,
+  the page(s) it belongs on, and whether it is genuinely NEW or whether it
+  duplicates an existing pattern (rules.txt Section 11 - check the
+  component library first: card grid, accordion/FAQ, stat strip,
+  testimonial slider, marquee, bento layout, before/after slider,
+  timeline).
+
+Step 2 - Classify it (Global / Component / Page).
+  Per rules.txt Section 1:
+    - Appears on every page               -> GLOBAL (rare - flag for review)
+    - Used, or planned, on 2+ pages       -> COMPONENT file, named after
+                                              the component
+    - Used on exactly 1 page              -> that page's CSS/JS file
+  This decision determines the destination file BEFORE any code is
+  touched.
+
+Step 3 - Confirm the target page(s).
+  If ambiguous, ASK before guessing (rules.txt Section 14, Rule 7). Do not
+  assume index.html by default.
+
+--------------------------------------------------------------------------------
+[2. EXTRACTION - PULLING THE THREE LAYERS APART]
+--------------------------------------------------------------------------------
+site-material.txt content always arrives as one flat HTML file. It must be
+split into exactly three destinations:
+
+  A) HTML  -> the <body> markup only, stripped of <html>/<head>/<body>
+              wrapper tags, stripped of the <style> block, stripped of any
+              inline <script> block.
+  B) CSS   -> everything inside the <style> block.
+  C) JS    -> any inline <script> logic (sliders, toggles, form handling,
+              observers).
+
+Never leave any of the three embedded in the wrong layer. A <style> block
+surviving inside a production .html file, or an onclick="" attribute, is a
+failed integration even if it "works."
+
+--------------------------------------------------------------------------------
+[3. RENAMING & COLLISION PREVENTION (do this BEFORE merging anything)]
+--------------------------------------------------------------------------------
+1. Grep the ENTIRE repo (all HTML, all CSS, all JS) for every class, ID,
+   and JS identifier used in the incoming section, before pasting
+   anything. This is mandatory per rules.txt Section 12.
+2. Apply the page-prefix system (rules.txt Section 2) to every class that
+   doesn't already carry the destination page's prefix. Example: incoming
+   `.insights-section .card` destined for a component file gets renamed
+   to something collision-safe and self-describing (e.g. `.insights-card`
+   inside its own component namespace) - never left as generic `.card`,
+   which WILL eventually collide.
+3. IDs: only assign if the section genuinely needs a JS hook or in-page
+   anchor (rules.txt Section 2). Mirror the class prefix.
+4. If a collision is found: do NOT silently rename the EXISTING repo
+   class/ID. Only the incoming material gets renamed. Existing code is
+   never touched without an explicit user request (rules.txt Section 12).
+
+--------------------------------------------------------------------------------
+[4. CSS MERGE RULES]
+--------------------------------------------------------------------------------
+1. Replace every hardcoded color/spacing/radius/shadow/transition value
+   with the existing global token (rules.txt Section 3, token list lives
+   in navbar.css :root) if an equivalent token already exists. Only
+   introduce a new token if genuinely new, and log it in the token list +
+   data.txt in the same session.
+2. Re-order declarations per rules.txt Section 3 property-order priority
+   (transform/opacity -> layout -> box model -> visual -> everything
+   else).
+3. Snap any new breakpoint to the 4-tier scale (rules.txt Section 4)
+   unless matching a legacy section pixel-for-pixel is explicitly
+   required. Do not introduce a 5th one-off breakpoint.
+4. Pair any non-trivial animation with a
+   `@media (prefers-reduced-motion: reduce)` block.
+5. Append the cleaned CSS to the correct destination file (global /
+   component / page per Section 1 of this document) under a properly
+   labeled section comment block (rules.txt Section 6 format). Never
+   create a new CSS file for a section that belongs in an existing one.
+6. Delete the now-empty/duplicate rules from anywhere else in the repo if
+   this integration replaces an older draft of the same section (check
+   scrap.txt-style leftovers - rules.txt Section 8, "no dead rules left
+   commented out").
+
+--------------------------------------------------------------------------------
+[5. HTML MERGE RULES]
+--------------------------------------------------------------------------------
+1. Convert generic wrapper tags to semantic HTML5 (rules.txt Section 7) -
+   `<section>`, `<article>`, `<figure>` etc. instead of `<div>` soup, if
+   the source material used divs.
+2. Wrap the section in template-part markers (rules.txt Section 6):
+   <!-- ===== [TEMPLATE PART: section-name.php START] ===== -->
+   ... markup ...
+   <!-- ===== [TEMPLATE PART: section-name.php END] ===== -->
+3. Add alt text to every <img>, aria-* attributes to every interactive
+   element, and confirm keyboard operability (Tab/Enter/Escape) before
+   considering the section done (rules.txt Section 7).
+4. Add `loading="lazy"` to below-the-fold images (rules.txt Section 8).
+5. Insert the finished block into the target page(s) at the correct
+   position in the DOM - never at the end of <body> "to be safe." Ask if
+   placement is ambiguous.
+
+--------------------------------------------------------------------------------
+[6. JS MERGE RULES]
+--------------------------------------------------------------------------------
+1. Global behavior (nav, language, search overlay) NEVER gets merged
+   here - if the incoming material touches any of that, flag it and
+   route it to main.js review instead, don't silently append.
+2. Everything else gets wrapped in its own IIFE inside the destination
+   page's JS file (rules.txt Section 5), never appended as bare
+   top-level code.
+3. Prefer IntersectionObserver over scroll listeners for any reveal/
+   animate-on-scroll behavior in the incoming material.
+4. Remove any inline onclick="" from the HTML and replace with a
+   DOMContentLoaded-bound listener in the JS file.
+
+--------------------------------------------------------------------------------
+[7. ASSET HANDLING (images / fonts / icons / animation)]
+--------------------------------------------------------------------------------
+- IMAGES: rename to kebab-case descriptive filenames, compress, prefer
+  .webp, place in the correct assets/images/<category>/ sub-folder
+  (rules.txt Section 10). Never leave WhatsApp/Facebook-export style
+  filenames or spaces in a filename that reaches assets/images.
+- FONTS: if the incoming section introduces a new font, it must be
+  justified with a CSS comment per rules.txt Section 3 ("secondary
+  display font... must document WHY"). Default to Inter unless there is a
+  clear stated reason not to.
+- ICONS: Font Awesome first (already loaded via CDN). Inline SVG only for
+  custom/brand marks Font Awesome can't provide. Never rasterize a simple
+  icon (rules.txt Section 10).
+- ANIMATION: convert to transform/opacity-based animation wherever the
+  incoming material used top/left/width/height (rules.txt Section 8).
+
+--------------------------------------------------------------------------------
+[8. DUPLICATE / CONFLICT PREVENTION CHECKLIST]
+--------------------------------------------------------------------------------
+Before considering an integration complete:
+  [ ] Grepped repo for every incoming class/ID/JS identifier - no collisions
+  [ ] No two files now define the same component (old scrap/leftover
+      version deleted, not left commented out)
+  [ ] No hardcoded value that should have been a token
+  [ ] No new breakpoint outside the 4-tier scale (unless justified)
+  [ ] No <style> or inline onclick left in the production HTML
+  [ ] Template-part markers present
+  [ ] Alt text / aria attributes / keyboard support present
+  [ ] Images renamed, compressed, correctly categorized
+  [ ] Section comment blocks present in HTML/CSS/JS (rules.txt Section 6)
+
+--------------------------------------------------------------------------------
+[9. CLOSING THE LOOP - CLEARING THE STAGING INBOX]
+--------------------------------------------------------------------------------
+Once a section from site-material.txt is fully integrated and verified
+against Section 8's checklist above:
+  1. Remove that section's raw content from site-material.txt. The file
+     should be EMPTY (or contain only material still awaiting
+     integration) at the end of any session that completed a merge -
+     never left as a permanent archive of already-merged work.
+  2. Append a dated entry to data.txt describing what was merged, into
+     which files, and any new tokens/prefixes introduced (rules.txt
+     Section 15).
+  3. Update website_structure.txt if a new component file was created or
+     an existing file's responsibility changed.
+  4. State clearly, in the session's final response, which files were
+     NEW vs MODIFIED - never resend unchanged files (rules.txt Section 15).
+
+--------------------------------------------------------------------------------
+[10. FUTURE WORDPRESS COMPATIBILITY NOTE]
+--------------------------------------------------------------------------------
+Every section integrated through this workflow is, by construction,
+already template-part-marked, token-based, semantically structured, and
+self-contained (rules.txt Section 11) - which means it is already
+shaped like a future Gutenberg block or ACF Flexible Content layout.
+No extra "make it WordPress-ready" pass should be needed later if this
+workflow was followed correctly at merge time.
+
+================================================================================
+END OF FILE
+================================================================================
