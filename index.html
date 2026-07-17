@@ -62,186 +62,242 @@
 
 <body>
     <!-- ========================= [TEMPLATE: header.php START] ========================= -->
-<!-- TOP BAR -->
-<header class="topbar">
-    <div class="topbar-left">
-        <span><i class="fas fa-phone"></i> +92 21 3482 1159</span>
-        <span><i class="fas fa-envelope"></i> info@badarexpo.com</span>
-    </div>
-    <div class="topbar-right">
-        <div class="lang-dropdown">
-            <button class="lang-btn" id="lang-btn">
-                <i class="fas fa-globe"></i> <span id="current-lang">EN</span> <i class="fas fa-chevron-down"></i>
-            </button>
-            <ul class="lang-list">
-                <li data-lang="en">English</li>
-                <li data-lang="ur">اردو (Urdu)</li>
-                <li data-lang="ar">العربية (Arabic)</li>
-            </ul>
+    <!-- TOP BAR -->
+    <header class="topbar">
+        <div class="topbar-left">
+            <span><i class="fas fa-phone"></i> +92 21 3482 1159</span>
+            <span><i class="fas fa-envelope"></i> info@badarexpo.com</span>
         </div>
-        <a href="https://www.facebook.com/BXSSpakistan/" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-        <a href="https://www.linkedin.com/company/bxsspakistan" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-        <a href="https://www.instagram.com/bxsspakistan/" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-        <a href="https://www.youtube.com/@BXSSpakistan" target="_blank" rel="noopener noreferrer" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
-        <a href="https://x.com/BXSSpakistan" target="_blank" rel="noopener noreferrer" aria-label="X (Twitter)"><i class="fab fa-x-twitter"></i></a>
-        <a href="https://www.tiktok.com/@badarexpo" target="_blank" rel="noopener noreferrer" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
-    </div>
-</header>
-
-<!-- NAVIGATION -->
-<nav class="navbar">
-    <div class="logo">
-        <a href="index.html"><img src="assets/images/logo/favicon.webp" alt="Badar Expo Logo" class="logo-img"></a>
-    </div>
-
-    <!-- Hamburger Icon -->
-    <div class="nav-toggle" id="mobile-menu-toggle">
-        <i class="fas fa-bars"></i>
-    </div>
-
-    <div class="menu" id="nav-menu">
-        <div class="nav-item active-nav"><a href="index.html"><span>Home</span></a></div>
-        <div class="nav-item"><a href="about.html"><span>About Us</span></a></div>
-
-        <div class="nav-item dropdown" data-target="services">
-            <a href="services.html"><span>Services <i class="fas fa-chevron-down"></i></span></a>
-            <ul class="mobile-submenu">
-                <li><a href="exhibitionmanagement.html">Exhibition Management</a></li>
-                <li><a href="exhibitionmanagement.html#conference">Conference Management</a></li>
-                <li><a href="exhibitionmanagement.html#corporate">Corporate Events</a></li>
-                <li><a href="construction-design.html">Construction &amp; Design</a></li>
-                <li><a href="growthservices.html">Growth Services</a></li>
-            </ul>
-        </div>
-        <div class="nav-item dropdown" data-target="events">
-            <a href="events.html"><span>Events <i class="fas fa-chevron-down"></i></span></a>
-            <ul class="mobile-submenu">
-                <li><a href="events.html#our-role">Owned Events</a></li>
-                <li><a href="events.html#our-role">Co-Organized</a></li>
-                <li><a href="events.html#our-role">Managed Events</a></li>
-            </ul>
-        </div>
-
-        <div class="nav-item"><a href="#"><span>Industries</span></a></div>
-        <div class="nav-item"><a href="#"><span>Global Reach</span></a></div>
-
-        <div class="nav-item dropdown" data-target="insights">
-            <span>Insights <i class="fas fa-chevron-down"></i></span>
-            <ul class="mobile-submenu">
-                <li><a href="#">Media Gallery</a></li>
-                <li><a href="#">Blogs</a></li>
-                <li><a href="#">News &amp; Updates</a></li>
-            </ul>
-        </div>
-        <div class="nav-item"><a href="contact.html"><span>Contact</span></a></div>
-
-        <!-- ACTION BUTTONS (Moved inside menu for mobile) -->
-        <div class="mobile-actions">
-            <button class="btn btn-dark">Visitor</button>
-            <button class="btn btn-light">Partner</button>
-        </div>
-    </div>
-
-    <!-- MEGA MENU WRAPPER -->
-    <div class="mega-menu-wrapper" id="shared-mega-menu">
-        <!-- SERVICES CONTENT -->
-        <div id="content-services" class="mega-content">
-            <div class="column dynamic-links">
-                <h4><a href="exhibitionmanagement.html">Exhibition Management <i class="fas fa-chevron-right" style="font-size: 10px; opacity: 0.6;"></i></a></h4>
-                <a href="exhibitionmanagement.html" data-title="Exhibition Management" data-desc="Complete exhibition solutions from concept to execution for B2B and B2C platforms." data-image="assets/images/portfolio/ieee-exhibition.webp">Management</a>
-                <a href="exhibitionmanagement.html#conference" data-title="Conference Management" data-desc="Organizing world-class summits, technical seminars, and international conferences." data-image="assets/images/portfolio/ieee-seminar.webp">Conferences</a>
-                <a href="exhibitionmanagement.html#corporate" data-title="Corporate Events" data-desc="Bespoke events tailored to meet corporate objectives and brand positioning." data-image="assets/images/portfolio/ziauddin-convocation.webp">Corporate</a>
-            </div>
-            <div class="column dynamic-links">
-                <h4><a href="construction-design.html">Construction &amp; Design <i class="fas fa-chevron-right" style="font-size: 10px; opacity: 0.6;"></i></a></h4>
-                <ul class="bullet-list">
-                    <li><a href="construction-design.html#canopy" data-title="Canopy Octanorm Building" data-desc="Standardized modular shell schemes for professional exhibitions and trade shows." data-image="assets/images/portfolio/ieee-booth.webp">Canopy Octanorm Building</a></li>
-                    <li><a href="construction-design.html#stall" data-title="Stall Design &amp; Fabrication" data-desc="Custom-built creative booths and designer stalls that make your brand stand out." data-image="assets/images/portfolio/ieee-booth.webp">Stall Design &amp; Fabrication</a></li>
-                    <li><a href="construction-design.html#led" data-title="LED Screens" data-desc="High-definition LED walls and display panels for impactful visual storytelling." data-image="assets/images/portfolio/concert-stage.webp">LED Screens</a></li>
-                    <li><a href="construction-design.html#av" data-title="Audio Visual Equipment" data-desc="Professional sound, lighting, and projection systems tailored for any event size." data-image="assets/images/portfolio/concert-stage.webp">Audio Visual Equipment</a></li>
-                    <li><a href="construction-design.html#furniture" data-title="Rental of Furniture" data-desc="Premium lounge sets, sleek corporate furniture, and event seating solutions." data-image="assets/images/portfolio/ieee-exhibition.webp">Rental of Furniture</a></li>
-                    <li><a href="construction-design.html#kiosks" data-title="Interactive Kiosks" data-desc="Engage your audience with touch-screen technology and digital information points." data-image="assets/images/portfolio/ieee-kiosk.webp">Interactive Kiosks</a></li>
-                    <li><a href="construction-design.html#branding" data-title="Indoor Outdoor Advertising" data-desc="Strategic billboard placement and large-format signage to maximize brand reach." data-image="assets/images/portfolio/global-sme-banner.webp">Branding &amp; Production</a></li>
+        <div class="topbar-right">
+            <div class="lang-dropdown">
+                <button class="lang-btn" id="lang-btn">
+                    <i class="fas fa-globe"></i> <span id="current-lang">EN</span> <i class="fas fa-chevron-down"></i>
+                </button>
+                <ul class="lang-list">
+                    <li data-lang="en">English</li>
+                    <li data-lang="ur">اردو (Urdu)</li>
+                    <li data-lang="ar">العربية (Arabic)</li>
                 </ul>
             </div>
-            <div class="column dynamic-links">
-                <h4><a href="growthservices.html">Growth Services <i class="fas fa-chevron-right" style="font-size: 10px; opacity: 0.6;"></i></a></h4>
-                <a href="growthservices.html#pillars" data-title="B2B Matchmaking" data-desc="Connecting global buyers with suppliers through strategic high-level networking." data-image="assets/images/portfolio/china-embassy.webp">B2B Matchmaking</a>
-                <a href="growthservices.html#pillars" data-title="Event Marketing" data-desc="Innovative PR and media strategies designed to drive maximum event attendance." data-image="assets/images/portfolio/global-sme-banner.webp">Event Marketing</a>
-                <a href="growthservices.html#pillars" data-title="Digital Production" data-desc="Creative content, live streaming, and digital solutions for the modern event landscape." data-image="assets/images/portfolio/concert-stage.webp">Digital Production</a>
+            <a href="https://www.facebook.com/BXSSpakistan/" target="_blank" rel="noopener noreferrer"
+                aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://www.linkedin.com/company/bxsspakistan" target="_blank" rel="noopener noreferrer"
+                aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+            <a href="https://www.instagram.com/bxsspakistan/" target="_blank" rel="noopener noreferrer"
+                aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="https://www.youtube.com/@BXSSpakistan" target="_blank" rel="noopener noreferrer"
+                aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+            <a href="https://x.com/BXSSpakistan" target="_blank" rel="noopener noreferrer" aria-label="X (Twitter)"><i
+                    class="fab fa-x-twitter"></i></a>
+            <a href="https://www.tiktok.com/@badarexpo" target="_blank" rel="noopener noreferrer" aria-label="TikTok"><i
+                    class="fab fa-tiktok"></i></a>
+        </div>
+    </header>
+
+    <!-- NAVIGATION -->
+    <nav class="navbar">
+        <div class="logo">
+            <a href="index.html"><img src="assets/images/logo/favicon.webp" alt="Badar Expo Logo" class="logo-img"></a>
+        </div>
+
+        <!-- Hamburger Icon -->
+        <div class="nav-toggle" id="mobile-menu-toggle">
+            <i class="fas fa-bars"></i>
+        </div>
+
+        <div class="menu" id="nav-menu">
+            <div class="nav-item active-nav"><a href="index.html"><span>Home</span></a></div>
+            <div class="nav-item"><a href="about.html"><span>About Us</span></a></div>
+
+            <div class="nav-item dropdown" data-target="services">
+                <a href="services.html"><span>Services <i class="fas fa-chevron-down"></i></span></a>
+                <ul class="mobile-submenu">
+                    <li><a href="exhibitionmanagement.html">Exhibition Management</a></li>
+                    <li><a href="exhibitionmanagement.html#conference">Conference Management</a></li>
+                    <li><a href="exhibitionmanagement.html#corporate">Corporate Events</a></li>
+                    <li><a href="construction-design.html">Construction &amp; Design</a></li>
+                    <li><a href="growthservices.html">Growth Services</a></li>
+                </ul>
             </div>
-            <div class="column highlight">
-                <div class="highlight-content-box">
-                    <img src="assets/images/portfolio/ieee-exhibition.webp" alt="Services Highlight" class="dynamic-img" loading="lazy" width="300" height="160">
-                    <strong class="dynamic-title">End-to-End Solutions</strong>
-                    <p class="dynamic-desc">We design and scale world-class exhibitions &amp; industry platforms.</p>
+            <div class="nav-item dropdown" data-target="events">
+                <a href="events.html"><span>Events <i class="fas fa-chevron-down"></i></span></a>
+                <ul class="mobile-submenu">
+                    <li><a href="events.html#our-role">Owned Events</a></li>
+                    <li><a href="events.html#our-role">Co-Organized</a></li>
+                    <li><a href="events.html#our-role">Managed Events</a></li>
+                </ul>
+            </div>
+
+            <div class="nav-item"><a href="#"><span>Industries</span></a></div>
+            <div class="nav-item"><a href="#"><span>Global Reach</span></a></div>
+
+            <div class="nav-item dropdown" data-target="insights">
+                <span>Insights <i class="fas fa-chevron-down"></i></span>
+                <ul class="mobile-submenu">
+                    <li><a href="#">Media Gallery</a></li>
+                    <li><a href="#">Blogs</a></li>
+                    <li><a href="#">News &amp; Updates</a></li>
+                </ul>
+            </div>
+            <div class="nav-item"><a href="contact.html"><span>Contact</span></a></div>
+
+            <!-- ACTION BUTTONS (Moved inside menu for mobile) -->
+            <div class="mobile-actions">
+                <button class="btn btn-dark">Visitor</button>
+                <button class="btn btn-light">Partner</button>
+            </div>
+        </div>
+
+        <!-- MEGA MENU WRAPPER -->
+        <div class="mega-menu-wrapper" id="shared-mega-menu">
+            <!-- SERVICES CONTENT -->
+            <div id="content-services" class="mega-content">
+                <div class="column dynamic-links">
+                    <h4><a href="exhibitionmanagement.html">Exhibition Management <i class="fas fa-chevron-right"
+                                style="font-size: 10px; opacity: 0.6;"></i></a></h4>
+                    <a href="exhibitionmanagement.html" data-title="Exhibition Management"
+                        data-desc="Complete exhibition solutions from concept to execution for B2B and B2C platforms."
+                        data-image="assets/images/portfolio/ieee-exhibition.webp">Management</a>
+                    <a href="exhibitionmanagement.html#conference" data-title="Conference Management"
+                        data-desc="Organizing world-class summits, technical seminars, and international conferences."
+                        data-image="assets/images/portfolio/ieee-seminar.webp">Conferences</a>
+                    <a href="exhibitionmanagement.html#corporate" data-title="Corporate Events"
+                        data-desc="Bespoke events tailored to meet corporate objectives and brand positioning."
+                        data-image="assets/images/portfolio/ziauddin-convocation.webp">Corporate</a>
+                </div>
+                <div class="column dynamic-links">
+                    <h4><a href="construction-design.html">Construction &amp; Design <i class="fas fa-chevron-right"
+                                style="font-size: 10px; opacity: 0.6;"></i></a></h4>
+                    <ul class="bullet-list">
+                        <li><a href="construction-design.html#canopy" data-title="Canopy Octanorm Building"
+                                data-desc="Standardized modular shell schemes for professional exhibitions and trade shows."
+                                data-image="assets/images/portfolio/ieee-booth.webp">Canopy Octanorm Building</a></li>
+                        <li><a href="construction-design.html#stall" data-title="Stall Design &amp; Fabrication"
+                                data-desc="Custom-built creative booths and designer stalls that make your brand stand out."
+                                data-image="assets/images/portfolio/ieee-booth.webp">Stall Design &amp; Fabrication</a>
+                        </li>
+                        <li><a href="construction-design.html#led" data-title="LED Screens"
+                                data-desc="High-definition LED walls and display panels for impactful visual storytelling."
+                                data-image="assets/images/portfolio/concert-stage.webp">LED Screens</a></li>
+                        <li><a href="construction-design.html#av" data-title="Audio Visual Equipment"
+                                data-desc="Professional sound, lighting, and projection systems tailored for any event size."
+                                data-image="assets/images/portfolio/concert-stage.webp">Audio Visual Equipment</a></li>
+                        <li><a href="construction-design.html#furniture" data-title="Rental of Furniture"
+                                data-desc="Premium lounge sets, sleek corporate furniture, and event seating solutions."
+                                data-image="assets/images/portfolio/ieee-exhibition.webp">Rental of Furniture</a></li>
+                        <li><a href="construction-design.html#kiosks" data-title="Interactive Kiosks"
+                                data-desc="Engage your audience with touch-screen technology and digital information points."
+                                data-image="assets/images/portfolio/ieee-kiosk.webp">Interactive Kiosks</a></li>
+                        <li><a href="construction-design.html#branding" data-title="Indoor Outdoor Advertising"
+                                data-desc="Strategic billboard placement and large-format signage to maximize brand reach."
+                                data-image="assets/images/portfolio/global-sme-banner.webp">Branding &amp;
+                                Production</a></li>
+                    </ul>
+                </div>
+                <div class="column dynamic-links">
+                    <h4><a href="growthservices.html">Growth Services <i class="fas fa-chevron-right"
+                                style="font-size: 10px; opacity: 0.6;"></i></a></h4>
+                    <a href="growthservices.html#pillars" data-title="B2B Matchmaking"
+                        data-desc="Connecting global buyers with suppliers through strategic high-level networking."
+                        data-image="assets/images/portfolio/china-embassy.webp">B2B Matchmaking</a>
+                    <a href="growthservices.html#pillars" data-title="Event Marketing"
+                        data-desc="Innovative PR and media strategies designed to drive maximum event attendance."
+                        data-image="assets/images/portfolio/global-sme-banner.webp">Event Marketing</a>
+                    <a href="growthservices.html#pillars" data-title="Digital Production"
+                        data-desc="Creative content, live streaming, and digital solutions for the modern event landscape."
+                        data-image="assets/images/portfolio/concert-stage.webp">Digital Production</a>
+                </div>
+                <div class="column highlight">
+                    <div class="highlight-content-box">
+                        <img src="assets/images/portfolio/ieee-exhibition.webp" alt="Services Highlight"
+                            class="dynamic-img" loading="lazy" width="300" height="160">
+                        <strong class="dynamic-title">End-to-End Solutions</strong>
+                        <p class="dynamic-desc">We design and scale world-class exhibitions &amp; industry platforms.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- EVENTS CONTENT -->
+            <div id="content-events" class="mega-content">
+                <div class="column dynamic-links">
+                    <h4><a href="events.html#our-role">Our Role <i class="fas fa-chevron-right"
+                                style="font-size: 10px; opacity: 0.6;"></i></a></h4>
+                    <a href="events.html#our-role" data-title="Owned Events"
+                        data-desc="Flagship trade fairs and industry-leading exhibitions fully conceptualized by Badar Expo."
+                        data-image="assets/images/portfolio/ieee-exhibition.webp">Owned Events</a>
+                    <a href="events.html#our-role" data-title="Co-Organized"
+                        data-desc="Strategic partnerships with industry bodies to deliver high-impact global events."
+                        data-image="assets/images/portfolio/ideas-exhibition.webp">Co-Organized</a>
+                    <a href="events.html#our-role" data-title="Managed Events"
+                        data-desc="Complete end-to-end event management solutions for third-party corporate and government clients."
+                        data-image="assets/images/portfolio/ziauddin-convocation.webp">Managed Events</a>
+                </div>
+                <div class="column dynamic-links">
+                    <h4><a href="events.html#formats">Formats <i class="fas fa-chevron-right"
+                                style="font-size: 10px; opacity: 0.6;"></i></a></h4>
+                    <a href="events.html#formats" data-title="Exhibitions"
+                        data-desc="Creating massive B2B and B2C platforms that connect global suppliers with buyers."
+                        data-image="assets/images/portfolio/dalfa-cattle-show.webp">Exhibitions</a>
+                    <a href="events.html#formats" data-title="Conferences"
+                        data-desc="Organizing world-class summits, technical seminars, and international conferences."
+                        data-image="assets/images/portfolio/ieee-seminar.webp">Conferences</a>
+                    <a href="events.html#formats" data-title="Industrial Forums"
+                        data-desc="Facilitating high-level dialogue between government and industry leaders."
+                        data-image="assets/images/portfolio/saudi-delegation.webp">Industrial Forums</a>
+                </div>
+                <div class="column highlight">
+                    <div class="highlight-content-box">
+                        <img src="assets/images/portfolio/ideas-seminar.webp" alt="Events Highlight" class="dynamic-img"
+                            loading="lazy" width="300" height="160">
+                        <strong class="dynamic-title">1500+ Events Delivered</strong>
+                        <p class="dynamic-desc">Connecting industries, governments &amp; global partners.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- INSIGHTS CONTENT -->
+            <div id="content-insights" class="mega-content">
+                <div class="insight-card">
+                    <img src="assets/images/portfolio/global-sme-banner.webp" alt="Blog" loading="lazy">
+                    <h4>Blog</h4>
+                    <p>Industry insights, event strategies &amp; updates.</p>
+                </div>
+                <div class="insight-card">
+                    <img src="assets/images/portfolio/china-embassy.webp" alt="Media" loading="lazy">
+                    <h4>Media</h4>
+                    <p>Press coverage, interviews &amp; event highlights.</p>
+                </div>
+                <div class="insight-card">
+                    <img src="assets/images/portfolio/concert-audience.webp" alt="Gallery" loading="lazy">
+                    <h4>Gallery</h4>
+                    <p>Moments captured from our mega events.</p>
                 </div>
             </div>
         </div>
 
-        <!-- EVENTS CONTENT -->
-        <div id="content-events" class="mega-content">
-            <div class="column dynamic-links">
-                <h4><a href="events.html#our-role">Our Role <i class="fas fa-chevron-right" style="font-size: 10px; opacity: 0.6;"></i></a></h4>
-                <a href="events.html#our-role" data-title="Owned Events" data-desc="Flagship trade fairs and industry-leading exhibitions fully conceptualized by Badar Expo." data-image="assets/images/portfolio/ieee-exhibition.webp">Owned Events</a>
-                <a href="events.html#our-role" data-title="Co-Organized" data-desc="Strategic partnerships with industry bodies to deliver high-impact global events." data-image="assets/images/portfolio/ideas-exhibition.webp">Co-Organized</a>
-                <a href="events.html#our-role" data-title="Managed Events" data-desc="Complete end-to-end event management solutions for third-party corporate and government clients." data-image="assets/images/portfolio/ziauddin-convocation.webp">Managed Events</a>
+        <!-- ACTION BUTTONS (Desktop Only) -->
+        <div class="nav-right-icons">
+            <div class="search-trigger" id="search-toggle">
+                <i class="fas fa-magnifying-glass"></i>
+                <span class="search-text">Search</span>
             </div>
-            <div class="column dynamic-links">
-                <h4><a href="events.html#formats">Formats <i class="fas fa-chevron-right" style="font-size: 10px; opacity: 0.6;"></i></a></h4>
-                <a href="events.html#formats" data-title="Exhibitions" data-desc="Creating massive B2B and B2C platforms that connect global suppliers with buyers." data-image="assets/images/portfolio/dalfa-cattle-show.webp">Exhibitions</a>
-                <a href="events.html#formats" data-title="Conferences" data-desc="Organizing world-class summits, technical seminars, and international conferences." data-image="assets/images/portfolio/ieee-seminar.webp">Conferences</a>
-                <a href="events.html#formats" data-title="Industrial Forums" data-desc="Facilitating high-level dialogue between government and industry leaders." data-image="assets/images/portfolio/saudi-delegation.webp">Industrial Forums</a>
-            </div>
-            <div class="column highlight">
-                <div class="highlight-content-box">
-                    <img src="assets/images/portfolio/ideas-seminar.webp" alt="Events Highlight" class="dynamic-img" loading="lazy" width="300" height="160">
-                    <strong class="dynamic-title">1500+ Events Delivered</strong>
-                    <p class="dynamic-desc">Connecting industries, governments &amp; global partners.</p>
-                </div>
-            </div>
-        </div>
 
-        <!-- INSIGHTS CONTENT -->
-        <div id="content-insights" class="mega-content">
-            <div class="insight-card">
-                <img src="assets/images/portfolio/global-sme-banner.webp" alt="Blog" loading="lazy">
-                <h4>Blog</h4>
-                <p>Industry insights, event strategies &amp; updates.</p>
-            </div>
-            <div class="insight-card">
-                <img src="assets/images/portfolio/china-embassy.webp" alt="Media" loading="lazy">
-                <h4>Media</h4>
-                <p>Press coverage, interviews &amp; event highlights.</p>
-            </div>
-            <div class="insight-card">
-                <img src="assets/images/portfolio/concert-audience.webp" alt="Gallery" loading="lazy">
-                <h4>Gallery</h4>
-                <p>Moments captured from our mega events.</p>
+            <div class="actions">
+                <button class="btn btn-dark">Visitor</button>
+                <button class="btn btn-light">Partner</button>
             </div>
         </div>
-    </div>
-
-    <!-- ACTION BUTTONS (Desktop Only) -->
-    <div class="nav-right-icons">
-        <div class="search-trigger" id="search-toggle">
-            <i class="fas fa-magnifying-glass"></i>
-            <span class="search-text">Search</span>
-        </div>
-
-        <div class="actions">
-            <button class="btn btn-dark">Visitor</button>
-            <button class="btn btn-light">Partner</button>
-        </div>
-    </div>
-</nav>
-<!-- ========================= [TEMPLATE: header.php END] ========================= -->
+    </nav>
+    <!-- ========================= [TEMPLATE: header.php END] ========================= -->
 
     <!-- ========================= [TEMPLATE PART: hero-slider.php START] ========================= -->
     <!-- HERO SECTION -->
     <section class="hero">
         <video autoplay muted loop playsinline class="hero-video">
-            <source src="https://res.cloudinary.com/dbxbhlped/video/upload/v1784203396/BXSS-TVC-15.March_.24-LR_o28hme.mp4" type="video/mp4">
+            <source
+                src="https://res.cloudinary.com/dbxbhlped/video/upload/v1784203396/BXSS-TVC-15.March_.24-LR_o28hme.mp4"
+                type="video/mp4">
             Your browser does not support the video tag.
             <source src="https://assets.mixkit.co/videos/preview/mixkit-large-business-center-at-night-4251-large.mp4"
                 type="video/mp4">
@@ -249,11 +305,11 @@
         <div class="hero-overlay"></div>
         <div class="hero-content">
             <!-- HERO Badge -->
-                    <div class="hero-badge">
-                        <span class="badge-dot"></span>
-                        <span class="badge-text">20+ Years of Event Excellence</span>
-                    </div>
-                    <h1>Pakistan's Leading Event &amp; Exhibition Management Company</h1>
+            <div class="hero-badge">
+                <span class="badge-dot"></span>
+                <span class="badge-text">20+ Years of Event Excellence</span>
+            </div>
+            <h1>Pakistan's Leading Event &amp; Exhibition Management Company</h1>
             <p>For over 20 years, Badar Expo Solutions has been delivering world-class exhibitions, trade shows,
                 conferences, government events, and corporate experiences across Pakistan and international markets.</p>
             <div class="hero-btns">
@@ -266,7 +322,7 @@
 
     <!-- SEARCH OVERLAY -->
     <div class="search-overlay" id="search-overlay">
-    <div class="search-close" id="search-close"><i class="fas fa-xmark"></i></div>
+        <div class="search-close" id="search-close"><i class="fas fa-xmark"></i></div>
         <div class="search-container">
             <div class="search-box">
                 <input type="text" placeholder="Search events, services, or insights..." id="search-input">
@@ -444,8 +500,10 @@
 
                 <div class="story-headline-row">
                     <h2 class="story-headline">
-                        <span class="reveal-line"><span class="reveal-inner">We didn't just organize events.</span></span>
-                        <span class="reveal-line"><span class="reveal-inner"><strong>We built Pakistan's exhibition industry.</strong></span></span>
+                        <span class="reveal-line"><span class="reveal-inner">We didn't just organize
+                                events.</span></span>
+                        <span class="reveal-line"><span class="reveal-inner"><strong>We built Pakistan's exhibition
+                                    industry.</strong></span></span>
                     </h2>
 
                     <div class="story-side story-reveal">
@@ -466,7 +524,8 @@
             <!-- PROOF ROW -->
             <div class="story-proof">
                 <div class="story-photo story-reveal">
-                    <img src="assets/images/portfolio/exhibition-floor-premium.png" alt="Premium Exhibition Floor Organized by Badar Expo Solutions" loading="lazy">
+                    <img src="assets/images/portfolio/exhibition-floor-premium.png"
+                        alt="Premium Exhibition Floor Organized by Badar Expo Solutions" loading="lazy">
                     <div class="story-photo-overlay"></div>
                     <div class="story-caption">
                         <span class="story-caption-dot"></span>
@@ -476,19 +535,23 @@
 
                 <div class="story-ledger story-reveal">
                     <div class="story-ledger-row" data-count="20">
-                        <div class="ledger-num-wrap"><span class="ledger-num">0</span><span class="ledger-suffix">+</span></div>
+                        <div class="ledger-num-wrap"><span class="ledger-num">0</span><span
+                                class="ledger-suffix">+</span></div>
                         <div class="ledger-label">Years of Industry Leadership</div>
                     </div>
                     <div class="story-ledger-row" data-count="1500">
-                        <div class="ledger-num-wrap"><span class="ledger-num">0</span><span class="ledger-suffix">+</span></div>
+                        <div class="ledger-num-wrap"><span class="ledger-num">0</span><span
+                                class="ledger-suffix">+</span></div>
                         <div class="ledger-label">Exhibitions &amp; Events Delivered</div>
                     </div>
                     <div class="story-ledger-row" data-count="50">
-                        <div class="ledger-num-wrap"><span class="ledger-num">0</span><span class="ledger-suffix">+</span></div>
+                        <div class="ledger-num-wrap"><span class="ledger-num">0</span><span
+                                class="ledger-suffix">+</span></div>
                         <div class="ledger-label">Industries Served Nationwide</div>
                     </div>
                     <div class="story-ledger-row" data-count="12">
-                        <div class="ledger-num-wrap"><span class="ledger-num">0</span><span class="ledger-suffix">+</span></div>
+                        <div class="ledger-num-wrap"><span class="ledger-num">0</span><span
+                                class="ledger-suffix">+</span></div>
                         <div class="ledger-label">International Markets Reached</div>
                     </div>
                 </div>
@@ -546,7 +609,9 @@
                     <div class="card-content">
                         <div class="tag">Newsroom</div>
                         <h3>Pakistan's Premier Defense Exhibition IDEAS 2024 Successfully Organized by Badar Expo</h3>
-                        <p class="card-description">IDEAS 2024 brought together global defense industry leaders, showcasing Pakistan's growing capabilities in defense production and international collaboration.</p>
+                        <p class="card-description">IDEAS 2024 brought together global defense industry leaders,
+                            showcasing Pakistan's growing capabilities in defense production and international
+                            collaboration.</p>
                         <div class="card-link">Read More <i class="fas fa-arrow-right"></i></div>
                     </div>
                 </article>
@@ -558,7 +623,8 @@
                     <div class="card-content">
                         <div class="tag">Newsroom</div>
                         <h3>ITCN Asia 2024: Badar Expo Sets New Benchmark for Tech Exhibitions in the Region</h3>
-                        <p class="card-description">As the largest tech event in Pakistan, ITCN Asia 2024 facilitated millions in investment and digital transformation across the regional IT landscape.</p>
+                        <p class="card-description">As the largest tech event in Pakistan, ITCN Asia 2024 facilitated
+                            millions in investment and digital transformation across the regional IT landscape.</p>
                         <div class="card-link">Read More <i class="fas fa-arrow-right"></i></div>
                     </div>
                 </article>
@@ -570,7 +636,8 @@
                     <div class="card-content">
                         <div class="tag">Newsroom</div>
                         <h3>Badar Expo Solutions Recognized as the Leading Event Management Powerhouse in Pakistan</h3>
-                        <p class="card-description">BXSS continues to dominate the industry by delivering world-class exhibition management services and setting excellence standards for two decades.</p>
+                        <p class="card-description">BXSS continues to dominate the industry by delivering world-class
+                            exhibition management services and setting excellence standards for two decades.</p>
                         <div class="card-link">Read More <i class="fas fa-arrow-right"></i></div>
                     </div>
                 </article>
@@ -582,7 +649,8 @@
                     <div class="card-content">
                         <div class="tag">Newsroom</div>
                         <h3>Driving Domestic Trade: My Karachi Exhibition 2024 Sees Record Footfall and B2B Success</h3>
-                        <p class="card-description">The 'My Karachi' exhibition became a vital bridge for local industries to connect with consumers, driving significant domestic trade volume in 2024.</p>
+                        <p class="card-description">The 'My Karachi' exhibition became a vital bridge for local
+                            industries to connect with consumers, driving significant domestic trade volume in 2024.</p>
                         <div class="card-link">Read More <i class="fas fa-arrow-right"></i></div>
                     </div>
                 </article>
@@ -594,7 +662,8 @@
                     <div class="card-content">
                         <div class="tag">Blog</div>
                         <h3>The Strategic Role of B2B Exhibitions in Boosting Pakistan's Industrial Growth</h3>
-                        <p class="card-description">Exploring how high-impact B2B forums organized by Badar Expo act as catalysts for export growth and industrial innovation in Pakistan.</p>
+                        <p class="card-description">Exploring how high-impact B2B forums organized by Badar Expo act as
+                            catalysts for export growth and industrial innovation in Pakistan.</p>
                         <div class="card-link">Read More <i class="fas fa-arrow-right"></i></div>
                     </div>
                 </article>
@@ -606,7 +675,8 @@
                     <div class="card-content">
                         <div class="tag">Case Study</div>
                         <h3>Empowering the Textile Sector: Insights from the 20th Textile Asia International Expo</h3>
-                        <p class="card-description">A deep dive into how Textile Asia 2024 provided local manufacturers with global reach and access to cutting-edge international machinery.</p>
+                        <p class="card-description">A deep dive into how Textile Asia 2024 provided local manufacturers
+                            with global reach and access to cutting-edge international machinery.</p>
                         <div class="card-link">Read More <i class="fas fa-arrow-right"></i></div>
                     </div>
                 </article>
@@ -671,7 +741,8 @@
                             <div class="panel-overlay"></div>
                             <div class="panel-content">
                                 <span id="dynamic-label" class="panel-label">EXHIBITION MANAGEMENT</span>
-                                <h3 id="dynamic-headline" class="panel-headline">Connecting Global Buyers &amp; Suppliers</h3>
+                                <h3 id="dynamic-headline" class="panel-headline">Connecting Global Buyers &amp;
+                                    Suppliers</h3>
                                 <p id="dynamic-desc" class="panel-desc">Conceptualizing and executing large-scale B2B
                                     and B2C trade fairs that connect global buyers and suppliers.</p>
                                 <a href="#" class="panel-cta">Explore Service <i class="fas fa-arrow-right"></i></a>
@@ -686,49 +757,61 @@
                 <div class="split-stack-cards" id="split-stack-cards">
                     <!-- Card 1 -->
                     <div class="split-stack-card" style="--card-index: 0;">
-                        <div class="stack-card-inner" style="background-image: url('assets/images/portfolio/ieee-exhibition.webp');">
+                        <div class="stack-card-inner"
+                            style="background-image: url('assets/images/portfolio/ieee-exhibition.webp');">
                             <div class="stack-card-overlay"></div>
                             <div class="stack-card-content">
                                 <span class="stack-card-label">EXHIBITION MANAGEMENT</span>
                                 <h3 class="stack-card-headline">Connecting Global Buyers &amp; Suppliers</h3>
-                                <p class="stack-card-desc">Conceptualizing and executing large-scale B2B and B2C trade fairs that connect global buyers and suppliers.</p>
-                                <a href="#" class="stack-card-cta">Explore Service <i class="fas fa-arrow-right"></i></a>
+                                <p class="stack-card-desc">Conceptualizing and executing large-scale B2B and B2C trade
+                                    fairs that connect global buyers and suppliers.</p>
+                                <a href="#" class="stack-card-cta">Explore Service <i
+                                        class="fas fa-arrow-right"></i></a>
                             </div>
                         </div>
                     </div>
                     <!-- Card 2 -->
                     <div class="split-stack-card" style="--card-index: 1;">
-                        <div class="stack-card-inner" style="background-image: url('assets/images/portfolio/ieee-seminar.webp');">
+                        <div class="stack-card-inner"
+                            style="background-image: url('assets/images/portfolio/ieee-seminar.webp');">
                             <div class="stack-card-overlay"></div>
                             <div class="stack-card-content">
                                 <span class="stack-card-label">CONFERENCE MANAGEMENT</span>
                                 <h3 class="stack-card-headline">World-Class International Summits</h3>
-                                <p class="stack-card-desc">Providing seamless end-to-end management for international summits, corporate seminars, and technical forums.</p>
-                                <a href="#" class="stack-card-cta">Explore Service <i class="fas fa-arrow-right"></i></a>
+                                <p class="stack-card-desc">Providing seamless end-to-end management for international
+                                    summits, corporate seminars, and technical forums.</p>
+                                <a href="#" class="stack-card-cta">Explore Service <i
+                                        class="fas fa-arrow-right"></i></a>
                             </div>
                         </div>
                     </div>
                     <!-- Card 3 -->
                     <div class="split-stack-card" style="--card-index: 2;">
-                        <div class="stack-card-inner" style="background-image: url('assets/images/portfolio/saudi-delegation.webp');">
+                        <div class="stack-card-inner"
+                            style="background-image: url('assets/images/portfolio/saudi-delegation.webp');">
                             <div class="stack-card-overlay"></div>
                             <div class="stack-card-content">
                                 <span class="stack-card-label">INDUSTRIAL FORUMS</span>
                                 <h3 class="stack-card-headline">Driving Industrial Innovation</h3>
-                                <p class="stack-card-desc">Facilitating high-level dialogue between governments and industry leaders to drive industrial innovation.</p>
-                                <a href="#" class="stack-card-cta">Explore Service <i class="fas fa-arrow-right"></i></a>
+                                <p class="stack-card-desc">Facilitating high-level dialogue between governments and
+                                    industry leaders to drive industrial innovation.</p>
+                                <a href="#" class="stack-card-cta">Explore Service <i
+                                        class="fas fa-arrow-right"></i></a>
                             </div>
                         </div>
                     </div>
                     <!-- Card 4 -->
                     <div class="split-stack-card" style="--card-index: 3;">
-                        <div class="stack-card-inner" style="background-image: url('assets/images/portfolio/ziauddin-convocation.webp');">
+                        <div class="stack-card-inner"
+                            style="background-image: url('assets/images/portfolio/ziauddin-convocation.webp');">
                             <div class="stack-card-overlay"></div>
                             <div class="stack-card-content">
                                 <span class="stack-card-label">MANAGED EVENTS</span>
                                 <h3 class="stack-card-headline">Complete Event Management</h3>
-                                <p class="stack-card-desc">Complete event management solutions for corporate clients, government bodies, and international organizations.</p>
-                                <a href="#" class="stack-card-cta">Explore Service <i class="fas fa-arrow-right"></i></a>
+                                <p class="stack-card-desc">Complete event management solutions for corporate clients,
+                                    government bodies, and international organizations.</p>
+                                <a href="#" class="stack-card-cta">Explore Service <i
+                                        class="fas fa-arrow-right"></i></a>
                             </div>
                         </div>
                     </div>
@@ -742,78 +825,78 @@
     <!-- ========================= [TEMPLATE PART: events-showcase.php START] ========================= -->
     <!-- ========================= EVENTS SHOWCASE SLIDER ========================= -->
     <section class="evt-slider-section" id="events-showcase">
-    <div class="evt-slider-header">
-        <span class="section-tag">Our Events</span>
-        <h2>Milestones That Defined Pakistan's Exhibition Landscape</h2>
-        <a href="events.html" class="evt-view-all">View All Events <i class="fas fa-arrow-right"></i></a>
-    </div>
+        <div class="evt-slider-header">
+            <span class="section-tag">Our Events</span>
+            <h2>Milestones That Defined Pakistan's Exhibition Landscape</h2>
+            <a href="events.html" class="evt-view-all">View All Events <i class="fas fa-arrow-right"></i></a>
+        </div>
 
-    <div class="evt-slider-wrapper">
-        <div class="evt-slider" id="evt-slider">
-            <div class="evt-slider-track" id="evt-slider-track">
-                <!-- SLIDE 1 -->
-                <div class="evt-card">
-                    <img src="assets/images/portfolio/ideas-exhibition.webp" alt="IDEAS 2024">
-                    <div class="evt-tag">Defense</div>
-                    <div class="evt-content">
-                        <h3>IDEAS 2024 - Pakistan's Premier International Defense Exhibition</h3>
-                        <div class="evt-arrow">→</div>
+        <div class="evt-slider-wrapper">
+            <div class="evt-slider" id="evt-slider">
+                <div class="evt-slider-track" id="evt-slider-track">
+                    <!-- SLIDE 1 -->
+                    <div class="evt-card">
+                        <img src="assets/images/portfolio/ideas-exhibition.webp" alt="IDEAS 2024">
+                        <div class="evt-tag">Defense</div>
+                        <div class="evt-content">
+                            <h3>IDEAS 2024 - Pakistan's Premier International Defense Exhibition</h3>
+                            <div class="evt-arrow">→</div>
+                        </div>
                     </div>
-                </div>
 
-                <!-- SLIDE 2 -->
-                <div class="evt-card">
-                    <img src="assets/images/portfolio/ieee-exhibition.webp" alt="IEEEP Fair 2025">
-                    <div class="evt-tag">Engineering</div>
-                    <div class="evt-content">
-                        <h3>IEEEP Fair 2025 - Pakistan's Electrical & Electronics Engineering Expo</h3>
-                        <div class="evt-arrow">→</div>
+                    <!-- SLIDE 2 -->
+                    <div class="evt-card">
+                        <img src="assets/images/portfolio/ieee-exhibition.webp" alt="IEEEP Fair 2025">
+                        <div class="evt-tag">Engineering</div>
+                        <div class="evt-content">
+                            <h3>IEEEP Fair 2025 - Pakistan's Electrical & Electronics Engineering Expo</h3>
+                            <div class="evt-arrow">→</div>
+                        </div>
                     </div>
-                </div>
 
-                <!-- SLIDE 3 (Active) -->
-                <div class="evt-card active">
-                    <img src="assets/images/portfolio/concert-audience.webp" alt="Independence Celebrations">
-                    <div class="evt-tag">Entertainment</div>
-                    <div class="evt-content">
-                        <h3>Independence Celebrations - Mega Public Concerts & Cultural Shows</h3>
-                        <div class="evt-arrow">→</div>
+                    <!-- SLIDE 3 (Active) -->
+                    <div class="evt-card active">
+                        <img src="assets/images/portfolio/concert-audience.webp" alt="Independence Celebrations">
+                        <div class="evt-tag">Entertainment</div>
+                        <div class="evt-content">
+                            <h3>Independence Celebrations - Mega Public Concerts & Cultural Shows</h3>
+                            <div class="evt-arrow">→</div>
+                        </div>
                     </div>
-                </div>
 
-                <!-- SLIDE 4 -->
-                <div class="evt-card">
-                    <img src="assets/images/portfolio/dalfa-cattle-show.webp" alt="DALFA Cattle Show 2026">
-                    <div class="evt-tag">Agriculture</div>
-                    <div class="evt-content">
-                        <h3>DALFA Cattle Show 2026 - Pakistan's Largest Livestock Exhibition</h3>
-                        <div class="evt-arrow">→</div>
+                    <!-- SLIDE 4 -->
+                    <div class="evt-card">
+                        <img src="assets/images/portfolio/dalfa-cattle-show.webp" alt="DALFA Cattle Show 2026">
+                        <div class="evt-tag">Agriculture</div>
+                        <div class="evt-content">
+                            <h3>DALFA Cattle Show 2026 - Pakistan's Largest Livestock Exhibition</h3>
+                            <div class="evt-arrow">→</div>
+                        </div>
                     </div>
-                </div>
 
-                <!-- SLIDE 5 -->
-                <div class="evt-card">
-                    <img src="assets/images/portfolio/ptpl-champions.webp" alt="PTPL Grand Finale 2026">
-                    <div class="evt-tag">Sports</div>
-                    <div class="evt-content">
-                        <h3>PTPL Grand Finale 2026 - Mega Tapeball Cricket Championship</h3>
-                        <div class="evt-arrow">→</div>
+                    <!-- SLIDE 5 -->
+                    <div class="evt-card">
+                        <img src="assets/images/portfolio/ptpl-champions.webp" alt="PTPL Grand Finale 2026">
+                        <div class="evt-tag">Sports</div>
+                        <div class="evt-content">
+                            <h3>PTPL Grand Finale 2026 - Mega Tapeball Cricket Championship</h3>
+                            <div class="evt-arrow">→</div>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
 
-        <!-- NAVIGATION -->
-        <div class="evt-navigation">
-            <div class="evt-nav-btn" id="evt-prev">‹</div>
-            <div class="evt-counter">
-                <span id="evt-current">3</span> /
-                <span id="evt-total">5</span>
+            <!-- NAVIGATION -->
+            <div class="evt-navigation">
+                <div class="evt-nav-btn" id="evt-prev">‹</div>
+                <div class="evt-counter">
+                    <span id="evt-current">3</span> /
+                    <span id="evt-total">5</span>
+                </div>
+                <div class="evt-nav-btn" id="evt-next">›</div>
             </div>
-            <div class="evt-nav-btn" id="evt-next">›</div>
         </div>
-    </div>
-</section>
+    </section>
     <!-- ========================= [TEMPLATE PART: events-showcase.php END] ========================= -->
 
 
@@ -829,23 +912,23 @@
                 alt="Zohair Naseer, Chief Executive Officer" />
             <div class="ceo-image-overlay"></div>
         </div>
-    
+
         <div class="ceo-content-col">
-    
+
             <div class="top-badge">
                 <div class="badge-line"></div>
                 <span class="badge-text">Message from Leadership</span>
             </div>
-    
+
             <h2 class="ceo-name">Zohair Naseer</h2>
             <p class="ceo-designation">Chief Executive Officer &amp; Chairman</p>
-    
+
             <div class="divider"></div>
-    
+
             <blockquote class="ceo-quote">
                 "We do not build companies for quarters.<br>We build institutions for generations."
             </blockquote>
-    
+
             <p class="ceo-message">
                 Over the past three decades, we have remained resolute in our conviction that enduring value
                 is never accidental. It is the product of discipline, integrity, and an unwavering commitment
@@ -856,7 +939,7 @@
                 The year ahead presents significant opportunity, and we face it with the same founding
                 principles that have defined this institution since its inception.
             </p>
-    
+
             <div class="stats-row">
                 <div class="stat-item">
                     <span class="stat-number">32</span>
@@ -873,7 +956,7 @@
                     <span class="stat-label">Client Retention Rate</span>
                 </div>
             </div>
-    
+
             <div class="signature-block">
                 <!-- Zohair Naseer signature - Z lead stroke into flowing script -->
                 <svg class="signature-svg" viewBox="0 0 160 56" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -902,226 +985,272 @@
                 <span class="signature-name">Zohair Naseer</span>
                 <span class="signature-title">Chief Executive Officer</span>
             </div>
-    
+
         </div>
     </div>
 
     <!-- ========================= [TEMPLATE PART: ceo-section.php END] ========================= -->
 
-                <!-- ========================= [TEMPLATE PART: clients-marquee.php START] ========================= -->
-<!-- ========================= CLIENTS LOGO MARQUEE ========================= -->
-<section class="clients-section">
-    <div class="clients-header">
-        <h2>Trusted by Industry Leaders &amp; Governments</h2>
-    </div>
-
-    <div class="marquee-container" id="marquee-container">
-        <div class="marquee-track" id="marquee-track">
-            <!-- LOGO SET 1 -->
-            <div class="marquee-item"><img src="assets/images/clients-logo/tdap.webp" alt="TDAP"></div>
-            <div class="marquee-item"><img src="assets/images/clients-logo/depo.webp" alt="DEPO"></div>
-            <div class="marquee-item"><img src="assets/images/clients-logo/kcc.webp" alt="KCCI"></div>
-            <div class="marquee-item"><img src="assets/images/clients-logo/abad.webp" alt="ABAD"></div>
-            <div class="marquee-item"><img src="assets/images/clients-logo/papgai.webp" alt="PAPGAI"></div>
-            <div class="marquee-item"><img src="assets/images/clients-logo/ideas26-150x150-1.webp" alt="IDEAS"></div>
-            <div class="marquee-item"><img src="assets/images/clients-logo/DALFA-Acociation-01-1024x576-1.webp" alt="DALFA"></div>
-            <div class="marquee-item"><img src="assets/images/clients-logo/PTBF-Logo-Updated-01-128x91-1.webp" alt="PTBF"></div>
-            <div class="marquee-item"><img src="assets/images/clients-logo/Pi7_PIMEC-2025-Logo-without-date-whit.webp" alt="PIMEC"></div>
-            <div class="marquee-item"><img src="assets/images/clients-logo/logo.webp" alt="Client Logo"></div>
-
-            <!-- DUPLICATE SET FOR SEAMLESS LOOP -->
-            <div class="marquee-item"><img src="assets/images/clients-logo/tdap.webp" alt="TDAP"></div>
-            <div class="marquee-item"><img src="assets/images/clients-logo/depo.webp" alt="DEPO"></div>
-            <div class="marquee-item"><img src="assets/images/clients-logo/kcc.webp" alt="KCCI"></div>
-            <div class="marquee-item"><img src="assets/images/clients-logo/abad.webp" alt="ABAD"></div>
-            <div class="marquee-item"><img src="assets/images/clients-logo/papgai.webp" alt="PAPGAI"></div>
-            <div class="marquee-item"><img src="assets/images/clients-logo/ideas26-150x150-1.webp" alt="IDEAS"></div>
-            <div class="marquee-item"><img src="assets/images/clients-logo/DALFA-Acociation-01-1024x576-1.webp" alt="DALFA"></div>
-            <div class="marquee-item"><img src="assets/images/clients-logo/PTBF-Logo-Updated-01-128x91-1.webp" alt="PTBF"></div>
-            <div class="marquee-item"><img src="assets/images/clients-logo/Pi7_PIMEC-2025-Logo-without-date-whit.webp" alt="PIMEC"></div>
-            <div class="marquee-item"><img src="assets/images/clients-logo/logo.webp" alt="Client Logo"></div>
-        </div>
-    </div>
-</section>
-<!-- ========================= [TEMPLATE PART: clients-marquee.php END] ========================= -->
-
-            <!-- ========================= [TEMPLATE PART: statistics-section.php START] ========================= -->
-<!-- ========================= STATISTICS SECTION ========================= -->
-<section class="stats-section">
-    <div class="testi-container">
-        <!-- TOP AREA -->
-        <div class="testi-top-area">
-            <div class="testi-left-content">
-                <h2 class="testi-main-heading">Pakistan's Trusted Event Partner</h2>
-                <p class="testi-lead">
-                    Delivering world-class trade exhibitions, conferences, and corporate experiences for over 20
-                    years.
-                </p>
-            </div>
+    <!-- ========================= [TEMPLATE PART: clients-marquee.php START] ========================= -->
+    <!-- ========================= CLIENTS LOGO MARQUEE ========================= -->
+    <section class="clients-section">
+        <div class="clients-header">
+            <h2>Trusted by Industry Leaders &amp; Governments</h2>
         </div>
 
-        <!-- STATS GRID -->
-        <div class="stats-grid">
-             <!-- ITEM 1 -->
-             <div class="stat-box">
-                 <div class="stat-number counter" data-target="110">0</div>
-                 <div class="stat-title">Years Experience</div>
-                 <div class="stat-desc">Providing premium event organizing and trade exhibition services since 2000.</div>
-             </div>
+        <div class="marquee-container" id="marquee-container">
+            <div class="marquee-track" id="marquee-track">
+                <!-- LOGO SET 1 -->
+                <div class="marquee-item"><img src="assets/images/clients-logo/tdap.webp" alt="TDAP"></div>
+                <div class="marquee-item"><img src="assets/images/clients-logo/depo.webp" alt="DEPO"></div>
+                <div class="marquee-item"><img src="assets/images/clients-logo/kcc.webp" alt="KCCI"></div>
+                <div class="marquee-item"><img src="assets/images/clients-logo/abad.webp" alt="ABAD"></div>
+                <div class="marquee-item"><img src="assets/images/clients-logo/papgai.webp" alt="PAPGAI"></div>
+                <div class="marquee-item"><img src="assets/images/clients-logo/ideas26-150x150-1.webp" alt="IDEAS">
+                </div>
+                <div class="marquee-item"><img src="assets/images/clients-logo/DALFA-Acociation-01-1024x576-1.webp"
+                        alt="DALFA"></div>
+                <div class="marquee-item"><img src="assets/images/clients-logo/PTBF-Logo-Updated-01-128x91-1.webp"
+                        alt="PTBF"></div>
+                <div class="marquee-item"><img
+                        src="assets/images/clients-logo/Pi7_PIMEC-2025-Logo-without-date-whit.webp" alt="PIMEC"></div>
+                <div class="marquee-item"><img src="assets/images/clients-logo/logo.webp" alt="Client Logo"></div>
 
-            <!-- ITEM 2 -->
-            <div class="stat-box">
-                <div class="stat-number counter" data-target="21200">0</div>
-                <div class="stat-title">Trade Shows & Exhibitions</div>
-                <div class="stat-desc">Orchestrating high-impact business platforms for diverse industrial sectors.</div>
-            </div>
-
-            <!-- ITEM 3 -->
-            <div class="stat-box">
-                <div class="stat-number counter" data-target="420">0%</div>
-                <div class="stat-title">National & International Events</div>
-                <div class="stat-desc">Organizing mega exhibitions and trade summits annually in local and global markets.</div>
-            </div>
-
-            <!-- ITEM 4 -->
-            <div class="stat-box">
-                <div class="stat-number counter" data-target="16000000">0</div>
-                <div class="stat-title">Exhibitors & Visitors Served</div>
-                <div class="stat-desc">Connecting thousands of global buyers, trade delegations, and industry professionals.</div>
+                <!-- DUPLICATE SET FOR SEAMLESS LOOP -->
+                <div class="marquee-item"><img src="assets/images/clients-logo/tdap.webp" alt="TDAP"></div>
+                <div class="marquee-item"><img src="assets/images/clients-logo/depo.webp" alt="DEPO"></div>
+                <div class="marquee-item"><img src="assets/images/clients-logo/kcc.webp" alt="KCCI"></div>
+                <div class="marquee-item"><img src="assets/images/clients-logo/abad.webp" alt="ABAD"></div>
+                <div class="marquee-item"><img src="assets/images/clients-logo/papgai.webp" alt="PAPGAI"></div>
+                <div class="marquee-item"><img src="assets/images/clients-logo/ideas26-150x150-1.webp" alt="IDEAS">
+                </div>
+                <div class="marquee-item"><img src="assets/images/clients-logo/DALFA-Acociation-01-1024x576-1.webp"
+                        alt="DALFA"></div>
+                <div class="marquee-item"><img src="assets/images/clients-logo/PTBF-Logo-Updated-01-128x91-1.webp"
+                        alt="PTBF"></div>
+                <div class="marquee-item"><img
+                        src="assets/images/clients-logo/Pi7_PIMEC-2025-Logo-without-date-whit.webp" alt="PIMEC"></div>
+                <div class="marquee-item"><img src="assets/images/clients-logo/logo.webp" alt="Client Logo"></div>
             </div>
         </div>
-    </div>
-</section>
-<!-- ========================= [TEMPLATE PART: statistics-section.php END] ========================= -->
+    </section>
+    <!-- ========================= [TEMPLATE PART: clients-marquee.php END] ========================= -->
 
-
-        <!-- ========================= [TEMPLATE PART: testimonials-slider.php START] ========================= -->
-<!-- ========================= TESTIMONIALS SECTION ========================= -->
-<section class="testimonial-section">
-    <div class="testi-container">
-        <p class="testi-small-heading">Testimonials</p>
-
-        <h2 class="testi-main-heading">
-            Trusted by Government Authorities &<br>
-            Leading Global Brands
-        </h2>
-
-        <div class="testi-slider-wrapper">
-            <button class="testi-nav-btn prev" id="testi-prev"><i class="fas fa-chevron-left"></i></button>
-
-            <div class="testi-slider-window">
-                <div class="testi-cards-wrapper" id="testi-track">
-                    <!-- CARD 1 -->
-                    <div class="testimonial-card">
-                        <div class="testi-profile-wrapper">
-                            <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=300" alt="client">
-                        </div>
-                        <h3 class="testi-client-name">DEPO Directorate</h3>
-                        <p class="testi-client-role">Defence Exhibition Org</p>
-                        <p class="testi-review-text">Badar Expo Solutions has displayed exceptional capability in organizing IDEAS Pakistan. Their professionalism and execution are truly world-class.</p>
-                        <div class="testi-stars">
-                            <span class="testi-star"></span><span class="testi-star"></span><span class="testi-star"></span><span class="testi-star"></span><span class="testi-star"></span>
-                        </div>
-                    </div>
-
-                    <!-- CARD 2 -->
-                    <div class="testimonial-card testi-blue">
-                        <div class="testi-profile-wrapper">
-                            <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=300" alt="client">
-                        </div>
-                        <h3 class="testi-client-name">TDAP Management</h3>
-                        <p class="testi-client-role">Trade Development Authority</p>
-                        <p class="testi-review-text">Their end-to-end event infrastructure and fabrication solutions have been highly instrumental in driving trade delegations and visitor turnout.</p>
-                        <div class="testi-stars">
-                            <span class="testi-star"></span><span class="testi-star"></span><span class="testi-star"></span><span class="testi-star"></span><span class="testi-star"></span>
-                        </div>
-                    </div>
-
-                    <!-- CARD 3 -->
-                    <div class="testimonial-card">
-                        <div class="testi-profile-wrapper">
-                            <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?q=80&w=300" alt="client">
-                        </div>
-                        <h3 class="testi-client-name">KCCI Spokesperson</h3>
-                        <p class="testi-client-role">Karachi Chamber of Commerce</p>
-                        <p class="testi-review-text">From stall fabrication to marketing campaigns, BXSS delivered stellar results for the 'My Karachi' expo, recording historic visitor footfall.</p>
-                        <div class="testi-stars">
-                            <span class="testi-star"></span><span class="testi-star"></span><span class="testi-star"></span><span class="testi-star"></span><span class="testi-star"></span>
-                        </div>
-                    </div>
-
-                    <!-- CARD 4 -->
-                    <div class="testimonial-card">
-                        <div class="testi-profile-wrapper">
-                            <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?q=80&w=300" alt="client">
-                        </div>
-                        <h3 class="testi-client-name">ABAD Coordinator</h3>
-                        <p class="testi-client-role">Builders & Developers Assoc.</p>
-                        <p class="testi-review-text">A flawless partner. Managing exhibitions of this magnitude requires absolute precision, and Badar Expo executes it effortlessly every time.</p>
-                        <div class="testi-stars">
-                            <span class="testi-star"></span><span class="testi-star"></span><span class="testi-star"></span><span class="testi-star"></span><span class="testi-star"></span>
-                        </div>
-                    </div>
-
-                    <!-- CARD 5 -->
-                    <div class="testimonial-card">
-                        <div class="testi-profile-wrapper">
-                            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=300" alt="client">
-                        </div>
-                        <h3 class="testi-client-name">PAPGAI Committee</h3>
-                        <p class="testi-client-role">Paper & Graphic Art Assoc.</p>
-                        <p class="testi-review-text">PrintPak Exhibition organizers were extremely pleased with the modern pavilion layout designs and stall builds fabricated by BXSS team.</p>
-                        <div class="testi-stars">
-                            <span class="testi-star"></span><span class="testi-star"></span><span class="testi-star"></span><span class="testi-star"></span><span class="testi-star"></span>
-                        </div>
-                    </div>
-
-                    <!-- CARD 6 -->
-                    <div class="testimonial-card testi-blue">
-                        <div class="testi-profile-wrapper">
-                            <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=300" alt="client">
-                        </div>
-                        <h3 class="testi-client-name">IEEEP Convener</h3>
-                        <p class="testi-client-role">Electrical & Electronics Eng.</p>
-                        <p class="testi-review-text">IEEEP Fair's success is a testament to Badar Expo's professional operations, dynamic PR marketing solutions, and seamless execution.</p>
-                        <div class="testi-stars">
-                            <span class="testi-star"></span><span class="testi-star"></span><span class="testi-star"></span><span class="testi-star"></span><span class="testi-star"></span>
-                        </div>
-                    </div>
-
-                    <!-- CARD 7 -->
-                    <div class="testimonial-card">
-                        <div class="testi-profile-wrapper">
-                            <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=300" alt="client">
-                        </div>
-                        <h3 class="testi-client-name">PTBF Secretary</h3>
-                        <p class="testi-client-role">Pakistan Turkey Business Forum</p>
-                        <p class="testi-review-text">Their B2B matchmaking and corporate networking setups connected Turkey trade delegates with Pakistani businesses effectively.</p>
-                        <div class="testi-stars">
-                            <span class="testi-star"></span><span class="testi-star"></span><span class="testi-star"></span><span class="testi-star"></span><span class="testi-star"></span>
-                        </div>
-                    </div>
-
-                    <!-- CARD 8 -->
-                    <div class="testimonial-card">
-                        <div class="testi-profile-wrapper">
-                            <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=300" alt="client">
-                        </div>
-                        <h3 class="testi-client-name">DALFA Director</h3>
-                        <p class="testi-client-role">Dairy Agriculture Livestock</p>
-                        <p class="testi-review-text">The consumer exhibition solutions provided by BXSS brought together thousands of visitors, creating high-impact brand visibility for all sponsors.</p>
-                        <div class="testi-stars">
-                            <span class="testi-star"></span><span class="testi-star"></span><span class="testi-star"></span><span class="testi-star"></span><span class="testi-star"></span>
-                        </div>
-                    </div>
+    <!-- ========================= [TEMPLATE PART: statistics-section.php START] ========================= -->
+    <!-- ========================= STATISTICS SECTION ========================= -->
+    <section class="stats-section">
+        <div class="testi-container">
+            <!-- TOP AREA -->
+            <div class="testi-top-area">
+                <div class="testi-left-content">
+                    <h2 class="testi-main-heading">Pakistan's Trusted Event Partner</h2>
+                    <p class="testi-lead">
+                        Delivering world-class trade exhibitions, conferences, and corporate experiences for over 20
+                        years.
+                    </p>
                 </div>
             </div>
 
-            <button class="testi-nav-btn next" id="testi-next"><i class="fas fa-chevron-right"></i></button>
+            <!-- STATS GRID -->
+            <div class="stats-grid">
+                <!-- ITEM 1 -->
+                <div class="stat-box">
+                    <div class="stat-number counter" data-target="110">0</div>
+                    <div class="stat-title">Years Experience</div>
+                    <div class="stat-desc">Providing premium event organizing and trade exhibition services since 2000.
+                    </div>
+                </div>
+
+                <!-- ITEM 2 -->
+                <div class="stat-box">
+                    <div class="stat-number counter" data-target="21200">0</div>
+                    <div class="stat-title">Trade Shows & Exhibitions</div>
+                    <div class="stat-desc">Orchestrating high-impact business platforms for diverse industrial sectors.
+                    </div>
+                </div>
+
+                <!-- ITEM 3 -->
+                <div class="stat-box">
+                    <div class="stat-number counter" data-target="420">0%</div>
+                    <div class="stat-title">National & International Events</div>
+                    <div class="stat-desc">Organizing mega exhibitions and trade summits annually in local and global
+                        markets.</div>
+                </div>
+
+                <!-- ITEM 4 -->
+                <div class="stat-box">
+                    <div class="stat-number counter" data-target="16000000">0</div>
+                    <div class="stat-title">Exhibitors & Visitors Served</div>
+                    <div class="stat-desc">Connecting thousands of global buyers, trade delegations, and industry
+                        professionals.</div>
+                </div>
+            </div>
         </div>
-    </div>
-</section>
-<!-- ========================= [TEMPLATE PART: testimonials-slider.php END] ========================= -->
+    </section>
+    <!-- ========================= [TEMPLATE PART: statistics-section.php END] ========================= -->
+
+
+    <!-- ========================= [TEMPLATE PART: testimonials-slider.php START] ========================= -->
+    <!-- ========================= TESTIMONIALS SECTION ========================= -->
+    <section class="testimonial-section">
+        <div class="testi-container">
+            <p class="testi-small-heading">Testimonials</p>
+
+            <h2 class="testi-main-heading">
+                Trusted by Government Authorities &<br>
+                Leading Global Brands
+            </h2>
+
+            <div class="testi-slider-wrapper">
+                <button class="testi-nav-btn prev" id="testi-prev"><i class="fas fa-chevron-left"></i></button>
+
+                <div class="testi-slider-window">
+                    <div class="testi-cards-wrapper" id="testi-track">
+                        <!-- CARD 1 -->
+                        <div class="testimonial-card">
+                            <div class="testi-profile-wrapper">
+                                <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=300"
+                                    alt="client">
+                            </div>
+                            <h3 class="testi-client-name">DEPO Directorate</h3>
+                            <p class="testi-client-role">Defence Exhibition Org</p>
+                            <p class="testi-review-text">Badar Expo Solutions has displayed exceptional capability in
+                                organizing IDEAS Pakistan. Their professionalism and execution are truly world-class.
+                            </p>
+                            <div class="testi-stars">
+                                <span class="testi-star"></span><span class="testi-star"></span><span
+                                    class="testi-star"></span><span class="testi-star"></span><span
+                                    class="testi-star"></span>
+                            </div>
+                        </div>
+
+                        <!-- CARD 2 -->
+                        <div class="testimonial-card testi-blue">
+                            <div class="testi-profile-wrapper">
+                                <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=300"
+                                    alt="client">
+                            </div>
+                            <h3 class="testi-client-name">TDAP Management</h3>
+                            <p class="testi-client-role">Trade Development Authority</p>
+                            <p class="testi-review-text">Their end-to-end event infrastructure and fabrication solutions
+                                have been highly instrumental in driving trade delegations and visitor turnout.</p>
+                            <div class="testi-stars">
+                                <span class="testi-star"></span><span class="testi-star"></span><span
+                                    class="testi-star"></span><span class="testi-star"></span><span
+                                    class="testi-star"></span>
+                            </div>
+                        </div>
+
+                        <!-- CARD 3 -->
+                        <div class="testimonial-card">
+                            <div class="testi-profile-wrapper">
+                                <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?q=80&w=300"
+                                    alt="client">
+                            </div>
+                            <h3 class="testi-client-name">KCCI Spokesperson</h3>
+                            <p class="testi-client-role">Karachi Chamber of Commerce</p>
+                            <p class="testi-review-text">From stall fabrication to marketing campaigns, BXSS delivered
+                                stellar results for the 'My Karachi' expo, recording historic visitor footfall.</p>
+                            <div class="testi-stars">
+                                <span class="testi-star"></span><span class="testi-star"></span><span
+                                    class="testi-star"></span><span class="testi-star"></span><span
+                                    class="testi-star"></span>
+                            </div>
+                        </div>
+
+                        <!-- CARD 4 -->
+                        <div class="testimonial-card">
+                            <div class="testi-profile-wrapper">
+                                <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?q=80&w=300"
+                                    alt="client">
+                            </div>
+                            <h3 class="testi-client-name">ABAD Coordinator</h3>
+                            <p class="testi-client-role">Builders & Developers Assoc.</p>
+                            <p class="testi-review-text">A flawless partner. Managing exhibitions of this magnitude
+                                requires absolute precision, and Badar Expo executes it effortlessly every time.</p>
+                            <div class="testi-stars">
+                                <span class="testi-star"></span><span class="testi-star"></span><span
+                                    class="testi-star"></span><span class="testi-star"></span><span
+                                    class="testi-star"></span>
+                            </div>
+                        </div>
+
+                        <!-- CARD 5 -->
+                        <div class="testimonial-card">
+                            <div class="testi-profile-wrapper">
+                                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=300"
+                                    alt="client">
+                            </div>
+                            <h3 class="testi-client-name">PAPGAI Committee</h3>
+                            <p class="testi-client-role">Paper & Graphic Art Assoc.</p>
+                            <p class="testi-review-text">PrintPak Exhibition organizers were extremely pleased with the
+                                modern pavilion layout designs and stall builds fabricated by BXSS team.</p>
+                            <div class="testi-stars">
+                                <span class="testi-star"></span><span class="testi-star"></span><span
+                                    class="testi-star"></span><span class="testi-star"></span><span
+                                    class="testi-star"></span>
+                            </div>
+                        </div>
+
+                        <!-- CARD 6 -->
+                        <div class="testimonial-card testi-blue">
+                            <div class="testi-profile-wrapper">
+                                <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=300"
+                                    alt="client">
+                            </div>
+                            <h3 class="testi-client-name">IEEEP Convener</h3>
+                            <p class="testi-client-role">Electrical & Electronics Eng.</p>
+                            <p class="testi-review-text">IEEEP Fair's success is a testament to Badar Expo's
+                                professional operations, dynamic PR marketing solutions, and seamless execution.</p>
+                            <div class="testi-stars">
+                                <span class="testi-star"></span><span class="testi-star"></span><span
+                                    class="testi-star"></span><span class="testi-star"></span><span
+                                    class="testi-star"></span>
+                            </div>
+                        </div>
+
+                        <!-- CARD 7 -->
+                        <div class="testimonial-card">
+                            <div class="testi-profile-wrapper">
+                                <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=300"
+                                    alt="client">
+                            </div>
+                            <h3 class="testi-client-name">PTBF Secretary</h3>
+                            <p class="testi-client-role">Pakistan Turkey Business Forum</p>
+                            <p class="testi-review-text">Their B2B matchmaking and corporate networking setups connected
+                                Turkey trade delegates with Pakistani businesses effectively.</p>
+                            <div class="testi-stars">
+                                <span class="testi-star"></span><span class="testi-star"></span><span
+                                    class="testi-star"></span><span class="testi-star"></span><span
+                                    class="testi-star"></span>
+                            </div>
+                        </div>
+
+                        <!-- CARD 8 -->
+                        <div class="testimonial-card">
+                            <div class="testi-profile-wrapper">
+                                <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=300"
+                                    alt="client">
+                            </div>
+                            <h3 class="testi-client-name">DALFA Director</h3>
+                            <p class="testi-client-role">Dairy Agriculture Livestock</p>
+                            <p class="testi-review-text">The consumer exhibition solutions provided by BXSS brought
+                                together thousands of visitors, creating high-impact brand visibility for all sponsors.
+                            </p>
+                            <div class="testi-stars">
+                                <span class="testi-star"></span><span class="testi-star"></span><span
+                                    class="testi-star"></span><span class="testi-star"></span><span
+                                    class="testi-star"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <button class="testi-nav-btn next" id="testi-next"><i class="fas fa-chevron-right"></i></button>
+            </div>
+        </div>
+    </section>
+    <!-- ========================= [TEMPLATE PART: testimonials-slider.php END] ========================= -->
 
     <!-- ========================= [TEMPLATE: footer.php START] ========================= -->
     <!-- ========================= GLOBAL FOOTER ========================= -->
@@ -1231,17 +1360,20 @@
 
                     <div class="download-buttons">
                         <!-- APPLE -->
-                        <a href="https://apps.apple.com/pk/app/badar-expo/id6751605684" class="store-btn" target="_blank">
+                        <a href="https://apps.apple.com/pk/app/badar-expo/id6751605684" class="store-btn"
+                            target="_blank">
                             <i class="fa-brands fa-apple store-btn-apple-icon"></i>
                             <div class="store-btn-text">
                                 <div class="store-btn-small">Download on the</div>
                                 <div class="store-btn-big">App Store</div>
                             </div>
                         </a>
-                        
+
                         <!-- GOOGLE -->
-                        <a href="https://play.google.com/store/apps/details?id=com.badarexpo.app" class="store-btn google-play" target="_blank">
-                            <img src="https://upload.wikimedia.org/wikipedia/commons/d/d0/Google_Play_Arrow_logo.svg" alt="Google Play logo">
+                        <a href="https://play.google.com/store/apps/details?id=com.badarexpo.app"
+                            class="store-btn google-play" target="_blank">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/d/d0/Google_Play_Arrow_logo.svg"
+                                alt="Google Play logo">
                             <div class="store-btn-text">
                                 <div class="store-btn-small">GET IT ON</div>
                                 <div class="store-btn-big">Google Play</div>
@@ -1320,7 +1452,7 @@
                         </svg>
                     </a>
 
-                    
+
 
                 </div>
 
