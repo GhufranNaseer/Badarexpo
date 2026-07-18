@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -74,7 +74,7 @@
     <!-- NAVIGATION -->
     <nav class="navbar">
         <div class="logo">
-            <a href="index.html"><img src="assets/images/logo/favicon.webp" alt="Badar Expo Logo" class="logo-img"></a>
+            <a href="index.html"><img src="assets/images/logo/favicon.webp" alt="Badar Expo Logo" class="logo-img" width="140" height="140" fetchpriority="high"></a>
         </div>
 
         <!-- Hamburger Icon -->
@@ -83,8 +83,30 @@
         </div>
 
         <div class="menu" id="nav-menu">
+
+            <!-- MOBILE UTILITY SUB-HEADER (language + Socials + Contact us, horizontal scrollable structure) -->
+            <div class="mobile-menu-subheader">
+                <div class="mobile-subheader-scroll-wrapper">
+                    <button class="mobile-lang-btn" id="mobile-lang-btn" type="button" aria-label="Change language">
+                        <i class="fas fa-globe"></i>
+                        <span id="mobile-current-lang">English</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="mobile-subheader-socials">
+                        <a href="https://www.facebook.com/BXSSpakistan/" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="https://www.linkedin.com/company/bxsspakistan" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="https://www.instagram.com/bxsspakistan/" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="https://www.youtube.com/@BXSSpakistan" target="_blank" rel="noopener noreferrer" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                        <a href="https://x.com/BXSSpakistan" target="_blank" rel="noopener noreferrer" aria-label="X (Twitter)"><i class="fab fa-x-twitter"></i></a>
+                    </div>
+                    <div class="mobile-subheader-links">
+                        <a href="contact.html">Contact us</a>
+                    </div>
+                </div>
+            </div>
+
             <div class="nav-item active-nav"><a href="index.html"><span>Home</span></a></div>
-            <div class="nav-item"><a href="about.html"><span>About Us</span></a></div>
+            <div class="nav-item"><a href="#"><span>About Us</span></a></div>
 
             <div class="nav-item dropdown" data-target="services">
                 <a href="services.html"><span>Services <i class="fas fa-chevron-down"></i></span></a>
@@ -116,13 +138,24 @@
                     <li><a href="#">News &amp; Updates</a></li>
                 </ul>
             </div>
-            <div class="nav-item"><a href="contact.html"><span>Contact</span></a></div>
+            <div class="nav-item contact-item"><a href="contact.html"><span>Contact</span></a></div>
 
             <!-- ACTION BUTTONS (Moved inside menu for mobile) -->
             <div class="mobile-actions">
                 <button class="btn btn-dark">Visitor</button>
                 <button class="btn btn-light">Partner</button>
             </div>
+        </div>
+
+        <!-- MOBILE FULL-CANVAS MEGA MENU -->
+        <div class="mobile-mega-panel" id="mobileMegaPanel">
+            <div class="mmp-header">
+                <button class="mmp-back" id="mmpBack" aria-label="Back to menu" type="button">
+                    <i class="fas fa-arrow-left"></i>
+                </button>
+                <h3 class="mmp-title" id="mmpTitle">Menu</h3>
+            </div>
+            <div class="mmp-body" id="mmpBody"></div>
         </div>
 
         <!-- MEGA MENU WRAPPER -->
@@ -189,7 +222,8 @@
                         <img src="assets/images/portfolio/ieee-exhibition.webp" alt="Services Highlight"
                             class="dynamic-img" loading="lazy" width="300" height="160">
                         <strong class="dynamic-title">End-to-End Solutions</strong>
-                        <p class="dynamic-desc">We design and scale world-class exhibitions &amp; industry platforms.
+                        <p class="dynamic-desc">We design and scale exhibitions &amp; industry platforms across
+                            Pakistan.
                         </p>
                     </div>
                 </div>
@@ -266,6 +300,8 @@
             </div>
         </div>
     </nav>
+    <!-- Mobile drawer backdrop -->
+    <div class="menu-backdrop" id="menu-backdrop"></div>
     <!-- ========================= [TEMPLATE: header.php END] ========================= -->
 
     <!-- SEARCH OVERLAY -->
@@ -1286,6 +1322,7 @@
     <script src="assets/js/construction-design.js"></script>
 
 
+    <script src="assets/js/mobile-mega-menu.js"></script>
     <!-- ========================= [TEMPLATE: footer.php END] ========================= -->
 </body>
 
