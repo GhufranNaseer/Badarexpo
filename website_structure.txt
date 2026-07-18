@@ -58,6 +58,7 @@ Badarexpo website/
 |   |-- js/
 |   |   |-- main.js                 GLOBAL - nav toggle, mega menu, language
 |   |   |                           switcher, search overlay (shared by every page)
+|   |   |-- mobile-mega-menu.js     GLOBAL - mobile full-canvas mega menu logic
 |   |   |-- home.js                 PAGE - index.html only
 |   |   |-- services.js             PAGE - services.html only
 |   |   |-- construction-design.js  PAGE - construction-design.html only
