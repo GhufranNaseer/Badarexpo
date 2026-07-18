@@ -30,6 +30,7 @@ const NavManager = {
 
         this.hideTimeout = null;
         this.breakpoint = 1024;
+        this.backdrop = document.getElementById('menu-backdrop');
     },
 
     bindEvents() {
@@ -52,6 +53,10 @@ const NavManager = {
         // --- Mobile Menu Logic ---
         if (this.menuToggle && this.navMenu) {
             this.menuToggle.addEventListener('click', () => {
+                // Set top exactly at navbar bottom before opening
+                const navBottom = this.navbar.getBoundingClientRect().bottom;
+                this.navMenu.style.top = navBottom + 'px';
+
                 const isActive = this.navMenu.classList.toggle('mobile-active');
                 const icon = this.menuToggle.querySelector('i');
                 if (icon) {
@@ -59,7 +64,13 @@ const NavManager = {
                     icon.classList.toggle('fa-xmark', isActive);
                 }
                 document.body.style.overflow = isActive ? 'hidden' : '';
+                if (this.backdrop) this.backdrop.classList.toggle('active', isActive);
             });
+        }
+
+        // Close drawer when backdrop is tapped
+        if (this.backdrop) {
+            this.backdrop.addEventListener('click', () => this.closeMobileMenu());
         }
 
         // --- Mega Menu Triggers & Dynamic Content ---
@@ -111,6 +122,13 @@ const NavManager = {
         if (this.langBtn && this.langList) {
             this.langBtn.addEventListener('click', (e) => {
                 e.stopPropagation();
+                // Reset fixed positioning styles that might have been applied by mobile menu button
+                this.langList.style.position = "";
+                this.langList.style.top = "";
+                this.langList.style.left = "";
+                this.langList.style.right = "";
+                this.langList.style.zIndex = "";
+                this.langList.style.display = "";
                 this.langList.classList.toggle('show');
             });
 
@@ -193,6 +211,7 @@ const NavManager = {
     closeMobileMenu() {
         if (!this.navMenu) return;
         this.navMenu.classList.remove('mobile-active');
+        if (this.backdrop) this.backdrop.classList.remove('active');
         if (this.menuToggle) {
             const icon = this.menuToggle.querySelector('i');
             if (icon) {
