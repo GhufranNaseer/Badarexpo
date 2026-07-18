@@ -804,8 +804,10 @@ textarea:focus-visible,
         width: 100%;
         margin-bottom: 12px;
         border-bottom: 1px solid var(--border-light);
-        overflow: hidden; /* Prevent overflow vertical cropping */
-        flex-shrink: 0; /* Extremely important: stops flex layout of .menu from squishing it */
+        overflow: hidden;
+        /* Prevent overflow vertical cropping */
+        flex-shrink: 0;
+        /* Extremely important: stops flex layout of .menu from squishing it */
     }
 
     .mobile-subheader-scroll-wrapper {
@@ -814,7 +816,8 @@ textarea:focus-visible,
         justify-content: space-between;
         gap: 20px;
         width: 100%;
-        overflow-x: auto; /* Handle horizontal scrolling here */
+        overflow-x: auto;
+        /* Handle horizontal scrolling here */
         white-space: nowrap;
         padding: 4px 0 16px;
         -webkit-overflow-scrolling: touch;
@@ -837,7 +840,8 @@ textarea:focus-visible,
         font-weight: 600;
         color: var(--text-dark);
         cursor: pointer;
-        flex-shrink: 0; /* Prevent shrinking */
+        flex-shrink: 0;
+        /* Prevent shrinking */
     }
 
     .mobile-lang-btn i.fa-globe {
@@ -854,7 +858,8 @@ textarea:focus-visible,
         display: flex;
         align-items: center;
         gap: 15px;
-        flex-shrink: 0; /* Prevent shrinking */
+        flex-shrink: 0;
+        /* Prevent shrinking */
     }
 
     .mobile-subheader-socials a {
@@ -877,7 +882,8 @@ textarea:focus-visible,
         display: flex;
         align-items: center;
         gap: 16px;
-        flex-shrink: 0; /* Prevent shrinking */
+        flex-shrink: 0;
+        /* Prevent shrinking */
     }
 
     .mobile-subheader-links a {
@@ -922,13 +928,14 @@ textarea:focus-visible,
     .nav-item.active-nav {
         color: var(--primary-red);
     }
-    
+
     .nav-item.active-nav span {
         color: var(--primary-red);
     }
 
     .nav-item.dropdown span i.fa-chevron-down::before {
-        content: "\f054"; /* FontAwesome chevron-right icon */
+        content: "\f054";
+        /* FontAwesome chevron-right icon */
     }
 
     .nav-item.dropdown span i {
@@ -936,7 +943,8 @@ textarea:focus-visible,
     }
 
     .nav-item.dropdown.mobile-open span i {
-        transform: rotate(90deg); /* Rotates right chevron to point downwards when active */
+        transform: rotate(90deg);
+        /* Rotates right chevron to point downwards when active */
         color: var(--primary-red);
     }
 
@@ -1022,11 +1030,14 @@ textarea:focus-visible,
         display: flex !important;
         flex-direction: column;
         position: fixed;
-        top: 70px; /* fallback — JS overrides with navbar.getBoundingClientRect().bottom */
+        top: 70px;
+        /* fallback — JS overrides with navbar.getBoundingClientRect().bottom */
         left: 0;
         right: 0;
-        height: calc(100vh - 70px); /* fallback */
-        height: calc(100dvh - 70px); /* Modern mobile viewport height */
+        height: calc(100vh - 70px);
+        /* fallback */
+        height: calc(100dvh - 70px);
+        /* Modern mobile viewport height */
         width: 100%;
         background: var(--white);
         z-index: 2000;
@@ -1053,7 +1064,8 @@ textarea:focus-visible,
     .mmp-back {
         background: none;
         border: none;
-        font-size: 18px; /* Slightly larger back arrow to match hamburger size */
+        font-size: 18px;
+        /* Slightly larger back arrow to match hamburger size */
         color: var(--text-dark);
         cursor: pointer;
         width: auto;
@@ -1187,7 +1199,7 @@ textarea:focus-visible,
 /* SMALL TABLET / LARGE PHONE */
 @media screen and (max-width: 600px) {
     .topbar-left {
-        font-size: 10px;
+        font-size: 12px;
         gap: 6px;
     }
 
