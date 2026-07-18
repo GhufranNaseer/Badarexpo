@@ -800,11 +800,12 @@ textarea:focus-visible,
 
     /* AWS-style utility row: language selector (left) + Socials + Contact us (right) */
     .mobile-menu-subheader {
-        display: block !important;
+        display: flex !important;
         width: 100%;
         margin-bottom: 12px;
         border-bottom: 1px solid var(--border-light);
-        overflow: hidden; /* Prevent overflow on container */
+        overflow: hidden; /* Prevent overflow vertical cropping */
+        flex-shrink: 0; /* Extremely important: stops flex layout of .menu from squishing it */
     }
 
     .mobile-subheader-scroll-wrapper {
@@ -813,17 +814,16 @@ textarea:focus-visible,
         justify-content: space-between;
         gap: 20px;
         width: 100%;
-        overflow-x: auto; /* Enable horizontal scrolling */
+        overflow-x: auto; /* Handle horizontal scrolling here */
         white-space: nowrap;
         padding: 4px 0 16px;
-        
-        /* Hide scrollbars for Webkit browsers */
         -webkit-overflow-scrolling: touch;
     }
 
     .mobile-subheader-scroll-wrapper::-webkit-scrollbar {
         display: none;
     }
+
 
     .mobile-lang-btn {
         display: flex;
