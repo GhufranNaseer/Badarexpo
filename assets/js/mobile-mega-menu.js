@@ -130,6 +130,8 @@
         if (navbar && panel) {
             var navBottom = navbar.getBoundingClientRect().bottom;
             panel.style.top = navBottom + "px";
+            // iOS Safari fix: explicitly set height instead of relying purely on bottom: 0
+            panel.style.height = (window.innerHeight - navBottom) + "px";
         }
         
         panel.classList.add("open");
@@ -167,7 +169,16 @@
     }
 
     window.addEventListener("resize", function () {
-        if (!isMobile()) closePanel();
+        if (!isMobile()) {
+            closePanel();
+        } else if (panel.classList.contains("open")) {
+            var navbar = document.querySelector(".navbar");
+            if (navbar) {
+                var navBottom = navbar.getBoundingClientRect().bottom;
+                panel.style.top = navBottom + "px";
+                panel.style.height = (window.innerHeight - navBottom) + "px";
+            }
+        }
     });
 
     /* Mobile sub-header language button -> reuse existing topbar language dropdown/logic */

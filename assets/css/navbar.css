@@ -1025,7 +1025,8 @@ textarea:focus-visible,
         top: 70px; /* fallback — JS overrides with navbar.getBoundingClientRect().bottom */
         left: 0;
         right: 0;
-        bottom: 0;
+        height: calc(100vh - 70px); /* fallback */
+        height: calc(100dvh - 70px); /* Modern mobile viewport height */
         width: 100%;
         background: var(--white);
         z-index: 2000;
