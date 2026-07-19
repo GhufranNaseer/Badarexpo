@@ -24,6 +24,7 @@ Badarexpo website/
 |-- growthservices.html            Services sub-page
 |-- events.html                    Events page
 |-- contact.html                   Contact page
+|-- 404.html                       404 error page
 |
 |-- rules.txt                      Repository constitution (FINAL, do not edit)
 |-- website_structure.txt          THIS FILE - repo map & WP mapping
@@ -54,6 +55,7 @@ Badarexpo website/
 |   |   |-- growthservices.css      PAGE - growthservices.html only
 |   |   |-- events.css              PAGE - events.html only
 |   |   |-- contact.css             PAGE - contact.html only
+|   |   |-- 404.css                 PAGE - 404.html only
 |   |
 |   |-- js/
 |   |   |-- main.js                 GLOBAL - nav toggle, mega menu, language
