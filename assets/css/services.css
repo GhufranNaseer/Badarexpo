@@ -39,15 +39,20 @@
     padding: 0 60px;
 }
 
-.svcpg-eyebrow, .svc-tag {
-    display: none !important;
+.svcpg-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    color: var(--primary-red);
+    font-weight: 700;
+    font-size: 12.5px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 18px;
 }
 
 .svcpg-eyebrow::before {
-    content: '';
-    width: 26px;
-    height: 1px;
-    background: var(--primary-red);
+    display: none !important;
 }
 
 .svcpg-eyebrow.on-dark {
@@ -55,7 +60,7 @@
 }
 
 .svcpg-eyebrow.on-dark::before {
-    background: #ff8a8d;
+    display: none !important;
 }
 
 /* =========================
@@ -429,8 +434,8 @@
     display: none !important;
 }
 
-.svcpg-pillar-body .svcpg-eyebrow, .svc-tag {
-    display: none !important;
+.svcpg-pillar-body .svcpg-eyebrow {
+    margin-bottom: 14px;
 }
 
 .svcpg-pillar-body h3 {
@@ -988,10 +993,7 @@
 }
 
 .svc-tag::before {
-    content: "";
-    width: 28px;
-    height: 2px;
-    background: var(--svc-red);
+    display: none !important;
 }
 
 .svc-h2 {
