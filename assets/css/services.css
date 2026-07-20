@@ -1729,3 +1729,238 @@
         font-size: 13px;
     }
 }
+
+
+/* =============================================================================
+   MOBILE RESPONSIVENESS PATCH — lighter overrides to prevent layout breakage
+   ============================================================================= */
+
+@media screen and (max-width: 600px) {
+    .svcpg-hero {
+        min-height: 100svh;
+        overflow: hidden;
+    }
+
+    .svcpg-hero-inner {
+        padding: 112px 16px 28px;
+    }
+
+    .svcpg-hero-tagline {
+        font-size: 10.5px;
+        padding: 5px 11px;
+        margin-bottom: 14px;
+    }
+
+    .svcpg-hero h1 {
+        font-size: clamp(1.8rem, 1.2rem + 4vw, 2.4rem);
+        line-height: 1.12;
+        margin-bottom: 12px;
+        max-width: 100%;
+    }
+
+    .svcpg-hero p {
+        font-size: 13.5px;
+        line-height: 1.6;
+        margin-bottom: 22px;
+        max-width: 100%;
+    }
+
+    .svcpg-hero-actions {
+        gap: 14px;
+        margin-bottom: 28px;
+    }
+
+    .svcpg-hero-credibility {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 12px 10px;
+        padding-top: 16px;
+        border-top: 1px solid rgba(255, 255, 255, 0.16);
+    }
+
+    .svcpg-cred-item {
+        padding: 0;
+        margin: 0;
+        border-right: none;
+    }
+
+    .svcpg-cred-num {
+        font-size: 1.15rem;
+        margin-bottom: 3px;
+    }
+
+    .svcpg-cred-label {
+        font-size: 9px;
+        line-height: 1.25;
+        letter-spacing: 0.4px;
+    }
+
+    .svcpg-pillar-media {
+        aspect-ratio: 4 / 3;
+        overflow: hidden;
+    }
+
+    .svcpg-pillar-media img {
+        object-fit: cover;
+        object-position: center;
+    }
+
+    .svcpg-projects-grid {
+        grid-template-columns: 1fr;
+        grid-auto-rows: minmax(0, auto);
+        gap: 12px;
+    }
+
+    .svcpg-project-card,
+    .svcpg-project-card.large,
+    .svcpg-project-card.small {
+        grid-column: span 1;
+        grid-row: auto;
+        min-height: 220px;
+        aspect-ratio: 4 / 3;
+    }
+
+    .svcpg-numbers-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+        gap: 1px;
+    }
+
+    .svcpg-number-box {
+        padding: 22px 10px;
+    }
+
+    .svcpg-number-box:nth-child(odd) {
+        border-right: 1px solid var(--svcpg-line-dark);
+    }
+
+    .svcpg-number-box:nth-last-child(-n+2) {
+        border-bottom: none;
+    }
+
+    .svcpg-number-value {
+        font-size: clamp(1.5rem, 5vw, 2rem);
+        margin-bottom: 8px;
+    }
+
+    .svcpg-number-label {
+        font-size: 10px;
+    }
+
+    .svc-cta-card {
+        padding: 36px 18px;
+    }
+
+    .svc-cta-btns {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 10px;
+    }
+
+    .svc-cta-card .svc-btn {
+        width: 100%;
+        justify-content: center;
+    }
+}
+
+@media screen and (max-width: 420px) {
+    .svcpg-hero-inner {
+        padding: 104px 14px 24px;
+    }
+
+    .svcpg-hero h1 {
+        font-size: 1.7rem;
+    }
+
+    .svcpg-hero p {
+        font-size: 13px;
+    }
+
+    .svcpg-cred-label {
+        font-size: 8.5px;
+    }
+
+    .svcpg-project-card,
+    .svcpg-project-card.large,
+    .svcpg-project-card.small {
+        min-height: 190px;
+    }
+
+    .svc-cta-card h2 {
+        font-size: 21px;
+    }
+
+    .svc-cta-card p {
+        font-size: 13px;
+    }
+}
+
+/* =============================================================================
+   FAQ RESPONSIVE ENHANCEMENTS (Mobile & Tablet)
+   ============================================================================= */
+@media screen and (max-width: 768px) {
+    .svc-faq {
+        padding: 60px 0;
+    }
+
+    .svc-faq-wrap {
+        margin-top: 30px;
+    }
+
+    .svc-faq-item {
+        border-radius: 12px;
+        margin-bottom: 12px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
+    }
+
+    .svc-faq-q {
+        padding: 18px 16px;
+        font-size: 14.5px;
+        line-height: 1.4;
+        gap: 14px;
+    }
+
+    .svc-faq-q i {
+        width: 28px;
+        height: 28px;
+        border-radius: 50%;
+        background: rgba(228, 31, 38, 0.08);
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 12px;
+        flex-shrink: 0;
+    }
+
+    .svc-faq-item.active .svc-faq-q i {
+        background: var(--primary-red);
+        color: #ffffff;
+    }
+
+    .svc-faq-a p {
+        padding: 0 16px 18px;
+        font-size: 13.5px;
+        line-height: 1.65;
+    }
+}
+
+@media screen and (max-width: 420px) {
+    .svc-faq {
+        padding: 46px 0;
+    }
+
+    .svc-faq-wrap {
+        margin-top: 22px;
+    }
+
+    .svc-faq-q {
+        padding: 15px 14px;
+        font-size: 14px;
+        gap: 10px;
+    }
+
+    .svc-faq-a p {
+        padding: 0 14px 16px;
+        font-size: 13px;
+        line-height: 1.6;
+    }
+}
