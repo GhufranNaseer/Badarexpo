@@ -39,16 +39,8 @@
     padding: 0 60px;
 }
 
-.svcpg-eyebrow {
-    display: inline-flex;
-    align-items: center;
-    gap: 10px;
-    color: var(--primary-red);
-    font-weight: 700;
-    font-size: 12.5px;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    margin-bottom: 18px;
+.svcpg-eyebrow, .svc-tag {
+    display: none !important;
 }
 
 .svcpg-eyebrow::before {
@@ -437,8 +429,8 @@
     display: none !important;
 }
 
-.svcpg-pillar-body .svcpg-eyebrow {
-    margin-bottom: 14px;
+.svcpg-pillar-body .svcpg-eyebrow, .svc-tag {
+    display: none !important;
 }
 
 .svcpg-pillar-body h3 {
