@@ -1,103 +1,113 @@
 /* =============================================================================
    BADAR EXPO SOLUTIONS - SERVICES PAGE JAVASCRIPT (services.js)
+   Scoped exclusively to services.html: scroll reveal, capability rail,
+   count-up numbers, and the FAQ accordion.
    ============================================================================= */
+(function () {
+    "use strict";
 
-// ========================= SERVICES PAGE: FAQ ACCORDION =========================
-// WHY: Manages the expansion/contraction of FAQ accordion items specifically on services.html.
-// It performs smooth height transition animations and opens the first item by default.
-const SvcFaqManager = {
-    init() {
-        this.questions = document.querySelectorAll('.svc-faq-q');
-        if (!this.questions.length) return;
-
-        this.questions.forEach(q => {
-            q.addEventListener('click', () => {
-                const item = q.closest('.svc-faq-item');
-                const answer = item.querySelector('.svc-faq-a');
-                const wasActive = item.classList.contains('active');
-
-                // Collapse all other FAQ items
-                document.querySelectorAll('.svc-faq-item').forEach(i => {
-                    i.classList.remove('active');
-                    const a = i.querySelector('.svc-faq-a');
-                    if (a) a.style.maxHeight = null;
-                });
-
-                // Expand clicked item if it was not already active
-                if (!wasActive) {
-                    item.classList.add('active');
-                    if (answer) answer.style.maxHeight = answer.scrollHeight + 'px';
-                }
-            });
-        });
-
-        // Open the first FAQ item's answer by default on load
-        const firstActiveAnswer = document.querySelector('.svc-faq-item.active .svc-faq-a');
-        if (firstActiveAnswer) {
-            firstActiveAnswer.style.maxHeight = firstActiveAnswer.scrollHeight + 'px';
-        }
-    }
-};
-
-// ========================= SERVICES PAGE: SCROLL REVEAL =========================
-// WHY: Monitors elements with .svc-reveal class on services.html.
-// Adds the .svc-in class to trigger CSS transitions when elements enter the viewport.
-const SvcRevealManager = {
-    init() {
-        this.revealElements = document.querySelectorAll('.svc-reveal');
-        if (!this.revealElements.length) return;
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
+    /* ---- Scroll reveal ---- */
+    var revealEls = document.querySelectorAll(".svcpg-reveal, .svc-reveal");
+    if ("IntersectionObserver" in window) {
+        var revealObserver = new IntersectionObserver(function (entries) {
+            entries.forEach(function (entry) {
                 if (entry.isIntersecting) {
-                    entry.target.classList.add('svc-in');
-                    observer.unobserve(entry.target); // Trigger animation only once
+                    entry.target.classList.add("is-visible");
+                    revealObserver.unobserve(entry.target);
                 }
             });
-        }, { threshold: 0.15 });
-
-        this.revealElements.forEach(el => observer.observe(el));
+        }, { threshold: 0.12, rootMargin: "0px 0px -60px 0px" });
+        revealEls.forEach(function (el) { revealObserver.observe(el); });
+    } else {
+        revealEls.forEach(function (el) { el.classList.add("is-visible"); });
     }
-};
 
-// ========================= SERVICES PAGE: NUMBERS COUNTER =========================
-// WHY: Animates statistics counters (e.g. 150+ Events, 5000+ Exhibitors) on services.html
-// to count up smoothly from 0 to their target value when they scroll into view.
-const SvcCounterManager = {
-    init() {
-        this.counters = document.querySelectorAll('.svc-counter');
-        if (!this.counters.length) return;
+    /* ---- Capability rail: highlight 01/02/03 as each pillar scrolls into view ---- */
+    var pillars = document.querySelectorAll(".svcpg-pillar[data-pillar]");
+    var railDots = document.querySelectorAll(".svcpg-rail-dot[data-rail]");
+    if (pillars.length && railDots.length && "IntersectionObserver" in window) {
+        var railObserver = new IntersectionObserver(function (entries) {
+            entries.forEach(function (entry) {
+                if (entry.isIntersecting) {
+                    var idx = entry.target.getAttribute("data-pillar");
+                    railDots.forEach(function (dot) {
+                        dot.classList.toggle("active", dot.getAttribute("data-rail") === idx);
+                    });
+                }
+            });
+        }, { threshold: 0.5 });
+        pillars.forEach(function (p) { railObserver.observe(p); });
+    }
 
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
+    /* ---- Count-up numbers (Company Numbers section) ---- */
+    var counters = document.querySelectorAll(".svcpg-counter");
+    if (counters.length && "IntersectionObserver" in window) {
+        var countObserver = new IntersectionObserver(function (entries) {
+            entries.forEach(function (entry) {
                 if (!entry.isIntersecting) return;
-                const el = entry.target;
-                const target = +el.getAttribute('data-target');
-                const suffix = el.getAttribute('data-suffix') || '+';
-                let count = 0;
-                const speed = Math.max(target / 100, 0.05);
+                var el = entry.target;
+                var target = parseInt(el.getAttribute("data-target"), 10) || 0;
+                var suffix = el.getAttribute("data-suffix") || "";
+                var duration = 1400;
+                var start = null;
 
-                const update = () => {
-                    count += speed;
-                    if (count < target) {
-                        el.textContent = (target < 10 ? count.toFixed(1) : Math.floor(count)) + suffix;
-                        requestAnimationFrame(update);
+                function step(ts) {
+                    if (!start) start = ts;
+                    var progress = Math.min((ts - start) / duration, 1);
+                    var eased = 1 - Math.pow(1 - progress, 3);
+                    el.textContent = Math.floor(eased * target).toLocaleString() + suffix;
+                    if (progress < 1) {
+                        requestAnimationFrame(step);
                     } else {
-                        el.textContent = target + suffix;
+                        el.textContent = target.toLocaleString() + suffix;
                     }
-                };
-                update();
-                observer.unobserve(el); // Animate only once
+                }
+                requestAnimationFrame(step);
+                countObserver.unobserve(el);
             });
         }, { threshold: 0.4 });
-
-        this.counters.forEach(c => observer.observe(c));
+        counters.forEach(function (c) { countObserver.observe(c); });
     }
-};
 
-// ========================= INITIALIZE ALL MODULES =========================
-document.addEventListener('DOMContentLoaded', () => {
-    SvcFaqManager.init();
-    SvcRevealManager.init();
-    SvcCounterManager.init();
-});
+    /* ---- FAQ ACCORDION MANAGER ---- */
+    var SvcFaqManager = {
+        init: function () {
+            this.questions = document.querySelectorAll('.svc-faq-q');
+            if (!this.questions.length) return;
+
+            this.questions.forEach(function (q) {
+                q.addEventListener('click', function () {
+                    var item = q.closest('.svc-faq-item');
+                    var answer = item.querySelector('.svc-faq-a');
+                    var wasActive = item.classList.contains('active');
+
+                    // Collapse all other FAQ items
+                    document.querySelectorAll('.svc-faq-item').forEach(function (i) {
+                        i.classList.remove('active');
+                        var a = i.querySelector('.svc-faq-a');
+                        if (a) a.style.maxHeight = null;
+                        var btn = i.querySelector('.svc-faq-q');
+                        if (btn) btn.setAttribute('aria-expanded', 'false');
+                    });
+
+                    // Expand clicked item if it was not already active
+                    if (!wasActive) {
+                        item.classList.add('active');
+                        if (answer) answer.style.maxHeight = answer.scrollHeight + 'px';
+                        q.setAttribute('aria-expanded', 'true');
+                    }
+                });
+            });
+
+            // Open the first FAQ item's answer by default on load
+            var firstActiveAnswer = document.querySelector('.svc-faq-item.active .svc-faq-a');
+            if (firstActiveAnswer) {
+                firstActiveAnswer.style.maxHeight = firstActiveAnswer.scrollHeight + 'px';
+            }
+        }
+    };
+
+    document.addEventListener('DOMContentLoaded', function () {
+        SvcFaqManager.init();
+    });
+})();
