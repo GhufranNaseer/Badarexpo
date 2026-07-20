@@ -434,20 +434,7 @@
 }
 
 .svcpg-pillar-num {
-    position: absolute;
-    top: 22px;
-    left: 22px;
-    width: 52px;
-    height: 52px;
-    border-radius: 50%;
-    background: rgba(10, 10, 10, 0.55);
-    backdrop-filter: blur(8px);
-    color: var(--white);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-weight: 800;
-    font-size: 17px;
+    display: none !important;
 }
 
 .svcpg-pillar-body .svcpg-eyebrow {
@@ -1627,10 +1614,11 @@
         text-align: center;
         line-height: 1;
         box-sizing: border-box;
+        padding-bottom: 3px;
     }
 
     .svcpg-process-step > div {
-        padding-top: 9px;
+        padding-top: 2px;
     }
 
     .svcpg-process-step h4 {
