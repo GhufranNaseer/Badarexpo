@@ -243,10 +243,6 @@ body.rtl-mode {
     color: var(--primary-red);
 }
 
-.nav-item.active-nav span::after {
-    transform: scaleX(1);
-}
-
 /* --- MEGA MENU CONTAINER --- */
 .mega-menu-wrapper {
     position: absolute;
