@@ -1844,3 +1844,741 @@
                 justify-content: flex-start;
             }
         }
+
+        /* ============================================================
+           MOBILE RESPONSIVE FIX  SECTION HEADERS + LIFECYCLE SECTION
+           ============================================================ */
+
+        @media (max-width: 768px) {
+
+            /* ---------- GENERIC SECTION HEADER (used across all sections) ---------- */
+            #em-page .section-header {
+                margin-bottom: 36px;
+                padding: 0 4px;
+            }
+
+            #em-page .section-badge {
+                font-size: 0.68rem;
+                letter-spacing: 1.5px;
+                padding: 5px 13px;
+                margin-bottom: 12px;
+            }
+
+            #em-page .section-title {
+                font-size: 1.65rem;
+                letter-spacing: -0.3px;
+                margin-bottom: 10px;
+                line-height: 1.25;
+            }
+
+            #em-page .section-desc {
+                font-size: 0.92rem;
+                max-width: 100%;
+                padding: 0 6px;
+            }
+
+            /* ---------- LIFECYCLE SECTION WRAPPER ---------- */
+            #em-page .lifecycle-sec {
+                padding: 60px 0;
+            }
+
+            #em-page .lifecycle-hub {
+                margin-top: 36px;
+            }
+
+            /* ---------- LIFECYCLE NODE GRID ---------- */
+            #em-page .lifecycle-grid {
+                grid-template-columns: repeat(3, 1fr);
+                row-gap: 44px;
+                column-gap: 12px;
+                margin-bottom: 32px;
+            }
+
+            #em-page .lifecycle-node {
+                width: 52px;
+                height: 52px;
+            }
+
+            #em-page .lifecycle-node i {
+                font-size: 0.95rem;
+            }
+
+            #em-page .lifecycle-node-label {
+                bottom: -24px;
+                font-size: 0.6rem;
+                letter-spacing: 0.3px;
+                max-width: 90px;
+                white-space: normal;
+                text-align: center;
+                left: 50%;
+                transform: translateX(-50%);
+                line-height: 1.2;
+            }
+
+            /* ---------- LIFECYCLE DETAIL PANEL ---------- */
+            #em-page .lifecycle-detail-panel {
+                padding: 20px;
+                gap: 16px;
+                border-radius: 12px;
+            }
+
+            #em-page .lifecycle-detail-icon {
+                width: 48px;
+                height: 48px;
+                font-size: 1.3rem;
+                border-radius: 10px;
+            }
+
+            #em-page .lifecycle-detail-content h4 {
+                font-size: 1.15rem;
+                margin-bottom: 6px;
+            }
+
+            #em-page .lifecycle-detail-content p {
+                font-size: 0.85rem;
+                margin-bottom: 12px;
+            }
+
+            #em-page .lifecycle-detail-meta {
+                gap: 12px;
+                padding-top: 12px;
+                font-size: 0.75rem;
+            }
+        }
+
+        @media (max-width: 420px) {
+            #em-page .section-title {
+                font-size: 1.4rem;
+            }
+
+            #em-page .section-desc {
+                font-size: 0.85rem;
+            }
+
+            #em-page .lifecycle-grid {
+                grid-template-columns: repeat(3, 1fr);
+                row-gap: 38px;
+                column-gap: 8px;
+            }
+
+            #em-page .lifecycle-node {
+                width: 46px;
+                height: 46px;
+            }
+
+            #em-page .lifecycle-node-label {
+                font-size: 0.55rem;
+                max-width: 76px;
+            }
+        }
+
+        /* ============================================================
+           MOBILE RESPONSIVE FIX  LIFECYCLE GAP + CORE SERVICES SECTION
+           ============================================================ */
+
+        /* Force the same visual order on every pillar once stacked to a single
+           column: image+badge -> heading -> paragraph -> specs -> button.
+           Reverse blocks (Conference Management, VIP Coordination) have
+           service-content BEFORE service-img-wrapper in the HTML (so desktop
+           can show text-left/image-right), so on mobile we need to reorder
+           the image back to the top to match the other pillars. */
+        @media (max-width: 1024px) {
+            #em-page .service-block.reverse .service-img-wrapper {
+                order: -1;
+            }
+
+            #em-page .service-block.reverse .service-content {
+                order: 2;
+            }
+        }
+
+        @media (max-width: 768px) {
+
+            /* ---------- GAP BETWEEN NODE GRID AND DETAIL PANEL ---------- */
+            #em-page .lifecycle-grid {
+                margin-bottom: 46px;
+            }
+
+            /* ---------- SERVICES SECTION WRAPPER ---------- */
+            #em-page .services-sec {
+                padding: 60px 0;
+            }
+
+            #em-page .service-block,
+            #em-page .service-block.reverse {
+                gap: 28px;
+                margin-bottom: 56px;
+            }
+
+            /* ---------- SERVICE IMAGE ---------- */
+            #em-page .service-img-wrapper {
+                border-radius: 12px;
+            }
+
+            #em-page .service-img {
+                height: 220px;
+            }
+
+            #em-page .service-info-badge {
+                top: 12px;
+                left: 12px;
+                font-size: 0.62rem;
+                padding: 5px 11px;
+                letter-spacing: 0.5px;
+            }
+
+            /* ---------- SERVICE CONTENT TEXT ---------- */
+            #em-page .service-content h3 {
+                font-size: 1.5rem;
+                margin-bottom: 12px;
+                letter-spacing: -0.2px;
+            }
+
+            #em-page .service-content p {
+                font-size: 0.92rem;
+                margin-bottom: 22px;
+            }
+
+            /* ---------- SERVICE SPECS LIST ---------- */
+            #em-page .service-specs {
+                gap: 14px;
+                margin-bottom: 24px;
+            }
+
+            #em-page .spec-item {
+                gap: 12px;
+            }
+
+            #em-page .spec-icon {
+                width: 32px;
+                height: 32px;
+                font-size: 0.85rem;
+                border-radius: 7px;
+                flex-shrink: 0;
+            }
+
+            #em-page .spec-details strong {
+                font-size: 0.85rem;
+            }
+
+            #em-page .spec-details span {
+                font-size: 0.8rem;
+            }
+
+            /* ---------- SERVICE CTA BUTTON ---------- */
+            #em-page .service-content .em-btn {
+                width: 100%;
+            }
+        }
+
+        @media (max-width: 420px) {
+            #em-page .service-img {
+                height: 180px;
+            }
+
+            #em-page .service-content h3 {
+                font-size: 1.3rem;
+            }
+
+            #em-page .service-content p {
+                font-size: 0.88rem;
+            }
+        }
+
+        /* ============================================================
+           MOBILE RESPONSIVE FIX  EVENT COMMAND CENTER (Active Divisions)
+           Locks the dashboard to one consistent layout no matter which
+           tab (Operations / Technical / Registration / Security /
+           Speaker / Support) is active, regardless of title, badge or
+           log-content length differences between tabs.
+           ============================================================ */
+
+        @media (max-width: 768px) {
+
+            #em-page .control-sec {
+                padding: 60px 0;
+            }
+
+            #em-page .console-dashboard {
+                min-height: 0;
+                border-radius: 14px;
+            }
+
+            /* ---------- TAB SIDEBAR ---------- */
+            #em-page .console-nav {
+                padding: 16px;
+            }
+
+            #em-page .console-nav-title {
+                font-size: 0.68rem;
+                letter-spacing: 1.5px;
+                margin-bottom: 14px;
+            }
+
+            #em-page .console-tab {
+                padding: 12px 14px;
+                font-size: 0.8rem;
+            }
+
+            #em-page .console-tab-left {
+                gap: 10px;
+                min-width: 0;
+            }
+
+            #em-page .console-tab-left span {
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+            }
+
+            /* ---------- CONTENT PANE ---------- */
+            #em-page .console-content {
+                padding: 22px 18px;
+            }
+
+            #em-page .console-pane-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 10px;
+                padding-bottom: 18px;
+                margin-bottom: 18px;
+            }
+
+            #em-page .pane-title-wrap h4 {
+                font-size: 1.2rem;
+                line-height: 1.3;
+                margin-bottom: 4px;
+            }
+
+            #em-page .pane-title-wrap p {
+                font-size: 0.78rem;
+            }
+
+            #em-page .pane-status-badge {
+                font-size: 0.62rem;
+                padding: 5px 12px;
+            }
+
+            /* ---------- PANE BODY (fixed height so tab switches don't jump) ---------- */
+            #em-page .pane-body {
+                gap: 22px;
+                margin-bottom: 20px;
+            }
+
+            #em-page .pane-details h5 {
+                font-size: 0.7rem;
+                margin-bottom: 10px;
+            }
+
+            #em-page .pane-bullet-list li {
+                font-size: 0.82rem;
+                padding-left: 16px;
+                margin-bottom: 10px;
+            }
+
+            #em-page .pane-log {
+                padding: 14px;
+                font-size: 0.72rem;
+                max-height: 180px;
+                gap: 8px;
+            }
+
+            #em-page .log-entry {
+                gap: 8px;
+                flex-wrap: wrap;
+            }
+
+            /* ---------- PANE FOOTER ---------- */
+            #em-page .pane-footer {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 16px;
+                padding-top: 18px;
+            }
+
+            #em-page .console-operator {
+                gap: 10px;
+            }
+
+            #em-page .operator-avatar {
+                width: 32px;
+                height: 32px;
+                font-size: 0.8rem;
+            }
+
+            #em-page .operator-info span {
+                font-size: 0.65rem;
+            }
+
+            #em-page .operator-info strong {
+                font-size: 0.8rem;
+            }
+
+            #em-page .pane-footer .em-btn {
+                width: 100%;
+                padding: 11px 20px;
+                font-size: 0.8rem;
+            }
+        }
+
+        @media (max-width: 420px) {
+            #em-page .pane-title-wrap h4 {
+                font-size: 1.05rem;
+            }
+
+            #em-page .console-tab {
+                font-size: 0.75rem;
+                padding: 10px 12px;
+            }
+
+            #em-page .pane-log {
+                font-size: 0.68rem;
+                max-height: 160px;
+            }
+        }
+
+        /* ============================================================
+           MOBILE RESPONSIVE FIX  VISITOR JOURNEY DETAIL TEXT
+           + CONFERENCE EXCELLENCE HEADING/EDITORIAL SECTION
+           ============================================================ */
+
+        @media (max-width: 768px) {
+
+            /* ---------- JOURNEY STEP DETAIL BOX (Entry / Check-in / etc.) ---------- */
+            #em-page .experience-sec {
+                padding: 60px 0;
+            }
+
+            #em-page .journey-details-container {
+                max-width: 100%;
+                margin: 32px auto 0;
+                padding: 20px;
+                border-radius: 10px;
+            }
+
+            #em-page .journey-detail-card h4 {
+                font-size: 1.05rem;
+                line-height: 1.3;
+                margin-bottom: 8px;
+                word-break: break-word;
+            }
+
+            #em-page .journey-detail-card p {
+                font-size: 0.85rem;
+                line-height: 1.6;
+                word-break: break-word;
+            }
+
+            /* ---------- CONFERENCE EXCELLENCE SECTION ---------- */
+            #em-page .conf-sec {
+                padding: 60px 0;
+            }
+
+            #em-page .editorial-grid {
+                gap: 36px;
+            }
+
+            #em-page .editorial-content h3 {
+                font-size: 1.6rem;
+                line-height: 1.3;
+                letter-spacing: -0.3px;
+                margin-bottom: 14px;
+            }
+
+            #em-page .editorial-content p {
+                font-size: 0.92rem;
+                margin-bottom: 22px;
+            }
+
+            #em-page .editorial-metrics {
+                grid-template-columns: 1fr 1fr;
+                gap: 14px;
+            }
+
+            #em-page .editorial-metric-card {
+                padding: 16px;
+                border-radius: 10px;
+            }
+
+            #em-page .editorial-metric-card i {
+                font-size: 1.15rem;
+                margin-bottom: 8px;
+            }
+
+            #em-page .editorial-metric-card h4 {
+                font-size: 0.85rem;
+            }
+
+            #em-page .editorial-metric-card p {
+                font-size: 0.75rem;
+            }
+
+            /* ---------- SCHEDULE CONSOLE (right-side widget) ---------- */
+            #em-page .schedule-console {
+                padding: 18px;
+            }
+
+            #em-page .console-row {
+                padding: 12px 0;
+                flex-wrap: wrap;
+                gap: 6px;
+            }
+
+            #em-page .console-row-time {
+                font-size: 0.75rem;
+            }
+
+            #em-page .console-row-details {
+                padding: 0 12px;
+                min-width: 0;
+            }
+
+            #em-page .console-row-details h5 {
+                font-size: 0.82rem;
+            }
+
+            #em-page .console-row-details span {
+                font-size: 0.7rem;
+            }
+
+            #em-page .console-row-status {
+                font-size: 0.62rem;
+            }
+        }
+
+        @media (max-width: 420px) {
+            #em-page .journey-detail-card h4 {
+                font-size: 0.95rem;
+            }
+
+            #em-page .journey-detail-card p {
+                font-size: 0.8rem;
+            }
+
+            #em-page .editorial-content h3 {
+                font-size: 1.4rem;
+            }
+
+            #em-page .editorial-metrics {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* ============================================================
+           MOBILE RESPONSIVE FIX  CORPORATE SOLUTION FORMATS (tabs + grid)
+           + EVENT SUCCESS DASHBOARD (KPI stats grid)
+           ============================================================ */
+
+        @media (max-width: 768px) {
+
+            /* ---------- CORPORATE SOLUTIONS SECTION ---------- */
+            #em-page .corp-sec {
+                padding: 60px 0;
+            }
+
+            #em-page .corp-tabs {
+                gap: 8px;
+                margin-bottom: 30px;
+            }
+
+            #em-page .corp-tab-btn {
+                padding: 9px 16px;
+                font-size: 0.78rem;
+            }
+
+            #em-page .corp-pane,
+            #em-page .corp-pane.active {
+                padding: 22px;
+                border-radius: 12px;
+                gap: 26px;
+            }
+
+            #em-page .corp-pane-info h4 {
+                font-size: 1.4rem;
+                margin-bottom: 12px;
+            }
+
+            #em-page .corp-pane-info p {
+                font-size: 0.9rem;
+                margin-bottom: 22px;
+            }
+
+            #em-page .corp-pane-info h5 {
+                font-size: 0.7rem;
+                margin-bottom: 12px;
+            }
+
+            /* ---------- DELIVERABLES CHECKLIST ---------- */
+            #em-page .corp-checklist {
+                grid-template-columns: 1fr;
+                gap: 10px;
+                margin-bottom: 24px;
+            }
+
+            #em-page .corp-check-item {
+                font-size: 0.82rem;
+            }
+
+            #em-page .corp-pane-info .em-btn {
+                width: 100%;
+            }
+
+            /* ---------- VISUAL IMAGE ---------- */
+            #em-page .corp-pane-visual img {
+                height: 200px;
+                border-radius: 10px;
+            }
+
+            /* ---------- EVENT SUCCESS DASHBOARD (KPI GRID) ---------- */
+            #em-page .kpi-sec {
+                padding: 50px 0;
+            }
+
+            #em-page .kpi-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 12px;
+            }
+
+            #em-page .kpi-card {
+                padding: 16px 10px;
+                border-radius: 10px;
+            }
+
+            #em-page .kpi-val {
+                font-size: 1.5rem;
+                margin-bottom: 4px;
+                letter-spacing: -0.5px;
+            }
+
+            #em-page .kpi-label {
+                font-size: 0.62rem;
+                letter-spacing: 0.5px;
+            }
+        }
+
+        @media (max-width: 420px) {
+            #em-page .corp-pane-info h4 {
+                font-size: 1.25rem;
+            }
+
+            #em-page .corp-pane-visual img {
+                height: 170px;
+            }
+
+            #em-page .kpi-val {
+                font-size: 1.3rem;
+            }
+
+            #em-page .kpi-label {
+                font-size: 0.58rem;
+            }
+        }
+
+        /* ============================================================
+           MOBILE RESPONSIVE FIX  BEHIND THE SCENES IMAGE GRID
+           Converts the 3-image grid (with one tall spanning image) into
+           a swipeable horizontal-scroll carousel on mobile, so every
+           image gets a fixed, consistent frame that it fits inside
+           cleanly (object-fit: cover) instead of stretching to an
+           awkward grid cell.
+           ============================================================ */
+
+        @media (max-width: 768px) {
+
+            #em-page .bts-sec {
+                padding: 60px 0;
+            }
+
+            #em-page .bts-editorial {
+                gap: 40px;
+            }
+
+            #em-page .bts-visual {
+                display: flex;
+                grid-template-columns: unset;
+                gap: 14px;
+                overflow-x: auto;
+                overflow-y: hidden;
+                scroll-snap-type: x mandatory;
+                -webkit-overflow-scrolling: touch;
+                padding-bottom: 14px;
+                margin: 0 -4px;
+                padding-left: 4px;
+                padding-right: 4px;
+            }
+
+            #em-page .bts-visual::-webkit-scrollbar {
+                height: 5px;
+            }
+
+            #em-page .bts-visual::-webkit-scrollbar-track {
+                background: rgba(255, 255, 255, 0.05);
+                border-radius: 10px;
+            }
+
+            #em-page .bts-visual::-webkit-scrollbar-thumb {
+                background: rgba(228, 31, 38, 0.45);
+                border-radius: 10px;
+            }
+
+            #em-page .bts-img-wrapper {
+                flex: 0 0 auto;
+                width: 72vw;
+                max-width: 300px;
+                scroll-snap-align: center;
+                border-radius: 10px;
+            }
+
+            /* Neutralize the desktop 2-row span so it behaves like every
+               other card in the flex carousel */
+            #em-page .bts-img-wrapper.tall {
+                grid-row: unset;
+            }
+
+            #em-page .bts-img-wrapper.tall .bts-img,
+            #em-page .bts-img {
+                height: 210px;
+                width: 100%;
+                object-fit: cover;
+                display: block;
+            }
+
+            /* ---------- CONTENT SIDE ---------- */
+            #em-page .bts-content h3 {
+                font-size: 1.6rem;
+                margin-bottom: 16px;
+            }
+
+            #em-page .bts-content p {
+                font-size: 0.9rem;
+                margin-bottom: 16px;
+            }
+
+            #em-page .bts-quote {
+                padding-left: 14px;
+                margin: 20px 0;
+            }
+
+            #em-page .bts-quote p {
+                font-size: 0.92rem;
+            }
+
+            #em-page .bts-quote span {
+                font-size: 0.72rem;
+            }
+        }
+
+        @media (max-width: 420px) {
+            #em-page .bts-img-wrapper {
+                width: 80vw;
+            }
+
+            #em-page .bts-img-wrapper.tall .bts-img,
+            #em-page .bts-img {
+                height: 180px;
+            }
+
+            #em-page .bts-content h3 {
+                font-size: 1.4rem;
+            }
+        }
