@@ -3394,6 +3394,131 @@ textarea:focus-visible,
                 grid-template-columns: 1fr 1fr;
             }
         }
+
+        /* ============================================================
+           MOBILE RESPONSIVE FIX  HERO + CONSOLE WIDGET (em-page)
+           ============================================================ */
+
+        @media (max-width: 768px) {
+
+            /* ---------- HERO SECTION ---------- */
+            #em-page .hero-sec {
+                padding: 110px 0 50px;
+            }
+
+            #em-page .hero-badge {
+                margin-bottom: 14px;
+            }
+
+            #em-page .hero-badge-text {
+                font-size: 0.68rem;
+            }
+
+            #em-page .hero-headline {
+                font-size: 2.1rem;
+                line-height: 1.25;
+                letter-spacing: -0.5px;
+                margin-bottom: 16px;
+            }
+
+            #em-page .hero-copy {
+                font-size: 1rem;
+                max-width: 100%;
+                margin-bottom: 28px;
+            }
+
+            #em-page .hero-actions {
+                flex-direction: column;
+                align-items: stretch;
+                gap: 12px;
+                width: 100%;
+            }
+
+            #em-page .hero-actions .em-btn {
+                width: 100%;
+                padding: 14px 20px;
+            }
+
+            /* ---------- CONSOLE WIDGET WRAPPER ---------- */
+            #em-page .console-widget {
+                padding: 16px;
+            }
+
+            #em-page .console-header {
+                flex-wrap: wrap;
+                row-gap: 8px;
+                padding-bottom: 12px;
+                margin-bottom: 16px;
+            }
+
+            #em-page .console-status {
+                font-size: 0.7rem;
+            }
+
+            /* ---------- FLOOR MAP ---------- */
+            #em-page .console-map-wrapper {
+                padding: 10px;
+                margin-bottom: 16px;
+            }
+
+            /* ---------- DETAILS / TICKER BOX ---------- */
+            #em-page .console-details-box {
+                padding: 10px 12px;
+                font-size: 0.72rem;
+                word-break: break-word;
+                overflow-wrap: break-word;
+            }
+
+            #em-page .console-logs-ticker {
+                font-size: 0.68rem;
+                flex-wrap: wrap;
+                row-gap: 4px;
+            }
+
+            /* ---------- STATS GRID ---------- */
+            #em-page .console-stats-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 10px;
+                margin-top: 16px;
+            }
+
+            #em-page .console-stat-card {
+                padding: 10px;
+                gap: 8px;
+            }
+
+            #em-page .console-stat-card i {
+                font-size: 1rem;
+            }
+
+            #em-page .console-stat-info span {
+                font-size: 0.62rem;
+            }
+
+            #em-page .console-stat-info strong {
+                font-size: 0.85rem;
+            }
+        }
+
+        /* ---------- EXTRA SMALL PHONES ---------- */
+        @media (max-width: 420px) {
+            #em-page .hero-headline {
+                font-size: 1.75rem;
+            }
+
+            #em-page .hero-copy {
+                font-size: 0.92rem;
+            }
+
+            #em-page .console-stats-grid {
+                grid-template-columns: 1fr;
+            }
+
+            #em-page .console-stat-card {
+                flex-direction: row;
+                justify-content: flex-start;
+            }
+        }
     </style>
 </head>
 
