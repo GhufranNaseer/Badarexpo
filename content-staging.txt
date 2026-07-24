@@ -29,7 +29,7 @@
 
     <link rel="icon" type="image/webp" href="assets/images/logo/favicon.webp">
 
-    <!-- Fonts: Inter — the single face used site-wide (navbar, footer, home) -->
+    <!-- Fonts: Inter  the single face used site-wide (navbar, footer, home) -->
     <link
         href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
         rel="stylesheet">
@@ -697,9 +697,9 @@ textarea:focus-visible,
 }
 
 /* =============================================================================
-   RESPONSIVE — single consolidated breakpoint set
+   RESPONSIVE  single consolidated breakpoint set
    (The original code had this same @media(max-width:1024px) block duplicated
-   twice with slightly different, conflicting values — e.g. .topbar-left had
+   twice with slightly different, conflicting values  e.g. .topbar-left had
    overflow:hidden in one copy and overflow:visible in the other, which broke
    the text-ellipsis truncation. Merged into one clean block below.)
    ============================================================================= */
@@ -807,7 +807,7 @@ textarea:focus-visible,
     .menu {
         position: fixed;
         top: 70px;
-        /* fallback — JS overrides with navbar.getBoundingClientRect().bottom */
+        /* fallback  JS overrides with navbar.getBoundingClientRect().bottom */
         left: 0;
         right: 0;
         bottom: 0;
@@ -1071,7 +1071,7 @@ textarea:focus-visible,
         flex-direction: column;
         position: fixed;
         top: 70px;
-        /* fallback — JS overrides with navbar.getBoundingClientRect().bottom */
+        /* fallback  JS overrides with navbar.getBoundingClientRect().bottom */
         left: 0;
         right: 0;
         height: calc(100vh - 70px);
@@ -2134,7 +2134,7 @@ textarea:focus-visible,
 }
 
 /* =========================
-   7. WHY CHOOSE US — COMPARISON
+   7. WHY CHOOSE US  COMPARISON
    ========================= */
 .svcpg-compare {
     border: 1px solid var(--svcpg-line);
@@ -3170,7 +3170,7 @@ textarea:focus-visible,
 
 
 /* =============================================================================
-   MOBILE RESPONSIVENESS PATCH — lighter overrides to prevent layout breakage
+   MOBILE RESPONSIVENESS PATCH  lighter overrides to prevent layout breakage
    ============================================================================= */
 
 @media screen and (max-width: 600px) {
@@ -4814,7 +4814,7 @@ const NavManager = {
         this.searchInput = document.getElementById('search-input');
 
         // Language dropdown (was present in HTML/CSS but had NO JS wiring at all
-        // in the original code — the button did nothing when clicked).
+        // in the original code  the button did nothing when clicked).
         this.langBtn = document.getElementById('lang-btn');
         this.langList = document.querySelector('.lang-list');
         this.langItems = document.querySelectorAll('.lang-list li');
@@ -4910,7 +4910,7 @@ const NavManager = {
             this.wrapper.addEventListener('mouseleave', () => this.hideMegaMenu());
         }
 
-        // --- Language Dropdown Logic (newly added — previously non-functional) ---
+        // --- Language Dropdown Logic (newly added  previously non-functional) ---
         if (this.langBtn && this.langList) {
             this.langBtn.addEventListener('click', (e) => {
                 e.stopPropagation();

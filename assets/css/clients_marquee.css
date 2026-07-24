@@ -82,7 +82,7 @@ body {
 }
 
 /* -----------------------------------------------------------------------
-   NEW: "in-focus" state — applied by JS to whichever logo is currently
+   NEW: "in-focus" state  applied by JS to whichever logo is currently
    passing through the horizontal center of the marquee. It gets colored
    in, and automatically returns to grayscale once it drifts away from
    center, because the JS below constantly re-evaluates which item is
@@ -97,6 +97,7 @@ body {
     0% {
         transform: translate3d(0, 0, 0);
     }
+
     100% {
         transform: translate3d(-50%, 0, 0);
     }
@@ -108,13 +109,14 @@ body {
     .marquee-track {
         animation: none;
     }
+
     .marquee-item img {
         filter: grayscale(0) opacity(1);
     }
 }
 
 /* =============================================================================
-   RESPONSIVE — fine-tuning on top of the fluid clamp() sizing above.
+   RESPONSIVE  fine-tuning on top of the fluid clamp() sizing above.
    Animation *duration* can't be expressed with clamp(), so it's stepped
    at a couple of breakpoints instead (fewer, larger items need less time
    to feel "fast" on small screens).
@@ -123,11 +125,11 @@ body {
    phones, which packed 3 tiny logos into view at once and made them hard
    to actually see/recognize. Logos are now kept large enough that only
    about 1.5-2 are visible at a time (one clear, one gently peeking in from
-   the edge) — a proper "showcase" feel instead of a cramped strip.
+   the edge)  a proper "showcase" feel instead of a cramped strip.
 
    SPEED FIX: shrinking the item size AND cutting animation-duration at the
    same time (as the previous version did) made the marquee's actual pixel
-   speed FASTER on mobile than on desktop — smaller items covering the same
+   speed FASTER on mobile than on desktop  smaller items covering the same
    -50% translate distance in less time is a speed increase, not a size
    change. The durations below are recalculated per breakpoint so the
    on-screen scroll speed (px/sec) stays roughly consistent with desktop
@@ -143,10 +145,12 @@ body {
     .clients-section {
         padding: 36px 0;
     }
+
     .marquee-track {
         animation-duration: 28s;
         gap: 44px;
     }
+
     .marquee-item {
         width: 150px;
         height: 64px;
@@ -158,6 +162,7 @@ body {
         gap: 38px;
         animation-duration: 25s;
     }
+
     .marquee-item {
         width: 136px;
         height: 58px;
@@ -169,6 +174,7 @@ body {
         gap: 30px;
         animation-duration: 22s;
     }
+
     .marquee-item {
         width: 124px;
         height: 52px;

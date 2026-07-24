@@ -314,7 +314,7 @@ const EventsSliderManager = {
     // pre-computed pixel value (slideStep * count) to decide when/how far
     // to snap back after looping. Any tiny rounding mismatch between that
     // assumed value and the real rendered layout would accumulate a little
-    // more on every loop — which is exactly why a specific slide (e.g.
+    // more on every loop  which is exactly why a specific slide (e.g.
     // "IEEEP Fair 2025") would drift out of place every few loops, then
     // "self correct" once you went backward and forward again.
     //
@@ -323,8 +323,8 @@ const EventsSliderManager = {
     // freshly-measured pixel offset between the two DOM cards involved
     // (old clone-set position vs the equivalent slide in the middle set).
     // Because this delta is measured directly from the DOM every time
-    // (not assumed from a cached constant), there is no rounding drift —
-    // ever — no matter how long you hold down next/prev.
+    // (not assumed from a cached constant), there is no rounding drift 
+    // ever  no matter how long you hold down next/prev.
     // ------------------------------------------------------------------
     moveTo(newActiveIndex) {
         this.activeIndex = newActiveIndex;
@@ -346,7 +346,7 @@ const EventsSliderManager = {
             const delta = this.allCards[newDomIndex].offsetLeft - this.allCards[oldDomIndex].offsetLeft;
 
             // Shift both currentX and targetX by the exact same real delta
-            // so the on-screen position doesn't move even a single pixel —
+            // so the on-screen position doesn't move even a single pixel 
             // only the internal bookkeeping (activeIndex/domIndex) changes.
             this.currentX -= delta;
             this.targetX -= delta;
@@ -394,11 +394,11 @@ const TestimonialsManager = {
         // slider could only loop seamlessly going FORWARD. Clicking "prev"
         // from the very first card animated the track into empty space
         // (nothing existed before index 0 in the DOM) before instantly
-        // snapping to the last card — a visible glitch.
+        // snapping to the last card  a visible glitch.
         //
         // Fix: build BOTH a "before" and an "after" clone set, each in the
         // correct original order via a DocumentFragment (a naive per-item
-        // prepend() would silently reverse the "before" set's order — a
+        // prepend() would silently reverse the "before" set's order  a
         // mistake worth avoiding here too).
         // ------------------------------------------------------------------
         const beforeFrag = document.createDocumentFragment();
@@ -441,7 +441,7 @@ const TestimonialsManager = {
     updateDimensions() {
         if (this.allCards.length < 2) return;
         // BUG FIX: gap was hardcoded to 32, but the CSS changes it to 25px
-        // at the 1200px breakpoint — the hardcoded value silently went out
+        // at the 1200px breakpoint  the hardcoded value silently went out
         // of sync with the real layout, causing cards to be mis-positioned
         // (partially cut off) on tablet widths. Read it from the actual
         // computed style instead, so it always matches whatever the CSS
@@ -480,8 +480,8 @@ const TestimonialsManager = {
 
         // Infinite teleport: once the animation finishes, if we've drifted
         // into a clone set, snap (invisibly, no transition) back into the
-        // real [0, originalCount-1] range. Because every card — real or
-        // clone — has the identical fixed width/gap, this step-based jump
+        // real [0, originalCount-1] range. Because every card  real or
+        // clone  has the identical fixed width/gap, this step-based jump
         // is exact with no accumulated drift.
         setTimeout(() => {
             if (this.currentIndex >= this.originalCount) {
@@ -502,7 +502,7 @@ const TestimonialsManager = {
                 if (entry.isIntersecting) {
                     this.allCards.forEach((card, i) => {
                         // BUG FIX: with the new "before" clone set added,
-                        // the real cards no longer start at index 0 — they
+                        // the real cards no longer start at index 0  they
                         // start at `realOffset`. The original check
                         // (`i < originalCount`) would have staggered the
                         // BEFORE-CLONES instead of the actual visible real
@@ -690,119 +690,119 @@ const PlatformFeaturesManager = {
 
 // ========================= FEATURED INSIGHTS =========================
 const InsightsManager = {
-            init() {
-                // 1. Scroll Reveal Animation for Cards
-                const cards = document.querySelectorAll('.insights-section .card');
+    init() {
+        // 1. Scroll Reveal Animation for Cards
+        const cards = document.querySelectorAll('.insights-section .card');
 
-                // Mobile pe cards horizontal carousel ki tarah chalti hain (see CSS: max-width:1024px).
-                // Wahan hide-then-reveal-on-scroll animation confusing hai: baad wale cards
-                // screen se bahar hone ki wajah se invisible reh jaate hain, aur first-time
-                // visitor ko pata hi nahi chalta ke swipe karke aur cards dekhi ja sakti hain.
-                // Is liye carousel mode mein hum sab cards turant visible kar dete hain —
-                // desktop grid ka reveal-on-scroll waisay ka waisay rehta hai.
-                const isCarouselMode = window.matchMedia('(max-width: 1024px)').matches;
+        // Mobile pe cards horizontal carousel ki tarah chalti hain (see CSS: max-width:1024px).
+        // Wahan hide-then-reveal-on-scroll animation confusing hai: baad wale cards
+        // screen se bahar hone ki wajah se invisible reh jaate hain, aur first-time
+        // visitor ko pata hi nahi chalta ke swipe karke aur cards dekhi ja sakti hain.
+        // Is liye carousel mode mein hum sab cards turant visible kar dete hain 
+        // desktop grid ka reveal-on-scroll waisay ka waisay rehta hai.
+        const isCarouselMode = window.matchMedia('(max-width: 1024px)').matches;
 
-                if (isCarouselMode) {
-                    cards.forEach(card => {
-                        card.style.opacity = '1';
-                        card.style.transform = 'translateY(0)';
-                    });
-                } else {
-                    cards.forEach(card => {
-                        card.style.opacity = '0';
-                        card.style.transform = 'translateY(40px)';
-                        card.style.transition = 'opacity 0.6s cubic-bezier(0.2, 0.8, 0.2, 1), transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1)';
-                    });
+        if (isCarouselMode) {
+            cards.forEach(card => {
+                card.style.opacity = '1';
+                card.style.transform = 'translateY(0)';
+            });
+        } else {
+            cards.forEach(card => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(40px)';
+                card.style.transition = 'opacity 0.6s cubic-bezier(0.2, 0.8, 0.2, 1), transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1)';
+            });
 
-                    const observerOptions = {
-                        root: null,
-                        rootMargin: '0px',
-                        threshold: 0.15
-                    };
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.15
+            };
 
-                    const cardObserver = new IntersectionObserver((entries, observer) => {
-                        entries.forEach(entry => {
-                            if (entry.isIntersecting) {
-                                const index = Array.from(cards).indexOf(entry.target);
-                                const delay = (index % 3) * 150; // Stagger effect
+            const cardObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const index = Array.from(cards).indexOf(entry.target);
+                        const delay = (index % 3) * 150; // Stagger effect
 
-                                setTimeout(() => {
-                                    entry.target.style.opacity = '1';
-                                    entry.target.style.transform = 'translateY(0)';
-                                }, delay);
+                        setTimeout(() => {
+                            entry.target.style.opacity = '1';
+                            entry.target.style.transform = 'translateY(0)';
+                        }, delay);
 
-                                observer.unobserve(entry.target);
-                            }
-                        });
-                    }, observerOptions);
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
 
-                    cards.forEach(card => cardObserver.observe(card));
+            cards.forEach(card => cardObserver.observe(card));
+        }
+
+        // 2. Subtle 3D Tilt Effect on Mouse Move (skipped on touch devices)
+        const isTouchDevice = window.matchMedia('(hover: none) and (pointer: coarse)').matches;
+
+        if (!isTouchDevice) {
+            cards.forEach(card => {
+                card.addEventListener('mousemove', (e) => {
+                    const rect = card.getBoundingClientRect();
+                    const x = e.clientX - rect.left;
+                    const y = e.clientY - rect.top;
+
+                    const centerX = rect.width / 2;
+                    const centerY = rect.height / 2;
+
+                    const rotateX = ((y - centerY) / centerY) * -5;
+                    const rotateY = ((x - centerX) / centerX) * 5;
+
+                    card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)`;
+                    card.style.transition = 'transform 0.1s ease';
+                });
+
+                card.addEventListener('mouseleave', () => {
+                    card.style.transform = '';
+                    card.style.transition = 'transform 0.4s ease, box-shadow 0.4s ease, border-color 0.4s ease';
+                });
+            });
+        }
+
+        // 3. Click/Tap Toggle logic for touch devices (reveal description on click/tap)
+        const isTouch = window.matchMedia('(hover: none), (pointer: coarse)').matches;
+        if (isTouch) {
+            cards.forEach(card => {
+                card.addEventListener('click', (e) => {
+                    // If user clicked the "Read More" link, let it proceed
+                    if (e.target.closest('.card-link')) {
+                        return;
+                    }
+
+                    if (!card.classList.contains('active')) {
+                        // Prevent default actions / routing
+                        e.preventDefault();
+                        e.stopPropagation();
+
+                        // Close all other active cards
+                        cards.forEach(c => c.classList.remove('active'));
+
+                        // Open clicked card
+                        card.classList.add('active');
+                    } else {
+                        // Toggle off if clicked again
+                        e.preventDefault();
+                        card.classList.remove('active');
+                    }
+                });
+            });
+
+            // Close any active card when clicking outside
+            document.addEventListener('click', (e) => {
+                if (!e.target.closest('.card')) {
+                    cards.forEach(card => card.classList.remove('active'));
                 }
-
-                // 2. Subtle 3D Tilt Effect on Mouse Move (skipped on touch devices)
-                const isTouchDevice = window.matchMedia('(hover: none) and (pointer: coarse)').matches;
-
-                if (!isTouchDevice) {
-                    cards.forEach(card => {
-                        card.addEventListener('mousemove', (e) => {
-                            const rect = card.getBoundingClientRect();
-                            const x = e.clientX - rect.left;
-                            const y = e.clientY - rect.top;
-
-                            const centerX = rect.width / 2;
-                            const centerY = rect.height / 2;
-
-                            const rotateX = ((y - centerY) / centerY) * -5;
-                            const rotateY = ((x - centerX) / centerX) * 5;
-
-                            card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)`;
-                            card.style.transition = 'transform 0.1s ease';
-                        });
-
-                        card.addEventListener('mouseleave', () => {
-                            card.style.transform = '';
-                            card.style.transition = 'transform 0.4s ease, box-shadow 0.4s ease, border-color 0.4s ease';
-                        });
-                    });
-                }
-
-                // 3. Click/Tap Toggle logic for touch devices (reveal description on click/tap)
-                const isTouch = window.matchMedia('(hover: none), (pointer: coarse)').matches;
-                if (isTouch) {
-                    cards.forEach(card => {
-                        card.addEventListener('click', (e) => {
-                            // If user clicked the "Read More" link, let it proceed
-                            if (e.target.closest('.card-link')) {
-                                return;
-                            }
-
-                            if (!card.classList.contains('active')) {
-                                // Prevent default actions / routing
-                                e.preventDefault();
-                                e.stopPropagation();
-
-                                // Close all other active cards
-                                cards.forEach(c => c.classList.remove('active'));
-
-                                // Open clicked card
-                                card.classList.add('active');
-                            } else {
-                                // Toggle off if clicked again
-                                e.preventDefault();
-                                card.classList.remove('active');
-                            }
-                        });
-                    });
-
-                    // Close any active card when clicking outside
-                    document.addEventListener('click', (e) => {
-                        if (!e.target.closest('.card')) {
-                            cards.forEach(card => card.classList.remove('active'));
-                        }
-                    });
-                }
-            }
-        };
+            });
+        }
+    }
+};
 
 
 // ========================= CLIENTS MARQUEE CENTER-FOCUS =========================
@@ -841,7 +841,7 @@ const ClientsMarqueeManager = {
         const tick = (now) => {
             rafId = requestAnimationFrame(tick);
 
-            // Nothing moves while paused (e.g. hovering the marquee) — skip all
+            // Nothing moves while paused (e.g. hovering the marquee)  skip all
             // measurement work and leave whatever was already highlighted.
             if (getComputedStyle(track).animationPlayState === 'paused') return;
 

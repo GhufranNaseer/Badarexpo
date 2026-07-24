@@ -218,7 +218,7 @@ END OF LOG - BADAR EXPO SOLUTIONS
 
 
 ================================================================================
-[SESSION 13: EVENTS HUB PAGE (events.html) — FULL PAGE BUILD]
+[SESSION 13: EVENTS HUB PAGE (events.html)  FULL PAGE BUILD]
 - STATUS: 100% Completed
 - OBJECTIVE: Build the first standalone inner page (Events) referenced by the mega menu, matching the homepage's visual quality with unique, purpose-built sections.
 - ACTIONS:
@@ -229,7 +229,7 @@ END OF LOG - BADAR EXPO SOLUTIONS
   5. CROSS-PAGE LINKING: Updated index.html's mega menu Events links and mobile submenu to point to events.html anchors (#our-role, #formats), and added a "View All Events" link to the homepage's Events Showcase Slider header.
   6. NAV INDICATOR: Added a reusable '.active-nav' current-page indicator style to navbar.css for use across all future inner pages.
   7. VALIDATION: Confirmed all 21 local asset references in events.html resolve correctly, HTML tags are fully balanced, and main.js parses without syntax errors.
-- RESULT: events.html is a fully functional, visually distinct hub page — Our Role tabs, portfolio filtering, and calendar timeline are all interactive and reuse real BXSS event assets (IDEAS, IEEEP, DALFA, ITCN Asia, Textile Asia, My Karachi, Ziauddin Convocation, KTPL Award, Saudi Delegation, Vietnam Ambassador, PTPL Grand Finale, Independence Celebrations).
+- RESULT: events.html is a fully functional, visually distinct hub page  Our Role tabs, portfolio filtering, and calendar timeline are all interactive and reuse real BXSS event assets (IDEAS, IEEEP, DALFA, ITCN Asia, Textile Asia, My Karachi, Ziauddin Convocation, KTPL Award, Saudi Delegation, Vietnam Ambassador, PTPL Grand Finale, Independence Celebrations).
 ================================================================================
 
 ================================================================================

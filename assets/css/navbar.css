@@ -653,9 +653,9 @@ textarea:focus-visible,
 }
 
 /* =============================================================================
-   RESPONSIVE — single consolidated breakpoint set
+   RESPONSIVE  single consolidated breakpoint set
    (The original code had this same @media(max-width:1024px) block duplicated
-   twice with slightly different, conflicting values — e.g. .topbar-left had
+   twice with slightly different, conflicting values  e.g. .topbar-left had
    overflow:hidden in one copy and overflow:visible in the other, which broke
    the text-ellipsis truncation. Merged into one clean block below.)
    ============================================================================= */
@@ -763,7 +763,7 @@ textarea:focus-visible,
     .menu {
         position: fixed;
         top: 70px;
-        /* fallback — JS overrides with navbar.getBoundingClientRect().bottom */
+        /* fallback  JS overrides with navbar.getBoundingClientRect().bottom */
         left: 0;
         right: 0;
         bottom: 0;
@@ -1027,7 +1027,7 @@ textarea:focus-visible,
         flex-direction: column;
         position: fixed;
         top: 70px;
-        /* fallback — JS overrides with navbar.getBoundingClientRect().bottom */
+        /* fallback  JS overrides with navbar.getBoundingClientRect().bottom */
         left: 0;
         right: 0;
         height: calc(100vh - 70px);

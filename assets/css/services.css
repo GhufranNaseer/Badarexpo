@@ -690,7 +690,7 @@
 }
 
 /* =========================
-   7. WHY CHOOSE US — COMPARISON
+   7. WHY CHOOSE US  COMPARISON
    ========================= */
 .svcpg-compare {
     border: 1px solid var(--svcpg-line);
@@ -1502,7 +1502,7 @@
         padding: 32px 26px;
     }
 
-/* Keep vertical timeline on mobile */
+    /* Keep vertical timeline on mobile */
 
     .svcpg-numbers-grid {
         grid-template-columns: 1fr;
@@ -1528,7 +1528,7 @@
 }
 
 @media screen and (max-width: 420px) {
-/* Keep vertical timeline on small mobile */
+    /* Keep vertical timeline on small mobile */
 
     .svcpg-industry-chip {
         padding: 12px 18px;
@@ -1611,7 +1611,7 @@
         padding-bottom: 3px;
     }
 
-    .svcpg-process-step > div {
+    .svcpg-process-step>div {
         padding-top: 2px;
     }
 
@@ -1726,7 +1726,7 @@
 
 
 /* =============================================================================
-   MOBILE RESPONSIVENESS PATCH — lighter overrides to prevent layout breakage
+   MOBILE RESPONSIVENESS PATCH  lighter overrides to prevent layout breakage
    ============================================================================= */
 
 @media screen and (max-width: 600px) {

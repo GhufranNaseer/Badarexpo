@@ -22,7 +22,7 @@ const NavManager = {
         this.searchInput = document.getElementById('search-input');
 
         // Language dropdown (was present in HTML/CSS but had NO JS wiring at all
-        // in the original code — the button did nothing when clicked).
+        // in the original code  the button did nothing when clicked).
         this.langBtn = document.getElementById('lang-btn');
         this.langList = document.querySelector('.lang-list');
         this.langItems = document.querySelectorAll('.lang-list li');
@@ -118,7 +118,7 @@ const NavManager = {
             this.wrapper.addEventListener('mouseleave', () => this.hideMegaMenu());
         }
 
-        // --- Language Dropdown Logic (newly added — previously non-functional) ---
+        // --- Language Dropdown Logic (newly added  previously non-functional) ---
         if (this.langBtn && this.langList) {
             this.langBtn.addEventListener('click', (e) => {
                 e.stopPropagation();
