@@ -1,5 +1,5 @@
 /* =============================================================================
-   ABOUT US — FLAGSHIP BRAND STORY PAGE (bxabout-*)
+   ABOUT US : FLAGSHIP BRAND STORY PAGE (bxabout-*)
    A dedicated, fully-isolated design language for the About page.
    Namespace: every selector is prefixed bxabout- so nothing here can ever
    collide with home/, services/, or any other page's CSS.
@@ -61,7 +61,7 @@
 }
 
 /* =============================================================================
-   CHAPTER 01 — ARRIVAL (hero)
+   CHAPTER 01 : ARRIVAL (hero)
    Offset editorial grid: rotated vertical index rail + bleeding portrait with
    an overlapping caption card. Deliberately NOT centered, NOT full-bleed
    text-on-image like Home/Services heroes.
@@ -150,7 +150,7 @@
 
 .ba-arrival-visual {
     position: relative;
-    /* overflow intentionally NOT hidden here — the caption card below is
+    /* overflow intentionally NOT hidden here : the caption card below is
        designed to break out of this column's left edge. Clipping is instead
        scoped to .ba-arrival-frame so the photo itself still stays contained. */
 }
@@ -255,7 +255,7 @@
 }
 
 /* =============================================================================
-   CHAPTER 02 — WHAT WE BELIEVE (philosophy)
+   CHAPTER 02 : WHAT WE BELIEVE (philosophy)
    Typographic list, no cards, no icons. Hovering a line swaps the ambient
    backdrop image behind the whole section (desktop). Mobile: stacked with
    inline thumbnail.
@@ -383,9 +383,9 @@
 }
 
 /* =============================================================================
-   CHAPTER 03 — THE JOURNEY (vertical alternating chapters)
+   CHAPTER 03 : THE JOURNEY (vertical alternating chapters)
    Deliberately vertical + alternating (Home's timeline is a horizontal
-   ledger with dots — this is its opposite: a book, not a spreadsheet).
+   ledger with dots : this is its opposite: a book, not a spreadsheet).
    ============================================================================= */
 .ba-journey {
     background: var(--ba-paper);
@@ -478,7 +478,7 @@
 .ba-chapter--reverse .ba-chapter-year { left: auto; right: -18px; }
 
 /* =============================================================================
-   CHAPTER 04 — LEADERSHIP (a letter, not a split-panel — deliberately the
+   CHAPTER 04 : LEADERSHIP (a letter, not a split-panel : deliberately the
    opposite composition of the existing .ceo-section on Home)
    ============================================================================= */
 .ba-letter {
@@ -584,7 +584,7 @@
 }
 
 /* =============================================================================
-   CHAPTER 05 — CULTURE (horizontal snap filmstrip, not a masonry grid —
+   CHAPTER 05 : CULTURE (horizontal snap filmstrip, not a masonry grid :
    Events page already owns masonry)
    ============================================================================= */
 .ba-culture { padding: 140px 0 120px; background: var(--ba-paper); overflow: hidden; }
@@ -653,7 +653,7 @@
 .ba-frame figcaption b { color: var(--ba-ink); font-weight: 600; }
 
 /* =============================================================================
-   CHAPTER 06 — HOW WE WORK (blueprint process — plan-view aesthetic,
+   CHAPTER 06 : HOW WE WORK (blueprint process : plan-view aesthetic,
    distinct from the Services capability rail)
    ============================================================================= */
 .ba-blueprint {
@@ -715,8 +715,8 @@
 }
 
 /* =============================================================================
-   CHAPTER 07 — CLIENT TRUST (single rotating spotlight quote, not a logo
-   marquee — Home already owns the marquee)
+   CHAPTER 07 : CLIENT TRUST (single rotating spotlight quote, not a logo
+   marquee : Home already owns the marquee)
    ============================================================================= */
 .ba-trust {
     background: var(--ba-paper-deep);
@@ -768,7 +768,7 @@
 .ba-trust-dot.ba-active { background: var(--ba-red); }
 
 /* =============================================================================
-   CHAPTER 08 — GLOBAL PRESENCE (passport-stamp index, not a literal map)
+   CHAPTER 08 : GLOBAL PRESENCE (passport-stamp index, not a literal map)
    ============================================================================= */
 .ba-passport { background: var(--ba-paper); padding: 140px 0; }
 
@@ -823,7 +823,7 @@
 .ba-stamp:hover .ba-stamp-note { color: var(--ba-faint); }
 
 /* =============================================================================
-   CHAPTER 09 — FUTURE VISION (bold split statement)
+   CHAPTER 09 : FUTURE VISION (bold split statement)
    ============================================================================= */
 .ba-vision {
     background: var(--ba-red);
@@ -853,11 +853,11 @@
 }
 
 /* =============================================================================
-   CHAPTER 10 — CTA (final)
+   CHAPTER 10 : CTA (final)
    Outer section sits on the page's light paper background (full width, like
-   every other chapter); the CTA itself is a centered floating card — the
+   every other chapter); the CTA itself is a centered floating card : the
    same "contained card before the footer" pattern used on the Services
-   page — rather than a full-bleed dark band.
+   page : rather than a full-bleed dark band.
    ============================================================================= */
 .ba-cta {
     background: var(--ba-paper);
@@ -983,7 +983,7 @@
 
     /* Once chapters stack into one column, the spine tucks into the
        section's own side gutter (negative offset, into existing padding)
-       instead of bisecting the middle — so it never touches text, and the
+       instead of bisecting the middle : so it never touches text, and the
        chapter content itself is never pushed off its original centering. */
     .ba-journey-spine::before { left: -30px; }
 }

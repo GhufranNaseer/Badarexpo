@@ -1,5 +1,5 @@
 /* =============================================================================
-   ABOUT US PAGE — SCOPED SCRIPT (bxabout)
+   ABOUT US PAGE : SCOPED SCRIPT (bxabout)
    Scroll reveal, creed hover-backdrop swap, and the testimonial spotlight
    rotator. Fully self-contained; touches nothing outside #bxabout.
    ============================================================================= */
