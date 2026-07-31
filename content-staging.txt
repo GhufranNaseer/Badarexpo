@@ -1684,11 +1684,11 @@ textarea:focus-visible,
             --em-brand-red-hover: #b3141a;
             --em-red-glow: rgba(228, 31, 38, 0.15);
             --em-red-glow-soft: rgba(228, 31, 38, 0.05);
-            --em-bg-dark: #08080a;
-            --em-bg-card: #121216;
-            --em-border-color: rgba(255, 255, 255, 0.06);
-            --em-text-light: #f3f4f6;
-            --em-text-muted: #9ca3af;
+            --em-bg-dark: #ffffff;
+            --em-bg-card: #ffffff;
+            --em-border-color: rgba(10, 10, 10, 0.08);
+            --em-text-light: #1a1a1a;
+            --em-text-muted: #555555;
             --em-font-sans: 'Inter', sans-serif;
             --em-ease: cubic-bezier(0.4, 0, 0.2, 1);
             --em-transition: 0.4s var(--em-ease);
@@ -1731,7 +1731,7 @@ textarea:focus-visible,
         #em-page .section-title {
             font-size: 2.5rem;
             font-weight: 800;
-            color: #fff;
+            color: #1a1a1a;
             letter-spacing: -0.5px;
             margin-bottom: 16px;
         }
@@ -1786,8 +1786,8 @@ textarea:focus-visible,
         #em-page .grid-bg {
             position: relative;
             background-image: 
-                linear-gradient(rgba(255, 255, 255, 0.01) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(255, 255, 255, 0.01) 1px, transparent 1px);
+                linear-gradient(rgba(10, 10, 10, 0.015) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(10, 10, 10, 0.015) 1px, transparent 1px);
             background-size: 40px 40px;
         }
 
@@ -1809,6 +1809,8 @@ textarea:focus-visible,
             display: flex;
             align-items: center;
         }
+
+        #em-page .hero-sec { background: #0a0a0a; }
 
         #em-page .hero-grid {
             display: grid;
@@ -1840,7 +1842,7 @@ textarea:focus-visible,
         #em-page .hero-badge-text {
             font-size: 0.75rem;
             font-weight: 700;
-            color: #fff;
+            color: var(--em-brand-red);
             letter-spacing: 1px;
             text-transform: uppercase;
         }
@@ -1850,7 +1852,7 @@ textarea:focus-visible,
             font-weight: 900;
             line-height: 1.15;
             letter-spacing: -1.5px;
-            color: #fff;
+            color: #1a1a1a;
             margin-bottom: 24px;
         }
 
@@ -1878,7 +1880,7 @@ textarea:focus-visible,
             border-radius: 16px;
             padding: 24px;
             position: relative;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
         }
 
         #em-page .console-header {
@@ -1947,7 +1949,7 @@ textarea:focus-visible,
         }
 
         #em-page .console-details-box {
-            background: rgba(255, 255, 255, 0.02);
+            background: rgba(10, 10, 10, 0.025);
             border: 1px solid var(--em-border-color);
             border-radius: 8px;
             padding: 12px 16px;
@@ -1973,7 +1975,7 @@ textarea:focus-visible,
         }
 
         #em-page .console-stat-card {
-            background: rgba(255, 255, 255, 0.02);
+            background: rgba(10, 10, 10, 0.025);
             border: 1px solid var(--em-border-color);
             border-radius: 8px;
             padding: 12px;
@@ -1995,7 +1997,7 @@ textarea:focus-visible,
 
         #em-page .console-stat-info strong {
             font-size: 1rem;
-            color: #fff;
+            color: #1a1a1a;
         }
 
         /* 2. EVENT MANAGEMENT LIFECYCLE */
@@ -2003,6 +2005,8 @@ textarea:focus-visible,
             padding: 100px 0;
             border-top: 1px solid var(--em-border-color);
         }
+
+        #em-page .lifecycle-sec { background: #f7f7f8; }
 
         #em-page .lifecycle-hub {
             position: relative;
@@ -2051,7 +2055,7 @@ textarea:focus-visible,
 
         #em-page .lifecycle-node i {
             font-size: 1.1rem;
-            color: var(--em-text-muted);
+            color: #1a1a1a;
             transition: var(--em-transition);
         }
 
@@ -2059,12 +2063,12 @@ textarea:focus-visible,
         #em-page .lifecycle-node.active {
             border-color: var(--em-brand-red);
             box-shadow: 0 0 15px rgba(228, 31, 38, 0.3);
-            background: #000;
+            background: var(--em-brand-red);
         }
 
         #em-page .lifecycle-node:hover i,
         #em-page .lifecycle-node.active i {
-            color: var(--em-brand-red);
+            color: #1a1a1a;
             transform: scale(1.1);
         }
 
@@ -2080,7 +2084,7 @@ textarea:focus-visible,
         }
 
         #em-page .lifecycle-node.active .lifecycle-node-label {
-            color: #fff;
+            color: #1a1a1a;
         }
 
         #em-page .lifecycle-detail-panel {
@@ -2111,7 +2115,7 @@ textarea:focus-visible,
 
         #em-page .lifecycle-detail-content h4 {
             font-size: 1.5rem;
-            color: #fff;
+            color: #1a1a1a;
             margin-bottom: 8px;
         }
 
@@ -2131,7 +2135,7 @@ textarea:focus-visible,
         }
 
         #em-page .lifecycle-detail-meta strong {
-            color: #fff;
+            color: #1a1a1a;
             display: block;
             margin-bottom: 4px;
         }
@@ -2196,7 +2200,7 @@ textarea:focus-visible,
         #em-page .service-content h3 {
             font-size: 2.2rem;
             font-weight: 800;
-            color: #fff;
+            color: #1a1a1a;
             margin-bottom: 20px;
             letter-spacing: -0.5px;
         }
@@ -2237,7 +2241,7 @@ textarea:focus-visible,
         #em-page .spec-details strong {
             display: block;
             font-size: 0.9rem;
-            color: #fff;
+            color: #1a1a1a;
             margin-bottom: 2px;
         }
 
@@ -2250,7 +2254,7 @@ textarea:focus-visible,
         #em-page .control-sec {
             padding: 100px 0;
             border-top: 1px solid var(--em-border-color);
-            background: #050507;
+            border-top: 1px solid var(--em-border-color);
         }
 
         #em-page .console-dashboard {
@@ -2260,13 +2264,13 @@ textarea:focus-visible,
             display: grid;
             grid-template-columns: 320px 1fr;
             min-height: 560px;
-            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5);
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.15);
             overflow: hidden;
         }
 
         #em-page .console-nav {
             border-right: 1px solid var(--em-border-color);
-            background: rgba(0, 0, 0, 0.2);
+            background: rgba(10, 10, 10, 0.03);
             padding: 24px;
         }
 
@@ -2294,13 +2298,13 @@ textarea:focus-visible,
         }
 
         #em-page .console-tab:hover {
-            background: rgba(255, 255, 255, 0.02);
-            color: #fff;
+            background: rgba(10, 10, 10, 0.035);
+            color: #1a1a1a;
         }
 
         #em-page .console-tab.active {
             background: var(--em-red-glow-soft);
-            color: #fff;
+            color: var(--em-brand-red);
             border: 1px solid rgba(228, 31, 38, 0.2);
         }
 
@@ -2345,7 +2349,7 @@ textarea:focus-visible,
         #em-page .pane-title-wrap h4 {
             font-size: 1.75rem;
             font-weight: 800;
-            color: #fff;
+            color: #1a1a1a;
             margin-bottom: 4px;
         }
 
@@ -2469,7 +2473,7 @@ textarea:focus-visible,
         #em-page .operator-info strong {
             display: block;
             font-size: 0.85rem;
-            color: #fff;
+            color: #1a1a1a;
         }
 
         /* 5. LIVE EVENT EXPERIENCE */
@@ -2551,7 +2555,7 @@ textarea:focus-visible,
         }
 
         #em-page .journey-node.active .journey-title {
-            color: #fff;
+            color: #1a1a1a;
         }
 
         #em-page .journey-details-container {
@@ -2567,7 +2571,7 @@ textarea:focus-visible,
 
         #em-page .journey-detail-card h4 {
             font-size: 1.4rem;
-            color: #fff;
+            color: #1a1a1a;
             margin-bottom: 8px;
         }
 
@@ -2580,7 +2584,7 @@ textarea:focus-visible,
         #em-page .conf-sec {
             padding: 100px 0;
             border-top: 1px solid var(--em-border-color);
-            background: #050507;
+            background: #ffffff;
         }
 
         #em-page .editorial-grid {
@@ -2593,7 +2597,7 @@ textarea:focus-visible,
         #em-page .editorial-content h3 {
             font-size: 2.5rem;
             font-weight: 900;
-            color: #fff;
+            color: #1a1a1a;
             line-height: 1.2;
             letter-spacing: -1px;
             margin-bottom: 24px;
@@ -2626,7 +2630,7 @@ textarea:focus-visible,
 
         #em-page .editorial-metric-card h4 {
             font-size: 1rem;
-            color: #fff;
+            color: #1a1a1a;
             margin-bottom: 6px;
         }
 
@@ -2645,7 +2649,7 @@ textarea:focus-visible,
             border: 1px solid var(--em-border-color);
             border-radius: 16px;
             padding: 24px;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
         }
 
         #em-page .console-row {
@@ -2673,7 +2677,7 @@ textarea:focus-visible,
         }
 
         #em-page .console-row-details h5 {
-            color: #fff;
+            color: #1a1a1a;
             font-size: 0.9rem;
             margin-bottom: 2px;
         }
@@ -2699,7 +2703,7 @@ textarea:focus-visible,
         }
 
         #em-page .status-upcoming {
-            background: rgba(255, 255, 255, 0.05);
+            background: rgba(10, 10, 10, 0.045);
             color: var(--em-text-muted);
             border: 1px solid var(--em-border-color);
         }
@@ -2732,7 +2736,7 @@ textarea:focus-visible,
 
         #em-page .corp-tab-btn:hover {
             border-color: var(--em-brand-red);
-            color: #fff;
+            color: var(--em-brand-red);
         }
 
         #em-page .corp-tab-btn.active {
@@ -2744,7 +2748,7 @@ textarea:focus-visible,
 
         #em-page .corp-pane {
             display: none;
-            background: var(--em-bg-card);
+            background: #f7f7f8;
             border: 1px solid var(--em-border-color);
             border-radius: 16px;
             padding: 40px;
@@ -2760,7 +2764,7 @@ textarea:focus-visible,
 
         #em-page .corp-pane-info h4 {
             font-size: 2rem;
-            color: #fff;
+            color: #1a1a1a;
             margin-bottom: 16px;
             font-weight: 800;
         }
@@ -2810,7 +2814,7 @@ textarea:focus-visible,
         #em-page .kpi-sec {
             padding: 80px 0;
             border-top: 1px solid var(--em-border-color);
-            background: linear-gradient(180deg, #050507 0%, var(--em-bg-dark) 100%);
+            background: #0a0a0a;
         }
 
         #em-page .kpi-grid {
@@ -2854,7 +2858,7 @@ textarea:focus-visible,
         #em-page .kpi-val {
             font-size: 2.2rem;
             font-weight: 800;
-            color: #fff;
+            color: #1a1a1a;
             margin-bottom: 8px;
             letter-spacing: -1px;
         }
@@ -2872,6 +2876,8 @@ textarea:focus-visible,
             padding: 100px 0;
             border-top: 1px solid var(--em-border-color);
         }
+
+        #em-page .bts-sec { background: #f7f7f8; }
 
         #em-page .bts-editorial {
             display: grid;
@@ -2915,7 +2921,7 @@ textarea:focus-visible,
         #em-page .bts-content h3 {
             font-size: 2.5rem;
             font-weight: 900;
-            color: #fff;
+            color: #1a1a1a;
             margin-bottom: 24px;
         }
 
@@ -2933,7 +2939,7 @@ textarea:focus-visible,
 
         #em-page .bts-quote p {
             font-style: italic;
-            color: #fff;
+            color: #1a1a1a;
             font-size: 1rem;
             margin-bottom: 8px;
         }
@@ -2949,7 +2955,7 @@ textarea:focus-visible,
         #em-page .comparison-sec {
             padding: 100px 0;
             border-top: 1px solid var(--em-border-color);
-            background: #050507;
+            border-top: 1px solid var(--em-border-color);
         }
 
         #em-page .comparison-table {
@@ -2975,12 +2981,12 @@ textarea:focus-visible,
         }
 
         #em-page .comparison-header {
-            background: rgba(0, 0, 0, 0.2);
+            background: rgba(10, 10, 10, 0.035);
             font-weight: 700;
             text-transform: uppercase;
             font-size: 0.75rem;
             letter-spacing: 1px;
-            color: #fff;
+            color: #1a1a1a;
         }
 
         #em-page .comparison-header .col-bxss {
@@ -2994,7 +3000,7 @@ textarea:focus-visible,
 
         #em-page .col-label {
             font-weight: 600;
-            color: #fff;
+            color: #1a1a1a;
         }
 
         #em-page .col-others {
@@ -3002,7 +3008,7 @@ textarea:focus-visible,
         }
 
         #em-page .col-bxss {
-            color: #fff;
+            color: #1a1a1a;
             font-weight: 600;
             display: flex;
             align-items: center;
@@ -3022,7 +3028,9 @@ textarea:focus-visible,
         /* 11. INDUSTRIES WE MANAGE */
         #em-page .ind-sec {
             padding: 80px 0;
-            border-top: 1px solid var(--em-border-color);
+        }
+
+        #em-page .ind-sec { background: #0a0a0a; }
         }
 
         #em-page .ind-scroller-wrapper {
@@ -3053,7 +3061,7 @@ textarea:focus-visible,
             gap: 16px;
             font-weight: 600;
             font-size: 0.95rem;
-            color: #fff;
+            color: #1a1a1a;
             transition: var(--em-transition);
             cursor: default;
         }
@@ -3151,7 +3159,8 @@ textarea:focus-visible,
         }
 
         #em-page .cta-card {
-            background: radial-gradient(circle at top right, rgba(228, 31, 38, 0.1) 0%, rgba(18, 18, 22, 0.9) 60%);
+            background-color: #121216;
+            background-image: radial-gradient(circle at top right, rgba(228, 31, 38, 0.18), transparent 60%);
             border: 1px solid rgba(228, 31, 38, 0.25);
             border-radius: 20px;
             padding: 60px;
@@ -3159,7 +3168,7 @@ textarea:focus-visible,
             grid-template-columns: 1fr 1fr;
             gap: 60px;
             align-items: center;
-            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.25);
             position: relative;
             z-index: 2;
         }
@@ -3387,7 +3396,7 @@ textarea:focus-visible,
             }
 
             #em-page .col-label {
-                background: rgba(255, 255, 255, 0.02);
+                background: rgba(10, 10, 10, 0.025);
             }
 
             #em-page .kpi-grid {
@@ -4187,7 +4196,7 @@ textarea:focus-visible,
             }
 
             #em-page .bts-visual::-webkit-scrollbar-track {
-                background: rgba(255, 255, 255, 0.05);
+                background: rgba(10, 10, 10, 0.06);
                 border-radius: 10px;
             }
 
@@ -4258,8 +4267,378 @@ textarea:focus-visible,
             }
         }
 
+        /* ============================================================
+           MOBILE RESPONSIVE FIX  FAQ ACCORDION + PREMIUM CTA SECTION
+           (mirrors the mobile treatment used on services.html's
+           .svc-faq / .svc-cta: tighter padding, circular icon badges,
+           stacked buttons, smaller type scale)
+           ============================================================ */
+
+        @media (max-width: 768px) {
+
+            /* ---------- FAQ SECTION ---------- */
+            #em-page .faq-sec {
+                padding: 60px 0;
+            }
+
+            #em-page .faq-accordion {
+                margin-top: 30px;
+            }
+
+            #em-page .faq-item {
+                border-radius: 12px;
+                margin-bottom: 12px;
+            }
+
+            #em-page .faq-trigger {
+                padding: 18px 16px;
+                gap: 14px;
+            }
+
+            #em-page .faq-trigger h4 {
+                font-size: 0.92rem;
+                line-height: 1.4;
+            }
+
+            #em-page .faq-trigger i {
+                width: 26px;
+                height: 26px;
+                border-radius: 50%;
+                background: var(--em-red-glow-soft);
+                display: inline-flex;
+                align-items: center;
+                justify-content: center;
+                font-size: 0.75rem;
+                flex-shrink: 0;
+            }
+
+            #em-page .faq-item.faq-active .faq-trigger i {
+                background: var(--em-brand-red);
+                color: #fff;
+            }
+
+            #em-page .faq-content-inner {
+                padding: 0 16px 18px;
+                font-size: 0.85rem;
+                line-height: 1.65;
+            }
+
+            /* ---------- PREMIUM CTA SECTION ---------- */
+            #em-page .cta-sec {
+                padding: 70px 0;
+            }
+
+            #em-page .cta-card {
+                padding: 28px 20px;
+                border-radius: 16px;
+                gap: 32px;
+            }
+
+            #em-page .cta-info h3 {
+                font-size: 1.55rem;
+                margin-bottom: 14px;
+            }
+
+            #em-page .cta-info p {
+                font-size: 0.92rem;
+                margin-bottom: 20px;
+            }
+
+            #em-page .cta-points {
+                gap: 12px;
+            }
+
+            #em-page .cta-point-item {
+                font-size: 0.85rem;
+                gap: 10px;
+            }
+
+            #em-page .scheduler-console {
+                padding: 20px;
+                border-radius: 10px;
+            }
+
+            #em-page .scheduler-console h4 {
+                font-size: 1rem;
+                margin-bottom: 16px;
+            }
+
+            #em-page .form-grid {
+                gap: 12px;
+            }
+
+            #em-page .form-group input,
+            #em-page .form-group select,
+            #em-page .form-group textarea {
+                padding: 11px 14px;
+                font-size: 0.8rem;
+            }
+        }
+
+        @media (max-width: 420px) {
+            #em-page .faq-trigger h4 {
+                font-size: 0.85rem;
+            }
+
+            #em-page .faq-content-inner {
+                font-size: 0.8rem;
+            }
+
+            #em-page .cta-info h3 {
+                font-size: 1.35rem;
+            }
+
+            #em-page .cta-info p {
+                font-size: 0.85rem;
+            }
+
+            #em-page .cta-card {
+                padding: 24px 16px;
+            }
+
+            #em-page .scheduler-console {
+                padding: 16px;
+            }
+        }
+
+        /* ============================================================
+           DARK SECTIONS  HERO / KPI / INDUSTRIES (deliberate ink-black
+           bands for rhythm, matching services.html's mix of light
+           sections with occasional dark "ink" sections rather than a
+           uniformly white page). Any text/border sitting directly on
+           these black backgrounds is flipped back to light here; the
+           floating white cards inside them (console widget, KPI cards,
+           industry chips) already read correctly and are untouched.
+           ============================================================ */
+
+        #em-page .hero-headline {
+            color: #ffffff;
+        }
+
+        #em-page .hero-copy {
+            color: rgba(255, 255, 255, 0.65);
+        }
+
+        #em-page .em-btn-outline {
+            background: transparent;
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            color: #ffffff;
+        }
+
+        #em-page .em-btn-outline:hover {
+            background: rgba(228, 31, 38, 0.1);
+        }
+
+        #em-page .hero-sec .grid-bg,
+        #em-page .hero-sec.grid-bg {
+            background-image:
+                linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+        }
+
+        #em-page .ind-sec .section-title {
+            color: #ffffff;
+        }
+
+        /* Industry chips: fully black cards (not white floating chips)
+           matching the black section behind them. Icon stays a muted
+           neutral by default and turns brand red on hover, mirroring
+           the lifecycle node's hover/active accent pattern. */
+        #em-page .ind-card {
+            background: #16161a;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            color: #ffffff;
+        }
+
+        #em-page .ind-card i {
+            color: rgba(255, 255, 255, 0.55);
+        }
+
+        #em-page .ind-card:hover {
+            border-color: var(--em-brand-red);
+            box-shadow: 0 0 15px rgba(228, 31, 38, 0.25);
+        }
+
+        #em-page .ind-card:hover i {
+            color: var(--em-brand-red);
+        }
+
+        /* KPI cards: fully black cards matching the black KPI section */
+        #em-page .kpi-card {
+            background: #16161a;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        #em-page .kpi-val {
+            color: #ffffff;
+        }
+
+        #em-page .kpi-label {
+            color: rgba(255, 255, 255, 0.55);
+        }
+
+        #em-page .kpi-card:hover {
+            border-color: rgba(228, 31, 38, 0.35);
+            box-shadow: 0 10px 25px rgba(228, 31, 38, 0.15);
+        }
+
+        /* ============================================================
+           Command Center ("Live Operations")  reverted to full dark
+           theme (as originally), since white panels here didn't read
+           well. Everything below is scoped to .control-sec only.
+           ============================================================ */
+        #em-page .control-sec {
+            background: #0a0a0a;
+        }
+
+        #em-page .control-sec .console-dashboard {
+            background: #121216;
+            border-color: rgba(255, 255, 255, 0.08);
+        }
+
+        #em-page .control-sec .console-nav {
+            border-right-color: rgba(255, 255, 255, 0.08);
+            background: rgba(255, 255, 255, 0.02);
+        }
+
+        #em-page .control-sec .console-tab {
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        #em-page .control-sec .console-tab:hover {
+            background: rgba(255, 255, 255, 0.03);
+            color: #ffffff;
+        }
+
+        #em-page .control-sec .console-pane-header {
+            border-bottom-color: rgba(255, 255, 255, 0.08);
+        }
+
+        #em-page .control-sec .pane-title-wrap h4 {
+            color: #ffffff;
+        }
+
+        #em-page .control-sec .pane-title-wrap p {
+            color: rgba(255, 255, 255, 0.55);
+        }
+
+        #em-page .control-sec .pane-bullet-list li {
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        #em-page .control-sec .pane-footer {
+            border-top-color: rgba(255, 255, 255, 0.08);
+        }
+
+        #em-page .control-sec .operator-avatar {
+            border-color: rgba(255, 255, 255, 0.08);
+        }
+
+        #em-page .control-sec .operator-info span {
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        #em-page .control-sec .operator-info strong {
+            color: #ffffff;
+        }
+
+        #em-page .control-sec .section-title {
+            color: #ffffff;
+        }
+
+        #em-page .control-sec .section-desc {
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        #em-page .control-sec .pane-body > div:not(.pane-details) h5 {
+            color: #ffffff;
+        }
+
+        /* FAQ + CTA SECTIONS  LIGHT THEME (matches services.html's
+           .svc-faq light-gray section / white cards, and .svc-cta's
+           white section wrapper with the dark card floating on top).
+           Applies at every screen size, not just mobile.
+           ============================================================ */
+
+        /* ---------- FAQ: light gray section, white question cards ---------- */
+        #em-page .faq-sec {
+            background: #f7f7f8;
+            border-top: 1px solid rgba(0, 0, 0, 0.06);
+        }
+
+        #em-page .faq-sec .section-badge {
+            background: rgba(228, 31, 38, 0.08);
+            border-color: rgba(228, 31, 38, 0.18);
+            color: var(--em-brand-red);
+        }
+
+        #em-page .faq-sec .section-title {
+            color: #1a1a1a;
+        }
+
+        #em-page .faq-sec .section-desc {
+            color: #555;
+        }
+
+        #em-page .faq-item {
+            background: #ffffff;
+            border: 1px solid rgba(0, 0, 0, 0.08);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
+        }
+
+        #em-page .faq-item:hover {
+            border-color: rgba(228, 31, 38, 0.25);
+        }
+
+        #em-page .faq-item.faq-active {
+            border-color: var(--em-brand-red);
+        }
+
+        #em-page .faq-trigger h4 {
+            color: #1a1a1a;
+        }
+
+        #em-page .faq-item.faq-active .faq-trigger h4 {
+            color: var(--em-brand-red);
+        }
+
+        #em-page .faq-trigger i {
+            color: var(--em-brand-red);
+        }
+
+        #em-page .faq-content-inner {
+            color: #555;
+        }
+
+        /* ---------- CTA: white section wrapper, card stays dark on top ---------- */
+        #em-page .cta-sec {
+            background: #ffffff;
+            border-top: 1px solid rgba(0, 0, 0, 0.06);
+        }
+
+        /* The ambient red glow-orb was designed to blend into the dark
+           page background; on a white section it reads as a stray red
+           smudge outside the card, so it's hidden here to keep the
+           section as clean as services.html's white CTA wrapper. */
+        #em-page .cta-sec .glow-orb {
+            display: none;
+        }
+
+        /* The CTA card stays intentionally dark; a few children were
+           still inheriting the page-wide light-theme text tokens
+           (dark ink / dark muted gray), making them invisible against
+           the card's dark background. Restore light text here. */
+        #em-page .cta-info p {
+            color: rgba(255, 255, 255, 0.65);
+        }
+
+        #em-page .cta-point-item {
+            color: #ffffff;
+        }
+
     </style>
 </head>
+
 
 <body>
     <!-- ========================= [TEMPLATE: header.php START] ========================= -->

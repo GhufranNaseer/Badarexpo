@@ -1,3 +1,4 @@
+/* 3. EXHIBITION MANAGEMENT PAGE INTERACTIVE SCRIPT */
 /* =============================================================================
    BADAR EXPO SOLUTIONS - EXHIBITION MANAGEMENT PAGE JAVASCRIPT (exhibitionmanagement.js)
    ============================================================================= */
