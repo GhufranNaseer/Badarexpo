@@ -1,3 +1,8 @@
+/* 3. GROWTH SERVICES PAGE SPECIFIC STYLES */
+/* =============================================================================
+   BADAR EXPO SOLUTIONS - GROWTH SERVICES PAGE CUSTOM STYLES (growthservices.css)
+   ============================================================================= */
+
 * {
             box-sizing: border-box;
             margin: 0;
@@ -233,6 +238,7 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
+            gap: 14px;
             border-bottom: 1px solid rgba(255, 255, 255, 0.08);
             padding-bottom: 16px;
             margin-bottom: 24px;
@@ -240,6 +246,7 @@
 
         #gs-page .dash-controls {
             display: flex;
+            flex-shrink: 0;
             gap: 8px;
         }
 
@@ -259,9 +266,14 @@
             text-transform: uppercase;
             letter-spacing: 1.5px;
             font-weight: 600;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            min-width: 0;
         }
 
         #gs-page .dash-status {
+            flex-shrink: 0;
             font-size: 11px;
             color: var(--gs-green);
             display: flex;
@@ -719,12 +731,19 @@
         #gs-page .funnel-tier-label {
             font-weight: 700;
             font-size: 14px;
+            flex: 1 1 auto;
+            min-width: 0;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
         }
 
         #gs-page .funnel-tier-percent {
             font-size: 12px;
             font-weight: 700;
             color: var(--gs-brand-red);
+            flex-shrink: 0;
+            margin-left: 10px;
         }
 
         /* Funnel details panel on the right */
@@ -1200,50 +1219,570 @@
         /* ==========================================
            RESPONSIVE LAYOUTS
            ========================================== */
+
+        /* ================= TABLET / SMALL LAPTOP (<=1024px) ================= */
         @media (max-width: 1024px) {
+
+            #gs-page .gs-container {
+                padding: 0 20px;
+            }
+
+            #gs-page .hero-section,
+            #gs-page .ecosystem-section,
+            #gs-page .pillars-section,
+            #gs-page .funnel-section,
+            #gs-page .calculator-section,
+            #gs-page .case-studies-section,
+            #gs-page .faq-section,
+            #gs-page .cta-section {
+                padding: 70px 0;
+            }
+
+            /* ---- Hero dashboard mockup ---- */
+            #gs-page .dashboard-showcase {
+                padding: 18px;
+            }
+
             #gs-page .dash-grid {
                 grid-template-columns: 1fr;
+                gap: 18px;
             }
-            #gs-page .pillars-grid {
-                grid-template-columns: 1fr;
-                gap: 24px;
+
+            #gs-page .dash-chart-bars {
+                height: 160px;
             }
-            #gs-page .funnel-grid {
-                grid-template-columns: 1fr;
-                gap: 40px;
+
+            #gs-page .dash-stats-panel {
+                flex-direction: row;
             }
-            #gs-page .calculator-box {
-                grid-template-columns: 1fr;
+
+            #gs-page .dash-stats-panel .dash-stat-card {
+                flex: 1;
             }
-            #gs-page .calc-inputs {
-                border-right: none;
-                border-bottom: 1px solid var(--gs-slate-100);
-            }
-            #gs-page .cases-deck {
-                grid-template-columns: 1fr 1fr;
-            }
-            #gs-page .cta-card {
-                grid-template-columns: 1fr;
-                padding: 40px 30px;
-            }
+
+            /* ---- Journey map ---- */
             #gs-page .journey-map-container {
                 grid-template-columns: 1fr 1fr;
-                gap: 30px;
+                gap: 24px;
             }
+
             #gs-page .journey-map-container::before {
                 display: none;
             }
+
+            /* ---- Pillars: 2-up on tablet instead of jumping to 1 ---- */
+            #gs-page .pillars-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 24px;
+            }
+
+            /* ---- Funnel simulator ---- */
+            #gs-page .funnel-grid {
+                grid-template-columns: 1fr;
+                gap: 36px;
+            }
+
+            #gs-page .funnel-info-panel {
+                padding: 30px;
+            }
+
+            /* ---- ROI calculator ---- */
+            #gs-page .calculator-box {
+                grid-template-columns: 1fr;
+                max-width: 560px;
+            }
+
+            #gs-page .calc-inputs {
+                border-right: none;
+                border-bottom: 1px solid var(--gs-slate-100);
+                padding: 32px;
+            }
+
+            #gs-page .calc-results {
+                padding: 32px;
+            }
+
+            /* ---- Case studies ---- */
+            #gs-page .cases-deck {
+                grid-template-columns: 1fr 1fr;
+                gap: 22px;
+            }
+
+            /* ---- CTA card ---- */
+            #gs-page .cta-card {
+                grid-template-columns: 1fr;
+                padding: 40px 32px;
+                gap: 36px;
+            }
         }
 
+        /* ================= MOBILE / TABLET PORTRAIT (<=768px) ================= */
         @media (max-width: 768px) {
+
+            #gs-page .hero-section,
+            #gs-page .ecosystem-section,
+            #gs-page .pillars-section,
+            #gs-page .funnel-section,
+            #gs-page .calculator-section,
+            #gs-page .case-studies-section,
+            #gs-page .faq-section,
+            #gs-page .cta-section {
+                padding: 56px 0;
+            }
+
+            #gs-page .sec-intro-centered {
+                margin-bottom: 40px;
+            }
+
+            /* ---- Hero ---- */
+            #gs-page .hero-btns {
+                flex-direction: column;
+                align-items: stretch;
+                gap: 12px;
+                margin-bottom: 40px;
+            }
+
+            #gs-page .hero-btns .gs-btn {
+                width: 100%;
+            }
+
+            #gs-page .dashboard-showcase {
+                padding: 14px;
+                border-radius: 12px;
+            }
+
+            #gs-page .dash-header {
+                padding-bottom: 12px;
+                margin-bottom: 18px;
+            }
+
+            #gs-page .dash-title {
+                font-size: 9.5px;
+                letter-spacing: 1px;
+            }
+
+            #gs-page .dash-status {
+                font-size: 9.5px;
+            }
+
+            #gs-page .dash-chart-panel {
+                padding: 14px;
+            }
+
+            #gs-page .dash-chart-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 10px;
+                margin-bottom: 24px;
+            }
+
+            #gs-page .dash-chart-bars {
+                height: 130px;
+            }
+
+            #gs-page .dash-bar-label {
+                font-size: 8.5px;
+                margin-top: 6px;
+            }
+
+            #gs-page .dash-bar-tooltip {
+                font-size: 8.5px;
+                padding: 2px 5px;
+                top: -24px;
+            }
+
+            #gs-page .dash-stats-panel {
+                flex-direction: column;
+                gap: 12px;
+            }
+
+            #gs-page .dash-stat-card {
+                padding: 14px;
+            }
+
+            #gs-page .dash-stat-value {
+                font-size: 22px;
+            }
+
             #gs-page .hero-metrics-grid {
                 grid-template-columns: 1fr 1fr;
-                gap: 30px;
+                gap: 24px;
+                margin-top: 40px;
+                padding-top: 30px;
             }
-            #gs-page .cases-deck {
-                grid-template-columns: 1fr;
+
+            #gs-page .hero-metric-num {
+                font-size: 28px;
             }
+
+            /* ---- Journey map ---- */
             #gs-page .journey-map-container {
                 grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            #gs-page .journey-card {
+                padding: 26px 22px;
+            }
+
+            /* ---- Pillars ---- */
+            #gs-page .pillars-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            #gs-page .pillar-card {
+                padding: 32px 26px;
+            }
+
+            /* ---- Funnel ---- */
+            #gs-page .funnel-pyramid {
+                gap: 8px;
+            }
+
+            #gs-page .funnel-tier {
+                width: max(var(--width), 78%);
+                padding: 0 16px;
+                height: 46px;
+            }
+
+            #gs-page .funnel-tier-label {
+                font-size: 12.5px;
+            }
+
+            #gs-page .funnel-tier-percent {
+                font-size: 11px;
+                margin-left: 8px;
+            }
+
+            #gs-page .funnel-info-panel {
+                padding: 26px 22px;
+            }
+
+            #gs-page .funnel-panel-title h4 {
+                font-size: 17px;
+            }
+
+            #gs-page .funnel-panel-icon {
+                width: 38px;
+                height: 38px;
+                font-size: 15px;
+            }
+
+            #gs-page .funnel-panel-body p {
+                font-size: 13.5px;
+            }
+
+            #gs-page .funnel-tactic-item {
+                font-size: 12.5px;
+            }
+
+            /* ---- Calculator ---- */
+            #gs-page .calculator-box {
+                border-radius: 14px;
+            }
+
+            #gs-page .calc-inputs,
+            #gs-page .calc-results {
+                padding: 26px 22px;
+            }
+
+            #gs-page .calc-output-num {
+                font-size: 26px;
+            }
+
+            /* ---- Case studies ---- */
+            #gs-page .cases-deck {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            #gs-page .case-deck-img {
+                height: 180px;
+            }
+
+            /* ---- FAQ ---- */
+            #gs-page .faq-accordion {
+                margin-top: 30px;
+            }
+
+            #gs-page .faq-item {
+                border-radius: 10px;
+                margin-bottom: 12px;
+            }
+
+            #gs-page .faq-trigger {
+                padding: 16px 16px;
+                font-size: 13.5px;
+                gap: 14px;
+            }
+
+            #gs-page .faq-trigger i {
+                width: 26px;
+                height: 26px;
+                border-radius: 50%;
+                background: var(--gs-red-glow-soft);
+                display: inline-flex;
+                align-items: center;
+                justify-content: center;
+                font-size: 12px;
+                flex-shrink: 0;
+            }
+
+            #gs-page .faq-item.faq-active .faq-trigger i {
+                background: var(--gs-brand-red);
+                color: #ffffff;
+            }
+
+            #gs-page .faq-content p {
+                padding: 0 16px 16px 16px;
+                font-size: 13px;
+                line-height: 1.6;
+            }
+
+            /* ---- CTA ---- */
+            #gs-page .cta-card {
+                padding: 30px 22px;
+                gap: 30px;
+                border-radius: 16px;
+            }
+
+            #gs-page .cta-left-content h2 {
+                margin-bottom: 12px;
+            }
+
+            #gs-page .cta-left-content p {
+                font-size: 13.5px;
+                margin-bottom: 22px;
+            }
+
+            #gs-page .cta-actions {
+                flex-direction: column;
+                align-items: stretch;
+                gap: 12px;
+            }
+
+            #gs-page .cta-actions .gs-btn {
+                width: 100%;
+            }
+
+            #gs-page .cta-right-info {
+                padding: 22px;
+                border-radius: 10px;
+            }
+
+            #gs-page .cta-info-title {
+                font-size: 10px;
+                margin-bottom: 16px;
+            }
+
+            #gs-page .cta-info-row {
+                gap: 10px;
+                padding: 10px 0;
+            }
+
+            #gs-page .cta-info-row i {
+                font-size: 14px;
+            }
+
+            #gs-page .cta-info-text strong {
+                font-size: 11px;
+            }
+
+            #gs-page .cta-info-text a,
+            #gs-page .cta-info-text span {
+                font-size: 13px;
+            }
+        }
+
+        /* ================= SMALL MOBILE (<=480px) ================= */
+        @media (max-width: 480px) {
+
+            #gs-page .gs-container {
+                padding: 0 16px;
+            }
+
+            #gs-page .hero-section,
+            #gs-page .ecosystem-section,
+            #gs-page .pillars-section,
+            #gs-page .funnel-section,
+            #gs-page .calculator-section,
+            #gs-page .case-studies-section,
+            #gs-page .faq-section,
+            #gs-page .cta-section {
+                padding: 44px 0;
+            }
+
+            #gs-page .hero-badge {
+                font-size: 9.5px;
+                padding: 5px 11px;
+            }
+
+            /* ---- Hero dashboard: chart legend + bars need to breathe ---- */
+            #gs-page .dashboard-showcase {
+                padding: 12px;
+            }
+
+            #gs-page .dash-controls {
+                gap: 6px;
+            }
+
+            #gs-page .dash-dot {
+                width: 8px;
+                height: 8px;
+            }
+
+            #gs-page .dash-chart-legend {
+                flex-wrap: wrap;
+                gap: 8px;
+                font-size: 10px;
+            }
+
+            #gs-page .dash-chart-bars {
+                height: 110px;
+                padding-top: 14px;
+            }
+
+            #gs-page .dash-bar-container {
+                width: 11%;
+            }
+
+            #gs-page .dash-bar-label {
+                font-size: 7.5px;
+            }
+
+            #gs-page .dash-stat-value {
+                font-size: 20px;
+            }
+
+            #gs-page .dash-stat-title {
+                font-size: 10px;
+            }
+
+            #gs-page .hero-metrics-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 20px;
+            }
+
+            #gs-page .hero-metric-num {
+                font-size: 24px;
+            }
+
+            #gs-page .hero-metric-lbl {
+                font-size: 10.5px;
+            }
+
+            /* ---- Journey / Pillars / Funnel fine tuning ---- */
+            #gs-page .journey-card {
+                padding: 22px 18px;
+            }
+
+            #gs-page .journey-card-step {
+                width: 38px;
+                height: 38px;
+                font-size: 13px;
+                margin-bottom: 16px;
+            }
+
+            #gs-page .pillar-card {
+                padding: 28px 20px;
+            }
+
+            #gs-page .pillar-card-icon {
+                width: 50px;
+                height: 50px;
+                font-size: 20px;
+                margin-bottom: 22px;
+            }
+
+            #gs-page .pillar-card h3 {
+                font-size: 19px;
+            }
+
+            #gs-page .funnel-pyramid {
+                gap: 8px;
+                width: 100%;
+            }
+
+            #gs-page .funnel-tier {
+                width: 100% !important;
+                padding: 0 14px;
+                height: 44px;
+            }
+
+            #gs-page .funnel-tier-label {
+                font-size: 11.5px;
+            }
+
+            #gs-page .funnel-tier-percent {
+                font-size: 11px;
+                margin-left: 8px;
+            }
+
+            #gs-page .funnel-info-panel {
+                padding: 22px 18px;
+            }
+
+            #gs-page .funnel-panel-header {
+                gap: 12px;
+            }
+
+            #gs-page .funnel-panel-title h4 {
+                font-size: 16px;
+            }
+
+            #gs-page .funnel-panel-title span {
+                font-size: 10px;
+            }
+
+            /* ---- Calculator ---- */
+            #gs-page .calc-inputs,
+            #gs-page .calc-results {
+                padding: 22px 18px;
+            }
+
+            #gs-page .calc-output-num {
+                font-size: 23px;
+            }
+
+            #gs-page .calc-results-header {
+                margin-bottom: 22px;
+            }
+
+            /* ---- Case studies ---- */
+            #gs-page .case-deck-img {
+                height: 160px;
+            }
+
+            #gs-page .case-deck-body {
+                padding: 18px;
+            }
+
+            /* ---- CTA ---- */
+            #gs-page .cta-card {
+                padding: 24px 16px;
+                gap: 24px;
+            }
+
+            #gs-page .cta-left-content p {
+                font-size: 13px;
+            }
+
+            #gs-page .cta-right-info {
+                padding: 18px;
+            }
+
+            #gs-page .cta-info-row {
+                gap: 10px;
+            }
+
+            /* ---- FAQ ---- */
+            #gs-page .faq-trigger {
+                font-size: 12.5px;
+                padding: 14px 14px;
+            }
+
+            #gs-page .faq-content p {
+                font-size: 12.5px;
             }
         }

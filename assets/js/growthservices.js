@@ -1,3 +1,8 @@
+/* 3. GROWTH SERVICES PAGE INTERACTIVE SCRIPT */
+/* =============================================================================
+   BADAR EXPO SOLUTIONS - GROWTH SERVICES PAGE JAVASCRIPT (growthservices.js)
+   ============================================================================= */
+
 /* =============================================================================
    BADAR EXPO SOLUTIONS - GROWTH SERVICES PAGE JAVASCRIPT (growthservices.js)
    ============================================================================= */
@@ -214,3 +219,4 @@ document.addEventListener('DOMContentLoaded', () => {
     GsRoiCalculator.init();
     GsFaqManager.init();
 });
+
