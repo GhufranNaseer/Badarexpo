@@ -41,10 +41,19 @@
    2. The panel is taken out of flow (position: absolute) so the closed
       widget measures exactly the size of the 56px FAB instead of reserving
       the panel's full height in the layout. */
+/* ALIGNMENT WITH .scroll-top-btn
+   .scroll-top-btn (footer.css) is 50x50 at right:30px, so its centre sits
+   55px in from the right edge at EVERY breakpoint - it has no responsive
+   overrides. This widget's FAB is 56px wide on desktop, so right:30px would
+   put its centre at 58px and the two buttons would sit 3px out of line.
+   right:27px puts the 56px FAB's centre at exactly 55px too.
+
+   Vertically: .scroll-top-btn occupies 30px..80px from the bottom, so
+   bottom:96px leaves a clean 16px gap above it. */
 .comm-widget {
     position: fixed;
     bottom: calc(96px + var(--comm-widget-lift, 0px));
-    right: 30px;
+    right: 27px;
     z-index: 9990;
     display: flex;
     flex-direction: column;
@@ -254,9 +263,14 @@ body:has(.mobile-mega-panel.open) .comm-widget {
    Section 4), same tiers .scroll-top-btn already follows implicitly.
    ============================================================================= */
 @media screen and (max-width: 768px) {
+
+    /* FAB drops to 50px here - the same size as .scroll-top-btn - so it
+       shares the button's own right:30px. bottom stays 96px so the 16px
+       gap above .scroll-top-btn is identical to desktop (it was 88px,
+       which squeezed the gap to 8px and misaligned the pair). */
     .comm-widget {
-        bottom: calc(88px + var(--comm-widget-lift, 0px));
-        right: 20px;
+        bottom: calc(96px + var(--comm-widget-lift, 0px));
+        right: 30px;
     }
 
     .comm-widget-fab {
@@ -271,10 +285,9 @@ body:has(.mobile-mega-panel.open) .comm-widget {
 }
 
 @media screen and (max-width: 480px) {
-    .comm-widget {
-        right: 16px;
-    }
 
+    /* right stays 30px to stay locked to .scroll-top-btn, which never
+       changes its own offset. Only the panel narrows. */
     .comm-widget-panel {
         width: calc(100vw - 48px);
     }
