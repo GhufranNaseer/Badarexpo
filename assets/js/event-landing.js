@@ -154,6 +154,13 @@ const ElpCountdownManager = {
 
         const pad = (n) => String(Math.max(n, 0)).padStart(2, '0');
 
+        // Declared before tick() so the first synchronous tick() call below can
+        // reference it. Previously `const timerId` sat AFTER tick(), so an
+        // already-expired event reached clearInterval(timerId) while timerId was
+        // still in the temporal dead zone and threw
+        // "Cannot access 'timerId' before initialization".
+        let timerId = null;
+
         const tick = () => {
             const diff = targetDate.getTime() - Date.now();
 
@@ -192,7 +199,7 @@ const ElpCountdownManager = {
         };
 
         tick();
-        const timerId = setInterval(tick, 1000);
+        timerId = setInterval(tick, 1000);
     }
 };
 
