@@ -18,51 +18,52 @@ const ContactFaqManager = {
     toggleAccordion(header) {
         const item = header.closest('.evtpg-faq-item');
         const answer = item.querySelector('.evtpg-faq-answer');
-        const icon = header.querySelector('.faq-toggle-icon i');
-        const isOpen = item.classList.contains('active');
+        const wasActive = item.classList.contains('active');
 
         // Close all other items
         document.querySelectorAll('.evtpg-faq-item').forEach(i => {
             i.classList.remove('active');
             const a = i.querySelector('.evtpg-faq-answer');
             if (a) a.style.maxHeight = null;
-            const iconInner = i.querySelector('.faq-toggle-icon i');
-            if (iconInner) {
-                iconInner.classList.remove('fa-minus');
-                iconInner.classList.add('fa-plus');
-            }
+            const btn = i.querySelector('.evtpg-faq-question');
+            if (btn) btn.setAttribute('aria-expanded', 'false');
         });
 
-        if (!isOpen) {
+        // Expand clicked item if it was not already active
+        if (!wasActive) {
             item.classList.add('active');
             if (answer) answer.style.maxHeight = answer.scrollHeight + 'px';
-            if (icon) {
-                icon.classList.remove('fa-plus');
-                icon.classList.add('fa-minus');
-            }
+            header.setAttribute('aria-expanded', 'true');
+        }
+    },
+
+    // Open the first FAQ item's answer by default on load (matches
+    // services.html's SvcFaqManager behavior).
+    openDefault() {
+        const firstActiveAnswer = document.querySelector('.evtpg-faq-item.active .evtpg-faq-answer');
+        if (firstActiveAnswer) {
+            firstActiveAnswer.style.maxHeight = firstActiveAnswer.scrollHeight + 'px';
         }
     }
 };
 
 // ========================= CONTACT PAGE: FORM HANDLER =========================
-// WHY: Binds the submit event of the contact form, prevents default postback,
-// shows a success alert, and resets the form. Replaces legacy inline onsubmit.
-const ContactFormManager = {
-    init() {
-        this.form = document.querySelector('.cntpg-form');
-        if (!this.form) return;
-
-        this.form.removeAttribute('onsubmit'); // Remove inline handler if present
-        this.form.addEventListener('submit', (e) => {
-            e.preventDefault();
-            alert('Thank you for contacting Badar Expo Solutions. Your request has been logged successfully!');
-            this.form.reset();
-        });
-    }
-};
+// WHY: Contact page submission logic now lives entirely in
+// assets/js/form-submit-manager.js, shared with events.html and
+// exhibitionmanagement.html's forms (Phase 21.1) - this replaces the old,
+// page-specific fake-success implementation (localStorage only, never
+// reached the business) with the real, honest, shared submission engine.
 
 // ========================= INITIALIZE ALL MODULES =========================
 document.addEventListener('DOMContentLoaded', () => {
     ContactFaqManager.init();
-    ContactFormManager.init();
+    ContactFaqManager.openDefault();
+
+    if (typeof FormSubmitManager !== 'undefined') {
+        FormSubmitManager.bind('#bxssContactForm', {
+            messages: {
+                success: 'Thank you! Your message has been sent to Badar Expo Solutions. We will respond shortly.'
+            }
+        });
+    }
 });

@@ -8,6 +8,7 @@
 
     <!-- SEO & Search Engine Description -->
     <meta name="description" content="Oops! The page you are looking for does not exist. Navigate back to Badar Expo Solutions (BXSS) for event management, stall designs, and growth services.">
+    <link rel="canonical" href="https://badarexpo.com/404.html">
     
     <!-- Apple Touch Icon for iOS Homescreen -->
     <link rel="apple-touch-icon" sizes="180x180" href="assets/images/logo/favicon.webp">
@@ -27,10 +28,14 @@
     
     <!-- ========================= GLOBAL STYLES ========================= -->
     <link rel="stylesheet" href="assets/css/navbar.css">
+    <link rel="stylesheet" href="assets/css/tokens.css">
     <link rel="stylesheet" href="assets/css/footer.css">
 
     <!-- ========================= PAGE SPECIFIC STYLES ========================= -->
     <link rel="stylesheet" href="assets/css/404.css">
+    <!-- Phase 8: RTL overrides - additive only, zero effect unless dir="rtl" -->
+    <link rel="stylesheet" href="assets/css/comm-widget.css">
+    <link rel="stylesheet" href="assets/css/rtl-overrides.css">
 </head>
 
 <body>
@@ -102,11 +107,19 @@
                 </div>
             </div>
 
-            <div class="nav-item"><a href="index.html"><span>Home</span></a></div>
-            <div class="nav-item"><a href="about.html"><span>About Us</span></a></div>
+            <div class="nav-item"><a href="index.html"><span data-i18n="nav.home">Home</span></a></div>
+            <div class="nav-item dropdown" data-target="about">
+                <a href="about.html"><span><span data-i18n="nav.aboutUs">About Us</span> <i class="fas fa-chevron-down"></i></span></a>
+                <ul class="mobile-submenu">
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="our-leaders-executives.html">Our Leaders &amp; Executives</a></li>
+                    <li><a href="badar-engineering.html">Badar Engineering Company</a></li>
+                    <li><a href="sports-entertainment.html">Sports &amp; Entertainment</a></li>
+                </ul>
+            </div>
 
             <div class="nav-item dropdown" data-target="services">
-                <a href="services.html"><span>Services <i class="fas fa-chevron-down"></i></span></a>
+                <a href="services.html"><span><span data-i18n="nav.services">Services</span> <i class="fas fa-chevron-down"></i></span></a>
                 <ul class="mobile-submenu">
                     <li><a href="exhibitionmanagement.html">Exhibition Management</a></li>
                     <li><a href="exhibitionmanagement.html#conference">Conference Management</a></li>
@@ -116,31 +129,33 @@
                 </ul>
             </div>
             <div class="nav-item dropdown" data-target="events">
-                <a href="events.html"><span>Events <i class="fas fa-chevron-down"></i></span></a>
+                <a href="events.html"><span><span data-i18n="nav.events">Events</span> <i class="fas fa-chevron-down"></i></span></a>
                 <ul class="mobile-submenu">
-                    <li><a href="events.html#our-role">Owned Events</a></li>
-                    <li><a href="events.html#our-role">Co-Organized</a></li>
-                    <li><a href="events.html#our-role">Managed Events</a></li>
+                    <li><a href="events-calendar.html" data-i18n="nav.eventCalendar">Event Calendar</a></li>
+                    <li><a href="events.html#our-role" data-i18n="nav.ownedEvents">Owned Events</a></li>
+                    <li><a href="events.html#our-role" data-i18n="nav.coOrganized">Co-Organized</a></li>
+                    <li><a href="events.html#our-role" data-i18n="nav.managedEvents">Managed Events</a></li>
                 </ul>
             </div>
 
-            <div class="nav-item"><a href="#"><span>Industries</span></a></div>
-            <div class="nav-item"><a href="#"><span>International Projects</span></a></div>
+            <div class="nav-item"><a href="industries.html"><span data-i18n="nav.industries">Industries</span></a></div>
+            <div class="nav-item"><a href="international-projects.html"><span data-i18n="nav.internationalProjects">International Projects</span></a></div>
 
             <div class="nav-item dropdown" data-target="insights">
-                <span>Insights <i class="fas fa-chevron-down"></i></span>
+                <a href="insights.html"><span><span data-i18n="nav.insights">Insights</span> <i class="fas fa-chevron-down"></i></span></a>
                 <ul class="mobile-submenu">
-                    <li><a href="#">Media Gallery</a></li>
-                    <li><a href="#">Blogs</a></li>
-                    <li><a href="#">News &amp; Updates</a></li>
+                    <li><a href="blog.html" data-i18n="pages.insights.blogLabel">Blog</a></li>
+                    <li><a href="gallery.html" data-i18n="eventsUi.gallery">Gallery</a></li>
+                    <li><a href="media.html" data-i18n="pages.insights.mediaLabel">Media</a></li>
+                    <li><a href="videos.html" data-i18n="pages.videos.navLabel">Videos</a></li>
                 </ul>
             </div>
-            <div class="nav-item contact-item"><a href="contact.html"><span>Contact</span></a></div>
+            <div class="nav-item contact-item"><a href="contact.html"><span data-i18n="nav.contact">Contact</span></a></div>
 
             <!-- ACTION BUTTONS (Moved inside menu for mobile) -->
             <div class="mobile-actions">
-                <button class="btn btn-dark">Visitor</button>
-                <button class="btn btn-light">Partner</button>
+                <button class="btn btn-dark" data-i18n="buttons.visitor">Visitor</button>
+                <button class="btn btn-light" data-i18n="buttons.partner">Partner</button>
             </div>
         </div>
 
@@ -157,10 +172,33 @@
 
         <!-- MEGA MENU WRAPPER -->
         <div class="mega-menu-wrapper" id="shared-mega-menu">
+            <!-- ABOUT US CONTENT -->
+            <div id="content-about" class="mega-content">
+                <a href="about.html" class="insight-card">
+                    <img src="assets/images/Images%20Website%20Badarexpo/Facebook/Events%20Banner/GLOBAL-SME-SUMMIT-07-06-2026.jpeg" alt="About Badar Expo Solutions" loading="lazy">
+                    <h4>About Us</h4>
+                    <p>Our story, milestones &amp; the scale of what we deliver.</p>
+                </a>
+                <a href="our-leaders-executives.html" class="insight-card">
+                    <img src="assets/images/Images%20Website%20Badarexpo/Facebook/Events%20Banner/PIMEC-15-09-2027.jpeg" alt="Our Leaders and Executives" loading="lazy">
+                    <h4>Our Leaders &amp; Executives</h4>
+                    <p>The founder, directors &amp; executive board behind BXSS.</p>
+                </a>
+                <a href="badar-engineering.html" class="insight-card">
+                    <img src="assets/images/portfolio/b2b-industrial-generated.webp" alt="Badar Engineering Company engineering legacy" loading="lazy">
+                    <h4>Badar Engineering Company</h4>
+                    <p>Engineering legacy, technical capability &amp; EPC execution since 1965.</p>
+                </a>
+                <a href="sports-entertainment.html" class="insight-card">
+                    <img src="assets/images/portfolio/ptpl-champions.webp" alt="Sports and entertainment experiences by Badar Expo Solutions" loading="lazy">
+                    <h4>Sports &amp; Entertainment</h4>
+                    <p>Cricket league platforms, live concerts &amp; large-scale audience events.</p>
+                </a>
+            </div>
             <!-- SERVICES CONTENT -->
             <div id="content-services" class="mega-content">
                 <div class="column dynamic-links">
-                    <h4><a href="exhibitionmanagement.html">Exhibition Management <i class="fas fa-chevron-right"
+                    <h4><a href="exhibitionmanagement.html"><span data-i18n="nav.exhibitionManagement">Exhibition Management</span> <i class="fas fa-chevron-right"
                                 style="font-size: 10px; opacity: 0.6;"></i></a></h4>
                     <a href="exhibitionmanagement.html" data-title="Exhibition Management"
                         data-desc="Complete exhibition solutions from concept to execution for B2B and B2C platforms."
@@ -173,7 +211,7 @@
                         data-image="assets/images/portfolio/ziauddin-convocation.webp">Corporate</a>
                 </div>
                 <div class="column dynamic-links">
-                    <h4><a href="construction-design.html">Construction &amp; Design <i class="fas fa-chevron-right"
+                    <h4><a href="construction-design.html"><span data-i18n="nav.constructionDesign">Construction &amp; Design</span> <i class="fas fa-chevron-right"
                                 style="font-size: 10px; opacity: 0.6;"></i></a></h4>
                     <ul class="bullet-list">
                         <li><a href="construction-design.html#canopy" data-title="Canopy Octanorm Building"
@@ -202,7 +240,7 @@
                     </ul>
                 </div>
                 <div class="column dynamic-links">
-                    <h4><a href="growthservices.html">Growth Services <i class="fas fa-chevron-right"
+                    <h4><a href="growthservices.html"><span data-i18n="nav.growthServices">Growth Services</span> <i class="fas fa-chevron-right"
                                 style="font-size: 10px; opacity: 0.6;"></i></a></h4>
                     <a href="growthservices.html#pillars" data-title="B2B Matchmaking"
                         data-desc="Connecting global buyers with suppliers through strategic high-level networking."
@@ -229,7 +267,7 @@
             <!-- EVENTS CONTENT -->
             <div id="content-events" class="mega-content">
                 <div class="column dynamic-links">
-                    <h4><a href="events.html#our-role">Our Role <i class="fas fa-chevron-right"
+                    <h4><a href="events.html#our-role"><span data-i18n="nav.ourRole">Our Role</span> <i class="fas fa-chevron-right"
                                 style="font-size: 10px; opacity: 0.6;"></i></a></h4>
                     <a href="events.html#our-role" data-title="Owned Events"
                         data-desc="Flagship trade fairs and industry-leading exhibitions fully conceptualized by Badar Expo."
@@ -242,7 +280,7 @@
                         data-image="assets/images/portfolio/ziauddin-convocation.webp">Managed Events</a>
                 </div>
                 <div class="column dynamic-links">
-                    <h4><a href="events.html#formats">Formats <i class="fas fa-chevron-right"
+                    <h4><a href="events.html#formats"><span data-i18n="nav.formats">Formats</span> <i class="fas fa-chevron-right"
                                 style="font-size: 10px; opacity: 0.6;"></i></a></h4>
                     <a href="events.html#formats" data-title="Exhibitions"
                         data-desc="Creating massive B2B and B2C platforms that connect global suppliers with buyers."
@@ -253,6 +291,19 @@
                     <a href="events.html#formats" data-title="Industrial Forums"
                         data-desc="Facilitating high-level dialogue between government and industry leaders."
                         data-image="assets/images/portfolio/saudi-delegation.webp">Industrial Forums</a>
+                </div>
+                <div class="column dynamic-links">
+                    <h4><a href="events-calendar.html"><span data-i18n="nav.eventCalendar">Event Calendar</span> <i class="fas fa-chevron-right"
+                                style="font-size: 10px; opacity: 0.6;"></i></a></h4>
+                    <a href="events-calendar.html" data-title="Browse All Events" data-i18n="nav.allEvents"
+                        data-desc="Search, filter, and browse every upcoming, ongoing, and past BXSS event in one place."
+                        data-image="assets/images/portfolio/exhibition-floor-premium.webp">All Events</a>
+                    <a href="events-calendar.html?status=upcoming" data-title="Upcoming Events"
+                        data-desc="See what's coming up next across every category and city."
+                        data-image="assets/images/portfolio/global-sme-banner.webp">Upcoming Events</a>
+                    <a href="events-calendar.html?status=past" data-title="Past Events"
+                        data-desc="Browse our archive of completed exhibitions and conferences."
+                        data-image="assets/images/portfolio/ieee-exhibition.webp">Past Events</a>
                 </div>
                 <div class="column highlight">
                     <div class="highlight-content-box">
@@ -266,21 +317,26 @@
 
             <!-- INSIGHTS CONTENT -->
             <div id="content-insights" class="mega-content">
-                <div class="insight-card">
+                <a href="blog.html" class="insight-card">
                     <img src="assets/images/portfolio/global-sme-banner.webp" alt="Blog" loading="lazy">
-                    <h4>Blog</h4>
+                    <h4 data-i18n="pages.insights.blogLabel">Blog</h4>
                     <p>Industry insights, event strategies &amp; updates.</p>
-                </div>
-                <div class="insight-card">
+                </a>
+                <a href="media.html" class="insight-card">
                     <img src="assets/images/portfolio/china-embassy.webp" alt="Media" loading="lazy">
-                    <h4>Media</h4>
+                    <h4 data-i18n="pages.insights.mediaLabel">Media</h4>
                     <p>Press coverage, interviews &amp; event highlights.</p>
-                </div>
-                <div class="insight-card">
+                </a>
+                <a href="gallery.html" class="insight-card">
                     <img src="assets/images/portfolio/concert-audience.webp" alt="Gallery" loading="lazy">
-                    <h4>Gallery</h4>
+                    <h4 data-i18n="eventsUi.gallery">Gallery</h4>
                     <p>Moments captured from our mega events.</p>
-                </div>
+                </a>
+                <a href="videos.html" class="insight-card">
+                    <img src="assets/images/portfolio/exhibition-floor-premium.webp" alt="Videos" loading="lazy">
+                    <h4 data-i18n="pages.videos.navLabel">Videos</h4>
+                    <p data-i18n="pages.videos.megaMenuDesc">Watch highlights from our flagship events.</p>
+                </a>
             </div>
         </div>
 
@@ -292,8 +348,8 @@
             </div>
 
             <div class="actions">
-                <button class="btn btn-dark">Visitor</button>
-                <button class="btn btn-light">Partner</button>
+                <button class="btn btn-dark" data-i18n="buttons.visitor">Visitor</button>
+                <button class="btn btn-light" data-i18n="buttons.partner">Partner</button>
             </div>
         </div>
     </nav>
@@ -301,13 +357,13 @@
     <div class="menu-backdrop" id="menu-backdrop"></div>
 
     <!-- SEARCH OVERLAY -->
-    <div class="search-overlay" id="searchOverlay">
-        <button class="search-close" id="searchClose" aria-label="Close search">
+    <div class="search-overlay" id="search-overlay">
+        <button class="search-close" id="search-close" aria-label="Close search">
             <i class="fas fa-times"></i>
         </button>
         <div class="search-container">
             <form class="search-form" action="#" method="GET">
-                <input type="text" class="search-input" id="searchInput" placeholder="Type to search..." autocomplete="off">
+                <input type="text" class="search-input" id="search-input" placeholder="Type to search..." autocomplete="off" data-i18n-placeholder="forms.typeToSearchPlaceholder">
                 <button type="submit" class="search-submit" aria-label="Submit search">
                     <i class="fas fa-search"></i>
                 </button>
@@ -332,19 +388,19 @@
             <div class="err-code-wrapper">
                 <span class="err-code">404<span class="err-dot">.</span></span>
             </div>
-            <h1 class="err-title">Lost in Space? Let's Get You Back.</h1>
-            <p class="err-lead">The page you are looking for might have been removed, had its name changed, or is temporarily unavailable. Let us help you find what you need.</p>
+            <h1 class="err-title" data-i18n="messages.pageNotFoundTitle">Lost in Space? Let's Get You Back.</h1>
+            <p class="err-lead" data-i18n="messages.pageNotFoundDesc">The page you are looking for might have been removed, had its name changed, or is temporarily unavailable. Let us help you find what you need.</p>
             
             <div class="err-actions">
                 <a href="index.html" class="err-btn err-btn-primary">
-                    <i class="fas fa-home"></i> Go Back Home
+                    <i class="fas fa-home"></i> <span data-i18n="buttons.goBackHome">Go Back Home</span>
                 </a>
                 <a href="contact.html" class="err-btn err-btn-outline">
-                    <i class="fas fa-paper-plane"></i> Contact Support
+                    <i class="fas fa-paper-plane"></i> <span data-i18n="buttons.contactSupport">Contact Support</span>
                 </a>
             </div>
 
-            <h2 class="err-shortcuts-title">Or explore our main solutions</h2>
+            <h2 class="err-shortcuts-title" data-i18n="pages.notFound.shortcutsTitle">Or explore our main solutions</h2>
             <div class="err-grid">
                 <a href="exhibitionmanagement.html" class="err-card">
                     <i class="fas fa-briefcase"></i>
@@ -361,10 +417,10 @@
                     <h3>Growth Services</h3>
                     <p>Targeted B2B matchmaking and event marketing campaigns.</p>
                 </a>
-                <a href="events.html" class="err-card">
-                    <i class="fas fa-calendar-alt"></i>
-                    <h3>Flagship Events</h3>
-                    <p>Browse our calendars, formats, and owned portfolios.</p>
+                <a href="events-calendar.html" class="err-card">
+                    <i class="fas fa-calendar-days"></i>
+                    <h3>Event Calendar</h3>
+                    <p>Search and filter every upcoming, ongoing, and past event.</p>
                 </a>
             </div>
         </div>
@@ -378,12 +434,12 @@
             <!-- TOP -->
             <div class="footer-top">
 
-                <button class="footer-aws-btn"
+                <button type="button" class="footer-aws-btn"
                     onclick="window.location.href='contact.html'">
                     Get a Free Quote
                 </button>
 
-                <button class="footer-language-btn">
+                <button type="button" class="footer-language-btn">
                     <svg fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
                         <circle cx="12" cy="12" r="9"></circle>
                         <path d="M3 12h18"></path>
@@ -401,39 +457,42 @@
             <div class="footer-grid">
 
                 <div class="footer-column">
-                    <h3>Our Services</h3>
+                    <h3 data-i18n="nav.footerOurServices">Our Services</h3>
                     <ul>
-                        <li><a href="#">Exhibition Management</a></li>
-                        <li><a href="#">Trade Show Organizing</a></li>
-                        <li><a href="#">Corporate Events</a></li>
-                        <li><a href="#">Product Launches</a></li>
-                        <li><a href="#">Government Pavilions</a></li>
-                        <li><a href="#">International Expos</a></li>
-                        <li><a href="#">Conference &amp; Summits</a></li>
-                        <li><a href="#">Award Ceremonies</a></li>
+                        <li><a href="exhibitionmanagement.html">Exhibition Management</a></li>
+                        <li><a href="exhibitionmanagement.html">Trade Show Organizing</a></li>
+                        <li><a href="exhibitionmanagement.html#corporate">Corporate Events</a></li>
+                        <li><a href="exhibitionmanagement.html#corporate">Product Launches</a></li>
+                        <li><a href="construction-design.html">Government Pavilions</a></li>
+                        <li><a href="international-projects.html">International Expos</a></li>
+                        <li><a href="exhibitionmanagement.html#conference">Conference &amp; Summits</a></li>
+                        <li><a href="exhibitionmanagement.html#corporate">Award Ceremonies</a></li>
                     </ul>
                 </div>
 
                 <div class="footer-column">
-                    <h3>Industries</h3>
+                    <h3 data-i18n="nav.footerIndustries">Industries</h3>
                     <ul>
-                        <li><a href="#">Textile &amp; Fashion</a></li>
-                        <li><a href="#">Food &amp; Beverage</a></li>
-                        <li><a href="#">Technology &amp; Innovation</a></li>
-                        <li><a href="#">Healthcare &amp; Pharma</a></li>
-                        <li><a href="#">Agriculture &amp; Livestock</a></li>
-                        <li><a href="#">Construction &amp; Real Estate</a></li>
-                        <li><a href="#">Defence &amp; Security</a></li>
-                        <li><a href="#">Education &amp; Training</a></li>
+                        <li><a href="industry-landing.html">Textile &amp; Apparel</a></li>
+                        <li><a href="events-calendar.html?industry=Food%20%26%20Beverage">Food &amp; Beverage</a></li>
+                        <li><a href="events-calendar.html?industry=Technology%20%26%20Innovation">Technology &amp; Innovation</a></li>
+                        <li><a href="events-calendar.html?industry=Healthcare%20%26%20Pharma">Healthcare &amp; Pharma</a></li>
+                        <li><a href="events-calendar.html?industry=Agriculture%20%26%20Livestock">Agriculture &amp; Livestock</a></li>
+                        <li><a href="events-calendar.html?industry=Construction%20%26%20Real%20Estate">Construction &amp; Real Estate</a></li>
+                        <li><a href="events-calendar.html?industry=Defence%20%26%20Security">Defence &amp; Security</a></li>
+                        <li><a href="events-calendar.html?industry=Education%20%26%20Training">Education &amp; Training</a></li>
                     </ul>
                 </div>
 
                 <div class="footer-column">
-                    <h3>Company</h3>
+                    <h3 data-i18n="nav.footerCompany">Company</h3>
                     <ul>
-                        <li><a href="#">About BXSS</a></li>
-                        <li><a href="#">Our Portfolio</a></li>
-                        <li><a href="#">Media Gallery</a></li>
+                        <li><a href="about.html">About BXSS</a></li>
+                        <li><a href="events.html">Our Portfolio</a></li>
+                        <li><a href="events-calendar.html" data-i18n="nav.eventCalendar">Event Calendar</a></li>
+                        <li><a href="events-calendar.html?status=upcoming" data-i18n="nav.upcomingEvents">Upcoming Events</a></li>
+                        <li><a href="gallery.html">Gallery</a></li>
+                        <li><a href="media.html">Media</a></li>
                         <li><a href="#">Client Testimonials</a></li>
                         <li><a href="#">Our Partners</a></li>
                         <li><a href="#">Careers</a></li>
@@ -442,16 +501,16 @@
                 </div>
 
                 <div class="footer-column">
-                    <h3>Contact Us</h3>
+                    <h3 data-i18n="nav.footerContactUs">Contact Us</h3>
                     <ul>
-                        <li><a href="#">Get a Quote</a></li>
-                        <li><a href="#">Request a Callback</a></li>
+                        <li><a href="contact.html">Get a Quote</a></li>
+                        <li><a href="contact.html">Request a Callback</a></li>
                         <li><a href="tel:+922134821159">+92-21-3482-1159</a></li>
                         <li><a href="mailto:info@badarexpo.com">info@badarexpo.com</a></li>
                         <li><a href="#">Karachi Head Office</a></li>
                         <li><a href="#">Lahore Office</a></li>
-                        <li><a href="#">Privacy Policy</a></li>
-                        <li><a href="#">Terms &amp; Conditions</a></li>
+                        <li><a href="privacy-policy.html">Privacy Policy</a></li>
+                        <li><a href="terms-of-service.html">Terms &amp; Conditions</a></li>
                     </ul>
                 </div>
 
@@ -459,7 +518,7 @@
 
             <!-- BACK TOP -->
             <div class="footer-back-top" onclick="window.scrollTo({top:0,behavior:'smooth'})">
-                Back to top
+                <span data-i18n="common.backToTop">Back to top</span>
                 <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
                     <path d="M12 19V5" />
                     <path d="M5 12l7-7 7 7" />
@@ -479,7 +538,7 @@
                     <div class="download-buttons">
                         <!-- APPLE -->
                         <a href="https://apps.apple.com/pk/app/badar-expo/id6751605684" class="store-btn"
-                            target="_blank">
+                            target="_blank" rel="noopener noreferrer">
                             <i class="fa-brands fa-apple store-btn-apple-icon"></i>
                             <div class="store-btn-text">
                                 <div class="store-btn-small">Download on the</div>
@@ -489,7 +548,7 @@
 
                         <!-- GOOGLE -->
                         <a href="https://play.google.com/store/apps/details?id=com.badarexpo.app"
-                            class="store-btn google-play" target="_blank">
+                            class="store-btn google-play" target="_blank" rel="noopener noreferrer">
                             <img src="https://upload.wikimedia.org/wikipedia/commons/d/d0/Google_Play_Arrow_logo.svg"
                                 alt="Google Play logo">
                             <div class="store-btn-text">
@@ -500,9 +559,9 @@
                     </div>
 
                     <div class="footer-bottom-links">
-                        <a href="#">Privacy Policy</a>
-                        <a href="#">Terms of Service</a>
-                        <a href="#">Cookie Preferences</a>
+                        <a href="privacy-policy.html">Privacy Policy</a>
+                        <a href="terms-of-service.html">Terms of Service</a>
+                        <a href="privacy-policy.html#cookies">Cookie Preferences</a>
                     </div>
 
                     <div class="footer-copyright">
@@ -585,7 +644,28 @@
     </button>
 
     <!-- GLOBAL MAIN JS -->
+        <!-- ========================= COMMUNICATION WIDGET (Phase 17) ========================= -->
+    <div class="comm-widget" id="comm-widget">
+        <div class="comm-widget-panel" id="comm-widget-panel" role="dialog" aria-label="Chat with us" aria-hidden="true">
+            <div class="comm-widget-panel-header">
+                <span class="comm-widget-panel-title" data-i18n="pages.commWidget.title">Chat with Badar Expo</span>
+                <button class="comm-widget-panel-close" id="comm-widget-close" data-i18n-aria-label="pages.commWidget.closeLabel" aria-label="Close chat panel">
+                    <i class="fas fa-xmark" aria-hidden="true"></i>
+                </button>
+            </div>
+            <p class="comm-widget-panel-desc" data-i18n="pages.commWidget.desc">Have a question about an event or service? Message us on WhatsApp and we'll get back to you shortly.</p>
+            <a href="#" class="comm-widget-channel-btn" id="comm-widget-whatsapp-link" target="_blank" rel="noopener noreferrer">
+                <i class="fab fa-whatsapp" aria-hidden="true"></i>
+                <span data-i18n="pages.commWidget.startChat">Start WhatsApp Chat</span>
+            </a>
+        </div>
+        <button class="comm-widget-fab" id="comm-widget-toggle" type="button" aria-expanded="false" aria-controls="comm-widget-panel" data-i18n-aria-label="pages.commWidget.openLabel" aria-label="Open chat widget">
+            <i class="fab fa-whatsapp" aria-hidden="true"></i>
+        </button>
+    </div>
+    <script src="assets/js/comm-widget.js"></script>
     <script src="assets/js/main.js"></script>
+    <script src="assets/js/language-manager.js"></script>
     <script src="assets/js/mobile-mega-menu.js"></script>
     <!-- ========================= [TEMPLATE: footer.php END] ========================= -->
 </body>

@@ -26,12 +26,6 @@
     100% { transform: scale(1) translate(0, 0); }
 }
 
-@keyframes floatBubble {
-    0% { transform: translateY(0px); }
-    50% { transform: translateY(-8px); }
-    100% { transform: translateY(0px); }
-}
-
 @keyframes pulseGlow {
     0% { box-shadow: 0 0 0 0 rgba(228, 31, 38, 0.4); }
     70% { box-shadow: 0 0 0 10px rgba(228, 31, 38, 0); }
@@ -73,17 +67,11 @@ section {
 .cntpg-team-section {
     background-color: var(--white);
 }
-.evtpg-faq {
-    background-color: var(--bg-light);
-}
 .evtpg-stats {
     background-color: var(--dark-bg);
 }
 .evtpg-testimonials {
     background-color: var(--white);
-}
-.cntpg-cta-section {
-    background-color: var(--dark-bg);
 }
 
 /* Global Grid Wrapper */
@@ -108,28 +96,28 @@ section {
 }
 
 .evtpg-eyebrow {
-    font-size: 13px;
+    font-size: 12.5px;
     text-transform: uppercase;
     letter-spacing: 2px;
     color: var(--primary-red);
     font-weight: 700;
     display: inline-block;
-    margin-bottom: 12px;
+    margin-bottom: 18px;
 }
 
 .evtpg-head h2 {
-    font-size: clamp(2rem, 3.8vw, 2.8rem);
-    line-height: 1.15;
+    font-size: clamp(1.7rem, 1.2rem + 1.8vw, 2.6rem);
+    line-height: 1.18;
     color: var(--text-dark);
     font-weight: 800;
-    margin-bottom: 18px;
-    letter-spacing: -0.5px;
+    margin-bottom: 16px;
+    letter-spacing: -0.02em;
 }
 
 .evtpg-head p {
-    font-size: clamp(15px, 1.8vw, 17px);
+    font-size: 15.5px;
     color: var(--text-muted);
-    line-height: 1.6;
+    line-height: 1.8;
 }
 
 /* Buttons System */
@@ -137,8 +125,8 @@ section {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    padding: 16px 36px;
-    font-size: 15px;
+    padding: 15px 30px;
+    font-size: 13px;
     font-weight: 700;
     text-decoration: none;
     border-radius: 30px;
@@ -146,7 +134,7 @@ section {
     cursor: pointer;
     gap: 10px;
     text-transform: uppercase;
-    letter-spacing: 0.5px;
+    letter-spacing: 1px;
 }
 
 .hero-btn-primary {
@@ -177,18 +165,18 @@ section {
 }
 
 /* =============================================================================
-   1. PREMIUM HERO SECTION
+   1. PREMIUM HERO SECTION (matches services.html's .svcpg-hero: bottom-
+   aligned content, min-height: 88vh canvas, and an in-flow credibility
+   row instead of floating cards - restructured per client feedback)
    ============================================================================= */
 .page-hero {
     position: relative;
-    height: 70vh;
-    min-height: 580px;
-    max-height: 750px;
+    min-height: 88vh;
     display: flex;
-    align-items: center;
+    align-items: flex-end;
     justify-content: flex-start;
     color: var(--white);
-    overflow: visible;
+    overflow: hidden;
 }
 
 .page-hero-bg-container {
@@ -206,6 +194,19 @@ section {
     animation: kenBurnsEffect 20s infinite ease-in-out;
 }
 
+/* FIX: the raw <video> tag inside .page-hero-bg-container had no sizing
+   rules, so it rendered at its native intrinsic size (e.g. 1920px wide)
+   instead of filling the hero. On mobile this pushed the whole page into
+   horizontal scroll and broke the hero layout entirely. */
+.page-hero-bg-container video {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+
 .page-hero-overlay {
     position: absolute;
     inset: 0;
@@ -217,11 +218,9 @@ section {
     position: relative;
     z-index: 3;
     width: 100%;
-    display: grid;
-    grid-template-columns: 1.2fr 0.8fr;
-    gap: 80px;
-    align-items: center;
-    margin-top: -30px;
+    display: block;
+    padding-top: 190px;
+    padding-bottom: 70px;
 }
 
 .hero-left-col {
@@ -236,85 +235,75 @@ section {
     font-weight: 700;
     background: rgba(228, 31, 38, 0.1);
     border: 1px solid rgba(228, 31, 38, 0.2);
-    padding: 8px 18px;
-    border-radius: 30px;
+    padding: 6px 14px;
+    border-radius: 100px;
     display: inline-block;
-    margin-bottom: 22px;
+    margin-bottom: 26px;
+    -webkit-backdrop-filter: blur(10px);
     backdrop-filter: blur(10px);
 }
 
 .page-hero-content h1 {
-    font-size: clamp(2.5rem, 5.2vw, 4.4rem);
-    line-height: 1.1;
+    font-size: clamp(2.4rem, 1.4rem + 3.6vw, 4.6rem);
+    line-height: 1.05;
     font-weight: 800;
-    margin-bottom: 24px;
-    letter-spacing: -1.5px;
+    margin-bottom: 22px;
+    letter-spacing: -0.03em;
+    max-width: 900px;
     color: var(--white);
 }
 
 .page-hero-content p {
-    font-size: clamp(16px, 2.2vw, 19.5px);
+    font-size: clamp(1rem, 0.9rem + 0.3vw, 1.15rem);
     color: rgba(255, 255, 255, 0.75);
-    line-height: 1.6;
-    margin-bottom: 38px;
-    max-width: 680px;
+    line-height: 1.75;
+    margin-bottom: 40px;
+    max-width: 560px;
 }
 
 .hero-ctas {
     display: flex;
-    gap: 20px;
+    gap: 26px;
+    flex-wrap: wrap;
+    margin-bottom: 56px;
+}
+
+/* In-flow credibility row (replaces the old floating stat cards - matches
+   services.html's .svcpg-hero-credibility: sits in normal document flow
+   right under the CTAs, divided by thin vertical rules). */
+.hero-credibility {
+    display: flex;
+    gap: 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.15);
+    padding-top: 26px;
     flex-wrap: wrap;
 }
 
-/* Floating Statistics cards (Uses StatsManager structure) */
-.hero-floating-stats {
-    position: absolute;
-    right: 60px;
-    bottom: -40px;
-    display: flex;
-    gap: 20px;
-    z-index: 10;
+.hero-cred-item {
+    padding: 0 34px 0 0;
+    margin-right: 34px;
+    border-right: 1px solid rgba(255, 255, 255, 0.15);
 }
 
-.floating-stat-card {
-    background: var(--dark-card);
-    border: 1px solid var(--border-dark);
-    padding: 22px 30px;
-    border-radius: 16px;
-    box-shadow: var(--glass-shadow);
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    min-width: 170px;
-    transition: var(--transition-premium);
-    animation: floatBubble 5s infinite ease-in-out;
+.hero-cred-item:last-child {
+    padding-right: 0;
+    margin-right: 0;
+    border-right: none;
 }
 
-.floating-stat-card:nth-child(2) {
-    animation-delay: 1.2s;
-}
-
-.floating-stat-card:nth-child(3) {
-    animation-delay: 2.4s;
-}
-
-.floating-stat-card:hover {
-    transform: translateY(-8px);
-    border-color: rgba(228, 31, 38, 0.2);
-}
-
-.floating-stat-num {
-    font-size: 30px;
+.hero-cred-num {
     font-weight: 800;
-    color: var(--primary-red);
-    line-height: 1.1;
-    margin-bottom: 4px;
+    font-size: clamp(1.6rem, 1.2rem + 1.2vw, 2.2rem);
+    color: var(--white);
+    line-height: 1;
+    margin-bottom: 6px;
 }
 
-.floating-stat-label {
-    font-size: 12.5px;
+.hero-cred-label {
+    font-size: 11.5px;
     color: rgba(255, 255, 255, 0.55);
-    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 1px;
 }
 
 /* =============================================================================
@@ -367,8 +356,9 @@ section {
 }
 
 .cntpg-card h3 {
-    font-size: 17px;
+    font-size: 18px;
     font-weight: 700;
+    letter-spacing: -0.01em;
     color: var(--text-dark);
     margin-bottom: 12px;
 }
@@ -550,6 +540,9 @@ section {
 .cntpg-submit-btn {
     margin-top: 10px;
     width: 100%;
+    justify-content: center;
+    padding: 17px 30px;
+    font-size: 14px;
 }
 
 /* Right Panel - Reasons to contact */
@@ -558,10 +551,12 @@ section {
 }
 
 .cntpg-reasons-container h2 {
-    font-size: 28px;
+    font-size: clamp(1.5rem, 1.1rem + 1.4vw, 2.15rem);
     font-weight: 800;
+    line-height: 1.2;
+    letter-spacing: -0.02em;
     color: var(--text-dark);
-    margin-bottom: 12px;
+    margin-bottom: 16px;
 }
 
 .cntpg-reasons-container p {
@@ -598,8 +593,9 @@ section {
 }
 
 .reason-item h4 {
-    font-size: 15.5px;
+    font-size: 15px;
     font-weight: 700;
+    letter-spacing: -0.01em;
     color: var(--text-dark);
     margin-bottom: 6px;
 }
@@ -635,10 +631,12 @@ section {
 }
 
 .cntpg-map-details h2 {
-    font-size: 28px;
+    font-size: clamp(1.5rem, 1.1rem + 1.4vw, 2.15rem);
     font-weight: 800;
+    line-height: 1.2;
+    letter-spacing: -0.02em;
     color: var(--text-dark);
-    margin-bottom: 12px;
+    margin-bottom: 16px;
 }
 
 .cntpg-map-details p {
@@ -660,6 +658,15 @@ section {
     align-items: flex-start;
 }
 
+/* FIX: this wrapper had no flex-grow/min-width, so it didn't reliably span
+   the row's available width - text wrapped unpredictably and the button
+   below it (which needs width:100% on mobile) sized itself off an
+   unstable column width instead of the actual row. */
+.logistic-content {
+    flex: 1;
+    min-width: 0;
+}
+
 .logistic-row i {
     font-size: 18px;
     color: var(--primary-red);
@@ -667,8 +674,9 @@ section {
 }
 
 .logistic-row h4 {
-    font-size: 15.5px;
+    font-size: 15px;
     font-weight: 700;
+    letter-spacing: -0.01em;
     color: var(--text-dark);
     margin-bottom: 6px;
 }
@@ -727,8 +735,9 @@ section {
 }
 
 .why-card h3 {
-    font-size: 18.5px;
+    font-size: 18px;
     font-weight: 700;
+    letter-spacing: -0.01em;
     color: var(--text-dark);
     margin-bottom: 12px;
 }
@@ -787,8 +796,9 @@ section {
 }
 
 .team-card h3 {
-    font-size: 17px;
+    font-size: 18px;
     font-weight: 700;
+    letter-spacing: -0.01em;
     color: var(--text-dark);
     margin-bottom: 6px;
 }
@@ -844,11 +854,18 @@ section {
 }
 
 /* =============================================================================
-   7. FAQ ACCORDION (MATCHES events.css)
+   7. FAQ ACCORDION (matches services.html's .svc-faq exactly: light gray
+   section, white rounded cards, plain icon on desktop / circle icon on
+   mobile, first item open by default)
    ============================================================================= */
+.evtpg-faq {
+    padding: 100px 0;
+    background-color: var(--bg-light);
+}
+
 .evtpg-faq-list {
     max-width: 860px;
-    margin: 0 auto;
+    margin: 46px auto 0;
     display: flex;
     flex-direction: column;
     gap: 14px;
@@ -857,64 +874,62 @@ section {
 .evtpg-faq-item {
     background: var(--white);
     border: 1px solid var(--border-light);
-    border-radius: 10px;
+    border-radius: 6px;
     overflow: hidden;
-    transition: var(--transition-premium);
-}
-
-.evtpg-faq-item.active {
-    border-color: rgba(228, 31, 38, 0.25);
-    background: var(--white);
-    box-shadow: var(--shadow-soft);
 }
 
 .evtpg-faq-question {
     display: flex;
-    justify-content: space-between;
     align-items: center;
-    padding: 24px 30px;
+    justify-content: space-between;
+    gap: 20px;
+    width: 100%;
+    padding: 22px 26px;
     cursor: pointer;
-    user-select: none;
+    font-weight: 700;
+    font-size: 15.5px;
+    font-family: inherit;
+    color: inherit;
+    background: none;
+    border: none;
+    text-align: left;
+}
+
+.evtpg-faq-question:focus-visible {
+    outline: 2px solid var(--primary-red);
+    outline-offset: -2px;
 }
 
 .evtpg-faq-question h3 {
-    font-size: 16px;
+    font-size: inherit;
+    font-weight: inherit;
     color: var(--text-dark);
-    font-weight: 600;
     margin: 0;
-    padding-right: 20px;
     line-height: 1.4;
 }
 
 .faq-toggle-icon {
-    width: 24px;
-    height: 24px;
-    border-radius: 50%;
-    background: rgba(228, 31, 38, 0.05);
     color: var(--primary-red);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 11px;
     transition: var(--transition-fast);
+    flex-shrink: 0;
+    font-size: 13px;
 }
 
 .evtpg-faq-item.active .faq-toggle-icon {
-    background: var(--primary-red);
-    color: var(--white);
+    transform: rotate(45deg);
 }
 
 .evtpg-faq-answer {
     max-height: 0;
     overflow: hidden;
-    transition: max-height 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+    transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .evtpg-faq-answer p {
-    padding: 0 30px 24px;
+    padding: 0 26px 22px;
     margin: 0;
-    font-size: 14.5px;
     color: var(--text-muted);
+    font-size: 14.5px;
     line-height: 1.6;
 }
 
@@ -1023,53 +1038,154 @@ section {
 }
 
 /* =============================================================================
-   10. FINAL PREMIUM CTA
+   10. FINAL PREMIUM CTA (matches services.html's .svc-cta-card: same card
+   width/padding/radius/glow, badge, buttons, and contact-pill row)
    ============================================================================= */
 .cntpg-cta-section {
-    padding: 100px 0;
+    padding: 40px 0 90px;
 }
 
-.cntpg-cta-layout {
-    display: flex;
-    justify-content: space-between;
+.cntpg-cta-card {
+    position: relative;
+    background: var(--dark-card);
+    color: var(--white);
+    text-align: center;
+    padding: 45px 30px;
+    border-radius: 24px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.35);
+    max-width: 820px;
+    margin: 0 auto;
+    overflow: hidden;
+    isolation: isolate;
+    border: 1px solid var(--border-dark);
+}
+
+.cntpg-cta-card::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 600px;
+    height: 600px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(228, 31, 38, 0.4), transparent 70%);
+    z-index: -2;
+    pointer-events: none;
+}
+
+.cntpg-cta-card::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image: linear-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+    background-size: 46px 46px;
+    mask-image: radial-gradient(ellipse at center, black, transparent 75%);
+    z-index: -1;
+    pointer-events: none;
+}
+
+.cntpg-cta-badge {
+    display: inline-flex;
     align-items: center;
-    gap: 60px;
-}
-
-.cntpg-cta-content {
-    max-width: 780px;
-}
-
-.cntpg-cta-eyebrow {
-    font-size: 13px;
-    color: var(--primary-red);
+    gap: 8px;
+    margin-bottom: 16px;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 30px;
+    color: var(--white);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 1px;
     text-transform: uppercase;
-    letter-spacing: 2px;
-    font-weight: 700;
-    display: inline-block;
-    margin-bottom: 12px;
+    padding: 6px 14px;
+    position: relative;
+    z-index: 1;
 }
 
-.cntpg-cta-content h2 {
-    font-size: clamp(2rem, 3.5vw, 2.6rem);
+.cntpg-cta-badge i {
+    color: var(--primary-red);
+}
+
+.cntpg-cta-card h2 {
+    font-size: clamp(22px, 2.8vw, 32px);
     font-weight: 800;
     line-height: 1.2;
     color: var(--white);
-    margin-bottom: 16px;
+    margin-bottom: 12px;
     letter-spacing: -0.5px;
+    position: relative;
+    z-index: 1;
 }
 
-.cntpg-cta-content p {
-    font-size: 15.5px;
+.cntpg-cta-card h2 span {
+    color: var(--primary-red);
+}
+
+.cntpg-cta-card p {
+    font-size: 14.5px;
     color: rgba(255, 255, 255, 0.7);
-    line-height: 1.6;
+    max-width: 500px;
+    margin: 0 auto 28px;
+    line-height: 1.5;
+    position: relative;
+    z-index: 1;
 }
 
-.cntpg-cta-buttons {
+.cntpg-cta-btns {
     display: flex;
-    gap: 15px;
-    flex-shrink: 0;
+    gap: 12px;
+    justify-content: center;
     flex-wrap: wrap;
+    margin-bottom: 32px;
+    position: relative;
+    z-index: 1;
+}
+
+.cntpg-cta-card .hero-btn {
+    padding: 12px 24px;
+    font-size: 13.5px;
+}
+
+.cntpg-cta-contacts {
+    display: inline-flex;
+    align-items: center;
+    gap: 0;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 6px 6px;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 60px;
+    background: rgba(255, 255, 255, 0.03);
+    position: relative;
+    z-index: 1;
+}
+
+.cntpg-cta-contact-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 18px;
+    font-size: 13px;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.85);
+    text-decoration: none;
+    border-right: 1px solid rgba(255, 255, 255, 0.12);
+    transition: var(--transition-fast);
+}
+
+.cntpg-cta-contact-item:last-child {
+    border-right: none;
+}
+
+.cntpg-cta-contact-item:hover {
+    color: var(--primary-red);
+}
+
+.cntpg-cta-contact-item i {
+    color: var(--primary-red);
+    font-size: 12px;
 }
 
 /* =============================================================================
@@ -1095,23 +1211,9 @@ section {
         padding: 90px 0;
     }
 
-    .page-hero {
-        height: 60vh;
-        min-height: 480px;
-    }
-
-    .hero-floating-stats {
-        right: 40px;
-        bottom: -30px;
-    }
-
-    .floating-stat-card {
-        padding: 18px 24px;
-        min-width: 150px;
-    }
-
-    .floating-stat-num {
-        font-size: 26px;
+    .page-hero-content {
+        padding-top: 160px;
+        padding-bottom: 56px;
     }
 
     .cntpg-split-layout {
@@ -1133,10 +1235,25 @@ section {
         gap: 20px;
     }
 
-    .cntpg-cta-layout {
+    .cntpg-cta-card {
+        padding: 50px 24px;
+    }
+
+    .cntpg-cta-contacts {
         flex-direction: column;
-        align-items: flex-start;
-        gap: 40px;
+        border-radius: 16px;
+        width: 100%;
+    }
+
+    .cntpg-cta-contact-item {
+        border-right: none;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+        width: 100%;
+        justify-content: center;
+    }
+
+    .cntpg-cta-contact-item:last-child {
+        border-bottom: none;
     }
 }
 
@@ -1150,28 +1267,23 @@ section {
     }
 
     .page-hero {
-        height: auto;
-        padding: 100px 0 140px;
+        min-height: 92vh;
     }
 
     .page-hero-content {
-        grid-template-columns: 1fr;
+        padding-top: 140px;
+        padding-bottom: 48px;
     }
 
-    .hero-floating-stats {
-        left: 24px;
-        right: 24px;
-        bottom: -50px;
-        justify-content: center;
+    .hero-credibility {
+        gap: 0;
     }
 
-    .floating-stat-card {
-        flex-grow: 1;
-        text-align: center;
-    }
-
-    .cntpg-quick-contact {
-        padding-top: 100px;
+    .hero-cred-item {
+        padding-right: 22px;
+        margin-right: 22px;
+        flex: 1 1 40%;
+        border-right: none;
     }
 
     .cntpg-cards-grid {
@@ -1199,11 +1311,80 @@ section {
     .evtpg-stats-grid {
         grid-template-columns: repeat(2, 1fr);
     }
+
+    .evtpg-faq {
+        padding: 60px 0;
+    }
+
+    .evtpg-faq-list {
+        margin-top: 30px;
+        gap: 12px;
+    }
+
+    .evtpg-faq-item {
+        border-radius: 12px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
+    }
+
+    .evtpg-faq-question {
+        padding: 18px 16px;
+        font-size: 14.5px;
+        line-height: 1.4;
+        gap: 14px;
+    }
+
+    .faq-toggle-icon {
+        width: 28px;
+        height: 28px;
+        border-radius: 50%;
+        background: rgba(228, 31, 38, 0.08);
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 12px;
+        flex-shrink: 0;
+    }
+
+    .evtpg-faq-item.active .faq-toggle-icon {
+        background: var(--primary-red);
+        color: var(--white);
+    }
+
+    .evtpg-faq-answer p {
+        padding: 0 16px 18px;
+        font-size: 13.5px;
+        line-height: 1.65;
+    }
 }
 
 @media screen and (max-width: 540px) {
+    .page-hero {
+        min-height: 100svh;
+    }
+
+    .page-hero-content {
+        padding-top: 112px;
+        padding-bottom: 28px;
+    }
+
+    .hero-badge {
+        font-size: 10.5px;
+        padding: 5px 11px;
+        margin-bottom: 14px;
+    }
+
     .page-hero-content h1 {
-        font-size: clamp(2rem, 8.5vw, 2.6rem);
+        font-size: clamp(1.8rem, 1.2rem + 4vw, 2.4rem);
+        line-height: 1.12;
+        margin-bottom: 12px;
+        max-width: 100%;
+    }
+
+    .page-hero-content p {
+        font-size: 13.5px;
+        line-height: 1.6;
+        margin-bottom: 22px;
+        max-width: 100%;
     }
 
     .cntpg-cards-grid {
@@ -1226,13 +1407,111 @@ section {
         grid-template-columns: 1fr;
     }
 
-    .hero-floating-stats {
+    .hero-ctas {
         flex-direction: column;
-        align-items: stretch;
-        bottom: -90px;
+        align-items: flex-start;
+        gap: 14px;
+        margin-bottom: 28px;
     }
 
-    .cntpg-quick-contact {
-        padding-top: 140px;
+    .hero-btn {
+        width: 100%;
+        justify-content: center;
+    }
+
+    /* Exceptions: these two aren't primary hero CTAs - they're a compact
+       inline "open in maps" link and a full-bleed form submit button that
+       already sets its own explicit width. Without this, the generic
+       .hero-btn mobile rule stretched the small maps link to an oversized,
+       misaligned full-width pill it was never designed for. */
+    .directions-btn {
+        width: fit-content;
+        display: flex;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    /* Credibility row becomes a tight 3-up grid on small phones, matching
+       services.html's mobile treatment. */
+    .hero-credibility {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 12px 10px;
+        padding-top: 16px;
+        border-top: 1px solid rgba(255, 255, 255, 0.16);
+    }
+
+    .hero-cred-item {
+        padding: 0;
+        margin: 0;
+        border-right: none;
+    }
+
+    .hero-cred-num {
+        font-size: 1.15rem;
+        margin-bottom: 3px;
+    }
+
+    .hero-cred-label {
+        font-size: 9px;
+        line-height: 1.25;
+        letter-spacing: 0.4px;
+    }
+
+    .cntpg-cta-card {
+        padding: 36px 18px;
+    }
+
+    .cntpg-cta-btns {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 10px;
+    }
+}
+
+@media screen and (max-width: 420px) {
+    .evtpg-head h2 {
+        font-size: 1.5rem;
+    }
+
+    .page-hero-content {
+        padding-top: 104px;
+        padding-bottom: 24px;
+    }
+
+    .page-hero-content h1 {
+        font-size: 1.7rem;
+    }
+
+    .page-hero-content p {
+        font-size: 13px;
+    }
+
+    .cntpg-cta-card h2 {
+        font-size: 21px;
+    }
+
+    .cntpg-cta-card p {
+        font-size: 13px;
+    }
+
+    .evtpg-faq {
+        padding: 46px 0;
+    }
+
+    .evtpg-faq-list {
+        margin-top: 22px;
+    }
+
+    .evtpg-faq-question {
+        padding: 15px 14px;
+        font-size: 14px;
+        gap: 10px;
+    }
+
+    .evtpg-faq-answer p {
+        padding: 0 14px 16px;
+        font-size: 13px;
+        line-height: 1.6;
     }
 }

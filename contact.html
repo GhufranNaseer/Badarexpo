@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -9,12 +9,13 @@
     <!-- SEO & Search Engine Description -->
     <meta name="description"
         content="Get in touch with Badar Expo Solutions, Pakistan's leading event management and exhibition company. Request a free consultation, book custom stall designs, or make business inquiries.">
+    <link rel="canonical" href="https://badarexpo.com/contact.html">
     <meta name="keywords"
         content="Contact Badar Expo, BXSS Office Address, Event Inquiry Pakistan, Exhibition Stall Booking, Sponsor Event Karachi, Corporate Event Management, Badar Expo Contact Details, Karachi Head Office">
 
     <!-- Open Graph / Facebook / LinkedIn -->
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://website.testing-production.com/contact.html">
+    <meta property="og:url" content="https://badarexpo.com/contact.html">
     <meta property="og:title" content="Contact Us | Badar Expo Solutions">
     <meta property="og:description"
         content="Connect with our corporate teams for business inquiries, exhibition space bookings, partnerships, and custom stall fabrications.">
@@ -44,11 +45,16 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <!-- ========================= GLOBAL STYLES ========================= -->
     <link rel="stylesheet" href="assets/css/navbar.css">
+    <link rel="stylesheet" href="assets/css/tokens.css">
     <link rel="stylesheet" href="assets/css/footer.css">
     <link rel="stylesheet" href="assets/css/page-hero.css">
 
     <!-- ========================= PAGE SPECIFIC STYLES ========================= -->
     <link rel="stylesheet" href="assets/css/contact.css">
+    <link rel="stylesheet" href="assets/css/form-feedback.css">
+    <!-- Phase 8: RTL overrides - additive only, zero effect unless dir="rtl" -->
+    <link rel="stylesheet" href="assets/css/comm-widget.css">
+    <link rel="stylesheet" href="assets/css/rtl-overrides.css">
 </head>
 
 <body>
@@ -120,11 +126,19 @@
                 </div>
             </div>
 
-            <div class="nav-item"><a href="index.html"><span>Home</span></a></div>
-            <div class="nav-item"><a href="about.html"><span>About Us</span></a></div>
+            <div class="nav-item"><a href="index.html"><span data-i18n="nav.home">Home</span></a></div>
+            <div class="nav-item dropdown" data-target="about">
+                <a href="about.html"><span><span data-i18n="nav.aboutUs">About Us</span> <i class="fas fa-chevron-down"></i></span></a>
+                <ul class="mobile-submenu">
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="our-leaders-executives.html">Our Leaders &amp; Executives</a></li>
+                    <li><a href="badar-engineering.html">Badar Engineering Company</a></li>
+                    <li><a href="sports-entertainment.html">Sports &amp; Entertainment</a></li>
+                </ul>
+            </div>
 
             <div class="nav-item dropdown" data-target="services">
-                <a href="services.html"><span>Services <i class="fas fa-chevron-down"></i></span></a>
+                <a href="services.html"><span><span data-i18n="nav.services">Services</span> <i class="fas fa-chevron-down"></i></span></a>
                 <ul class="mobile-submenu">
                     <li><a href="exhibitionmanagement.html">Exhibition Management</a></li>
                     <li><a href="exhibitionmanagement.html#conference">Conference Management</a></li>
@@ -134,31 +148,33 @@
                 </ul>
             </div>
             <div class="nav-item dropdown" data-target="events">
-                <a href="events.html"><span>Events <i class="fas fa-chevron-down"></i></span></a>
+                <a href="events.html"><span><span data-i18n="nav.events">Events</span> <i class="fas fa-chevron-down"></i></span></a>
                 <ul class="mobile-submenu">
-                    <li><a href="events.html#our-role">Owned Events</a></li>
-                    <li><a href="events.html#our-role">Co-Organized</a></li>
-                    <li><a href="events.html#our-role">Managed Events</a></li>
+                    <li><a href="events-calendar.html" data-i18n="nav.eventCalendar">Event Calendar</a></li>
+                    <li><a href="events.html#our-role" data-i18n="nav.ownedEvents">Owned Events</a></li>
+                    <li><a href="events.html#our-role" data-i18n="nav.coOrganized">Co-Organized</a></li>
+                    <li><a href="events.html#our-role" data-i18n="nav.managedEvents">Managed Events</a></li>
                 </ul>
             </div>
 
-            <div class="nav-item"><a href="#"><span>Industries</span></a></div>
-            <div class="nav-item"><a href="#"><span>International Projects</span></a></div>
+            <div class="nav-item"><a href="industries.html"><span data-i18n="nav.industries">Industries</span></a></div>
+            <div class="nav-item"><a href="international-projects.html"><span data-i18n="nav.internationalProjects">International Projects</span></a></div>
 
             <div class="nav-item dropdown" data-target="insights">
-                <span>Insights <i class="fas fa-chevron-down"></i></span>
+                <a href="insights.html"><span><span data-i18n="nav.insights">Insights</span> <i class="fas fa-chevron-down"></i></span></a>
                 <ul class="mobile-submenu">
-                    <li><a href="#">Media Gallery</a></li>
-                    <li><a href="#">Blogs</a></li>
-                    <li><a href="#">News &amp; Updates</a></li>
+                    <li><a href="blog.html" data-i18n="pages.insights.blogLabel">Blog</a></li>
+                    <li><a href="gallery.html" data-i18n="eventsUi.gallery">Gallery</a></li>
+                    <li><a href="media.html" data-i18n="pages.insights.mediaLabel">Media</a></li>
+                    <li><a href="videos.html" data-i18n="pages.videos.navLabel">Videos</a></li>
                 </ul>
             </div>
-            <div class="nav-item contact-item active-nav"><a href="contact.html"><span>Contact</span></a></div>
+            <div class="nav-item contact-item active-nav"><a href="contact.html"><span data-i18n="nav.contact">Contact</span></a></div>
 
             <!-- ACTION BUTTONS (Moved inside menu for mobile) -->
             <div class="mobile-actions">
-                <button class="btn btn-dark">Visitor</button>
-                <button class="btn btn-light">Partner</button>
+                <button class="btn btn-dark" data-i18n="buttons.visitor">Visitor</button>
+                <button class="btn btn-light" data-i18n="buttons.partner">Partner</button>
             </div>
         </div>
 
@@ -175,10 +191,33 @@
 
         <!-- MEGA MENU WRAPPER -->
         <div class="mega-menu-wrapper" id="shared-mega-menu">
+            <!-- ABOUT US CONTENT -->
+            <div id="content-about" class="mega-content">
+                <a href="about.html" class="insight-card">
+                    <img src="assets/images/Images%20Website%20Badarexpo/Facebook/Events%20Banner/GLOBAL-SME-SUMMIT-07-06-2026.jpeg" alt="About Badar Expo Solutions" loading="lazy">
+                    <h4>About Us</h4>
+                    <p>Our story, milestones &amp; the scale of what we deliver.</p>
+                </a>
+                <a href="our-leaders-executives.html" class="insight-card">
+                    <img src="assets/images/Images%20Website%20Badarexpo/Facebook/Events%20Banner/PIMEC-15-09-2027.jpeg" alt="Our Leaders and Executives" loading="lazy">
+                    <h4>Our Leaders &amp; Executives</h4>
+                    <p>The founder, directors &amp; executive board behind BXSS.</p>
+                </a>
+                <a href="badar-engineering.html" class="insight-card">
+                    <img src="assets/images/portfolio/b2b-industrial-generated.webp" alt="Badar Engineering Company engineering legacy" loading="lazy">
+                    <h4>Badar Engineering Company</h4>
+                    <p>Engineering legacy, technical capability &amp; EPC execution since 1965.</p>
+                </a>
+                <a href="sports-entertainment.html" class="insight-card">
+                    <img src="assets/images/portfolio/ptpl-champions.webp" alt="Sports and entertainment experiences by Badar Expo Solutions" loading="lazy">
+                    <h4>Sports &amp; Entertainment</h4>
+                    <p>Cricket league platforms, live concerts &amp; large-scale audience events.</p>
+                </a>
+            </div>
             <!-- SERVICES CONTENT -->
             <div id="content-services" class="mega-content">
                 <div class="column dynamic-links">
-                    <h4><a href="exhibitionmanagement.html">Exhibition Management <i class="fas fa-chevron-right"
+                    <h4><a href="exhibitionmanagement.html"><span data-i18n="nav.exhibitionManagement">Exhibition Management</span> <i class="fas fa-chevron-right"
                                 style="font-size: 10px; opacity: 0.6;"></i></a></h4>
                     <a href="exhibitionmanagement.html" data-title="Exhibition Management"
                         data-desc="Complete exhibition solutions from concept to execution for B2B and B2C platforms."
@@ -191,7 +230,7 @@
                         data-image="assets/images/portfolio/ziauddin-convocation.webp">Corporate</a>
                 </div>
                 <div class="column dynamic-links">
-                    <h4><a href="construction-design.html">Construction &amp; Design <i class="fas fa-chevron-right"
+                    <h4><a href="construction-design.html"><span data-i18n="nav.constructionDesign">Construction &amp; Design</span> <i class="fas fa-chevron-right"
                                 style="font-size: 10px; opacity: 0.6;"></i></a></h4>
                     <ul class="bullet-list">
                         <li><a href="construction-design.html#canopy" data-title="Canopy Octanorm Building"
@@ -220,7 +259,7 @@
                     </ul>
                 </div>
                 <div class="column dynamic-links">
-                    <h4><a href="growthservices.html">Growth Services <i class="fas fa-chevron-right"
+                    <h4><a href="growthservices.html"><span data-i18n="nav.growthServices">Growth Services</span> <i class="fas fa-chevron-right"
                                 style="font-size: 10px; opacity: 0.6;"></i></a></h4>
                     <a href="growthservices.html#pillars" data-title="B2B Matchmaking"
                         data-desc="Connecting global buyers with suppliers through strategic high-level networking."
@@ -247,7 +286,7 @@
             <!-- EVENTS CONTENT -->
             <div id="content-events" class="mega-content">
                 <div class="column dynamic-links">
-                    <h4><a href="events.html#our-role">Our Role <i class="fas fa-chevron-right"
+                    <h4><a href="events.html#our-role"><span data-i18n="nav.ourRole">Our Role</span> <i class="fas fa-chevron-right"
                                 style="font-size: 10px; opacity: 0.6;"></i></a></h4>
                     <a href="events.html#our-role" data-title="Owned Events"
                         data-desc="Flagship trade fairs and industry-leading exhibitions fully conceptualized by Badar Expo."
@@ -260,7 +299,7 @@
                         data-image="assets/images/portfolio/ziauddin-convocation.webp">Managed Events</a>
                 </div>
                 <div class="column dynamic-links">
-                    <h4><a href="events.html#formats">Formats <i class="fas fa-chevron-right"
+                    <h4><a href="events.html#formats"><span data-i18n="nav.formats">Formats</span> <i class="fas fa-chevron-right"
                                 style="font-size: 10px; opacity: 0.6;"></i></a></h4>
                     <a href="events.html#formats" data-title="Exhibitions"
                         data-desc="Creating massive B2B and B2C platforms that connect global suppliers with buyers."
@@ -271,6 +310,19 @@
                     <a href="events.html#formats" data-title="Industrial Forums"
                         data-desc="Facilitating high-level dialogue between government and industry leaders."
                         data-image="assets/images/portfolio/saudi-delegation.webp">Industrial Forums</a>
+                </div>
+                <div class="column dynamic-links">
+                    <h4><a href="events-calendar.html"><span data-i18n="nav.eventCalendar">Event Calendar</span> <i class="fas fa-chevron-right"
+                                style="font-size: 10px; opacity: 0.6;"></i></a></h4>
+                    <a href="events-calendar.html" data-title="Browse All Events" data-i18n="nav.allEvents"
+                        data-desc="Search, filter, and browse every upcoming, ongoing, and past BXSS event in one place."
+                        data-image="assets/images/portfolio/exhibition-floor-premium.webp">All Events</a>
+                    <a href="events-calendar.html?status=upcoming" data-title="Upcoming Events"
+                        data-desc="See what's coming up next across every category and city."
+                        data-image="assets/images/portfolio/global-sme-banner.webp">Upcoming Events</a>
+                    <a href="events-calendar.html?status=past" data-title="Past Events"
+                        data-desc="Browse our archive of completed exhibitions and conferences."
+                        data-image="assets/images/portfolio/ieee-exhibition.webp">Past Events</a>
                 </div>
                 <div class="column highlight">
                     <div class="highlight-content-box">
@@ -284,21 +336,26 @@
 
             <!-- INSIGHTS CONTENT -->
             <div id="content-insights" class="mega-content">
-                <div class="insight-card">
+                <a href="blog.html" class="insight-card">
                     <img src="assets/images/portfolio/global-sme-banner.webp" alt="Blog" loading="lazy">
-                    <h4>Blog</h4>
+                    <h4 data-i18n="pages.insights.blogLabel">Blog</h4>
                     <p>Industry insights, event strategies &amp; updates.</p>
-                </div>
-                <div class="insight-card">
+                </a>
+                <a href="media.html" class="insight-card">
                     <img src="assets/images/portfolio/china-embassy.webp" alt="Media" loading="lazy">
-                    <h4>Media</h4>
+                    <h4 data-i18n="pages.insights.mediaLabel">Media</h4>
                     <p>Press coverage, interviews &amp; event highlights.</p>
-                </div>
-                <div class="insight-card">
+                </a>
+                <a href="gallery.html" class="insight-card">
                     <img src="assets/images/portfolio/concert-audience.webp" alt="Gallery" loading="lazy">
-                    <h4>Gallery</h4>
+                    <h4 data-i18n="eventsUi.gallery">Gallery</h4>
                     <p>Moments captured from our mega events.</p>
-                </div>
+                </a>
+                <a href="videos.html" class="insight-card">
+                    <img src="assets/images/portfolio/exhibition-floor-premium.webp" alt="Videos" loading="lazy">
+                    <h4 data-i18n="pages.videos.navLabel">Videos</h4>
+                    <p data-i18n="pages.videos.megaMenuDesc">Watch highlights from our flagship events.</p>
+                </a>
             </div>
         </div>
 
@@ -310,8 +367,8 @@
             </div>
 
             <div class="actions">
-                <button class="btn btn-dark">Visitor</button>
-                <button class="btn btn-light">Partner</button>
+                <button class="btn btn-dark" data-i18n="buttons.visitor">Visitor</button>
+                <button class="btn btn-light" data-i18n="buttons.partner">Partner</button>
             </div>
         </div>
     </nav>
@@ -324,7 +381,7 @@
         <div class="search-close" id="search-close"><i class="fas fa-xmark"></i></div>
         <div class="search-container">
             <div class="search-box">
-                <input type="text" placeholder="Search events, services, or insights..." id="search-input">
+                <input type="text" placeholder="Search events, services, or insights..." id="search-input" data-i18n-placeholder="forms.siteSearchPlaceholder">
                 <i class="fas fa-magnifying-glass search-icon-inner"></i>
             </div>
             <div class="search-suggestions">
@@ -342,7 +399,7 @@
     <!-- ========================= [TEMPLATE PART: page-breadcrumb.php START] ========================= -->
     <div class="page-breadcrumb-bar">
         <nav class="page-breadcrumb" aria-label="Breadcrumb">
-            <a href="index.html">Home</a>
+            <a href="index.html" data-i18n="nav.home">Home</a>
             <span class="crumb-sep">/</span>
             <span class="crumb-current">Contact Us</span>
         </nav>
@@ -371,22 +428,22 @@
                     <a href="#contact-form-section" class="hero-btn hero-btn-primary">Send Inquiry</a>
                     <a href="#quick-contact" class="hero-btn hero-btn-outline">Office Coordinates</a>
                 </div>
-            </div>
-        </div>
 
-        <!-- Floating Statistics cards (Uses StatsManager layout) -->
-        <div class="hero-floating-stats">
-            <div class="floating-stat-card stat-box">
-                <span class="floating-stat-num"><span class="counter" data-target="25">0</span>+</span>
-                <span class="floating-stat-label">Years of Excellence</span>
-            </div>
-            <div class="floating-stat-card stat-box">
-                <span class="floating-stat-num"><span class="counter" data-target="1500">0</span>+</span>
-                <span class="floating-stat-label">Events Delivered</span>
-            </div>
-            <div class="floating-stat-card stat-box">
-                <span class="floating-stat-num"><span class="counter" data-target="5000">0</span>+</span>
-                <span class="floating-stat-label">Exhibitors Served</span>
+                <!-- Credibility row (in-flow, matches services.html's .svcpg-hero-credibility) -->
+                <div class="hero-credibility">
+                    <div class="hero-cred-item stat-box">
+                        <div class="hero-cred-num"><span class="counter" data-target="25">0</span>+</div>
+                        <div class="hero-cred-label">Years of Excellence</div>
+                    </div>
+                    <div class="hero-cred-item stat-box">
+                        <div class="hero-cred-num"><span class="counter" data-target="1500">0</span>+</div>
+                        <div class="hero-cred-label">Events Delivered</div>
+                    </div>
+                    <div class="hero-cred-item stat-box">
+                        <div class="hero-cred-num"><span class="counter" data-target="5000">0</span>+</div>
+                        <div class="hero-cred-label">Exhibitors Served</div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -467,38 +524,38 @@
                         <p>Submit your event requirements, space bookings, or fabrication inquiries. Our representatives
                             will get back to you within 24 business hours.</p>
                     </div>
-                    <form class="cntpg-form" action="#" method="POST">
+                    <form class="cntpg-form" id="bxssContactForm">
                         <div class="form-row">
                             <div class="form-group">
-                                <label for="cnt_name">Full Name *</label>
-                                <input type="text" id="cnt_name" required placeholder="John Doe">
+                                <label for="cnt_name" data-i18n="forms.fullName">Full Name *</label>
+                                <input type="text" id="cnt_name" name="fullName" required placeholder="John Doe">
                             </div>
                             <div class="form-group">
-                                <label for="cnt_company">Company Name</label>
-                                <input type="text" id="cnt_company" placeholder="Company Ltd.">
+                                <label for="cnt_company" data-i18n="forms.companyName">Company Name</label>
+                                <input type="text" id="cnt_company" name="companyName" placeholder="Company Ltd.">
                             </div>
                         </div>
 
                         <div class="form-row">
                             <div class="form-group">
-                                <label for="cnt_email">Email Address *</label>
-                                <input type="email" id="cnt_email" required placeholder="john@company.com">
+                                <label for="cnt_email" data-i18n="forms.emailAddress">Email Address *</label>
+                                <input type="email" id="cnt_email" name="email" required placeholder="john@company.com">
                             </div>
                             <div class="form-group">
-                                <label for="cnt_phone">Phone Number *</label>
-                                <input type="tel" id="cnt_phone" required placeholder="+92 300 1234567">
+                                <label for="cnt_phone" data-i18n="forms.phoneNumber">Phone Number *</label>
+                                <input type="tel" id="cnt_phone" name="phone" required placeholder="+92 300 1234567">
                             </div>
                         </div>
 
                         <div class="form-row">
                             <div class="form-group">
-                                <label for="cnt_subject">Subject *</label>
-                                <input type="text" id="cnt_subject" required
+                                <label for="cnt_subject" data-i18n="forms.subject">Subject *</label>
+                                <input type="text" id="cnt_subject" name="subject" required
                                     placeholder="Stall design booking / partnership proposal">
                             </div>
                             <div class="form-group">
-                                <label for="cnt_event_type">Event Category</label>
-                                <select id="cnt_event_type">
+                                <label for="cnt_event_type" data-i18n="forms.eventCategory">Event Category</label>
+                                <select id="cnt_event_type" name="eventCategory">
                                     <option value="exhibition">Exhibition Space Booking</option>
                                     <option value="sponsorship">Event Sponsorship Proposal</option>
                                     <option value="fabrication">Custom Stall Fabrication</option>
@@ -511,19 +568,19 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="cnt_message">Inquiry Details *</label>
-                            <textarea id="cnt_message" rows="5" required
+                            <label for="cnt_message" data-i18n="forms.inquiryDetails">Inquiry Details *</label>
+                            <textarea id="cnt_message" name="message" rows="5" required
                                 placeholder="Provide details about your required space dimensions, event names, or proposal parameters..."></textarea>
                         </div>
 
                         <div class="form-consent">
-                            <input type="checkbox" id="cnt_consent" required>
-                            <label for="cnt_consent">I consent to Badar Expo processing my data to address this inquiry.
+                            <input type="checkbox" id="cnt_consent" name="consent" required>
+                            <label for="cnt_consent" data-i18n="forms.consentText">I consent to Badar Expo processing my data to address this inquiry.
                                 *</label>
                         </div>
 
                         <button type="submit" class="hero-btn hero-btn-primary cntpg-submit-btn">
-                            Submit Inquiry <i class="fas fa-paper-plane"></i>
+                            <span data-i18n="forms.submitInquiry">Submit Inquiry</span> <i class="fas fa-paper-plane"></i>
                         </button>
                     </form>
                 </div>
@@ -616,7 +673,7 @@
                         <!-- Logistic Row 1 -->
                         <div class="logistic-row">
                             <i class="fas fa-parking"></i>
-                            <div>
+                            <div class="logistic-content">
                                 <h4>Visitor Parking</h4>
                                 <p>Free visitor parking is available directly in front of the BXSS HQ building and
                                     designated street zones.</p>
@@ -626,7 +683,7 @@
                         <!-- Logistic Row 2 -->
                         <div class="logistic-row">
                             <i class="fas fa-landmark"></i>
-                            <div>
+                            <div class="logistic-content">
                                 <h4>Nearest Landmark</h4>
                                 <p>Conveniently situated adjacent to the PAF Museum, Karsaz and accessible from KDA
                                     Scheme 1 intersections.</p>
@@ -636,12 +693,12 @@
                         <!-- Logistic Row 3 -->
                         <div class="logistic-row">
                             <i class="fas fa-route"></i>
-                            <div>
+                            <div class="logistic-content">
                                 <h4>Get Navigation Paths</h4>
                                 <p>Find exact route metrics from your current location using online navigation tools.
                                 </p>
                                 <a href="https://maps.google.com/maps?daddr=Badar+Expo+Solutions,+Karachi"
-                                    target="_blank" class="hero-btn hero-btn-primary directions-btn">
+                                    target="_blank" rel="noopener noreferrer" class="hero-btn hero-btn-primary directions-btn">
                                     Open Google Maps <i class="fas fa-external-link-alt"></i>
                                 </a>
                             </div>
@@ -799,90 +856,7 @@
     </section>
     <!-- ========================= [TEMPLATE PART: contact-team.php END] ========================= -->
 
-    <!-- ========================= [SECTION 7: FAQ ACCORDION] ========================= -->
-    <!-- ========================= [TEMPLATE PART: contact-faq.php START] ========================= -->
-    <section class="evtpg-faq">
-        <div class="evtpg-container">
-            <div class="evtpg-head text-center">
-                <span class="evtpg-eyebrow">FAQs</span>
-                <h2>Frequently Asked Questions</h2>
-                <p>Find answers to common questions about space booking, custom stall fabrication, and visitor access.
-                </p>
-            </div>
-
-            <div class="evtpg-faq-list">
-                <!-- FAQ Item 1 -->
-                <div class="evtpg-faq-item">
-                    <div class="evtpg-faq-question">
-                        <h3>How do I book an exhibition space or custom stall for upcoming events?</h3>
-                        <span class="faq-toggle-icon"><i class="fas fa-plus"></i></span>
-                    </div>
-                    <div class="evtpg-faq-answer">
-                        <p>You can book spaces by selecting your preferred event on our calendar list and clicking the
-                            inquiry button, or by filling out the form at the bottom of this page. Our project
-                            coordinators will get in touch to assist you with floor layout availability, pricing, and
-                            shell schemes.</p>
-                    </div>
-                </div>
-
-                <!-- FAQ Item 2 -->
-                <div class="evtpg-faq-item">
-                    <div class="evtpg-faq-question">
-                        <h3>How do I become an event sponsor?</h3>
-                        <span class="faq-toggle-icon"><i class="fas fa-plus"></i></span>
-                    </div>
-                    <div class="evtpg-faq-answer">
-                        <p>Badar Expo Solutions offers tiered sponsorship slots (Platinum, Gold, Silver, and Category
-                            sponsorships). Reach out directly to our Sales team via the corporate form or at
-                            sales@badarexpo.com to receive our comprehensive sponsorship catalog and branding matrices.
-                        </p>
-                    </div>
-                </div>
-
-                <!-- FAQ Item 3 -->
-                <div class="evtpg-faq-item">
-                    <div class="evtpg-faq-question">
-                        <h3>How can I participate as a visitor or B2B buyer?</h3>
-                        <span class="faq-toggle-icon"><i class="fas fa-plus"></i></span>
-                    </div>
-                    <div class="evtpg-faq-answer">
-                        <p>Visitor registration links go live on our website 30 days before each major trade show. You
-                            can register online to receive your electronic entry badge, or check in directly at the
-                            visitor registration desks on show days.</p>
-                    </div>
-                </div>
-
-                <!-- FAQ Item 4 -->
-                <div class="evtpg-faq-item">
-                    <div class="evtpg-faq-question">
-                        <h3>Can international companies join and get custom support?</h3>
-                        <span class="faq-toggle-icon"><i class="fas fa-plus"></i></span>
-                    </div>
-                    <div class="evtpg-faq-answer">
-                        <p>Absolutely. We provide dedicated support for foreign exhibitors, including customs clearance
-                            coordination for machinery displays, temporary visa invitation letters, translation
-                            services, hotel reservations, and pre-scheduled B2B buyer meetings.</p>
-                    </div>
-                </div>
-
-                <!-- FAQ Item 5 -->
-                <div class="evtpg-faq-item">
-                    <div class="evtpg-faq-question">
-                        <h3>How long before an event should I register to book a custom stall?</h3>
-                        <span class="faq-toggle-icon"><i class="fas fa-plus"></i></span>
-                    </div>
-                    <div class="evtpg-faq-answer">
-                        <p>For custom stall design and structural fabrication, we recommend initiating designs 60 to 90
-                            days before the show. This ensures adequate time for structural approvals, engineering
-                            reviews, material sourcing, and mock fabrication in our workshops.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- ========================= [TEMPLATE PART: contact-faq.php END] ========================= -->
-
-    <!-- ========================= [SECTION 8: TRUST INDICATORS] ========================= -->
+    <!-- ========================= [SECTION 7: TRUST INDICATORS] ========================= -->
     <!-- ========================= [TEMPLATE PART: contact-trust.php START] ========================= -->
     <section class="evtpg-stats">
         <div class="evtpg-container">
@@ -931,7 +905,7 @@
     </section>
     <!-- ========================= [TEMPLATE PART: contact-trust.php END] ========================= -->
 
-    <!-- ========================= [SECTION 9: CLIENT LOGOS] ========================= -->
+    <!-- ========================= [SECTION 8: CLIENT LOGOS] ========================= -->
     <!-- ========================= [TEMPLATE PART: contact-clients.php START] ========================= -->
     <section class="evtpg-testimonials">
         <div class="evtpg-container">
@@ -960,20 +934,108 @@
     </section>
     <!-- ========================= [TEMPLATE PART: contact-clients.php END] ========================= -->
 
+    <!-- ========================= [SECTION 9: FAQ ACCORDION] ========================= -->
+    <!-- ========================= [TEMPLATE PART: contact-faq.php START] ========================= -->
+    <section class="evtpg-faq">
+        <div class="evtpg-container">
+            <div class="evtpg-head text-center">
+                <span class="evtpg-eyebrow">FAQs</span>
+                <h2>Frequently Asked Questions</h2>
+                <p>Find answers to common questions about space booking, custom stall fabrication, and visitor access.
+                </p>
+            </div>
+
+            <div class="evtpg-faq-list">
+                <!-- FAQ Item 1 -->
+                <div class="evtpg-faq-item active">
+                    <button type="button" class="evtpg-faq-question" aria-expanded="true">
+                        <h3>How do I book an exhibition space or custom stall for upcoming events?</h3>
+                        <span class="faq-toggle-icon"><i class="fas fa-plus"></i></span>
+                    </button>
+                    <div class="evtpg-faq-answer">
+                        <p>You can book spaces by selecting your preferred event on our calendar list and clicking the
+                            inquiry button, or by filling out the form at the bottom of this page. Our project
+                            coordinators will get in touch to assist you with floor layout availability, pricing, and
+                            shell schemes.</p>
+                    </div>
+                </div>
+
+                <!-- FAQ Item 2 -->
+                <div class="evtpg-faq-item">
+                    <button type="button" class="evtpg-faq-question" aria-expanded="false">
+                        <h3>How do I become an event sponsor?</h3>
+                        <span class="faq-toggle-icon"><i class="fas fa-plus"></i></span>
+                    </button>
+                    <div class="evtpg-faq-answer">
+                        <p>Badar Expo Solutions offers tiered sponsorship slots (Platinum, Gold, Silver, and Category
+                            sponsorships). Reach out directly to our Sales team via the corporate form or at
+                            sales@badarexpo.com to receive our comprehensive sponsorship catalog and branding matrices.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- FAQ Item 3 -->
+                <div class="evtpg-faq-item">
+                    <button type="button" class="evtpg-faq-question" aria-expanded="false">
+                        <h3>How can I participate as a visitor or B2B buyer?</h3>
+                        <span class="faq-toggle-icon"><i class="fas fa-plus"></i></span>
+                    </button>
+                    <div class="evtpg-faq-answer">
+                        <p>Visitor registration links go live on our website 30 days before each major trade show. You
+                            can register online to receive your electronic entry badge, or check in directly at the
+                            visitor registration desks on show days.</p>
+                    </div>
+                </div>
+
+                <!-- FAQ Item 4 -->
+                <div class="evtpg-faq-item">
+                    <button type="button" class="evtpg-faq-question" aria-expanded="false">
+                        <h3>Can international companies join and get custom support?</h3>
+                        <span class="faq-toggle-icon"><i class="fas fa-plus"></i></span>
+                    </button>
+                    <div class="evtpg-faq-answer">
+                        <p>Absolutely. We provide dedicated support for foreign exhibitors, including customs clearance
+                            coordination for machinery displays, temporary visa invitation letters, translation
+                            services, hotel reservations, and pre-scheduled B2B buyer meetings.</p>
+                    </div>
+                </div>
+
+                <!-- FAQ Item 5 -->
+                <div class="evtpg-faq-item">
+                    <button type="button" class="evtpg-faq-question" aria-expanded="false">
+                        <h3>How long before an event should I register to book a custom stall?</h3>
+                        <span class="faq-toggle-icon"><i class="fas fa-plus"></i></span>
+                    </button>
+                    <div class="evtpg-faq-answer">
+                        <p>For custom stall design and structural fabrication, we recommend initiating designs 60 to 90
+                            days before the show. This ensures adequate time for structural approvals, engineering
+                            reviews, material sourcing, and mock fabrication in our workshops.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- ========================= [TEMPLATE PART: contact-faq.php END] ========================= -->
+
     <!-- ========================= [SECTION 10: FINAL PREMIUM CTA] ========================= -->
     <!-- ========================= [TEMPLATE PART: contact-cta.php START] ========================= -->
     <section class="cntpg-cta-section">
         <div class="evtpg-container">
-            <div class="cntpg-cta-layout">
-                <div class="cntpg-cta-content">
-                    <span class="cntpg-cta-eyebrow">Corporate Booking</span>
-                    <h2>Let's Build Your Next Successful Event Together</h2>
-                    <p>Whether hosting a world-class summit or executing a custom shell scheme stall, BXSS delivers
-                        unmatched corporate excellence.</p>
-                </div>
-                <div class="cntpg-cta-buttons">
+            <div class="cntpg-cta-card">
+                <span class="cntpg-cta-badge"><i class="fas fa-paper-plane"></i> Corporate Booking</span>
+                <h2>Let's Build Your Next Successful <span>Event</span> Together</h2>
+                <p>Whether hosting a world-class summit or executing a custom shell scheme stall, BXSS delivers
+                    unmatched corporate excellence.</p>
+                <div class="cntpg-cta-btns">
                     <a href="mailto:info@badarexpo.com" class="hero-btn hero-btn-primary">Schedule Meeting</a>
                     <a href="tel:+9221111111297" class="hero-btn hero-btn-outline">Call Our Desk</a>
+                </div>
+                <div class="cntpg-cta-contacts">
+                    <a href="tel:+9221111111297" class="cntpg-cta-contact-item"><i class="fas fa-phone"></i> +92 21
+                        111 111 297</a>
+                    <a href="mailto:info@badarexpo.com" class="cntpg-cta-contact-item"><i
+                            class="fas fa-envelope"></i> info@badarexpo.com</a>
+                    <span class="cntpg-cta-contact-item"><i class="fas fa-location-dot"></i> Karachi, Pakistan</span>
                 </div>
             </div>
         </div>
@@ -988,12 +1050,12 @@
             <!-- TOP -->
             <div class="footer-top">
 
-                <button class="footer-aws-btn"
+                <button type="button" class="footer-aws-btn"
                     onclick="document.getElementById('contact-form-section').scrollIntoView({behavior:'smooth'})">
                     Get a Free Quote
                 </button>
 
-                <button class="footer-language-btn">
+                <button type="button" class="footer-language-btn">
                     <svg fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
                         <circle cx="12" cy="12" r="9"></circle>
                         <path d="M3 12h18"></path>
@@ -1011,39 +1073,42 @@
             <div class="footer-grid">
 
                 <div class="footer-column">
-                    <h3>Our Services</h3>
+                    <h3 data-i18n="nav.footerOurServices">Our Services</h3>
                     <ul>
-                        <li><a href="#">Exhibition Management</a></li>
-                        <li><a href="#">Trade Show Organizing</a></li>
-                        <li><a href="#">Corporate Events</a></li>
-                        <li><a href="#">Product Launches</a></li>
-                        <li><a href="#">Government Pavilions</a></li>
-                        <li><a href="#">International Expos</a></li>
-                        <li><a href="#">Conference &amp; Summits</a></li>
-                        <li><a href="#">Award Ceremonies</a></li>
+                        <li><a href="exhibitionmanagement.html">Exhibition Management</a></li>
+                        <li><a href="exhibitionmanagement.html">Trade Show Organizing</a></li>
+                        <li><a href="exhibitionmanagement.html#corporate">Corporate Events</a></li>
+                        <li><a href="exhibitionmanagement.html#corporate">Product Launches</a></li>
+                        <li><a href="construction-design.html">Government Pavilions</a></li>
+                        <li><a href="international-projects.html">International Expos</a></li>
+                        <li><a href="exhibitionmanagement.html#conference">Conference &amp; Summits</a></li>
+                        <li><a href="exhibitionmanagement.html#corporate">Award Ceremonies</a></li>
                     </ul>
                 </div>
 
                 <div class="footer-column">
-                    <h3>Industries</h3>
+                    <h3 data-i18n="nav.footerIndustries">Industries</h3>
                     <ul>
-                        <li><a href="#">Textile &amp; Fashion</a></li>
-                        <li><a href="#">Food &amp; Beverage</a></li>
-                        <li><a href="#">Technology &amp; Innovation</a></li>
-                        <li><a href="#">Healthcare &amp; Pharma</a></li>
-                        <li><a href="#">Agriculture &amp; Livestock</a></li>
-                        <li><a href="#">Construction &amp; Real Estate</a></li>
-                        <li><a href="#">Defence &amp; Security</a></li>
-                        <li><a href="#">Education &amp; Training</a></li>
+                        <li><a href="industry-landing.html">Textile &amp; Apparel</a></li>
+                        <li><a href="events-calendar.html?industry=Food%20%26%20Beverage">Food &amp; Beverage</a></li>
+                        <li><a href="events-calendar.html?industry=Technology%20%26%20Innovation">Technology &amp; Innovation</a></li>
+                        <li><a href="events-calendar.html?industry=Healthcare%20%26%20Pharma">Healthcare &amp; Pharma</a></li>
+                        <li><a href="events-calendar.html?industry=Agriculture%20%26%20Livestock">Agriculture &amp; Livestock</a></li>
+                        <li><a href="events-calendar.html?industry=Construction%20%26%20Real%20Estate">Construction &amp; Real Estate</a></li>
+                        <li><a href="events-calendar.html?industry=Defence%20%26%20Security">Defence &amp; Security</a></li>
+                        <li><a href="events-calendar.html?industry=Education%20%26%20Training">Education &amp; Training</a></li>
                     </ul>
                 </div>
 
                 <div class="footer-column">
-                    <h3>Company</h3>
+                    <h3 data-i18n="nav.footerCompany">Company</h3>
                     <ul>
-                        <li><a href="#">About BXSS</a></li>
-                        <li><a href="#">Our Portfolio</a></li>
-                        <li><a href="#">Media Gallery</a></li>
+                        <li><a href="about.html">About BXSS</a></li>
+                        <li><a href="events.html">Our Portfolio</a></li>
+                        <li><a href="events-calendar.html" data-i18n="nav.eventCalendar">Event Calendar</a></li>
+                        <li><a href="events-calendar.html?status=upcoming" data-i18n="nav.upcomingEvents">Upcoming Events</a></li>
+                        <li><a href="gallery.html">Gallery</a></li>
+                        <li><a href="media.html">Media</a></li>
                         <li><a href="#">Client Testimonials</a></li>
                         <li><a href="#">Our Partners</a></li>
                         <li><a href="#">Careers</a></li>
@@ -1052,16 +1117,16 @@
                 </div>
 
                 <div class="footer-column">
-                    <h3>Contact Us</h3>
+                    <h3 data-i18n="nav.footerContactUs">Contact Us</h3>
                     <ul>
-                        <li><a href="#">Get a Quote</a></li>
-                        <li><a href="#">Request a Callback</a></li>
+                        <li><a href="contact.html">Get a Quote</a></li>
+                        <li><a href="contact.html">Request a Callback</a></li>
                         <li><a href="tel:+922134821159">+92-21-3482-1159</a></li>
                         <li><a href="mailto:info@badarexpo.com">info@badarexpo.com</a></li>
                         <li><a href="#">Karachi Head Office</a></li>
                         <li><a href="#">Lahore Office</a></li>
-                        <li><a href="#">Privacy Policy</a></li>
-                        <li><a href="#">Terms &amp; Conditions</a></li>
+                        <li><a href="privacy-policy.html">Privacy Policy</a></li>
+                        <li><a href="terms-of-service.html">Terms &amp; Conditions</a></li>
                     </ul>
                 </div>
 
@@ -1069,7 +1134,7 @@
 
             <!-- BACK TOP -->
             <div class="footer-back-top" onclick="window.scrollTo({top:0,behavior:'smooth'})">
-                Back to top
+                <span data-i18n="common.backToTop">Back to top</span>
                 <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
                     <path d="M12 19V5" />
                     <path d="M5 12l7-7 7 7" />
@@ -1089,7 +1154,7 @@
                     <div class="download-buttons">
                         <!-- APPLE -->
                         <a href="https://apps.apple.com/pk/app/badar-expo/id6751605684" class="store-btn"
-                            target="_blank">
+                            target="_blank" rel="noopener noreferrer">
                             <i class="fa-brands fa-apple store-btn-apple-icon"></i>
                             <div class="store-btn-text">
                                 <div class="store-btn-small">Download on the</div>
@@ -1099,7 +1164,7 @@
 
                         <!-- GOOGLE -->
                         <a href="https://play.google.com/store/apps/details?id=com.badarexpo.app"
-                            class="store-btn google-play" target="_blank">
+                            class="store-btn google-play" target="_blank" rel="noopener noreferrer">
                             <img src="https://upload.wikimedia.org/wikipedia/commons/d/d0/Google_Play_Arrow_logo.svg"
                                 alt="Google Play logo">
                             <div class="store-btn-text">
@@ -1110,9 +1175,9 @@
                     </div>
 
                     <div class="footer-bottom-links">
-                        <a href="#">Privacy Policy</a>
-                        <a href="#">Terms of Service</a>
-                        <a href="#">Cookie Preferences</a>
+                        <a href="privacy-policy.html">Privacy Policy</a>
+                        <a href="terms-of-service.html">Terms of Service</a>
+                        <a href="privacy-policy.html#cookies">Cookie Preferences</a>
                     </div>
 
                     <div class="footer-copyright">
@@ -1194,7 +1259,29 @@
         <i class="fas fa-arrow-up"></i>
     </button>
 
+        <!-- ========================= COMMUNICATION WIDGET (Phase 17) ========================= -->
+    <div class="comm-widget" id="comm-widget">
+        <div class="comm-widget-panel" id="comm-widget-panel" role="dialog" aria-label="Chat with us" aria-hidden="true">
+            <div class="comm-widget-panel-header">
+                <span class="comm-widget-panel-title" data-i18n="pages.commWidget.title">Chat with Badar Expo</span>
+                <button class="comm-widget-panel-close" id="comm-widget-close" data-i18n-aria-label="pages.commWidget.closeLabel" aria-label="Close chat panel">
+                    <i class="fas fa-xmark" aria-hidden="true"></i>
+                </button>
+            </div>
+            <p class="comm-widget-panel-desc" data-i18n="pages.commWidget.desc">Have a question about an event or service? Message us on WhatsApp and we'll get back to you shortly.</p>
+            <a href="#" class="comm-widget-channel-btn" id="comm-widget-whatsapp-link" target="_blank" rel="noopener noreferrer">
+                <i class="fab fa-whatsapp" aria-hidden="true"></i>
+                <span data-i18n="pages.commWidget.startChat">Start WhatsApp Chat</span>
+            </a>
+        </div>
+        <button class="comm-widget-fab" id="comm-widget-toggle" type="button" aria-expanded="false" aria-controls="comm-widget-panel" data-i18n-aria-label="pages.commWidget.openLabel" aria-label="Open chat widget">
+            <i class="fab fa-whatsapp" aria-hidden="true"></i>
+        </button>
+    </div>
+    <script src="assets/js/comm-widget.js"></script>
     <script src="assets/js/main.js"></script>
+    <script src="assets/js/language-manager.js"></script>
+    <script src="assets/js/form-submit-manager.js"></script>
     <script src="assets/js/contact.js"></script>
     <script src="assets/js/mobile-mega-menu.js"></script>
     <!-- ========================= [TEMPLATE: footer.php END] ========================= -->

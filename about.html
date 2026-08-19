@@ -17,6 +17,14 @@
     <meta property="og:title" content="About Us | Badar Expo Solutions">
     <meta property="og:description"
         content="Two decades. Fifteen hundred rooms. One accountable team. This is the story of Badar Expo Solutions.">
+    <meta property="og:image" content="https://badarexpo.com/assets/images/portfolio/exhibition-floor-premium.webp">
+
+    <!-- MERGE: Twitter card set carried over from the abt- build -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:title" content="About Us | Badar Expo Solutions">
+    <meta property="twitter:description"
+        content="Two decades. Fifteen hundred rooms. One accountable team. This is the story of Badar Expo Solutions.">
+    <meta property="twitter:image" content="https://badarexpo.com/assets/images/portfolio/exhibition-floor-premium.webp">
 
     <link rel="apple-touch-icon" sizes="180x180" href="assets/images/logo/favicon.webp">
 
@@ -34,11 +42,339 @@
 
     <!-- GLOBAL STYLES (shared across every interior page) -->
     <link rel="stylesheet" href="assets/css/navbar.css">
+    <link rel="stylesheet" href="assets/css/tokens.css">
     <link rel="stylesheet" href="assets/css/footer.css">
     <link rel="stylesheet" href="assets/css/page-hero.css">
 
     <!-- PAGE-SPECIFIC STYLES (scoped inside #bxabout) -->
     <link rel="stylesheet" href="assets/css/about.css">
+    <!-- Phase 8: RTL overrides - additive only, zero effect unless dir="rtl" -->
+    <link rel="stylesheet" href="assets/css/comm-widget.css">
+    <link rel="stylesheet" href="assets/css/rtl-overrides.css">
+
+    <!-- =========================================================================
+         MERGE ADDITIONS — page-scoped, additive only.
+         Nothing here overrides an existing rule in assets/css/about.css.
+         New prefixes introduced: .ba-ledger-*, .ba-build-*, .ba-sign-*
+         ========================================================================= -->
+    <style>
+        /* ---------- utilities ---------- */
+        #bxabout .ba-sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            overflow: hidden;
+            clip: rect(0 0 0 0);
+            white-space: nowrap;
+        }
+
+        #bxabout .ba-passport-note {
+            margin: 14px 0 0;
+            font-size: .88rem;
+            line-height: 1.7;
+            color: var(--text-muted);
+            max-width: 460px;
+        }
+
+        /* ---------- LEDGER STRIP (from abt- "By The Numbers") ---------- */
+        #bxabout .ba-ledger {
+            border-top: 1px solid var(--border-light);
+            border-bottom: 1px solid var(--border-light);
+            background: var(--white);
+            padding: 54px 0;
+        }
+
+        #bxabout .ba-ledger-inner {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 48px;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 32px;
+        }
+
+        #bxabout .ba-ledger-item {
+            position: relative;
+            padding-left: 26px;
+        }
+
+        #bxabout .ba-ledger-item::before {
+            content: attr(data-idx);
+            position: absolute;
+            left: 0;
+            top: 6px;
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            color: var(--primary-red);
+        }
+
+        #bxabout .ba-ledger-num {
+            display: block;
+            font-family: 'Fraunces', Georgia, serif;
+            font-size: clamp(2.1rem, 3.4vw, 3.1rem);
+            font-weight: 500;
+            line-height: 1;
+            letter-spacing: -.02em;
+            color: var(--text-dark);
+        }
+
+        #bxabout .ba-ledger-num i {
+            font-style: normal;
+            color: var(--primary-red);
+        }
+
+        #bxabout .ba-ledger-label {
+            display: block;
+            margin-top: 12px;
+            font-size: .74rem;
+            font-weight: 600;
+            letter-spacing: 1.6px;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            line-height: 1.5;
+        }
+
+        /* ---------- LETTER SIGN-OFF CTA (leadership link) ---------- */
+        #bxabout .ba-sign-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            margin-top: 26px;
+            padding: 13px 26px;
+            border: 1px solid var(--border-light);
+            border-radius: var(--radius-pill);
+            font-size: .74rem;
+            font-weight: 700;
+            letter-spacing: 1.4px;
+            text-transform: uppercase;
+            text-decoration: none;
+            color: var(--text-dark);
+            background: transparent;
+            transition: var(--transition-smooth);
+        }
+
+        #bxabout .ba-sign-cta i {
+            font-size: .68rem;
+        }
+
+        #bxabout .ba-sign-cta:hover {
+            background: var(--primary-red);
+            border-color: var(--primary-red);
+            color: var(--white);
+        }
+
+        /* ---------- CHAPTER 07: WHAT WE BUILD (from abt- "What We Do") ---------- */
+        #bxabout .ba-build {
+            background: var(--cream);
+            padding: clamp(80px, 9vw, 130px) 0;
+        }
+
+        #bxabout .ba-build-inner {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 48px;
+        }
+
+        #bxabout .ba-build-head {
+            max-width: 760px;
+            margin-bottom: 62px;
+        }
+
+        #bxabout .ba-build-head h2 {
+            font-family: 'Fraunces', Georgia, serif;
+            font-size: clamp(1.75rem, 3vw, 2.7rem);
+            font-weight: 500;
+            line-height: 1.16;
+            letter-spacing: -.015em;
+            color: var(--text-dark);
+            margin: 14px 0 18px;
+        }
+
+        #bxabout .ba-build-head p {
+            font-size: 1rem;
+            line-height: 1.75;
+            color: var(--text-muted);
+            margin: 0;
+        }
+
+        #bxabout .ba-build-rows {
+            border-top: 1px solid var(--border-light);
+        }
+
+        #bxabout .ba-build-row {
+            display: grid;
+            grid-template-columns: 68px minmax(0, 300px) minmax(0, 1fr) 42px;
+            align-items: start;
+            gap: 24px;
+            padding: 30px 0;
+            border-bottom: 1px solid var(--border-light);
+            text-decoration: none;
+            color: inherit;
+            transition: var(--transition-smooth);
+        }
+
+        #bxabout .ba-build-row:hover {
+            background: rgba(228, 31, 38, .035);
+            padding-left: 16px;
+            padding-right: 16px;
+        }
+
+        #bxabout .ba-build-tag {
+            font-size: .72rem;
+            font-weight: 700;
+            letter-spacing: 1.6px;
+            color: var(--primary-red);
+            padding-top: 6px;
+        }
+
+        #bxabout .ba-build-row h3 {
+            font-size: 1.12rem;
+            font-weight: 700;
+            letter-spacing: -.01em;
+            line-height: 1.35;
+            color: var(--text-dark);
+            margin: 0;
+            transition: var(--transition-smooth);
+        }
+
+        #bxabout .ba-build-row:hover h3 {
+            color: var(--primary-red);
+        }
+
+        #bxabout .ba-build-row p {
+            font-size: .95rem;
+            line-height: 1.75;
+            color: var(--text-muted);
+            margin: 0;
+        }
+
+        #bxabout .ba-build-arrow {
+            justify-self: end;
+            padding-top: 6px;
+            font-size: .78rem;
+            color: var(--text-muted);
+            opacity: 0;
+            transform: translateX(-8px);
+            transition: var(--transition-smooth);
+        }
+
+        #bxabout .ba-build-row:hover .ba-build-arrow {
+            opacity: 1;
+            transform: none;
+            color: var(--primary-red);
+        }
+
+        /* ---------- industries link row (compacted from abt- tiles) ---------- */
+        #bxabout .ba-build-sectors {
+            margin-top: 46px;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: baseline;
+            gap: 10px 14px;
+        }
+
+        #bxabout .ba-build-sectors-label {
+            font-size: .7rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            margin-right: 6px;
+        }
+
+        #bxabout .ba-build-sectors a {
+            font-size: .84rem;
+            font-weight: 600;
+            color: var(--text-dark);
+            text-decoration: none;
+            padding: 7px 15px;
+            border: 1px solid var(--border-light);
+            border-radius: var(--radius-pill);
+            background: var(--white);
+            transition: var(--transition-smooth);
+        }
+
+        #bxabout .ba-build-sectors a:hover {
+            border-color: var(--primary-red);
+            color: var(--primary-red);
+        }
+
+        /* ---------- focus visibility ---------- */
+        #bxabout .ba-build-row:focus-visible,
+        #bxabout .ba-build-sectors a:focus-visible,
+        #bxabout .ba-sign-cta:focus-visible {
+            outline: 2px solid var(--primary-red);
+            outline-offset: 3px;
+        }
+
+        /* ---------- RESPONSIVE ---------- */
+        @media (max-width: 1180px) {
+            #bxabout .ba-build-row {
+                grid-template-columns: 56px minmax(0, 260px) minmax(0, 1fr) 34px;
+                gap: 18px;
+            }
+        }
+
+        @media (max-width: 900px) {
+            #bxabout .ba-ledger-inner {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 34px 24px;
+                padding: 0 28px;
+            }
+
+            #bxabout .ba-build-inner {
+                padding: 0 28px;
+            }
+
+            #bxabout .ba-build-head {
+                margin-bottom: 44px;
+            }
+
+            #bxabout .ba-build-row {
+                grid-template-columns: 44px minmax(0, 1fr);
+                gap: 6px 14px;
+                padding: 26px 0;
+            }
+
+            #bxabout .ba-build-row p {
+                grid-column: 2;
+            }
+
+            #bxabout .ba-build-arrow {
+                display: none;
+            }
+        }
+
+        @media (max-width: 600px) {
+            #bxabout .ba-ledger {
+                padding: 40px 0;
+            }
+
+            #bxabout .ba-ledger-inner {
+                padding: 0 20px;
+                gap: 28px 18px;
+            }
+
+            #bxabout .ba-build-inner {
+                padding: 0 20px;
+            }
+
+            #bxabout .ba-build-sectors a {
+                font-size: .8rem;
+                padding: 6px 13px;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+
+            #bxabout .ba-build-row,
+            #bxabout .ba-build-arrow,
+            #bxabout .ba-sign-cta {
+                transition: none !important;
+            }
+        }
+    </style>
 </head>
 
 <body>
@@ -108,11 +444,19 @@
                 </div>
             </div>
 
-            <div class="nav-item"><a href="index.html"><span>Home</span></a></div>
-            <div class="nav-item active-nav"><a href="about.html"><span>About Us</span></a></div>
+            <div class="nav-item"><a href="index.html"><span data-i18n="nav.home">Home</span></a></div>
+            <div class="nav-item dropdown active-nav" data-target="about">
+                <a href="about.html"><span><span data-i18n="nav.aboutUs">About Us</span> <i class="fas fa-chevron-down"></i></span></a>
+                <ul class="mobile-submenu">
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="our-leaders-executives.html">Our Leaders &amp; Executives</a></li>
+                    <li><a href="badar-engineering.html">Badar Engineering Company</a></li>
+                    <li><a href="sports-entertainment.html">Sports &amp; Entertainment</a></li>
+                </ul>
+            </div>
 
             <div class="nav-item dropdown" data-target="services">
-                <a href="services.html"><span>Services <i class="fas fa-chevron-down"></i></span></a>
+                <a href="services.html"><span><span data-i18n="nav.services">Services</span> <i class="fas fa-chevron-down"></i></span></a>
                 <ul class="mobile-submenu">
                     <li><a href="exhibitionmanagement.html">Exhibition Management</a></li>
                     <li><a href="exhibitionmanagement.html#conference">Conference Management</a></li>
@@ -122,31 +466,33 @@
                 </ul>
             </div>
             <div class="nav-item dropdown" data-target="events">
-                <a href="events.html"><span>Events <i class="fas fa-chevron-down"></i></span></a>
+                <a href="events.html"><span><span data-i18n="nav.events">Events</span> <i class="fas fa-chevron-down"></i></span></a>
                 <ul class="mobile-submenu">
-                    <li><a href="events.html#our-role">Owned Events</a></li>
-                    <li><a href="events.html#our-role">Co-Organized</a></li>
-                    <li><a href="events.html#our-role">Managed Events</a></li>
+                    <li><a href="events-calendar.html" data-i18n="nav.eventCalendar">Event Calendar</a></li>
+                    <li><a href="events.html#our-role" data-i18n="nav.ownedEvents">Owned Events</a></li>
+                    <li><a href="events.html#our-role" data-i18n="nav.coOrganized">Co-Organized</a></li>
+                    <li><a href="events.html#our-role" data-i18n="nav.managedEvents">Managed Events</a></li>
                 </ul>
             </div>
 
-            <div class="nav-item"><a href="#"><span>Industries</span></a></div>
-            <div class="nav-item"><a href="#"><span>International Projects</span></a></div>
+            <div class="nav-item"><a href="industries.html"><span data-i18n="nav.industries">Industries</span></a></div>
+            <div class="nav-item"><a href="international-projects.html"><span data-i18n="nav.internationalProjects">International Projects</span></a></div>
 
             <div class="nav-item dropdown" data-target="insights">
-                <span>Insights <i class="fas fa-chevron-down"></i></span>
+                <a href="insights.html"><span><span data-i18n="nav.insights">Insights</span> <i class="fas fa-chevron-down"></i></span></a>
                 <ul class="mobile-submenu">
-                    <li><a href="#">Media Gallery</a></li>
-                    <li><a href="#">Blogs</a></li>
-                    <li><a href="#">News &amp; Updates</a></li>
+                    <li><a href="blog.html" data-i18n="pages.insights.blogLabel">Blog</a></li>
+                    <li><a href="gallery.html" data-i18n="eventsUi.gallery">Gallery</a></li>
+                    <li><a href="media.html" data-i18n="pages.insights.mediaLabel">Media</a></li>
+                    <li><a href="videos.html" data-i18n="pages.videos.navLabel">Videos</a></li>
                 </ul>
             </div>
-            <div class="nav-item contact-item"><a href="contact.html"><span>Contact</span></a></div>
+            <div class="nav-item contact-item"><a href="contact.html"><span data-i18n="nav.contact">Contact</span></a></div>
 
             <!-- ACTION BUTTONS (Moved inside menu for mobile) -->
             <div class="mobile-actions">
-                <button class="btn btn-dark">Visitor</button>
-                <button class="btn btn-light">Partner</button>
+                <button class="btn btn-dark" data-i18n="buttons.visitor">Visitor</button>
+                <button class="btn btn-light" data-i18n="buttons.partner">Partner</button>
             </div>
         </div>
 
@@ -163,10 +509,33 @@
 
         <!-- MEGA MENU WRAPPER -->
         <div class="mega-menu-wrapper" id="shared-mega-menu">
+            <!-- ABOUT US CONTENT -->
+            <div id="content-about" class="mega-content">
+                <a href="about.html" class="insight-card">
+                    <img src="assets/images/Images%20Website%20Badarexpo/Facebook/Events%20Banner/GLOBAL-SME-SUMMIT-07-06-2026.jpeg" alt="About Badar Expo Solutions" loading="lazy">
+                    <h4>About Us</h4>
+                    <p>Our story, milestones &amp; the scale of what we deliver.</p>
+                </a>
+                <a href="our-leaders-executives.html" class="insight-card">
+                    <img src="assets/images/Images%20Website%20Badarexpo/Facebook/Events%20Banner/PIMEC-15-09-2027.jpeg" alt="Our Leaders and Executives" loading="lazy">
+                    <h4>Our Leaders &amp; Executives</h4>
+                    <p>The founder, directors &amp; executive board behind BXSS.</p>
+                </a>
+                <a href="badar-engineering.html" class="insight-card">
+                    <img src="assets/images/portfolio/b2b-industrial-generated.webp" alt="Badar Engineering Company engineering legacy" loading="lazy">
+                    <h4>Badar Engineering Company</h4>
+                    <p>Engineering legacy, technical capability &amp; EPC execution since 1965.</p>
+                </a>
+                <a href="sports-entertainment.html" class="insight-card">
+                    <img src="assets/images/portfolio/ptpl-champions.webp" alt="Sports and entertainment experiences by Badar Expo Solutions" loading="lazy">
+                    <h4>Sports &amp; Entertainment</h4>
+                    <p>Cricket league platforms, live concerts &amp; large-scale audience events.</p>
+                </a>
+            </div>
             <!-- SERVICES CONTENT -->
             <div id="content-services" class="mega-content">
                 <div class="column dynamic-links">
-                    <h4><a href="exhibitionmanagement.html">Exhibition Management <i class="fas fa-chevron-right"
+                    <h4><a href="exhibitionmanagement.html"><span data-i18n="nav.exhibitionManagement">Exhibition Management</span> <i class="fas fa-chevron-right"
                                 style="font-size: 10px; opacity: 0.6;"></i></a></h4>
                     <a href="exhibitionmanagement.html" data-title="Exhibition Management"
                         data-desc="Complete exhibition solutions from concept to execution for B2B and B2C platforms."
@@ -179,7 +548,7 @@
                         data-image="assets/images/portfolio/ziauddin-convocation.webp">Corporate</a>
                 </div>
                 <div class="column dynamic-links">
-                    <h4><a href="construction-design.html">Construction &amp; Design <i class="fas fa-chevron-right"
+                    <h4><a href="construction-design.html"><span data-i18n="nav.constructionDesign">Construction &amp; Design</span> <i class="fas fa-chevron-right"
                                 style="font-size: 10px; opacity: 0.6;"></i></a></h4>
                     <ul class="bullet-list">
                         <li><a href="construction-design.html#canopy" data-title="Canopy Octanorm Building"
@@ -208,7 +577,7 @@
                     </ul>
                 </div>
                 <div class="column dynamic-links">
-                    <h4><a href="growthservices.html">Growth Services <i class="fas fa-chevron-right"
+                    <h4><a href="growthservices.html"><span data-i18n="nav.growthServices">Growth Services</span> <i class="fas fa-chevron-right"
                                 style="font-size: 10px; opacity: 0.6;"></i></a></h4>
                     <a href="growthservices.html#pillars" data-title="B2B Matchmaking"
                         data-desc="Connecting global buyers with suppliers through strategic high-level networking."
@@ -235,7 +604,7 @@
             <!-- EVENTS CONTENT -->
             <div id="content-events" class="mega-content">
                 <div class="column dynamic-links">
-                    <h4><a href="events.html#our-role">Our Role <i class="fas fa-chevron-right"
+                    <h4><a href="events.html#our-role"><span data-i18n="nav.ourRole">Our Role</span> <i class="fas fa-chevron-right"
                                 style="font-size: 10px; opacity: 0.6;"></i></a></h4>
                     <a href="events.html#our-role" data-title="Owned Events"
                         data-desc="Flagship trade fairs and industry-leading exhibitions fully conceptualized by Badar Expo."
@@ -248,7 +617,7 @@
                         data-image="assets/images/portfolio/ziauddin-convocation.webp">Managed Events</a>
                 </div>
                 <div class="column dynamic-links">
-                    <h4><a href="events.html#formats">Formats <i class="fas fa-chevron-right"
+                    <h4><a href="events.html#formats"><span data-i18n="nav.formats">Formats</span> <i class="fas fa-chevron-right"
                                 style="font-size: 10px; opacity: 0.6;"></i></a></h4>
                     <a href="events.html#formats" data-title="Exhibitions"
                         data-desc="Creating massive B2B and B2C platforms that connect global suppliers with buyers."
@@ -259,6 +628,19 @@
                     <a href="events.html#formats" data-title="Industrial Forums"
                         data-desc="Facilitating high-level dialogue between government and industry leaders."
                         data-image="assets/images/portfolio/saudi-delegation.webp">Industrial Forums</a>
+                </div>
+                <div class="column dynamic-links">
+                    <h4><a href="events-calendar.html"><span data-i18n="nav.eventCalendar">Event Calendar</span> <i class="fas fa-chevron-right"
+                                style="font-size: 10px; opacity: 0.6;"></i></a></h4>
+                    <a href="events-calendar.html" data-title="Browse All Events" data-i18n="nav.allEvents"
+                        data-desc="Search, filter, and browse every upcoming, ongoing, and past BXSS event in one place."
+                        data-image="assets/images/portfolio/exhibition-floor-premium.webp">All Events</a>
+                    <a href="events-calendar.html?status=upcoming" data-title="Upcoming Events"
+                        data-desc="See what's coming up next across every category and city."
+                        data-image="assets/images/portfolio/global-sme-banner.webp">Upcoming Events</a>
+                    <a href="events-calendar.html?status=past" data-title="Past Events"
+                        data-desc="Browse our archive of completed exhibitions and conferences."
+                        data-image="assets/images/portfolio/ieee-exhibition.webp">Past Events</a>
                 </div>
                 <div class="column highlight">
                     <div class="highlight-content-box">
@@ -272,21 +654,26 @@
 
             <!-- INSIGHTS CONTENT -->
             <div id="content-insights" class="mega-content">
-                <div class="insight-card">
+                <a href="blog.html" class="insight-card">
                     <img src="assets/images/portfolio/global-sme-banner.webp" alt="Blog" loading="lazy">
-                    <h4>Blog</h4>
+                    <h4 data-i18n="pages.insights.blogLabel">Blog</h4>
                     <p>Industry insights, event strategies &amp; updates.</p>
-                </div>
-                <div class="insight-card">
+                </a>
+                <a href="media.html" class="insight-card">
                     <img src="assets/images/portfolio/china-embassy.webp" alt="Media" loading="lazy">
-                    <h4>Media</h4>
+                    <h4 data-i18n="pages.insights.mediaLabel">Media</h4>
                     <p>Press coverage, interviews &amp; event highlights.</p>
-                </div>
-                <div class="insight-card">
+                </a>
+                <a href="gallery.html" class="insight-card">
                     <img src="assets/images/portfolio/concert-audience.webp" alt="Gallery" loading="lazy">
-                    <h4>Gallery</h4>
+                    <h4 data-i18n="eventsUi.gallery">Gallery</h4>
                     <p>Moments captured from our mega events.</p>
-                </div>
+                </a>
+                <a href="videos.html" class="insight-card">
+                    <img src="assets/images/portfolio/exhibition-floor-premium.webp" alt="Videos" loading="lazy">
+                    <h4 data-i18n="pages.videos.navLabel">Videos</h4>
+                    <p data-i18n="pages.videos.megaMenuDesc">Watch highlights from our flagship events.</p>
+                </a>
             </div>
         </div>
 
@@ -298,8 +685,8 @@
             </div>
 
             <div class="actions">
-                <button class="btn btn-dark">Visitor</button>
-                <button class="btn btn-light">Partner</button>
+                <button class="btn btn-dark" data-i18n="buttons.visitor">Visitor</button>
+                <button class="btn btn-light" data-i18n="buttons.partner">Partner</button>
             </div>
         </div>
     </nav>
@@ -311,7 +698,7 @@
         <div class="search-close" id="search-close"><i class="fas fa-xmark"></i></div>
         <div class="search-container">
             <div class="search-box">
-                <input type="text" placeholder="Search events, services, or insights..." id="search-input">
+                <input type="text" placeholder="Search events, services, or insights..." id="search-input" data-i18n-placeholder="forms.siteSearchPlaceholder">
                 <i class="fas fa-magnifying-glass search-icon-inner"></i>
             </div>
             <div class="search-suggestions">
@@ -330,28 +717,28 @@
 
         <!-- ========================= BREADCRUMB (shared global component) ========================= -->
         <div class="page-breadcrumb-bar">
-            <div class="page-breadcrumb">
+            <nav class="page-breadcrumb" aria-label="Breadcrumb">
                 <a href="index.html">Home</a>
-                <span class="crumb-sep">/</span>
-                <span class="crumb-current">About Us</span>
-            </div>
+                <span class="crumb-sep" aria-hidden="true">/</span>
+                <span class="crumb-current" aria-current="page">About Us</span>
+            </nav>
         </div>
 
         <!-- =============================================================================
              CHAPTER 01: ARRIVAL
              ============================================================================= -->
-        <section class="ba-arrival">
+        <section class="ba-arrival" aria-labelledby="ba-arrival-title">
             <div class="ba-arrival-rail"><span>Est. Karachi, 2000</span></div>
 
             <div class="ba-arrival-copy">
                 <span class="ba-eyebrow">Chapter One: Arrival</span>
-                <h1 class="ba-arrival-headline">
+                <h1 class="ba-arrival-headline" id="ba-arrival-title">
                     Some companies sell<br>
                     a service. <em>We build<br>
                         the room itself.</em>
                 </h1>
                 <p class="ba-arrival-sub">
-                    For twenty-five years, Badar Expo Solutions has done one job with total
+                    Since 2000, Badar Expo Solutions has done one job with total
                     obsession: get the right people into the right room, at the right moment,
                     for a reason big enough to matter. Everything else (the stalls, stages, signage, and seating) exists to serve that single outcome.
                 </p>
@@ -365,7 +752,8 @@
             <div class="ba-arrival-visual">
                 <div class="ba-arrival-frame">
                     <img src="assets/images/portfolio/exhibition-floor-premium.webp"
-                        alt="Badar Expo Solutions exhibition floor in Karachi">
+                        alt="Badar Expo Solutions exhibition floor in Karachi" fetchpriority="high"
+                        decoding="async">
                 </div>
                 <div class="ba-arrival-caption">
                     <p>"Every hall we've ever built started as a blank floor and a promise."</p>
@@ -378,20 +766,20 @@
         <!-- =============================================================================
              CHAPTER 02: WHAT WE BELIEVE
              ============================================================================= -->
-        <section class="ba-creed" id="ba-creed">
+        <section class="ba-creed" id="ba-creed" aria-labelledby="ba-creed-title">
             <div class="ba-creed-bg">
-                <img class="ba-active" src="assets/images/portfolio/ieee-exhibition.webp" alt="" data-creed-bg="0">
-                <img src="assets/images/portfolio/ideas-exhibition.webp" alt="" data-creed-bg="1">
-                <img src="assets/images/portfolio/concert-stage.webp" alt="" data-creed-bg="2">
-                <img src="assets/images/portfolio/saudi-delegation.webp" alt="" data-creed-bg="3">
-                <img src="assets/images/portfolio/global-sme-banner.webp" alt="" data-creed-bg="4">
+                <img class="ba-active" src="assets/images/portfolio/ieee-exhibition.webp" alt="" data-creed-bg="0" loading="lazy" decoding="async">
+                <img src="assets/images/portfolio/ideas-exhibition.webp" alt="" data-creed-bg="1" loading="lazy" decoding="async">
+                <img src="assets/images/portfolio/concert-stage.webp" alt="" data-creed-bg="2" loading="lazy" decoding="async">
+                <img src="assets/images/portfolio/saudi-delegation.webp" alt="" data-creed-bg="3" loading="lazy" decoding="async">
+                <img src="assets/images/portfolio/global-sme-banner.webp" alt="" data-creed-bg="4" loading="lazy" decoding="async">
             </div>
 
             <div class="ba-creed-inner">
                 <div class="ba-creed-head">
                     <div>
                         <span class="ba-eyebrow">Chapter Two</span>
-                        <h2>What we actually believe, not the version<br>that goes on a poster.</h2>
+                        <h2 id="ba-creed-title">What we actually believe, not the version<br>that goes on a poster.</h2>
                     </div>
                     <p>Five working principles. Hover any line to see the floor it came from.</p>
                 </div>
@@ -449,10 +837,10 @@
         <!-- =============================================================================
              CHAPTER 03: THE JOURNEY
              ============================================================================= -->
-        <section class="ba-journey">
+        <section class="ba-journey" aria-labelledby="ba-journey-title">
             <div class="ba-journey-head ba-reveal">
                 <span class="ba-eyebrow">Chapter Three</span>
-                <h2>Not a timeline. A shelf of things we lived through.</h2>
+                <h2 id="ba-journey-title">Not a timeline. A shelf of things we lived through.</h2>
             </div>
 
             <div class="ba-journey-spine">
@@ -460,7 +848,7 @@
                     <div class="ba-chapter-media">
                         <span class="ba-chapter-year">2000</span>
                         <img src="assets/images/portfolio/dalfa-cattle-show.webp"
-                            alt="Badar Expo Solutions' first trade exhibition in Karachi, 2000">
+                            alt="Badar Expo Solutions' first trade exhibition in Karachi, 2000" loading="lazy" decoding="async">
                     </div>
                     <div class="ba-chapter-text">
                         <h3>The first floor we ever booked</h3>
@@ -473,7 +861,7 @@
                     <div class="ba-chapter-media">
                         <span class="ba-chapter-year">2008</span>
                         <img src="assets/images/portfolio/china-embassy.webp"
-                            alt="Government and diplomatic event managed by BXSS">
+                            alt="Government and diplomatic event managed by BXSS" loading="lazy" decoding="async">
                     </div>
                     <div class="ba-chapter-text">
                         <h3>The call from a government office</h3>
@@ -486,7 +874,7 @@
                     <div class="ba-chapter-media">
                         <span class="ba-chapter-year">2015</span>
                         <img src="assets/images/portfolio/saudi-delegation.webp"
-                            alt="International trade delegation hosted by BXSS">
+                            alt="International trade delegation hosted by BXSS" loading="lazy" decoding="async">
                     </div>
                     <div class="ba-chapter-text">
                         <h3>The first passport stamp</h3>
@@ -499,7 +887,7 @@
                     <div class="ba-chapter-media">
                         <span class="ba-chapter-year">2021</span>
                         <img src="assets/images/portfolio/ziauddin-convocation.webp"
-                            alt="Large scale convocation and corporate event managed by BXSS">
+                            alt="Large scale convocation and corporate event managed by BXSS" loading="lazy" decoding="async">
                     </div>
                     <div class="ba-chapter-text">
                         <h3>Event number 1,500</h3>
@@ -512,7 +900,7 @@
                     <div class="ba-chapter-media">
                         <span class="ba-chapter-year">Today</span>
                         <img src="assets/images/portfolio/global-sme-banner.webp"
-                            alt="Badar Expo Solutions today, exhibition and event management">
+                            alt="Badar Expo Solutions today, exhibition and event management" loading="lazy" decoding="async">
                     </div>
                     <div class="ba-chapter-text">
                         <h3>Twelve markets, one standard</h3>
@@ -525,16 +913,42 @@
         </section>
 
         <!-- =============================================================================
+             LEDGER STRIP  (merged in from the abt- build's "By The Numbers")
+             Not a numbered chapter — a quiet evidence band between story beats.
+             ============================================================================= -->
+        <section class="ba-ledger" aria-labelledby="ba-ledger-title">
+            <h2 id="ba-ledger-title" class="ba-sr-only">Badar Expo Solutions by the numbers</h2>
+            <div class="ba-ledger-inner">
+                <div class="ba-ledger-item ba-reveal" data-idx="01">
+                    <span class="ba-ledger-num">25<i>+</i></span>
+                    <span class="ba-ledger-label">Years since the first floor</span>
+                </div>
+                <div class="ba-ledger-item ba-reveal" data-idx="02">
+                    <span class="ba-ledger-num">1,500<i>+</i></span>
+                    <span class="ba-ledger-label">Exhibitions &amp; events delivered</span>
+                </div>
+                <div class="ba-ledger-item ba-reveal" data-idx="03">
+                    <span class="ba-ledger-num">50<i>+</i></span>
+                    <span class="ba-ledger-label">Industries served nationwide</span>
+                </div>
+                <div class="ba-ledger-item ba-reveal" data-idx="04">
+                    <span class="ba-ledger-num">12<i>+</i></span>
+                    <span class="ba-ledger-label">International markets reached</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- =============================================================================
              CHAPTER 04: LEADERSHIP
              ============================================================================= -->
-        <section class="ba-letter">
+        <section class="ba-letter" aria-labelledby="ba-letter-title">
             <div class="ba-letter-sheet ba-reveal">
                 <div class="ba-letter-head">
-                    <span class="ba-eyebrow">Chapter Four: From the Desk</span>
+                    <span class="ba-eyebrow" id="ba-letter-title">Chapter Four: From the Desk</span>
                     <span>Karachi, Pakistan</span>
                 </div>
                 <div class="ba-letter-body">
-                    <p>People ask why we still walk every venue floor ourselves before a build begins, twenty-five years
+                    <p>People ask why we still walk every venue floor ourselves before a build begins, a quarter century
                         in. The honest answer is that the day we stop is the day something slips through : a blind
                         corner in the crowd flow, a load-in door that's two inches too narrow, a client's flag hung on
                         the wrong wall.</p>
@@ -544,49 +958,55 @@
                     <p>Everything on this page (the timeline, numbers, and countries) is really just evidence for
                         one idea: we show up the same way every time. That consistency is the entire business.</p>
                 </div>
+                <!-- MERGE: named leadership carried over from the abt- build's section 10 -->
                 <div class="ba-letter-sign">
-                    <img src="assets/images/portfolio/ieee-seminar.webp" alt="Leadership at Badar Expo Solutions">
+                    <img src="assets/images/portfolio/ceo-zohair-naseer.webp"
+                        alt="Zohair Naseer, Chief Executive Officer and Chairman of Badar Expo Solutions"
+                        loading="lazy" decoding="async">
                     <div>
-                        <b>The Founding Team</b>
-                        <small>Badar Expo Solutions (Since 2000)</small>
+                        <b>Zohair Naseer</b>
+                        <small>Chief Executive Officer &amp; Chairman, Badar Expo Solutions</small>
                     </div>
                 </div>
+                <a href="our-leaders-executives.html" class="ba-sign-cta">
+                    Meet Our Leaders &amp; Executives <i class="fas fa-arrow-right" aria-hidden="true"></i>
+                </a>
             </div>
         </section>
 
         <!-- =============================================================================
              CHAPTER 05: CULTURE
              ============================================================================= -->
-        <section class="ba-culture">
+        <section class="ba-culture" aria-labelledby="ba-culture-title">
             <div class="ba-culture-head ba-reveal">
                 <div>
                     <span class="ba-eyebrow">Chapter Five</span>
-                    <h2>What it actually looks like at 2AM before doors open</h2>
+                    <h2 id="ba-culture-title">What it actually looks like at 2AM before doors open</h2>
                 </div>
                 <p>Unposed frames from load-in nights, floor walks, and the hour before a hall fills up.</p>
             </div>
 
             <div class="ba-filmstrip">
                 <figure class="ba-frame">
-                    <img src="assets/images/portfolio/ieee-booth.webp" alt="Overnight stall build, BXSS crew">
+                    <img src="assets/images/portfolio/ieee-booth.webp" alt="Overnight stall build, BXSS crew" loading="lazy" decoding="async">
                     <figcaption><b>3:40 AM:</b> final stall fabrication, night before opening</figcaption>
                 </figure>
                 <figure class="ba-frame">
                     <img src="assets/images/portfolio/ieee-kiosk.webp"
-                        alt="Interactive kiosk testing before doors open">
+                        alt="Interactive kiosk testing before doors open" loading="lazy" decoding="async">
                     <figcaption><b>Kiosk check:</b> every screen tested twice, not once</figcaption>
                 </figure>
                 <figure class="ba-frame">
-                    <img src="assets/images/portfolio/concert-audience.webp" alt="Crowd flow moments after doors open">
+                    <img src="assets/images/portfolio/concert-audience.webp" alt="Crowd flow moments after doors open" loading="lazy" decoding="async">
                     <figcaption><b>Doors open:</b> the only moment that actually matters</figcaption>
                 </figure>
                 <figure class="ba-frame">
                     <img src="assets/images/portfolio/ieee-exhibition.webp"
-                        alt="Exhibition floor walkthrough before opening">
+                        alt="Exhibition floor walkthrough before opening" loading="lazy" decoding="async">
                     <figcaption><b>Floor walk:</b> the walkthrough we never skip</figcaption>
                 </figure>
                 <figure class="ba-frame">
-                    <img src="assets/images/portfolio/global-sme-banner.webp" alt="Team briefing before an event">
+                    <img src="assets/images/portfolio/global-sme-banner.webp" alt="Team briefing before an event" loading="lazy" decoding="async">
                     <figcaption><b>Briefing:</b> five minutes, every single time</figcaption>
                 </figure>
             </div>
@@ -595,11 +1015,11 @@
         <!-- =============================================================================
              CHAPTER 06: HOW WE WORK
              ============================================================================= -->
-        <section class="ba-blueprint">
+        <section class="ba-blueprint" aria-labelledby="ba-blueprint-title">
             <div class="ba-blueprint-inner">
                 <div class="ba-blueprint-head ba-reveal">
                     <span class="ba-eyebrow">Chapter Six</span>
-                    <h2>The process nobody sees, which is the whole point</h2>
+                    <h2 id="ba-blueprint-title">The process nobody sees, which is the whole point</h2>
                 </div>
 
                 <div class="ba-blueprint-rows">
@@ -638,11 +1058,85 @@
         </section>
 
         <!-- =============================================================================
-             CHAPTER 07: CLIENT TRUST
+             CHAPTER 07: WHAT WE BUILD
+             Merged in from the abt- build's "What We Do" + "Industries" sections.
+             Rebuilt as editorial rows (not cards) so the ba- tone holds.
+             This is the page's only route into the service pages — do not strip the links.
              ============================================================================= -->
-        <section class="ba-trust">
+        <section class="ba-build" aria-labelledby="ba-build-title">
+            <div class="ba-build-inner">
+                <div class="ba-build-head ba-reveal">
+                    <span class="ba-eyebrow">Chapter Seven</span>
+                    <h2 id="ba-build-title">Six disciplines, one accountable team.</h2>
+                    <p>Splitting these across vendors is exactly where quality quietly leaks out, so we
+                        never do. Everything below sits under the same roof and the same signature.</p>
+                </div>
+
+                <div class="ba-build-rows">
+                    <a class="ba-build-row ba-reveal" href="exhibitionmanagement.html">
+                        <span class="ba-build-tag">01</span>
+                        <h3>Exhibition Management</h3>
+                        <p>Complete exhibition delivery from concept to teardown for B2B and B2C platforms,
+                            whether we own the event, co-organise it, or are appointed to run it.</p>
+                        <span class="ba-build-arrow" aria-hidden="true"><i class="fas fa-arrow-right"></i></span>
+                    </a>
+                    <a class="ba-build-row ba-reveal" href="exhibitionmanagement.html#conference">
+                        <span class="ba-build-tag">02</span>
+                        <h3>Conference Management</h3>
+                        <p>Summits, technical seminars, and international conference programmes, from
+                            programme design through delegate handling on the day.</p>
+                        <span class="ba-build-arrow" aria-hidden="true"><i class="fas fa-arrow-right"></i></span>
+                    </a>
+                    <a class="ba-build-row ba-reveal" href="exhibitionmanagement.html#corporate">
+                        <span class="ba-build-tag">03</span>
+                        <h3>Corporate Events</h3>
+                        <p>Brand-led formats built backwards from a defined business objective, not
+                            forwards from a venue we happened to have available.</p>
+                        <span class="ba-build-arrow" aria-hidden="true"><i class="fas fa-arrow-right"></i></span>
+                    </a>
+                    <a class="ba-build-row ba-reveal" href="construction-design.html">
+                        <span class="ba-build-tag">04</span>
+                        <h3>Construction &amp; Design</h3>
+                        <p>Canopy octanorm builds, custom stall fabrication, LED screens, and audio-visual
+                            production &mdash; run by the same crew that walked the floor with you.</p>
+                        <span class="ba-build-arrow" aria-hidden="true"><i class="fas fa-arrow-right"></i></span>
+                    </a>
+                    <a class="ba-build-row ba-reveal" href="growthservices.html">
+                        <span class="ba-build-tag">05</span>
+                        <h3>Growth Services</h3>
+                        <p>The market-facing work that turns an event into a commercial outcome instead of
+                            a well-photographed weekend.</p>
+                        <span class="ba-build-arrow" aria-hidden="true"><i class="fas fa-arrow-right"></i></span>
+                    </a>
+                    <a class="ba-build-row ba-reveal" href="international-projects.html">
+                        <span class="ba-build-tag">06</span>
+                        <h3>International Projects</h3>
+                        <p>Trade delegations and overseas exhibition participation that take Pakistani
+                            industry into rooms it hasn't been in before.</p>
+                        <span class="ba-build-arrow" aria-hidden="true"><i class="fas fa-arrow-right"></i></span>
+                    </a>
+                </div>
+
+                <div class="ba-build-sectors ba-reveal">
+                    <span class="ba-build-sectors-label">Sectors we build for</span>
+                    <a href="events.html">Exhibitions &amp; Trade Shows</a>
+                    <a href="industries.html">Government &amp; National Platforms</a>
+                    <a href="industries.html">Healthcare</a>
+                    <a href="industries.html">Agriculture</a>
+                    <a href="industries.html">Energy</a>
+                    <a href="industries.html">IT</a>
+                    <a href="industries.html">Defence</a>
+                    <a href="industries.html">50+ industries</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- =============================================================================
+             CHAPTER 08: CLIENT TRUST
+             ============================================================================= -->
+        <section class="ba-trust" aria-labelledby="ba-trust-title">
             <div class="ba-trust-inner">
-                <span class="ba-eyebrow" style="justify-content:center;">Chapter Seven</span>
+                <span class="ba-eyebrow" id="ba-trust-title" style="justify-content:center;">Chapter Eight</span>
                 <div class="ba-trust-quote-wrap" style="margin-top:34px;">
                     <div class="ba-trust-quote ba-active" data-trust="0">
                         <p>"They walked our venue three times before we'd even signed. That's when we knew this wasn't
@@ -672,13 +1166,15 @@
         </section>
 
         <!-- =============================================================================
-             CHAPTER 08: GLOBAL PRESENCE
+             CHAPTER 09: GLOBAL PRESENCE
              ============================================================================= -->
-        <section class="ba-passport">
+        <section class="ba-passport" aria-labelledby="ba-passport-title">
             <div class="ba-passport-inner">
                 <div class="ba-passport-head ba-reveal">
-                    <span class="ba-eyebrow">Chapter Eight</span>
-                    <h2>The markets that have stamped our passport</h2>
+                    <span class="ba-eyebrow">Chapter Nine</span>
+                    <h2 id="ba-passport-title">The markets that have stamped our passport</h2>
+                    <p class="ba-passport-note">Eight shown here. Another four sit behind delegation work we
+                        can't name publicly yet.</p>
                 </div>
 
                 <div class="ba-stamp-grid">
@@ -711,22 +1207,23 @@
         </section>
 
         <!-- =============================================================================
-             CHAPTER 09: FUTURE VISION
+             CHAPTER 10: FUTURE VISION
              ============================================================================= -->
-        <section class="ba-vision">
-            <h2 class="ba-reveal">The next room we build should still feel like the first one mattered this much.</h2>
+        <section class="ba-vision" aria-labelledby="ba-vision-title">
+            <span class="ba-eyebrow ba-reveal">Chapter Ten</span>
+            <h2 class="ba-reveal" id="ba-vision-title">The next room we build should still feel like the first one mattered this much.</h2>
             <p class="ba-reveal">Growth, for us, isn't a bigger logo wall. It's more industries trusting us with the
                 moment they've been building toward all year, with us still walking the floor ourselves when they do.
             </p>
         </section>
 
         <!-- =============================================================================
-             CHAPTER 10: CTA
+             CHAPTER 11: CTA
              ============================================================================= -->
-        <section class="ba-cta">
+        <section class="ba-cta" id="ba-cta" aria-labelledby="ba-cta-title">
             <div class="ba-cta-card">
-                <span class="ba-cta-eyebrow">Chapter Ten: Your Turn</span>
-                <h2 class="ba-reveal">Tell us what you're building.<br><em>We'll tell you how it gets a room.</em></h2>
+                <span class="ba-cta-eyebrow">Chapter Eleven: Your Turn</span>
+                <h2 class="ba-reveal" id="ba-cta-title">Tell us what you're building.<br><em>We'll tell you how it gets a room.</em></h2>
                 <div class="ba-cta-actions">
                     <a href="contact.html" class="ba-cta-btn ba-cta-btn--solid">Start a Conversation <i
                             class="fas fa-arrow-right"></i></a>
@@ -743,12 +1240,12 @@
             <!-- TOP -->
             <div class="footer-top">
 
-                <button class="footer-aws-btn"
-                    onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">
+                <button type="button" class="footer-aws-btn"
+                    onclick="document.getElementById('ba-cta').scrollIntoView({behavior:'smooth'})">
                     Get a Free Quote
                 </button>
 
-                <button class="footer-language-btn">
+                <button type="button" class="footer-language-btn">
                     <svg fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
                         <circle cx="12" cy="12" r="9"></circle>
                         <path d="M3 12h18"></path>
@@ -766,39 +1263,42 @@
             <div class="footer-grid">
 
                 <div class="footer-column">
-                    <h3>Our Services</h3>
+                    <h3 data-i18n="nav.footerOurServices">Our Services</h3>
                     <ul>
-                        <li><a href="#">Exhibition Management</a></li>
-                        <li><a href="#">Trade Show Organizing</a></li>
-                        <li><a href="#">Corporate Events</a></li>
-                        <li><a href="#">Product Launches</a></li>
-                        <li><a href="#">Government Pavilions</a></li>
-                        <li><a href="#">International Expos</a></li>
-                        <li><a href="#">Conference &amp; Summits</a></li>
-                        <li><a href="#">Award Ceremonies</a></li>
+                        <li><a href="exhibitionmanagement.html">Exhibition Management</a></li>
+                        <li><a href="exhibitionmanagement.html">Trade Show Organizing</a></li>
+                        <li><a href="exhibitionmanagement.html#corporate">Corporate Events</a></li>
+                        <li><a href="exhibitionmanagement.html#corporate">Product Launches</a></li>
+                        <li><a href="construction-design.html">Government Pavilions</a></li>
+                        <li><a href="international-projects.html">International Expos</a></li>
+                        <li><a href="exhibitionmanagement.html#conference">Conference &amp; Summits</a></li>
+                        <li><a href="exhibitionmanagement.html#corporate">Award Ceremonies</a></li>
                     </ul>
                 </div>
 
                 <div class="footer-column">
-                    <h3>Industries</h3>
+                    <h3 data-i18n="nav.footerIndustries">Industries</h3>
                     <ul>
-                        <li><a href="#">Textile &amp; Fashion</a></li>
-                        <li><a href="#">Food &amp; Beverage</a></li>
-                        <li><a href="#">Technology &amp; Innovation</a></li>
-                        <li><a href="#">Healthcare &amp; Pharma</a></li>
-                        <li><a href="#">Agriculture &amp; Livestock</a></li>
-                        <li><a href="#">Construction &amp; Real Estate</a></li>
-                        <li><a href="#">Defence &amp; Security</a></li>
-                        <li><a href="#">Education &amp; Training</a></li>
+                        <li><a href="industry-landing.html">Textile &amp; Apparel</a></li>
+                        <li><a href="events-calendar.html?industry=Food%20%26%20Beverage">Food &amp; Beverage</a></li>
+                        <li><a href="events-calendar.html?industry=Technology%20%26%20Innovation">Technology &amp; Innovation</a></li>
+                        <li><a href="events-calendar.html?industry=Healthcare%20%26%20Pharma">Healthcare &amp; Pharma</a></li>
+                        <li><a href="events-calendar.html?industry=Agriculture%20%26%20Livestock">Agriculture &amp; Livestock</a></li>
+                        <li><a href="events-calendar.html?industry=Construction%20%26%20Real%20Estate">Construction &amp; Real Estate</a></li>
+                        <li><a href="events-calendar.html?industry=Defence%20%26%20Security">Defence &amp; Security</a></li>
+                        <li><a href="events-calendar.html?industry=Education%20%26%20Training">Education &amp; Training</a></li>
                     </ul>
                 </div>
 
                 <div class="footer-column">
-                    <h3>Company</h3>
+                    <h3 data-i18n="nav.footerCompany">Company</h3>
                     <ul>
-                        <li><a href="#">About BXSS</a></li>
-                        <li><a href="#">Our Portfolio</a></li>
-                        <li><a href="#">Media Gallery</a></li>
+                        <li><a href="about.html">About BXSS</a></li>
+                        <li><a href="events.html">Our Portfolio</a></li>
+                        <li><a href="events-calendar.html" data-i18n="nav.eventCalendar">Event Calendar</a></li>
+                        <li><a href="events-calendar.html?status=upcoming" data-i18n="nav.upcomingEvents">Upcoming Events</a></li>
+                        <li><a href="gallery.html">Gallery</a></li>
+                        <li><a href="media.html">Media</a></li>
                         <li><a href="#">Client Testimonials</a></li>
                         <li><a href="#">Our Partners</a></li>
                         <li><a href="#">Careers</a></li>
@@ -807,16 +1307,16 @@
                 </div>
 
                 <div class="footer-column">
-                    <h3>Contact Us</h3>
+                    <h3 data-i18n="nav.footerContactUs">Contact Us</h3>
                     <ul>
-                        <li><a href="#">Get a Quote</a></li>
-                        <li><a href="#">Request a Callback</a></li>
+                        <li><a href="contact.html">Get a Quote</a></li>
+                        <li><a href="contact.html">Request a Callback</a></li>
                         <li><a href="tel:+922134821159">+92-21-3482-1159</a></li>
                         <li><a href="mailto:info@badarexpo.com">info@badarexpo.com</a></li>
                         <li><a href="#">Karachi Head Office</a></li>
                         <li><a href="#">Lahore Office</a></li>
-                        <li><a href="#">Privacy Policy</a></li>
-                        <li><a href="#">Terms &amp; Conditions</a></li>
+                        <li><a href="privacy-policy.html">Privacy Policy</a></li>
+                        <li><a href="terms-of-service.html">Terms &amp; Conditions</a></li>
                     </ul>
                 </div>
 
@@ -824,7 +1324,7 @@
 
             <!-- BACK TOP -->
             <div class="footer-back-top" onclick="window.scrollTo({top:0,behavior:'smooth'})">
-                Back to top
+                <span data-i18n="common.backToTop">Back to top</span>
                 <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
                     <path d="M12 19V5" />
                     <path d="M5 12l7-7 7 7" />
@@ -844,7 +1344,7 @@
                     <div class="download-buttons">
                         <!-- APPLE -->
                         <a href="https://apps.apple.com/pk/app/badar-expo/id6751605684" class="store-btn"
-                            target="_blank">
+                            target="_blank" rel="noopener noreferrer">
                             <i class="fa-brands fa-apple store-btn-apple-icon"></i>
                             <div class="store-btn-text">
                                 <div class="store-btn-small">Download on the</div>
@@ -854,7 +1354,7 @@
 
                         <!-- GOOGLE -->
                         <a href="https://play.google.com/store/apps/details?id=com.badarexpo.app"
-                            class="store-btn google-play" target="_blank">
+                            class="store-btn google-play" target="_blank" rel="noopener noreferrer">
                             <img src="https://upload.wikimedia.org/wikipedia/commons/d/d0/Google_Play_Arrow_logo.svg"
                                 alt="Google Play logo">
                             <div class="store-btn-text">
@@ -865,9 +1365,9 @@
                     </div>
 
                     <div class="footer-bottom-links">
-                        <a href="#">Privacy Policy</a>
-                        <a href="#">Terms of Service</a>
-                        <a href="#">Cookie Preferences</a>
+                        <a href="privacy-policy.html">Privacy Policy</a>
+                        <a href="terms-of-service.html">Terms of Service</a>
+                        <a href="privacy-policy.html#cookies">Cookie Preferences</a>
                     </div>
 
                     <div class="footer-copyright">
@@ -948,7 +1448,28 @@
         <i class="fas fa-arrow-up"></i>
     </button>
     <!-- GLOBAL SCRIPTS & PAGE SCRIPTS -->
+        <!-- ========================= COMMUNICATION WIDGET (Phase 17) ========================= -->
+    <div class="comm-widget" id="comm-widget">
+        <div class="comm-widget-panel" id="comm-widget-panel" role="dialog" aria-label="Chat with us" aria-hidden="true">
+            <div class="comm-widget-panel-header">
+                <span class="comm-widget-panel-title" data-i18n="pages.commWidget.title">Chat with Badar Expo</span>
+                <button class="comm-widget-panel-close" id="comm-widget-close" data-i18n-aria-label="pages.commWidget.closeLabel" aria-label="Close chat panel">
+                    <i class="fas fa-xmark" aria-hidden="true"></i>
+                </button>
+            </div>
+            <p class="comm-widget-panel-desc" data-i18n="pages.commWidget.desc">Have a question about an event or service? Message us on WhatsApp and we'll get back to you shortly.</p>
+            <a href="#" class="comm-widget-channel-btn" id="comm-widget-whatsapp-link" target="_blank" rel="noopener noreferrer">
+                <i class="fab fa-whatsapp" aria-hidden="true"></i>
+                <span data-i18n="pages.commWidget.startChat">Start WhatsApp Chat</span>
+            </a>
+        </div>
+        <button class="comm-widget-fab" id="comm-widget-toggle" type="button" aria-expanded="false" aria-controls="comm-widget-panel" data-i18n-aria-label="pages.commWidget.openLabel" aria-label="Open chat widget">
+            <i class="fab fa-whatsapp" aria-hidden="true"></i>
+        </button>
+    </div>
+    <script src="assets/js/comm-widget.js"></script>
     <script src="assets/js/main.js"></script>
+    <script src="assets/js/language-manager.js"></script>
     <script src="assets/js/about.js"></script>
     <script src="assets/js/mobile-mega-menu.js"></script>
 </body>

@@ -118,6 +118,7 @@
     font-weight: 500;
     letter-spacing: 0.4px;
     margin-bottom: 26px;
+    -webkit-backdrop-filter: blur(12px);
     backdrop-filter: blur(12px);
 }
 
