@@ -34,6 +34,7 @@
     <link rel="stylesheet" href="assets/css/tokens.css">
     <link rel="stylesheet" href="assets/css/footer.css">
     <link rel="stylesheet" href="assets/css/page-hero.css">
+    <link rel="stylesheet" href="assets/css/comm-widget.css">
     <link rel="stylesheet" href="assets/css/rtl-overrides.css">
 
     <!-- ========================= PAGE SPECIFIC STYLES ========================= -->
@@ -1092,6 +1093,27 @@
         <i class="fas fa-arrow-up"></i>
     </button>
 
+
+    <!-- ========================= COMMUNICATION WIDGET (Phase 17) ========================= -->
+    <div class="comm-widget" id="comm-widget">
+        <div class="comm-widget-panel" id="comm-widget-panel" role="dialog" aria-label="Chat with us" aria-hidden="true">
+            <div class="comm-widget-panel-header">
+                <span class="comm-widget-panel-title" data-i18n="pages.commWidget.title">Chat with Badar Expo</span>
+                <button class="comm-widget-panel-close" id="comm-widget-close" data-i18n-aria-label="pages.commWidget.closeLabel" aria-label="Close chat panel">
+                    <i class="fas fa-xmark" aria-hidden="true"></i>
+                </button>
+            </div>
+            <p class="comm-widget-panel-desc" data-i18n="pages.commWidget.desc">Have a question about an event or service? Message us on WhatsApp and we'll get back to you shortly.</p>
+            <a href="#" class="comm-widget-channel-btn" id="comm-widget-whatsapp-link" target="_blank" rel="noopener noreferrer">
+                <i class="fab fa-whatsapp" aria-hidden="true"></i>
+                <span data-i18n="pages.commWidget.startChat">Start WhatsApp Chat</span>
+            </a>
+        </div>
+        <button class="comm-widget-fab" id="comm-widget-toggle" type="button" aria-expanded="false" aria-controls="comm-widget-panel" data-i18n-aria-label="pages.commWidget.openLabel" aria-label="Open chat widget">
+            <i class="fab fa-whatsapp" aria-hidden="true"></i>
+        </button>
+    </div>
+    <script src="assets/js/comm-widget.js"></script>
     <script src="assets/js/main.js"></script>
     <script src="assets/js/language-manager.js"></script>
     <script src="assets/js/mobile-mega-menu.js"></script>
