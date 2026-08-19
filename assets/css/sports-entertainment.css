@@ -1,0 +1,1159 @@
+/* =============================================================================
+   PAGE: SPORTS & ENTERTAINMENT (sports-entertainment.css)
+   Prefix: .bse-*  (Badar Sports & Entertainment)
+
+   Scope: prefixed .bse-* only. Consumes global tokens.css. Adds no global
+   rules and overrides nothing in navbar.css / footer.css / page-hero.css.
+
+   Identity: Badar Expo red on black/white/neutral only. No league palette.
+   Section rhythm alternates surfaces and layouts so the page reads as a
+   journey: hero -> split -> cards -> dark feature -> editorial -> dark
+   showcase -> grid -> bridge -> CTA.
+   ============================================================================= */
+
+.bse-page {
+    font-family: var(--font-primary);
+    color: var(--text-dark);
+    background: var(--white);
+    overflow-x: hidden;
+}
+
+.bse-page *,
+.bse-page *::before,
+.bse-page *::after {
+    box-sizing: border-box;
+}
+
+.bse-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 60px;
+}
+
+.bse-section {
+    padding: var(--space-16) 0;
+}
+
+/* =============================================================================
+   SHARED TYPOGRAPHY
+   ============================================================================= */
+.bse-eyebrow {
+    margin: 0 0 18px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--primary-red);
+}
+
+.bse-eyebrow::before {
+    content: "";
+    width: 38px;
+    height: 2px;
+    background: var(--primary-red);
+    flex: 0 0 auto;
+}
+
+.bse-display {
+    margin: 0 0 20px;
+    font-size: clamp(1.9rem, 3.2vw, 3rem);
+    font-weight: 800;
+    line-height: 1.12;
+    letter-spacing: -0.02em;
+}
+
+.bse-lead {
+    margin: 0;
+    max-width: 62ch;
+    font-size: clamp(1rem, 1.15vw, 1.1rem);
+    line-height: 1.8;
+    color: var(--text-muted);
+}
+
+.bse-lead + .bse-lead {
+    margin-top: 18px;
+}
+
+.bse-section-head {
+    max-width: 780px;
+    margin-bottom: var(--space-8);
+}
+
+.bse-section-head--center {
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
+
+.bse-section-head--center .bse-eyebrow {
+    justify-content: center;
+}
+
+.bse-section-head--center .bse-lead {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.bse-dark {
+    background: var(--ink);
+    color: var(--white);
+}
+
+.bse-dark .bse-lead {
+    color: rgba(255, 255, 255, 0.68);
+}
+
+/* =============================================================================
+   BUTTONS (existing BXSS button language)
+   ============================================================================= */
+.bse-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 15px 32px;
+    border: 2px solid transparent;
+    border-radius: var(--radius-pill);
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 0.4px;
+    text-decoration: none;
+    transition: var(--transition-smooth);
+}
+
+.bse-btn--red {
+    background: var(--primary-red);
+    color: var(--white);
+    box-shadow: var(--shadow-red-sm);
+}
+
+.bse-btn--red:hover {
+    background: var(--primary-red-hover);
+    box-shadow: var(--shadow-red-md);
+    transform: translateY(-2px);
+}
+
+.bse-btn--outline {
+    border-color: rgba(255, 255, 255, 0.5);
+    color: var(--white);
+}
+
+.bse-btn--outline:hover {
+    background: var(--white);
+    color: var(--ink);
+    transform: translateY(-2px);
+}
+
+.bse-page a:focus-visible,
+.bse-page button:focus-visible {
+    outline: 3px solid var(--primary-red);
+    outline-offset: 3px;
+}
+
+/* =============================================================================
+   SHARED MOTIFS
+   ============================================================================= */
+.bse-frame {
+    position: relative;
+    margin: 0;
+    overflow: hidden;
+    border-radius: var(--radius-md);
+    background: var(--bg-light);
+}
+
+.bse-frame img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.bse-frame:hover img {
+    transform: scale(1.04);
+}
+
+/* Stage-light atmosphere: two soft red pools, no gradients on brand surfaces */
+.bse-stagelight {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background:
+        radial-gradient(ellipse 45% 55% at 18% 0%, rgba(228, 31, 38, 0.22), transparent 70%),
+        radial-gradient(ellipse 40% 50% at 82% 8%, rgba(228, 31, 38, 0.14), transparent 72%);
+}
+
+/* Court/pitch line motif - restrained diagonal rules */
+.bse-courtlines {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background-image: repeating-linear-gradient(115deg,
+            rgba(255, 255, 255, 0.05) 0 1px,
+            transparent 1px 78px);
+}
+
+/* =============================================================================
+   1. HERO
+   ============================================================================= */
+.bse-hero {
+    position: relative;
+    padding: var(--space-12) 0 var(--space-8);
+    background: var(--ink);
+    color: var(--white);
+    overflow: hidden;
+}
+
+.bse-hero .bse-container {
+    position: relative;
+    z-index: 1;
+}
+
+.bse-hero-inner {
+    display: grid;
+    grid-template-columns: 1.04fr 0.96fr;
+    gap: var(--space-12);
+    align-items: center;
+}
+
+.bse-hero h1 {
+    margin: 0 0 22px;
+    font-size: clamp(2.3rem, 4.7vw, 3.9rem);
+    font-weight: 800;
+    line-height: 1.05;
+    letter-spacing: -0.03em;
+}
+
+.bse-hero h1 em {
+    font-style: normal;
+    color: var(--primary-red);
+}
+
+.bse-hero-desc {
+    margin: 0 0 var(--space-4);
+    max-width: 54ch;
+    font-size: 1rem;
+    line-height: 1.85;
+    color: rgba(255, 255, 255, 0.68);
+}
+
+.bse-hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px;
+}
+
+/* "Sports - Entertainment - Live Experiences" label */
+.bse-pills {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 14px;
+    margin: var(--space-6) 0 0;
+    padding: var(--space-4) 0 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.bse-pills li {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2.4px;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.72);
+}
+
+.bse-pills li::after {
+    content: "";
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: var(--primary-red);
+}
+
+.bse-pills li:last-child::after {
+    display: none;
+}
+
+/* Layered editorial hero composition */
+.bse-hero-visual {
+    position: relative;
+    padding-bottom: 54px;
+}
+
+.bse-frame--hero {
+    aspect-ratio: 4 / 3;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    box-shadow: var(--shadow-lg);
+}
+
+.bse-frame--hero-sub {
+    position: absolute;
+    right: -12px;
+    bottom: 0;
+    width: 44%;
+    aspect-ratio: 3 / 2;
+    border: 5px solid var(--ink);
+    box-shadow: var(--shadow-md);
+}
+
+.bse-hero-rule {
+    position: absolute;
+    left: -22px;
+    top: 14%;
+    width: 3px;
+    height: 44%;
+    background: var(--primary-red);
+}
+
+/* =============================================================================
+   2. OUR EXPERIENCE (split + fact cards)
+   ============================================================================= */
+.bse-intro {
+    background: var(--cream);
+}
+
+.bse-split {
+    display: grid;
+    grid-template-columns: 1.05fr 0.95fr;
+    gap: var(--space-12);
+    align-items: center;
+}
+
+.bse-facts {
+    display: grid;
+    gap: var(--space-3);
+}
+
+.bse-fact {
+    position: relative;
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-3);
+    padding: var(--space-4);
+    background: var(--white);
+    border: 1px solid var(--border-light);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-xs);
+    transition: transform var(--transition-smooth), box-shadow var(--transition-smooth);
+}
+
+.bse-fact:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-md);
+}
+
+.bse-fact-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex: 0 0 auto;
+    width: 52px;
+    height: 52px;
+    border-radius: var(--radius-sm);
+    background: rgba(228, 31, 38, 0.08);
+    color: var(--primary-red);
+    font-size: 19px;
+}
+
+.bse-fact h3 {
+    margin: 0 0 8px;
+    font-size: 1.08rem;
+    font-weight: 800;
+    letter-spacing: -0.01em;
+}
+
+.bse-fact p {
+    margin: 0;
+    font-size: 0.94rem;
+    line-height: 1.7;
+    color: var(--text-muted);
+}
+
+/* =============================================================================
+   3 / 6. CAPABILITY CARD GRID (sports + concert capabilities)
+   ============================================================================= */
+.bse-cards {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--space-3);
+}
+
+.bse-card {
+    position: relative;
+    padding: var(--space-4) var(--space-3) var(--space-6);
+    background: var(--white);
+    border: 1px solid var(--border-light);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-xs);
+    overflow: hidden;
+    transition: transform var(--transition-smooth), box-shadow var(--transition-smooth);
+}
+
+.bse-card::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 3px;
+    background: var(--primary-red);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform var(--transition-smooth);
+}
+
+.bse-card:hover,
+.bse-card:focus-within {
+    transform: translateY(-6px);
+    box-shadow: var(--shadow-md);
+}
+
+.bse-card:hover::before,
+.bse-card:focus-within::before {
+    transform: scaleX(1);
+}
+
+.bse-card-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 52px;
+    height: 52px;
+    margin-bottom: var(--space-3);
+    border-radius: var(--radius-sm);
+    background: var(--bg-light);
+    color: var(--text-dark);
+    font-size: 20px;
+    transition: background var(--transition-smooth), color var(--transition-smooth);
+}
+
+.bse-card:hover .bse-card-icon {
+    background: var(--primary-red);
+    color: var(--white);
+}
+
+.bse-card h3 {
+    margin: 0 0 12px;
+    font-size: 1.1rem;
+    font-weight: 800;
+    letter-spacing: -0.01em;
+}
+
+.bse-card p {
+    margin: 0;
+    font-size: 0.94rem;
+    line-height: 1.75;
+    color: var(--text-muted);
+}
+
+/* Dark-surface variant */
+.bse-dark .bse-card {
+    background: rgba(255, 255, 255, 0.03);
+    border-color: var(--border-dark);
+    box-shadow: none;
+}
+
+.bse-dark .bse-card:hover {
+    background: rgba(255, 255, 255, 0.06);
+    box-shadow: none;
+}
+
+.bse-dark .bse-card-icon {
+    background: rgba(255, 255, 255, 0.07);
+    color: var(--white);
+}
+
+.bse-dark .bse-card p {
+    color: rgba(255, 255, 255, 0.66);
+}
+
+/* =============================================================================
+   4. SPORTS (dark feature + league platform cards)
+   ============================================================================= */
+.bse-sports {
+    position: relative;
+    overflow: hidden;
+}
+
+.bse-sports .bse-container {
+    position: relative;
+    z-index: 1;
+}
+
+.bse-sports-head {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-12);
+    align-items: center;
+    margin-bottom: var(--space-12);
+}
+
+.bse-frame--sports {
+    aspect-ratio: 5 / 4;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: var(--shadow-lg);
+}
+
+/* League platform cards (PTPL / KTPL) */
+.bse-league-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-4);
+}
+
+.bse-league {
+    display: flex;
+    flex-direction: column;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid var(--border-dark);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    transition: transform var(--transition-smooth), border-color var(--transition-smooth);
+}
+
+.bse-league:hover {
+    transform: translateY(-6px);
+    border-color: rgba(228, 31, 38, 0.45);
+}
+
+.bse-league-media {
+    position: relative;
+    aspect-ratio: 16 / 9;
+    overflow: hidden;
+    background: var(--ink);
+}
+
+.bse-league-media img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.bse-league:hover .bse-league-media img {
+    transform: scale(1.05);
+}
+
+.bse-league-media::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(10, 10, 10, 0.72), rgba(10, 10, 10, 0) 62%);
+}
+
+.bse-league-badge {
+    position: absolute;
+    z-index: 2;
+    left: 22px;
+    bottom: 20px;
+    padding: 8px 18px;
+    border-radius: var(--radius-xs);
+    background: var(--primary-red);
+    color: var(--white);
+    font-size: 15px;
+    font-weight: 800;
+    letter-spacing: 2px;
+}
+
+.bse-league-body {
+    padding: var(--space-4);
+}
+
+.bse-league-kicker {
+    display: block;
+    margin-bottom: 12px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.bse-league-body p {
+    margin: 0;
+    font-size: 1rem;
+    line-height: 1.8;
+    color: rgba(255, 255, 255, 0.68);
+}
+
+/* =============================================================================
+   5. ENTERTAINMENT (large image + copy)
+   ============================================================================= */
+.bse-ent-inner {
+    display: grid;
+    grid-template-columns: 0.95fr 1.05fr;
+    gap: var(--space-12);
+    align-items: center;
+}
+
+.bse-frame--tall {
+    aspect-ratio: 4 / 5;
+    box-shadow: var(--shadow-lg);
+}
+
+.bse-ent-visual {
+    position: relative;
+}
+
+.bse-ent-plate {
+    position: absolute;
+    right: -22px;
+    bottom: -22px;
+    padding: 18px 24px;
+    border-radius: var(--radius-sm);
+    background: var(--primary-red);
+    color: var(--white);
+    box-shadow: var(--shadow-red-lg);
+}
+
+.bse-ent-plate strong {
+    display: block;
+    font-size: 1.05rem;
+    font-weight: 800;
+    line-height: 1.2;
+}
+
+.bse-ent-plate span {
+    display: block;
+    margin-top: 6px;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    opacity: 0.9;
+}
+
+/* =============================================================================
+   6. CONCERTS (dark editorial band)
+   ============================================================================= */
+.bse-concerts {
+    position: relative;
+    overflow: hidden;
+}
+
+.bse-concerts .bse-container {
+    position: relative;
+    z-index: 1;
+}
+
+.bse-concert-strip {
+    display: grid;
+    grid-template-columns: 1.35fr 1fr;
+    gap: var(--space-4);
+    margin-bottom: var(--space-12);
+}
+
+.bse-frame--wide {
+    aspect-ratio: 16 / 9;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.bse-frame--square {
+    aspect-ratio: 1 / 1;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.bse-frame-caption {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 2;
+    padding: var(--space-4) var(--space-3) var(--space-3);
+    background: linear-gradient(to top, rgba(10, 10, 10, 0.85), rgba(10, 10, 10, 0));
+    color: var(--white);
+}
+
+.bse-frame-caption span {
+    display: block;
+    margin-bottom: 8px;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--primary-red);
+}
+
+.bse-frame-caption strong {
+    font-size: 1.05rem;
+    font-weight: 800;
+    letter-spacing: -0.01em;
+}
+
+/* =============================================================================
+   7. SELECTED EXPERIENCES (portfolio grid)
+   ============================================================================= */
+.bse-work-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-3);
+}
+
+.bse-work {
+    position: relative;
+    display: block;
+    overflow: hidden;
+    border-radius: var(--radius-md);
+    background: var(--ink);
+    aspect-ratio: 4 / 3;
+    text-decoration: none;
+}
+
+.bse-work img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.bse-work:hover img {
+    transform: scale(1.06);
+}
+
+.bse-work::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(10, 10, 10, 0.86) 4%, rgba(10, 10, 10, 0.1) 58%);
+}
+
+.bse-work-body {
+    position: absolute;
+    z-index: 2;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    padding: var(--space-3);
+    color: var(--white);
+}
+
+.bse-work-cat {
+    display: inline-block;
+    margin-bottom: 10px;
+    padding: 5px 12px;
+    border-radius: var(--radius-pill);
+    background: var(--primary-red);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1.6px;
+    text-transform: uppercase;
+}
+
+.bse-work h3 {
+    margin: 0 0 8px;
+    font-size: 1.05rem;
+    font-weight: 800;
+    line-height: 1.3;
+    letter-spacing: -0.01em;
+}
+
+.bse-work p {
+    margin: 0;
+    font-size: 0.88rem;
+    line-height: 1.6;
+    color: rgba(255, 255, 255, 0.72);
+}
+
+/* =============================================================================
+   8. OUR ROLE (compact 5-up)
+   ============================================================================= */
+.bse-role {
+    background: var(--bg-light);
+}
+
+.bse-role-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: var(--space-3);
+    counter-reset: bse-role;
+}
+
+.bse-role-item {
+    position: relative;
+    padding-top: var(--space-4);
+    border-top: 2px solid var(--border-light);
+    transition: border-color var(--transition-smooth);
+}
+
+.bse-role-item:hover {
+    border-top-color: var(--primary-red);
+}
+
+.bse-role-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 46px;
+    height: 46px;
+    margin-bottom: var(--space-3);
+    border-radius: 50%;
+    background: var(--white);
+    border: 1px solid var(--border-light);
+    color: var(--primary-red);
+    font-size: 17px;
+}
+
+.bse-role-item h3 {
+    margin: 0 0 10px;
+    font-size: 1rem;
+    font-weight: 800;
+    letter-spacing: -0.01em;
+}
+
+.bse-role-item p {
+    margin: 0;
+    font-size: 0.9rem;
+    line-height: 1.7;
+    color: var(--text-muted);
+}
+
+/* =============================================================================
+   9. BRIDGE (sport <-> entertainment)
+   ============================================================================= */
+.bse-bridge {
+    position: relative;
+    overflow: hidden;
+}
+
+.bse-bridge .bse-container {
+    position: relative;
+    z-index: 1;
+}
+
+.bse-bridge-head {
+    max-width: 760px;
+    margin: 0 auto var(--space-8);
+    text-align: center;
+}
+
+.bse-bridge-head .bse-lead {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Two overlapping panels joined by a red seam */
+.bse-bridge-visual {
+    position: relative;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    box-shadow: var(--shadow-lg);
+}
+
+.bse-bridge-panel {
+    position: relative;
+    aspect-ratio: 3 / 2;
+    overflow: hidden;
+    background: var(--ink);
+}
+
+.bse-bridge-panel img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.bse-bridge-panel:hover img {
+    transform: scale(1.05);
+}
+
+.bse-bridge-panel::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(10, 10, 10, 0.5);
+}
+
+.bse-bridge-label {
+    position: absolute;
+    z-index: 2;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    padding: var(--space-4);
+    color: var(--white);
+    font-size: clamp(1.1rem, 1.9vw, 1.5rem);
+    font-weight: 800;
+    letter-spacing: -0.01em;
+}
+
+.bse-bridge-label span {
+    display: block;
+    margin-bottom: 8px;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 2.4px;
+    text-transform: uppercase;
+    color: var(--primary-red);
+}
+
+/* The red seam is the visual connection between both sides */
+.bse-bridge-seam {
+    position: absolute;
+    z-index: 3;
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    width: 4px;
+    transform: translateX(-50%);
+    background: var(--primary-red);
+}
+
+/* =============================================================================
+   10. FINAL CTA (centered card, matches the site's CTA pattern)
+   ============================================================================= */
+.bse-cta {
+    padding: var(--space-6) 0 var(--space-12);
+    background: var(--white);
+}
+
+.bse-cta-card {
+    position: relative;
+    max-width: 820px;
+    margin: 0 auto;
+    padding: 45px 30px;
+    border-radius: 24px;
+    background: var(--ink);
+    color: var(--white);
+    text-align: center;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+    overflow: hidden;
+    isolation: isolate;
+}
+
+.bse-cta-card::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 600px;
+    height: 600px;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(228, 31, 38, 0.4), transparent 70%);
+    z-index: -2;
+    pointer-events: none;
+}
+
+.bse-cta-card::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image: linear-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+    background-size: 46px 46px;
+    mask-image: radial-gradient(ellipse at center, black, transparent 75%);
+    z-index: -1;
+    pointer-events: none;
+}
+
+.bse-cta-card .bse-eyebrow {
+    position: relative;
+    z-index: 1;
+    justify-content: center;
+}
+
+.bse-cta-card h2 {
+    position: relative;
+    z-index: 1;
+    margin: 0 0 12px;
+    font-size: clamp(22px, 2.8vw, 32px);
+    font-weight: 800;
+    letter-spacing: -0.5px;
+}
+
+.bse-cta-card p {
+    position: relative;
+    z-index: 1;
+    max-width: 540px;
+    margin: 0 auto 28px;
+    font-size: 14.5px;
+    line-height: 1.6;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.bse-cta-btns {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px;
+}
+
+/* =============================================================================
+   SCROLL REVEAL
+   ============================================================================= */
+.bse-reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+        transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.bse-reveal.is-visible {
+    opacity: 1;
+    transform: none;
+}
+
+/* =============================================================================
+   RESPONSIVE
+   ============================================================================= */
+@media screen and (max-width: 1280px) {
+    .bse-container {
+        padding: 0 40px;
+    }
+
+    .bse-hero-inner,
+    .bse-split,
+    .bse-sports-head,
+    .bse-ent-inner {
+        gap: var(--space-8);
+    }
+
+    .bse-role-grid {
+        gap: var(--space-2);
+    }
+}
+
+@media screen and (max-width: 1100px) {
+    .bse-cards {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .bse-role-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: var(--space-4) var(--space-3);
+    }
+
+    .bse-work-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media screen and (max-width: 1024px) {
+    .bse-container {
+        padding: 0 30px;
+    }
+
+    .bse-section {
+        padding: var(--space-12) 0;
+    }
+
+    .bse-hero {
+        padding-top: var(--space-8);
+    }
+
+    .bse-hero-inner,
+    .bse-split,
+    .bse-sports-head,
+    .bse-ent-inner,
+    .bse-league-grid,
+    .bse-concert-strip {
+        grid-template-columns: 1fr;
+        gap: var(--space-6);
+    }
+
+    .bse-hero-visual {
+        max-width: 620px;
+    }
+
+    .bse-frame--tall {
+        max-width: 520px;
+    }
+
+    .bse-frame--square {
+        aspect-ratio: 16 / 9;
+    }
+}
+
+@media screen and (max-width: 820px) {
+
+    /* Bridge stacks: the seam becomes a horizontal rule between the panels */
+    .bse-bridge-visual {
+        grid-template-columns: 1fr;
+    }
+
+    .bse-bridge-seam {
+        top: 50%;
+        bottom: auto;
+        left: 0;
+        right: 0;
+        width: auto;
+        height: 4px;
+        transform: translateY(-50%);
+    }
+}
+
+@media screen and (max-width: 720px) {
+    .bse-container {
+        padding: 0 20px;
+    }
+
+    .bse-cards,
+    .bse-work-grid,
+    .bse-role-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .bse-role-grid {
+        gap: var(--space-4);
+    }
+
+    .bse-fact {
+        padding: var(--space-3);
+    }
+
+    .bse-frame--hero-sub {
+        width: 52%;
+        right: 0;
+    }
+
+    .bse-hero-rule {
+        left: -10px;
+    }
+
+    .bse-ent-plate {
+        right: 0;
+        bottom: -18px;
+    }
+
+    .bse-cta-card {
+        padding: 36px 20px;
+    }
+
+    .bse-hero-actions .bse-btn,
+    .bse-cta-btns .bse-btn {
+        flex: 1 1 100%;
+    }
+}
+
+/* =============================================================================
+   REDUCED MOTION
+   ============================================================================= */
+@media (prefers-reduced-motion: reduce) {
+
+    .bse-page *,
+    .bse-reveal {
+        animation: none !important;
+        transition: none !important;
+    }
+
+    .bse-reveal {
+        opacity: 1;
+        transform: none;
+    }
+}

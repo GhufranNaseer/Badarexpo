@@ -493,4 +493,15 @@ document.addEventListener('DOMContentLoaded', () => {
     EmCorporateSolutionsManager.init();
     EmKpiCounterManager.init();
     EmFaqManager.init();
+
+    // Operations meeting request form submission (Phase 21.1) - shared
+    // engine, see assets/js/form-submit-manager.js. Replaces the old
+    // inline onsubmit alert() that never actually sent data anywhere.
+    if (typeof FormSubmitManager !== 'undefined') {
+        FormSubmitManager.bind('#bxssOpsMeetingForm', {
+            messages: {
+                success: 'Request logged. Our Operations Director will connect shortly.'
+            }
+        });
+    }
 });

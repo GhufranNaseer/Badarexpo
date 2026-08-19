@@ -1,0 +1,37 @@
+/* =============================================================================
+   INTERNATIONAL PROJECTS HUB (international-projects.html) - Phase 11
+   ============================================================================= 
+   PAGE-SPECIFIC layout only, prefixed "ipr-" per rules.txt Section 2. All
+   visual components (cards, badges, buttons, grid, stats) come from
+   event-components.css (Phase 3) - this file only positions them. No
+   colors/radii/shadows/typography redefined here.
+   ============================================================================= */
+
+#ipr-page {
+    background: var(--white);
+}
+
+.ipr-intro {
+    padding: 56px 0 32px;
+    text-align: center;
+    border-bottom: 1px solid var(--border-light);
+}
+
+.ipr-grid-sec {
+    padding: 64px 0;
+}
+
+.ipr-cross-sec {
+    padding: 0 0 64px;
+}
+
+@media screen and (max-width: 768px) {
+    .ipr-intro {
+        padding: 40px 0 24px;
+        text-align: left;
+    }
+
+    .ipr-grid-sec {
+        padding: 40px 0;
+    }
+}
