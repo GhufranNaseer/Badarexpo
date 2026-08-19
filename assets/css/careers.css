@@ -1,0 +1,1339 @@
+/* =============================================================================
+   PAGE: CAREERS (careers.css)
+   Prefix: .crs-*   Scope root: .crs-page
+
+   Extracted from the approved Lovable prototype. Design values are preserved
+   verbatim; only the plumbing changed:
+
+   - The prototype's :root token block was DROPPED. All eleven values it
+     redeclared (--primary-red, --ink, --text-dark, --text-muted, --white,
+     --bg-light, --cream, --border-light, --border-dark, --font-primary,
+     --primary-red-hover) already exist in tokens.css and are inherited.
+     Only the two easing curves and the page gutter remain, now page-scoped.
+   - Prototype navbar / topbar / footer styles were REMOVED - the page uses the
+     repository's global navbar.css and footer.css instead.
+   - Every bare element selector the prototype used globally (*, html, body,
+     img, a, ul, h1-h4, p, :focus-visible) is now scoped under .crs-page so
+     nothing can leak onto other pages.
+   ============================================================================= */
+
+.crs-page {
+    --crs-ease: .35s cubic-bezier(.4, 0, .2, 1);
+    --crs-pad-x: 60px;
+
+    font-family: var(--font-primary);
+    color: var(--text-dark);
+    background: var(--white);
+    overflow-x: hidden;
+}
+
+.crs-page *,
+.crs-page *::before,
+.crs-page *::after {
+    box-sizing: border-box;
+}
+
+.crs-page img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+.crs-page a {
+    color: inherit;
+}
+
+.crs-page :focus-visible {
+    outline: 2px solid var(--primary-red);
+    outline-offset: 3px;
+}
+
+.crs-page h1,
+.crs-page h2,
+.crs-page h3,
+.crs-page h4,
+.crs-page p,
+.crs-page ul {
+    margin: 0;
+    padding: 0;
+}
+
+.crs-page ul {
+    list-style: none;
+}
+
+.crs-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 var(--crs-pad-x);
+}
+
+.crs-section {
+    padding: 110px 0;
+    position: relative;
+}
+
+.crs-dark {
+    background: var(--ink);
+    color: rgba(255, 255, 255, .72);
+}
+
+.crs-cream {
+    background: var(--cream);
+}
+
+/* ---- shared type ---- */
+.crs-eyebrow {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 3.2px;
+    text-transform: uppercase;
+    color: var(--primary-red);
+    margin-bottom: 18px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.crs-eyebrow::before {
+    content: "";
+    width: 26px;
+    height: 1px;
+    background: var(--primary-red);
+    display: block;
+}
+
+.crs-eyebrow--light {
+    color: #ff5a60;
+}
+
+.crs-page h1 {
+    font-size: clamp(2.5rem, 5.2vw, 4.4rem);
+    font-weight: 800;
+    line-height: 1.04;
+    letter-spacing: -.025em;
+}
+
+.crs-page h2 {
+    font-size: clamp(1.75rem, 3.1vw, 2.7rem);
+    font-weight: 800;
+    line-height: 1.12;
+    letter-spacing: -.02em;
+}
+
+.crs-page h3 {
+    font-size: 1.02rem;
+    font-weight: 700;
+    letter-spacing: -.01em;
+}
+
+.crs-page p {
+    font-size: .97rem;
+    line-height: 1.8;
+    color: var(--text-muted);
+}
+
+.crs-dark h2,
+.crs-dark h3 {
+    color: var(--white);
+}
+
+.crs-dark p {
+    color: rgba(255, 255, 255, .62);
+}
+
+.crs-lead {
+    font-size: 1.12rem;
+    line-height: 1.75;
+    color: var(--text-dark);
+    font-weight: 500;
+}
+
+/* ---- buttons ---- */
+.crs-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    font-family: inherit;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 1.6px;
+    text-transform: uppercase;
+    padding: 16px 30px;
+    border-radius: 2px;
+    border: 1px solid transparent;
+    cursor: pointer;
+    text-decoration: none;
+    transition: var(--crs-ease);
+    background: none;
+}
+
+.crs-btn svg {
+    width: 14px;
+    height: 14px;
+    transition: var(--crs-ease);
+}
+
+.crs-btn:hover svg {
+    transform: translateX(4px);
+}
+
+.crs-btn--primary {
+    background: var(--primary-red);
+    color: #fff;
+}
+
+.crs-btn--primary:hover {
+    background: var(--primary-red-hover);
+}
+
+.crs-btn--ghost {
+    border-color: rgba(255, 255, 255, .35);
+    color: #fff;
+}
+
+.crs-btn--ghost:hover {
+    border-color: #fff;
+    background: rgba(255, 255, 255, .08);
+}
+
+.crs-btn--outline {
+    border-color: rgba(0, 0, 0, .25);
+    color: var(--ink);
+}
+
+.crs-btn--outline:hover {
+    border-color: var(--ink);
+    background: var(--ink);
+    color: #fff;
+}
+
+/* ---- reveal ---- */
+.crs-reveal {
+    opacity: 0;
+    transform: translateY(22px);
+    transition: opacity .8s cubic-bezier(.16, 1, .3, 1), transform .8s cubic-bezier(.16, 1, .3, 1);
+}
+
+.crs-reveal.is-in {
+    opacity: 1;
+    transform: none;
+}
+
+/* =============================================================================
+   HERO
+   ============================================================================= */
+.crs-hero {
+    position: relative;
+    background: #000;
+    color: #fff;
+    overflow: hidden;
+    min-height: 88vh;
+    display: flex;
+    align-items: flex-end;
+}
+
+.crs-hero img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: grayscale(.55) contrast(1.05) brightness(.62);
+    z-index: 1;
+}
+
+.crs-hero-overlay {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    background: linear-gradient(100deg, rgba(6, 6, 6, .94) 0%, rgba(8, 8, 8, .72) 48%, rgba(228, 31, 38, .28) 100%);
+}
+
+.crs-hero-grid {
+    position: absolute;
+    inset: 0;
+    z-index: 3;
+    opacity: .16;
+    background-image: linear-gradient(rgba(255, 255, 255, .35) 1px, transparent 1px), linear-gradient(90deg, rgba(255, 255, 255, .35) 1px, transparent 1px);
+    background-size: 120px 120px;
+    -webkit-mask-image: linear-gradient(180deg, transparent, #000 60%);
+    mask-image: linear-gradient(180deg, transparent, #000 60%);
+}
+
+/* Prototype reserved 170px here for its own sticky navbar. The repository
+   navbar is not sticky and sits above the page in normal flow, so the hero
+   only needs its own breathing room. */
+.crs-hero-inner {
+    position: relative;
+    z-index: 4;
+    width: 100%;
+    padding-top: 96px;
+    padding-bottom: 70px;
+}
+
+.crs-hero h1 {
+    max-width: 16ch;
+}
+
+.crs-hero h1 em {
+    font-style: normal;
+    color: var(--primary-red);
+}
+
+.crs-hero p {
+    color: rgba(255, 255, 255, .76);
+    max-width: 60ch;
+    margin: 22px 0 34px;
+    font-size: 1.03rem;
+}
+
+.crs-hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px;
+}
+
+.crs-hero-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0;
+    margin-top: 64px;
+    border-top: 1px solid rgba(255, 255, 255, .16);
+    padding-top: 22px;
+}
+
+.crs-hero-meta div {
+    padding-right: 46px;
+    margin-right: 46px;
+    border-right: 1px solid rgba(255, 255, 255, .14);
+}
+
+.crs-hero-meta div:last-child {
+    border-right: none;
+    margin-right: 0;
+    padding-right: 0;
+}
+
+.crs-hero-meta dt {
+    font-size: 10px;
+    letter-spacing: 2.4px;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, .42);
+    margin-bottom: 6px;
+}
+
+.crs-hero-meta dd {
+    margin: 0;
+    font-size: 13.5px;
+    font-weight: 600;
+    color: #fff;
+}
+
+/* =============================================================================
+   INTRO SPLIT
+   ============================================================================= */
+.crs-split {
+    display: grid;
+    grid-template-columns: 1.05fr .95fr;
+    gap: 80px;
+    align-items: start;
+}
+
+.crs-statement {
+    font-size: clamp(1.6rem, 2.9vw, 2.5rem);
+    font-weight: 800;
+    line-height: 1.16;
+    letter-spacing: -.02em;
+}
+
+.crs-statement span {
+    color: var(--primary-red);
+}
+
+.crs-intro-detail {
+    margin-top: 34px;
+    border-left: 2px solid var(--primary-red);
+    padding-left: 22px;
+}
+
+.crs-intro-detail p {
+    margin-bottom: 0;
+}
+
+.crs-intro-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 30px;
+}
+
+.crs-intro-tags span {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1.4px;
+    text-transform: uppercase;
+    border: 1px solid var(--border-light);
+    padding: 8px 14px;
+    color: var(--text-muted);
+    border-radius: 2px;
+    background: #fff;
+}
+
+/* =============================================================================
+   WHY BXSS CARDS
+   ============================================================================= */
+.crs-head {
+    max-width: 760px;
+    margin-bottom: 56px;
+}
+
+.crs-cards {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0;
+    border: 1px solid var(--border-light);
+    background: #fff;
+}
+
+.crs-card {
+    padding: 40px 32px 44px;
+    border-right: 1px solid var(--border-light);
+    position: relative;
+    transition: var(--crs-ease);
+    background: #fff;
+}
+
+.crs-card:last-child {
+    border-right: none;
+}
+
+.crs-card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 2px;
+    width: 0;
+    background: var(--primary-red);
+    transition: var(--crs-ease);
+}
+
+.crs-card:hover::before {
+    width: 100%;
+}
+
+.crs-card:hover {
+    background: var(--bg-light);
+    transform: translateY(-3px);
+}
+
+.crs-card-num {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    color: var(--primary-red);
+    margin-bottom: 26px;
+}
+
+.crs-card-icon {
+    width: 26px;
+    height: 26px;
+    color: var(--ink);
+    margin-bottom: 20px;
+}
+
+.crs-card h3 {
+    margin-bottom: 12px;
+    text-transform: uppercase;
+    letter-spacing: .6px;
+    font-size: .92rem;
+}
+
+.crs-card p {
+    font-size: .9rem;
+    line-height: 1.75;
+}
+
+/* =============================================================================
+   CAREER AREAS
+   ============================================================================= */
+.crs-areas {
+    border-top: 1px solid var(--border-light);
+}
+
+.crs-area {
+    display: grid;
+    grid-template-columns: 70px 1.1fr 1.4fr 50px;
+    align-items: center;
+    gap: 24px;
+    padding: 26px 8px;
+    border-bottom: 1px solid var(--border-light);
+    transition: var(--crs-ease);
+    text-decoration: none;
+    color: inherit;
+}
+
+.crs-area:hover {
+    background: var(--ink);
+    padding-left: 24px;
+    padding-right: 0;
+}
+
+.crs-area:hover .crs-area-idx {
+    color: rgba(255, 255, 255, .4);
+}
+
+.crs-area:hover h3 {
+    color: #fff;
+}
+
+.crs-area:hover p {
+    color: rgba(255, 255, 255, .6);
+}
+
+.crs-area:hover .crs-area-arrow {
+    color: var(--primary-red);
+    transform: translateX(6px);
+}
+
+.crs-area-idx {
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--text-muted);
+    letter-spacing: 1.4px;
+}
+
+.crs-area h3 {
+    font-size: 1.08rem;
+    text-transform: uppercase;
+    letter-spacing: .4px;
+    transition: var(--crs-ease);
+}
+
+.crs-area p {
+    margin: 0;
+    font-size: .92rem;
+    transition: var(--crs-ease);
+}
+
+.crs-area-arrow {
+    justify-self: end;
+    color: var(--text-muted);
+    transition: var(--crs-ease);
+}
+
+.crs-area-arrow svg {
+    width: 18px;
+    height: 18px;
+    display: block;
+}
+
+.crs-areas-note {
+    margin-top: 26px;
+    font-size: 12.5px;
+    color: var(--text-muted);
+    letter-spacing: .2px;
+}
+
+/* =============================================================================
+   LIFE AT BXSS - COLLAGE
+   ============================================================================= */
+.crs-life-top {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 70px;
+    align-items: end;
+    margin-bottom: 52px;
+}
+
+.crs-collage {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-auto-rows: 190px;
+    gap: 14px;
+}
+
+.crs-tile {
+    position: relative;
+    overflow: hidden;
+    background: #111;
+    border-radius: 2px;
+    margin: 0;
+}
+
+.crs-tile img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: grayscale(.45) brightness(.85);
+    transition: transform .9s cubic-bezier(.16, 1, .3, 1), filter var(--crs-ease);
+}
+
+.crs-tile:hover img {
+    transform: scale(1.06);
+    filter: grayscale(0) brightness(.95);
+}
+
+.crs-tile figcaption {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    padding: 14px 16px;
+    font-size: 10.5px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #fff;
+    background: linear-gradient(0deg, rgba(0, 0, 0, .78), transparent);
+    width: 100%;
+}
+
+.crs-tile--wide {
+    grid-column: span 2;
+}
+
+.crs-tile--tall {
+    grid-row: span 2;
+}
+
+/* =============================================================================
+   WHAT WE LOOK FOR - TYPOGRAPHIC
+   ============================================================================= */
+.crs-qualities {
+    border-top: 1px solid var(--border-dark);
+    margin-top: 50px;
+}
+
+.crs-quality {
+    display: grid;
+    grid-template-columns: 80px minmax(220px, .7fr) 1.3fr;
+    gap: 30px;
+    align-items: baseline;
+    padding: 30px 8px;
+    border-bottom: 1px solid var(--border-dark);
+    transition: var(--crs-ease);
+}
+
+.crs-quality:hover {
+    background: rgba(255, 255, 255, .03);
+    padding-left: 22px;
+}
+
+.crs-quality-idx {
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    color: rgba(255, 255, 255, .35);
+}
+
+.crs-quality h3 {
+    font-size: clamp(1.3rem, 2.3vw, 2rem);
+    font-weight: 800;
+    letter-spacing: -.02em;
+    transition: var(--crs-ease);
+}
+
+.crs-quality:hover h3 {
+    color: var(--primary-red);
+}
+
+.crs-quality p {
+    margin: 0;
+}
+
+/* =============================================================================
+   PROCESS
+   ============================================================================= */
+.crs-steps {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0;
+    margin-top: 20px;
+    border-top: 1px solid var(--border-light);
+}
+
+.crs-step {
+    padding: 34px 30px 40px 0;
+    border-right: 1px solid var(--border-light);
+    position: relative;
+}
+
+.crs-step:last-child {
+    border-right: none;
+}
+
+.crs-step:not(:first-child) {
+    padding-left: 30px;
+}
+
+.crs-step::before {
+    content: "";
+    position: absolute;
+    top: -1px;
+    left: 0;
+    width: 38px;
+    height: 3px;
+    background: var(--primary-red);
+}
+
+.crs-step:not(:first-child)::before {
+    left: 0;
+}
+
+.crs-step-num {
+    font-size: 2.4rem;
+    font-weight: 800;
+    letter-spacing: -.04em;
+    color: rgba(0, 0, 0, .12);
+    line-height: 1;
+    margin-bottom: 16px;
+}
+
+.crs-step h3 {
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-size: .9rem;
+    margin-bottom: 10px;
+}
+
+.crs-step p {
+    font-size: .9rem;
+}
+
+/* =============================================================================
+   OPPORTUNITIES
+   ============================================================================= */
+.crs-opps {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 70px;
+    align-items: center;
+}
+
+.crs-opps-panel {
+    border: 1px solid var(--border-light);
+    background: #fff;
+    padding: 44px;
+    border-radius: 2px;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, .05);
+}
+
+.crs-opps-panel h3 {
+    text-transform: uppercase;
+    letter-spacing: 1.4px;
+    font-size: .82rem;
+    color: var(--text-muted);
+    margin-bottom: 18px;
+}
+
+.crs-opps-list li {
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+    padding: 13px 0;
+    border-bottom: 1px solid var(--border-light);
+    font-size: .93rem;
+    color: var(--text-muted);
+}
+
+.crs-opps-list li:last-child {
+    border-bottom: none;
+}
+
+.crs-opps-list svg {
+    width: 15px;
+    height: 15px;
+    color: var(--primary-red);
+    flex: none;
+    margin-top: 3px;
+}
+
+/* =============================================================================
+   FINAL CTA
+   ============================================================================= */
+.crs-final {
+    position: relative;
+    background: var(--ink);
+    color: #fff;
+    padding: 130px 0;
+    overflow: hidden;
+}
+
+.crs-final::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 3px;
+    height: 100%;
+    background: var(--primary-red);
+}
+
+.crs-final h2 {
+    font-size: clamp(2rem, 4.4vw, 3.6rem);
+    max-width: 18ch;
+    margin-bottom: 22px;
+}
+
+.crs-final p {
+    max-width: 58ch;
+    margin-bottom: 34px;
+}
+
+/* =============================================================================
+   MODAL
+   ============================================================================= */
+.crs-modal {
+    position: fixed;
+    inset: 0;
+    z-index: 10050;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+}
+
+.crs-modal.is-open {
+    display: flex;
+}
+
+.crs-modal-backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgba(8, 8, 8, .72);
+    -webkit-backdrop-filter: blur(3px);
+    backdrop-filter: blur(3px);
+}
+
+.crs-modal-box {
+    position: relative;
+    background: #fff;
+    width: 100%;
+    max-width: 640px;
+    max-height: 90vh;
+    overflow-y: auto;
+    border-radius: 2px;
+    padding: 44px;
+    animation: crsPop .35s cubic-bezier(.16, 1, .3, 1);
+}
+
+@keyframes crsPop {
+    from {
+        opacity: 0;
+        transform: translateY(16px);
+    }
+
+    to {
+        opacity: 1;
+        transform: none;
+    }
+}
+
+.crs-modal-close {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    background: none;
+    border: 1px solid var(--border-light);
+    border-radius: 2px;
+    padding: 8px;
+    cursor: pointer;
+    line-height: 0;
+}
+
+.crs-modal-close svg {
+    width: 16px;
+    height: 16px;
+}
+
+.crs-modal-title {
+    font-size: 1.5rem;
+    margin-bottom: 24px;
+}
+
+/* Section heading inside the longer application form. Uses the same
+   uppercase micro-label treatment already used by .crs-card h3 /
+   .crs-opps-panel h3 so nothing new enters the design language. */
+.crs-fieldset-title {
+    font-size: .78rem;
+    font-weight: 700;
+    letter-spacing: 1.6px;
+    text-transform: uppercase;
+    color: var(--text-dark);
+    margin: 34px 0 18px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--border-light);
+}
+
+.crs-fieldset-title:first-of-type {
+    margin-top: 26px;
+}
+
+/* Required marker */
+.crs-req {
+    color: var(--primary-red);
+    text-decoration: none;
+    border: none;
+    font-weight: 700;
+}
+
+.crs-field {
+    margin-bottom: 18px;
+}
+
+.crs-hint {
+    display: block;
+    font-size: 11.5px;
+    line-height: 1.5;
+    color: var(--text-muted);
+    margin-top: 6px;
+}
+
+/* PKR prefix for the salary field */
+.crs-input-prefix {
+    display: flex;
+    align-items: stretch;
+    border: 1px solid var(--border-light);
+    border-radius: 2px;
+    background: var(--bg-light);
+    overflow: hidden;
+    transition: var(--crs-ease);
+}
+
+.crs-input-prefix span {
+    display: flex;
+    align-items: center;
+    padding: 0 14px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1.4px;
+    color: var(--text-muted);
+    background: rgba(0, 0, 0, .04);
+    border-right: 1px solid var(--border-light);
+}
+
+.crs-input-prefix input {
+    border: none;
+    background: none;
+    border-radius: 0;
+}
+
+.crs-input-prefix input:focus {
+    background: none;
+}
+
+.crs-input-prefix:focus-within {
+    border-color: var(--primary-red);
+    background: #fff;
+}
+
+.crs-field.is-invalid .crs-input-prefix {
+    border-color: var(--primary-red);
+}
+
+.crs-field label {
+    display: block;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1.6px;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 8px;
+}
+
+.crs-field input,
+.crs-field select,
+.crs-field textarea {
+    width: 100%;
+    font-family: inherit;
+    font-size: .95rem;
+    padding: 13px 14px;
+    border: 1px solid var(--border-light);
+    border-radius: 2px;
+    background: var(--bg-light);
+    color: var(--text-dark);
+    transition: var(--crs-ease);
+}
+
+.crs-field textarea {
+    min-height: 110px;
+    resize: vertical;
+}
+
+.crs-field input:focus,
+.crs-field select:focus,
+.crs-field textarea:focus {
+    border-color: var(--primary-red);
+    background: #fff;
+    outline: none;
+}
+
+.crs-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 18px;
+}
+
+.crs-field .crs-file {
+    display: flex;
+    text-transform: none;
+    letter-spacing: 0;
+    font-size: inherit;
+    font-weight: 400;
+    margin-bottom: 0;
+    align-items: center;
+    gap: 14px;
+    border: 1px dashed rgba(0, 0, 0, .22);
+    padding: 14px;
+    border-radius: 2px;
+    cursor: pointer;
+    transition: var(--crs-ease);
+}
+
+.crs-file:hover,
+.crs-file.has-file {
+    border-color: var(--primary-red);
+}
+
+.crs-file svg {
+    width: 18px;
+    height: 18px;
+    color: var(--primary-red);
+    flex: none;
+}
+
+.crs-file span {
+    font-size: .88rem;
+    color: var(--text-muted);
+}
+
+.crs-file input {
+    display: none;
+}
+
+/* Remove/replace control for a chosen file - only shown once a file exists */
+.crs-file-clear {
+    display: inline-block;
+    margin-top: 8px;
+    padding: 0;
+    border: none;
+    background: none;
+    font-family: inherit;
+    font-size: 11.5px;
+    font-weight: 700;
+    letter-spacing: .6px;
+    color: var(--primary-red);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    cursor: pointer;
+}
+
+.crs-file-clear[hidden] {
+    display: none;
+}
+
+/* Consent checkbox */
+.crs-field--consent {
+    margin-top: 26px;
+}
+
+.crs-field .crs-consent {
+    display: flex;
+    text-transform: none;
+    letter-spacing: 0;
+    font-size: inherit;
+    font-weight: 400;
+    margin-bottom: 0;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 16px;
+    border: 1px solid var(--border-light);
+    border-radius: 2px;
+    background: var(--bg-light);
+    cursor: pointer;
+    transition: var(--crs-ease);
+}
+
+.crs-field .crs-consent:hover {
+    border-color: rgba(0, 0, 0, .2);
+}
+
+.crs-field .crs-consent input {
+    width: 17px;
+    height: 17px;
+    flex: none;
+    margin-top: 2px;
+    accent-color: var(--primary-red);
+    cursor: pointer;
+}
+
+.crs-field .crs-consent span {
+    font-size: .86rem;
+    line-height: 1.65;
+    color: var(--text-muted);
+    text-transform: none;
+    letter-spacing: 0;
+    font-weight: 400;
+}
+
+.crs-field--consent.is-invalid .crs-consent {
+    border-color: var(--primary-red);
+}
+
+.crs-error {
+    color: var(--primary-red);
+    font-size: 12px;
+    margin-top: 6px;
+    display: none;
+}
+
+.crs-field.is-invalid .crs-error {
+    display: block;
+}
+
+.crs-field.is-invalid input,
+.crs-field.is-invalid select,
+.crs-field.is-invalid textarea {
+    border-color: var(--primary-red);
+}
+
+.crs-submit {
+    width: 100%;
+    justify-content: center;
+}
+
+.crs-success {
+    display: none;
+    text-align: center;
+    padding: 24px 8px;
+}
+
+.crs-success svg {
+    width: 44px;
+    height: 44px;
+    color: var(--primary-red);
+    margin: 0 auto 18px;
+}
+
+.crs-success h2 {
+    font-size: 1.3rem;
+    margin-bottom: 12px;
+}
+
+.crs-success .crs-btn {
+    margin-top: 20px;
+}
+
+.crs-note {
+    font-size: 11.5px;
+    color: var(--text-muted);
+    margin-top: 14px;
+}
+
+/* =============================================================================
+   RESPONSIVE
+   ============================================================================= */
+@media (max-width:1280px) {
+    .crs-page {
+        --crs-pad-x: 40px;
+    }
+
+    .crs-section {
+        padding: 96px 0;
+    }
+}
+
+@media (max-width:1024px) {
+
+    .crs-split,
+    .crs-life-top,
+    .crs-opps {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+
+    .crs-cards {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .crs-card:nth-child(2n) {
+        border-right: none;
+    }
+
+    .crs-card:nth-child(-n+2) {
+        border-bottom: 1px solid var(--border-light);
+    }
+
+    .crs-steps {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .crs-step {
+        padding-right: 24px;
+    }
+
+    .crs-step:nth-child(2n) {
+        border-right: none;
+    }
+
+    .crs-step:nth-child(n+3) {
+        border-top: 1px solid var(--border-light);
+        margin-top: -1px;
+    }
+
+    .crs-collage {
+        grid-template-columns: repeat(2, 1fr);
+        grid-auto-rows: 170px;
+    }
+
+    .crs-area {
+        grid-template-columns: 52px 1fr 34px;
+        gap: 16px;
+    }
+
+    .crs-area p {
+        grid-column: 2/4;
+    }
+
+    .crs-quality {
+        grid-template-columns: 56px 1fr;
+        gap: 16px;
+    }
+
+    .crs-quality p {
+        grid-column: 2/3;
+    }
+}
+
+@media (max-width:768px) {
+    .crs-page {
+        --crs-pad-x: 24px;
+    }
+
+    .crs-section {
+        padding: 74px 0;
+    }
+
+    .crs-hero {
+        min-height: 0;
+    }
+
+    .crs-hero-inner {
+        padding-top: 64px;
+        padding-bottom: 56px;
+    }
+
+    .crs-hero-meta {
+        gap: 22px 0;
+        margin-top: 44px;
+    }
+
+    .crs-hero-meta div {
+        width: 50%;
+        padding-right: 20px;
+        margin-right: 0;
+        border-right: none;
+    }
+
+    .crs-hero-actions .crs-btn {
+        flex: 1 1 100%;
+        justify-content: center;
+    }
+
+    .crs-cards {
+        grid-template-columns: 1fr;
+    }
+
+    .crs-card {
+        border-right: none;
+        border-bottom: 1px solid var(--border-light);
+    }
+
+    .crs-card:last-child {
+        border-bottom: none;
+    }
+
+    .crs-steps {
+        grid-template-columns: 1fr;
+    }
+
+    .crs-step {
+        border-right: none;
+        border-bottom: 1px solid var(--border-light);
+        padding: 30px 0 34px !important;
+    }
+
+    .crs-step:last-child {
+        border-bottom: none;
+    }
+
+    .crs-step:nth-child(n+3) {
+        margin-top: 0;
+        border-top: none;
+    }
+
+    .crs-collage {
+        grid-template-columns: 1fr;
+        grid-auto-rows: 200px;
+    }
+
+    .crs-tile--wide,
+    .crs-tile--tall {
+        grid-column: auto;
+        grid-row: auto;
+    }
+
+    .crs-opps-panel {
+        padding: 28px;
+    }
+
+    .crs-modal-box {
+        padding: 28px 22px;
+    }
+
+    .crs-row {
+        grid-template-columns: 1fr;
+    }
+
+    .crs-final {
+        padding: 88px 0;
+    }
+
+    .crs-area:hover,
+    .crs-quality:hover {
+        padding-left: 8px;
+    }
+}
+
+@media (max-width:480px) {
+    .crs-area {
+        grid-template-columns: 44px 1fr;
+    }
+
+    .crs-area-arrow {
+        display: none;
+    }
+
+    .crs-area p {
+        grid-column: 2/3;
+    }
+}
+
+@media (prefers-reduced-motion:reduce) {
+
+    .crs-page *,
+    .crs-modal * {
+        animation-duration: .001ms !important;
+        transition-duration: .001ms !important;
+    }
+
+    .crs-reveal {
+        opacity: 1;
+        transform: none;
+    }
+
+    .crs-modal-box {
+        animation: none;
+    }
+}
