@@ -1,0 +1,565 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://badarexpo.com/schemas/translation-schema.json",
+  "title": "BXSS Locale Bundle",
+  "description": "Canonical shape of one language's UI translation bundle (NOT event content - see i18n-architecture.md Section 4 for why event data has its own, separate localization strategy in event-schema.json). One instance of this schema = one language, e.g. sample-en.json or sample-ur.json.",
+  "type": "object",
+  "required": [
+    "locale",
+    "direction",
+    "label",
+    "common",
+    "nav",
+    "buttons",
+    "forms",
+    "messages",
+    "eventsUi",
+    "pages"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "locale": {
+      "type": "string",
+      "description": "ISO 639-1 language code.",
+      "examples": [
+        "en",
+        "ur",
+        "ar"
+      ]
+    },
+    "direction": {
+      "type": "string",
+      "enum": [
+        "ltr",
+        "rtl"
+      ],
+      "description": "Drives <html dir=\"...\"> and which components load rtl-overrides.css (i18n-architecture.md Section 7). A consumer should never hardcode 'Urdu = RTL' - it should read this field."
+    },
+    "label": {
+      "type": "string",
+      "description": "The language's own name, as shown in the .lang-dropdown switcher itself.",
+      "examples": [
+        "English",
+        "اردو (Urdu)"
+      ]
+    },
+    "pages": {
+      "type": "object",
+      "description": "Page-specific STRUCTURAL chrome only (hero tags/titles, section badges, CTA anchors) - added during Phase 8 implementation once real page-by-page wiring revealed this was needed beyond the 6 cross-page namespaces from Phase 7. Deliberately NOT a place for long-form editorial body copy (About/Services paragraph content) - see i18n-architecture.md and data.txt Session 28 for why that remains a separate, dedicated content-translation task rather than being force-fit here.",
+      "additionalProperties": true,
+      "properties": {
+        "home": {
+          "type": "object"
+        },
+        "about": {
+          "type": "object"
+        },
+        "services": {
+          "type": "object"
+        },
+        "events": {
+          "type": "object"
+        },
+        "eventCalendar": {
+          "type": "object"
+        },
+        "eventDetail": {
+          "type": "object"
+        },
+        "contact": {
+          "type": "object"
+        },
+        "notFound": {
+          "type": "object"
+        }
+      }
+    },
+    "common": {
+      "type": "object",
+      "description": "Generic, reused-everywhere UI strings that don't belong to a more specific namespace.",
+      "required": [
+        "siteName",
+        "loading",
+        "readMore",
+        "search",
+        "close",
+        "backToTop"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "siteName": {
+          "type": "string"
+        },
+        "loading": {
+          "type": "string"
+        },
+        "readMore": {
+          "type": "string"
+        },
+        "search": {
+          "type": "string"
+        },
+        "close": {
+          "type": "string"
+        },
+        "backToTop": {
+          "type": "string"
+        }
+      }
+    },
+    "nav": {
+      "type": "object",
+      "description": "Every top-bar, mega-menu, mobile-drawer, and footer navigation label site-wide.",
+      "required": [
+        "home",
+        "aboutUs",
+        "services",
+        "events",
+        "eventCalendar",
+        "upcomingEvents",
+        "pastEvents",
+        "industries",
+        "internationalProjects",
+        "insights",
+        "contact"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "home": {
+          "type": "string"
+        },
+        "aboutUs": {
+          "type": "string"
+        },
+        "services": {
+          "type": "string"
+        },
+        "events": {
+          "type": "string"
+        },
+        "eventCalendar": {
+          "type": "string"
+        },
+        "upcomingEvents": {
+          "type": "string"
+        },
+        "pastEvents": {
+          "type": "string"
+        },
+        "industries": {
+          "type": "string"
+        },
+        "internationalProjects": {
+          "type": "string"
+        },
+        "insights": {
+          "type": "string"
+        },
+        "contact": {
+          "type": "string"
+        },
+        "allEvents": {
+          "type": "string"
+        },
+        "exhibitionManagement": {
+          "type": "string"
+        },
+        "constructionDesign": {
+          "type": "string"
+        },
+        "growthServices": {
+          "type": "string"
+        },
+        "ourRole": {
+          "type": "string"
+        },
+        "formats": {
+          "type": "string"
+        },
+        "ownedEvents": {
+          "type": "string"
+        },
+        "coOrganized": {
+          "type": "string"
+        },
+        "managedEvents": {
+          "type": "string"
+        },
+        "footerOurServices": {
+          "type": "string"
+        },
+        "footerIndustries": {
+          "type": "string"
+        },
+        "footerCompany": {
+          "type": "string"
+        },
+        "footerContactUs": {
+          "type": "string"
+        }
+      }
+    },
+    "buttons": {
+      "type": "object",
+      "description": "Every CTA button label used across the Event system (Phase 1-6) and general site.",
+      "required": [
+        "registerNow",
+        "learnMore",
+        "viewAllEvents",
+        "downloadBrochure",
+        "getDirections",
+        "loadMore",
+        "clearAll",
+        "contactUs",
+        "visitor",
+        "partner"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "registerNow": {
+          "type": "string"
+        },
+        "learnMore": {
+          "type": "string"
+        },
+        "viewAllEvents": {
+          "type": "string"
+        },
+        "downloadBrochure": {
+          "type": "string"
+        },
+        "getDirections": {
+          "type": "string"
+        },
+        "loadMore": {
+          "type": "string"
+        },
+        "clearAll": {
+          "type": "string"
+        },
+        "contactUs": {
+          "type": "string"
+        },
+        "visitor": {
+          "type": "string"
+        },
+        "partner": {
+          "type": "string"
+        },
+        "getFreeQuote": {
+          "type": "string"
+        },
+        "sendMessage": {
+          "type": "string"
+        },
+        "exploreFullCalendar": {
+          "type": "string"
+        },
+        "goBackHome": {
+          "type": "string"
+        },
+        "contactSupport": {
+          "type": "string"
+        }
+      }
+    },
+    "forms": {
+      "type": "object",
+      "description": "Form field labels, placeholders, and validation text (no forms were built with real submission logic yet - this namespace exists so the future Contact/Registration form work has translations ready on day one).",
+      "required": [
+        "namePlaceholder",
+        "emailPlaceholder",
+        "phonePlaceholder",
+        "messagePlaceholder",
+        "submit",
+        "requiredField",
+        "invalidEmail"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "namePlaceholder": {
+          "type": "string"
+        },
+        "emailPlaceholder": {
+          "type": "string"
+        },
+        "phonePlaceholder": {
+          "type": "string"
+        },
+        "messagePlaceholder": {
+          "type": "string"
+        },
+        "submit": {
+          "type": "string"
+        },
+        "requiredField": {
+          "type": "string"
+        },
+        "invalidEmail": {
+          "type": "string"
+        },
+        "companyPlaceholder": {
+          "type": "string"
+        },
+        "subjectPlaceholder": {
+          "type": "string"
+        },
+        "searchPlaceholder": {
+          "type": "string"
+        },
+        "siteSearchPlaceholder": {
+          "type": "string"
+        },
+        "typeToSearchPlaceholder": {
+          "type": "string"
+        },
+        "fullName": {
+          "type": "string"
+        },
+        "companyName": {
+          "type": "string"
+        },
+        "emailAddress": {
+          "type": "string"
+        },
+        "phoneNumber": {
+          "type": "string"
+        },
+        "subject": {
+          "type": "string"
+        },
+        "eventCategory": {
+          "type": "string"
+        },
+        "inquiryDetails": {
+          "type": "string"
+        },
+        "consentText": {
+          "type": "string"
+        },
+        "submitInquiry": {
+          "type": "string"
+        },
+        "feedback": {
+          "type": "object",
+          "description": "Shared submission-status messages used by FormSubmitManager (Phase 21.1) across all lead forms.",
+          "additionalProperties": false,
+          "properties": {
+            "sending": { "type": "string" },
+            "success": { "type": "string" },
+            "notConfigured": { "type": "string" },
+            "networkError": { "type": "string" },
+            "timeout": { "type": "string" },
+            "serverError": { "type": "string" }
+          }
+        }
+      }
+    },
+    "messages": {
+      "type": "object",
+      "description": "Empty states, errors, and success states - matches the Phase 3/5 component set exactly (.eds-empty-state, .eds-state--success/--error).",
+      "required": [
+        "noEventsFound",
+        "noResultsFound",
+        "noResultsFoundDesc",
+        "noPastEvents",
+        "genericError",
+        "registrationSuccessTitle",
+        "registrationSuccessDesc"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "noEventsFound": {
+          "type": "string"
+        },
+        "noResultsFound": {
+          "type": "string"
+        },
+        "noResultsFoundDesc": {
+          "type": "string",
+          "description": "Contains a {{query}} interpolation token - see i18n-architecture.md Section 4 for the templating convention.",
+          "examples": [
+            "We couldn't find any events matching \"{{query}}\". Try a different search term."
+          ]
+        },
+        "noPastEvents": {
+          "type": "string"
+        },
+        "genericError": {
+          "type": "string"
+        },
+        "registrationSuccessTitle": {
+          "type": "string"
+        },
+        "registrationSuccessDesc": {
+          "type": "string"
+        },
+        "noPastEventsDesc": {
+          "type": "string"
+        },
+        "adjustFilters": {
+          "type": "string"
+        },
+        "pageNotFoundTitle": {
+          "type": "string"
+        },
+        "pageNotFoundDesc": {
+          "type": "string"
+        }
+      }
+    },
+    "eventsUi": {
+      "type": "object",
+      "description": "UI chrome/labels used throughout the Event Design System (Phase 3) and Discovery experience (Phase 5) - the section headers, badges, and field labels that are the SAME for every event, as opposed to one event's actual name/description/speaker bios (which are event CONTENT, translated via event-schema.json per Section 4, not here).",
+      "required": [
+        "registrationOpen",
+        "registrationClosed",
+        "soldOut",
+        "comingSoon",
+        "waitlist",
+        "speakers",
+        "sponsors",
+        "agenda",
+        "venue",
+        "gallery",
+        "faq",
+        "testimonials",
+        "relatedEvents",
+        "organizedBy",
+        "keyHighlights",
+        "whyAttend",
+        "whoShouldAttend",
+        "industriesCovered"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "registrationOpen": {
+          "type": "string"
+        },
+        "registrationClosed": {
+          "type": "string"
+        },
+        "soldOut": {
+          "type": "string"
+        },
+        "comingSoon": {
+          "type": "string"
+        },
+        "waitlist": {
+          "type": "string"
+        },
+        "speakers": {
+          "type": "string"
+        },
+        "sponsors": {
+          "type": "string"
+        },
+        "agenda": {
+          "type": "string"
+        },
+        "venue": {
+          "type": "string"
+        },
+        "gallery": {
+          "type": "string"
+        },
+        "faq": {
+          "type": "string"
+        },
+        "testimonials": {
+          "type": "string"
+        },
+        "relatedEvents": {
+          "type": "string"
+        },
+        "organizedBy": {
+          "type": "string"
+        },
+        "keyHighlights": {
+          "type": "string"
+        },
+        "whyAttend": {
+          "type": "string"
+        },
+        "whoShouldAttend": {
+          "type": "string"
+        },
+        "industriesCovered": {
+          "type": "string"
+        },
+        "aboutEvent": {
+          "type": "string"
+        },
+        "quickFacts": {
+          "type": "string"
+        },
+        "featured": {
+          "type": "string"
+        },
+        "dates": {
+          "type": "string"
+        },
+        "category": {
+          "type": "string"
+        },
+        "entry": {
+          "type": "string"
+        },
+        "allCategories": {
+          "type": "string"
+        },
+        "allIndustries": {
+          "type": "string"
+        },
+        "allCities": {
+          "type": "string"
+        },
+        "allYears": {
+          "type": "string"
+        },
+        "allMonths": {
+          "type": "string"
+        },
+        "anyRegistrationStatus": {
+          "type": "string"
+        },
+        "sortUpcomingSoon": {
+          "type": "string"
+        },
+        "sortNewest": {
+          "type": "string"
+        },
+        "sortAlphabetical": {
+          "type": "string"
+        },
+        "sortFeatured": {
+          "type": "string"
+        },
+        "sortPopular": {
+          "type": "string"
+        },
+        "gridView": {
+          "type": "string"
+        },
+        "listView": {
+          "type": "string"
+        },
+        "compactView": {
+          "type": "string"
+        },
+        "timelineView": {
+          "type": "string"
+        },
+        "calendarView": {
+          "type": "string"
+        },
+        "eventsFoundSuffix": {
+          "type": "string"
+        },
+        "eventFoundSuffix": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}

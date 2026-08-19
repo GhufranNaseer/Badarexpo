@@ -51,12 +51,32 @@ below has been changed from the original.
        * Exhibitions
        * Conferences
        * Industrial Forums
-- Industries
-- International Projects
-- Insights (Dropdown / Mega Menu)
-    * Blog (Industry insights, event strategies)
-    * Media (Press coverage, interviews)
-    * Gallery (Moments captured from mega events)
+    -> Discover (added Session 26 - Phase 6 integration)
+       * All Events                 -> events-calendar.html
+       * Upcoming Events             -> events-calendar.html?status=upcoming
+       * Past Events                 -> events-calendar.html?status=past
+  Mobile submenu also gets a leading "Event Calendar" link -> events-calendar.html
+  (added ahead of Owned/Co-Organized/Managed Events, Session 26).
+- Industries                            -> industries.html (Session 30/Phase 10 -
+  was href="#" through Session 29). Hub page, static grid of 8 industries.
+  Footer's 8 industry links (Section 5 below) also go live this session.
+- International Projects                 -> international-projects.html
+  (Session 31/Phase 11 - was href="#" through Session 30). Hub page with a
+  stats band and a 3-project grid (1 real detail page, 2 "Coming Soon").
+- Insights (Dropdown / Mega Menu)         -> insights.html (Session 32/Phase 12 -
+  the trigger itself was previously a non-clickable <span>, now a real link,
+  matching the Services/Events pattern where the label navigates AND opens
+  the dropdown)
+    * Blog (Industry insights, event strategies) -> blog.html (Session
+      35/Phase 15 - was insights.html#insights-blog through Session 34,
+      now the real Blog Hub - the last of the three Insights sub-systems
+      [Gallery, Media, Blog] to go live)
+    * Media (Press coverage, interviews) -> media.html (Session 34/Phase 14 -
+      was insights.html#insights-media through Session 33, now the real
+      Media Center Hub)
+    * Gallery (Moments captured from mega events) -> gallery.html (Session
+      33/Phase 13 - was insights.html#insights-gallery through Session 32,
+      now the real Gallery Hub)
 - Contact
 
 -----------------------------------------------------
@@ -105,3 +125,34 @@ sub-links and their associated descriptions/images. Future WordPress
 mapping: this entire structure is a Custom Menu + Mega Menu ACF Flexible
 Content candidate (see wordpress-roadmap.txt, Menus & Navigation section).
 =====================================================
+
+-----------------------------------------------------
+5. FOOTER - COMPANY COLUMN (partial - only documenting Session 26 additions;
+   the rest of the footer's link columns predate this file and are not yet
+   inventoried here - tracked as a documentation gap, not fixed silently)
+-----------------------------------------------------
+- Event Calendar          -> events-calendar.html
+- Upcoming Events         -> events-calendar.html?status=upcoming
+  (inserted directly after the existing "Our Portfolio" link, across all
+  11 pages, Session 26/Phase 6)
+
+-----------------------------------------------------
+6. FOOTER - INDUSTRIES COLUMN (all 8 links went live Session 30/Phase 10;
+   previously all href="#" since the column was first documented)
+-----------------------------------------------------
+- Textile & Apparel        -> industry-landing.html (real detail page;
+  label corrected from "Textile & Fashion" to "Textile & Apparel" this
+  session to match the industry tag already used in events-calendar.js's
+  sample dataset - see rules.txt/data.txt Session 30 for why)
+- Food & Beverage          -> events-calendar.html?industry=Food%20%26%20Beverage
+- Technology & Innovation  -> events-calendar.html?industry=Technology%20%26%20Innovation
+- Healthcare & Pharma      -> events-calendar.html?industry=Healthcare%20%26%20Pharma
+- Agriculture & Livestock  -> events-calendar.html?industry=Agriculture%20%26%20Livestock
+- Construction & Real Estate -> events-calendar.html?industry=Construction%20%26%20Real%20Estate
+- Defence & Security       -> events-calendar.html?industry=Defence%20%26%20Security
+- Education & Training     -> events-calendar.html?industry=Education%20%26%20Training
+  (the 7 non-Textile links deep-link into the Discovery Engine's industry
+  filter, Phase 6 - some will show real matching events from the sample
+  dataset, others will gracefully show the Empty State until each
+  industry gets its own detail page and tagged content, which is expected
+  and by design, not a bug)

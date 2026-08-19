@@ -24,6 +24,9 @@ Objective: Long-term scalability, zero technical debt, and a clean migration
   Topbar, Footer, Mega Menu, Search Overlay) MUST live in dedicated global
   files only:
     * assets/css/navbar.css
+    * assets/css/tokens.css      (design tokens - color/radius/shadow/spacing/
+                                   motion - added Session 21, loads right
+                                   after navbar.css on every page)
     * assets/css/footer.css
     * assets/css/page-hero.css   (shared page-header/breadcrumb banner)
     * assets/js/main.js          (nav, language switcher, search overlay)
@@ -36,12 +39,84 @@ Objective: Long-term scalability, zero technical debt, and a clean migration
     * growthservices.html       -> assets/css/growthservices.css      assets/js/growthservices.js
     * events.html                -> assets/css/events.css              assets/js/events.js
     * contact.html                -> assets/css/contact.css             assets/js/contact.js
+    * event-landing.html          -> assets/css/event-landing.css       assets/js/event-landing.js
+      (REUSABLE TEMPLATE, added Session 22 - master page for individual event
+      landing pages. Duplicate all 3 files per event; only edit copies, never
+      the template itself, unless the change should apply to every future event.)
+    * events-calendar.html        -> assets/css/events-calendar.css     assets/js/events-calendar.js
+      (Event Discovery/Calendar page, added Session 26 - Phase 5. Page-specific
+      layout + sample dataset only; the reusable search/filter/calendar logic
+      lives in the eds- library files, not here.)
+    * industries.html             -> assets/css/industries.css          (no JS - static grid)
+      (Industries Hub, added Session 30 - Phase 10. No Discovery Engine -
+      finite, slow-growing taxonomy per site-information-architecture.md
+      Section 1. No page-specific JS needed; event-components.css/library
+      handles all interactivity that exists on this page.)
+    * industry-landing.html       -> assets/css/industry-landing.css    (no JS)
+      (REUSABLE TEMPLATE, added Session 30 - master page for every future
+      industry, same Hub+Template pattern as event-landing.html. Populated
+      with real Textile & Apparel content this session as the first
+      production page. Duplicate per industry; only edit copies, never this
+      template itself, unless the change should apply to every industry.)
+    * international-projects.html -> assets/css/international-projects.css (no JS)
+      (Projects Hub, added Session 31 - Phase 11. Simple grid at launch, same
+      "no Discovery Engine until ~15-20 items" reasoning as industries.html.)
+    * project-landing.html        -> assets/css/project-landing.css     (no JS)
+      (REUSABLE TEMPLATE, added Session 31 - master page for every future
+      international project, same Hub+Template pattern. Populated with real
+      China Trade Delegation content as the first production project.)
+    * insights.html                -> assets/css/insights.css            (no JS)
+      (Insights Hub, added Session 32 - Phase 12. The PARENT knowledge-center
+      page - Gallery/Media/Blog are NOT built yet; this page's 3 preview
+      sections for them use the Empty State component honestly. Industry
+      Insights and Event Insights sections are real, live cross-links into
+      the Industries (Phase 10) and Event (Phase 1-6) systems.)
+    * gallery.html                 -> assets/css/gallery.css             assets/js/gallery.js
+      (Gallery Hub, added Session 33 - Phase 13. Powered by the Phase 5
+      EdsDiscovery engine, generalized this session via fieldAccessors/
+      cardRenderer options - the first real proof the engine works with a
+      non-event dataset. Masonry grid via the new .eds-masonry-grid utility.)
+    * gallery-album.html           -> assets/css/gallery-album.css       (no JS)
+      (REUSABLE TEMPLATE, added Session 33 - master page for every future
+      photo album. Populated with a real China Trade Delegation album,
+      cross-linked into the real Project/Industry/Event pages. Lightbox-
+      ready markup (data-full-src/data-caption) - no lightbox JS exists yet,
+      architecture only per this phase's brief.)
+    * media.html                   -> assets/css/media.css               assets/js/media.js
+      (Media Center Hub, added Session 34 - Phase 14. Third dataset the
+      generalized EdsDiscovery engine has been proven against, via the new
+      EdsMediaFields/EdsMediaCard pair.)
+    * media-detail.html            -> assets/css/media-detail.css        (no JS)
+      (REUSABLE TEMPLATE, added Session 34 - master page for every future
+      press release/news item. Populated with the homepage's real existing
+      IDEAS 2024 "Newsroom" story content, not invented copy.)
+    * blog.html                    -> assets/css/blog.css                assets/js/blog.js
+      (Blog Hub, added Session 35 - Phase 15. Fourth dataset the
+      generalized EdsDiscovery engine has been proven against, via the new
+      EdsBlogFields/EdsBlogCard pair. The LAST content type in Phase 9's
+      implementation order - every cross-link here and on blog-post.html
+      is a real, live destination.)
+    * blog-post.html               -> assets/css/blog-post.css           (no JS)
+      (REUSABLE TEMPLATE, added Session 35 - master page for every future
+      article. Populated with the homepage's real existing "Blog"-tagged
+      story, expanded into real body copy, an author bio reusing
+      .eds-speaker-card, and a JSON-LD Article schema block for SEO
+      readiness.)
 - SHARED "FEATURE" COMPONENTS used on 2+ pages but NOT on every page (e.g.
   CEO Section, Clients Marquee) get their OWN dedicated file, named after the
   component, not the page:
     * assets/css/ceo_section.css
     * assets/css/clients_marquee.css
   Rule of thumb: 1 page only -> page file. 2+ pages -> component file.
+- COMPONENT LIBRARIES (broader than a single feature component - a full set
+  of reusable UI primitives meant for many future pages/CMS blocks) get
+  their own file pair and their own prefix, scoped with a class (not an id,
+  since a library component may appear more than once per page):
+    * assets/css/event-components.css  (Event Design System, prefix "eds-",
+      scope class ".eds-scope" - added Session 24)
+    * assets/js/event-components.js    (same library's JS - generic,
+      multi-instance, data-attribute-driven modules, NOT id-based)
+  See event-design-system.md for the full component catalog.
 - ASSETS: assets/images, assets/js, assets/css only. No inline <style> blocks
   in production HTML except where already documented as legacy (to be
   migrated). No images committed outside assets/images.
@@ -61,6 +136,39 @@ Objective: Long-term scalability, zero technical debt, and a clean migration
     * Growth Services page         -> gs-  (adopt going forward)
     * Events page                  -> ev-  (adopt going forward)
     * Contact page                 -> ct-  (adopt going forward)
+    * Event Landing Page template  -> elp- (added Session 22 - reusable
+      individual-event template, distinct from events.html's own "evtpg-"
+      prefix used by the Events portfolio/listing page)
+    * Event Design System (EDS) library -> eds- (added Session 24 - the
+      standalone component library, distinct from elp- since eds- components
+      can appear multiple times per page and are not tied to one page's
+      markup at all. Extended Session 26/Phase 5 with search/filter/
+      calendar/discovery primitives - same prefix, same scope rules.)
+    * Event Calendar / Discovery page -> evc- (added Session 26 - page-layout
+      prefix only; the page's actual UI components are all eds-)
+    * Industries Hub                  -> ind- (added Session 30 - page-layout
+      prefix only, per the same pattern as evc-)
+    * Industry Detail master template -> indl- (added Session 30 - distinct
+      from ind- since this is a different page/duplication lifecycle)
+    * International Projects Hub      -> ipr- (added Session 31 - same
+      page-layout-only pattern as ind-)
+    * Project Detail master template  -> prjl- (added Session 31 - distinct
+      from ipr-, same reasoning as indl- vs. ind-)
+    * Insights Hub                    -> insg- (added Session 32 - same
+      page-layout-only pattern; this page has no matching "detail template"
+      sibling yet since it IS the parent, not a duplicated-per-item page)
+    * Gallery Hub                     -> gal- (added Session 33 - same
+      page-layout-only pattern as ind-/ipr-)
+    * Album Detail master template    -> gala- (added Session 33 - distinct
+      from gal-, same reasoning as indl- vs. ind-)
+    * Media Center Hub                -> med- (added Session 34 - same
+      page-layout-only pattern as gal-)
+    * Media Detail master template    -> medd- (added Session 34 - distinct
+      from med-, same reasoning as gala- vs. gal-)
+    * Blog Hub                        -> blg- (added Session 35 - same
+      page-layout-only pattern as med-)
+    * Blog Detail master template     -> blgp- (added Session 35 - distinct
+      from blg-, same reasoning as medd- vs. med-)
   Global components (navbar, footer, page-hero) stay UNPREFIXED since they
   are singletons that exist on every page (e.g. .navbar, .footer, .page-hero).
 - IDs: reserved for JS hooks and in-page anchors only, never for styling.
@@ -75,8 +183,12 @@ Objective: Long-term scalability, zero technical debt, and a clean migration
 --------------------------------------------------------------------------------
 - ALL color, spacing, radius, shadow and transition values MUST come from
   CSS custom properties, never hardcoded hex/px in component rules.
-- CURRENT GLOBAL TOKENS (defined in navbar.css :root - the de-facto global
-  token file until a dedicated tokens.css is introduced, see Section 13):
+- CURRENT GLOBAL TOKENS: as of Session 21, canonical tokens live in
+  assets/css/tokens.css (see that file's header comment for full list and
+  scope notes). navbar.css :root below is kept for backward compatibility
+  and still matches tokens.css exactly - do not let the two drift.
+  ORIGINAL NOTE (pre-Session 21, defined in navbar.css :root - the de-facto
+  global token file until tokens.css was introduced, see Section 13):
     --primary-red:        #e41f26
     --text-dark:           #1a1a1a
     --text-muted:           #555
@@ -324,7 +436,41 @@ CODE REVIEW CHECKLIST (self-check before delivering code):
 - Known current debt (tracked, not urgent): inconsistent breakpoint values
   across page CSS files (Section 4); some component prefixes not yet
   adopted on older pages (em-, gs-, ev-, ct- - Section 2); design tokens
-  only formally defined in navbar.css rather than a dedicated tokens.css.
+  formally defined in navbar.css AND assets/css/tokens.css (Session 21) but
+  NOT yet consumed by most legacy page CSS, which still hardcodes hex/px
+  values locally.
+- SESSION 21 DESIGN SYSTEM AUDIT FINDINGS (full detail in data.txt):
+  1. RADIUS SPRAWL: legacy CSS uses ~20 distinct border-radius values (0,
+     3, 4, 6, 7, 8, 10, 12, 14, 15, 16, 18, 20, 24, 28, 30, 50, 58, 60,
+     100px, plus 50% and 999px for circles/pills). tokens.css now defines a
+     6-step scale (xs/sm/md/lg/xl/pill) for new work to snap to. Not
+     retrofitted onto existing components in this session (regression risk
+     without visual QA per page).
+  2. SHADOW SPRAWL: ~45 distinct box-shadow strings in active use, mostly
+     unique rgba() combinations rather than a shared scale. tokens.css now
+     defines --shadow-xs/sm/soft/md/lg (neutral) and --shadow-red-sm/md/lg
+     (brand glow) to consolidate future use.
+  3. DUPLICATE COMPONENT CSS: index.css contains a full legacy copy of the
+     .ceo-section rules (~450 lines) that predates ceo_section.css being
+     extracted into its own shared component file. ceo_section.css loads
+     after index.css with equal specificity, so it always wins - the
+     index.css copy is dead code today, kept only as an unstyled-content
+     fallback for the print/onload CSS-loading trick. Its one color drift
+     (--badge-text) was corrected to match the live file this session; the
+     block itself was NOT deleted (see inline comment in index.css).
+  4. UNDOCUMENTED SECONDARY FONT: 'Playfair Display' (ceo_section.css,
+     index.css legacy block) lacked the "WHY" comment required by Section 3.
+     Added this session.
+  5. TRANSITION DURATION SPREAD: 0.1s-1.5s in use across the codebase; not
+     all one-off durations are bugs (some are intentional for
+     marquees/reveals), but hover/click micro-interactions specifically use
+     0.2s/0.3s/0.35s/0.4s interchangeably for what look like equivalent
+     purposes. Logged for a future dedicated interaction-timing pass, not
+     touched this session.
+  6. BUTTON STYLES: no single shared .btn-primary/.btn-secondary component
+     exists; each page defines its own button rules locally. Deferred to a
+     dedicated component-extraction task (Section 11) rather than attempted
+     blind across 9 pages in one pass.
 - Do not silently "fix" legacy debt while doing unrelated work - log it here
   or in data.txt instead, and fix it as its own explicit task.
 - Repository is git-tracked; that is the backup strategy for code. Large

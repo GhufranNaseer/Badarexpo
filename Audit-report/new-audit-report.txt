@@ -1,0 +1,95 @@
+# Badar Expo Solutions (BXSS) Website — New Audit Report (Follow-Up Pass)
+
+> **Scope**: Independent code-level verification of `d:\Badarexpo website` (34 HTML pages, CSS, JS, JSON locales).  
+> **Note**: This report contains ONLY NEW, previously unreported defects and issues discovered in the latest codebase inspection. All findings from previous audit passes (Reports #1, #2, #3, and Visual/UX report) have been excluded.
+
+---
+
+## 🔴 HIGH PRIORITY BUGS
+
+### N-1: `industry-landing.html` Crashes JS Execution Due to Mismatched `events-calendar.js` Loading
+- **Category**: JavaScript Execution / Null Pointer Risk
+- **Severity**: High
+- **Location**: `industry-landing.html` (line loading `assets/js/events-calendar.js`)
+- **Evidence**: `industry-landing.html` loads `events-calendar.js`. Upon DOM load, `events-calendar.js` executes `populateFilterOptions()` and calls `EdsDiscovery.init()`, attempting to query elements `document.getElementById('evc-search-input')`, `document.getElementById('evc-filter-category')`, `document.getElementById('evc-empty-title')`, etc.
+- **Why it is a problem**: None of these `evc-*` elements exist in `industry-landing.html` markup. Attempting to attach event listeners or read `.value` on these `null` objects triggers an uncaught `TypeError` in the browser console, halting JavaScript execution for subsequent scripts on that page.
+- **Confidence Level**: Confirmed via static analysis and script-markup mapping.
+
+### N-2: Unescaped User Input in Search Filters Causes Uncaught `SyntaxError`
+- **Category**: Search Engine / JS Robustness / Error Handling
+- **Severity**: High
+- **Location**: `assets/js/event-discovery-components.js`, `assets/js/media.js`, `assets/js/blog.js`, `assets/js/gallery.js`, `assets/js/videos.js`, `assets/js/language-manager.js`
+- **Evidence**: Search filter logic constructs RegExp directly from user input without escaping regex meta-characters:
+  ```javascript
+  // event-discovery-components.js / media.js / blog.js:
+  const regex = new RegExp(searchQuery, 'i');
+  ```
+  ```javascript
+  // language-manager.js (interpolate):
+  new RegExp(`{{\\s*${key}\\s*}}`, 'g')
+  ```
+- **Why it is a problem**: If a user types characters like `(Textile)`, `Build+`, `*`, `[2026]`, or `?` into any search field across the site, the browser throws an uncaught `SyntaxError: Invalid regular expression`. This immediately breaks the search interface and freezes the result grid.
+- **Confidence Level**: Confirmed via direct inspection of search filter constructors across all 5 discovery JS modules.
+
+### N-3: Floating Communication Widget Uses Landline Number for WhatsApp (`wa.me`)
+- **Category**: Third-Party Integration / Lead Generation
+- **Severity**: High
+- **Location**: `assets/js/comm-widget.js`
+- **Evidence**: `comm-widget.js` constructs the WhatsApp chat URL as:
+  ```javascript
+  const waUrl = `https://wa.me/922134821159?text=${encodeURIComponent(msg)}`;
+  ```
+- **Why it is a problem**: `+92-21-3482-1159` is a landline telephone number (Karachi landline area code `021`), not a registered WhatsApp mobile number. Clicking "Chat on WhatsApp" opens WhatsApp web/app with an error stating *"Phone number +92 21 34821159 is not on WhatsApp"*. The floating widget should instead target a valid mobile line (such as the hotline `923000777297`).
+- **Confidence Level**: Confirmed from line 52 of `comm-widget.js`.
+
+---
+
+## 🟡 MEDIUM PRIORITY ISSUES
+
+### N-4: Dropdown Filter `<option>` Tags Desynchronize on Language Switch
+- **Category**: i18n / Component State Synchronization
+- **Severity**: Medium
+- **Location**: `events-calendar.html`, `blog.html`, `media.html`, `gallery.html`, `videos.html`
+- **Evidence**: Filter dropdown `<select>` elements contain hardcoded default options with `data-i18n` (e.g. `<option value="" data-i18n="eventsUi.allCategories">All Categories</option>`). However, when `events-calendar.js`, `blog.js`, or `media.js` dynamically populates the `<select>` options from in-memory datasets on page load, dynamically appended options do not carry `data-i18n` tags, and switching languages via `LanguageManager` leaves the dropdown options un-translated or in a mixed state.
+- **Why it is a problem**: A user switching the site to Urdu (`ur`) will see Urdu section headers and buttons, but the primary filter select dropdown options remain in English.
+- **Confidence Level**: Confirmed via DOM application logic in `language-manager.js` vs dynamic option population in discovery JS files.
+
+### N-5: Missing `@media print` Stylesheets on Legal Compliance Pages
+- **Category**: Styling / CSS Compliance
+- **Severity**: Medium
+- **Location**: `privacy-policy.html`, `terms-of-service.html`, `assets/css/legal.css`
+- **Evidence**: `legal.css` formats privacy policy and terms text for screen view but contains zero `@media print` rules. Additionally, legal pages redundantly load `event-components.css` (58.3 KB) which contains unused event card styles.
+- **Why it is a problem**: Users printing the Privacy Policy or Terms of Service (common for corporate compliance or legal records) will print full dark headers, mega-menus, floating communication widgets, and footer navigation bars instead of a clean, printable legal document.
+- **Confidence Level**: Confirmed via CSS inspection of `legal.css`.
+
+---
+
+## 🟢 LOW PRIORITY & ACCESSIBILITY ISSUES
+
+### N-6: Legacy SVG Accessibility Attributes Missing on Footer Social Media Icons
+- **Category**: Accessibility (WCAG 2.1)
+- **Severity**: Low
+- **Location**: Shared Footer across all 34 HTML files
+- **Evidence**: Footer social media links (`.footer-socials a`) include `aria-label`, but embedded `<svg>` elements lack `role="img"` and `<title>` child tags:
+  ```html
+  <a href="https://x.com/BXSSpakistan" target="_blank" rel="noopener noreferrer" class="footer-social" aria-label="X (Twitter)">
+      <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
+          <path d="..." />
+      </svg>
+  </a>
+  ```
+- **Why it is a problem**: Automated accessibility testing tools (e.g. WAVE / axe) and older screen reader software flag embedded inline SVGs without `role="img"` or `<title>` elements as unlabelled graphics.
+- **Confidence Level**: Confirmed.
+
+---
+
+## 📋 SUMMARY REPORT OF NEW FINDINGS
+
+| ID | Category | Severity | Description | Status |
+|:---|:---|:---|:---|:---|
+| **N-1** | JS Execution | **High** | `industry-landing.html` loads `events-calendar.js` causing uncaught `TypeError` | Confirmed |
+| **N-2** | JS Robustness | **High** | Unescaped search queries cause uncaught `SyntaxError` on special chars (`(`, `[`, `*`, `+`) | Confirmed |
+| **N-3** | Conversion / UX | **High** | Floating WhatsApp widget uses landline `922134821159` instead of mobile number | Confirmed |
+| **N-4** | i18n | **Medium** | Dropdown `<option>` tags remain untranslated when switching languages | Confirmed |
+| **N-5** | Print / CSS | **Medium** | Legal compliance pages lack `@media print` styles and load unused CSS | Confirmed |
+| **N-6** | Accessibility | **Low** | Footer SVG social icons missing `role="img"` and `<title>` tags | Confirmed |

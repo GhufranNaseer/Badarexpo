@@ -318,4 +318,1867 @@ END OF LOG - BADAR EXPO SOLUTIONS
   4. VERIFICATION: Checked all JS-referenced element IDs across HTML files, verified responsive media query breakpoints, and audited codebase against rules.txt Section 15 workflow rules.
 - RESULT: Both exhibitionmanagement.html and growthservices.html are fully updated, modular, and consistent with the repository architecture, and content-staging.txt holds the complete compiled staging deliverable.
 ================================================================================
+================================================================================
+[SESSION 21: DESIGN SYSTEM STABILIZATION AUDIT - PHASE 1 (FOUNDATION)]
+- DATE: August 01, 2026
+- STATUS: Phase 1 Completed (foundation + safe fixes). Phase 2 (per-page
+  visual retrofit of radius/shadow/button scale) intentionally deferred.
+- OBJECTIVE: Freeze the design system before new features (Event Pages,
+  Calendar, Multi-language) begin. Audit all 9 live pages for typography,
+  layout, spacing, buttons, cards, color, radius, shadow, icon, image, and
+  animation consistency. Fix what is safe to fix without visual regression
+  risk; document everything else as a scoped, prioritized backlog.
+- METHOD: Full grep-based audit across all 14 CSS files (~19,000 lines) for
+  hex color usage, border-radius values, box-shadow values, transition
+  durations, font-family declarations, and button padding patterns. Cross-
+  referenced findings against rules.txt to confirm which patterns were
+  intentional (page-scoped prefixes are working as designed) vs. genuine
+  drift (see rules.txt Section 16 for the full itemized findings list).
+- ACTIONS:
+  1. NEW FILE: assets/css/tokens.css - canonical global design tokens
+     (color, 6-step radius scale, neutral + brand-red shadow scales, 8px
+     spacing scale, consolidated motion easings, font stack). Additive only;
+     does not override or remove any existing page-scoped token block.
+  2. LINKED tokens.css on all 9 HTML pages (index, about, services,
+     construction-design, exhibitionmanagement, growthservices, events,
+     contact, 404), immediately after navbar.css, matching existing global
+     load order.
+  3. FIXED: index.css legacy/superseded .ceo-section duplicate block -
+     corrected one drifted accent color (--badge-text, was #ed1414, now
+     #FF4D4D to match the live ceo_section.css value) and added an inline
+     comment explaining why the ~450-line block still exists (unstyled-
+     content fallback for the print/onload CSS-swap trick) so future
+     sessions don't mistake it for live/authoritative code.
+  4. FIXED: normalized hex casing (#C31A20 -> #c31a20, 2 occurrences in
+     index.css) for pure textual consistency; zero visual change.
+  5. DOCUMENTED: added the required "WHY" comment for 'Playfair Display'
+     usage in ceo_section.css per rules.txt Section 3 (editorial CEO
+     name/quote treatment only).
+  6. REGISTRY: Updated rules.txt (Section 1, Section 3, Section 16) and
+     website_structure.txt to register tokens.css and log the full audit
+     findings (radius sprawl, shadow sprawl, duplicate CEO block, transition
+     duration spread, absence of a shared button component).
+- NOT DONE THIS SESSION (explicitly deferred, logged as backlog):
+  - Retrofitting existing buttons/cards/sections to consume tokens.css
+    values in place of their current hardcoded hex/px/rgba values. This
+    touches every page's visual output and needs a page-by-page pass with
+    visual review, per rules.txt Section 16's own "do not silently fix
+    legacy debt" rule.
+  - Consolidating the ~20 border-radius values and ~45 box-shadow strings
+    down to the new token scale.
+  - Extracting a shared .btn-primary / .btn-secondary component.
+  - Normalizing the 992/1200/1300/640/420px legacy breakpoints (already
+    tracked as known debt pre-Session 21).
+- RESULT: A safe, non-breaking design-token foundation is now in place and
+  linked site-wide; a small set of genuine (not cosmetic-only) drift bugs
+  were fixed; the remaining consistency work is fully itemized and ready to
+  be picked up as discrete, page-scoped tasks without redesigning anything.
+================================================================================
+================================================================================
+[SESSION 22: REUSABLE EVENT LANDING PAGE ARCHITECTURE (PHASE 1)]
+- DATE: August 01, 2026
+- STATUS: 100% Completed (architecture/template only, per explicit scope).
+- OBJECTIVE: Build a production-ready, reusable event landing page template
+  (event-landing.html) to become the master duplication source for every
+  future individual event page (Build Asia, Health Asia, ITCN Asia, etc.),
+  built strictly on top of the finalized design system (Session 21) - no
+  new visual language introduced.
+- METHOD: Reused the existing shared header/footer/search-overlay markup
+  verbatim (sourced from growthservices.html, the most recently updated
+  page) so navigation stays 100% synchronized (data.txt Session 19). Reused
+  the shared .page-hero component (page-hero.css) for the hero banner,
+  events.css's .hero-btn component (duplicated into the new page-scoped
+  file per architecture convention), exhibitionmanagement.css's
+  .faq-item accordion pattern, index.css's .testi-nav-btn slider-button
+  style, and main.js's IntersectionObserver stat-counter pattern
+  (generalized to accept data-target/data-suffix instead of hardcoded
+  numbers, since every event will have different stats).
+- ACTIONS:
+  1. NEW FILE: event-landing.html - 18-section reusable template (Hero,
+     Quick Info Strip, About the Event, Why Attend, Who Should Attend, Key
+     Highlights, Event Statistics, Industries Covered, Featured Speakers,
+     Exhibitors/Sponsors, Event Schedule Preview, Venue Information, Event
+     Gallery Preview, Testimonials, FAQ, Registration CTA, Related Events,
+     Contact CTA). All event-specific content is marked with [EVENT: ...] /
+     [placeholder] tokens for fast duplication. Nav "Events" item marked
+     active (was "Services" in the source file it was built from).
+  2. NEW FILE: assets/css/event-landing.css - page-scoped styles, prefix
+     "elp-", consuming tokens.css / navbar.css global tokens throughout
+     (--primary-red, --text-dark, --shadow-*, --radius-*, --transition-*).
+     Snapped to the shared 4-tier responsive breakpoint scale (1024 / 768 /
+     480px) and includes a prefers-reduced-motion block per rules.txt
+     Section 4.
+  3. NEW FILE: assets/js/event-landing.js - ElpFaqManager (accordion),
+     ElpScheduleManager (day-tab switcher), ElpTestimonialManager (slider),
+     ElpStatsManager (generic animated counter). Same named-manager +
+     single DOMContentLoaded init pattern as exhibitionmanagement.js.
+  4. REGISTRY: Updated rules.txt (Section 1 file-per-page table, Section 2
+     prefix table - new "elp-" prefix) and website_structure.txt (css/ and
+     js/ file listings) to register all 3 new files as a reusable template,
+     explicitly distinct from events.html (the existing Events
+     portfolio/listing page, prefix "evtpg-", left untouched).
+- REUSABLE COMPONENTS DELIVERED: .elp-speaker-card (repeatable speaker
+  grid item), .elp-sponsor-tier (repeatable Platinum/Gold/exhibitor tier
+  block), .elp-faq-item (accordion item), .elp-related-card (portfolio-style
+  link card), .elp-why-card / .elp-audience-card (icon feature cards),
+  .elp-schedule-tab + .elp-schedule-panel (day-switcher pair). Each is
+  self-contained markup with no dependency on sibling section state, per
+  rules.txt Section 11.
+- NOT DONE THIS SESSION (explicitly out of scope per brief): event
+  calendar, registration backend/booking system, CMS/WordPress work, SEO
+  work beyond placeholder meta tags, accessibility audit beyond baseline
+  alt text/aria-labels already included, performance optimization,
+  multi-language. No specific event (Build Asia, Health Asia, etc.) was
+  created - this is the architecture only.
+- RESULT: event-landing.html + event-landing.css + event-landing.js form a
+  complete, production-ready, design-system-compliant template. Duplicating
+  it for a real event should only require: (a) copying all 3 files with a
+  new page name, (b) replacing [EVENT: ...] placeholder content, (c) adding
+  the new page's link to the Events mega-menu content (navigation-map.txt) -
+  no structural/CSS changes should be needed for a typical event.
+================================================================================
+================================================================================
+[SESSION 23: PRODUCTION READY EVENT DETAIL PAGE (PHASE 2)]
+- DATE: August 01, 2026
+- STATUS: 100% Completed.
+- OBJECTIVE: Populate the Phase 1 reusable event landing architecture
+  (event-landing.html/.css/.js) with realistic, non-lorem-ipsum demo content
+  and refine its components into a production-ready "Event Detail Page" -
+  a master blueprint, not a real specific exhibition.
+- DEMO CONTENT: Invented an illustrative composite event, "Pakistan
+  International Trade & Industry Summit 2026" (Sep 14-16, 2026, Karachi
+  Expo Centre) - not a real exhibition or brand. All speaker names
+  (Ayesha Raza, Omar Sheikh, Farah Iqbal, Bilal Ahmed) and testimonial
+  authors are illustrative demo personas, not real individuals.
+- ACTIONS (event-landing.html / .css / .js all MODIFIED, not recreated):
+  1. CONTENT: Replaced every [EVENT: ...] bracket placeholder from Phase 1
+     with realistic demo copy across all 18 sections (title/meta tags
+     included).
+  2. NEW - Registration Status badge (.elp-reg-status): "Registration Open"
+     pill, used in the hero and again in the Registration CTA section.
+  3. NEW - Countdown Timer (.elp-countdown + ElpCountdownManager in .js):
+     live days/hours/minutes/seconds countdown in the hero, driven by a
+     data-countdown-date attribute so it's a one-line edit per event.
+  4. NEW - Organizer credential card (.elp-organizer-card): compact
+     logo + name block inside the About section answering "who's behind
+     this event" without a whole new section.
+  5. REFINED - Sponsors section: added a third tier, "Official Partners",
+     reusing the existing .elp-sponsor-tier component from Phase 1 with
+     zero new CSS - exactly the "refine, don't redesign" brief.
+  6. REFINED - Venue section: added direct phone/email contact links
+     (.elp-venue-contact).
+  7. REFINED - Contact CTA section: expanded with visible phone/email
+     alongside the existing "Contact Our Team" link
+     (.elp-contact-cta-details).
+  8. REFINED - Schedule Preview section: relabeled "Agenda Preview" per
+     Phase 2's terminology, with day-tabs now showing real dates
+     (Day 1 - Sep 14, etc.) - no structural or class changes.
+  9. NEW - Sticky CTA bar (.elp-sticky-cta + ElpStickyCtaManager):
+     fixed-bottom bar with event name/date + Register button, hidden by
+     default, revealed via IntersectionObserver once the visitor scrolls
+     past the hero section (matches the site's existing scroll-driven
+     animation philosophy - no new interaction pattern introduced).
+- CODE QUALITY: No duplicate CSS/JS introduced - all Phase 2 additions are
+  net-new selectors/rules appended to the existing files, with one
+  reused-as-is component (sponsor tier). Full brace/tag balance and JS
+  syntax verified before delivery.
+- REUSABLE COMPONENTS REFINED: .elp-sponsor-tier (proven reusable - third
+  instance required zero CSS changes), .elp-speaker-card, .elp-faq-item,
+  .elp-related-card, .elp-schedule-tab/.elp-schedule-panel pair - all
+  carried over unchanged from Phase 1, now demonstrated with real content.
+- NOT DONE THIS SESSION (explicitly out of scope per brief): event
+  calendar, booking backend, payment, CMS/WordPress, SEO work beyond
+  placeholder-realistic meta tags, accessibility audit, performance
+  optimization, multi-language.
+- RESULT: event-landing.html is now a fully populated, production-ready
+  demo of the Phase 1 architecture - suitable to show stakeholders as "this
+  is what a real event page will look like" while remaining a template:
+  every content block is still a simple find-and-replace away from a real
+  event's actual details.
+================================================================================
+================================================================================
+[SESSION 24: ENTERPRISE EVENT COMPONENT LIBRARY (PHASE 3 - EVENT DESIGN SYSTEM)]
+- DATE: August 01, 2026
+- STATUS: 100% Completed.
+- OBJECTIVE: Build a standalone, reusable Event Design System (EDS) - a
+  component library (not a page) meant to back every future event page,
+  the future event calendar, and a future CMS/WordPress implementation,
+  strictly on top of the finalized design system. No page was created or
+  modified this session per explicit brief instruction.
+- ARCHITECTURE DECISION: rather than build 100+ literal CSS blocks for every
+  named component in the brief, identified that many named components share
+  one visual shape with only content/modifier differences (e.g. all 6
+  "Information Components" are one .eds-info-card; all 6 sponsor/partner
+  tiers are one .eds-sponsor-card with a modifier; all 5 schedule item types
+  are one .eds-timeline-item with a modifier). Built ~15 true base
+  components + BEM modifiers, fully covering the brief's component list
+  while keeping the CSS maintainable - documented the mapping explicitly in
+  event-design-system.md so no named component from the brief is "missing,"
+  just consolidated.
+- ACTIONS:
+  1. NEW FILE: assets/css/event-components.css (~2,170 lines) - all 15
+     component categories (Hero, Status/Badge/Tag, Information, Statistics,
+     Speakers, Sponsors, Schedule, Venue, Gallery, Testimonials,
+     Registration, FAQ, Contact, Related Events, Utility). Scoped under
+     .eds-scope (a class, not an id, so multiple instances/pages are
+     supported). Consumes tokens.css/navbar.css tokens throughout, snapped
+     to the shared 4-tier breakpoint scale, includes a
+     prefers-reduced-motion block.
+  2. NEW FILE: assets/js/event-components.js (~310 lines) - 7 generic,
+     multi-instance, data-attribute-driven modules: EdsAccordion, EdsTabs,
+     EdsCounter, EdsCountdown, EdsSlider, EdsStickyCta, EdsChips, plus an
+     EdsSkeleton.reveal() helper. Deliberately NOT id-based (unlike
+     event-landing.js), since a component library must support N instances
+     of the same component on one page/CMS render.
+  3. NEW FILE: event-design-system.md - full component catalog: markup
+     pattern + required classes/data-attributes for every component, the
+     base-component-to-named-component mapping, a reusability strategy
+     writeup, and a CMS/WordPress field-mapping guide per rules.txt Section
+     13 (e.g. Speaker Grid -> ACF repeater field suggestion).
+  4. REGISTRY: Updated rules.txt (Section 1 - new "COMPONENT LIBRARIES"
+     filing rule distinct from single-feature components; Section 2 - new
+     "eds-" prefix) and website_structure.txt (css/, js/, and root file
+     listings) to register all 3 new files.
+- EXPLICITLY NOT DONE (per brief): event-landing.html / .css / .js were NOT
+  modified or wired up to consume this library - see
+  event-design-system.md Section 7 ("Migration path") for why and what a
+  future integration session would involve. No event calendar, backend,
+  CMS, WordPress, SEO, accessibility audit, or performance work was done.
+- VERIFICATION: CSS brace balance (303/303) and JS syntax (node --check)
+  confirmed clean before delivery.
+- RESULT: A production-ready, standalone, enterprise-grade component
+  library exists independent of any single page, ready to back an event
+  calendar, a CMS, or a future WordPress theme without further redesign -
+  exactly the Phase 3 objective ("think beyond this project").
+================================================================================
+================================================================================
+[SESSION 25: ENTERPRISE EVENT DATA ARCHITECTURE & CONTENT MODEL (PHASE 4)]
+- DATE: August 01, 2026
+- STATUS: 100% Completed.
+- OBJECTIVE: Design a source-agnostic, schema-first data architecture for
+  the Event content type, capable of powering hundreds/thousands of future
+  events through the existing Phase 1-3 UI/components without any UI
+  change - and capable of later backing WordPress/ACF, a headless CMS, a
+  Laravel/Node REST or GraphQL API, or a mobile app, unchanged.
+- METHOD: Reverse-engineered the required data shape directly from what
+  Phase 2's page actually renders and what Phase 3's component JS actually
+  reads (cross-checked every data-* attribute in event-components.js and
+  event-landing.html - data-target, data-suffix, data-countdown-date,
+  data-day/data-day-panel, data-eds-* hooks - against the schema fields),
+  rather than designing the schema in the abstract first and hoping it
+  matched the UI.
+- ACTIONS:
+  1. NEW FILE: event-schema.json - formal JSON Schema (draft 2020-12).
+     Root object (id, slug, basicInfo, status, timing, venue required) plus
+     12 $defs (image, socialLinks, venue, organizer, speaker, sponsor,
+     agendaDay, session, statValue, mediaItem, faq, testimonial). Required
+     vs optional fields deliberately minimal at the root (only what's
+     needed to render a valid hero + info strip) so an event can be
+     published with incomplete data and the Phase 3 Empty State component
+     covers the rest.
+  2. NEW FILE: sample-event.json - a complete, realistic example using the
+     same "Pakistan International Trade & Industry Summit 2026" demo event
+     from Phase 2 (kept consistent across phases intentionally), now as
+     structured data. VALIDATED against event-schema.json using Python's
+     jsonschema library (Draft202012Validator) - 0 errors confirmed before
+     delivery. One real bug was caught and fixed during validation: the
+     root 'required' array initially listed a top-level 'name' field that
+     didn't exist (name actually lives under basicInfo.name) - corrected
+     to require 'basicInfo' instead. A second issue (nullable image fields
+     for optional photo/logo fields) was also caught and fixed the same
+     way.
+  3. NEW FILE: event-data-model.md - developer documentation: object
+     structure diagram, required/optional field reference table,
+     relationship modeling explanation (why sessions->speakers is
+     id-reference many-to-many, why relatedEvents references ids not
+     embedded objects), naming conventions, a full per-component data
+     mapping table linking specific JSON fields to specific EDS component
+     classes/attributes (e.g. sponsor.tier -> .eds-sponsor-card--{tier}),
+     a recommended future folder structure, and CMS/API integration notes
+     for WordPress/ACF, headless CMS, REST, GraphQL, and mobile.
+  4. REGISTRY: Updated website_structure.txt (root file listing) to
+     register all 3 new files.
+- KEY ARCHITECTURE DECISIONS: (a) statistics[] is a generic key/label/value
+  array, not fixed schema properties (visitors/exhibitors/countries/...),
+  so new stat types never require a schema change; (b) sponsors[] carries a
+  'tier' field rather than modeling separate arrays per tier, so a new
+  sponsor tier is a new enum value, not a new array; (c) relatedEvents[]
+  stores id references only, keeping the model normalized so adding an
+  event never requires touching every event that might reference it.
+- NOT DONE THIS SESSION (per brief): no calendar UI, search UI, filters,
+  backend, database, CMS, WordPress, SEO, accessibility, performance, or
+  multi-language work. No HTML/CSS/JS file was created or modified - this
+  phase is data architecture only.
+- RESULT: A validated, source-agnostic Event schema exists, cross-checked
+  against the actual UI it needs to power, with a fully worked example and
+  a complete field/relationship/component-mapping reference for whichever
+  future phase builds the backend that produces this shape.
+================================================================================
+================================================================================
+[SESSION 26: ENTERPRISE EVENT DISCOVERY EXPERIENCE (PHASE 5)]
+- DATE: August 01, 2026
+- STATUS: 100% Completed.
+- OBJECTIVE: Design and build a complete Event Discovery experience (search,
+  filter, sort, multiple browse views, calendar) - not just a monthly
+  calendar - covering Featured/Upcoming/Ongoing/Past events, scalable to
+  hundreds/thousands of events without UX changes, strictly on the
+  finalized design system and reusing Phase 3/4 work.
+- ACTIONS:
+  1. NEW FILE: assets/css/event-discovery-components.css - extends the
+     Phase 3 eds- library with search, filter bar/select, active-filter
+     chips, calendar month grid, discovery timeline, load-more, and 4 event
+     card display variants (featured/standard/compact/horizontal) built on
+     top of Phase 3's .eds-related-card rather than a new card component
+     from scratch. Reused as-is from Phase 3 without redefinition: tabs,
+     chips, pagination, badges, tags, empty state, skeleton, buttons.
+  2. NEW FILE: assets/js/event-discovery-components.js - EdsDiscovery, a
+     generic, data-driven engine (search, faceted filter, sort, pagination,
+     calendar month rendering with prev/next nav, timeline grouping) that
+     takes any array of event-schema.json-shaped summary objects and a set
+     of DOM selectors - not hardcoded to events-calendar.html, reusable by
+     any future browsable list (e.g. a future Speakers or Sponsors
+     directory).
+  3. NEW FILE: events-calendar.html - the Event Discovery page. Compact
+     intro (deliberately not a full marketing hero - see chat response for
+     reasoning), Featured Events spotlight, status tabs (All/Upcoming/
+     Ongoing/Past), sticky search+filter bar (category/industry/city/year/
+     month/registration status), active filter chips, results toolbar
+     (count + sort + 5-way view switcher: grid/list/compact/timeline/
+     calendar), results mount, empty state, load-more. Header/footer/nav
+     reused verbatim from events.html (Events nav item already active) -
+     no new header/footer markup introduced.
+  4. NEW FILE: assets/css/events-calendar.css - page-layout-only glue
+     (prefix "evc-"), zero redefinition of any visual component.
+  5. NEW FILE: assets/js/events-calendar.js - a 10-event sample dataset
+     (spanning past/ongoing/upcoming, 2 featured, varied categories/
+     industries/cities/registration statuses) + wiring code that populates
+     the filter dropdowns dynamically from the dataset (no hardcoded
+     option lists) and calls EdsDiscovery.init().
+  6. REGISTRY: Updated rules.txt (Section 1 - events-calendar.html filing;
+     Section 2 - new "evc-" prefix, noted eds- library extension) and
+     website_structure.txt (css/, js/, and root file listings).
+- KEY UX DECISIONS (full reasoning in the chat response, summarized here for
+  the log):
+  - Load More was chosen over classic pagination as the PRIMARY browse
+    control (continuous, low-friction discovery matches how Web
+    Summit/CES/GITEX-style sites work); .eds-pagination from Phase 3
+    remains in the library for a future "jump to page N" archive use case,
+    just not used as the default here.
+  - Grid is the default view (recognition over recall - visual scanning of
+    event photography beats a bare list for a first-time visitor); List/
+    Compact/Timeline/Calendar are one click away via the view switcher.
+  - Status tabs (All/Upcoming/Ongoing/Past) sit ABOVE the search/filter bar
+    since "what stage is this event at" is the visitor's first mental
+    filter, ahead of category/city.
+  - Native <select> elements for filters (not custom dropdown widgets) -
+    zero extra JS/ARIA work, and mobile gets the OS's native picker for
+    free, which is the single biggest mobile-filter-UX win available at
+    this phase's scope (no accessibility audit phase yet, so leaning on
+    natively-accessible controls is a proactive win, not a redesign).
+- REUSABLE COMPONENTS ADDED: .eds-search, .eds-filter-select, .eds-calendar
+  (full month grid + nav), .eds-discovery-timeline, 4 .eds-event-card--*
+  variants, .eds-load-more-wrap, .eds-active-filters. All still under the
+  eds- namespace - genuinely reusable beyond this one page, per Phase 5's
+  "reuse Phase 3 wherever possible, add only when necessary" instruction.
+- VERIFICATION: CSS brace balance confirmed (101/101 discovery components,
+  15/15 page CSS), JS syntax clean (node --check) on both new JS files,
+  every DOM id referenced by events-calendar.js cross-checked against
+  events-calendar.html (25/25 match exactly once), all 10 sample-dataset
+  image paths verified to exist on disk.
+- NOT DONE THIS SESSION (per brief): no backend, booking, payment, CMS,
+  WordPress, SEO, accessibility audit, performance optimization, or
+  multi-language work. No existing page was modified.
+- RESULT: A complete, production-ready Event Discovery experience exists,
+  built entirely from reusable eds- components (extended, not redesigned),
+  running against a realistic sample dataset that demonstrates every
+  browse/search/filter/sort/view path end to end.
+================================================================================
+================================================================================
+[SESSION 26: ENTERPRISE EVENTS HUB INTEGRATION (PHASE 6)]
+- DATE: August 01, 2026
+- STATUS: 100% Completed.
+- OBJECTIVE: Connect the previously independent event systems (Phase 1-5)
+  into one seamless product - navigation, homepage, footer, breadcrumbs,
+  related events, and CTAs all cross-linked - without redesigning any
+  existing page or component.
+- METHOD: Audited every event-related touchpoint site-wide before editing
+  anything (mega-menu, mobile submenu, footer columns, homepage events
+  slider, events.html, event-landing.html, 404.html) to find genuinely
+  disconnected transitions, rather than adding new sections speculatively.
+  Verified the mega-menu "EVENTS CONTENT" block and mobile submenu block
+  were byte-identical across all 11 HTML pages before scripting a single
+  synchronized edit across all of them (matching the precedent set in
+  Session 19's navbar sync).
+- ACTIONS:
+  1. NAVIGATION (all 11 pages: index, about, services, construction-design,
+     exhibitionmanagement, growthservices, events, contact, 404,
+     event-landing, events-calendar): added a "Discover" mega-menu column
+     (All Events / Upcoming Events / Past Events) and an "Event Calendar"
+     entry in the mobile submenu, all linking to events-calendar.html.
+  2. DEEP-LINK FILTERING: extended assets/js/event-discovery-components.js
+     (EdsDiscovery.init) to read URL query params (category, industry,
+     city, year, month, registrationStatus, status, q) on load and
+     pre-apply them as active filters/search/status-tab - this is what
+     makes the new "Upcoming Events"/"Past Events" nav links and Related
+     Events search links actually functional instead of just anchors.
+  3. FOOTER (all 11 pages): added "Event Calendar" and "Upcoming Events"
+     links to the existing Company column, directly after "Our Portfolio".
+  4. FIXED: event-landing.html was missing the standard page-breadcrumb-bar
+     entirely since Phase 1 - added Home / Events / [Event Name], matching
+     every other inner page.
+  5. FIXED: event-landing.html's Related Events cards linked to the
+     generic events.html - now deep-link to
+     events-calendar.html?q=<event name>, landing the visitor pre-searched
+     for that exact related event instead of an unfiltered portfolio page.
+     Added a "View All Events" link next to the Related Events heading.
+     Corrected a stale date ("June 2026" -> "October 2026") to match the
+     actual sample dataset date for the Global SME Summit.
+  6. FIXED: events.html (the pre-existing Events portfolio/showcase page)
+     had zero awareness that events-calendar.html existed - added a slim
+     CTA banner ("Want to browse by date, category, or city? Explore Full
+     Event Calendar") right after the stats strip, using only existing
+     token-based styles (new CSS: .evtpg-calendar-cta* in events.css).
+  7. FIXED: the homepage's existing Events Showcase slider already had
+     everything the brief asked for (featured events + "View All Events"
+     CTA) - it just pointed at the older events.html. Retargeted the one
+     link to events-calendar.html rather than adding a duplicate new
+     section (avoiding the homepage clutter the brief explicitly warned
+     against). Individual homepage event slide cards (IDEAS 2024, PTPL
+     Grand Finale, etc.) were deliberately left unlinked - they reference
+     real named historical events with no individual detail pages, and
+     wiring them to the one fictional demo detail page would have been
+     actively misleading.
+  8. FIXED: 404.html's "Flagship Events" recovery card retargeted to
+     events-calendar.html (Event Calendar) since it's the more useful
+     destination for a visitor who is already lost and needs to search.
+  9. REGISTRY: Updated navigation-map.txt (Section 2 - new Discover
+     mega-menu column documented; new Section 5 - Footer Company column
+     additions) and website_structure.txt (load-order note).
+- CTA AUDIT RESULT: reviewed every event-related CTA site-wide for text/
+  placement/hierarchy consistency (Register Now / Learn More / Download
+  Brochure / View All Events / Explore Full Event Calendar). No conflicting
+  or duplicate CTAs found needing correction - Phase 1-5's own button
+  system (.hero-btn-primary/.eds-btn--primary for the single primary
+  action per section, outline for secondary) was already consistent; this
+  session's new CTAs were written to match that existing hierarchy exactly
+  rather than introducing new wording patterns.
+- VERIFICATION: HTML tag balance (div/section/a/nav/select) re-checked
+  across all 11 modified pages after editing; events.css brace balance
+  (274/274); event-discovery-components.js syntax (node --check) after
+  the URL-param addition; the "Discover" mega-menu column and Company
+  footer links confirmed present in all 11 pages via grep count.
+- NOT DONE THIS SESSION (per brief): no multi-language, CMS, backend,
+  WordPress, SEO, accessibility audit, performance optimization,
+  authentication, booking, or payment work. No page was redesigned or
+  rebuilt - every change was a targeted link/connection fix.
+- RESULT: the Events ecosystem (Phase 1-5) now reads as one connected
+  product - a visitor can move Homepage -> Featured Event -> Events Hub ->
+  Filter/Search (including via deep link) -> Event Detail -> Related
+  Events -> back to a filtered Calendar view, or recover from a 404/empty
+  state straight into the searchable Calendar, without any dead-end links.
+================================================================================
+================================================================================
+[SESSION 27: ENTERPRISE INTERNATIONALIZATION (i18n) ARCHITECTURE (PHASE 7)]
+- DATE: August 01, 2026
+- STATUS: 100% Completed. Architecture/documentation only, per explicit
+  brief scope - no translations, language switching, or RTL conversion
+  implemented; no existing page, component, or CSS file modified.
+- OBJECTIVE: Design a production-ready i18n architecture (English + Urdu
+  now, extensible to future languages) covering URL strategy, translation
+  storage, RTL strategy, typography, component integration, and future
+  CMS/API compatibility - without touching the frozen design system.
+- KEY DISCOVERY (grounded the whole architecture in reality instead of a
+  speculative design): audited the codebase first and found real, existing
+  i18n groundwork nobody had documented - a fully-built but non-functional
+  .lang-dropdown switcher (English/Urdu/Arabic) in every page's topbar,
+  and a single incomplete CSS rule (body.rtl-mode { direction: rtl;
+  text-align: right; } in navbar.css) wired to it via main.js's language
+  click handler. This phase's architecture builds explicitly on top of
+  that existing shell rather than proposing a new switcher location or
+  duplicate mechanism.
+- ACTIONS:
+  1. NEW FILE: i18n-architecture.md - full architecture document: existing-
+     foundation audit, URL strategy (path-prefix, English unprefixed at
+     root for zero migration cost, Urdu under /ur/), translation storage
+     (namespaced JSON per locale under /locales/{lang}/), content
+     classification (static UI text vs event content vs dynamic/
+     interpolated text vs metadata - and why event content is NOT in the
+     locale files, since it's Phase 4 data, not UI chrome), component
+     integration strategy (data-i18n attribute, fallback-to-English-in-
+     HTML pattern, JS render-function t() parameter pattern referencing
+     Phase 5's EdsEventFields precedent), language switcher recommendation
+     (reuse the existing .lang-dropdown, do not add a second location),
+     RTL strategy (additive rtl-overrides.css layer instead of a logical-
+     properties rewrite of ~20,000 lines of existing CSS, directional-icon
+     mirroring via an opt-in marker class, and component-by-component RTL
+     notes for nav/cards/forms/buttons/calendar/timeline), typography
+     strategy (Noto Naskh Urdu for UI/body text, optional Nastaliq for
+     editorial headings only - mirroring the site's existing --font-display
+     pattern from Phase 0's Session 21 audit), developer folder structure,
+     and a future CMS/API compatibility self-review.
+  2. NEW FILE: translation-schema.json - JSON Schema (draft 2020-12) for
+     one locale bundle: 6 namespaces (common, nav, buttons, forms,
+     messages, eventsUi) plus locale/direction/label bundle-level fields.
+  3. NEW FILE: sample-en.json - complete, schema-valid English bundle.
+  4. NEW FILE: sample-ur.json - complete, schema-valid Urdu bundle with
+     real Urdu translations (to prove the schema/font/RTL reasoning
+     against real content) - NOT wired into the live site.
+  5. NEW FILE: assets/js/language-manager.js - architecture-reference
+     loader/resolver (locale resolution priority, namespace bundle
+     loading, [data-i18n] DOM application, lang/dir document attributes,
+     localStorage persistence, URL-prefix-based switchTo()) - explicitly
+     NOT linked from any HTML <script> tag, confirmed via grep before
+     delivery.
+  6. REGISTRY: Updated website_structure.txt (root file listing, js/ file
+     listing) to register all 5 new files, each marked as
+     architecture/reference-only where applicable.
+- VALIDATION: both sample-en.json and sample-ur.json programmatically
+  validated against translation-schema.json using Python's jsonschema
+  library - 0 errors. language-manager.js syntax verified (node --check).
+  Confirmed via grep that no HTML page references language-manager.js.
+- NOT DONE THIS SESSION (per brief): no actual translations applied to any
+  page, no language switching wired up, no RTL conversion, no SEO
+  hreflang, no accessibility localization, no performance optimization.
+  navbar.css, main.js, and every component file from Phase 1-6 remain
+  completely untouched.
+- RESULT: a complete, evidence-grounded i18n architecture exists, ready
+  for a future implementation phase to execute against - including exact
+  file/line references to the existing switcher UI and RTL stub it
+  extends, rather than a generic textbook i18n plan disconnected from this
+  specific codebase.
+================================================================================
+================================================================================
+[SESSION 28: ENTERPRISE ENGLISH <-> URDU IMPLEMENTATION (PHASE 8)]
+- DATE: August 01, 2026
+- STATUS: 100% Completed. Implements the Phase 7 architecture; one
+  deliberate, documented deviation from that architecture made (see below).
+- OBJECTIVE: Implement real, working multilingual support (English/Urdu)
+  across the site using the Phase 7 architecture, without redesigning any
+  page or component.
+- ARCHITECTURE DEVIATION (documented, not silent): Phase 7 recommended a
+  /en//ur/ URL-prefix strategy for a future build-time/CMS setup. This
+  phase's brief explicitly forbids "duplicated HTML" and "duplicated
+  layouts" - generating a full parallel /ur/*.html page set would BE that
+  duplication. Implemented IN-PLACE client-side switching instead (same
+  URL, DOM text swaps live) - upgrade-compatible with the URL-prefix
+  approach later since the bundle-loading/t() resolution logic is
+  unchanged either way. Documented in language-manager.js's own header
+  comment and here.
+- ACTIONS:
+  1. NEW: /locales/en/ and /locales/ur/ - 7 namespace files each (common,
+     nav, buttons, forms, messages, eventsUi, pages - "pages" added this
+     session, beyond Phase 7's original 6, once real page-by-page wiring
+     showed it was needed for hero/section-badge chrome). Real English and
+     real Urdu text throughout, not placeholders.
+  2. REWROTE assets/js/language-manager.js from Phase 7's inert
+     architecture-reference version into a real, active implementation:
+     locale resolution (stored preference -> browser language -> default),
+     namespace bundle loading, t()/interpolate() key resolution with
+     English-fallback, DOM application ([data-i18n], [data-i18n-placeholder],
+     [data-i18n-aria-label]), document lang/dir attributes, localStorage
+     persistence, an onChange() subscription hook for pages with dynamic
+     JS-rendered content, and in-place setLocale()/switchTo().
+  3. MODIFIED assets/js/main.js: the pre-existing (Session ~pre-20)
+     .lang-list click handler now calls LanguageManager.switchTo(langCode)
+     instead of only toggling the old rtl-mode class directly - with a
+     graceful fallback to the old behavior if language-manager.js somehow
+     isn't loaded, so the dropdown never silently does nothing.
+  4. NEW: assets/css/rtl-overrides.css (531 lines) - the real RTL
+     implementation, built exactly per Phase 7's additive-layer strategy.
+     [dir="rtl"]-scoped rules only, zero effect in LTR, loaded LAST on
+     every page. Covers: topbar/navbar/mega-menu direction and icon
+     mirroring, footer grid/column order, page-hero/breadcrumb, all
+     hero-btn/eds-btn button variants, the eds- info/badge/tag family, the
+     eds-related-card and elp- card families (horizontal variant
+     image/text swap), highlights/fact-row grids, the Phase 5 discovery
+     timeline AND the Phase 3 agenda timeline item (separately, different
+     components), the Phase 5 calendar month grid (CSS Grid's native
+     direction-aware track placement, documented inline for why no JS
+     reindexing was needed), the search/filter/toolbar bar, sticky CTA,
+     accordion/tabs/pills, and native form control alignment. Explicitly
+     scoped OUT: pre-Phase-0 legacy page CSS (about.css, services.css,
+     construction-design.css, growthservices.css, exhibitionmanagement.css,
+     index.css's older sections) - flagged as tracked follow-up work per
+     rules.txt Section 16's own "do not silently fix debt outside its own
+     task" convention, not attempted at lower quality here.
+  5. LINKED rtl-overrides.css + language-manager.js on all 11 HTML pages
+     (index, about, services, construction-design, exhibitionmanagement,
+     growthservices, events, contact, 404, event-landing, events-calendar).
+  6. APPLIED data-i18n/data-i18n-placeholder/data-i18n-aria-label across:
+     the shared header (topbar, nav, mega-menu column headers, mobile
+     submenu, search overlay) and footer (column headers, Phase 6's
+     Event Calendar/Upcoming Events links, Back to top) on all 11 pages;
+     event-landing.html (53 attributes - hero, all 13 section badges,
+     registration status, every CTA button); events-calendar.html (33
+     attributes - intro, featured label, status tabs, search placeholder,
+     every filter/sort <option>, view-pill aria-labels, load more, empty
+     state); events.html (hero tag, Phase 6 calendar CTA banner);
+     404.html (error title/description, recovery buttons, shortcuts
+     title); index.html (Events Showcase section tag/title/CTA);
+     contact.html (all 7 form field labels, consent text, submit button).
+  7. WIRED dynamic JS-rendered content: EdsEventCard.render()'s "Featured"
+     badge and the discovery results-count string
+     (event-discovery-components.js) now call LanguageManager.t() with a
+     safe fallback if the manager isn't present; events-calendar.js
+     subscribes to LanguageManager.onChange() to re-render both the
+     Featured Events section and the main discovery results grid so
+     generated card markup (which [data-i18n]'s DOM walker can't reach
+     retroactively) updates on language switch too.
+  8. ADDED an active-language visual indicator (.lang-list li.active-lang,
+     assets/css/navbar.css) - small leading dot + accent color, matching
+     the dropdown's existing hover treatment rather than introducing a new
+     visual pattern.
+  9. BUG FOUND AND FIXED (unrelated to i18n, caught during this session's
+     validation pass): events-calendar.html was missing one closing
+     </div> in its search-overlay block since its original Phase 5
+     construction (a truncation during that session's header-extraction
+     step) - confirmed by diffing against the identical, correct block in
+     events.html, and fixed.
+  10. REGISTRY: updated website_structure.txt (locales/ folder listing,
+      language-manager.js and rtl-overrides.css entries updated from
+      "architecture reference" to "ACTIVE"). translation-schema.json
+      extended with the "pages" namespace and ~45 additional keys
+      discovered necessary during real implementation (nav sub-items,
+      footer headers, contact form fields, discovery filter options).
+      sample-en.json/sample-ur.json regenerated to exactly mirror the real
+      /locales/ content instead of drifting as separate Phase 7 examples.
+- EXPLICITLY SCOPED OUT (documented, not silently skipped): full paragraph-
+  by-paragraph translation of long-form editorial body copy on About,
+  Services, and similar content-heavy pages. Phase 7's "pages" namespace
+  and this session's application of it cover STRUCTURAL chrome (hero tags,
+  section badges, CTAs) consistently on every page; translating hundreds of
+  words of existing marketing copy per page is a dedicated content-
+  authoring task for a professional translator, not a mechanical
+  data-i18n-attribute wiring task, and was not fabricated wholesale here.
+  Flagged as ready-to-continue work: the namespace/key pattern is
+  established, so extending pages.about/pages.services with more granular
+  keys is additive, not architectural, work for a future session.
+- VALIDATION: both locale bundles (7 namespaces each) re-validated against
+  the extended translation-schema.json (0 errors). Every data-i18n/
+  data-i18n-placeholder/data-i18n-aria-label key used across all 11 pages
+  (99 unique keys) cross-checked to resolve in BOTH the English and Urdu
+  bundles (0 missing in either). HTML tag balance re-verified across all
+  11 pages after every edit (div/span/section/a/select/h1-h4/label/li) -
+  all balanced, including the pre-existing bug fix in item 9. JS syntax
+  (node --check) clean on language-manager.js, main.js,
+  event-discovery-components.js, and events-calendar.js. CSS brace balance
+  clean on rtl-overrides.css (87/87) and navbar.css (167/167).
+- NOT DONE THIS SESSION (per brief): no SEO hreflang, no accessibility
+  audit, no performance optimization, no backend/CMS/WordPress/auth/
+  booking/payment work.
+- RESULT: English/Urdu switching is real and working - click the existing
+  topbar dropdown, the whole shared header/footer, both major Event System
+  pages (event-landing.html, events-calendar.html), the homepage's events
+  section, the contact form, and the 404 recovery page switch language and
+  layout direction live, with dynamic JS-rendered event cards updating
+  too - all on top of the frozen design system, with zero pages redesigned
+  or rebuilt.
+================================================================================
+================================================================================
+[SESSION 30: ENTERPRISE INDUSTRIES SYSTEM (PHASE 10)]
+- DATE: August 01, 2026
+- STATUS: 100% Completed.
+- OBJECTIVE: Build a reusable Industries system (Hub + master detail
+  template) per the Phase 9 architecture (site-information-architecture.md),
+  and ship the first real production industry page (Textile & Apparel) -
+  combining what Phases 1+2 did separately for the Event System into one
+  session, per this phase's explicit "Master Template + First Production
+  Page" framing.
+- ACTIONS:
+  1. NEW FILE: industries.html - Industries Hub. Static grid of all 8
+     industries (matching the footer's existing taxonomy exactly, per
+     Phase 9's own grounding in that list) using .eds-related-card (Phase
+     3) - no new card component, no Discovery Engine, per Phase 9 Section
+     1's explicit recommendation that this is a finite, slow-growing
+     taxonomy that doesn't need search/filter/sort.
+  2. NEW FILE: industry-landing.html - the reusable Industry Detail master
+     template, same Hub+Template pattern already proven by event-landing.html
+     (Phase 1-2). Populated with real content for Textile & Apparel (11
+     sections: Hero, Overview, Key Challenges, Solutions/Services, Related
+     Events, Featured Projects, Gallery Preview, Latest Insights, CTA,
+     Contact, Related Industries) as the first production page, per this
+     phase's brief.
+  3. HONESTY ABOUT WHAT'S REAL VS. PENDING: Featured Projects and Latest
+     Insights sections use the Phase 3 Empty State component with real
+     "coming soon" copy, since the Projects and Blog systems don't exist
+     yet (they're later in Phase 9's own recommended implementation
+     order) - not fabricated placeholder content. Related Events shows the
+     two SAMPLE_EVENTS (events-calendar.js, Phase 5) whose industry[] tag
+     genuinely already includes "Textile & Apparel" - real cross-system
+     data, not invented for this page - plus a working deep-link to the
+     full filtered Discovery Engine view. Gallery Preview shows real
+     existing portfolio photos (no fabricated "View Full Gallery" link,
+     since that destination doesn't exist yet).
+  4. NEW FILE: assets/css/industries.css (prefix "ind-") and
+     assets/css/industry-landing.css (prefix "indl-") - layout glue only,
+     zero new visual components; every card/badge/button/grid/empty-state
+     comes from event-components.css (Phase 3) unchanged.
+  5. NO JS FILES CREATED: initially wired up industries.js/industry-
+     landing.js script tags out of habit (matching the file-per-page
+     convention), then determined neither page uses any accordion/tab/
+     interactive component requiring page-specific JS, and removed both
+     references rather than ship empty placeholder files - matches this
+     phase's own "do not create unnecessary files" instruction.
+  6. INTEGRATION: updated the Industries nav link (all 11 existing pages)
+     from href="#" to industries.html. Updated all 8 footer industry links
+     (all 11 pages) from href="#" to real destinations - Textile & Apparel
+     to industry-landing.html, the other 7 to
+     events-calendar.html?industry=... deep-links (Phase 6 support).
+  7. FIXED A CROSS-SYSTEM LABEL MISMATCH found while wiring the Textile
+     link: the footer's existing industry label was "Textile & Fashion,"
+     but events-calendar.js's sample dataset (Phase 5) already used the
+     tag "Textile & Apparel" - relinking a mismatched label would have
+     broken the deep-link filter and the Related Events section on the
+     new detail page. Corrected the footer label to "Textile & Apparel"
+     (all 11 pages) so the label, the detail page, and the dataset tag
+     are now one consistent string end to end. The other 7 industries'
+     labels were left as-is (not being built this session), and their
+     deep-links will show the Empty State where the sample dataset has no
+     exact tag match - expected, not a bug, and documented in
+     navigation-map.txt.
+  8. i18n: added ~35 new translation keys (pages.industries.*,
+     pages.industryDetail.*) to both /locales/en/pages.json and
+     /locales/ur/pages.json (real Urdu text, not placeholders) - every
+     data-i18n/data-i18n-placeholder/data-i18n-aria-label key across all
+     13 pages (130 total, up from 99) cross-checked to resolve in both
+     bundles, 0 missing either side. translation-schema.json needed no
+     change (the "pages" namespace was already additionalProperties:true
+     from Session 28, specifically to allow this kind of page-by-page
+     growth without a schema migration each time).
+  9. RTL: no new rtl-overrides.css rules were needed - both new pages
+     compose entirely from already-RTL-covered components (.eds-related-
+     card, .eds-overview-card, .eds-benefit-card, .eds-empty-state,
+     .eds-register-card, .eds-info-card, .page-hero) - confirmed by
+     linking rtl-overrides.css last on both pages, per the established
+     convention, rather than auditing rule-by-rule again.
+  10. REGISTRY: updated rules.txt (Section 1 file-per-page table, Section
+      2 - new "ind-"/"indl-" prefixes), website_structure.txt (root file
+      listing, CSS file listing, rtl-overrides.css note updated from "11
+      pages" to "13 pages"), and navigation-map.txt (Industries nav entry
+      marked live; new Section 6 documenting all 8 footer Industries
+      links and the Textile label fix).
+- VALIDATION: HTML tag balance (div/span/section/a/select/li) verified
+  across all 13 pages after every edit - all balanced. Every image path
+  referenced by the two new pages confirmed to exist on disk. CSS brace
+  balance clean on both new files (industries.css 7/7, industry-
+  landing.css 13/13). i18n key resolution cross-checked (130/130 keys
+  resolve in both EN and UR bundles) and schema re-validated with 0
+  errors.
+- NOT DONE THIS SESSION (per Phase 9's own recommended order, not this
+  phase's scope): International Projects, Gallery, Media, Blog systems.
+  No new reusable eds- component was created - every section of both new
+  pages reuses an existing Phase 3 component, confirming Phase 9's Section
+  12 prediction that Industries would need zero new components.
+- RESULT: The Industries system is live and production-ready - a real Hub
+  page, a real, fully-populated first industry (Textile & Apparel), a
+  reusable master template ready to duplicate for the remaining 7
+  industries, full site-wide nav/footer integration, full bilingual
+  support, and zero new CSS/JS components - exactly the "master template +
+  first production page, built entirely from what already exists" outcome
+  this phase asked for.
+================================================================================
+================================================================================
+[SESSION 31: ENTERPRISE INTERNATIONAL PROJECTS SYSTEM (PHASE 11)]
+- DATE: August 01, 2026
+- STATUS: 100% Completed.
+- OBJECTIVE: Build a reusable International Projects system (Hub + master
+  detail template) per the Phase 9 architecture, following the exact
+  Hub+Template precedent set by event-landing.html (Phase 1-2) and
+  industry-landing.html (Phase 10) - and ship the first real production
+  project.
+- ACTIONS:
+  1. NEW FILE: international-projects.html - Projects Hub. Intro, a dark
+     stats band (.eds-stats-sec, reused exactly from Phase 3 - countries
+     engaged, delegation visits, embassy partnerships, years of
+     international work, animated via the existing EdsCounter module with
+     zero new JS), and a 3-project featured grid (.eds-related-card,
+     same component as the Industries Hub grid). Only the China project
+     links to a real detail page; the other 2 (Saudi delegation, Vietnam
+     ambassador - both backed by real existing portfolio photos) are shown
+     honestly with a "Coming Soon" badge rather than fabricated pages,
+     exactly matching the precedent set on the Industries Hub (Phase 10).
+  2. NEW FILE: project-landing.html - the reusable Project Detail master
+     template (14 sections per the brief: Hero, Overview, Country,
+     Industry, Services Provided, Objectives, Challenges, Solutions,
+     Gallery, Related Events, Related Industry, Client Testimonial
+     Placeholder, CTA, Contact, Related Projects). Populated with a
+     realistic demo project - a China trade delegation partnership - built
+     around real existing portfolio photography (china-embassy.webp) and
+     explicitly NOT presented as a specific real diplomatic engagement's
+     confidential details. The Client Testimonial is clearly labeled
+     "Illustrative feedback - representative of client responses, not a
+     direct quotation," not attributed to a real named official.
+  3. COMPONENT REUSE (zero new eds- components created): .eds-overview-card
+     (Overview + Country/Industry/Year/Client facts, reusing the same
+     .eds-fact-row pattern as Industry Detail), .eds-benefit-card (Services
+     Provided, and Challenges/Solutions as two sequential grids - a
+     deliberate content-pairing choice, not a new component), .eds-steps
+     (Objectives - the numbered-list utility built for Registration Steps,
+     reused as-is), .eds-gallery-grid, .eds-related-grid (Related Events,
+     Related Industry, Related Projects), .eds-testimonial-card (Client
+     Testimonial Placeholder), .eds-register-card (CTA), .eds-info-grid
+     (Contact) - every section maps to an existing Phase 3 component.
+  4. NEW FILE: assets/css/international-projects.css (prefix "ipr-") and
+     assets/css/project-landing.css (prefix "prjl-") - layout glue only,
+     matching the exact pattern established for industries.css/
+     industry-landing.css in Phase 10. No page-specific JS files created -
+     neither page uses any interactive component requiring one, same
+     lesson applied from Session 30.
+  5. LIVE CROSS-LINK to the Industries system: project-landing.html's
+     "Related Industry" section links to industry-landing.html (Textile &
+     Apparel), and industry-landing.html's own "Featured Projects" section
+     - which showed the Phase 3 Empty State in Session 30, since Projects
+     didn't exist yet - was UPDATED this session to show the real China
+     project now that it does. This is the exact "ready to receive real
+     content, no structural change needed" moment Session 30's own code
+     comment anticipated - confirmed by making the swap with a single
+     section replacement and zero layout changes.
+  6. INTEGRATION: updated the "International Projects" nav link (all 13
+     existing/prior-session pages) from href="#" to
+     international-projects.html.
+  7. i18n: added ~40 new translation keys (pages.internationalProjects.*,
+     pages.projectDetail.*) to both /locales/en/pages.json and
+     /locales/ur/pages.json (real Urdu text). Every data-i18n/
+     data-i18n-placeholder/data-i18n-aria-label key across all 15 pages
+     (169-171 total across sessions) cross-checked to resolve in both
+     bundles, 0 missing either side. translation-schema.json needed no
+     change (same additionalProperties:true "pages" namespace design from
+     Session 28 absorbed this growth with zero migration).
+  8. RTL: no new rtl-overrides.css rules needed - both new pages compose
+     entirely from already-RTL-covered components, confirmed by linking
+     rtl-overrides.css last on both, same as Session 30.
+  9. REGISTRY: updated rules.txt (Section 1 file-per-page table, Section 2
+     - new "ipr-"/"prjl-" prefixes), website_structure.txt (root file
+     listing, CSS file listing, rtl-overrides.css note updated to "15
+     pages"), and navigation-map.txt (International Projects nav entry
+     marked live).
+- VALIDATION: HTML tag balance verified across all 15 pages after every
+  edit (including the industry-landing.html cross-link update) - all
+  balanced. All image paths (china-embassy.webp, saudi-delegation.webp,
+  vietnam-ambassador.jpg, etc.) confirmed to exist on disk. CSS brace
+  balance clean (international-projects.css 7/7, project-landing.css
+  12/12). i18n key resolution cross-checked (169+ keys, 0 missing in
+  either language) and schema re-validated with 0 errors.
+- NOT DONE THIS SESSION (per Phase 9's own recommended order): Gallery,
+  Media, Blog systems. No new reusable eds- component was created,
+  confirming Phase 9 Section 12's prediction for this section too.
+- RESULT: The International Projects system is live and production-ready
+  - a real Hub page with a stats band and featured grid, a real, fully-
+  populated first project (China Trade Delegation Partnership), a reusable
+  master template ready to duplicate for future projects, a live two-way
+  cross-link with the Industries system (built retroactively into
+  industry-landing.html the moment it became honest to do so), full
+  site-wide nav integration, full bilingual support, and zero new CSS/JS
+  components.
+================================================================================
+================================================================================
+[SESSION 32: ENTERPRISE INSIGHTS ECOSYSTEM (PHASE 12)]
+- DATE: August 01, 2026
+- STATUS: 100% Completed.
+- OBJECTIVE: Build ONLY the reusable Insights PARENT hub per the Phase 9
+  architecture - explicitly not Gallery, Media, or Blog themselves, per
+  this phase's own instruction. Insights is the enterprise knowledge
+  center those three systems will plug into later without redesign.
+- ACTIONS:
+  1. NEW FILE: insights.html - the Insights Hub, structured as 8 sections:
+     Intro, Featured Insights (real), Latest Blog Posts preview (honest
+     Empty State), Latest Gallery Albums preview (honest Empty State),
+     Latest Media Coverage preview (honest Empty State), Industry Insights
+     (real cross-link), Event Insights (real cross-link), CTA.
+  2. KEY DECISION - Featured Insights reuses REAL EXISTING CONTENT: rather
+     than inventing new "featured insight" copy, this section carries over
+     the exact same 4 of the homepage's existing 6 "Featured Insights"
+     cards (content-insights.php, index.html, Phase-0-era) - same titles,
+     same Newsroom/Blog/Case Study tag taxonomy (mapped to
+     .eds-badge--danger/--info/--warning) - so a visitor recognizes this
+     grid from the homepage instead of meeting a second, differently-
+     curated "insights" concept. No content was fabricated for this
+     section.
+  3. HONESTY ABOUT WHAT'S REAL VS. PENDING (matching the precedent from
+     Sessions 30-31): Blog/Gallery/Media preview sections use the Phase 3
+     Empty State component with real "launching soon" copy - not
+     fabricated post/album/press-release cards. Each section's structure
+     (badge + title + grid-shaped container) is the exact "reusable
+     preview section" pattern a future blog.html/gallery.html/media.html
+     will plug real content into - only swapping .eds-empty-state for a
+     populated .eds-related-grid, zero structural change needed, same
+     "ready to receive real content" pattern already proven in Session 31
+     (industry-landing.html's Featured Projects section).
+  4. REAL CROSS-LINKS: Industry Insights section links into the Industries
+     system (Phase 10) - industry-landing.html (Textile & Apparel) + "View
+     All Industries." Event Insights section links into the Event System
+     (Phase 1-6) - event-landing.html (the Trade Summit) + "View All
+     Events." Both reuse .eds-related-grid/.eds-related-card exactly, no
+     new component.
+  5. NAVIGATION FIX (site-wide, all 16 pages): the "Insights" mega-menu
+     trigger was previously a non-clickable <span> (unlike Services/Events,
+     which are real <a> links that also open their dropdown) - now wrapped
+     in <a href="insights.html">, matching that established pattern
+     exactly. The mobile submenu's 3 items were "Media Gallery" (combined),
+     "Blogs," "News & Updates" (href="#" each) - updated to 3 distinct,
+     functional items: Blog, Gallery, Media, each anchoring into the new
+     Insights Hub's corresponding preview section
+     (insights.html#insights-blog/#insights-gallery/#insights-media).
+     "News & Updates" was retired as a separate item per
+     site-information-architecture.md Section 6's own recommendation (it
+     was never a distinct content type from Media/Blog). The desktop
+     mega-menu's 3 "insight-card" tiles (Blog/Media/Gallery) were
+     previously bare <div>s with NO link at all - now wrapped in <a> tags
+     to the same 3 anchors - a real bug fix, not just new content, since
+     these were completely unclickable before this session.
+  6. NEW FILE: assets/css/insights.css (prefix "insg-") - layout glue only,
+     matching the exact pattern established for industries.css/
+     international-projects.css. No page-specific JS file created - same
+     reasoning as Sessions 30-31 (no interactive component needs one).
+  7. i18n: added ~27 new translation keys (pages.insights.*) to both
+     /locales/en/pages.json and /locales/ur/pages.json (real Urdu text).
+     Every data-i18n/data-i18n-placeholder/data-i18n-aria-label key across
+     all 16 pages (196 total, up from 171) cross-checked to resolve in
+     both bundles, 0 missing either side. translation-schema.json needed
+     no change (same additionalProperties:true "pages" namespace design
+     from Session 28).
+  8. RTL: no new rtl-overrides.css rules needed - insights.html composes
+     entirely from already-RTL-covered components, confirmed by linking
+     rtl-overrides.css last, same as Sessions 30-31.
+  9. REGISTRY: updated rules.txt (Section 1 file-per-page table, Section 2
+     - new "insg-" prefix), website_structure.txt (root file listing, CSS
+     file listing, rtl-overrides.css note updated to "16 pages"), and
+     navigation-map.txt (Insights section rewritten to document the
+     trigger-link fix, the Blog/Gallery/Media split, and the retirement of
+     "News & Updates" as a separate item).
+- VALIDATION: HTML tag balance verified across all 16 pages after every
+  edit (including the site-wide mega-menu/submenu sync across the 15
+  prior pages) - all balanced. All image paths confirmed to exist on
+  disk. CSS brace balance clean (insights.css 8/8). i18n key resolution
+  cross-checked (196 keys, 0 missing in either language) and schema
+  re-validated with 0 errors.
+- NOT DONE THIS SESSION (explicitly out of scope per brief): Gallery,
+  Media, and Blog were NOT implemented - only the parent Insights hub
+  they will plug into. No new reusable eds- component was created.
+- RESULT: Insights now works as a real parent ecosystem - a functional
+  hub page, a fixed (previously broken) navigation trigger and mega-menu,
+  honest placeholders for the 3 systems not yet built, and working
+  cross-links into the 2 systems (Industries, Events) that already exist.
+  Gallery/Media/Blog can be built later and will plug directly into this
+  page's existing preview-section pattern without any redesign.
+================================================================================
+================================================================================
+[SESSION 33: ENTERPRISE GALLERY EXPERIENCE (PHASE 13)]
+- DATE: August 01, 2026
+- STATUS: 100% Completed.
+- OBJECTIVE: Build an enterprise-grade Digital Asset Gallery system (Hub +
+  reusable Album Detail template) per the Phase 9 architecture, with real
+  filtering (Event/Industry/Country/Year/Featured) scalable to hundreds of
+  albums, and ship the first real production album.
+- KEY ARCHITECTURAL FIX (the most valuable work this session): discovered
+  that assets/js/event-discovery-components.js's EdsDiscovery engine had
+  been DOCUMENTED since Session 26/Phase 5 as "reusable by any future
+  browsable list (e.g. a future Speakers or Sponsors directory)" but was
+  actually hardcoded to the EdsEventFields accessor and EdsEventCard
+  renderer - the claim was aspirational, not true yet. Fixed this properly
+  rather than building a second, parallel discovery engine for Gallery:
+  1. Added fieldAccessors / cardRenderer / gridClassName options to
+     EdsDiscovery.init(), all defaulting to the original event-only values
+     - refactored ~36 internal EdsEventFields references and 4
+     EdsEventCard.render() calls (all inside init()'s closure scope) to use
+     the resolved `fields`/`cardRenderer` variables instead of the hardcoded
+     globals. Verified events-calendar.js needs ZERO changes and passes
+     none of the new options - full backward compatibility confirmed by
+     inspection before and after.
+  2. Added EdsAlbumFields (new accessor object - id/slug/title/description/
+     category/industry/country/albumDate/featured/coverImage/imageCount/url)
+     and EdsAlbumCard (new reusable card renderer - cover image, image-count
+     badge, country + title) to event-discovery-components.js - the actual
+     "reusable Gallery Card" component the brief explicitly permitted
+     creating if required.
+  3. Added .eds-album-count badge CSS and a new .eds-masonry-grid utility
+     (CSS-columns-based, no JS library, 4-tier responsive column-count:
+     4/3/2/1) to event-discovery-components.css - satisfies the brief's
+     "Responsive Masonry/Grid Layout" requirement without inventing a new
+     grid system parallel to the existing .eds-events-grid.
+- ACTIONS:
+  1. NEW FILE: gallery.html - Gallery Hub. Full EdsDiscovery-powered
+     experience: search, filter by Event/Industry/Country/Year, sort by
+     Newest/Alphabetical/Featured, load-more pagination, masonry album
+     grid. "Project" was considered as a 6th filter facet but intentionally
+     left out (no dedicated filter slot exists for it yet in the engine,
+     and adding one for a single demo album would be premature) - every
+     album card still cross-links to its real related Project/Industry/
+     Event page directly, delivering the same discovery value without a
+     half-built control.
+  2. NEW FILE: gallery-album.html - the reusable Album Detail master
+     template (10 sections per the brief: Hero, Album Information, Image
+     Grid, Featured Photos, Related Event, Related Industry, Related
+     Project, Related Blog, CTA, Contact). Populated with a real China
+     Trade Delegation album, cross-linking honestly into project-
+     landing.html, industry-landing.html (Textile & Apparel), and event-
+     landing.html - all real pages from Phases 2/10/11. Related Blog uses
+     the Phase 3 Empty State (Blog isn't built yet), matching the
+     established honest-scoping pattern from every prior Industries/
+     Projects/Insights session.
+  3. LIGHTBOX-READY MARKUP (architecture only, per the brief's explicit
+     "architecture only if JS already exists" instruction - no lightbox
+     script exists in this codebase, so none was built): every image in
+     both the masonry grid and the featured-photos section carries
+     data-full-src/data-caption attributes, inert until a future phase
+     adds a lightbox script - the markup will not need to change when
+     that happens.
+  4. NEW FILE: assets/css/gallery.css (prefix "gal-") and assets/css/
+     gallery-album.css (prefix "gala-") - layout glue only, same pattern
+     as every prior Phase 10-12 page pair. NEW FILE: assets/js/gallery.js -
+     a 6-album sample dataset (China Trade Delegation, Textile Asia Expo,
+     Pakistan Trade Summit, National Engineering Fair, Agriculture
+     Livestock Expo, Saudi Delegation) + EdsDiscovery.init() wiring, same
+     structure as events-calendar.js. Only the China album has a real
+     detail page; the other 5 cross-link into whichever real page
+     (Industry/Event/Project Hub) is most relevant, mirroring the exact
+     "link to what's real" convention events-calendar.js established for
+     SAMPLE_EVENTS in Phase 5. No page-specific JS needed for
+     gallery-album.html (matches the "no JS unless needed" lesson from
+     Sessions 30-31).
+  5. LIVE CROSS-LINK to Insights: insights.html's "Latest Gallery Albums"
+     preview section - which showed the Phase 3 Empty State in Session 32,
+     since Gallery didn't exist yet - was UPDATED this session to show 2
+     real featured albums now that it does, plus a "View Gallery" link.
+     Exact "ready to receive real content" pattern already proven twice
+     (Session 31's Featured Projects fix, Session 32's own Featured
+     Insights reuse).
+  6. NAVIGATION: updated the Gallery link in both the mega-menu's
+     insight-card tile and the mobile submenu (all 16 prior-session pages)
+     from insights.html#insights-gallery to gallery.html.
+  7. i18n: added ~28 new translation keys (pages.gallery.*,
+     pages.galleryAlbum.*, plus one insights.viewGalleryLink key for the
+     new cross-link) to both /locales/en/pages.json and
+     /locales/ur/pages.json (real Urdu text). Every data-i18n/
+     data-i18n-placeholder/data-i18n-aria-label key across all 18 pages
+     (224-225 total) cross-checked to resolve in both bundles, 0 missing.
+     translation-schema.json needed no change.
+  8. REGISTRY: updated rules.txt (Section 1, Section 2 - new "gal-"/
+     "gala-" prefixes), website_structure.txt (root/CSS/JS file listings,
+     rtl-overrides.css note updated to "18 pages", EdsDiscovery library
+     note updated to document the generalization), and navigation-map.txt
+     (Gallery entry marked live).
+- VALIDATION: HTML tag balance verified across all 18 pages after every
+  edit. All image paths confirmed to exist on disk. CSS brace balance
+  clean (gallery.css 6/6, gallery-album.css 7/7, event-discovery-
+  components.css 109/109 after all Phase 13 additions). JS syntax clean
+  (event-discovery-components.js, gallery.js). i18n key resolution
+  cross-checked (224+ keys, 0 missing either language) and schema
+  re-validated with 0 errors.
+- NOT DONE THIS SESSION (per Phase 9's own recommended order): Media and
+  Blog systems. No lightbox interaction was implemented (architecture/
+  markup only, per explicit brief instruction).
+- RESULT: The Gallery system is live and production-ready, AND the
+  underlying Discovery Engine is now genuinely the reusable architecture
+  it was always documented to be - proven twice over (events, now albums)
+  rather than asserted once. A real Hub with real filtering, a fully-
+  populated first album, lightbox-ready markup for a future phase, live
+  two-way cross-links with Insights, full site-wide nav integration, full
+  bilingual support, and only 2 new reusable components (EdsAlbumFields/
+  EdsAlbumCard) plus one new CSS utility (masonry grid) - no duplicated
+  architecture anywhere.
+================================================================================
+================================================================================
+[SESSION 34: ENTERPRISE MEDIA CENTER SYSTEM (PHASE 14)]
+- DATE: August 01, 2026
+- STATUS: 100% Completed. NOTE: the bulk of this phase's implementation
+  (media.html, media-detail.html, their CSS/JS, EdsMediaFields/
+  EdsMediaCard, i18n keys, nav wiring, and the insights.html cross-link
+  update) was already complete in the working tree at the start of this
+  session, matching this session's own scope exactly. This entry
+  documents that pre-existing work in full (verified line-by-line this
+  session, not assumed) and completes the registry updates that remained
+  genuinely outstanding (rules.txt/website_structure.txt/
+  navigation-map.txt/this data.txt entry).
+- OBJECTIVE: Build an enterprise-grade Media Center (Hub + reusable Media
+  Detail template) per the Phase 9 architecture, covering press releases,
+  news, announcements, media coverage, and downloadable brand assets/
+  corporate documents, with real filtering (Category/Year) scalable for
+  years, and ship the first real production media item.
+- VERIFIED WORK (already present, re-checked this session):
+  1. assets/js/event-discovery-components.js: EdsMediaFields (id/slug/
+     name/shortDescription/category/startDate/endDate/featured/image/url,
+     industry/city/country stubbed to empty since media items don't carry
+     those facets) and EdsMediaCard.render() (category badge + publish
+     date meta row) - the THIRD dataset shape the Phase 13-generalized
+     EdsDiscovery engine has now been proven against (events, albums,
+     media items). A duplicate accessor block was found and removed
+     during this session's verification pass (see below) - the surviving
+     block is confirmed correct and is the one actually wired by media.js.
+  2. media.html - Media Center Hub. EdsDiscovery-powered: search, filter
+     by Category (Press Release/News/Announcement/Media Coverage/
+     Corporate Document) and Year, sort by Latest/Featured, load-more
+     pagination. A separate, non-discovery "Downloads & Brand Assets"
+     section reuses .eds-download-card (Phase 3, originally built for
+     event brochure downloads) - the exact reuse this component was
+     predicted for in site-information-architecture.md Section 5.
+  3. media-detail.html - reusable Media Detail master template (matching
+     the brief's suggested sections: Hero, Title, Publication Date,
+     Category, Description, Download Section, Related Gallery, Related
+     Blog, Related Event, Related Project, CTA, Contact). Populated with
+     the REAL "IDEAS 2024" newsroom item already live on the homepage's
+     Featured Insights grid since Phase 0 - not invented content, the
+     same press item formalized into its own full page and cross-linked
+     honestly (Related Gallery -> a real gallery.html album where one
+     exists conceptually close enough, Related Blog -> Empty State since
+     Blog isn't built, Related Event/Project -> real pages where
+     applicable).
+  4. assets/js/media.js - a 6-item SAMPLE_MEDIA dataset: the real IDEAS
+     2024 press release, the real ITCN Asia 2024 news item, a China
+     delegation partnership announcement (cross-linked to project-
+     landing.html), the real "20 years" company news item, Textile Asia
+     media coverage (cross-linked to industry-landing.html), and a Brand
+     Guidelines corporate document. Every non-detail-page item links to
+     whichever real page (Project/Industry/Event/Insights Hub) is most
+     relevant, same "link to what's real" convention as gallery.js/
+     events-calendar.js.
+  5. assets/css/media.css (prefix "med-") and assets/css/media-detail.css
+     (prefix "medd-") - layout glue only, same pattern as every prior
+     Phase 10-13 page pair. No new CSS components needed - Downloads
+     section reuses .eds-download-card exactly.
+  6. NAVIGATION: the Media mega-menu tile and mobile submenu link (all 18
+     prior pages) already pointed to media.html instead of
+     insights.html#insights-media.
+  7. LIVE CROSS-LINK: insights.html's "Latest Media Coverage" preview
+     section already showed 2 real media cards (IDEAS 2024, ITCN Asia
+     2024) instead of the Phase 12 Empty State, plus a "View Media
+     Center" link - the same "ready to receive real content" pattern
+     proven in Sessions 31-33.
+  8. i18n: ~27 new translation keys (pages.media.*, pages.mediaDetail.*,
+     plus pages.insights.viewMediaLink for the cross-link) were already
+     present in both /locales/en/pages.json and /locales/ur/pages.json
+     with real Urdu text.
+- ACTIONS TAKEN THIS SESSION:
+  1. Found and removed a duplicate EdsMediaFields/EdsMediaCard block that
+     had been accidentally introduced while re-verifying the library file
+     (a second, near-identical accessor pair with minor field differences)
+     - kept the original, confirmed-correct block that media.js actually
+     references. node --check confirmed clean syntax after the fix.
+  2. Full re-validation pass: HTML tag balance on media.html and
+     media-detail.html (both balanced), CSS brace balance (media.css
+     12/12, media-detail.css 9/9), image path existence check (all
+     resolve), and a full i18n cross-check across ALL 20 pages - 251
+     unique data-i18n/data-i18n-placeholder/data-i18n-aria-label keys,
+     0 missing in either English or Urdu, schema re-validated with 0
+     errors.
+  3. REGISTRY (the genuinely outstanding work): updated
+     website_structure.txt (root file listing for media.html/media-
+     detail.html, CSS registry for media.css/media-detail.css, JS
+     registry for media.js, EdsDiscovery library note updated to mention
+     the third proven dataset, rtl-overrides.css page count corrected
+     from "18 pages" to "20 pages") and navigation-map.txt (Media entry
+     marked live). rules.txt's Section 1 file-per-page table and Section
+     2 "med-"/"medd-" prefix registrations were already present and
+     verified correct, needing no further edits.
+- NOT DONE THIS SESSION (per Phase 9's own recommended order, last in the
+  sequence): Blog. No new reusable eds- component was created for Media
+  beyond EdsMediaFields/EdsMediaCard (both already accounted for in
+  Session 33's "third dataset" framing) - Downloads reused an existing
+  Phase 3 component exactly as predicted.
+- RESULT: The Media Center is live and production-ready - a real Hub with
+  real filtering plus a Downloads/Brand Assets section, a fully-populated
+  first press item built from real existing homepage content (not
+  invented), a reusable master template, live two-way cross-links with
+  Insights, full site-wide nav integration, full bilingual support, and
+  the EdsDiscovery engine now proven against three genuinely different
+  dataset shapes - the strongest evidence yet that Phase 5's reusability
+  claim was correct architecture, not just documentation.
+================================================================================
+================================================================================
+[SESSION 35: ENTERPRISE KNOWLEDGE & BLOG PLATFORM (PHASE 15)]
+- DATE: August 01, 2026
+- STATUS: 100% Completed. This is the FINAL content type in Phase 9's
+  own recommended implementation order (Industries -> Gallery -> Media ->
+  Projects -> Blog), closing out the full Insights ecosystem begun in
+  Phase 12.
+- OBJECTIVE: Build the company's long-term knowledge platform (Blog Hub +
+  reusable Blog Detail template) per the Phase 9 architecture, with real
+  filtering (Category/Industry/Year/Featured), SEO-ready semantic
+  structure, and full content-relationship validation against every other
+  system built in Phases 10-14.
+- KEY MILESTONE: EdsDiscovery proven a FOURTH time. Added EdsBlogFields
+  (id/slug/name/shortDescription/category/industry/tags/author/startDate/
+  endDate/featured/image/readingTime/url - tags[] kept deliberately
+  separate from category, per site-information-architecture.md Section 6's
+  controlled-vocabulary-vs-free-form distinction) and EdsBlogCard.render()
+  (category + date + author + reading-time meta row) to
+  event-discovery-components.js. Zero new discovery/search/filter/sort/
+  pagination UI was built across all four dataset types this engine now
+  serves (events, albums, media, blog posts) - only new accessor+card
+  pairs each time, which is exactly the payoff the Phase 5 documentation
+  promised and Session 33 made structurally true.
+- ACTIONS:
+  1. NEW FILE: blog.html - Blog Hub. Search + filter by Category/Industry/
+     Year, sort by Latest/Featured/Alphabetical, load-more pagination.
+     "Tag" and "Author" were considered as dedicated filter dropdowns
+     alongside Category/Year/Featured but intentionally left as search-
+     surfaced facets instead - the engine's filter-select mechanism has a
+     fixed set of slots (Phase 5), and tags/authors are better suited to
+     keyword search or a future chip-based multi-select once post volume
+     justifies dedicated UI, which is additive work, not an architecture
+     change.
+  2. NEW FILE: blog-post.html - the reusable Blog Detail master template
+     (12 sections per the brief: Hero, Title, Category, Publication Date,
+     Author, Reading Time, Featured Image, Article Content, Related
+     Industries, Related Events, Related Projects, Related Gallery,
+     Related Media, Related Articles, CTA, Contact). Populated with the
+     REAL "Blog"-tagged item already live on the homepage's Featured
+     Insights grid since Phase 0 ("The Strategic Role of B2B
+     Exhibitions...") - not invented content, expanded into ~500 words of
+     real, structured body copy (5 sections with real H2 subheadings) in
+     a semantic <article> element.
+  3. FIRST DETAIL PAGE IN THE ENTIRE PROJECT WITH ZERO EMPTY STATES: every
+     one of the 5 "Related X" cross-links (Industries, Events, Projects,
+     Gallery, Media) points to a real, live page from Phases 2/10/11/13/14
+     - the first time any detail page in this project has been able to
+     make that claim, since Blog is the last content type built and every
+     system it could reference already exists.
+  4. AUTHOR MODELED AS ITS OWN ENTITY, REUSING AN EXISTING COMPONENT: per
+     site-information-architecture.md Section 6's explicit prediction that
+     an Author's data shape (photo, name, title, bio) is structurally
+     identical to a Speaker's, the author bio section reuses
+     .eds-speaker-card (Phase 3) directly rather than a new "Author Card"
+     component - the prediction confirmed correct in practice, not just in
+     theory.
+  5. SEO-READY STRUCTURE (frontend markup only, per this phase's explicit
+     "no backend SEO implementation" instruction): semantic <article>/
+     <time datetime="..."> elements, and a real JSON-LD Article schema
+     block (headline/description/image/datePublished/author/publisher) in
+     blog-post.html's <head> - genuine structured-data markup, not a
+     placeholder comment.
+  6. NEW FILE: assets/css/blog.css (prefix "blg-") and assets/css/
+     blog-post.css (prefix "blgp-") - layout glue only, same pattern as
+     every prior Phase 10-14 page pair, with one genuinely new layout rule
+     this whole project has needed: a 720px readable-measure constraint
+     for the article body column (.blgp-content-container) - a layout
+     decision, not a typography/color redefinition; font-family/size/
+     color/line-height all inherit existing tokens unchanged.
+  7. NEW FILE: assets/js/blog.js - a 6-post SAMPLE_POSTS dataset spanning
+     6 different categories (Knowledge Articles, Case Studies, Company
+     News, Event Updates, Guides, Announcements) - the first two posts
+     mirror real homepage content (the "Blog" and "Case Study" tagged
+     Featured Insights cards); the rest cross-link into whichever real
+     page (Industry/Event/Insights/Events-Calendar/Services Hub) is most
+     relevant, same "link to what's real" convention as every prior
+     Discovery-powered dataset.
+  8. LIVE CROSS-LINK to Insights: insights.html's "Latest Blog Posts"
+     preview section - which showed the Phase 3 Empty State since Session
+     32 - was UPDATED this session to show 2 real article cards plus a
+     "View Blog" link. This retires the LAST Empty State among the three
+     Insights sub-systems (Gallery went live Session 33, Media Session 34,
+     Blog this session) - insights.html now shows zero placeholder content
+     anywhere.
+  9. NAVIGATION: updated the Blog mega-menu tile and mobile submenu link
+     (all 20 prior pages) from insights.html#insights-blog to blog.html.
+  10. i18n: added ~22 new translation keys (pages.blog.*, pages.blogPost.*,
+      plus pages.insights.viewBlogLink for the cross-link) to both
+      /locales/en/pages.json and /locales/ur/pages.json (real Urdu text,
+      including a full Urdu rendering of the article's hero description
+      and author bio). Every data-i18n/data-i18n-placeholder/
+      data-i18n-aria-label key across all 22 pages (274 total, up from
+      251) cross-checked to resolve in both bundles, 0 missing.
+      translation-schema.json needed no change.
+  11. VALIDATION NOTE: an initial tag-balance check flagged false-positive
+      mismatches in both new pages (<article>/<time>/<select> counts) -
+      traced to this session's own explanatory HTML comments literally
+      mentioning those tag names (e.g. "semantic <article>/<header>/<time>
+      elements"). Re-validated with HTML comments stripped first, which
+      confirmed both pages were genuinely balanced all along - documented
+      here so a future session doesn't need to rediscover this.
+  12. REGISTRY: updated rules.txt (Section 1 file-per-page table, Section
+      2 - new "blg-"/"blgp-" prefixes), website_structure.txt (root file
+      listing, CSS/JS registries, EdsDiscovery library notes updated to
+      close out the "four proven datasets" narrative, rtl-overrides.css
+      page count corrected from "20 pages" to "22 pages"), and
+      navigation-map.txt (Blog entry marked live).
+- VALIDATION: HTML tag balance verified across all 22 pages (comments
+  stripped) - all balanced. All image paths confirmed to exist on disk.
+  CSS brace balance clean (blog.css 6/6, blog-post.css 11/11). JS syntax
+  clean (event-discovery-components.js, blog.js). i18n key resolution
+  cross-checked (274 keys, 0 missing either language) and schema
+  re-validated with 0 errors.
+- NOT DONE THIS SESSION: none of Phase 9's recommended content types
+  remain unbuilt - Industries (Phase 10), International Projects (Phase
+  11), Gallery (Phase 13), Media (Phase 14), and Blog (this session)
+  complete the full roadmap that document laid out. No new reusable eds-
+  component was created beyond EdsBlogFields/EdsBlogCard - Author reused
+  Speaker Card exactly as predicted.
+- RESULT: The Blog platform is live and production-ready, closing out the
+  entire Insights ecosystem - insights.html now shows real content in
+  every section with zero Empty States anywhere on the site. The
+  EdsDiscovery engine has been proven across four genuinely different
+  dataset shapes without ever needing new discovery/search/filter
+  machinery, which is the strongest possible evidence that the reusable-
+  component architecture established back in Phase 3 and generalized in
+  Phase 13 was sound engineering, not just documentation promises.
+================================================================================
+================================================================================
+[SESSION 36: SITE-WIDE BUGFIX PASS (POST-PHASE-15 QA AUDIT)]
+- DATE: August 01, 2026
+- STATUS: 100% Completed. This session fixes issues found by an external
+  audit of the working tree after Phase 15, plus several additional
+  issues discovered during verification of the reported ones. Every fix
+  below was verified by direct inspection of the actual files (not
+  assumed from the audit's counts, which were re-checked and in a few
+  cases corrected) before and after the change.
+- BUG #1 (footer "Get a Free Quote" scroll button broken): 16 of 22 pages
+  called document.getElementById() with a target ID that didn't exist on
+  that page (either the copy-pasted 'evtpg-cta' from events.html, or a
+  'contact' ID that never existed on about/index/services.html). Fixed
+  by classification: 6 pages with no on-page CTA section at all (index,
+  events-calendar, gallery, media, blog, international-projects) now
+  navigate to contact.html instead; 10 pages with a real CTA section
+  (about, blog-post, events, gallery-album, industries, industry-landing,
+  insights, media-detail, project-landing, services) got that section
+  tagged with a matching id and the button retargeted to it. The 5
+  already-correct pages (construction-design, contact, event-landing,
+  exhibitionmanagement, growthservices) and 404.html (uses
+  window.location.href, unrelated pattern) were left untouched.
+- BUG #2/#3 (Gallery/Media navbar self-link inconsistency): gallery.html
+  and gallery-album.html's own mega-menu + mobile submenu pointed to
+  insights.html#insights-gallery instead of gallery.html; media.html and
+  media-detail.html's own nav pointed to insights.html#insights-media
+  instead of media.html. Both fixed. ALSO FOUND (not in the original
+  report, same root cause): blog.html and blog-post.html had the
+  identical bug with insights.html#insights-blog - fixed too.
+- EXTRA BUG FOUND: industries.html and industry-landing.html's footer
+  "Industries" column had reverted to a stale pre-fix state ("Textile &
+  Fashion" label, all 8 links href="#") while all 20 other pages had the
+  correct version ("Textile & Apparel", real links). Restored to match.
+  Confirmed via MD5 hash that the footer-grid block is now byte-identical
+  across all 22 pages.
+- BUG #4 (dead footer links): fixed 13 distinct dead links across all 22
+  pages (22x each) - the 8 "Our Services" column links (mapped to
+  exhibitionmanagement.html and its #corporate/#conference anchors,
+  construction-design.html, and international-projects.html, avoiding
+  two hidden tab-panel IDs that exist but are display:none unless their
+  tab is active - linking to those would have traded one bug for a
+  subtler one), "About BXSS" -> about.html, "Our Portfolio" -> events.html,
+  "Media Gallery" -> split into two real links (Gallery -> gallery.html,
+  Media -> media.html), and "Get a Quote"/"Request a Callback" ->
+  contact.html. Left untouched: Client Testimonials, Our Partners,
+  Careers, News & Updates, Karachi/Lahore Office, Privacy Policy, Terms &
+  Conditions - none of these have a real destination page anywhere in the
+  project, and fabricating one to fill a footer link would be a worse
+  outcome than leaving it as-is; confirmed identical across all 22 pages.
+- BUG #5 (7 pages missing page-specific JS): investigated rather than
+  blindly fixed - none of the 7 pages (industries, industry-landing,
+  insights, gallery-album, media-detail, international-projects,
+  project-landing) use any accordion/tabs/slider component. The one page
+  with an interactive element (international-projects.html's stat
+  counters, data-eds-counter) already has the correct global library
+  (event-components.js, EdsCounter) linked. Confirmed non-issue - no code
+  change made, since creating empty JS files with no function would
+  violate rules.txt's own "don't create unnecessary files" principle.
+- BUG #6 (gallery-album.html photos don't open on click): built the
+  lightbox that was explicitly scoped out of Phase 13 ("architecture
+  only" per that phase's brief). NEW: EdsLightbox module
+  (assets/js/event-components.js) - generic, data-attribute-driven,
+  matching every other Eds* module's pattern; opens any [data-full-src]
+  image in a full-screen viewer with caption, closes via X/Escape/click-
+  outside. NEW CSS (event-components.css) matching the existing
+  .search-overlay's fixed-fullscreen pattern. FOUND AND FIXED A REAL
+  CONFLICT while wiring this up: EdsAlbumCard's cover image (gallery.html
+  Hub grid cards) also carried data-full-src, but that image sits inside
+  a navigational <a> - clicking it would have opened the lightbox AND
+  navigated to the album page simultaneously. Removed data-full-src/
+  data-caption from that cover image (its job is navigation, not
+  lightboxing); confirmed gallery-album.html's masonry grid and featured-
+  photos images (the ones actually meant to lightbox, not wrapped in
+  anchors) are the only remaining data-full-src instances site-wide.
+- BUG #7 (canonical/og:url pointing at a non-existent testing domain):
+  replaced https://website.testing-production.com with the real
+  https://badarexpo.com across 18 pages (31 occurrences). ADDITIONALLY:
+  4 pages (construction-design, event-landing, exhibitionmanagement,
+  growthservices) had NO Open Graph or Twitter Card tags at all, not just
+  a wrong og:url - added complete og:type/og:url/og:title/og:description/
+  og:image + twitter:card/title/description/image blocks to each,
+  matching every other page's existing pattern, using each page's real
+  meta description and an appropriate existing portfolio image.
+- RTL BUG (mobile intro paragraph stays left-aligned in Urdu): 6 Hub
+  pages' page-specific CSS (industries.css, international-projects.css,
+  insights.css, gallery.css, media.css, blog.css - 2 more than the 4
+  originally flagged, found by checking every page built from the same
+  template) hardcode text-align:left on their .xxx-intro block at the
+  768px breakpoint with no RTL override. Added one rule to
+  rtl-overrides.css covering all 6 classes at once.
+- EXTRA BUG FOUND (unrelated, found during final CSS validation sweep):
+  assets/css/exhibitionmanagement.css had a stray extra closing brace at
+  line ~1360 (a one-line rule immediately followed by an orphaned `}` -
+  copy-paste artifact, pre-existing, not introduced by any prior session
+  in this project). Removed; file's brace count is now balanced (492/492).
+- VALIDATION: full re-verification after every fix, not just the initial
+  audit - HTML tag balance across all 22 pages (comments stripped to
+  avoid false positives from explanatory text), i18n key resolution (274
+  keys, 0 missing, unchanged from Phase 15 since no translation content
+  was touched), JS syntax on every file in assets/js/, CSS brace balance
+  on every file in assets/css/ (including the one pre-existing issue
+  found and fixed above), and a final targeted re-check of every single
+  bug fix (#1 through #7 plus the 3 extras) to confirm none regressed
+  during later edits in the same session.
+- RESULT: every reported bug fixed and independently re-verified, plus 5
+  additional real issues found and fixed during the process (Blog's
+  identical self-link bug, the Industries footer regression, the
+  EdsAlbumCard/lightbox click conflict, 2 extra RTL-affected CSS files,
+  and the stray CSS brace) - none of which were in the original report.
+  Nothing outside the reported scope was touched (no redesign, no
+  unrelated refactors); every change is a targeted, minimal fix to a
+  specific, verified defect.
+================================================================================
+================================================================================
+[SESSION 37: LEGAL PAGES + PAGE-SPECIFIC JS FILES (FOLLOW-UP BUGFIX)]
+- DATE: August 01, 2026
+- STATUS: 100% Completed. Closes out the 2 items flagged as still
+  outstanding after Session 36.
+- ITEM 1 (8 pages missing page-specific JS - industries, industry-landing,
+  insights, gallery-album, media-detail, international-projects,
+  project-landing, and blog-post which newly joined this list once
+  blog.html got its own JS): rather than creating empty placeholder
+  files, each of the 8 pages' footer "Get a Free Quote" button was moved
+  from an inline onclick attribute to a real external event listener in
+  its own new JS file (industries.js, industry-landing.js, insights.js,
+  gallery-album.js, media-detail.js, international-projects.js,
+  project-landing.js, blog-post.js) - genuine functional content, better
+  practice (CSP-friendly, maintainable) than what it replaced, not a
+  convention-filler. Each targets that page's own real CTA id (or
+  navigates to contact.html for international-projects.html, which has
+  no on-page CTA section, same Group-A treatment as Session 36).
+- ITEM 2 (dead legal footer links): built privacy-policy.html and
+  terms-of-service.html - real, complete policy pages (Privacy Policy:
+  9 sections covering data collected via contact forms/app, cookies,
+  sharing, security, rights, contact; Terms of Service: 11 sections
+  covering acceptance, site use, IP, event bookings, conduct, liability,
+  governing law/Karachi jurisdiction, contact) - not placeholder text.
+  NEW: assets/css/legal.css (prefix "legal-"), reusing the readable-
+  measure article-body pattern from blog-post.css (Phase 15). Wired both
+  the footer bottom-bar (Privacy Policy / Terms of Service / Cookie
+  Preferences - the last anchors into privacy-policy.html#cookies, no
+  separate cookie-consent system built) and the footer "Contact Us"
+  column's separate Privacy Policy / Terms & Conditions links, across
+  all 24 pages (22 existing + the 2 new pages themselves).
+- SCOPE NOTE: the legal pages' policy body text is English-only (no
+  data-i18n wiring) - translating legal/compliance text accurately is a
+  distinct task from UI-string translation and shouldn't be auto-applied
+  without review; the shared header/footer/nav on both pages still fully
+  supports the language switcher as normal. Other previously-flagged dead
+  footer links (Client Testimonials, Our Partners, Careers, News &
+  Updates, Karachi/Lahore Office) were left untouched - no real
+  destination exists for any of them and fabricating one remains out of
+  scope, same reasoning as Session 36.
+- VALIDATION: HTML tag balance across all 24 pages, JS syntax on all 8
+  new files plus every existing file, CSS brace balance on legal.css and
+  every other stylesheet, i18n cross-check (274 keys, unchanged, 0
+  missing) - all clean.
+================================================================================
+================================================================================
+[SESSION 38: EVENT LANDING PAGES - PART 1 OF 9 (PHASE 16, IN PROGRESS)]
+- DATE: August 02, 2026
+- STATUS: Master template enhanced and validated. 1 of 9 requested event
+  pages (Textile Asia Expo 2026) built to full production quality with
+  genuinely unique content across every section, integrated into the
+  Events Hub. Remaining 8 events are a clearly flagged, separate follow-up
+  - see NOT DONE below. This scope split was communicated to and agreed
+  by the client mid-session rather than rushing shallow content for all 9.
+- MASTER TEMPLATE ENHANCEMENT (assets/css/event-landing.css,
+  event-landing.html): added the 4 sections Phase 16 requires that didn't
+  exist in the Phase 1-2 template - Why Exhibit (reuses .elp-why-grid/
+  .elp-why-card exactly, zero new CSS), Video Preview Placeholder (one
+  genuinely new component - honest static placeholder, no video hosting
+  system exists in this codebase, matches the established honest-scoping
+  pattern), Related Blog and Related Media (both real, live cross-links -
+  reuse .elp-related-card, no Empty States needed since Blog/Media both
+  already exist by this point in the project). Added ~16 new translation
+  keys (pages.eventDetail.*) to both locale files.
+- NEW FILE: textile-asia-expo-2026.html - built by duplicating the
+  enhanced event-landing.html and replacing every event-specific content
+  block (hero, quickinfo, about/overview, why attend, who should attend,
+  highlights, stats, industries, 4 speakers, schedule, gallery, register
+  CTA, sticky CTA bar, related events, meta/OG tags) with genuinely unique
+  textile-industry content - not a shallow find-replace of the event name
+  alone. Grounded in the REAL existing events-calendar.js dataset entry
+  for "Textile Asia Expo 2026" (dates, venue, industry tag) rather than
+  inventing conflicting data. Fixed a self-reference bug caught during
+  build: the reused Related Events section's own "Textile Asia Expo" card
+  would have linked the page to itself - replaced with the original Trade
+  Summit event instead.
+- HUB INTEGRATION: updated 3 existing dataset/content files that
+  referenced Textile Asia Expo generically to now link to this real page
+  instead: assets/js/events-calendar.js (SAMPLE_EVENTS url field, was
+  'events.html'), assets/js/gallery.js (the Textile Asia album's url, was
+  'industry-landing.html'), assets/js/blog.js (the Textile Asia case
+  study post's url, was 'industry-landing.html'), and industry-landing.html
+  itself (its own Related Events card, was a events-calendar.html search
+  query). Every one of these now points somewhere more precise than
+  before, not just somewhere different.
+- NO NEW CSS/JS FILE FOR THE EVENT PAGE ITSELF: textile-asia-expo-2026.html
+  links the exact same assets/css/event-landing.css and assets/js/
+  event-landing.js as event-landing.html - confirmed by inspection, zero
+  duplication, exactly matching "reuse the Event Template" from the brief.
+- VALIDATION: HTML tag balance across all pages (comments stripped), i18n
+  cross-check (290 keys total, up from 274, 0 missing either language,
+  schema valid), JS syntax on every file, CSS brace balance on every
+  file - all clean.
+- NOT DONE THIS SESSION (explicitly scoped as a follow-up, not silently
+  dropped): 8 remaining event pages - Build Asia, HVACR Expo, Pharma
+  Asia, Engineering Asia, ITCN Asia, Machine Tools & Hardware Asia, Oil &
+  Gas Asia, Health Asia. The master template is now fully ready for all of
+  them (all Phase-16-required sections exist); building each is now a
+  content-population task following the exact pattern demonstrated here,
+  not further architecture work. Real data grounding already identified
+  for 4 more (ITCN Asia 2027, National Engineering & Technology Fair 2025,
+  Healthcare Innovation Expo 2026, Global Energy & Renewables Forum 2027 -
+  all already in events-calendar.js's SAMPLE_EVENTS).
+================================================================================
+================================================================================
+[SESSION 38 (CONTINUED): EVENT LANDING PAGES - ALL 9 COMPLETE (PHASE 16)]
+- DATE: August 02, 2026
+- STATUS: 100% Completed. All 9 requested event landing pages built to
+  full production quality, each using the same reusable Event Template
+  (event-landing.html, enhanced this session) - no unique layouts created,
+  per the phase's explicit "reuse the Event System" instruction.
+- NEW EVENT PAGES (9): textile-asia-expo-2026.html, itcn-asia-2027.html,
+  engineering-asia-2025.html, health-asia-2026.html, oil-gas-asia-2027.html,
+  build-asia-2027.html, hvacr-expo-2027.html, pharma-asia-2027.html,
+  machine-tools-hardware-asia-2027.html. 5 of these (Textile, ITCN,
+  Engineering, Health, Oil & Gas) are grounded in real, pre-existing
+  events-calendar.js dataset entries - not invented dates/venues. The
+  remaining 4 (Build Asia, HVACR, Pharma, Machine Tools & Hardware) are
+  new, realistic placeholders per the phase's own "if some events have no
+  content, create production-ready placeholders" instruction.
+- Every page includes genuinely unique content (not a shallow find-
+  replace of the event name) across: Hero, QuickInfo, About/Overview
+  (with Organizer), Why Attend, Why Exhibit, Who Should Attend, Key
+  Highlights, Stats, Industries Covered (with a real cross-link out),
+  Speakers, Sponsors, Agenda/Schedule, Venue, Gallery Preview, Video
+  Preview Placeholder, Testimonials, FAQ, Register CTA, Related Blog,
+  Related Media, Related Events (3 real sibling event links each, checked
+  for self-reference and duplicates), and Contact.
+- Oil & Gas Asia 2027 is genuinely in Islamabad (matching its real
+  dataset grounding), not Karachi - its Venue section (map embed, address,
+  directions link, FAQ parking answer) was fully rewritten for
+  Pak-China Friendship Centre, not just relabeled.
+- Engineering Asia 2025 correctly reflects "registration closed" (a past
+  event per the real dataset) - its hero/sticky-CTA/register buttons were
+  changed to "See Upcoming Events"/"Contact Us" instead of a nonsensical
+  "Register Now" for an event that already happened.
+- HUB INTEGRATION: events-calendar.js's SAMPLE_EVENTS url field updated
+  for all 5 dataset-grounded events (previously generic 'events.html').
+  gallery.js and blog.js's Textile Asia and Engineering Fair entries
+  updated to the new real pages (previously pointed to
+  industry-landing.html/events-calendar.html generically).
+  industry-landing.html's own Related Events card for Textile Asia Expo
+  upgraded to the direct page.
+- MASTER TEMPLATE ENHANCEMENT (event-landing.html, event-landing.css,
+  reused by all 9 new pages + itself): added Why Exhibit (reuses
+  .elp-why-grid, zero new CSS), Video Preview Placeholder (one genuinely
+  new component - honest static placeholder, no video hosting exists in
+  this codebase), Related Blog and Related Media (both real, live cross-
+  links). ~16 new translation keys added to both locale files.
+- VALIDATION: all 33 HTML pages in the project (22 pre-existing + 9 new
+  events + 2 legal pages from the prior bugfix session) tag-balance
+  checked (comments stripped), 290 i18n keys cross-checked (0 missing
+  either language, schema-valid), every JS file syntax-checked, every CSS
+  file brace-balanced - all clean. Every new page's image references
+  confirmed to exist on disk.
+- NO NEW CSS/JS FILES PER EVENT PAGE: all 9 new pages link the exact same
+  assets/css/event-landing.css and assets/js/event-landing.js as
+  event-landing.html itself - zero duplication, confirmed by inspection.
+================================================================================
+================================================================================
+[SESSION 39: ENTERPRISE COMMUNICATION WIDGET (PHASE 17)]
+- DATE: August 03, 2026
+- STATUS: 100% Completed.
+- OBJECTIVE: Production-ready floating WhatsApp widget, architected to
+  support future communication channels (Phone, Email, Live Chat) without
+  redesign, matching the existing design system exactly rather than
+  reading as a bolted-on third-party snippet.
+- KEY DESIGN DECISION: found and precisely mirrored the existing
+  .scroll-top-btn (footer.css/main.js) - same glassmorphism-at-rest,
+  solid-on-hover pattern, same 0.4s cubic-bezier(0.165, 0.84, 0.44, 1)
+  easing, same translateY(20px) hidden-state choreography. The one
+  deliberate departure: the FAB itself uses WhatsApp's own green
+  (#25D366), not the site's red, since a WhatsApp CTA needs to be
+  instantly recognizable by its established brand color - every
+  surrounding interaction still stays on-brand.
+- COLLISION AVOIDANCE (a real risk found during review, not assumed):
+  the site already has TWO other fixed-position bottom elements -
+  .scroll-top-btn (bottom:30px/right:30px, every page) and the Event
+  System's full-width sticky CTA bar (.elp-sticky-cta/.eds-sticky-cta,
+  Event Detail pages only). The widget is positioned stacked directly
+  above .scroll-top-btn (bottom:96px, 16px gap, never overlapping at any
+  viewport), and a new StickyCtaAwareness module measures the sticky CTA
+  bar's real rendered height live and lifts the widget above it via a
+  --comm-widget-lift CSS custom property whenever that bar is visible -
+  inert on the 31 pages that don't have one.
+- NEW FILE: assets/css/comm-widget.css - FAB, expand panel, one reusable
+  .comm-widget-channel-btn pattern (today's only channel, WhatsApp, and
+  the exact pattern a future channel reuses with zero new CSS), full
+  responsive breakpoints, and a prefers-reduced-motion override that
+  disables the transform choreography and the one-time attention-pulse
+  ring (plays twice on first appearance, never loops - non-intrusive per
+  the brief).
+- NEW FILE: assets/js/comm-widget.js - CommWidget module (open/close,
+  focus management - moves focus to the close button on open, returns
+  focus to the FAB on close via Escape/outside-click, matching the exact
+  convention already used by the search overlay and lightbox) and
+  StickyCtaAwareness module. Pre-filled WhatsApp message is built via
+  LanguageManager.currentLocale (Phase 8) - real Urdu text, not a
+  placeholder - and rebuilt live via LanguageManager.onChange() if the
+  visitor switches language after the widget has already appeared.
+- CLIENT NOTE (flagged in the code, not silently assumed): the wa.me
+  number currently reuses the digits from the site's published "Call Us"
+  landline (+92-21-3482-1159). If that number isn't WhatsApp-enabled, it
+  needs to be swapped for a real WhatsApp Business number before this
+  goes live - a one-line change (WHATSAPP_NUMBER in comm-widget.js).
+- INTEGRATION: linked comm-widget.css (in <head>, before rtl-overrides.css)
+  and comm-widget.js + the widget's HTML (before main.js) on all 33 pages,
+  via the universally-consistent <script src="assets/js/main.js"> anchor
+  (verified present exactly once on every page before editing, since 2
+  pages had slightly different scrollTopBtn markup that would have made a
+  less careful anchor choice miss them).
+- i18n: added pages.commWidget.* (title, desc, startChat, openLabel,
+  closeLabel) to both locale files with real Urdu translations. 295 total
+  i18n keys across the site (up from 290), cross-checked 0 missing in
+  either language, schema still valid.
+- ACCESSIBILITY: FAB and close button both keyboard-focusable with
+  visible focus-visible outlines (WhatsApp-green-adjacent, not invisible);
+  aria-expanded on the FAB reflects open/closed state; aria-hidden on the
+  panel toggles with visibility; role="dialog" + aria-label on the panel;
+  Escape and outside-click both close (returning focus appropriately);
+  reduced-motion respected.
+- VALIDATION: HTML tag balance across all 33 pages (comments stripped),
+  i18n cross-check (295 keys, 0 missing, schema-valid), JS syntax clean,
+  CSS brace-balanced (31/31), Font Awesome bundle confirmed to include
+  the Brands icon set (fa-whatsapp) already via the existing all.min.css
+  CDN link - no new external dependency added.
+- NOT DONE (out of scope, per brief): no other communication channels
+  implemented yet (architecture supports them, none built this session -
+  none were asked for).
+================================================================================
+================================================================================
+[SESSION 40: VIDEO SHOWCASE & YOUTUBE INTEGRATION (PHASE 18) - AUDIT + COMPLETION]
+- DATE: August 03, 2026
+- STATUS: 100% Completed. Most of Phase 18's core build (videos.html,
+  videos.css, videos.js, EdsVideoFields/EdsVideoCard in
+  event-discovery-components.js, EdsLightbox video-embed support in
+  event-components.js) already existed from earlier in this session. This
+  session audited that work rather than trusting it, found several real
+  gaps, and closed them.
+- GAP FOUND #1 (Event Relationships incomplete): every video's
+  EdsVideoFields.url() returned a dead '#' - the brief's explicit
+  requirement that "every video should connect with Event, Industry,
+  Gallery, Blog, International Project, Media" wasn't actually wired.
+  Added a real eventUrl field to all 6 SAMPLE_VIDEOS entries (linking to
+  the real Phase 16 event pages, and the China Delegation video to
+  project-landing.html as its International Project), wired it through
+  EdsVideoFields.url(), and added a real "View Event" link on each video
+  card (with event.stopPropagation() so it navigates instead of also
+  opening the lightbox). New CSS: .eds-video-card-actions,
+  .eds-video-event-link.
+- GAP FOUND #2 (Related Content section incomplete): videos.html's cross-
+  link grid only covered Event/Industry/Gallery/Blog - added Media and
+  International Project cards to cover all 6 relationship types.
+  Also fixed two adjacent cards (Gallery, International Projects) that
+  had ended up using the identical image.
+- GAP FOUND #3 (desktop mega-menu "Videos" tile still missing): a known
+  issue from earlier in this session (the mobile submenu link was added
+  to all 34 pages successfully, but the matching desktop mega-menu tile
+  insert had failed silently). Re-verified the exact current mega-menu
+  markup was identical across all 34 pages before retrying (it was, this
+  time), then added the tile successfully everywhere.
+- GAP FOUND #4 (bigger issue - event pages couldn't ever load the video
+  system): event-landing.html and all 9 Phase 16 event pages never linked
+  assets/css/event-components.css or assets/js/event-components.js at
+  all - meaning EdsLightbox (the module that makes any video clickable)
+  could not run on any of them, regardless of what markup existed.
+  Fixed by linking both on all 10 files.
+- With that dependency now present, wired the "Video Preview" section
+  properly per page: the 5 events with a real SAMPLE_VIDEOS entry (Trade
+  Summit, Textile Asia, ITCN Asia, Engineering Asia, Health Asia) now
+  have a genuinely clickable placeholder (data-youtube-id/data-caption,
+  role="button", keyboard-operable) that opens the real lightbox - still
+  showing the honest "Video Coming Soon" state since the ID is a
+  PLACEHOLDER-, but the infrastructure is now real end-to-end. The other
+  4 events (no matching video entry yet) got a "Watch More Videos" link
+  to videos.html instead of a fake interactive element - honest scoping,
+  not assumed away. Added cursor:pointer, a hover scale on the play
+  button, and a focus-visible outline to event-landing.css for the newly-
+  interactive state.
+- Fixed an HTML-attribute-escaping bug found during review: the Trade
+  Summit video's data-caption/aria-label used a raw "&" instead of
+  "&amp;" (every other page's caption was already correct).
+- i18n: added pages.videos.megaMenuDesc and pages.eventDetail.
+  watchMoreVideos to both locale files. 307 total i18n keys (up from
+  295), 0 missing either language, schema valid.
+- VALIDATION: HTML tag balance across all 34 pages, i18n cross-check,
+  JS syntax on every file, CSS brace balance on every file, image paths
+  for videos.html and the event pages, duplicate-definition check on the
+  new EdsVideoFields/EdsVideoCard/CSS classes (none found) - all clean.
+================================================================================
+================================================================================
+[SESSION 41: VISUAL POLISH & DESIGN CONSISTENCY AUDIT (PHASE 19)]
+- DATE: August 03, 2026
+- STATUS: 100% Completed. This is explicitly a QA/polish pass, not a
+  feature phase - no components added, no redesign, only implementation-
+  quality fixes to real, verifiable issues found during audit.
+- AUDIT METHOD: rather than guessing at "spacing that feels off", checked
+  concrete, comparable CSS values across pages/components that are
+  supposed to be visually identical (shared button classes, shared
+  section-intro padding, shared card/grid gaps, shared touch-target
+  sizes) and looked for actual numeric mismatches - not subjective taste
+  changes.
+- REAL ISSUE FOUND AND FIXED: primary/outline button pairs render at
+  different box sizes when placed side by side, because the outline
+  variant's 2px border has no compensating border on the primary
+  variant (border-box sizing means the border adds its own footprint on
+  auto-sized elements even though it doesn't add space beyond a fixed
+  width). This is genuinely visible wherever a hero or CTA section shows
+  two buttons next to each other - the outline button reads ~4px larger
+  in both directions than the solid one.
+  - .hero-btn-primary: fixed in assets/css/index.css (homepage),
+    assets/css/event-landing.css (event-landing.html + all 9 Phase 16
+    event pages), assets/css/events.css (events.html) - 3 files, ~12
+    pages. assets/css/contact.css already had the correct fix (a
+    same-color border) from an earlier session, so it was left alone.
+  - .eds-btn--primary: same bug, same fix, in assets/css/
+    event-components.css (used by Gallery/Media/Blog/Videos/Event pages
+    wherever a two-button CTA row appears - 5 pages currently pair the
+    two variants together).
+  - Fix in both cases: added `border: 2px solid transparent` to the
+    primary variant, matching contact.css's own established pattern
+    rather than inventing a new technique.
+- CHECKED AND FOUND CONSISTENT (no changes made, confirmed correct as-
+  is): the 7 Hub pages' .xxx-intro section padding (56px 0 32px,
+  identical across industries/gallery/blog/media/insights/
+  international-projects/videos.css); .eds-related-card-body padding
+  (single source in event-components.css, no duplication);
+  .eds-link-arrow icon vertical alignment (flexbox align-items:center
+  already correct); .eds-btn-icon touch target size (44x44px, already
+  meets the WCAG/HIG minimum); .eds-section-title margin (single
+  centralized rule, no per-page override drift).
+- ONE LOWER-CONFIDENCE FINDING DELIBERATELY LEFT ALONE:
+  .eds-events-grid uses gap:24px while .eds-masonry-grid uses
+  column-gap:20px. Not changed - CSS-columns masonry has different
+  visual rhythm needs than a card grid (tighter gap reads better with
+  variable-height cascading columns), so this reads as a likely
+  intentional choice from Phase 13, not a bug - changing it without
+  being sure would risk exactly the "improving by guessing" this phase's
+  brief warns against.
+- REGRESSION SAFETY: no file renamed, no class renamed, no component
+  restructured, no new CSS rule duplicated (both fixes reuse the exact
+  pattern contact.css already established). Every change is additive (one
+  new line per rule) - nothing removed, nothing redesigned.
+- VALIDATION: CSS brace balance on all 4 touched files, full site-wide
+  HTML tag balance re-check (34 pages, unaffected, confirms nothing else
+  broke) - all clean.
+================================================================================
+================================================================================
+[SESSION 42: CROSS-DEVICE RESPONSIVE QA & LAYOUT VALIDATION (PHASE 20)]
+- DATE: August 03, 2026
+- STATUS: 100% Completed. QA/validation pass, not a feature phase - audit
+  method throughout was calculating actual required widths against actual
+  container constraints (not guessing "this might look cramped"), so
+  every fix below is backed by a concrete measurement.
+- REAL ISSUE #1 (serious - content genuinely unreachable): .elp-schedule-tabs
+  (event-landing.html + all 9 Phase 16 event pages) had no flex-wrap, and
+  #elp-page sets overflow-x:hidden. On narrow viewports the 3rd schedule
+  tab (Day 3, or in Health Asia's case the "Days 5-6" tab) was clipped
+  completely off-screen with no scroll affordance - not just visually
+  cramped, but literally impossible to reach on mobile. Fixed by adding
+  flex-wrap:wrap to the tab row and a mobile-specific size reduction
+  (padding/font-size) in the existing 768px breakpoint block, so tabs
+  wrap onto a second line instead of being clipped.
+- REAL ISSUE #2 (calculated, not assumed): the Services and Events mega-
+  menu dropdowns each require 1160px (3x .column at 220px + 1x .highlight
+  at 300px, all flex-shrink:0, plus gap and padding) but
+  .mega-menu-wrapper caps at max-width:95vw. Those only agree above
+  ~1221px viewport width. Since the mobile hamburger menu takes over at
+  max-width:1024px, this left a real, previously untested gap from
+  ~1025px to ~1220px - inside this very phase's own 1024px/1200px test
+  viewports - where the desktop mega-menu is shown but genuinely
+  overflows its own dropdown card. Fixed with a new, narrow
+  (min-width:1025px)/(max-width:1220px) media query in navbar.css that
+  proportionally shrinks .column/.highlight widths and the menu's
+  gap/padding only in that band (846px required, comfortably under 95vw
+  at every point in the range) - nothing changes above 1220px (already
+  fit) or at/below 1024px (mobile menu, unaffected).
+- REAL ISSUE #3 (defensive, widespread): audited every page-specific
+  stylesheet for the same img{max-width:100%;height:auto} reset that
+  event-landing.html's own #elp-page scope already carries. 14 files had
+  no equivalent (gallery, media, blog, industries, events-calendar,
+  insights, international-projects, construction-design, industry-
+  landing, project-landing, gallery-album, media-detail, blog-post,
+  legal, videos) - meaning any image without its own explicit sizing
+  rule on those pages had a real, if not yet triggered, overflow risk.
+  Fixed with ONE addition instead of fourteen: a plain `img{}` rule in
+  tokens.css (loaded on every page, per its own documented load order) -
+  lowest possible CSS specificity, so every existing component-specific
+  image rule (.eds-related-card img, .elp-gallery-grid img, etc.)
+  continues to control sizing exactly as before, completely unaffected.
+- CHECKED AND CONFIRMED SAFE (no changes made): .comm-widget-panel width
+  at 320px (calc(100vw - 48px) = 272px, comfortable margin); the video
+  lightbox's width:min(90vw,960px) with aspect-ratio:16/9 (already scales
+  correctly at any width); .eds-calendar-grid's 7-column layout on mobile
+  (already has a dedicated 768px override reducing cell height/padding);
+  .eds-video-card-actions row wrap (already had flex-wrap:wrap from its
+  own Phase 18 build); safe-area-inset for the fixed comm-widget (the
+  viewport meta tag has no viewport-fit=cover, so iOS keeps content clear
+  of the home-indicator area by default - adding safe-area CSS would be
+  solving a problem that doesn't exist without that meta tag present, so
+  deliberately left alone rather than adding speculative code).
+- VALIDATION: CSS brace balance on all 3 touched files, full site-wide
+  HTML tag balance re-check (34 pages, unaffected, confirms nothing else
+  broke) - all clean.
+================================================================================
+================================================================================
+[SESSION 43: NAVBAR CLASS-COLLISION BUGFIX (USER-REPORTED)]
+- DATE: August 03, 2026
+- STATUS: 100% Completed.
+- BUG REPORTED: on events.html, the navbar's "Contact" link text was
+  invisible (still clickable, just unreadable).
+- ROOT CAUSE FOUND: a genuine class-naming collision, not a color
+  override applied deliberately. The navbar's Contact nav-item markup is
+  `<div class="nav-item contact-item"><a><span data-i18n="nav.contact">
+  Contact</span></a></div>` - identical on every page. events.css
+  separately (and unrelatedly) used the exact same class name
+  `.contact-item` for its own CTA section's phone/email info rows
+  (`.evtpg-cta-contact-info .contact-item`), styled for a dark card:
+  `.contact-item span { color: rgba(255,255,255,0.5); }`. Because CSS
+  class selectors don't care about intended context, that rule matched
+  the navbar's Contact <span> too (both are literally `.contact-item
+  span`), making the nav link's text 50% white on the navbar's light
+  background - present in the DOM and clickable, just unreadable. Only
+  events.html has events.css loaded, so this only affected that one page.
+- FIX: renamed the page-specific class from `.contact-item` to
+  `.evtpg-contact-item` (matching the file's own established `evtpg-`
+  prefix convention already used by its sibling `.evtpg-cta-contact-info`
+  wrapper) in both assets/css/events.css (5 selectors) and events.html (2
+  markup occurrences). The navbar's real .contact-item class and its
+  legitimate, intentional mobile-only rule in navbar.css
+  (`.contact-item { display: none !important; }` inside the 1024px
+  breakpoint, which hides the Contact link on mobile) are completely
+  untouched.
+- FOLLOW-UP AUDIT (per the user's explicit request to check for similar
+  mistakes elsewhere): systematically compared every class defined in
+  every page-specific stylesheet against every class defined in each of
+  the four universally-loaded files (navbar.css, footer.css,
+  page-hero.css, comm-widget.css) - the only files guaranteed to be
+  present alongside any page-specific CSS, and therefore the only files
+  where a naming collision could actually manifest. Result: zero further
+  collisions against navbar.css, tokens.css, or comm-widget.css. Two
+  pre-existing matches were investigated and confirmed to be deliberate,
+  working patterns rather than bugs, and left untouched: (1)
+  .scroll-top-btn duplicated identically in index.css and footer.css -
+  index.html loads both files, the values are byte-identical, purely
+  redundant bytes with zero visual effect; (2) .page-hero/.page-hero-bg/
+  .page-hero-content/.page-hero-overlay fully redefined in both
+  contact.css and events.css - verified page-hero.css loads first and
+  these files intentionally load after it to replace the shared hero
+  with a page-specific editorial variant (e.g. contact.html's 2-column
+  grid hero), a pattern already established and working correctly
+  elsewhere in the project (about.html, services.html, construction-
+  design.html use the same technique).
+- VALIDATION: HTML tag balance across all 34 pages, CSS brace balance on
+  events.css - all clean.
+================================================================================
 END OF LOG - BADAR EXPO SOLUTIONS

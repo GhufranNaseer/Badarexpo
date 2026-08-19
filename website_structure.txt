@@ -25,6 +25,75 @@ Badarexpo website/
 |-- events.html                    Events page
 |-- contact.html                   Contact page
 |-- 404.html                       404 error page
+|-- event-landing.html             Reusable event page template (Session 22-23)
+|-- event-design-system.md         EDS component library docs (Session 24)
+|-- event-schema.json              Formal JSON Schema for the Event content
+|                                   model (Session 25). Draft 2020-12.
+|-- sample-event.json              Schema-valid example event, same demo
+|                                   content as Phase 2 (Session 25).
+|-- event-data-model.md            Data architecture docs: field reference,
+|                                   relationships, component mapping,
+|                                   CMS/API integration notes (Session 25).
+|-- events-calendar.html           Event Discovery / Calendar page (Session 26).
+|                                   Search, filter, sort, grid/list/compact/
+|                                   timeline/calendar views over a sample dataset.
+|-- i18n-architecture.md           Internationalization architecture docs
+|                                   (Session 27/Phase 7). URL strategy, translation
+|                                   storage, RTL strategy, component integration.
+|-- translation-schema.json        JSON Schema for one locale bundle (Session 27,
+|                                   extended Session 28 with the "pages" namespace
+|                                   and ~45 additional keys discovered necessary
+|                                   during real implementation).
+|-- sample-en.json                 Regenerated Session 28 to mirror /locales/en/
+|                                   exactly (previously a Phase 7 architecture demo).
+|-- sample-ur.json                 Regenerated Session 28 to mirror /locales/ur/.
+|-- site-information-architecture.md  Industries/Projects/Insights/Gallery/Media/
+|                                   Blog IA blueprint (Session 29/Phase 9). Docs only.
+|-- industries.html                Industries Hub (Session 30/Phase 10). Static
+|                                   grid of 8 industries - no Discovery Engine
+|                                   (finite taxonomy, per Phase 9 Section 1).
+|-- industry-landing.html          Industry Detail master template (Session 30).
+|                                   Reusable per industry, same Hub+Template
+|                                   pattern as event-landing.html. Populated with
+|                                   real Textile & Apparel content this session.
+|-- international-projects.html    International Projects Hub (Session 31/Phase
+|                                   11). Static grid, same no-Discovery-Engine
+|                                   reasoning as industries.html.
+|-- project-landing.html           Project Detail master template (Session 31).
+|                                   Reusable per project. Populated with real
+|                                   China Trade Delegation content this session.
+|-- insights.html                  Insights Hub (Session 32/Phase 12). The
+|                                   PARENT knowledge-center page - Gallery/Media/
+|                                   Blog are not built yet (honest Empty States);
+|                                   Industry Insights + Event Insights are real,
+|                                   live cross-links into systems that exist.
+|-- gallery.html                   Gallery Hub (Session 33/Phase 13). Powered by
+|                                   the generalized EdsDiscovery engine (search/
+|                                   filter/sort) + a new masonry grid utility.
+|-- gallery-album.html             Album Detail master template (Session 33).
+|                                   Reusable per album. Populated with a real
+|                                   China Trade Delegation album this session.
+|-- media.html                     Media Center Hub (Session 34/Phase 14). Third
+|                                   dataset proving EdsDiscovery's genuine reuse
+|                                   (events, albums, media items). Downloads &
+|                                   Brand Assets section reuses .eds-download-card.
+|-- media-detail.html              Media Detail master template (Session 34).
+|                                   Reusable per press item. Populated with the
+|                                   real IDEAS 2024 newsroom content (already live
+|                                   on the homepage since Phase 0) as its own page.
+|-- blog.html                      Blog Hub (Session 35/Phase 15). Fourth dataset
+|                                   proving EdsDiscovery's genuine reuse (events,
+|                                   albums, media, blog posts). The LAST content
+|                                   type - every cross-link on this page is real.
+|-- blog-post.html                 Blog Detail master template (Session 35).
+|                                   Reusable per article. Populated with the real
+|                                   "B2B Exhibitions" homepage content, expanded
+|                                   into a full article with real body copy, an
+|                                   author bio, and a JSON-LD Article schema block.
+|-- locales/
+|   |-- en/  common.json  nav.json  buttons.json  forms.json  messages.json
+|   |        eventsUi.json  pages.json   <- ACTIVE, loaded by language-manager.js
+|   |-- ur/  (same 7 files)                <- ACTIVE, loaded by language-manager.js
 |
 |-- rules.txt                      Repository constitution (FINAL, do not edit)
 |-- website_structure.txt          THIS FILE - repo map & WP mapping
@@ -44,10 +113,79 @@ Badarexpo website/
 |-- assets/
 |   |-- css/
 |   |   |-- navbar.css              GLOBAL - topbar, navbar, mega menu, mobile drawer
+|   |   |-- tokens.css              GLOBAL - design tokens (color/radius/shadow/spacing/motion),
+|   |   |                             added Session 21. Additive only - loads right after
+|   |   |                             navbar.css on every page. See file header for scope.
 |   |   |-- footer.css              GLOBAL - site footer
 |   |   |-- page-hero.css           GLOBAL - shared inner-page header/breadcrumb banner
 |   |   |-- ceo_section.css         COMPONENT - CEO/leadership message block (2+ pages)
 |   |   |-- clients_marquee.css     COMPONENT - logo marquee (2+ pages)
+|   |   |-- event-components.css    LIBRARY - standalone Event Design System (EDS)
+|   |   |                           component library, added Session 24. Prefix
+|   |   |                           "eds-", scoped under .eds-scope (class, not id -
+|   |   |                           supports multiple instances/pages). NOT wired
+|   |   |                           into any page yet - see event-design-system.md
+|   |   |                           Section 7 for the future migration path.
+|   |   |-- event-discovery-components.css  LIBRARY - extends event-components.css
+|   |   |                           with search/filter/calendar/sort/card-variant
+|   |   |                           primitives, added Session 26 (Phase 5). Still
+|   |   |                           "eds-" prefixed - reusable beyond this one page.
+|   |   |                           Session 33/Phase 13: added .eds-album-count
+|   |   |                           badge + .eds-masonry-grid utility (4-tier
+|   |   |                           responsive column-count) for the Gallery system.
+|   |   |                           Session 34/Phase 14: no new CSS needed for
+|   |   |                           Media - .eds-download-card (Phase 3) covered
+|   |   |                           Downloads & Brand Assets as-is.
+|   |   |-- events-calendar.css     PAGE - events-calendar.html only. Layout glue
+|   |   |                           only (prefix "evc-") - no visual components
+|   |   |                           redefined here, all come from the eds- library.
+|   |   |-- industries.css          PAGE - industries.html only. Layout glue only
+|   |   |                           (prefix "ind-"), added Session 30/Phase 10.
+|   |   |-- industry-landing.css    PAGE (TEMPLATE) - industry-landing.html only.
+|   |   |                           Layout glue only (prefix "indl-"), added
+|   |   |                           Session 30. Duplicate per industry alongside
+|   |   |                           the HTML, same lifecycle as event-landing.css.
+|   |   |-- international-projects.css  PAGE - international-projects.html only.
+|   |   |                           Layout glue only (prefix "ipr-"), added
+|   |   |                           Session 31/Phase 11.
+|   |   |-- project-landing.css     PAGE (TEMPLATE) - project-landing.html only.
+|   |   |                           Layout glue only (prefix "prjl-"), added
+|   |   |                           Session 31. Duplicate per project alongside
+|   |   |                           the HTML.
+|   |   |-- insights.css            PAGE - insights.html only. Layout glue only
+|   |   |                           (prefix "insg-"), added Session 32/Phase 12.
+|   |   |-- gallery.css             PAGE - gallery.html only. Layout glue only
+|   |   |                           (prefix "gal-"), added Session 33/Phase 13.
+|   |   |-- gallery-album.css       PAGE (TEMPLATE) - gallery-album.html only.
+|   |   |                           Layout glue only (prefix "gala-"), added
+|   |   |                           Session 33. Duplicate per album alongside
+|   |   |                           the HTML.
+|   |   |-- media.css               PAGE - media.html only. Layout glue only
+|   |   |                           (prefix "med-"), added Session 34/Phase 14.
+|   |   |-- media-detail.css        PAGE (TEMPLATE) - media-detail.html only.
+|   |   |                           Layout glue only (prefix "medd-"), added
+|   |   |                           Session 34. Duplicate per press item alongside
+|   |   |                           the HTML.
+|   |   |-- blog.css                PAGE - blog.html only. Layout glue only
+|   |   |                           (prefix "blg-"), added Session 35/Phase 15.
+|   |   |-- blog-post.css           PAGE (TEMPLATE) - blog-post.html only. Layout
+|   |   |                           glue only (prefix "blgp-"), added Session 35.
+|   |   |                           Includes the one genuinely new layout rule this
+|   |   |                           whole project has needed for an article body -
+|   |   |                           a 720px readable-measure constraint - still
+|   |   |                           inheriting all typography/color tokens unchanged.
+|   |   |-- rtl-overrides.css       GLOBAL - ACTIVE, linked LAST on all 22 pages
+|   |   |                           (Session 28/Phase 8, extended Sessions 30-35
+|   |   |                           to the 11 new Industries/Projects/Insights/
+|   |   |                           Gallery/Media/Blog pages - no new rules needed,
+|   |   |                           all compose entirely from already-RTL-covered
+|   |   |                           eds- components). Additive [dir="rtl"]-scoped
+|   |   |                           layer only - zero effect in LTR, no existing
+|   |   |                           LTR rule modified. Covers navbar/footer/eds-/
+|   |   |                           elp- component families; pre-Phase-0 legacy
+|   |   |                           page CSS (about.css, services.css, etc.) is
+|   |   |                           explicitly NOT covered yet - tracked debt,
+|   |   |                           see rtl-overrides.css's own header comment.
 |   |   |-- index.css               PAGE - index.html only
 |   |   |-- services.css            PAGE - services.html only
 |   |   |-- construction-design.css PAGE - construction-design.html only
@@ -56,6 +194,15 @@ Badarexpo website/
 |   |   |-- events.css              PAGE - events.html only
 |   |   |-- contact.css             PAGE - contact.html only
 |   |   |-- 404.css                 PAGE - 404.html only
+|   |   |-- event-landing.css       PAGE (TEMPLATE) - event-landing.html only.
+|   |   |                           Reusable master template for individual event
+|   |   |                           pages. Prefix "elp-". Phase 1 (Session 22) built
+|   |   |                           the architecture; Phase 2 (Session 23) populated
+|   |   |                           it with realistic demo content + refined it
+|   |   |                           (countdown, registration status, organizer card,
+|   |   |                           sticky CTA, 3rd sponsor tier). Duplicate all 3
+|   |   |                           event-landing.* files per new real event; do not
+|   |   |                           edit the template itself for one-off content.
 |   |
 |   |-- js/
 |   |   |-- main.js                 GLOBAL - nav toggle, mega menu, language
@@ -68,6 +215,67 @@ Badarexpo website/
 |   |   |-- growthservices.js       PAGE - growthservices.html only
 |   |   |-- events.js               PAGE - events.html only
 |   |   |-- (contact.js MISSING - see Section 6, Known Gaps)
+|   |   |-- event-landing.js        PAGE (TEMPLATE) - event-landing.html only.
+|   |   |                           FAQ accordion, schedule day-tabs, testimonial
+|   |   |                           slider, generic stat counter. Added Session 22.
+|   |   |-- event-components.js     LIBRARY - EDS component library JS, added
+|   |   |                           Session 24. 7 generic, multi-instance,
+|   |   |                           data-attribute-driven modules (EdsAccordion,
+|   |   |                           EdsTabs, EdsCounter, EdsCountdown, EdsSlider,
+|   |   |                           EdsStickyCta, EdsChips) + EdsSkeleton helper.
+|   |   |                           Not page-specific; not yet linked from any page.
+|   |   |-- event-discovery-components.js  LIBRARY - EdsDiscovery engine, added
+|   |   |                           Session 26 (Phase 5). Generic search/filter/
+|   |   |                           sort/pagination/calendar/timeline module -
+|   |   |                           reusable against any dataset shaped like
+|   |   |                           event-schema.json, not tied to one page.
+|   |   |                           Session 33/Phase 13: made GENUINELY dataset-
+|   |   |                           agnostic via new fieldAccessors/cardRenderer/
+|   |   |                           gridClassName options on init() (all default
+|   |   |                           to the original event-only behavior - zero
+|   |   |                           change for events-calendar.js). Also added
+|   |   |                           EdsAlbumFields + EdsAlbumCard for the Gallery
+|   |   |                           system - the first real dataset the engine
+|   |   |                           was proven against besides events.
+|   |   |                           Session 34/Phase 14: added EdsMediaFields +
+|   |   |                           EdsMediaCard - third dataset shape proven
+|   |   |                           (events, albums, media items), confirming the
+|   |   |                           engine's reusability claim genuinely holds.
+|   |   |                           Session 35/Phase 15: added EdsBlogFields +
+|   |   |                           EdsBlogCard - fourth and final dataset shape
+|   |   |                           for this project (events, albums, media, blog
+|   |   |                           posts). Zero net-new discovery/filter/search
+|   |   |                           UI was ever built across all four - only new
+|   |   |                           accessor+card pairs, exactly the payoff the
+|   |   |                           Phase 5 "reusable by any future list" claim
+|   |   |                           promised.
+|   |   |-- events-calendar.js      PAGE - events-calendar.html only. Sample
+|   |   |                           dataset (10 mock events) + DOM wiring for
+|   |   |                           EdsDiscovery.init(). No filtering logic lives
+|   |   |                           here - see event-discovery-components.js.
+|   |   |-- gallery.js              PAGE - gallery.html only. Sample dataset (6
+|   |   |                           mock albums) + DOM wiring for
+|   |   |                           EdsDiscovery.init() using the new
+|   |   |                           fieldAccessors/cardRenderer options. Added
+|   |   |                           Session 33/Phase 13.
+|   |   |-- media.js                PAGE - media.html only. Sample dataset (6
+|   |   |                           mock press/news/announcement/coverage items,
+|   |   |                           including a Corporate Document entry) + DOM
+|   |   |                           wiring for EdsDiscovery.init() using
+|   |   |                           EdsMediaFields/EdsMediaCard. Added Session
+|   |   |                           34/Phase 14.
+|   |   |-- blog.js                 PAGE - blog.html only. Sample dataset (6 mock
+|   |   |                           posts spanning Knowledge Articles/Case
+|   |   |                           Studies/Company News/Event Updates/Guides/
+|   |   |                           Announcements) + DOM wiring for
+|   |   |                           EdsDiscovery.init() using EdsBlogFields/
+|   |   |                           EdsBlogCard. Added Session 35/Phase 15.
+|   |   |-- language-manager.js     ACTIVE (Session 28/Phase 8) - linked on all 11
+|   |   |                           pages, after main.js. In-place locale switching
+|   |   |                           (no /ur/ page duplication - see its own header
+|   |   |                           comment for why this differs from Phase 7's
+|   |   |                           URL-prefix recommendation). Wired into main.js's
+|   |   |                           existing .lang-list click handler.
 |   |
 |   |-- images/
 |       |-- logo/                   Site logo variants
@@ -115,8 +323,11 @@ Badarexpo website/
   events.html              | events.css                    | events.js
   contact.html             | contact.css                   | contact.js
 
-  Every page additionally loads: navbar.css, footer.css, page-hero.css,
-  main.js, and (where used) ceo_section.css / clients_marquee.css.
+  Every page additionally loads: navbar.css, tokens.css, footer.css,
+  page-hero.css, main.js, and (where used) ceo_section.css / clients_marquee.css.
+  As of Session 26, every page's shared mega-menu Events column and footer
+  Company column also link to events-calendar.html (see navigation-map.txt
+  Sections 2 and 5).
 
 --------------------------------------------------------------------------------
 [4. SHARED / COMPONENT INVENTORY]
