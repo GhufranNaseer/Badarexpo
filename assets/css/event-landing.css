@@ -1,0 +1,1603 @@
+/* =============================================================================
+   REUSABLE EVENT LANDING PAGE TEMPLATE (event-landing.css)
+   Master template stylesheet for individual event pages. Classes are
+   prefixed "elp-" (Event Landing Page) to avoid collision with events.css
+   ("evtpg-" prefix, used by the Events *portfolio/listing* page) and every
+   other page-scoped prefix in the codebase (rules.txt Section 2).
+
+   Consumes global tokens from tokens.css / navbar.css :root (--primary-red,
+   --text-dark, --white, --shadow-soft, etc.) and the shared .page-hero /
+   .page-hero-* classes from page-hero.css for the hero banner. Everything
+   else on this page is intentionally new, scoped, and self-contained so
+   duplicating this page per event never requires touching global files.
+   ============================================================================= */
+
+/* =============================================================================
+   0. SHARED UTILITIES (page-scoped)
+   ============================================================================= */
+#elp-page {
+    font-family: var(--font-primary, 'Inter', sans-serif);
+    color: var(--text-dark);
+    background-color: var(--white);
+    overflow-x: hidden;
+}
+
+#elp-page img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+.elp-container {
+    max-width: 1240px;
+    margin: 0 auto;
+    padding: 0 24px;
+}
+
+.elp-section-head {
+    text-align: center;
+    max-width: 700px;
+    margin: 0 auto 56px;
+}
+
+.elp-section-badge {
+    display: inline-block;
+    background: rgba(228, 31, 38, 0.06);
+    border: 1px solid rgba(10, 10, 10, 0.08);
+    color: var(--primary-red);
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    padding: 6px 16px;
+    border-radius: var(--radius-pill, 999px);
+    margin-bottom: 16px;
+}
+
+.elp-section-title {
+    font-size: clamp(1.8rem, 3.4vw, 2.5rem);
+    font-weight: 800;
+    color: var(--text-dark);
+    letter-spacing: -0.5px;
+    margin-bottom: 16px;
+    line-height: 1.2;
+}
+
+.elp-section-title-left {
+    text-align: left;
+}
+
+.elp-section-desc {
+    color: var(--text-muted);
+    font-size: 1.1rem;
+    line-height: 1.7;
+}
+
+.elp-section-desc-left {
+    text-align: left;
+}
+
+/* Generic underlined link-arrow, reused by Gallery + Contact CTA sections */
+.elp-link-arrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--primary-red);
+    font-weight: 700;
+    font-size: 0.95rem;
+    text-decoration: none;
+    transition: var(--transition-fast);
+}
+
+.elp-link-arrow i {
+    transition: var(--transition-fast);
+}
+
+.elp-link-arrow:hover {
+    gap: 12px;
+}
+
+.elp-link-arrow:hover i {
+    transform: translateX(3px);
+}
+
+/* Section rhythm: consistent vertical spacing across all sections,
+   snapped to the tokens.css 8px spacing scale. Extended Phase 16 with the
+   5 new sections (Why Exhibit, Video Preview, Related Blog, Related
+   Media) - same rhythm, no new spacing scale invented. */
+.elp-about-sec,
+.elp-why-sec,
+.elp-audience-sec,
+.elp-highlights-sec,
+.elp-industries-sec,
+.elp-speakers-sec,
+.elp-sponsors-sec,
+.elp-schedule-sec,
+.elp-venue-sec,
+.elp-gallery-sec,
+.elp-video-sec,
+.elp-testi-sec,
+.elp-faq-sec,
+.elp-register-sec,
+.elp-related-blog-sec,
+.elp-related-media-sec,
+.elp-related-sec {
+    padding: 96px 0;
+}
+
+.elp-why-sec,
+.elp-highlights-sec,
+.elp-industries-sec,
+.elp-schedule-sec,
+.elp-testi-sec,
+.elp-related-blog-sec {
+    background: var(--bg-light);
+}
+
+/* =============================================================================
+   1. HERO (extends shared .page-hero from page-hero.css)
+   ============================================================================= */
+.elp-hero-content .page-hero-btns {
+    margin-top: 8px;
+}
+
+.elp-hero-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 24px;
+    margin: 20px 0 32px;
+}
+
+.elp-hero-meta-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--white);
+    opacity: 0.95;
+}
+
+.elp-hero-meta-item i {
+    color: var(--primary-red);
+    font-size: 1rem;
+}
+
+/* Hero CTA buttons - mirrors events.css .hero-btn component exactly so both
+   pages' hero buttons are pixel-identical */
+.hero-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 16px 36px;
+    font-size: 15px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border-radius: var(--radius-xs, 4px);
+    cursor: pointer;
+    transition: var(--transition-premium, 0.5s cubic-bezier(0.25, 0.8, 0.25, 1));
+    text-decoration: none;
+    border: none;
+}
+
+.hero-btn-primary {
+    background: var(--primary-red);
+    color: var(--white);
+    border: 2px solid transparent;
+}
+
+.hero-btn-primary:hover {
+    background: var(--primary-red-hover, #c31a20);
+    transform: translateY(-3px);
+    box-shadow: 0 12px 25px rgba(228, 31, 38, 0.4);
+}
+
+.hero-btn-outline {
+    background: transparent;
+    color: var(--white);
+    border: 2px solid rgba(255, 255, 255, 0.3);
+}
+
+.hero-btn-outline:hover {
+    background: var(--white);
+    color: var(--text-dark);
+    border-color: var(--white);
+    transform: translateY(-3px);
+    box-shadow: 0 12px 25px rgba(255, 255, 255, 0.15);
+}
+
+/* =============================================================================
+   2. QUICK INFO STRIP
+   ============================================================================= */
+.elp-quickinfo-sec {
+    background: var(--ink, #0a0a0a);
+    padding: 28px 0;
+}
+
+.elp-quickinfo-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+}
+
+.elp-quickinfo-item {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+.elp-quickinfo-item i {
+    color: var(--primary-red);
+    font-size: 1.3rem;
+    flex-shrink: 0;
+}
+
+.elp-quickinfo-label {
+    display: block;
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: rgba(255, 255, 255, 0.5);
+    margin-bottom: 2px;
+}
+
+.elp-quickinfo-value {
+    display: block;
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--white);
+}
+
+/* =============================================================================
+   3. ABOUT THE EVENT
+   ============================================================================= */
+.elp-about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 64px;
+    align-items: center;
+}
+
+.elp-about-media img {
+    width: 100%;
+    aspect-ratio: 4 / 5;
+    object-fit: cover;
+    border-radius: var(--radius-md, 12px);
+    box-shadow: var(--shadow-md, 0 20px 40px rgba(0, 0, 0, 0.12));
+}
+
+.elp-about-copy p {
+    color: var(--text-muted);
+    line-height: 1.8;
+    margin-bottom: 28px;
+}
+
+.elp-about-facts {
+    display: flex;
+    gap: 40px;
+    padding-top: 24px;
+    border-top: 1px solid var(--border-light);
+}
+
+.elp-about-fact {
+    display: flex;
+    flex-direction: column;
+}
+
+.elp-about-fact-num {
+    font-size: 2rem;
+    font-weight: 800;
+    color: var(--primary-red);
+    line-height: 1;
+}
+
+.elp-about-fact-label {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    margin-top: 6px;
+}
+
+/* =============================================================================
+   4. WHY ATTEND
+   ============================================================================= */
+.elp-why-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+}
+
+.elp-why-card {
+    background: var(--white);
+    border: 1px solid var(--border-light);
+    border-radius: var(--radius-md, 12px);
+    padding: 32px 24px;
+    text-align: center;
+    transition: var(--transition-smooth);
+}
+
+.elp-why-card:hover {
+    transform: translateY(-6px);
+    box-shadow: var(--shadow-sm, 0 4px 15px rgba(0, 0, 0, 0.08));
+    border-color: rgba(228, 31, 38, 0.2);
+}
+
+.elp-why-icon {
+    width: 56px;
+    height: 56px;
+    border-radius: var(--radius-sm, 8px);
+    background: rgba(228, 31, 38, 0.08);
+    color: var(--primary-red);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.4rem;
+    margin: 0 auto 20px;
+}
+
+.elp-why-card h3 {
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin-bottom: 8px;
+}
+
+.elp-why-card p {
+    color: var(--text-muted);
+    font-size: 0.92rem;
+    line-height: 1.6;
+}
+
+/* =============================================================================
+   5. WHO SHOULD ATTEND
+   ============================================================================= */
+.elp-audience-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 16px;
+}
+
+.elp-audience-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 14px;
+    text-align: center;
+    padding: 28px 16px;
+    border: 1px solid var(--border-light);
+    border-radius: var(--radius-md, 12px);
+    transition: var(--transition-smooth);
+}
+
+.elp-audience-card:hover {
+    border-color: var(--primary-red);
+    background: rgba(228, 31, 38, 0.03);
+}
+
+.elp-audience-card i {
+    font-size: 1.6rem;
+    color: var(--primary-red);
+}
+
+.elp-audience-card span {
+    font-size: 0.9rem;
+    font-weight: 600;
+    line-height: 1.4;
+}
+
+/* =============================================================================
+   6. KEY HIGHLIGHTS
+   ============================================================================= */
+.elp-highlights-grid {
+    display: grid;
+    grid-template-columns: 0.8fr 1.2fr;
+    gap: 64px;
+    align-items: start;
+}
+
+.elp-highlights-copy {
+    position: sticky;
+    top: 100px;
+}
+
+.elp-highlights-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.elp-highlights-list li {
+    display: flex;
+    gap: 24px;
+    padding: 28px 0;
+    border-bottom: 1px solid var(--border-light);
+}
+
+.elp-highlights-list li:first-child {
+    padding-top: 0;
+}
+
+.elp-highlights-num {
+    font-size: 1.6rem;
+    font-weight: 800;
+    color: rgba(228, 31, 38, 0.25);
+    flex-shrink: 0;
+    line-height: 1;
+}
+
+.elp-highlights-list h3 {
+    font-size: 1.15rem;
+    font-weight: 700;
+    margin-bottom: 6px;
+}
+
+.elp-highlights-list p {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    line-height: 1.6;
+}
+
+/* =============================================================================
+   7. EVENT STATISTICS
+   ============================================================================= */
+.elp-stats-sec {
+    background: var(--ink, #0a0a0a);
+    padding: 80px 0;
+}
+
+.elp-stats-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+    text-align: center;
+}
+
+.elp-stat-box {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.elp-stat-num {
+    font-size: clamp(2.2rem, 4vw, 3rem);
+    font-weight: 800;
+    color: var(--white);
+    line-height: 1;
+}
+
+.elp-stat-label {
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: rgba(255, 255, 255, 0.55);
+}
+
+/* =============================================================================
+   8. INDUSTRIES COVERED
+   ============================================================================= */
+.elp-industries-tags {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px;
+}
+
+.elp-tag {
+    display: inline-block;
+    background: var(--white);
+    border: 1px solid var(--border-light);
+    color: var(--text-dark);
+    font-size: 0.9rem;
+    font-weight: 600;
+    padding: 10px 22px;
+    border-radius: var(--radius-pill, 999px);
+    transition: var(--transition-fast);
+}
+
+.elp-tag:hover {
+    border-color: var(--primary-red);
+    color: var(--primary-red);
+}
+
+/* =============================================================================
+   9. FEATURED SPEAKERS
+   ============================================================================= */
+.elp-speakers-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+}
+
+.elp-speaker-card {
+    text-align: center;
+}
+
+.elp-speaker-photo {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    border-radius: 50%;
+    overflow: hidden;
+    margin-bottom: 18px;
+    box-shadow: var(--shadow-xs, 0 2px 8px rgba(0, 0, 0, 0.04));
+}
+
+.elp-speaker-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.elp-speaker-name {
+    font-size: 1.05rem;
+    font-weight: 700;
+    margin-bottom: 4px;
+}
+
+.elp-speaker-title {
+    color: var(--text-muted);
+    font-size: 0.85rem;
+    margin-bottom: 12px;
+}
+
+.elp-speaker-socials {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+.elp-speaker-socials a {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    border: 1px solid var(--border-light);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-muted);
+    font-size: 0.8rem;
+    transition: var(--transition-fast);
+}
+
+.elp-speaker-socials a:hover {
+    background: var(--primary-red);
+    border-color: var(--primary-red);
+    color: var(--white);
+}
+
+/* =============================================================================
+   10. EXHIBITORS / SPONSORS
+   ============================================================================= */
+.elp-sponsor-tier {
+    margin-bottom: 48px;
+}
+
+.elp-sponsor-tier:last-child {
+    margin-bottom: 0;
+}
+
+.elp-sponsor-tier-label {
+    display: block;
+    text-align: center;
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--text-muted);
+    margin-bottom: 24px;
+}
+
+.elp-sponsor-logos {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 40px;
+}
+
+.elp-sponsor-logos img {
+    max-height: 56px;
+    width: auto;
+    filter: grayscale(100%);
+    opacity: 0.7;
+    transition: var(--transition-fast);
+}
+
+.elp-sponsor-logos img:hover {
+    filter: grayscale(0%);
+    opacity: 1;
+}
+
+.elp-sponsor-logos-lg img {
+    max-height: 72px;
+}
+
+.elp-sponsor-logos-sm img {
+    max-height: 44px;
+}
+
+/* =============================================================================
+   11. EVENT SCHEDULE PREVIEW
+   ============================================================================= */
+.elp-schedule-tabs {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 8px;
+    margin-bottom: 40px;
+}
+
+.elp-schedule-tab {
+    background: var(--white);
+    border: 1px solid var(--border-light);
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    font-weight: 700;
+    padding: 12px 28px;
+    border-radius: var(--radius-pill, 999px);
+    cursor: pointer;
+    transition: var(--transition-fast);
+}
+
+.elp-schedule-tab:hover {
+    color: var(--primary-red);
+}
+
+.elp-schedule-tab-active {
+    background: var(--primary-red);
+    border-color: var(--primary-red);
+    color: var(--white);
+}
+
+.elp-schedule-panel {
+    max-width: 760px;
+    margin: 0 auto;
+}
+
+.elp-schedule-row {
+    display: flex;
+    gap: 24px;
+    background: var(--white);
+    border: 1px solid var(--border-light);
+    border-radius: var(--radius-sm, 8px);
+    padding: 20px 24px;
+    margin-bottom: 12px;
+}
+
+.elp-schedule-time {
+    flex-shrink: 0;
+    width: 96px;
+    font-weight: 700;
+    color: var(--primary-red);
+    font-size: 0.9rem;
+}
+
+.elp-schedule-row h3 {
+    font-size: 1rem;
+    font-weight: 700;
+    margin-bottom: 4px;
+}
+
+.elp-schedule-row p {
+    color: var(--text-muted);
+    font-size: 0.88rem;
+}
+
+.elp-schedule-note {
+    text-align: center;
+    color: var(--text-muted);
+    font-size: 0.85rem;
+    font-style: italic;
+    margin-top: 24px;
+}
+
+/* =============================================================================
+   12. VENUE INFORMATION
+   ============================================================================= */
+.elp-venue-grid {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 56px;
+    align-items: center;
+}
+
+.elp-venue-map {
+    border-radius: var(--radius-md, 12px);
+    overflow: hidden;
+    box-shadow: var(--shadow-md, 0 20px 40px rgba(0, 0, 0, 0.12));
+    aspect-ratio: 4 / 3;
+}
+
+.elp-venue-map iframe {
+    width: 100%;
+    height: 100%;
+    border: 0;
+}
+
+.elp-venue-address {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    color: var(--text-muted);
+    font-size: 1rem;
+    margin-bottom: 24px;
+}
+
+.elp-venue-address i {
+    color: var(--primary-red);
+    margin-top: 3px;
+}
+
+.elp-venue-amenities {
+    list-style: none;
+    margin: 0 0 28px;
+    padding: 0;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+}
+
+.elp-venue-amenities li {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 0.92rem;
+    color: var(--text-dark);
+}
+
+.elp-venue-amenities i {
+    color: var(--primary-red);
+    width: 18px;
+}
+
+/* =============================================================================
+   13. EVENT GALLERY PREVIEW
+   ============================================================================= */
+.elp-gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    margin-bottom: 32px;
+}
+
+.elp-gallery-grid img {
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+    border-radius: var(--radius-sm, 8px);
+    transition: var(--transition-smooth);
+}
+
+.elp-gallery-grid img:hover {
+    transform: scale(1.03);
+}
+
+.elp-gallery-cta {
+    text-align: center;
+}
+
+/* =============================================================================
+   14. TESTIMONIALS
+   ============================================================================= */
+.elp-testi-slider {
+    max-width: 720px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.elp-testi-slide {
+    display: none;
+}
+
+.elp-testi-slide-active {
+    display: block;
+    animation: elpFadeIn 0.5s ease;
+}
+
+@keyframes elpFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(8px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.elp-testi-quote {
+    font-size: 1.3rem;
+    line-height: 1.6;
+    color: var(--text-dark);
+    margin-bottom: 24px;
+}
+
+.elp-testi-author {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    margin-bottom: 32px;
+}
+
+.elp-testi-name {
+    font-weight: 700;
+}
+
+.elp-testi-role {
+    color: var(--text-muted);
+    font-size: 0.88rem;
+}
+
+.elp-testi-nav {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+}
+
+.elp-testi-nav-btn {
+    width: clamp(38px, 9vw, 50px);
+    height: clamp(38px, 9vw, 50px);
+    border-radius: 50%;
+    border: 1px solid var(--border-light);
+    background: var(--white);
+    color: var(--text-dark);
+    font-size: clamp(14px, 3vw, 18px);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: var(--transition-fast);
+}
+
+.elp-testi-nav-btn:hover {
+    background: var(--primary-red);
+    border-color: var(--primary-red);
+    color: var(--white);
+}
+
+/* =============================================================================
+   15. FAQ (pattern copied from exhibitionmanagement.css .faq-item, renamed
+   with the elp- prefix so both pages remain independently self-contained)
+   ============================================================================= */
+.elp-faq-accordion {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.elp-faq-item {
+    background: var(--white);
+    border: 1px solid var(--border-light);
+    border-radius: var(--radius-sm, 8px);
+    margin-bottom: 16px;
+    overflow: hidden;
+    transition: var(--transition-smooth);
+}
+
+.elp-faq-item:hover {
+    border-color: rgba(228, 31, 38, 0.2);
+}
+
+.elp-faq-item.elp-faq-active {
+    border-color: var(--primary-red);
+}
+
+.elp-faq-trigger {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+    padding: 24px;
+    cursor: pointer;
+    user-select: none;
+}
+
+.elp-faq-trigger h3 {
+    font-size: 1.02rem;
+    font-weight: 600;
+    color: var(--text-dark);
+    margin: 0;
+    transition: var(--transition-fast);
+}
+
+.elp-faq-item.elp-faq-active .elp-faq-trigger h3 {
+    color: var(--primary-red);
+}
+
+.elp-faq-trigger i {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    flex-shrink: 0;
+    transition: transform var(--transition-fast);
+}
+
+.elp-faq-item.elp-faq-active .elp-faq-trigger i {
+    transform: rotate(180deg);
+    color: var(--primary-red);
+}
+
+.elp-faq-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease;
+}
+
+.elp-faq-content-inner {
+    padding: 0 24px 24px;
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    line-height: 1.7;
+}
+
+/* =============================================================================
+   16. REGISTRATION CTA (mirrors exhibitionmanagement.css .cta-card treatment)
+   ============================================================================= */
+.elp-register-sec {
+    padding: 0 0 96px;
+}
+
+.elp-register-card {
+    background-color: var(--ink, #0a0a0a);
+    background-image: radial-gradient(circle at top right, rgba(228, 31, 38, 0.25), transparent 60%);
+    border: 1px solid rgba(228, 31, 38, 0.25);
+    border-radius: var(--radius-lg, 16px);
+    padding: 72px 40px;
+    text-align: center;
+}
+
+.elp-register-card h2 {
+    font-size: clamp(1.8rem, 3.4vw, 2.4rem);
+    font-weight: 800;
+    color: var(--white);
+    margin-bottom: 12px;
+}
+
+.elp-register-card p {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 1.05rem;
+    margin-bottom: 32px;
+}
+
+.elp-register-btns {
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+    flex-wrap: wrap;
+}
+
+/* =============================================================================
+   17. RELATED EVENTS
+   ============================================================================= */
+.elp-related-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+}
+
+.elp-related-card {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+    border-radius: var(--radius-md, 12px);
+    overflow: hidden;
+    background: var(--white);
+    border: 1px solid var(--border-light);
+    transition: var(--transition-smooth);
+}
+
+.elp-related-card:hover {
+    transform: translateY(-6px);
+    box-shadow: var(--shadow-sm, 0 4px 15px rgba(0, 0, 0, 0.08));
+}
+
+.elp-related-card img {
+    width: 100%;
+    aspect-ratio: 16 / 10;
+    object-fit: cover;
+}
+
+.elp-related-card-body {
+    padding: 20px 22px;
+}
+
+.elp-related-card-date {
+    display: block;
+    font-size: 0.78rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--primary-red);
+    margin-bottom: 6px;
+}
+
+.elp-related-card-body h3 {
+    font-size: 1.05rem;
+    font-weight: 700;
+    line-height: 1.4;
+}
+
+/* =============================================================================
+   18. CONTACT CTA (closing strip)
+   ============================================================================= */
+.elp-contact-cta-sec {
+    padding: 40px 0;
+    border-top: 1px solid var(--border-light);
+}
+
+.elp-contact-cta-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 24px;
+    flex-wrap: wrap;
+    text-align: center;
+}
+
+.elp-contact-cta-row p {
+    font-weight: 600;
+    color: var(--text-dark);
+    margin: 0;
+}
+
+/* =============================================================================
+   RESPONSIVE - snapped to the shared 4-tier breakpoint scale
+   (Desktop >1024px / Tablet 768-1024px / Large Mobile 480-768px / Small <480px)
+   ============================================================================= */
+@media screen and (max-width: 1024px) {
+    .elp-container {
+        padding: 0 20px;
+    }
+
+    .elp-quickinfo-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+    }
+
+    .elp-about-grid,
+    .elp-venue-grid {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+
+    .elp-why-grid,
+    .elp-speakers-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .elp-audience-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .elp-highlights-grid {
+        grid-template-columns: 1fr;
+        gap: 32px;
+    }
+
+    .elp-highlights-copy {
+        position: static;
+    }
+
+    .elp-stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 32px;
+    }
+
+    .elp-gallery-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .elp-related-grid {
+        grid-template-columns: 1fr;
+        max-width: 480px;
+        margin: 0 auto;
+    }
+}
+
+@media screen and (max-width: 768px) {
+
+    .elp-about-sec,
+    .elp-why-sec,
+    .elp-audience-sec,
+    .elp-highlights-sec,
+    .elp-industries-sec,
+    .elp-speakers-sec,
+    .elp-sponsors-sec,
+    .elp-schedule-sec,
+    .elp-venue-sec,
+    .elp-gallery-sec,
+    .elp-testi-sec,
+    .elp-faq-sec,
+    .elp-register-sec,
+    .elp-related-sec {
+        padding: 64px 0;
+    }
+
+    .elp-section-head {
+        margin-bottom: 36px;
+    }
+
+    .elp-schedule-tab {
+        padding: 10px 18px;
+        font-size: 0.82rem;
+    }
+
+    .elp-hero-meta {
+        gap: 14px 20px;
+    }
+
+    .elp-quickinfo-grid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+    }
+
+    .elp-why-grid,
+    .elp-speakers-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 16px;
+    }
+
+    .elp-audience-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .elp-about-facts {
+        flex-wrap: wrap;
+        gap: 24px;
+    }
+
+    .elp-schedule-row {
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    .elp-schedule-time {
+        width: auto;
+    }
+
+    .elp-venue-amenities {
+        grid-template-columns: 1fr;
+    }
+
+    .elp-register-card {
+        padding: 48px 24px;
+    }
+
+    .elp-register-btns,
+    .page-hero-btns {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .elp-register-btns .hero-btn,
+    .page-hero-btns .hero-btn {
+        text-align: center;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .elp-why-grid,
+    .elp-speakers-grid,
+    .elp-gallery-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .elp-audience-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .elp-stats-grid {
+        grid-template-columns: 1fr;
+        gap: 24px;
+    }
+
+    .elp-hero-meta-item {
+        font-size: 0.85rem;
+    }
+
+    .elp-testi-quote {
+        font-size: 1.1rem;
+    }
+}
+
+/* =============================================================================
+   PHASE 2 ADDITIONS - Production Ready Event Detail Page
+   Registration status badge, countdown timer, organizer card, sticky CTA,
+   venue contact links, and the third sponsor-tier instance (Official
+   Partners, styled entirely by the existing .elp-sponsor-tier component -
+   no new CSS needed for that one). All additions reuse tokens.css values
+   and existing spacing/radius/shadow scale - no new visual language.
+   ============================================================================= */
+
+/* ---- Hero badges row (category tag + registration status) ---- */
+.elp-hero-badges {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 20px;
+}
+
+.elp-hero-badges .page-hero-tag {
+    margin-bottom: 0;
+}
+
+.elp-hero-subtitle {
+    font-size: clamp(1rem, 1.6vw, 1.2rem);
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.85);
+    margin-bottom: 12px;
+}
+
+/* ---- Registration status pill ---- */
+.elp-reg-status {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.78rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    padding: 6px 16px;
+    border-radius: var(--radius-pill, 999px);
+}
+
+.elp-reg-status i {
+    font-size: 0.5rem;
+}
+
+.elp-reg-status-open {
+    background: rgba(16, 185, 129, 0.15);
+    color: #34d399;
+    border: 1px solid rgba(16, 185, 129, 0.3);
+}
+
+.elp-reg-status-coming-soon {
+    background: rgba(245, 158, 11, 0.15);
+    color: #d97706;
+    border: 1px solid rgba(245, 158, 11, 0.3);
+}
+
+.elp-reg-status-closed {
+    background: rgba(107, 114, 128, 0.15);
+    color: #6b7280;
+    border: 1px solid rgba(107, 114, 128, 0.3);
+}
+
+.elp-reg-status-center {
+    display: inline-flex;
+    margin: 0 auto 20px;
+}
+
+/* Registration status on light backgrounds (e.g. inside .elp-register-card,
+   which is dark, so the same token works there too - kept as one variant
+   since both current usages sit on dark surfaces) */
+
+/* ---- Countdown timer ---- */
+.elp-countdown {
+    display: flex;
+    gap: 14px;
+    margin: 28px 0 32px;
+}
+
+.elp-countdown-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-width: 72px;
+    padding: 12px 8px;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: var(--radius-sm, 8px);
+    -webkit-backdrop-filter: blur(6px);
+    backdrop-filter: blur(6px);
+}
+
+.elp-countdown-num {
+    font-size: 1.6rem;
+    font-weight: 800;
+    color: var(--white);
+    line-height: 1.1;
+    font-variant-numeric: tabular-nums;
+}
+
+.elp-countdown-label {
+    font-size: 0.68rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: rgba(255, 255, 255, 0.65);
+    margin-top: 2px;
+}
+
+/* ---- Organizer credential card (inside About section) ---- */
+.elp-organizer-card {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 16px 20px;
+    background: var(--bg-light);
+    border: 1px solid var(--border-light);
+    border-radius: var(--radius-sm, 8px);
+    margin: 28px 0;
+}
+
+.elp-organizer-logo {
+    width: 40px;
+    height: 40px;
+    border-radius: var(--radius-xs, 4px);
+    flex-shrink: 0;
+}
+
+.elp-organizer-label {
+    display: block;
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--text-muted);
+}
+
+.elp-organizer-name {
+    display: block;
+    font-size: 0.98rem;
+    font-weight: 700;
+    color: var(--text-dark);
+    margin-top: 2px;
+}
+
+/* ---- Venue direct-contact links ---- */
+.elp-venue-contact {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    margin-bottom: 24px;
+}
+
+.elp-venue-contact a {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--text-dark);
+    font-weight: 600;
+    font-size: 0.92rem;
+    text-decoration: none;
+    transition: var(--transition-fast);
+}
+
+.elp-venue-contact a i {
+    color: var(--primary-red);
+}
+
+.elp-venue-contact a:hover {
+    color: var(--primary-red);
+}
+
+/* ---- Contact CTA details row (Phase 2 expansion) ---- */
+.elp-contact-cta-details {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 24px;
+}
+
+.elp-contact-cta-details a:not(.elp-link-arrow) {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--text-dark);
+    font-weight: 600;
+    font-size: 0.92rem;
+    text-decoration: none;
+    transition: var(--transition-fast);
+}
+
+.elp-contact-cta-details a:not(.elp-link-arrow) i {
+    color: var(--primary-red);
+}
+
+.elp-contact-cta-details a:not(.elp-link-arrow):hover {
+    color: var(--primary-red);
+}
+
+/* ---- Sticky CTA bar ---- */
+.elp-sticky-cta {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 500;
+    background: var(--white);
+    border-top: 1px solid var(--border-light);
+    box-shadow: 0 -8px 30px rgba(0, 0, 0, 0.1);
+    transform: translateY(100%);
+    transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.elp-sticky-cta-visible {
+    transform: translateY(0);
+}
+
+.elp-sticky-cta-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    padding: 14px 24px;
+}
+
+.elp-sticky-cta-info {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    min-width: 0;
+}
+
+.elp-sticky-cta-name {
+    font-weight: 700;
+    font-size: 0.92rem;
+    color: var(--text-dark);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.elp-sticky-cta-date {
+    font-size: 0.78rem;
+    color: var(--text-muted);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.elp-sticky-cta-btn {
+    flex-shrink: 0;
+    padding: 12px 24px;
+    font-size: 13px;
+}
+
+/* =============================================================================
+   PHASE 2 RESPONSIVE ADJUSTMENTS
+   ============================================================================= */
+@media screen and (max-width: 1024px) {
+    .elp-countdown {
+        gap: 10px;
+    }
+
+    .elp-countdown-box {
+        min-width: 60px;
+        padding: 10px 6px;
+    }
+
+    .elp-countdown-num {
+        font-size: 1.3rem;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .elp-organizer-card {
+        flex-direction: row;
+        padding: 14px 16px;
+    }
+
+    .elp-venue-contact,
+    .elp-contact-cta-details {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+    }
+
+    .elp-contact-cta-details {
+        align-items: center;
+    }
+
+    .elp-sticky-cta-row {
+        padding: 12px 16px;
+        gap: 12px;
+    }
+
+    .elp-sticky-cta-date {
+        display: none;
+    }
+
+    .elp-sticky-cta-btn {
+        padding: 10px 18px;
+        font-size: 12px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .elp-countdown {
+        gap: 8px;
+    }
+
+    .elp-countdown-box {
+        min-width: 0;
+        flex: 1;
+        padding: 10px 4px;
+    }
+
+    .elp-countdown-num {
+        font-size: 1.1rem;
+    }
+
+    .elp-countdown-label {
+        font-size: 0.6rem;
+    }
+
+    .elp-sticky-cta-name {
+        font-size: 0.82rem;
+    }
+}
+
+/* =============================================================================
+   VIDEO PREVIEW PLACEHOLDER (added Phase 16) - see elp-video-preview.php
+   comment in event-landing.html for why this is a static placeholder, not
+   a real embed. Reuses the same dark-card, centered-content visual
+   language as .eds-register-card (event-components.css) rather than
+   inventing a new "dark box" treatment.
+   ============================================================================= */
+.elp-video-placeholder {
+    background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
+    border-radius: var(--radius-lg, 16px);
+    padding: 80px 32px;
+    text-align: center;
+    color: var(--white);
+    cursor: pointer;
+    transition: transform 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+.elp-video-placeholder:hover .elp-video-play-btn {
+    transform: scale(1.1);
+    background: #b5181d;
+}
+
+.elp-video-placeholder:focus-visible {
+    outline: 3px solid var(--primary-red);
+    outline-offset: 4px;
+}
+
+.elp-video-play-btn {
+    width: 76px;
+    height: 76px;
+    border-radius: 50%;
+    background: var(--primary-red);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 20px;
+    font-size: 1.4rem;
+    color: var(--white);
+    transition: transform 0.3s cubic-bezier(0.165, 0.84, 0.44, 1), background 0.25s ease;
+}
+
+.elp-video-placeholder p {
+    font-size: 1rem;
+    color: rgba(255, 255, 255, 0.7);
+    margin: 0;
+}
+
+@media screen and (max-width: 768px) {
+    .elp-video-placeholder {
+        padding: 56px 20px;
+    }
+
+    .elp-video-play-btn {
+        width: 60px;
+        height: 60px;
+        font-size: 1.1rem;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+    .elp-why-card,
+    .elp-related-card,
+    .elp-gallery-grid img,
+    .hero-btn-primary,
+    .hero-btn-outline,
+    .elp-sticky-cta {
+        transition: none !important;
+    }
+
+    .elp-testi-slide-active {
+        animation: none !important;
+    }
+}
+

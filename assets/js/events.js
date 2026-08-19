@@ -109,4 +109,15 @@ document.addEventListener('DOMContentLoaded', () => {
     EventRoleManager.init();
     EventsFilterManager.init();
     FaqAccordionManager.init();
+
+    // Event inquiry form submission (Phase 21.1) - shared engine, see
+    // assets/js/form-submit-manager.js. Replaces the old inline onsubmit
+    // alert() that never actually sent data anywhere.
+    if (typeof FormSubmitManager !== 'undefined') {
+        FormSubmitManager.bind('#bxssEventInquiryForm', {
+            messages: {
+                success: 'Thank you! Your inquiry has been submitted. Our team will contact you shortly.'
+            }
+        });
+    }
 });

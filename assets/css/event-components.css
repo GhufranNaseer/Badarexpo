@@ -1,0 +1,2411 @@
+/* =============================================================================
+   EVENT DESIGN SYSTEM (EDS) - event-components.css
+   ============================================================================= 
+   Phase 3: a standalone, reusable component library, decoupled from any one
+   page. Every component here is prefixed "eds-" and scoped under a single
+   .eds-scope wrapper class (NOT an #id, unlike page-specific files) so any
+   number of these components can be dropped into any current or future page
+   - including future CMS/WordPress template parts and Gutenberg blocks -
+   without collision.
+
+   THIS FILE DOES NOT REPLACE OR MODIFY:
+   - assets/css/event-landing.css (Phase 1/2's page-specific "elp-" styles)
+   - Any other existing page/component CSS file
+   event-landing.html was intentionally left untouched this phase (see
+   rules.txt/data.txt Session 24). A future integration session can decide
+   whether to refactor event-landing.html to consume this library instead of
+   its own local "elp-" rules - that is out of scope here.
+
+   DESIGN TOKENS: every value below comes from tokens.css / navbar.css :root
+   (--primary-red, --text-dark, --shadow-*, --radius-*, --transition-*, the
+   8px spacing scale). No new hex/px values are invented in this file.
+
+   COMPONENT API PHILOSOPHY (CMS / WordPress / dynamic-data friendly):
+   - No component assumes a fixed number of items - grids/lists use CSS Grid
+     /Flexbox with `auto-fill`/`wrap` so a CMS can render 1 or 100 items into
+     the same markup.
+   - No component hardcodes text content in CSS (no ::before/::after content
+     strings carrying real copy) - all text lives in HTML/CMS field data.
+   - State is expressed with modifier classes (--variant naming) and/or
+     data-* attributes, never inline styles, so a template engine or ACF
+     Flexible Content field can toggle state by just changing a class/attr.
+   - See event-design-system.md for the full per-component field-mapping
+     reference (suggested ACF/WordPress field names for every component).
+   ============================================================================= */
+
+/* =============================================================================
+   0. BASE / RESET (scoped, does not leak outside .eds-scope)
+   ============================================================================= */
+.eds-scope {
+    font-family: var(--font-primary, 'Inter', sans-serif);
+    color: var(--text-dark);
+    box-sizing: border-box;
+}
+
+.eds-scope *,
+.eds-scope *::before,
+.eds-scope *::after {
+    box-sizing: inherit;
+}
+
+.eds-scope img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+.eds-scope a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.eds-container {
+    max-width: 1240px;
+    margin: 0 auto;
+    padding: 0 24px;
+}
+
+/* Generic section head, reused by nearly every category below */
+.eds-section-head {
+    text-align: center;
+    max-width: 700px;
+    margin: 0 auto 56px;
+}
+
+.eds-section-head--left {
+    text-align: left;
+    margin: 0 0 40px;
+}
+
+.eds-badge-label {
+    display: inline-block;
+    background: rgba(228, 31, 38, 0.06);
+    border: 1px solid rgba(10, 10, 10, 0.08);
+    color: var(--primary-red);
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    padding: 6px 16px;
+    border-radius: var(--radius-pill, 999px);
+    margin-bottom: 16px;
+}
+
+.eds-section-title {
+    font-size: clamp(1.8rem, 3.4vw, 2.5rem);
+    font-weight: 800;
+    letter-spacing: -0.5px;
+    margin: 0 0 16px;
+    line-height: 1.2;
+}
+
+.eds-section-desc {
+    color: var(--text-muted);
+    font-size: 1.1rem;
+    line-height: 1.7;
+    margin: 0;
+}
+
+/* Section Divider (Utility Components) */
+.eds-divider {
+    border: none;
+    border-top: 1px solid var(--border-light);
+    margin: 64px 0;
+}
+
+.eds-divider--dashed {
+    border-top-style: dashed;
+}
+
+/* =============================================================================
+   1. HERO COMPONENTS
+   ============================================================================= */
+
+/* Event Hero - standalone variant of the shared .page-hero pattern
+   (page-hero.css), for use outside the inner-page-hero context (e.g. inside
+   a CMS "event block" that isn't a full page). Accepts a background image
+   via inline style="--eds-hero-bg: url(...)" or a nested <img> - both
+   supported so a template engine can pick whichever it renders easier. */
+.eds-hero {
+    position: relative;
+    width: 100%;
+    min-height: 480px;
+    display: flex;
+    align-items: center;
+    color: var(--white);
+    background-color: #000;
+    background-image: var(--eds-hero-bg, none);
+    background-size: cover;
+    background-position: center;
+    overflow: hidden;
+    border-radius: var(--radius-lg, 16px);
+}
+
+.eds-hero-bg-img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 1;
+}
+
+/* Hero Background Overlay - separate component so it can be reused on any
+   dark-image surface (gallery featured image, sponsor spotlight, etc.) */
+.eds-overlay {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    background: linear-gradient(115deg,
+            rgba(10, 10, 10, 0.88) 0%,
+            rgba(10, 10, 10, 0.62) 45%,
+            rgba(228, 31, 38, 0.35) 100%);
+}
+
+.eds-overlay--flat {
+    background: rgba(10, 10, 10, 0.55);
+}
+
+.eds-hero-content {
+    position: relative;
+    z-index: 3;
+    max-width: 1240px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 64px 40px;
+}
+
+.eds-hero-content h1 {
+    font-size: clamp(2.2rem, 4.4vw, 3.4rem);
+    font-weight: 800;
+    line-height: 1.15;
+    max-width: 800px;
+    margin: 0 0 18px;
+    text-shadow: 0 2px 12px rgba(0, 0, 0, 0.35);
+}
+
+.eds-hero-content p {
+    font-size: clamp(1rem, 1.3vw, 1.1rem);
+    max-width: 620px;
+    opacity: 0.92;
+    line-height: 1.7;
+    margin: 0;
+}
+
+/* Breadcrumb - generalized version of page-hero.css's .page-breadcrumb,
+   usable standalone above any .eds-hero */
+.eds-breadcrumb {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text-muted);
+    padding: 14px 0;
+}
+
+.eds-breadcrumb a {
+    color: var(--text-muted);
+    transition: var(--transition-fast);
+}
+
+.eds-breadcrumb a:hover {
+    color: var(--primary-red);
+}
+
+.eds-breadcrumb .eds-crumb-sep {
+    opacity: 0.5;
+    font-size: 11px;
+}
+
+.eds-breadcrumb .eds-crumb-current {
+    color: var(--primary-red);
+}
+
+/* Hero Statistics - compact inline stat row for inside a hero */
+.eds-hero-stats {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 28px;
+    margin-top: 28px;
+}
+
+.eds-hero-stat {
+    display: flex;
+    flex-direction: column;
+}
+
+.eds-hero-stat-num {
+    font-size: 1.6rem;
+    font-weight: 800;
+    line-height: 1;
+}
+
+.eds-hero-stat-label {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    opacity: 0.7;
+    margin-top: 4px;
+}
+
+/* Hero CTA Group - wraps any number of .eds-btn children */
+.eds-cta-group {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+    margin-top: 28px;
+}
+
+/* =============================================================================
+   2. STATUS / BADGE / TAG SYSTEM (Utility Components, used across every
+   other category - defined early so later sections can reference it)
+   ============================================================================= */
+
+/* Generic badge - the base every status/category/industry label builds on */
+.eds-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.78rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    padding: 6px 16px;
+    border-radius: var(--radius-pill, 999px);
+    border: 1px solid transparent;
+    white-space: nowrap;
+}
+
+.eds-badge i,
+.eds-badge .eds-badge-dot {
+    font-size: 0.5rem;
+}
+
+.eds-badge .eds-badge-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: currentColor;
+}
+
+/* Status modifiers - drive Event Status Badge / Registration Status Card /
+   Success/Error State via one shared palette */
+.eds-badge--success {
+    background: rgba(16, 185, 129, 0.15);
+    color: #10b981;
+    border-color: rgba(16, 185, 129, 0.3);
+}
+
+.eds-badge--warning {
+    background: rgba(245, 158, 11, 0.15);
+    color: #d97706;
+    border-color: rgba(245, 158, 11, 0.3);
+}
+
+.eds-badge--danger {
+    background: rgba(228, 31, 38, 0.1);
+    color: var(--primary-red);
+    border-color: rgba(228, 31, 38, 0.25);
+}
+
+.eds-badge--info {
+    background: rgba(59, 130, 246, 0.12);
+    color: #2563eb;
+    border-color: rgba(59, 130, 246, 0.25);
+}
+
+.eds-badge--neutral {
+    background: rgba(0, 0, 0, 0.05);
+    color: var(--text-muted);
+    border-color: var(--border-light);
+}
+
+/* On dark surfaces (hero, dark cards) the light-tinted badges above need
+   more opacity to stay legible - opt in with this modifier */
+.eds-badge--on-dark.eds-badge--success { background: rgba(16, 185, 129, 0.18); color: #34d399; }
+.eds-badge--on-dark.eds-badge--warning { background: rgba(245, 158, 11, 0.18); color: #fbbf24; }
+.eds-badge--on-dark.eds-badge--danger  { background: rgba(228, 31, 38, 0.2); color: #ff8a8d; }
+.eds-badge--on-dark.eds-badge--info    { background: rgba(59, 130, 246, 0.2); color: #93c5fd; }
+.eds-badge--on-dark.eds-badge--neutral { background: rgba(255, 255, 255, 0.12); color: rgba(255, 255, 255, 0.8); border-color: rgba(255, 255, 255, 0.2); }
+
+/* Category / Industry Tag - visually distinct from status badges (square-ish
+   pill, neutral by default, no dot/icon expected) */
+.eds-tag {
+    display: inline-block;
+    background: var(--white);
+    border: 1px solid var(--border-light);
+    color: var(--text-dark);
+    font-size: 0.9rem;
+    font-weight: 600;
+    padding: 10px 22px;
+    border-radius: var(--radius-pill, 999px);
+    transition: var(--transition-fast);
+}
+
+.eds-tag:hover,
+.eds-tag.eds-tag--active {
+    border-color: var(--primary-red);
+    color: var(--primary-red);
+}
+
+/* Filter Chip - like a tag, but togglable (aria-pressed driven) for future
+   filtering UIs (e.g. "Filter speakers by track") */
+.eds-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: var(--bg-light);
+    border: 1px solid var(--border-light);
+    color: var(--text-muted);
+    font-size: 0.85rem;
+    font-weight: 600;
+    padding: 8px 16px;
+    border-radius: var(--radius-pill, 999px);
+    cursor: pointer;
+    transition: var(--transition-fast);
+}
+
+.eds-chip[aria-pressed="true"] {
+    background: var(--primary-red);
+    border-color: var(--primary-red);
+    color: var(--white);
+}
+
+.eds-chip .eds-chip-close {
+    font-size: 0.7rem;
+    opacity: 0.7;
+}
+
+/* =============================================================================
+   3. INFORMATION COMPONENTS
+   ============================================================================= */
+
+/* Generic info card - backbone of Key Info Grid item, Important Dates,
+   Location, Quick Facts, Registration Status, Contact Card */
+.eds-info-card {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 20px;
+    background: var(--white);
+    border: 1px solid var(--border-light);
+    border-radius: var(--radius-sm, 8px);
+}
+
+.eds-info-card--compact {
+    padding: 14px 16px;
+    border: none;
+    background: transparent;
+}
+
+.eds-info-card--on-dark {
+    background: rgba(255, 255, 255, 0.06);
+    border-color: rgba(255, 255, 255, 0.12);
+    color: var(--white);
+}
+
+.eds-info-icon {
+    width: 44px;
+    height: 44px;
+    flex-shrink: 0;
+    border-radius: var(--radius-sm, 8px);
+    background: rgba(228, 31, 38, 0.08);
+    color: var(--primary-red);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.1rem;
+}
+
+.eds-info-card--on-dark .eds-info-icon {
+    background: rgba(228, 31, 38, 0.2);
+}
+
+.eds-info-body {
+    min-width: 0;
+}
+
+.eds-info-label {
+    display: block;
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--text-muted);
+    margin-bottom: 3px;
+}
+
+.eds-info-card--on-dark .eds-info-label {
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.eds-info-value {
+    display: block;
+    font-size: 0.98rem;
+    font-weight: 700;
+    line-height: 1.4;
+}
+
+/* Key Information Grid - layout wrapper for N .eds-info-card items */
+.eds-info-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 20px;
+}
+
+/* Event Overview Card / larger content card with optional media */
+.eds-overview-card {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 48px;
+    align-items: center;
+    background: var(--white);
+    border: 1px solid var(--border-light);
+    border-radius: var(--radius-md, 12px);
+    padding: 40px;
+}
+
+.eds-overview-card--no-border {
+    border: none;
+    padding: 0;
+}
+
+.eds-overview-media img {
+    width: 100%;
+    aspect-ratio: 4 / 5;
+    object-fit: cover;
+    border-radius: var(--radius-md, 12px);
+    box-shadow: var(--shadow-md, 0 20px 40px rgba(0, 0, 0, 0.12));
+}
+
+.eds-overview-body p {
+    color: var(--text-muted);
+    line-height: 1.8;
+    margin: 0 0 20px;
+}
+
+.eds-fact-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 40px;
+    padding-top: 24px;
+    border-top: 1px solid var(--border-light);
+}
+
+.eds-fact {
+    display: flex;
+    flex-direction: column;
+}
+
+.eds-fact-num {
+    font-size: 2rem;
+    font-weight: 800;
+    color: var(--primary-red);
+    line-height: 1;
+}
+
+.eds-fact-label {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    margin-top: 6px;
+}
+
+/* Organizer Card */
+.eds-organizer-card {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 16px 20px;
+    background: var(--bg-light);
+    border: 1px solid var(--border-light);
+    border-radius: var(--radius-sm, 8px);
+}
+
+.eds-organizer-logo {
+    width: 40px;
+    height: 40px;
+    border-radius: var(--radius-xs, 4px);
+    flex-shrink: 0;
+    object-fit: contain;
+    background: var(--white);
+}
+
+/* Download Brochure Card - CTA-flavored info card */
+.eds-download-card {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    padding: 24px 28px;
+    background: var(--ink, #0a0a0a);
+    border-radius: var(--radius-md, 12px);
+    color: var(--white);
+}
+
+.eds-download-card-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: var(--radius-sm, 8px);
+    background: rgba(228, 31, 38, 0.2);
+    color: var(--primary-red);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.3rem;
+    flex-shrink: 0;
+}
+
+.eds-download-card-title {
+    font-weight: 700;
+    font-size: 1rem;
+    margin: 0 0 2px;
+}
+
+.eds-download-card-meta {
+    font-size: 0.8rem;
+    color: rgba(255, 255, 255, 0.6);
+    margin: 0;
+}
+
+/* =============================================================================
+   4. STATISTICS COMPONENTS
+   ============================================================================= */
+.eds-stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 24px;
+    text-align: center;
+}
+
+/* Statistics Card / Animated Counter host. JS (EdsCounter) looks for
+   [data-eds-counter] with data-target/data-suffix/data-prefix attributes -
+   no hardcoded numbers anywhere in CSS or JS. */
+.eds-stat-card {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.eds-stat-num {
+    font-size: clamp(2.2rem, 4vw, 3rem);
+    font-weight: 800;
+    line-height: 1;
+    font-variant-numeric: tabular-nums;
+}
+
+.eds-stat-label {
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: var(--text-muted);
+}
+
+.eds-stat-card--on-dark .eds-stat-label {
+    color: rgba(255, 255, 255, 0.55);
+}
+
+/* Achievement Card - icon + stat combined, for "milestones" style content
+   (distinct from a bare number stat) */
+.eds-achievement-card {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 24px;
+    background: var(--white);
+    border: 1px solid var(--border-light);
+    border-radius: var(--radius-md, 12px);
+}
+
+.eds-achievement-icon {
+    width: 52px;
+    height: 52px;
+    flex-shrink: 0;
+    border-radius: 50%;
+    background: rgba(228, 31, 38, 0.08);
+    color: var(--primary-red);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.3rem;
+}
+
+.eds-achievement-num {
+    font-size: 1.5rem;
+    font-weight: 800;
+    line-height: 1.1;
+}
+
+.eds-achievement-label {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+}
+
+/* Industry Numbers / Participation Numbers are the same .eds-stat-card /
+   .eds-achievement-card components with different content - documented as
+   usage patterns in event-design-system.md rather than duplicate CSS. */
+
+/* =============================================================================
+   5. SPEAKER COMPONENTS
+   ============================================================================= */
+.eds-speaker-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 24px;
+}
+
+.eds-speaker-card {
+    text-align: center;
+}
+
+.eds-speaker-photo {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    border-radius: 50%;
+    overflow: hidden;
+    margin-bottom: 18px;
+    box-shadow: var(--shadow-xs, 0 2px 8px rgba(0, 0, 0, 0.04));
+}
+
+.eds-speaker-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: var(--transition-smooth);
+}
+
+.eds-speaker-card:hover .eds-speaker-photo img {
+    transform: scale(1.06);
+}
+
+.eds-speaker-name {
+    font-size: 1.05rem;
+    font-weight: 700;
+    margin: 0 0 4px;
+}
+
+.eds-speaker-title {
+    color: var(--text-muted);
+    font-size: 0.85rem;
+    margin: 0 0 12px;
+}
+
+.eds-speaker-socials {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+.eds-speaker-socials a {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    border: 1px solid var(--border-light);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-muted);
+    font-size: 0.8rem;
+    transition: var(--transition-fast);
+}
+
+.eds-speaker-socials a:hover {
+    background: var(--primary-red);
+    border-color: var(--primary-red);
+    color: var(--white);
+}
+
+/* Featured Speaker Card - larger, left-aligned, for a "keynote" spotlight
+   slot (modifier, not a separate component tree) */
+.eds-speaker-card--featured {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    gap: 28px;
+    align-items: center;
+    text-align: left;
+    grid-column: 1 / -1;
+    padding: 28px;
+    background: var(--bg-light);
+    border-radius: var(--radius-md, 12px);
+}
+
+.eds-speaker-card--featured .eds-speaker-photo {
+    margin-bottom: 0;
+    border-radius: var(--radius-md, 12px);
+    aspect-ratio: 1 / 1;
+}
+
+.eds-speaker-card--featured .eds-speaker-socials {
+    justify-content: flex-start;
+}
+
+/* Speaker Detail Card - adds an expandable bio, reuses the same accordion
+   JS as FAQ via [data-eds-accordion] on the wrapper */
+.eds-speaker-card--detail .eds-speaker-bio {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease;
+    font-size: 0.88rem;
+    color: var(--text-muted);
+    line-height: 1.6;
+    text-align: left;
+}
+
+.eds-speaker-bio-toggle {
+    background: none;
+    border: none;
+    color: var(--primary-red);
+    font-size: 0.82rem;
+    font-weight: 700;
+    cursor: pointer;
+    margin-top: 8px;
+    padding: 0;
+}
+
+/* =============================================================================
+   6. SPONSOR / PARTNER COMPONENTS
+   ============================================================================= */
+.eds-sponsor-tier {
+    margin-bottom: 48px;
+}
+
+.eds-sponsor-tier:last-child {
+    margin-bottom: 0;
+}
+
+.eds-sponsor-tier-label {
+    display: block;
+    text-align: center;
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--text-muted);
+    margin-bottom: 24px;
+}
+
+.eds-sponsor-logos {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 40px;
+}
+
+/* Sponsor Card - base logo tile. Modifiers below cover Premium Sponsor,
+   Partner, Supporter, Government Partner, and Media Partner cards - all the
+   same structure (logo + optional name/tier label), sized/framed
+   differently per tier so a CMS "Sponsor" post type with a "tier" field
+   maps 1:1 to one modifier class. */
+.eds-sponsor-card {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: var(--transition-fast);
+}
+
+.eds-sponsor-card img {
+    max-height: 56px;
+    width: auto;
+    filter: grayscale(100%);
+    opacity: 0.7;
+    transition: var(--transition-fast);
+}
+
+.eds-sponsor-card:hover img {
+    filter: grayscale(0%);
+    opacity: 1;
+}
+
+/* --premium: larger, framed, un-grayscaled by default (top-tier prominence) */
+.eds-sponsor-card--premium {
+    padding: 20px 32px;
+    background: var(--white);
+    border: 1px solid var(--border-light);
+    border-radius: var(--radius-md, 12px);
+    box-shadow: var(--shadow-xs, 0 2px 8px rgba(0, 0, 0, 0.04));
+}
+
+.eds-sponsor-card--premium img {
+    max-height: 72px;
+    filter: none;
+    opacity: 1;
+}
+
+/* --partner / --supporter: mid-size, same treatment, different semantic
+   label only (kept as separate modifier names for CMS field clarity even
+   though the CSS is identical) */
+.eds-sponsor-card--partner img,
+.eds-sponsor-card--supporter img {
+    max-height: 56px;
+}
+
+/* --government / --media: smaller, tucked in a dedicated row, per the
+   pattern used for regulatory/media-partner credit lines */
+.eds-sponsor-card--government img,
+.eds-sponsor-card--media img {
+    max-height: 40px;
+}
+
+/* Logo Carousel - continuous marquee variant of the sponsor grid, for long
+   lists (reuses the exact animation approach already established in
+   clients_marquee.css so the motion language matches site-wide) */
+.eds-logo-carousel {
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+    -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+    mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+}
+
+.eds-logo-carousel-track {
+    display: flex;
+    align-items: center;
+    gap: 56px;
+    width: max-content;
+    animation: eds-marquee-scroll 32s linear infinite;
+}
+
+.eds-logo-carousel:hover .eds-logo-carousel-track {
+    animation-play-state: paused;
+}
+
+.eds-logo-carousel-track img {
+    max-height: 48px;
+    width: auto;
+    flex-shrink: 0;
+    filter: grayscale(100%);
+    opacity: 0.7;
+    transition: var(--transition-fast);
+}
+
+.eds-logo-carousel-track img:hover {
+    filter: grayscale(0%);
+    opacity: 1;
+}
+
+@keyframes eds-marquee-scroll {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+}
+
+/* =============================================================================
+   7. SCHEDULE COMPONENTS
+   ============================================================================= */
+
+/* Day Switch Navigation is the generic .eds-tabs component (Section 12,
+   Utility Components) - documented here as a usage pattern, not a separate
+   CSS block, so schedule tabs / FAQ category tabs / any future tab group
+   all share one implementation and one JS module. */
+
+.eds-agenda-list {
+    max-width: 760px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+/* Timeline Item - base row every schedule entry builds on */
+.eds-timeline-item {
+    display: flex;
+    gap: 24px;
+    background: var(--white);
+    border: 1px solid var(--border-light);
+    border-left: 3px solid var(--border-light);
+    border-radius: var(--radius-sm, 8px);
+    padding: 20px 24px;
+}
+
+.eds-timeline-time {
+    flex-shrink: 0;
+    width: 96px;
+    font-weight: 700;
+    color: var(--primary-red);
+    font-size: 0.9rem;
+}
+
+.eds-timeline-body h3 {
+    font-size: 1rem;
+    font-weight: 700;
+    margin: 0 0 4px;
+}
+
+.eds-timeline-body p {
+    color: var(--text-muted);
+    font-size: 0.88rem;
+    margin: 0;
+}
+
+.eds-timeline-type {
+    display: inline-block;
+    margin-top: 8px;
+}
+
+/* Session / Workshop / Panel Discussion / Break / Networking Session cards
+   are all .eds-timeline-item with a left-border color + .eds-badge type tag
+   - avoids 5 near-identical CSS blocks for what is really one component
+   with a "session type" field. */
+.eds-timeline-item--session { border-left-color: #2563eb; }
+.eds-timeline-item--workshop { border-left-color: #d97706; }
+.eds-timeline-item--panel { border-left-color: var(--primary-red); }
+.eds-timeline-item--break { border-left-color: var(--text-muted); opacity: 0.85; }
+.eds-timeline-item--networking { border-left-color: #10b981; }
+
+
+/* =============================================================================
+   8. VENUE COMPONENTS
+   ============================================================================= */
+.eds-venue-card {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 56px;
+    align-items: center;
+}
+
+.eds-venue-card--stacked {
+    grid-template-columns: 1fr;
+}
+
+/* Map Placeholder - accepts either a real <iframe> embed or, before that
+   data exists, shows a placeholder pin graphic so the layout never looks
+   broken while a CMS field is empty */
+.eds-map-placeholder {
+    border-radius: var(--radius-md, 12px);
+    overflow: hidden;
+    box-shadow: var(--shadow-md, 0 20px 40px rgba(0, 0, 0, 0.12));
+    aspect-ratio: 4 / 3;
+    background: var(--bg-light);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-muted);
+}
+
+.eds-map-placeholder iframe {
+    width: 100%;
+    height: 100%;
+    border: 0;
+}
+
+.eds-map-placeholder-empty {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    font-size: 0.9rem;
+}
+
+.eds-map-placeholder-empty i {
+    font-size: 2rem;
+    color: var(--primary-red);
+    opacity: 0.4;
+}
+
+/* Transportation / Parking / Hotel Recommendation / Nearby Facilities Cards
+   all reuse .eds-info-card (Section 3) with a relevant icon - see
+   event-design-system.md for the icon/field mapping per card type. */
+
+/* =============================================================================
+   9. GALLERY COMPONENTS
+   ============================================================================= */
+.eds-gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 16px;
+}
+
+.eds-gallery-card {
+    position: relative;
+    border-radius: var(--radius-sm, 8px);
+    overflow: hidden;
+    aspect-ratio: 1 / 1;
+}
+
+.eds-gallery-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: var(--transition-smooth);
+}
+
+.eds-gallery-card:hover img {
+    transform: scale(1.05);
+}
+
+/* Featured Image - larger hero-style single image, spans 2 grid cells when
+   dropped into .eds-gallery-grid */
+.eds-featured-image {
+    grid-column: span 2;
+    grid-row: span 2;
+}
+
+/* Video Preview Card - gallery card with a centered play affordance */
+.eds-video-card {
+    position: relative;
+}
+
+.eds-video-play {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background: rgba(228, 31, 38, 0.9);
+    color: var(--white);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    transition: var(--transition-fast);
+}
+
+.eds-video-card:hover .eds-video-play {
+    transform: translate(-50%, -50%) scale(1.1);
+}
+
+/* Media Slider - generic slider shell, JS-driven via [data-eds-slider] */
+.eds-media-slider {
+    position: relative;
+    overflow: hidden;
+    border-radius: var(--radius-md, 12px);
+}
+
+.eds-media-slider-track {
+    display: flex;
+    transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.eds-media-slide {
+    flex: 0 0 100%;
+}
+
+.eds-media-slider-nav {
+    position: absolute;
+    bottom: 16px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 8px;
+}
+
+.eds-media-slider-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.5);
+    cursor: pointer;
+    border: none;
+    padding: 0;
+}
+
+.eds-media-slider-dot[aria-current="true"] {
+    background: var(--white);
+    width: 22px;
+    border-radius: 4px;
+}
+
+/* =============================================================================
+   10. TESTIMONIAL COMPONENTS
+   ============================================================================= */
+.eds-testimonial-card {
+    text-align: center;
+    max-width: 720px;
+    margin: 0 auto;
+}
+
+.eds-testimonial-quote {
+    font-size: 1.3rem;
+    line-height: 1.6;
+    margin: 0 0 24px;
+}
+
+.eds-testimonial-quote::before {
+    content: '\201C';
+}
+
+.eds-testimonial-quote::after {
+    content: '\201D';
+}
+
+.eds-testimonial-author {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    align-items: center;
+}
+
+.eds-testimonial-name {
+    font-weight: 700;
+}
+
+.eds-testimonial-role {
+    color: var(--text-muted);
+    font-size: 0.88rem;
+}
+
+/* Company Testimonial - adds a small company logo beside the author block */
+.eds-testimonial-card--company .eds-testimonial-author {
+    flex-direction: row;
+    gap: 12px;
+    text-align: left;
+}
+
+.eds-testimonial-company-logo {
+    width: 36px;
+    height: 36px;
+    border-radius: var(--radius-xs, 4px);
+    object-fit: contain;
+}
+
+/* Video Testimonial Placeholder - reuses .eds-video-card exactly */
+
+/* Rating Block */
+.eds-rating {
+    display: inline-flex;
+    gap: 3px;
+    color: #f59e0b;
+    font-size: 0.9rem;
+    margin-bottom: 12px;
+}
+
+.eds-rating .eds-rating-star--empty {
+    color: var(--border-light);
+}
+
+/* =============================================================================
+   11. REGISTRATION COMPONENTS
+   ============================================================================= */
+.eds-register-card {
+    background-color: var(--ink, #0a0a0a);
+    background-image: radial-gradient(circle at top right, rgba(228, 31, 38, 0.25), transparent 60%);
+    border: 1px solid rgba(228, 31, 38, 0.25);
+    border-radius: var(--radius-lg, 16px);
+    padding: 72px 40px;
+    text-align: center;
+    color: var(--white);
+}
+
+.eds-register-card h2 {
+    font-size: clamp(1.8rem, 3.4vw, 2.4rem);
+    font-weight: 800;
+    margin: 0 0 12px;
+}
+
+.eds-register-card p {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 1.05rem;
+    margin: 0 0 32px;
+}
+
+/* Sticky Registration CTA - fixed-bottom bar, hidden by default. JS
+   (EdsStickyCta) toggles .eds-sticky-cta--visible once a target element
+   (e.g. the hero) scrolls out of view. */
+.eds-sticky-cta {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 500;
+    background: var(--white);
+    border-top: 1px solid var(--border-light);
+    box-shadow: 0 -8px 30px rgba(0, 0, 0, 0.1);
+    transform: translateY(100%);
+    transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.eds-sticky-cta--visible {
+    transform: translateY(0);
+}
+
+.eds-sticky-cta-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    padding: 14px 24px;
+}
+
+.eds-sticky-cta-name {
+    font-weight: 700;
+    font-size: 0.92rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.eds-sticky-cta-date {
+    font-size: 0.78rem;
+    color: var(--text-muted);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+/* Registration Benefit Card - icon feature card, identical structure to
+   the "Why Attend" card pattern from Phase 1/2, generalized here */
+.eds-benefit-card {
+    background: var(--white);
+    border: 1px solid var(--border-light);
+    border-radius: var(--radius-md, 12px);
+    padding: 32px 24px;
+    text-align: center;
+    transition: var(--transition-smooth);
+}
+
+.eds-benefit-card:hover {
+    transform: translateY(-6px);
+    box-shadow: var(--shadow-sm, 0 4px 15px rgba(0, 0, 0, 0.08));
+    border-color: rgba(228, 31, 38, 0.2);
+}
+
+.eds-benefit-icon {
+    width: 56px;
+    height: 56px;
+    border-radius: var(--radius-sm, 8px);
+    background: rgba(228, 31, 38, 0.08);
+    color: var(--primary-red);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.4rem;
+    margin: 0 auto 20px;
+}
+
+/* Pricing Placeholder - for future ticketing; deliberately plain until a
+   real pricing model exists */
+.eds-pricing-card {
+    text-align: center;
+    padding: 40px 28px;
+    border: 1px solid var(--border-light);
+    border-radius: var(--radius-md, 12px);
+    background: var(--white);
+}
+
+.eds-pricing-card--featured {
+    border-color: var(--primary-red);
+    box-shadow: var(--shadow-sm, 0 4px 15px rgba(0, 0, 0, 0.08));
+    position: relative;
+}
+
+.eds-pricing-amount {
+    font-size: 2.2rem;
+    font-weight: 800;
+    margin: 12px 0;
+}
+
+.eds-pricing-amount small {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--text-muted);
+}
+
+/* Registration Steps - numbered process list */
+.eds-steps {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    counter-reset: eds-step;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 24px;
+}
+
+.eds-step {
+    counter-increment: eds-step;
+    text-align: center;
+}
+
+.eds-step::before {
+    content: counter(eds-step);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    margin: 0 auto 14px;
+    border-radius: 50%;
+    background: var(--primary-red);
+    color: var(--white);
+    font-weight: 800;
+    font-size: 1rem;
+}
+
+.eds-step h3 {
+    font-size: 0.98rem;
+    font-weight: 700;
+    margin: 0 0 6px;
+}
+
+.eds-step p {
+    color: var(--text-muted);
+    font-size: 0.85rem;
+    margin: 0;
+}
+
+/* Confirmation Card - post-registration success message shell */
+.eds-confirmation-card {
+    text-align: center;
+    padding: 48px 32px;
+    background: rgba(16, 185, 129, 0.05);
+    border: 1px solid rgba(16, 185, 129, 0.2);
+    border-radius: var(--radius-md, 12px);
+}
+
+.eds-confirmation-icon {
+    width: 64px;
+    height: 64px;
+    margin: 0 auto 20px;
+    border-radius: 50%;
+    background: rgba(16, 185, 129, 0.15);
+    color: #10b981;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.6rem;
+}
+
+
+/* =============================================================================
+   12. FAQ COMPONENTS
+   ============================================================================= */
+
+/* Accordion - generic, multi-instance. JS (EdsAccordion) queries any
+   [data-eds-accordion] container for .eds-accordion-item children, so a
+   page can have any number of independent accordions (FAQ, speaker bios,
+   schedule details) without ID collisions. */
+.eds-accordion {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.eds-accordion-item {
+    background: var(--white);
+    border: 1px solid var(--border-light);
+    border-radius: var(--radius-sm, 8px);
+    margin-bottom: 16px;
+    overflow: hidden;
+    transition: var(--transition-smooth);
+}
+
+.eds-accordion-item:hover {
+    border-color: rgba(228, 31, 38, 0.2);
+}
+
+.eds-accordion-item.eds-accordion-active {
+    border-color: var(--primary-red);
+}
+
+.eds-accordion-trigger {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+    padding: 24px;
+    cursor: pointer;
+    user-select: none;
+    background: none;
+    border: none;
+    width: 100%;
+    text-align: left;
+    font-family: inherit;
+}
+
+.eds-accordion-trigger h3,
+.eds-accordion-trigger h4 {
+    font-size: 1.02rem;
+    font-weight: 600;
+    margin: 0;
+    transition: var(--transition-fast);
+}
+
+.eds-accordion-active .eds-accordion-trigger h3,
+.eds-accordion-active .eds-accordion-trigger h4 {
+    color: var(--primary-red);
+}
+
+.eds-accordion-trigger i {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    flex-shrink: 0;
+    transition: transform var(--transition-fast);
+}
+
+.eds-accordion-active .eds-accordion-trigger i {
+    transform: rotate(180deg);
+    color: var(--primary-red);
+}
+
+.eds-accordion-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease;
+}
+
+.eds-accordion-content-inner {
+    padding: 0 24px 24px;
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    line-height: 1.7;
+}
+
+/* Question Card - static (non-collapsing) variant, for a "top questions"
+   summary block that links out rather than expanding inline */
+.eds-question-card {
+    padding: 20px 24px;
+    background: var(--bg-light);
+    border-radius: var(--radius-sm, 8px);
+    margin-bottom: 12px;
+}
+
+.eds-question-card h4 {
+    font-size: 0.98rem;
+    font-weight: 700;
+    margin: 0 0 6px;
+}
+
+.eds-question-card p {
+    color: var(--text-muted);
+    font-size: 0.88rem;
+    margin: 0;
+}
+
+/* Category Tabs reuse .eds-tabs (Section 15) - see docs for usage. */
+
+/* =============================================================================
+   13. CONTACT COMPONENTS
+   ============================================================================= */
+/* Contact Card / Support Information / Sales Contact all reuse
+   .eds-info-card (Section 3) with phone/email/hours icons - see
+   event-design-system.md for the exact markup per variant. */
+
+/* Inquiry CTA - lightweight closing strip pairing a message with an action */
+.eds-inquiry-cta {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 24px;
+    flex-wrap: wrap;
+    text-align: center;
+    padding: 40px 0;
+    border-top: 1px solid var(--border-light);
+}
+
+.eds-inquiry-cta p {
+    font-weight: 600;
+    margin: 0;
+}
+
+.eds-link-arrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--primary-red);
+    font-weight: 700;
+    font-size: 0.95rem;
+    transition: var(--transition-fast);
+}
+
+.eds-link-arrow i {
+    transition: var(--transition-fast);
+}
+
+.eds-link-arrow:hover {
+    gap: 12px;
+}
+
+.eds-link-arrow:hover i {
+    transform: translateX(3px);
+}
+
+/* =============================================================================
+   14. RELATED EVENT COMPONENTS
+   ============================================================================= */
+.eds-related-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 24px;
+}
+
+.eds-related-card {
+    display: block;
+    border-radius: var(--radius-md, 12px);
+    overflow: hidden;
+    background: var(--white);
+    border: 1px solid var(--border-light);
+    transition: var(--transition-smooth);
+}
+
+.eds-related-card:hover {
+    transform: translateY(-6px);
+    box-shadow: var(--shadow-sm, 0 4px 15px rgba(0, 0, 0, 0.08));
+}
+
+.eds-related-card img {
+    width: 100%;
+    aspect-ratio: 16 / 10;
+    object-fit: cover;
+}
+
+.eds-related-card-body {
+    padding: 20px 22px;
+}
+
+.eds-related-card-date {
+    display: block;
+    font-size: 0.78rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--primary-red);
+    margin-bottom: 6px;
+}
+
+.eds-related-card-body h3 {
+    font-size: 1.05rem;
+    font-weight: 700;
+    line-height: 1.4;
+    margin: 0;
+}
+
+/* Featured / Upcoming / Past Event Card are modifiers of .eds-related-card,
+   differing only in a badge, per event lifecycle state */
+.eds-related-card--featured {
+    border-color: var(--primary-red);
+}
+
+.eds-related-card--past img {
+    filter: grayscale(60%);
+    opacity: 0.85;
+}
+
+
+/* =============================================================================
+   15. UTILITY COMPONENTS (continued)
+   ============================================================================= */
+
+/* Buttons - generalized version of events.css's .hero-btn, renamed to the
+   eds- namespace so it works identically outside a hero context */
+.eds-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 16px 36px;
+    font-size: 15px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border-radius: var(--radius-xs, 4px);
+    cursor: pointer;
+    transition: var(--transition-premium, 0.5s cubic-bezier(0.25, 0.8, 0.25, 1));
+    border: none;
+    font-family: inherit;
+}
+
+.eds-btn--sm {
+    padding: 10px 22px;
+    font-size: 13px;
+}
+
+.eds-btn--primary {
+    background: var(--primary-red);
+    color: var(--white);
+    border: 2px solid transparent;
+}
+
+.eds-btn--primary:hover {
+    background: var(--primary-red-hover, #c31a20);
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-red-sm, 0 4px 15px rgba(228, 31, 38, 0.25));
+}
+
+.eds-btn--outline {
+    background: transparent;
+    color: var(--text-dark);
+    border: 2px solid var(--border-light);
+}
+
+.eds-btn--outline:hover {
+    border-color: var(--primary-red);
+    color: var(--primary-red);
+}
+
+.eds-btn--outline-on-dark {
+    background: transparent;
+    color: var(--white);
+    border: 2px solid rgba(255, 255, 255, 0.3);
+}
+
+.eds-btn--outline-on-dark:hover {
+    background: var(--white);
+    color: var(--text-dark);
+    border-color: var(--white);
+    transform: translateY(-3px);
+}
+
+.eds-btn--ghost {
+    background: none;
+    color: var(--primary-red);
+    padding: 8px 4px;
+    text-transform: none;
+    letter-spacing: normal;
+    font-weight: 700;
+}
+
+.eds-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: none !important;
+    box-shadow: none !important;
+}
+
+/* Icon Button - circular, icon-only (social links, slider nav, close
+   buttons all consume this one class) */
+.eds-btn-icon {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    border: 1px solid var(--border-light);
+    background: var(--white);
+    color: var(--text-dark);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: var(--transition-fast);
+}
+
+.eds-btn-icon:hover {
+    background: var(--primary-red);
+    border-color: var(--primary-red);
+    color: var(--white);
+}
+
+.eds-btn-icon--sm {
+    width: 34px;
+    height: 34px;
+    font-size: 0.82rem;
+}
+
+/* Navigation Pills - horizontal pill nav (distinct from tabs: pills are for
+   navigating between pages/anchors, tabs swap panels in place) */
+.eds-pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.eds-pill {
+    padding: 8px 18px;
+    border-radius: var(--radius-pill, 999px);
+    background: var(--bg-light);
+    color: var(--text-muted);
+    font-size: 0.85rem;
+    font-weight: 600;
+    transition: var(--transition-fast);
+}
+
+.eds-pill:hover,
+.eds-pill.eds-pill--active {
+    background: var(--primary-red);
+    color: var(--white);
+}
+
+/* Tabs - generic, multi-instance, powers Day Switch Navigation, FAQ
+   Category Tabs, and any future tabbed content. JS (EdsTabs) queries any
+   [data-eds-tabs] container. */
+.eds-tabs-nav {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 40px;
+}
+
+.eds-tab {
+    background: var(--white);
+    border: 1px solid var(--border-light);
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    font-weight: 700;
+    padding: 12px 28px;
+    border-radius: var(--radius-pill, 999px);
+    cursor: pointer;
+    transition: var(--transition-fast);
+    font-family: inherit;
+}
+
+.eds-tab:hover {
+    color: var(--primary-red);
+}
+
+.eds-tab.eds-tab--active {
+    background: var(--primary-red);
+    border-color: var(--primary-red);
+    color: var(--white);
+}
+
+.eds-tab-panel {
+    display: none;
+}
+
+.eds-tab-panel.eds-tab-panel--active {
+    display: block;
+    animation: eds-fade-in 0.4s ease;
+}
+
+@keyframes eds-fade-in {
+    from { opacity: 0; transform: translateY(8px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Pagination */
+.eds-pagination {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 40px;
+}
+
+.eds-page-link {
+    min-width: 40px;
+    height: 40px;
+    padding: 0 10px;
+    border-radius: var(--radius-xs, 4px);
+    border: 1px solid var(--border-light);
+    background: var(--white);
+    color: var(--text-dark);
+    font-weight: 600;
+    font-size: 0.9rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: var(--transition-fast);
+}
+
+.eds-page-link:hover,
+.eds-page-link.eds-page-link--active {
+    background: var(--primary-red);
+    border-color: var(--primary-red);
+    color: var(--white);
+}
+
+.eds-page-link:disabled,
+.eds-page-link[aria-disabled="true"] {
+    opacity: 0.4;
+    cursor: not-allowed;
+}
+
+/* Alert / Notice Box - informational banners, distinct from status badges
+   (badges label an item, alerts communicate a page-level message) */
+.eds-alert {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    padding: 18px 20px;
+    border-radius: var(--radius-sm, 8px);
+    border: 1px solid transparent;
+    font-size: 0.92rem;
+    line-height: 1.6;
+}
+
+.eds-alert i {
+    font-size: 1.1rem;
+    margin-top: 1px;
+    flex-shrink: 0;
+}
+
+.eds-alert strong {
+    display: block;
+    margin-bottom: 2px;
+}
+
+.eds-alert--info {
+    background: rgba(59, 130, 246, 0.06);
+    border-color: rgba(59, 130, 246, 0.2);
+    color: #1d4ed8;
+}
+
+.eds-alert--success {
+    background: rgba(16, 185, 129, 0.06);
+    border-color: rgba(16, 185, 129, 0.2);
+    color: #059669;
+}
+
+.eds-alert--warning {
+    background: rgba(245, 158, 11, 0.06);
+    border-color: rgba(245, 158, 11, 0.2);
+    color: #b45309;
+}
+
+.eds-alert--danger {
+    background: rgba(228, 31, 38, 0.05);
+    border-color: rgba(228, 31, 38, 0.2);
+    color: var(--primary-red);
+}
+
+/* Empty State - shown when a dynamic list (speakers not yet announced,
+   schedule not published) has zero items; CMS-friendly fallback so the
+   layout never looks broken while content is pending */
+.eds-empty-state {
+    text-align: center;
+    padding: 64px 24px;
+    color: var(--text-muted);
+}
+
+.eds-empty-state i {
+    font-size: 2.4rem;
+    color: var(--border-light);
+    margin-bottom: 16px;
+}
+
+.eds-empty-state h3 {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--text-dark);
+    margin: 0 0 6px;
+}
+
+.eds-empty-state p {
+    font-size: 0.92rem;
+    margin: 0;
+    max-width: 380px;
+    margin-inline: auto;
+}
+
+/* Loading Skeleton - shimmer placeholder for any card while dynamic/API
+   data is still loading */
+.eds-skeleton {
+    position: relative;
+    overflow: hidden;
+    background: var(--border-light);
+    border-radius: var(--radius-sm, 8px);
+}
+
+.eds-skeleton::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.6), transparent);
+    animation: eds-skeleton-shimmer 1.4s ease-in-out infinite;
+}
+
+@keyframes eds-skeleton-shimmer {
+    from { transform: translateX(-100%); }
+    to { transform: translateX(100%); }
+}
+
+.eds-skeleton--text {
+    height: 14px;
+    margin-bottom: 8px;
+    width: 100%;
+}
+
+.eds-skeleton--text-sm {
+    width: 60%;
+}
+
+.eds-skeleton--avatar {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+}
+
+.eds-skeleton--image {
+    width: 100%;
+    aspect-ratio: 16 / 10;
+}
+
+/* Applied by EdsSkeleton.reveal() once real content has loaded - stops the
+   shimmer and fades the placeholder out. The calling code is responsible
+   for swapping in real markup; this class only handles the transition. */
+.eds-skeleton--done {
+    animation: none;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.eds-skeleton--done::after {
+    display: none;
+}
+
+/* Success / Error State - larger, full-block variants of the alert system
+   for confirmation/failure screens (registration confirmation, form submit
+   failure) */
+.eds-state {
+    text-align: center;
+    padding: 56px 32px;
+    border-radius: var(--radius-md, 12px);
+}
+
+.eds-state-icon {
+    width: 64px;
+    height: 64px;
+    margin: 0 auto 20px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.6rem;
+}
+
+.eds-state h3 {
+    font-size: 1.2rem;
+    font-weight: 800;
+    margin: 0 0 8px;
+}
+
+.eds-state p {
+    color: var(--text-muted);
+    margin: 0;
+}
+
+.eds-state--success {
+    background: rgba(16, 185, 129, 0.05);
+    border: 1px solid rgba(16, 185, 129, 0.2);
+}
+
+.eds-state--success .eds-state-icon {
+    background: rgba(16, 185, 129, 0.15);
+    color: #10b981;
+}
+
+.eds-state--error {
+    background: rgba(228, 31, 38, 0.05);
+    border: 1px solid rgba(228, 31, 38, 0.2);
+}
+
+.eds-state--error .eds-state-icon {
+    background: rgba(228, 31, 38, 0.12);
+    color: var(--primary-red);
+}
+
+/* =============================================================================
+   16. COUNTDOWN BLOCK (Hero Components, defined last since it's a hero
+   sub-component referenced from Section 1)
+   ============================================================================= */
+.eds-countdown {
+    display: flex;
+    gap: 14px;
+}
+
+.eds-countdown-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-width: 72px;
+    padding: 12px 8px;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: var(--radius-sm, 8px);
+    -webkit-backdrop-filter: blur(6px);
+    backdrop-filter: blur(6px);
+}
+
+.eds-countdown--on-light .eds-countdown-box {
+    background: var(--bg-light);
+    border-color: var(--border-light);
+}
+
+.eds-countdown-num {
+    font-size: 1.6rem;
+    font-weight: 800;
+    line-height: 1.1;
+    font-variant-numeric: tabular-nums;
+}
+
+.eds-countdown--on-light .eds-countdown-num {
+    color: var(--text-dark);
+}
+
+.eds-countdown-label {
+    font-size: 0.68rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: rgba(255, 255, 255, 0.65);
+    margin-top: 2px;
+}
+
+.eds-countdown--on-light .eds-countdown-label {
+    color: var(--text-muted);
+}
+
+/* =============================================================================
+   RESPONSIVE - snapped to the shared 4-tier breakpoint scale
+   (Desktop >1024px / Tablet 768-1024px / Large Mobile 480-768px / Small <480px)
+   ============================================================================= */
+@media screen and (max-width: 1024px) {
+    .eds-container {
+        padding: 0 20px;
+    }
+
+    .eds-overview-card,
+    .eds-venue-card {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+
+    .eds-speaker-card--featured {
+        grid-template-columns: 140px 1fr;
+    }
+
+    .eds-countdown-box {
+        min-width: 60px;
+        padding: 10px 6px;
+    }
+
+    .eds-countdown-num {
+        font-size: 1.3rem;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .eds-section-head {
+        margin-bottom: 36px;
+    }
+
+    .eds-hero-content {
+        padding: 48px 24px;
+    }
+
+    .eds-speaker-card--featured {
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+
+    .eds-speaker-card--featured .eds-speaker-socials {
+        justify-content: center;
+    }
+
+    .eds-fact-row {
+        flex-wrap: wrap;
+        gap: 24px;
+    }
+
+    .eds-timeline-item {
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    .eds-timeline-time {
+        width: auto;
+    }
+
+    .eds-register-card {
+        padding: 48px 24px;
+    }
+
+    .eds-cta-group,
+    .eds-hero-btns {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .eds-cta-group .eds-btn {
+        text-align: center;
+    }
+
+    .eds-download-card {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .eds-sticky-cta-row {
+        padding: 12px 16px;
+        gap: 12px;
+    }
+
+    .eds-sticky-cta-date {
+        display: none;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .eds-countdown {
+        gap: 8px;
+    }
+
+    .eds-countdown-box {
+        min-width: 0;
+        flex: 1;
+        padding: 10px 4px;
+    }
+
+    .eds-countdown-num {
+        font-size: 1.1rem;
+    }
+
+    .eds-countdown-label {
+        font-size: 0.6rem;
+    }
+
+    .eds-testimonial-quote {
+        font-size: 1.1rem;
+    }
+
+    .eds-featured-image {
+        grid-column: span 1;
+        grid-row: span 1;
+    }
+}
+
+/* =============================================================================
+   LIGHTBOX (added post-Phase-13 bugfix pass) - powers EdsLightbox
+   (event-components.js). Same fixed-fullscreen/opacity-transition pattern
+   already established by .search-overlay (navbar.css) for consistency, but
+   dark (image-viewer convention) instead of light. One shared overlay
+   element per page, created once by JS and reused for every triggering
+   image - not duplicated markup per image.
+   ============================================================================= */
+.eds-lightbox-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(10, 10, 10, 0.94);
+    z-index: 10500;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 40px;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.eds-lightbox-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.eds-lightbox-img {
+    max-width: 90vw;
+    max-height: 80vh;
+    object-fit: contain;
+    border-radius: var(--radius-sm, 8px);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+}
+
+.eds-lightbox-caption {
+    color: var(--white);
+    margin-top: 16px;
+    font-size: 0.95rem;
+    text-align: center;
+    max-width: 80vw;
+}
+
+.eds-lightbox-close {
+    position: absolute;
+    top: 24px;
+    right: 24px;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: var(--white);
+    font-size: 1.1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background 0.2s ease;
+}
+
+.eds-lightbox-close:hover {
+    background: var(--primary-red);
+    border-color: var(--primary-red);
+}
+
+.eds-lightbox-trigger {
+    cursor: zoom-in;
+}
+
+/* =============================================================================
+   VIDEO LIGHTBOX MODE (Phase 18) - shares the same overlay as the image
+   lightbox (EdsLightbox, Phase 13); .eds-lightbox-video-wrap sits alongside
+   .eds-lightbox-img and only one of the two is shown at a time (JS toggles
+   [hidden]). No new overlay/close-button/backdrop CSS needed - this is
+   purely the video-specific inner content.
+   ============================================================================= */
+.eds-lightbox-video-wrap {
+    width: min(90vw, 960px);
+    aspect-ratio: 16 / 9;
+}
+
+.eds-lightbox-video-wrap iframe {
+    width: 100%;
+    height: 100%;
+    border-radius: var(--radius-sm, 8px);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+}
+
+/* Graceful "unavailable video" state - see EdsLightbox.openVideo()'s
+   PLACEHOLDER- convention. Reuses the exact icon+title+desc shape as
+   every other honest Empty State in this project (.eds-empty-state),
+   just laid out for the dark lightbox backdrop instead of a light page
+   section. */
+.eds-video-unavailable {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: var(--white);
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px dashed rgba(255, 255, 255, 0.25);
+    border-radius: var(--radius-sm, 8px);
+    padding: 40px 24px;
+}
+
+.eds-video-unavailable i {
+    font-size: 2.2rem;
+    color: rgba(255, 255, 255, 0.5);
+    margin-bottom: 16px;
+}
+
+.eds-video-unavailable h3 {
+    font-size: 1.1rem;
+    margin: 0 0 8px;
+}
+
+.eds-video-unavailable p {
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.7);
+    margin: 0;
+    max-width: 320px;
+}
+
+/* ---- Video Card (EdsVideoCard, Phase 18) - reuses .eds-related-card's
+   shell exactly; only the play-button overlay and description/CTA rows
+   below are new. ---- */
+.eds-video-play-overlay {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(10, 10, 10, 0.25);
+    transition: background 0.25s ease;
+}
+
+.eds-video-play-overlay i {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.9);
+    color: var(--primary-red);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.1rem;
+    padding-left: 4px;
+    /* optically center the play triangle */
+    transition: transform 0.25s cubic-bezier(0.165, 0.84, 0.44, 1), background 0.25s ease;
+}
+
+.eds-video-card:hover .eds-video-play-overlay {
+    background: rgba(10, 10, 10, 0.4);
+}
+
+.eds-video-card:hover .eds-video-play-overlay i {
+    transform: scale(1.1);
+    background: var(--primary-red);
+    color: var(--white);
+}
+
+.eds-video-card {
+    cursor: pointer;
+}
+
+.eds-video-card-desc {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    line-height: 1.5;
+    margin: 6px 0 10px;
+}
+
+.eds-video-watch-cta {
+    display: inline-flex;
+}
+
+.eds-video-card-actions {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.eds-video-event-link {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--text-muted);
+    text-decoration: none;
+    border: 1px solid var(--border-light);
+    border-radius: var(--radius-pill, 999px);
+    padding: 4px 12px;
+    transition: color 0.2s ease, border-color 0.2s ease;
+}
+
+.eds-video-event-link:hover {
+    color: var(--primary-red);
+    border-color: var(--primary-red);
+}
+
+.eds-video-event-link:focus-visible {
+    outline: 2px solid var(--primary-red);
+    outline-offset: 2px;
+}
+
+@media screen and (max-width: 768px) {
+    .eds-video-play-overlay i {
+        width: 44px;
+        height: 44px;
+        font-size: 0.9rem;
+    }
+
+    .eds-lightbox-overlay {
+        padding: 20px;
+    }
+
+    .eds-lightbox-close {
+        top: 16px;
+        right: 16px;
+        width: 38px;
+        height: 38px;
+    }
+}
+
+/* Respect reduced-motion preference (rules.txt Section 4) */
+@media (prefers-reduced-motion: reduce) {
+
+    .eds-speaker-photo img,
+    .eds-related-card,
+    .eds-gallery-card img,
+    .eds-btn,
+    .eds-sticky-cta,
+    .eds-logo-carousel-track {
+        transition: none !important;
+        animation: none !important;
+    }
+
+    .eds-tab-panel--active,
+    .eds-skeleton::after {
+        animation: none !important;
+    }
+
+    .eds-lightbox-overlay {
+        transition: none !important;
+    }
+}

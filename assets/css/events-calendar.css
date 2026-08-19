@@ -1,0 +1,80 @@
+/* =============================================================================
+   EVENT CALENDAR / DISCOVERY PAGE (events-calendar.css)
+   ============================================================================= 
+   Phase 5: PAGE-SPECIFIC layout only, prefixed "evc-" per rules.txt Section
+   2. All actual visual components (search, filters, calendar, cards, tabs,
+   pills, buttons) come from event-components.css (Phase 3) and
+   event-discovery-components.css (Phase 5) - this file only positions them
+   on this specific page. No colors/radii/shadows are redefined here.
+   ============================================================================= */
+
+#evc-page {
+    background: var(--white);
+}
+
+.evc-intro {
+    padding: 56px 0 32px;
+    text-align: center;
+    border-bottom: 1px solid var(--border-light);
+}
+
+.evc-intro .eds-badge-label {
+    display: inline-block;
+}
+
+.evc-featured-sec {
+    padding: 56px 0;
+    background: var(--bg-light);
+}
+
+.evc-featured-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+    margin-top: 32px;
+}
+
+.evc-discovery-sec {
+    padding: 56px 0 80px;
+}
+
+#evc-status-tabs {
+    margin-bottom: 24px;
+}
+
+#evc-calendar-mount,
+#evc-timeline-mount {
+    margin-top: 8px;
+}
+
+/* =============================================================================
+   RESPONSIVE
+   ============================================================================= */
+@media screen and (max-width: 1024px) {
+    .evc-featured-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .evc-intro {
+        padding: 40px 0 24px;
+        text-align: left;
+    }
+
+    .evc-featured-sec,
+    .evc-discovery-sec {
+        padding: 40px 0 56px;
+    }
+
+    #evc-status-tabs {
+        overflow-x: auto;
+        flex-wrap: nowrap;
+        justify-content: flex-start;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    #evc-status-tabs .eds-tab {
+        flex-shrink: 0;
+    }
+}

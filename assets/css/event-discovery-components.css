@@ -1,0 +1,805 @@
+/* =============================================================================
+   EVENT DISCOVERY COMPONENTS (event-discovery-components.css)
+   ============================================================================= 
+   Phase 5: extends the Phase 3 Event Design System (event-components.css)
+   with the primitives a discovery/browse experience needs that didn't
+   exist yet - search, filter controls, calendar grid, sort, load-more, and
+   event card display variants. Everything here is still "eds-" prefixed
+   and scoped under .eds-scope, so these components are just as reusable on
+   any future page as the rest of the library - not tied to
+   events-calendar.html specifically.
+
+   REUSED AS-IS FROM PHASE 3 (not redefined here): .eds-tabs-nav/.eds-tab
+   (view switcher, status tabs), .eds-chip (filter chips), .eds-pagination
+   (archive/power-user pagination), .eds-badge (status), .eds-tag
+   (category/industry), .eds-empty-state, .eds-skeleton, .eds-btn,
+   .eds-related-card (base event card - extended with variants below).
+   ============================================================================= */
+
+/* =============================================================================
+   1. SEARCH
+   ============================================================================= */
+.eds-search {
+    position: relative;
+    max-width: 560px;
+}
+
+.eds-search-input-wrap {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.eds-search-icon {
+    position: absolute;
+    left: 18px;
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    pointer-events: none;
+}
+
+.eds-search-input {
+    width: 100%;
+    padding: 14px 44px;
+    border: 1px solid var(--border-light);
+    border-radius: var(--radius-pill, 999px);
+    font-family: inherit;
+    font-size: 0.95rem;
+    color: var(--text-dark);
+    background: var(--white);
+    transition: var(--transition-fast);
+}
+
+.eds-search-input:focus {
+    outline: none;
+    border-color: var(--primary-red);
+    box-shadow: 0 0 0 3px rgba(228, 31, 38, 0.08);
+}
+
+.eds-search-clear {
+    position: absolute;
+    right: 10px;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    border: none;
+    background: var(--bg-light);
+    color: var(--text-muted);
+    font-size: 0.75rem;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.eds-search--has-value .eds-search-clear {
+    display: flex;
+}
+
+/* Search Suggestions - shown while typing, before a query is committed */
+.eds-search-suggestions {
+    position: absolute;
+    top: calc(100% + 8px);
+    left: 0;
+    right: 0;
+    background: var(--white);
+    border: 1px solid var(--border-light);
+    border-radius: var(--radius-sm, 8px);
+    box-shadow: var(--shadow-md, 0 20px 40px rgba(0, 0, 0, 0.12));
+    z-index: 50;
+    max-height: 340px;
+    overflow-y: auto;
+    display: none;
+}
+
+.eds-search--active .eds-search-suggestions {
+    display: block;
+}
+
+.eds-search-suggestion {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 18px;
+    cursor: pointer;
+    transition: var(--transition-fast);
+}
+
+.eds-search-suggestion:hover,
+.eds-search-suggestion--highlighted {
+    background: var(--bg-light);
+}
+
+.eds-search-suggestion i {
+    color: var(--text-muted);
+    font-size: 0.85rem;
+    flex-shrink: 0;
+}
+
+.eds-search-suggestion-text strong {
+    color: var(--primary-red);
+    font-weight: 700;
+}
+
+.eds-search-suggestion-meta {
+    font-size: 0.78rem;
+    color: var(--text-muted);
+    margin-left: auto;
+    flex-shrink: 0;
+}
+
+.eds-search-no-results {
+    padding: 20px 18px;
+    text-align: center;
+    color: var(--text-muted);
+    font-size: 0.88rem;
+}
+
+/* =============================================================================
+   2. FILTER BAR / PANEL
+   ============================================================================= */
+.eds-filter-bar {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 12px;
+    padding: 20px 0;
+}
+
+.eds-filter-bar--sticky {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: var(--white);
+    border-bottom: 1px solid var(--border-light);
+}
+
+/* Filter Dropdown - a single facet (Category / Industry / City / Year...).
+   Built as a native <select> for zero-JS-required accessibility and
+   effortless mobile UX (native pickers), styled to match the design
+   system rather than reimplementing a custom dropdown widget. */
+.eds-filter-select {
+    appearance: none;
+    padding: 10px 36px 10px 16px;
+    border: 1px solid var(--border-light);
+    border-radius: var(--radius-pill, 999px);
+    background: var(--white) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%23555' stroke-width='1.5' fill='none' fill-rule='evenodd'/%3E%3C/svg%3E") no-repeat right 14px center;
+    font-family: inherit;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--text-dark);
+    cursor: pointer;
+    transition: var(--transition-fast);
+}
+
+.eds-filter-select:hover {
+    border-color: var(--primary-red);
+}
+
+.eds-filter-select:focus {
+    outline: none;
+    border-color: var(--primary-red);
+}
+
+.eds-filter-select--active {
+    background-color: rgba(228, 31, 38, 0.06);
+    border-color: var(--primary-red);
+    color: var(--primary-red);
+}
+
+.eds-filter-divider {
+    width: 1px;
+    height: 24px;
+    background: var(--border-light);
+    margin: 0 4px;
+}
+
+.eds-filter-clear {
+    color: var(--primary-red);
+    font-size: 0.85rem;
+    font-weight: 700;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 8px 4px;
+    display: none;
+}
+
+.eds-filter-bar--has-active .eds-filter-clear {
+    display: inline-flex;
+}
+
+/* Active Filter Chips row - shows currently applied filters as removable
+   .eds-chip elements (reuses Phase 3's chip, just in a dedicated row) */
+.eds-active-filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    padding-bottom: 16px;
+}
+
+.eds-active-filters:empty {
+    display: none;
+}
+
+.eds-active-filter-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(228, 31, 38, 0.06);
+    border: 1px solid rgba(228, 31, 38, 0.2);
+    color: var(--primary-red);
+    font-size: 0.82rem;
+    font-weight: 600;
+    padding: 6px 8px 6px 14px;
+    border-radius: var(--radius-pill, 999px);
+}
+
+.eds-active-filter-chip button {
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    border: none;
+    background: rgba(228, 31, 38, 0.15);
+    color: var(--primary-red);
+    font-size: 0.6rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+/* Result Count + Sort row */
+.eds-results-toolbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 16px;
+    padding: 8px 0 24px;
+}
+
+.eds-results-count {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+}
+
+.eds-results-count strong {
+    color: var(--text-dark);
+}
+
+.eds-sort-select {
+    /* Reuses .eds-filter-select styling exactly - sort is conceptually a
+       facet too (it changes what's shown, just ordering instead of
+       filtering), so no separate visual language was invented for it. */
+}
+
+/* =============================================================================
+   3. VIEW SWITCHER (Month / List / Timeline / Compact)
+   ============================================================================= */
+/* Reuses .eds-pills (Phase 3) directly as the view switcher - documented
+   here as a usage pattern, not a new component: .eds-pill.eds-pill--active
+   per view, e.g. "List", "Month", "Timeline". */
+
+/* =============================================================================
+   4. CALENDAR MONTH VIEW
+   ============================================================================= */
+.eds-calendar {
+    background: var(--white);
+    border: 1px solid var(--border-light);
+    border-radius: var(--radius-md, 12px);
+    overflow: hidden;
+}
+
+.eds-calendar-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 24px;
+    border-bottom: 1px solid var(--border-light);
+}
+
+.eds-calendar-month-label {
+    font-size: 1.15rem;
+    font-weight: 800;
+}
+
+.eds-calendar-nav {
+    display: flex;
+    gap: 8px;
+}
+
+.eds-calendar-weekdays {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    border-bottom: 1px solid var(--border-light);
+}
+
+.eds-calendar-weekday {
+    text-align: center;
+    padding: 12px 4px;
+    font-size: 0.72rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--text-muted);
+}
+
+.eds-calendar-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+}
+
+.eds-calendar-day {
+    min-height: 92px;
+    padding: 8px;
+    border-right: 1px solid var(--border-light);
+    border-bottom: 1px solid var(--border-light);
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    cursor: default;
+}
+
+.eds-calendar-grid .eds-calendar-day:nth-child(7n) {
+    border-right: none;
+}
+
+.eds-calendar-day--outside {
+    background: var(--bg-light);
+    opacity: 0.5;
+}
+
+.eds-calendar-day--today .eds-calendar-day-num {
+    background: var(--primary-red);
+    color: var(--white);
+}
+
+.eds-calendar-day-num {
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    font-size: 0.82rem;
+    font-weight: 600;
+}
+
+.eds-calendar-day-events {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+}
+
+.eds-calendar-event-dot {
+    display: block;
+    font-size: 0.68rem;
+    font-weight: 600;
+    padding: 2px 6px;
+    border-radius: var(--radius-xs, 4px);
+    background: rgba(228, 31, 38, 0.1);
+    color: var(--primary-red);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    cursor: pointer;
+}
+
+.eds-calendar-event-dot:hover {
+    background: var(--primary-red);
+    color: var(--white);
+}
+
+.eds-calendar-day-more {
+    font-size: 0.68rem;
+    color: var(--text-muted);
+    font-weight: 600;
+}
+
+.eds-related-card-body {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+.eds-related-card-body .eds-event-card-meta,
+.eds-related-card-body .eds-card-cta {
+    margin-top: auto;
+}
+
+/* =============================================================================
+   5. TIMELINE VIEW (chronological, grouped by month - distinct from the
+   Agenda Timeline Item in Phase 3, which is single-day/session-level)
+   ============================================================================= */
+.eds-discovery-timeline {
+    position: relative;
+    padding-left: 32px;
+}
+
+.eds-discovery-timeline::before {
+    content: '';
+    position: absolute;
+    left: 7px;
+    top: 8px;
+    bottom: 8px;
+    width: 2px;
+    background: var(--border-light);
+}
+
+.eds-discovery-timeline-group {
+    margin-bottom: 40px;
+}
+
+.eds-discovery-timeline-month {
+    position: relative;
+    font-size: 0.85rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--text-muted);
+    margin-bottom: 20px;
+}
+
+.eds-discovery-timeline-month::before {
+    content: '';
+    position: absolute;
+    left: -32px;
+    top: 3px;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: var(--primary-red);
+    border: 3px solid var(--white);
+    box-shadow: 0 0 0 1px var(--border-light);
+}
+
+.eds-discovery-timeline-items {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+/* =============================================================================
+   6. EVENT CARD DISPLAY VARIANTS
+   All variants build on Phase 3's .eds-related-card - this section only
+   adds layout modifiers, never redefines the base card's visual language
+   (radius/shadow/hover already come from .eds-related-card).
+   ============================================================================= */
+
+/* Featured variant - large, editorial, for hero-adjacent spotlight slots */
+.eds-event-card--featured {
+    display: grid;
+    grid-template-columns: 1.1fr 1fr;
+    min-height: 320px;
+}
+
+.eds-event-card--featured img {
+    height: 100%;
+    aspect-ratio: auto;
+}
+
+.eds-event-card--featured .eds-related-card-body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 36px;
+}
+
+.eds-event-card--featured .eds-event-card-title {
+    font-size: 1.4rem;
+}
+
+/* Compact variant - dense list rendering for large result sets */
+.eds-event-card--compact {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 12px;
+}
+
+.eds-event-card--compact img {
+    width: 64px;
+    height: 64px;
+    aspect-ratio: 1 / 1;
+    border-radius: var(--radius-sm, 8px);
+    flex-shrink: 0;
+}
+
+.eds-event-card--compact .eds-related-card-body {
+    padding: 0;
+    min-width: 0;
+}
+
+.eds-event-card--compact .eds-event-card-title {
+    font-size: 0.92rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* Horizontal variant - for List View rows (wider image, more description) */
+.eds-event-card--horizontal {
+    display: grid;
+    grid-template-columns: 220px 1fr;
+}
+
+.eds-event-card--horizontal img {
+    height: 100%;
+}
+
+.eds-event-card--horizontal .eds-related-card-body {
+    padding: 22px 24px;
+}
+
+.eds-event-card--horizontal .eds-event-card-desc {
+    color: var(--text-muted);
+    font-size: 0.88rem;
+    line-height: 1.6;
+    margin: 8px 0 12px;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+/* Shared meta row (date/city/category chips) used across all card variants */
+.eds-event-card-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px 14px;
+    margin-top: 8px;
+    font-size: 0.78rem;
+    color: var(--text-muted);
+}
+
+.eds-event-card-meta span {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.eds-event-card-meta i {
+    color: var(--primary-red);
+    font-size: 0.75rem;
+}
+
+.eds-event-card-badges {
+    position: absolute;
+    top: 14px;
+    left: 14px;
+    display: flex;
+    gap: 6px;
+    z-index: 2;
+}
+
+/* Album Card image-count badge (Phase 13) - bottom-right overlay on the
+   cover image, distinct from the top-left status/featured badges above so
+   the two never collide visually. */
+.eds-album-count {
+    position: absolute;
+    bottom: 12px;
+    right: 12px;
+    z-index: 2;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(10, 10, 10, 0.65);
+    color: var(--white);
+    font-size: 0.78rem;
+    font-weight: 600;
+    padding: 5px 12px;
+    border-radius: var(--radius-pill, 999px);
+    -webkit-backdrop-filter: blur(4px);
+    backdrop-filter: blur(4px);
+}
+
+.eds-album-count i {
+    font-size: 0.7rem;
+}
+
+/* Standard grid, list, and compact-list layout wrappers */
+.eds-events-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 24px;
+}
+
+.eds-events-list {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.eds-events-compact-list {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+/* Responsive Masonry Grid (Phase 13, Gallery system) - CSS-columns-based
+   masonry, no JS library needed. Used for album cover grids and an album
+   detail page's full image grid where images have varying aspect ratios
+   and a strict row-grid (like .eds-gallery-grid, Phase 3) would leave
+   awkward gaps. Falls back gracefully to fewer columns on narrower
+   viewports via the shared breakpoint scale below. */
+.eds-masonry-grid {
+    column-count: 4;
+    column-gap: 20px;
+}
+
+.eds-masonry-grid > * {
+    break-inside: avoid;
+    margin-bottom: 20px;
+}
+
+.eds-masonry-grid img {
+    width: 100%;
+    height: auto;
+    border-radius: var(--radius-sm, 8px);
+    display: block;
+}
+
+
+/* =============================================================================
+   7. LOAD MORE / PAGINATION
+   ============================================================================= */
+.eds-load-more-wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    margin-top: 40px;
+}
+
+.eds-load-more-progress {
+    font-size: 0.82rem;
+    color: var(--text-muted);
+}
+
+.eds-load-more-track {
+    width: 160px;
+    height: 3px;
+    background: var(--border-light);
+    border-radius: var(--radius-pill, 999px);
+    overflow: hidden;
+}
+
+.eds-load-more-fill {
+    height: 100%;
+    background: var(--primary-red);
+    border-radius: var(--radius-pill, 999px);
+    transition: width 0.3s ease;
+}
+
+/* =============================================================================
+   8. DISCOVERY-SPECIFIC EMPTY / LOADING / ERROR STATES
+   Reuse .eds-empty-state / .eds-skeleton / .eds-state (Phase 3) directly.
+   Documented usage: "No Search Results" and "No Events" both use
+   .eds-empty-state with different icon/copy; "Archive Empty" is the same
+   component inside the Past Events tab panel; "Loading" uses a grid of
+   .eds-skeleton cards matching .eds-events-grid's layout so there's no
+   layout shift when real cards replace them; "Error" uses .eds-state--error.
+   ============================================================================= */
+.eds-skeleton-card {
+    border-radius: var(--radius-md, 12px);
+    overflow: hidden;
+    border: 1px solid var(--border-light);
+}
+
+.eds-skeleton-card-body {
+    padding: 18px;
+}
+
+/* =============================================================================
+   RESPONSIVE - snapped to the shared 4-tier breakpoint scale
+   ============================================================================= */
+@media screen and (max-width: 1024px) {
+    .eds-event-card--featured {
+        grid-template-columns: 1fr;
+        min-height: 0;
+    }
+
+    .eds-event-card--featured img {
+        aspect-ratio: 16 / 9;
+    }
+
+    .eds-event-card--horizontal {
+        grid-template-columns: 180px 1fr;
+    }
+
+    .eds-masonry-grid {
+        column-count: 3;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .eds-filter-bar {
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        padding-bottom: 12px;
+        scrollbar-width: none;
+    }
+
+    .eds-filter-bar::-webkit-scrollbar {
+        display: none;
+    }
+
+    .eds-filter-select,
+    .eds-filter-divider,
+    .eds-filter-clear {
+        flex-shrink: 0;
+    }
+
+    .eds-results-toolbar {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .eds-calendar-day {
+        min-height: 64px;
+        padding: 4px;
+    }
+
+    .eds-calendar-event-dot {
+        font-size: 0;
+        padding: 0;
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+    }
+
+    .eds-calendar-day-events {
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+
+    .eds-event-card--horizontal {
+        grid-template-columns: 1fr;
+    }
+
+    .eds-event-card--horizontal img {
+        aspect-ratio: 16 / 9;
+        height: auto;
+    }
+
+    .eds-events-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .eds-masonry-grid {
+        column-count: 2;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .eds-search-input {
+        padding: 12px 40px;
+        font-size: 0.9rem;
+    }
+
+    .eds-calendar-weekday {
+        font-size: 0.62rem;
+    }
+
+    .eds-calendar-day {
+        min-height: 52px;
+    }
+
+    .eds-calendar-day-num {
+        width: 20px;
+        height: 20px;
+        font-size: 0.75rem;
+    }
+
+    .eds-masonry-grid {
+        column-count: 1;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .eds-load-more-fill {
+        transition: none !important;
+    }
+}
