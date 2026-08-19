@@ -1,0 +1,74 @@
+/* =============================================================================
+   LEGAL PAGES (privacy-policy.html, terms-of-service.html)
+   ============================================================================= 
+   PAGE-SPECIFIC layout only, prefixed "legal-". Shared by both pages since
+   they're structurally identical (hero + article + contact), same reuse
+   logic as any other page pair in this project. Reuses the readable-
+   measure pattern already established by .blgp-content-container
+   (blog-post.css, Phase 15) rather than inventing a new one. All colors/
+   typography inherit existing tokens unchanged.
+   ============================================================================= */
+
+#legal-page {
+    background: var(--white);
+}
+
+.legal-content-sec {
+    padding: 64px 0;
+}
+
+.legal-contact-sec {
+    padding: 0 0 64px;
+}
+
+.legal-content-container {
+    max-width: 720px;
+    margin: 0 auto;
+}
+
+.legal-article h2 {
+    margin-top: 36px;
+    margin-bottom: 12px;
+    font-size: 1.3rem;
+}
+
+.legal-article h2:first-child {
+    margin-top: 0;
+}
+
+.legal-article p {
+    margin-bottom: 16px;
+    line-height: 1.75;
+}
+
+.legal-article a {
+    color: var(--primary-red);
+    text-decoration: underline;
+}
+
+@media screen and (max-width: 768px) {
+    .legal-content-sec {
+        padding: 48px 0;
+    }
+
+    .legal-contact-sec {
+        padding: 0 0 48px;
+    }
+}
+
+@media print {
+    .topbar, .navbar, .mega-menu, .footer-shell, .comm-widget, .scroll-top-btn, #search-overlay {
+        display: none !important;
+    }
+    body {
+        background: #ffffff !important;
+        color: #000000 !important;
+    }
+    .legal-content-sec {
+        padding: 0 !important;
+    }
+    .legal-content-container {
+        max-width: 100% !important;
+        margin: 0 !important;
+    }
+}
