@@ -1,0 +1,31 @@
+{
+  "namePlaceholder": "Your name",
+  "emailPlaceholder": "Your email",
+  "phonePlaceholder": "Your phone number",
+  "messagePlaceholder": "Your message",
+  "companyPlaceholder": "Your company",
+  "subjectPlaceholder": "Subject",
+  "submit": "Submit",
+  "requiredField": "This field is required",
+  "invalidEmail": "Please enter a valid email address",
+  "searchPlaceholder": "Search events, cities, or industries...",
+  "siteSearchPlaceholder": "Search events, services, or insights...",
+  "typeToSearchPlaceholder": "Type to search...",
+  "fullName": "Full Name *",
+  "companyName": "Company Name",
+  "emailAddress": "Email Address *",
+  "phoneNumber": "Phone Number *",
+  "subject": "Subject *",
+  "eventCategory": "Event Category",
+  "inquiryDetails": "Inquiry Details *",
+  "consentText": "I consent to Badar Expo processing my data to address this inquiry. *",
+  "submitInquiry": "Submit Inquiry",
+  "feedback": {
+    "sending": "Sending...",
+    "success": "Thank you! Your message has been sent successfully. We will respond shortly.",
+    "notConfigured": "This form isn't connected yet. Please reach us directly by phone or email in the meantime - both are listed below.",
+    "networkError": "We couldn't reach our server. Please check your connection and try again.",
+    "timeout": "That took longer than expected. Please check your connection and try again.",
+    "serverError": "Something went wrong on our end. Please try again in a moment, or contact us directly."
+  }
+}

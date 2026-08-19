@@ -1,0 +1,234 @@
+{
+  "id": "evt_2026_trade_summit",
+  "slug": "pakistan-trade-industry-summit-2026",
+
+  "basicInfo": {
+    "name": "Pakistan International Trade & Industry Summit 2026",
+    "shortName": "Trade Summit 2026",
+    "subtitle": "Connecting Manufacturers, Investors & Trade Bodies Under One Roof",
+    "tagline": "Where Pakistani Industry Meets the World",
+    "description": "Now in its 6th edition, the Pakistan International Trade & Industry Summit has grown into one of the country's largest B2B gatherings for manufacturers, exporters, and investors. Spread across four exhibition halls, the summit combines a trade show floor with a two-track conference covering export strategy, industrial automation, and regional supply chains. Past editions have hosted delegations from over 18 countries and facilitated more than PKR 4.2 billion in on-site trade discussions.",
+    "shortDescription": "A 3-day trade exhibition and conference for manufacturers, exporters, and investors, held annually at Karachi Expo Centre.",
+    "category": "Trade & Industry",
+    "industry": ["Textile & Apparel", "Food & Agriculture", "Industrial Machinery", "Construction Materials", "Packaging & Logistics", "Renewable Energy", "Chemicals & Plastics", "IT & Digital Trade"],
+    "tags": ["b2b", "manufacturing", "exports", "karachi", "annual"],
+    "featured": true,
+    "visibility": "public",
+    "priority": 10
+  },
+
+  "status": {
+    "publishStatus": "published",
+    "lifecycleStatus": "upcoming",
+    "registrationStatus": "open"
+  },
+
+  "timing": {
+    "startDate": "2026-09-14T10:00:00+05:00",
+    "endDate": "2026-09-16T19:00:00+05:00",
+    "registrationOpenDate": "2026-06-01T09:00:00+05:00",
+    "registrationCloseDate": "2026-09-13T23:59:00+05:00",
+    "timezone": "Asia/Karachi",
+    "durationDays": 3,
+    "countdownEnabled": true,
+    "eventType": "trade-show",
+    "recurring": {
+      "isRecurring": true,
+      "frequency": "annual",
+      "editionNumber": 6,
+      "parentSeriesId": "series_trade_summit"
+    }
+  },
+
+  "venue": {
+    "name": "Karachi Expo Centre",
+    "address": "University Road, Gulshan-e-Iqbal, Karachi, Pakistan",
+    "city": "Karachi",
+    "country": "Pakistan",
+    "coordinates": { "lat": 24.9342, "lng": 67.1146 },
+    "mapUrl": "https://www.google.com/maps?q=Karachi+Expo+Centre,Karachi,Pakistan",
+    "mapEmbedUrl": "https://www.google.com/maps?q=Karachi+Expo+Centre,Karachi,Pakistan&output=embed",
+    "amenities": [
+      { "icon": "fa-square-parking", "label": "On-site parking for 2,000+ vehicles" },
+      { "icon": "fa-wheelchair", "label": "Wheelchair accessible" },
+      { "icon": "fa-wifi", "label": "Free Wi-Fi throughout venue" },
+      { "icon": "fa-utensils", "label": "Food courts & prayer areas on-site" }
+    ],
+    "nearbyHotels": [
+      { "name": "Pearl Continental Karachi", "distanceLabel": "6.4 km from venue", "url": "https://example.com/pc-karachi" },
+      { "name": "Movenpick Hotel Karachi", "distanceLabel": "8.1 km from venue", "url": "https://example.com/movenpick-karachi" }
+    ],
+    "images": [
+      { "url": "assets/images/portfolio/exhibition-floor-premium.webp", "alt": "Karachi Expo Centre exhibition hall" }
+    ]
+  },
+
+  "organizer": {
+    "name": "Badar Expo Solutions (BXSS)",
+    "logo": { "url": "assets/images/logo/favicon.webp", "alt": "Badar Expo Solutions logo" },
+    "description": "Pakistan's leading exhibition and event management company, organizing flagship trade shows and conferences since 2000.",
+    "website": "https://badarexpo.com",
+    "email": "events@badarexpo.com",
+    "phone": "+92-21-3482-1159",
+    "socialLinks": {
+      "website": "https://badarexpo.com",
+      "linkedin": "https://www.linkedin.com/company/bxsspakistan",
+      "facebook": "https://www.facebook.com/BXSSpakistan/",
+      "instagram": "https://www.instagram.com/bxsspakistan/",
+      "twitter": "https://x.com/BXSSpakistan",
+      "youtube": "https://www.youtube.com/@BXSSpakistan"
+    }
+  },
+
+  "hero": {
+    "title": null,
+    "subtitle": null,
+    "backgroundImage": { "url": "assets/images/portfolio/exhibition-floor-premium.webp", "alt": "Pakistan International Trade & Industry Summit 2026 hero banner" },
+    "cta": [
+      { "label": "Register Now", "url": "#elp-register", "style": "primary" },
+      { "label": "Learn More", "url": "#elp-about", "style": "outline" }
+    ],
+    "statistics": [
+      { "key": "exhibitors", "label": "Exhibitors", "value": 300, "suffix": "+" },
+      { "key": "expectedAttendance", "label": "Expected Attendees", "value": 12000, "suffix": "+" }
+    ],
+    "badge": { "label": "Registration Open", "style": "success" }
+  },
+
+  "speakers": [
+    {
+      "id": "spk_ayesha_raza",
+      "name": "Ayesha Raza",
+      "position": "Director of Trade Development",
+      "company": "Federation of Exporters",
+      "photo": { "url": "assets/images/portfolio/ceo-zohair-naseer.webp", "alt": "Ayesha Raza" },
+      "bio": "Ayesha leads trade development initiatives for the Federation of Exporters, focused on opening new export markets for Pakistani manufacturers across Central Asia and the Gulf.",
+      "socialLinks": { "linkedin": "https://example.com/in/ayesha-raza", "website": null, "facebook": null, "instagram": null, "twitter": null, "youtube": null },
+      "order": 1,
+      "featured": true
+    },
+    {
+      "id": "spk_omar_sheikh",
+      "name": "Omar Sheikh",
+      "position": "CEO",
+      "company": "Meridian Industrial Group",
+      "photo": { "url": "assets/images/portfolio/ceo-zohair-naseer.webp", "alt": "Omar Sheikh" },
+      "bio": "Omar has spent over 15 years scaling Meridian Industrial Group's manufacturing footprint, with a focus on automation and export-grade quality standards.",
+      "socialLinks": { "linkedin": "https://example.com/in/omar-sheikh", "website": null, "facebook": null, "instagram": null, "twitter": null, "youtube": null },
+      "order": 2,
+      "featured": false
+    },
+    {
+      "id": "spk_farah_iqbal",
+      "name": "Farah Iqbal",
+      "position": "Head of Investment",
+      "company": "South Asia Trade Council",
+      "photo": { "url": "assets/images/portfolio/ceo-zohair-naseer.webp", "alt": "Farah Iqbal" },
+      "bio": null,
+      "socialLinks": { "linkedin": "https://example.com/in/farah-iqbal", "website": null, "facebook": null, "instagram": null, "twitter": null, "youtube": null },
+      "order": 3,
+      "featured": false
+    },
+    {
+      "id": "spk_bilal_ahmed",
+      "name": "Bilal Ahmed",
+      "position": "Director of Manufacturing",
+      "company": "Indus Textile Mills",
+      "photo": { "url": "assets/images/portfolio/ceo-zohair-naseer.webp", "alt": "Bilal Ahmed" },
+      "bio": null,
+      "socialLinks": { "linkedin": null, "website": null, "facebook": null, "instagram": null, "twitter": null, "youtube": null },
+      "order": 4,
+      "featured": false
+    }
+  ],
+
+  "sponsors": [
+    { "id": "spn_platinum_1", "name": "Platinum Sponsor One", "logo": { "url": "assets/images/clients-logo/logo.png", "alt": "Platinum Sponsor One" }, "website": null, "tier": "platinum", "priority": 1, "category": null },
+    { "id": "spn_platinum_2", "name": "Platinum Sponsor Two", "logo": { "url": "assets/images/clients-logo/kcc.png", "alt": "Platinum Sponsor Two" }, "website": null, "tier": "platinum", "priority": 2, "category": null },
+    { "id": "spn_gold_1", "name": "Gold Sponsor One", "logo": { "url": "assets/images/clients-logo/depo.png", "alt": "Gold Sponsor One" }, "website": null, "tier": "gold", "priority": 1, "category": null },
+    { "id": "spn_gold_2", "name": "Gold Sponsor Two", "logo": { "url": "assets/images/clients-logo/abad.jpg", "alt": "Gold Sponsor Two" }, "website": null, "tier": "gold", "priority": 2, "category": null },
+    { "id": "spn_gold_3", "name": "Gold Sponsor Three", "logo": { "url": "assets/images/clients-logo/tdap.png", "alt": "Gold Sponsor Three" }, "website": null, "tier": "gold", "priority": 3, "category": null },
+    { "id": "spn_partner_1", "name": "Official Partner One", "logo": { "url": "assets/images/clients-logo/papgai.png", "alt": "Official Partner One" }, "website": null, "tier": "partner", "priority": 1, "category": "Trade Association" },
+    { "id": "spn_partner_2", "name": "Official Partner Two", "logo": { "url": "assets/images/clients-logo/ideas26-150x150-1.jpg", "alt": "Official Partner Two" }, "website": null, "tier": "partner", "priority": 2, "category": "Trade Association" }
+  ],
+
+  "agenda": {
+    "days": [
+      {
+        "dayNumber": 1,
+        "date": "2026-09-14",
+        "label": "Day 1 · Sep 14",
+        "sessions": [
+          { "id": "ses_d1_01", "time": "10:00 AM", "endTime": "11:00 AM", "title": "Opening Ceremony & Keynote", "description": "The Future of Pakistani Exports", "type": "session", "speakerIds": ["spk_ayesha_raza"], "location": "Main Stage, Hall A", "category": null },
+          { "id": "ses_d1_02", "time": "12:30 PM", "endTime": null, "title": "Exhibition Floor Opens", "description": "300+ exhibitor booths", "type": "networking", "speakerIds": [], "location": "Halls A–D", "category": null },
+          { "id": "ses_d1_03", "time": "03:00 PM", "endTime": "04:00 PM", "title": "Panel: Industrial Automation & Manufacturing", "description": null, "type": "panel", "speakerIds": ["spk_omar_sheikh", "spk_bilal_ahmed"], "location": "Conference Room 1", "category": "Manufacturing Track" }
+        ]
+      },
+      {
+        "dayNumber": 2,
+        "date": "2026-09-15",
+        "label": "Day 2 · Sep 15",
+        "sessions": [
+          { "id": "ses_d2_01", "time": "10:00 AM", "endTime": "01:00 PM", "title": "Investor & SME Matchmaking Sessions", "description": null, "type": "networking", "speakerIds": ["spk_farah_iqbal"], "location": "Matchmaking Lounge, Hall B", "category": null },
+          { "id": "ses_d2_02", "time": "02:00 PM", "endTime": "03:00 PM", "title": "Panel: Export Market Access & Compliance", "description": null, "type": "panel", "speakerIds": ["spk_ayesha_raza", "spk_farah_iqbal"], "location": "Conference Room 2", "category": "Export Track" }
+        ]
+      },
+      {
+        "dayNumber": 3,
+        "date": "2026-09-16",
+        "label": "Day 3 · Sep 16",
+        "sessions": [
+          { "id": "ses_d3_01", "time": "11:00 AM", "endTime": null, "title": "Live Manufacturing Demo Zone", "description": null, "type": "workshop", "speakerIds": [], "location": "Hall C", "category": null },
+          { "id": "ses_d3_02", "time": "05:00 PM", "endTime": "06:30 PM", "title": "Excellence in Export Awards & Closing", "description": null, "type": "session", "speakerIds": [], "location": "Main Stage, Hall A", "category": null }
+        ]
+      }
+    ]
+  },
+
+  "registration": {
+    "capacity": 15000,
+    "seatsLeft": null,
+    "pricingTiers": [
+      { "name": "Trade Visitor", "price": 0, "currency": "PKR", "description": "Free entry for pre-registered trade professionals.", "featured": false },
+      { "name": "Exhibitor Stall (9 sqm)", "price": 150000, "currency": "PKR", "description": "Standard shell scheme, per stall.", "featured": true }
+    ],
+    "registrationUrl": "contact.html",
+    "ctaText": "Register Now",
+    "ctaStyle": "primary"
+  },
+
+  "statistics": [
+    { "key": "exhibitors", "label": "Exhibitors", "value": 300, "suffix": "+", "prefix": null, "icon": null },
+    { "key": "visitors", "label": "Trade Visitors", "value": 12000, "suffix": "+", "prefix": null, "icon": null },
+    { "key": "countries", "label": "Countries", "value": 18, "suffix": "", "prefix": null, "icon": null },
+    { "key": "speakers", "label": "Speakers & Sessions", "value": 40, "suffix": "+", "prefix": null, "icon": null }
+  ],
+
+  "gallery": {
+    "images": [
+      { "url": "assets/images/portfolio/ieee-exhibition.webp", "thumbnailUrl": null, "alt": "Exhibition floor, previous edition", "caption": null, "order": 1, "featured": true },
+      { "url": "assets/images/portfolio/ieee-booth.webp", "thumbnailUrl": null, "alt": "Exhibitor booth, previous edition", "caption": null, "order": 2, "featured": false },
+      { "url": "assets/images/portfolio/ieee-kiosk.webp", "thumbnailUrl": null, "alt": "Information kiosk, previous edition", "caption": null, "order": 3, "featured": false },
+      { "url": "assets/images/portfolio/ieee-seminar.webp", "thumbnailUrl": null, "alt": "Conference session, previous edition", "caption": null, "order": 4, "featured": false }
+    ],
+    "videos": []
+  },
+
+  "faqs": [
+    { "id": "faq_01", "question": "Is entry free for visitors?", "answer": "Entry is free for pre-registered trade visitors. On-site registration is also available, subject to capacity.", "category": "Registration", "priority": 1 },
+    { "id": "faq_02", "question": "How do I book an exhibitor stall?", "answer": "Contact our exhibitor relations team at events@badarexpo.com or call +92-21-3482-1159. Stall packages start at 9 sqm and include standard shell scheme fabrication.", "category": "Exhibiting", "priority": 2 },
+    { "id": "faq_03", "question": "Is parking available at the venue?", "answer": "Yes, the Karachi Expo Centre has on-site parking for over 2,000 vehicles, with additional overflow parking arranged during peak hours.", "category": "Venue", "priority": 3 },
+    { "id": "faq_04", "question": "Who do I contact for sponsorship opportunities?", "answer": "Reach our partnerships team at events@badarexpo.com. Platinum, Gold, and Official Partner tiers are currently available for this edition.", "category": "Sponsorship", "priority": 4 }
+  ],
+
+  "testimonials": [
+    { "id": "test_01", "name": "Hassan Malik", "company": "Export Manager, Crescent Textiles", "photo": null, "review": "We closed three distributor agreements in a single afternoon on the show floor - the matchmaking lounge alone was worth the trip.", "rating": 5 },
+    { "id": "test_02", "name": "Sana Tariq", "company": "Marketing Head, Delta Packaging Ltd.", "photo": null, "review": "Well organized, well attended, and genuinely useful sessions. Our booth saw more qualified footfall than any other trade show we attended this year.", "rating": 5 }
+  ],
+
+  "relatedEvents": [
+    { "eventId": "evt_2026_global_sme_summit", "relationType": "upcoming" },
+    { "eventId": "evt_2026_textile_asia_expo", "relationType": "similar" },
+    { "eventId": "evt_2027_itcn_asia", "relationType": "recommended" }
+  ]
+}

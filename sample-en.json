@@ -1,0 +1,156 @@
+{
+  "locale": "en",
+  "direction": "ltr",
+  "label": "English",
+  "common": {
+    "siteName": "Badar Expo Solutions",
+    "loading": "Loading...",
+    "readMore": "Read More",
+    "search": "Search",
+    "close": "Close",
+    "backToTop": "Back to top"
+  },
+  "nav": {
+    "home": "Home",
+    "aboutUs": "About Us",
+    "services": "Services",
+    "events": "Events",
+    "eventCalendar": "Event Calendar",
+    "upcomingEvents": "Upcoming Events",
+    "pastEvents": "Past Events",
+    "allEvents": "All Events",
+    "industries": "Industries",
+    "internationalProjects": "International Projects",
+    "insights": "Insights",
+    "contact": "Contact",
+    "exhibitionManagement": "Exhibition Management",
+    "constructionDesign": "Construction & Design",
+    "growthServices": "Growth Services",
+    "ourRole": "Our Role",
+    "formats": "Formats"
+  },
+  "buttons": {
+    "registerNow": "Register Now",
+    "learnMore": "Learn More",
+    "viewAllEvents": "View All Events",
+    "downloadBrochure": "Download Brochure",
+    "getDirections": "Get Directions",
+    "loadMore": "Load More Events",
+    "clearAll": "Clear All",
+    "contactUs": "Contact Us",
+    "visitor": "Visitor",
+    "partner": "Partner",
+    "getFreeQuote": "Get a Free Quote",
+    "sendMessage": "Send Message",
+    "exploreFullCalendar": "Explore Full Event Calendar",
+    "goBackHome": "Go Back Home",
+    "contactSupport": "Contact Support"
+  },
+  "forms": {
+    "namePlaceholder": "Your name",
+    "emailPlaceholder": "Your email",
+    "phonePlaceholder": "Your phone number",
+    "messagePlaceholder": "Your message",
+    "companyPlaceholder": "Your company",
+    "subjectPlaceholder": "Subject",
+    "submit": "Submit",
+    "requiredField": "This field is required",
+    "invalidEmail": "Please enter a valid email address",
+    "searchPlaceholder": "Search events, cities, or industries..."
+  },
+  "messages": {
+    "noEventsFound": "No Events Found",
+    "noResultsFound": "No Results Found",
+    "noResultsFoundDesc": "We couldn't find any events matching \"{{query}}\". Try a different search term.",
+    "noPastEvents": "No Past Events Yet",
+    "noPastEventsDesc": "This archive will fill up as events are completed.",
+    "adjustFilters": "Try adjusting your filters or clearing them to see all events.",
+    "genericError": "Something went wrong. Please try again.",
+    "registrationSuccessTitle": "You're Registered!",
+    "registrationSuccessDesc": "A confirmation has been sent to your email.",
+    "pageNotFoundTitle": "Lost in Space? Let's Get You Back.",
+    "pageNotFoundDesc": "The page you are looking for might have been removed, had its name changed, or is temporarily unavailable."
+  },
+  "eventsUi": {
+    "registrationOpen": "Registration Open",
+    "registrationClosed": "Registration Closed",
+    "soldOut": "Sold Out",
+    "comingSoon": "Coming Soon",
+    "waitlist": "Waitlist",
+    "speakers": "Speakers",
+    "sponsors": "Sponsors",
+    "agenda": "Agenda",
+    "venue": "Venue",
+    "gallery": "Gallery",
+    "faq": "Frequently Asked Questions",
+    "testimonials": "Testimonials",
+    "relatedEvents": "Related Events",
+    "organizedBy": "Organized by",
+    "keyHighlights": "Key Highlights",
+    "whyAttend": "Why Attend",
+    "whoShouldAttend": "Who Should Attend",
+    "industriesCovered": "Industries Covered",
+    "aboutEvent": "About the Event",
+    "quickFacts": "Quick Facts",
+    "featured": "Featured",
+    "dates": "Dates",
+    "category": "Category",
+    "entry": "Entry",
+    "allCategories": "All Categories",
+    "allIndustries": "All Industries",
+    "allCities": "All Cities",
+    "allYears": "All Years",
+    "allMonths": "All Months",
+    "anyRegistrationStatus": "Any Registration Status",
+    "sortUpcomingSoon": "Upcoming Soon",
+    "sortNewest": "Newest First",
+    "sortAlphabetical": "Alphabetical",
+    "sortFeatured": "Featured First",
+    "sortPopular": "Most Popular",
+    "gridView": "Grid view",
+    "listView": "List view",
+    "compactView": "Compact view",
+    "timelineView": "Timeline view",
+    "calendarView": "Calendar view",
+    "eventsFoundSuffix": "events found",
+    "eventFoundSuffix": "event found"
+  },
+  "pages": {
+    "home": {
+      "eventsShowcaseTag": "Our Events",
+      "eventsShowcaseTitle": "Events That Opened Markets and Built Industries"
+    },
+    "about": {
+      "heroTag": "About BXSS"
+    },
+    "services": {
+      "heroTag": "Our Services"
+    },
+    "events": {
+      "heroTag": "Our Events Portfolio",
+      "calendarCtaText": "Want to browse by date, category, or city?"
+    },
+    "eventCalendar": {
+      "badgeLabel": "Event Calendar",
+      "title": "Discover Every BXSS Event",
+      "description": "Search, filter, and browse upcoming, ongoing, and past exhibitions by category, industry, city, and date.",
+      "featuredTag": "Featured",
+      "featuredTitle": "Flagship Events",
+      "allEventsTab": "All Events",
+      "upcomingTab": "Upcoming",
+      "ongoingTab": "Ongoing",
+      "pastTab": "Past"
+    },
+    "eventDetail": {
+      "learnMoreAnchor": "Learn More",
+      "aboutSectionBadge": "About the Event"
+    },
+    "contact": {
+      "heroTag": "Get In Touch",
+      "formTitle": "Send Us a Message"
+    },
+    "notFound": {
+      "shortcutsTitle": "Or explore our main solutions"
+    }
+  }
+}

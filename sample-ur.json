@@ -1,0 +1,156 @@
+{
+  "locale": "ur",
+  "direction": "rtl",
+  "label": "اردو (Urdu)",
+  "common": {
+    "siteName": "بدر ایکسپو سولیوشنز",
+    "loading": "لوڈ ہو رہا ہے...",
+    "readMore": "مزید پڑھیں",
+    "search": "تلاش کریں",
+    "close": "بند کریں",
+    "backToTop": "اوپر جائیں"
+  },
+  "nav": {
+    "home": "ہوم",
+    "aboutUs": "ہمارے بارے میں",
+    "services": "خدمات",
+    "events": "ایونٹس",
+    "eventCalendar": "ایونٹ کیلنڈر",
+    "upcomingEvents": "آئندہ ایونٹس",
+    "pastEvents": "گزشتہ ایونٹس",
+    "allEvents": "تمام ایونٹس",
+    "industries": "صنعتیں",
+    "internationalProjects": "بین الاقوامی منصوبے",
+    "insights": "اِنسائٹس",
+    "contact": "رابطہ کریں",
+    "exhibitionManagement": "نمائش کا انتظام",
+    "constructionDesign": "تعمیر اور ڈیزائن",
+    "growthServices": "گروتھ سروسز",
+    "ourRole": "ہمارا کردار",
+    "formats": "فارمیٹس"
+  },
+  "buttons": {
+    "registerNow": "ابھی رجسٹر کریں",
+    "learnMore": "مزید جانیں",
+    "viewAllEvents": "تمام ایونٹس دیکھیں",
+    "downloadBrochure": "بروشر ڈاؤن لوڈ کریں",
+    "getDirections": "راستہ معلوم کریں",
+    "loadMore": "مزید ایونٹس دکھائیں",
+    "clearAll": "تمام صاف کریں",
+    "contactUs": "ہم سے رابطہ کریں",
+    "visitor": "زائرین",
+    "partner": "پارٹنر",
+    "getFreeQuote": "مفت کوٹیشن حاصل کریں",
+    "sendMessage": "پیغام بھیجیں",
+    "exploreFullCalendar": "مکمل ایونٹ کیلنڈر دیکھیں",
+    "goBackHome": "واپس ہوم پیج پر جائیں",
+    "contactSupport": "سپورٹ سے رابطہ کریں"
+  },
+  "forms": {
+    "namePlaceholder": "آپ کا نام",
+    "emailPlaceholder": "آپ کا ای میل",
+    "phonePlaceholder": "آپ کا فون نمبر",
+    "messagePlaceholder": "آپ کا پیغام",
+    "companyPlaceholder": "آپ کی کمپنی",
+    "subjectPlaceholder": "موضوع",
+    "submit": "جمع کروائیں",
+    "requiredField": "یہ خانہ پُر کرنا لازمی ہے",
+    "invalidEmail": "براہ کرم درست ای میل ایڈریس درج کریں",
+    "searchPlaceholder": "ایونٹس، شہر یا صنعت تلاش کریں..."
+  },
+  "messages": {
+    "noEventsFound": "کوئی ایونٹ نہیں ملا",
+    "noResultsFound": "کوئی نتیجہ نہیں ملا",
+    "noResultsFoundDesc": "ہمیں \"{{query}}\" سے متعلق کوئی ایونٹ نہیں ملا۔ براہ کرم دوسرے الفاظ سے تلاش کریں۔",
+    "noPastEvents": "ابھی تک کوئی گزشتہ ایونٹ موجود نہیں",
+    "noPastEventsDesc": "ایونٹس مکمل ہونے کے بعد یہ آرکائیو بھرتا جائے گا۔",
+    "adjustFilters": "براہ کرم فلٹرز تبدیل کریں یا صاف کریں تاکہ تمام ایونٹس نظر آئیں۔",
+    "genericError": "کچھ غلط ہو گیا۔ براہ کرم دوبارہ کوشش کریں۔",
+    "registrationSuccessTitle": "آپ کی رجسٹریشن مکمل ہو گئی ہے!",
+    "registrationSuccessDesc": "تصدیقی پیغام آپ کے ای میل پر بھیج دیا گیا ہے۔",
+    "pageNotFoundTitle": "صفحہ نہیں ملا، آئیے آپ کو واپس لے چلیں۔",
+    "pageNotFoundDesc": "آپ جو صفحہ تلاش کر رہے ہیں وہ ہٹا دیا گیا ہے، اس کا نام تبدیل ہو گیا ہے، یا عارضی طور پر دستیاب نہیں ہے۔"
+  },
+  "eventsUi": {
+    "registrationOpen": "رجسٹریشن جاری ہے",
+    "registrationClosed": "رجسٹریشن بند ہو چکی ہے",
+    "soldOut": "سیٹیں مکمل ہو چکی ہیں",
+    "comingSoon": "جلد آ رہا ہے",
+    "waitlist": "ویٹنگ لسٹ",
+    "speakers": "مقررین",
+    "sponsors": "اسپانسرز",
+    "agenda": "ایجنڈا",
+    "venue": "مقام",
+    "gallery": "گیلری",
+    "faq": "اکثر پوچھے گئے سوالات",
+    "testimonials": "تاثرات",
+    "relatedEvents": "متعلقہ ایونٹس",
+    "organizedBy": "منتظم",
+    "keyHighlights": "اہم جھلکیاں",
+    "whyAttend": "شرکت کیوں کریں",
+    "whoShouldAttend": "کن لوگوں کو شرکت کرنی چاہیے",
+    "industriesCovered": "شامل صنعتیں",
+    "aboutEvent": "ایونٹ کے بارے میں",
+    "quickFacts": "اہم معلومات",
+    "featured": "نمایاں",
+    "dates": "تاریخیں",
+    "category": "قسم",
+    "entry": "داخلہ",
+    "allCategories": "تمام اقسام",
+    "allIndustries": "تمام صنعتیں",
+    "allCities": "تمام شہر",
+    "allYears": "تمام سال",
+    "allMonths": "تمام مہینے",
+    "anyRegistrationStatus": "کوئی بھی رجسٹریشن حیثیت",
+    "sortUpcomingSoon": "جلد آنے والے",
+    "sortNewest": "تازہ ترین",
+    "sortAlphabetical": "حروفِ تہجی کے مطابق",
+    "sortFeatured": "نمایاں پہلے",
+    "sortPopular": "سب سے مقبول",
+    "gridView": "گرڈ ویو",
+    "listView": "لسٹ ویو",
+    "compactView": "کمپیکٹ ویو",
+    "timelineView": "ٹائم لائن ویو",
+    "calendarView": "کیلنڈر ویو",
+    "eventsFoundSuffix": "ایونٹس ملے",
+    "eventFoundSuffix": "ایونٹ ملا"
+  },
+  "pages": {
+    "home": {
+      "eventsShowcaseTag": "ہمارے ایونٹس",
+      "eventsShowcaseTitle": "ایونٹس جنہوں نے نئی منڈیاں کھولیں اور صنعتیں تعمیر کیں"
+    },
+    "about": {
+      "heroTag": "بدر ایکسپو سولیوشنز کے بارے میں"
+    },
+    "services": {
+      "heroTag": "ہماری خدمات"
+    },
+    "events": {
+      "heroTag": "ہمارا ایونٹس پورٹ فولیو",
+      "calendarCtaText": "تاریخ، قسم، یا شہر کے مطابق دیکھنا چاہتے ہیں؟"
+    },
+    "eventCalendar": {
+      "badgeLabel": "ایونٹ کیلنڈر",
+      "title": "ہر بدر ایکسپو ایونٹ دریافت کریں",
+      "description": "قسم، صنعت، شہر اور تاریخ کے مطابق آئندہ، جاری، اور گزشتہ نمائشیں تلاش اور فلٹر کریں۔",
+      "featuredTag": "نمایاں",
+      "featuredTitle": "اہم ایونٹس",
+      "allEventsTab": "تمام ایونٹس",
+      "upcomingTab": "آئندہ",
+      "ongoingTab": "جاری",
+      "pastTab": "گزشتہ"
+    },
+    "eventDetail": {
+      "learnMoreAnchor": "مزید جانیں",
+      "aboutSectionBadge": "ایونٹ کے بارے میں"
+    },
+    "contact": {
+      "heroTag": "ہم سے رابطہ کریں",
+      "formTitle": "ہمیں پیغام بھیجیں"
+    },
+    "notFound": {
+      "shortcutsTitle": "یا ہمارے اہم حل دیکھیں"
+    }
+  }
+}

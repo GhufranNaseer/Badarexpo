@@ -1,0 +1,13 @@
+{
+  "noEventsFound": "No Events Found",
+  "noResultsFound": "No Results Found",
+  "noResultsFoundDesc": "We couldn't find any events matching \"{{query}}\". Try a different search term.",
+  "noPastEvents": "No Past Events Yet",
+  "noPastEventsDesc": "This archive will fill up as events are completed.",
+  "adjustFilters": "Try adjusting your filters or clearing them to see all events.",
+  "genericError": "Something went wrong. Please try again.",
+  "registrationSuccessTitle": "You're Registered!",
+  "registrationSuccessDesc": "A confirmation has been sent to your email.",
+  "pageNotFoundTitle": "Lost in Space? Let's Get You Back.",
+  "pageNotFoundDesc": "The page you are looking for might have been removed, had its name changed, or is temporarily unavailable."
+}
