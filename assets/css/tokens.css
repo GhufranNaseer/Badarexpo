@@ -1,0 +1,116 @@
+/* ================================================================================
+   BADAR EXPO SOLUTIONS (BXSS) - GLOBAL DESIGN TOKENS
+   ================================================================================
+   Purpose : Single source of truth for the brand's color, radius, shadow,
+             spacing, and motion values, per rules.txt Section 13 ("a future
+             tokens.css"). This file is ADDITIVE ONLY - it does not remove or
+             override any existing page-scoped token block (e.g. --svcpg-*,
+             --cd-*, --gs-*, --em-*). Those remain valid, intentional,
+             page-scoped systems per the BEM-lite prefix convention
+             (rules.txt Section 2).
+
+   STATUS  : Phase 1 of the Design System Freeze (see data.txt Session 21).
+             Existing pages are NOT rewritten to consume these tokens yet -
+             that migration is deliberately deferred to its own explicit,
+             page-by-page task to avoid visual regression risk (rules.txt
+             Section 16: "Do not silently fix legacy debt while doing
+             unrelated work"). New sections and new pages should consume
+             these tokens directly instead of re-declaring local hex values.
+
+   LOAD ORDER: Include this file immediately after navbar.css and before any
+   page-specific stylesheet, on every page.
+   ================================================================================ */
+
+:root {
+    /* ---- BRAND COLOR (canonical - matches navbar.css :root, the previous
+       de-facto global token source) ---- */
+    --primary-red:          #e41f26;
+    --primary-red-hover:    #c31a20; /* confirmed identical in events.css + contact.css */
+    --primary-red-deep:     #9c151a; /* deeper editorial red, e.g. services.css --svcpg-red-deep */
+
+    /* ---- INK / TEXT ---- */
+    --ink:                  #0a0a0a; /* pure editorial black - services, construction-design, growth-services dark surfaces */
+    --text-dark:            #1a1a1a; /* dominant body/heading color across the site (34 occurrences) */
+    --text-muted:           #555555;
+
+    /* ---- SURFACES ---- */
+    --white:                #ffffff;
+    --bg-light:             #f9f9f9;
+    --cream:                #f6f4f0; /* editorial cream surface, services/about */
+
+    /* ---- BORDERS ---- */
+    --border-light:         rgba(0, 0, 0, 0.05);
+    --border-dark:          rgba(255, 255, 255, 0.08);
+
+    /* ---- RADIUS SCALE ----
+       Existing pages use a wide, unmanaged spread (0, 3, 4, 6, 7, 8, 10, 12,
+       14, 15, 16, 18, 20, 24, 28, 30, 50, 58, 60, 100px, 50%, 999px). Going
+       forward, new work should snap to this 6-step scale. */
+    --radius-xs:            4px;
+    --radius-sm:            8px;
+    --radius-md:            12px;
+    --radius-lg:            16px;
+    --radius-xl:            20px;
+    --radius-pill:          999px;
+
+    /* ---- SHADOW SCALE (neutral) ---- */
+    --shadow-xs:            0 2px 8px rgba(0, 0, 0, 0.04);
+    --shadow-sm:            0 4px 15px rgba(0, 0, 0, 0.08);
+    --shadow-soft:          0 15px 40px rgba(0, 0, 0, 0.08); /* unchanged from navbar.css */
+    --shadow-md:            0 20px 40px rgba(0, 0, 0, 0.12);
+    --shadow-lg:            0 30px 60px rgba(0, 0, 0, 0.15);
+
+    /* ---- SHADOW SCALE (brand red glow, for CTAs / active states) ---- */
+    --shadow-red-sm:        0 4px 15px rgba(228, 31, 38, 0.25);
+    --shadow-red-md:        0 8px 20px rgba(228, 31, 38, 0.3);
+    --shadow-red-lg:        0 10px 30px rgba(228, 31, 38, 0.35);
+
+    /* ---- SPACING SCALE (8px base, per rules.txt Section 3) ---- */
+    --space-1:              8px;
+    --space-2:              16px;
+    --space-3:              24px;
+    --space-4:              32px;
+    --space-6:              48px;
+    --space-8:              64px;
+    --space-12:             96px;
+    --space-16:             128px;
+
+    /* ---- MOTION ----
+       Three easing families are already in real use across the codebase;
+       consolidated here under clear names instead of inventing a fourth. */
+    --transition-fast:      0.2s cubic-bezier(0.4, 0, 0.2, 1);   /* navbar.css */
+    --transition-smooth:    0.35s cubic-bezier(0.4, 0, 0.2, 1);  /* navbar.css */
+    --transition-elegant:   0.5s cubic-bezier(0.16, 1, 0.3, 1);  /* construction-design.css --cd-ease, growthservices.css --gs-transition */
+    --transition-premium:   0.5s cubic-bezier(0.25, 0.8, 0.25, 1); /* events.css / contact.css --transition-premium */
+
+    /* ---- TYPOGRAPHY ---- */
+    --font-primary:         'Inter', sans-serif;
+    /* 'Playfair Display' is an intentional secondary display font, used only
+       for the CEO message / editorial quote treatment (ceo_section.css and
+       its now-superseded duplicate block in index.css). Per rules.txt
+       Section 3, this is the documented "WHY". Do not extend it to new
+       sections without updating this note. */
+    --font-display:         'Playfair Display', serif;
+}
+
+/* =============================================================================
+   RESPONSIVE IMAGE BASELINE (Phase 20 - Responsive QA)
+   ============================================================================= 
+   Audit finding: several page-specific stylesheets (gallery.css, media.css,
+   blog.css, industries.css, events-calendar.css, insights.css,
+   international-projects.css, construction-design.css, industry-landing.css,
+   project-landing.css, gallery-album.css, media-detail.css, blog-post.css,
+   legal.css, videos.css) had no equivalent of the #elp-page img { max-width:
+   100%; height: auto; } reset that event-landing.html already carries -
+   leaving any image without its own explicit width rule at genuine risk of
+   overflowing its container on narrow viewports. A plain element selector
+   has the lowest possible specificity, so this is purely a safety net: any
+   existing component rule (.eds-related-card img, .elp-gallery-grid img,
+   etc.) continues to control sizing exactly as before, unaffected. Loads on
+   every page (tokens.css is universal), so this is one fix instead of
+   fourteen.
+   ============================================================================= */
+img {
+    max-width: 100%;
+    height: auto;
+}

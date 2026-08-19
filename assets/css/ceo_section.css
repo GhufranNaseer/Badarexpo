@@ -60,6 +60,7 @@
 }
 
 .ceo-section .ceo-name {
+    /* Secondary display font, intentional (rules.txt Sec.3): editorial CEO name/quote treatment only */
     font-family: 'Playfair Display', serif;
     font-size: 48px;
     font-weight: 400;

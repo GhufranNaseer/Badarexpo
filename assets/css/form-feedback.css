@@ -1,0 +1,72 @@
+/* =============================================================================
+   FORM FEEDBACK TOAST (Phase 21.1)
+   ============================================================================= 
+   Companion to assets/js/form-submit-manager.js. Reuses the exact visual
+   language the old contact.js toast already had (dark card, colored status
+   icon, bottom-right position) - this is a genuine reuse, not a redesign;
+   the only change is making it shared and adding error/notice color
+   variants alongside the original success styling.
+   ============================================================================= */
+
+.bxss-form-toast {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    z-index: 9999;
+    background: #0f172a;
+    color: #ffffff;
+    padding: 16px 24px;
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+    border: 1px solid #334155;
+    max-width: 380px;
+    font-size: 0.95rem;
+    line-height: 1.5;
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(10px);
+    transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s ease;
+}
+
+.bxss-form-toast--visible {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.bxss-form-toast-icon {
+    font-size: 1.4rem;
+    flex-shrink: 0;
+    margin-top: 1px;
+}
+
+.bxss-form-toast-icon--success {
+    color: #10b981;
+}
+
+.bxss-form-toast-icon--error {
+    color: var(--primary-red, #e41f26);
+}
+
+.bxss-form-toast-icon--notice {
+    color: #fbbf24;
+}
+
+@media screen and (max-width: 480px) {
+    .bxss-form-toast {
+        left: 16px;
+        right: 16px;
+        bottom: 16px;
+        max-width: none;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .bxss-form-toast {
+        transition: opacity 0.15s linear, visibility 0.15s linear !important;
+        transform: none !important;
+    }
+}

@@ -15,7 +15,6 @@
     var panelTitle = document.getElementById("mmpTitle");
     var backBtn = document.getElementById("mmpBack");
     var navToggle = document.getElementById("mobile-menu-toggle");
-    var dropdownItems = document.querySelectorAll(".nav-item.dropdown[data-target]");
 
     if (!panel || !panelBody) return;
 
@@ -27,10 +26,14 @@
     function buildPanelContent(target) {
         var source = document.getElementById("content-" + target);
         panelBody.innerHTML = "";
-        if (!source) return;
+        if (!source) {
+            console.warn("[mobile-mega-menu] buildPanelContent: no #content-" + target + " element found.");
+            return;
+        }
 
         /* Insights jaisa simple card layout (image + h4 + p, no data-title links) */
         var insightCards = source.querySelectorAll(":scope > .insight-card");
+        console.log("[mobile-mega-menu] buildPanelContent target=", target, "insightCards found:", insightCards.length);
         if (insightCards.length) {
             insightCards.forEach(function (card) {
                 var img = card.querySelector("img");
@@ -38,7 +41,7 @@
                 var p = card.querySelector("p");
 
                 var item = document.createElement("a");
-                item.href = "#";
+                item.href = card.getAttribute("href") || "#";
                 item.className = "mmp-item";
 
                 var imgHtml = img ? '<img src="' + img.getAttribute("src") + '" alt="">' : "";
@@ -122,42 +125,60 @@
     }
 
     function openPanel(target, label) {
-        buildPanelContent(target);
-        panelTitle.textContent = label;
-        
-        // Dynamically set top position using navbar bottom rect so it doesn't overlap header
-        var navbar = document.querySelector(".navbar");
-        if (navbar && panel) {
-            var navBottom = navbar.getBoundingClientRect().bottom;
-            panel.style.top = navBottom + "px";
-            // iOS Safari fix: explicitly set height instead of relying purely on bottom: 0
-            panel.style.height = (window.innerHeight - navBottom) + "px";
+        try {
+            buildPanelContent(target);
+            if (panelTitle) panelTitle.textContent = label;
+
+            // Dynamically set top position using navbar bottom rect so it doesn't overlap header
+            var navbar = document.querySelector(".navbar");
+            if (navbar && panel) {
+                var navBottom = navbar.getBoundingClientRect().bottom;
+                panel.style.top = navBottom + "px";
+                // iOS Safari fix: explicitly set height instead of relying purely on bottom: 0
+                panel.style.height = (window.innerHeight - navBottom) + "px";
+            }
+
+            panel.classList.add("open");
+        } catch (err) {
+            // Something failed while building/opening the panel - do not leave
+            // the visitor with a dead, unresponsive tap. Log it so it's
+            // diagnosable, and fall back to the item's own real destination.
+            console.error("[mobile-mega-menu] Failed to open panel for '" + target + "':", err);
+            window.location.href = target + ".html";
         }
-        
-        panel.classList.add("open");
     }
 
     function closePanel() {
         panel.classList.remove("open");
     }
 
-    dropdownItems.forEach(function (item) {
-        item.addEventListener(
-            "click",
-            function (e) {
-                if (!isMobile()) return; // desktop pe purana hover mega-menu hi chalega
-                var target = item.getAttribute("data-target");
-                if (!target || !document.getElementById("content-" + target)) return;
+    document.addEventListener(
+        "click",
+        function (e) {
+            if (!isMobile()) return; // desktop pe purana hover mega-menu hi chalega
 
-                e.preventDefault();
-                e.stopPropagation();
-                e.stopImmediatePropagation(); // purana accordion-toggle handler override
+            var item = e.target.closest(".nav-item.dropdown[data-target]");
+            if (!item) return;
 
-                openPanel(target, getItemLabel(item));
-            },
-            true /* capture phase - header/logo ko touch kiye bagair sab se pehle chalega */
-        );
-    });
+            var target = item.getAttribute("data-target");
+            var contentSource = target ? document.getElementById("content-" + target) : null;
+
+            console.log("[mobile-mega-menu] dropdown tap detected. target=", target, "contentSource found?", !!contentSource);
+
+            if (!target || !contentSource) {
+                console.warn("[mobile-mega-menu] Aborting - target or content-" + target + " missing. This tap will fall through to the item's own real href instead.");
+                return;
+            }
+
+            e.preventDefault();
+            e.stopPropagation();
+            e.stopImmediatePropagation(); // purana accordion-toggle handler override
+
+            console.log("[mobile-mega-menu] Calling openPanel for target=", target);
+            openPanel(target, getItemLabel(item));
+        },
+        true /* capture phase - header/logo ko touch kiye bagair sab se pehle chalega */
+    );
 
     if (backBtn) {
         backBtn.addEventListener("click", closePanel);

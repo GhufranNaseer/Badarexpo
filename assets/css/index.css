@@ -180,6 +180,7 @@ body {
 .hero-btn-primary {
     background: var(--primary-red);
     color: var(--white);
+    border: 2px solid transparent;
 }
 
 .hero-btn-primary:hover {
@@ -2438,7 +2439,7 @@ body {
 
 .section-tag {
     display: inline-block;
-    color: #C31A20;
+    color: #c31a20;
     font-weight: 700;
     font-size: 13px;
     letter-spacing: 1px;
@@ -3092,7 +3093,7 @@ body {
 }
 
 .testi-small-heading {
-    color: #C31A20;
+    color: #c31a20;
     font-size: 14px;
     font-weight: 600;
     margin-bottom: 14px;
@@ -3374,6 +3375,14 @@ button:focus-visible,
 
 /* ==========================================
    CEO SECTION CSS (Appended from scrap.txt)
+   NOTE (Design System Audit, data.txt Session 21): this entire block is
+   legacy/superseded. assets/css/ceo_section.css is the canonical, shared
+   component file (rules.txt Section 1) and is linked AFTER this file with
+   equal selector specificity, so it always wins in the cascade - this block
+   has no visual effect today. Left in place intentionally as the
+   unstyled-content fallback for the print/onload-swap loading trick used on
+   ceo_section.css. Do not edit visual values here without also editing
+   ceo_section.css, or the two will drift further out of sync.
    ========================================== */
 .ceo-section {
     display: flex;
@@ -3432,7 +3441,7 @@ button:focus-visible,
     font-size: 10px;
     font-weight: 500;
     letter-spacing: 0.2em;
-    color: #ed1414;
+    color: #FF4D4D;
     text-transform: uppercase;
 }
 

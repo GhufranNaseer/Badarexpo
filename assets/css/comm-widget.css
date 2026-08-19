@@ -1,0 +1,299 @@
+/* =============================================================================
+   COMMUNICATION WIDGET (Phase 17)
+   ============================================================================= 
+   GLOBAL, unprefixed component (like .navbar/.footer/.scroll-top-btn) - a
+   singleton that exists identically on every page. Currently powers one
+   channel (WhatsApp); architected so a future channel (Phone, Email, Live
+   Chat) is just one more .comm-widget-channel-btn inside the existing
+   panel - no restructuring of this file or the JS needed.
+
+   DESIGN LANGUAGE: deliberately mirrors .scroll-top-btn (footer.css) rule
+   for rule - same 0.4s cubic-bezier(0.165, 0.84, 0.44, 1) easing, same
+   glassmorphism-at-rest-solid-on-hover pattern, same translateY(20px)
+   hidden state and hover-lift interaction - so this widget reads as
+   something that has always belonged here, not a bolted-on third-party
+   snippet. The one deliberate exception is color: WhatsApp's own green
+   (#25D366) is used for the button itself (an unambiguous, universally
+   recognized signal for "this opens WhatsApp" - using the site's red here
+   would make the button harder to identify at a glance), while every
+   surrounding interaction pattern stays on-brand.
+
+   POSITIONING: stacked directly above .scroll-top-btn (bottom: 30px,
+   right: 30px, 50px circle) with a 16px gap, so the two never overlap at
+   any viewport size. On pages with the Event System's sticky CTA bar
+   (.elp-sticky-cta / .eds-sticky-cta) visible, comm-widget.js measures
+   that bar's real rendered height and lifts this widget above it via the
+   --comm-widget-lift custom property - see that file's StickyCtaAwareness
+   module.
+   ============================================================================= */
+
+/* HIT-TESTING NOTE
+   .comm-widget is a fixed, transparent container. Even while the panel is
+   closed it is still a real box in the layout, and a transparent box still
+   receives pointer events - so it was silently swallowing taps over a large
+   area of the bottom-right corner (this broke the "International Projects"
+   and "Insights" items in the mobile off-canvas menu).
+
+   Two fixes, both here in CSS so no JS behaviour changes:
+   1. The container is pointer-events: none; only the FAB (once visible) and
+      the panel (once open) opt back in. The container itself can never
+      intercept a tap again.
+   2. The panel is taken out of flow (position: absolute) so the closed
+      widget measures exactly the size of the 56px FAB instead of reserving
+      the panel's full height in the layout. */
+.comm-widget {
+    position: fixed;
+    bottom: calc(96px + var(--comm-widget-lift, 0px));
+    right: 30px;
+    z-index: 9990;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    pointer-events: none;
+    transition: bottom 0.3s ease;
+}
+
+/* ---- Floating action button ---- */
+.comm-widget-fab {
+    position: relative;
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background: rgba(37, 211, 102, 0.15);
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(37, 211, 102, 0.4);
+    color: #25d366;
+    font-size: 26px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    padding: 0;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transform: translateY(20px);
+    transition: opacity 0.4s cubic-bezier(0.165, 0.84, 0.44, 1),
+        visibility 0.4s cubic-bezier(0.165, 0.84, 0.44, 1),
+        transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1),
+        background 0.25s ease, color 0.25s ease, box-shadow 0.25s ease;
+}
+
+.comm-widget-fab--visible {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transform: translateY(0);
+}
+
+.comm-widget-fab:hover,
+.comm-widget-fab--open {
+    background: #25d366;
+    color: #fff;
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(37, 211, 102, 0.4);
+}
+
+.comm-widget-fab:focus-visible {
+    outline: 3px solid #128c7e;
+    outline-offset: 3px;
+}
+
+/* One-time attention pulse - plays twice on first appearance, then stops
+   (never loops indefinitely, so it stays "non-intrusive" rather than
+   nagging the visitor for the whole session). */
+.comm-widget-fab--visible::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    border: 2px solid rgba(37, 211, 102, 0.6);
+    animation: comm-widget-pulse 1.8s ease-out 2;
+}
+
+@keyframes comm-widget-pulse {
+    0% {
+        transform: scale(1);
+        opacity: 1;
+    }
+    100% {
+        transform: scale(1.6);
+        opacity: 0;
+    }
+}
+
+/* ---- Expand panel ----
+   Absolutely positioned above the FAB (16px gap preserved) so it never
+   contributes height to .comm-widget while closed. */
+.comm-widget-panel {
+    position: absolute;
+    bottom: calc(100% + 16px);
+    right: 0;
+    width: 300px;
+    max-width: calc(100vw - 60px);
+    background: var(--white);
+    border-radius: var(--radius-lg, 16px);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.18);
+    border: 1px solid var(--border-light);
+    padding: 20px;
+    transform-origin: bottom right;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(12px) scale(0.94);
+    pointer-events: none;
+    transition: opacity 0.3s cubic-bezier(0.165, 0.84, 0.44, 1),
+        visibility 0.3s cubic-bezier(0.165, 0.84, 0.44, 1),
+        transform 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+.comm-widget-panel--open {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0) scale(1);
+    pointer-events: auto;
+}
+
+.comm-widget-panel-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 10px;
+}
+
+.comm-widget-panel-title {
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--text-dark);
+}
+
+.comm-widget-panel-close {
+    background: none;
+    border: none;
+    color: var(--text-muted);
+    font-size: 16px;
+    cursor: pointer;
+    padding: 4px;
+    line-height: 1;
+    border-radius: 50%;
+    transition: color 0.2s ease, background 0.2s ease;
+}
+
+.comm-widget-panel-close:hover {
+    color: var(--primary-red);
+    background: var(--bg-light);
+}
+
+.comm-widget-panel-close:focus-visible {
+    outline: 2px solid var(--primary-red);
+    outline-offset: 2px;
+}
+
+.comm-widget-panel-desc {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    line-height: 1.5;
+    margin: 0 0 16px;
+}
+
+/* Reusable channel-button pattern - the ONE button today (WhatsApp), and
+   the pattern every future channel button reuses without new CSS. */
+.comm-widget-channel-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    width: 100%;
+    padding: 12px 16px;
+    border-radius: var(--radius-pill, 999px);
+    background: #25d366;
+    color: #fff;
+    font-weight: 700;
+    font-size: 0.9rem;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    transition: background 0.25s ease, transform 0.2s ease;
+}
+
+.comm-widget-channel-btn:hover {
+    background: #1ebe57;
+    transform: translateY(-2px);
+}
+
+.comm-widget-channel-btn:focus-visible {
+    outline: 3px solid #128c7e;
+    outline-offset: 2px;
+}
+
+.comm-widget-channel-btn i {
+    font-size: 1.1rem;
+}
+
+/* =============================================================================
+   MOBILE NAVIGATION AWARENESS
+   -----------------------------------------------------------------------------
+   While the mobile drawer (.menu.mobile-active) or the off-canvas mega panel
+   (.mobile-mega-panel.open) is showing, the widget is fully removed. It sits
+   at z-index 9990, well above the nav's 2000, so leaving it on top of an open
+   menu is both visually wrong and one more thing between the user and a nav
+   link. display:none guarantees zero hit area regardless of state.
+
+   :has() is progressive enhancement here - on a browser without it the widget
+   simply stays put, and the pointer-events fix above already prevents it from
+   blocking any taps.
+   ============================================================================= */
+body:has(.menu.mobile-active) .comm-widget,
+body:has(.mobile-mega-panel.open) .comm-widget {
+    display: none;
+}
+
+/* =============================================================================
+   RESPONSIVE - snapped to the shared 4-tier breakpoint scale (rules.txt
+   Section 4), same tiers .scroll-top-btn already follows implicitly.
+   ============================================================================= */
+@media screen and (max-width: 768px) {
+    .comm-widget {
+        bottom: calc(88px + var(--comm-widget-lift, 0px));
+        right: 20px;
+    }
+
+    .comm-widget-fab {
+        width: 50px;
+        height: 50px;
+        font-size: 22px;
+    }
+
+    .comm-widget-panel {
+        width: 280px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .comm-widget {
+        right: 16px;
+    }
+
+    .comm-widget-panel {
+        width: calc(100vw - 48px);
+    }
+}
+
+/* Respect reduced-motion (rules.txt Section 4, same convention every other
+   component file follows) - disable the transform choreography and the
+   pulse ring, keep only an instant opacity change so the widget still
+   appears/disappears without motion. */
+@media (prefers-reduced-motion: reduce) {
+    .comm-widget-fab,
+    .comm-widget-panel,
+    .comm-widget {
+        transition: opacity 0.15s linear !important;
+        transform: none !important;
+        animation: none !important;
+    }
+
+    .comm-widget-fab--visible::after {
+        display: none;
+    }
+}

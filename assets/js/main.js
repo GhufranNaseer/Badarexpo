@@ -135,8 +135,16 @@ const NavManager = {
             this.langItems.forEach(item => {
                 item.addEventListener('click', () => {
                     const langCode = item.getAttribute('data-lang');
-                    if (this.currentLangText) this.currentLangText.textContent = langCode.toUpperCase();
-                    document.body.classList.toggle('rtl-mode', langCode === 'ur' || langCode === 'ar');
+                    // Phase 8: delegate to LanguageManager for real translation
+                    // + RTL switching. Falls back to the old rtl-mode-only
+                    // toggle if language-manager.js somehow isn't loaded on a
+                    // page, so the dropdown never silently does nothing.
+                    if (window.LanguageManager && typeof window.LanguageManager.switchTo === 'function') {
+                        window.LanguageManager.switchTo(langCode);
+                    } else {
+                        if (this.currentLangText) this.currentLangText.textContent = langCode.toUpperCase();
+                        document.body.classList.toggle('rtl-mode', langCode === 'ur' || langCode === 'ar');
+                    }
                     this.langList.classList.remove('show');
                 });
             });
@@ -478,6 +486,120 @@ const SplitServiceManager = {
     }
 };
 
+// ========================= SEARCH BAR TYPING SUGGESTIONS =========================
+/* Desktop navbar ki search bar mein rotating "typewriter" suggestions dikhata
+   hai (Exhibition Management, Upcoming Events, ...) taake user ko andaza ho ke
+   search se kya kya mil sakta hai.
+
+   Guards:
+   - Sirf >=1221px par chalta hai (chhoti desktop widths par bar 160px hai,
+     wahan static "Search" behtar hai). Mobile par .search-text pehle se hidden hai.
+   - prefers-reduced-motion par band.
+   - RTL (Urdu / Arabic) par band  terms English hain.
+   - Tab background mein ho to pause (CPU bachane ke liye).
+   - Agar JS fail ho to HTML ka static "Search" hi rehta hai. */
+const SearchTypingManager = {
+    TERMS: [
+        'Exhibition Management',
+        'Upcoming Events',
+        'Construction & Design',
+        'Growth Services',
+        'Our Leaders & Executives',
+        'International Projects',
+        'Gallery & Videos',
+        'Insights & Blog'
+    ],
+
+    MIN_WIDTH: 1221,
+    TYPE_MS: 65,
+    ERASE_MS: 30,
+    HOLD_MS: 1600,
+
+    init() {
+        this.el = document.querySelector('.search-trigger .search-text');
+        if (!this.el) return;
+
+        this.staticLabel = this.el.textContent.trim() || 'Search';
+        this.timer = null;
+        this.running = false;
+
+        this.mqMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+
+        this.evaluate();
+        window.addEventListener('resize', () => this.evaluate());
+        document.addEventListener('visibilitychange', () => this.evaluate());
+    },
+
+    allowed() {
+        if (document.hidden) return false;
+        if (this.mqMotion && this.mqMotion.matches) return false;
+        if (document.documentElement.getAttribute('dir') === 'rtl') return false;
+        return window.innerWidth >= this.MIN_WIDTH;
+    },
+
+    evaluate() {
+        const should = this.allowed();
+        if (should && !this.running) this.start();
+        else if (!should && this.running) this.stop();
+    },
+
+    start() {
+        this.running = true;
+        this.el.textContent = '';
+
+        this.prefix = document.createTextNode(this.staticLabel + ' ');
+        this.typed = document.createElement('span');
+        this.typed.className = 'search-typed';
+        this.caret = document.createElement('span');
+        this.caret.className = 'search-caret';
+
+        this.el.appendChild(this.prefix);
+        this.el.appendChild(this.typed);
+        this.el.appendChild(this.caret);
+
+        this.termIndex = 0;
+        this.charIndex = 0;
+        this.erasing = false;
+        this.tick();
+    },
+
+    stop() {
+        this.running = false;
+        clearTimeout(this.timer);
+        this.el.textContent = this.staticLabel;
+    },
+
+    tick() {
+        if (!this.running) return;
+
+        const term = this.TERMS[this.termIndex];
+        let delay;
+
+        if (!this.erasing) {
+            this.charIndex++;
+            this.typed.textContent = term.slice(0, this.charIndex);
+            if (this.charIndex >= term.length) {
+                this.erasing = true;
+                delay = this.HOLD_MS;
+            } else {
+                delay = this.TYPE_MS;
+            }
+        } else {
+            this.charIndex--;
+            this.typed.textContent = term.slice(0, this.charIndex);
+            if (this.charIndex <= 0) {
+                this.erasing = false;
+                this.termIndex = (this.termIndex + 1) % this.TERMS.length;
+                delay = 320;
+            } else {
+                delay = this.ERASE_MS;
+            }
+        }
+
+        this.timer = setTimeout(() => this.tick(), delay);
+    }
+};
+
 // ========================= INITIALIZE ALL MODULES =========================
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -485,4 +607,5 @@ document.addEventListener('DOMContentLoaded', () => {
     StatsManager.init();
     ScrollTopManager.init();
     SplitServiceManager.init();
+    SearchTypingManager.init();
 });

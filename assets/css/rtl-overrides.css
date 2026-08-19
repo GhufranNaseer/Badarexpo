@@ -1,0 +1,574 @@
+/* =============================================================================
+   RTL OVERRIDES (rtl-overrides.css)
+   ============================================================================= 
+   Phase 8: production RTL implementation, built exactly per the strategy
+   Phase 7 designed (i18n-architecture.md Section 7) - an ADDITIVE override
+   layer, not a rewrite of any existing LTR CSS. Every rule in this file is
+   scoped under [dir="rtl"], so it has ZERO effect when the document is in
+   its default LTR state - this file can be safely loaded on every page,
+   always, with no JS-conditional loading required.
+
+   LOAD ORDER: linked LAST in every page's <head>, after every other
+   stylesheet (including page-specific CSS), so these overrides always win
+   on specificity via source order without needing !important anywhere.
+
+   SCOPE OF THIS PASS: the shared global components (navbar, footer,
+   page-hero, search overlay) and the full eds-/elp- component families
+   (Phase 3-6, all built in this same project and therefore fully known/
+   controllable). Older, pre-Phase-0 page-specific CSS (about.css,
+   services.css, construction-design.css, growthservices.css,
+   exhibitionmanagement.css, index.css's pre-Session-21 sections) is NOT
+   covered in this pass - flagged in data.txt Session 28 as tracked,
+   scoped follow-up work per the project's own "do not silently fix
+   debt outside its own task" convention (rules.txt Section 16), not
+   something to rush through here at lower quality.
+   ============================================================================= */
+
+/* =============================================================================
+   0. DOCUMENT BASE
+   ============================================================================= */
+[dir="rtl"] body {
+    text-align: right;
+}
+
+[dir="rtl"] * {
+    letter-spacing: 0; /* Urdu/Naskh scripts render worse with Latin-tuned
+    letter-spacing values baked into some existing components (e.g.
+    .eds-badge, .eds-tag use letter-spacing: 1-2px for Latin uppercase
+    tracking - meaningless and slightly harmful for Urdu glyphs) */
+}
+
+/* =============================================================================
+   1. TOPBAR / NAVBAR / MEGA MENU
+   ============================================================================= */
+[dir="rtl"] .topbar {
+    flex-direction: row-reverse;
+}
+
+[dir="rtl"] .topbar-left,
+[dir="rtl"] .topbar-right {
+    flex-direction: row-reverse;
+}
+
+[dir="rtl"] .navbar {
+    flex-direction: row-reverse;
+}
+
+[dir="rtl"] .nav-menu,
+[dir="rtl"] .menu {
+    flex-direction: row-reverse;
+}
+
+[dir="rtl"] .nav-item.dropdown i.fa-chevron-down {
+    margin-right: 4px;
+    margin-left: 0;
+}
+
+/* Mega menu columns read right-to-left: first column (nearest the trigger)
+   moves to the right edge instead of the left. */
+[dir="rtl"] .mega-content {
+    flex-direction: row-reverse;
+}
+
+[dir="rtl"] .mega-content .column h4 i.fa-chevron-right {
+    transform: scaleX(-1);
+    margin-right: 6px;
+    margin-left: 0;
+}
+
+[dir="rtl"] .lang-dropdown,
+[dir="rtl"] .nav-right-icons,
+[dir="rtl"] .actions {
+    flex-direction: row-reverse;
+}
+
+[dir="rtl"] .lang-list {
+    right: auto;
+    left: 0;
+    text-align: right;
+}
+
+[dir="rtl"] .search-trigger {
+    flex-direction: row-reverse;
+    /* widened desktop search: RTL mein content right edge par align ho */
+    justify-content: flex-end;
+}
+
+/* Mobile drawer + submenu */
+[dir="rtl"] .mobile-submenu li {
+    text-align: right;
+}
+
+[dir="rtl"] .mobile-subheader-scroll-wrapper,
+[dir="rtl"] .mobile-subheader-links,
+[dir="rtl"] .mobile-subheader-socials {
+    flex-direction: row-reverse;
+}
+
+/* =============================================================================
+   2. PAGE HERO / BREADCRUMB (shared global component)
+   ============================================================================= */
+[dir="rtl"] .page-breadcrumb {
+    flex-direction: row-reverse;
+    justify-content: flex-end;
+}
+
+[dir="rtl"] .page-hero-content {
+    text-align: right;
+}
+
+[dir="rtl"] .page-hero-content h1,
+[dir="rtl"] .page-hero-content p {
+    margin-left: auto;
+    margin-right: 0;
+}
+
+[dir="rtl"] .page-hero-btns {
+    flex-direction: row-reverse;
+    justify-content: flex-end;
+}
+
+[dir="rtl"] .page-hero-overlay {
+    /* the LTR gradient sweeps dark->red left-to-right; mirror the angle so
+       the red accent still reads as "trailing" rather than suddenly
+       leading in RTL */
+    transform: scaleX(-1);
+}
+
+/* =============================================================================
+   3. FOOTER
+   ============================================================================= */
+[dir="rtl"] .footer-top {
+    flex-direction: row-reverse;
+}
+
+[dir="rtl"] .footer-grid {
+    direction: rtl;
+}
+
+[dir="rtl"] .footer-column {
+    text-align: right;
+}
+
+[dir="rtl"] .footer-bottom {
+    flex-direction: row-reverse;
+}
+
+[dir="rtl"] .footer-socials {
+    flex-direction: row-reverse;
+}
+
+[dir="rtl"] .footer-back-top {
+    flex-direction: row-reverse;
+}
+
+[dir="rtl"] .footer-back-top svg {
+    transform: scaleX(-1);
+}
+
+[dir="rtl"] .download-buttons {
+    flex-direction: row-reverse;
+}
+
+/* =============================================================================
+   4. BUTTONS (global hero-btn + eds-btn family)
+   ============================================================================= */
+[dir="rtl"] .hero-btn,
+[dir="rtl"] .eds-btn,
+[dir="rtl"] .eds-link-arrow,
+[dir="rtl"] .elp-link-arrow {
+    flex-direction: row-reverse;
+}
+
+/* Directional icons (arrows/chevrons that encode "next"/"forward") mirror;
+   non-directional icons (checkmarks, calendar, phone, etc.) do not - see
+   i18n-architecture.md Section 7's explicit opt-in reasoning. */
+[dir="rtl"] .fa-arrow-right,
+[dir="rtl"] .fa-arrow-left,
+[dir="rtl"] .fa-chevron-right,
+[dir="rtl"] .fa-chevron-left {
+    transform: scaleX(-1);
+}
+
+[dir="rtl"] .eds-link-arrow:hover,
+[dir="rtl"] .elp-link-arrow:hover {
+    gap: 12px;
+}
+
+[dir="rtl"] .eds-link-arrow:hover i,
+[dir="rtl"] .elp-link-arrow:hover i {
+    transform: scaleX(-1) translateX(3px);
+}
+
+/* =============================================================================
+   5. INFO / BADGE / TAG COMPONENTS (Phase 3 eds- library)
+   ============================================================================= */
+[dir="rtl"] .eds-info-card,
+[dir="rtl"] .elp-hero-meta-item,
+[dir="rtl"] .elp-quickinfo-item,
+[dir="rtl"] .elp-organizer-card,
+[dir="rtl"] .elp-venue-contact a,
+[dir="rtl"] .elp-contact-cta-details a:not(.elp-link-arrow) {
+    flex-direction: row-reverse;
+    text-align: right;
+}
+
+[dir="rtl"] .eds-badge,
+[dir="rtl"] .elp-reg-status {
+    flex-direction: row-reverse;
+}
+
+[dir="rtl"] .eds-info-body,
+[dir="rtl"] .elp-quickinfo-value,
+[dir="rtl"] .elp-organizer-name {
+    text-align: right;
+}
+
+/* =============================================================================
+   6. CARDS (eds-related-card / eds-event-card variants + elp- cards)
+   ============================================================================= */
+[dir="rtl"] .eds-related-card,
+[dir="rtl"] .elp-related-card,
+[dir="rtl"] .elp-speaker-card,
+[dir="rtl"] .elp-why-card,
+[dir="rtl"] .elp-audience-card {
+    text-align: right;
+}
+
+/* Horizontal card variant: image/text side order mirrors (image was left,
+   text right in LTR -> text right stays visually "first" in reading order
+   under RTL by simply reversing the grid track order). */
+[dir="rtl"] .eds-event-card--horizontal,
+[dir="rtl"] .elp-venue-grid,
+[dir="rtl"] .elp-overview-card,
+[dir="rtl"] .eds-overview-card,
+[dir="rtl"] .elp-about-grid {
+    direction: rtl;
+}
+
+[dir="rtl"] .eds-event-card--compact {
+    flex-direction: row-reverse;
+}
+
+[dir="rtl"] .elp-speaker-card--featured {
+    direction: rtl;
+    text-align: right;
+}
+
+[dir="rtl"] .elp-audience-card,
+[dir="rtl"] .eds-achievement-card,
+[dir="rtl"] .eds-download-card {
+    flex-direction: row-reverse;
+}
+
+/* =============================================================================
+   7. GRIDS / FEATURE LISTS (About facts, Highlights numbered list, Stats)
+   ============================================================================= */
+[dir="rtl"] .elp-about-facts,
+[dir="rtl"] .elp-fact-row,
+[dir="rtl"] .eds-fact-row {
+    flex-direction: row-reverse;
+}
+
+[dir="rtl"] .elp-highlights-list li,
+[dir="rtl"] .eds-steps {
+    direction: rtl;
+    text-align: right;
+}
+
+[dir="rtl"] .elp-highlights-grid {
+    direction: rtl;
+}
+
+/* =============================================================================
+   8. TIMELINE (Phase 5 discovery timeline + Phase 3 agenda timeline item)
+   ============================================================================= */
+[dir="rtl"] .eds-discovery-timeline {
+    padding-left: 0;
+    padding-right: 32px;
+}
+
+[dir="rtl"] .eds-discovery-timeline::before {
+    left: auto;
+    right: 7px;
+}
+
+[dir="rtl"] .eds-discovery-timeline-month::before {
+    left: auto;
+    right: -32px;
+}
+
+[dir="rtl"] .eds-timeline-item,
+[dir="rtl"] .elp-timeline-item {
+    border-left: none;
+    border-right: 3px solid var(--border-light);
+    text-align: right;
+}
+
+[dir="rtl"] .eds-timeline-item--session { border-right-color: #2563eb; }
+[dir="rtl"] .eds-timeline-item--workshop { border-right-color: #d97706; }
+[dir="rtl"] .eds-timeline-item--panel { border-right-color: var(--primary-red); }
+[dir="rtl"] .eds-timeline-item--break { border-right-color: var(--text-muted); }
+[dir="rtl"] .eds-timeline-item--networking { border-right-color: #10b981; }
+
+[dir="rtl"] .eds-schedule-row,
+[dir="rtl"] .elp-schedule-row {
+    flex-direction: row-reverse;
+    text-align: right;
+}
+
+/* =============================================================================
+   9. CALENDAR (Phase 5 month grid)
+   ============================================================================= */
+/* CSS Grid natively respects `direction` for track placement per spec, so
+   setting direction:rtl on the grid containers is sufficient to reverse
+   Sun->Sat into a right-to-left reading column order, without needing to
+   manually recompute grid-column indices in JS. */
+[dir="rtl"] .eds-calendar-weekdays,
+[dir="rtl"] .eds-calendar-grid {
+    direction: rtl;
+}
+
+[dir="rtl"] .eds-calendar-grid .eds-calendar-day {
+    border-right: none;
+    border-left: 1px solid var(--border-light);
+}
+
+[dir="rtl"] .eds-calendar-grid .eds-calendar-day:nth-child(7n) {
+    border-left: none;
+}
+
+[dir="rtl"] .eds-calendar-header {
+    flex-direction: row-reverse;
+}
+
+[dir="rtl"] .eds-calendar-nav {
+    flex-direction: row-reverse;
+}
+
+/* Prev/Next chevrons swap meaning: "next month" should still point toward
+   the reading-forward direction, which is now leftward. */
+[dir="rtl"] [data-eds-cal-prev] i {
+    transform: scaleX(-1);
+}
+
+[dir="rtl"] [data-eds-cal-next] i {
+    transform: scaleX(-1);
+}
+
+/* =============================================================================
+   10. SEARCH / FILTER BAR / DISCOVERY TOOLBAR (Phase 5)
+   ============================================================================= */
+[dir="rtl"] .eds-search-icon {
+    left: auto;
+    right: 18px;
+}
+
+[dir="rtl"] .eds-search-input {
+    padding: 14px 44px; /* symmetric, so no left/right swap needed, but
+    kept explicit here for clarity that it was checked, not missed */
+    text-align: right;
+}
+
+[dir="rtl"] .eds-search-clear {
+    right: auto;
+    left: 10px;
+}
+
+[dir="rtl"] .eds-search-suggestion {
+    flex-direction: row-reverse;
+    text-align: right;
+}
+
+[dir="rtl"] .eds-search-suggestion-meta {
+    margin-left: 0;
+    margin-right: auto;
+}
+
+[dir="rtl"] .eds-filter-bar {
+    flex-direction: row-reverse;
+}
+
+[dir="rtl"] .eds-filter-select {
+    background-position: left 14px center;
+    padding: 10px 16px 10px 36px;
+}
+
+[dir="rtl"] .eds-active-filters {
+    flex-direction: row-reverse;
+}
+
+[dir="rtl"] .eds-active-filter-chip {
+    flex-direction: row-reverse;
+    padding: 6px 14px 6px 8px;
+}
+
+[dir="rtl"] .eds-results-toolbar {
+    flex-direction: row-reverse;
+}
+
+[dir="rtl"] .eds-quickinfo-item,
+[dir="rtl"] .elp-quickinfo-item {
+    flex-direction: row-reverse;
+}
+
+/* =============================================================================
+   11. STICKY CTA (Phase 2/5)
+   ============================================================================= */
+[dir="rtl"] .elp-sticky-cta-row,
+[dir="rtl"] .eds-sticky-cta-row {
+    flex-direction: row-reverse;
+}
+
+[dir="rtl"] .elp-sticky-cta-info,
+[dir="rtl"] .eds-sticky-cta-info {
+    text-align: right;
+}
+
+[dir="rtl"] .elp-sticky-cta-date,
+[dir="rtl"] .eds-sticky-cta-date {
+    flex-direction: row-reverse;
+}
+
+/* =============================================================================
+   12. FAQ ACCORDION / TABS / PILLS
+   ============================================================================= */
+[dir="rtl"] .eds-accordion-trigger,
+[dir="rtl"] .elp-faq-trigger {
+    flex-direction: row-reverse;
+    text-align: right;
+}
+
+[dir="rtl"] .eds-tabs-nav,
+[dir="rtl"] .elp-schedule-tabs,
+[dir="rtl"] .eds-pills {
+    flex-direction: row-reverse;
+}
+
+/* =============================================================================
+   13. FORMS (native RTL handles most of this - only custom-styled controls
+   need an explicit override)
+   ============================================================================= */
+[dir="rtl"] input,
+[dir="rtl"] textarea,
+[dir="rtl"] select {
+    text-align: right;
+}
+
+/* =============================================================================
+   14. COUNTDOWN / STATS (numerals stay Western per i18n-architecture.md
+   Section 8 - only layout direction needs handling here)
+   ============================================================================= */
+[dir="rtl"] .elp-countdown,
+[dir="rtl"] .eds-countdown,
+[dir="rtl"] .elp-hero-stats,
+[dir="rtl"] .eds-hero-stats {
+    flex-direction: row-reverse;
+}
+
+/* =============================================================================
+   15. VENUE / CONTACT
+   ============================================================================= */
+[dir="rtl"] .elp-venue-address,
+[dir="rtl"] .eds-testimonial-card--company .eds-testimonial-author {
+    flex-direction: row-reverse;
+    text-align: right;
+}
+
+[dir="rtl"] .elp-venue-amenities li {
+    flex-direction: row-reverse;
+}
+
+/* =============================================================================
+   16. GALLERY / MEDIA SLIDER
+   ============================================================================= */
+[dir="rtl"] .eds-media-slider-track {
+    direction: ltr; /* image tracks stay LTR internally so slide order
+    doesn't invert unexpectedly; only the surrounding chrome (dots, nav
+    buttons) follows document direction */
+}
+
+[dir="rtl"] .eds-media-slider-nav,
+[dir="rtl"] .elp-testi-nav {
+    flex-direction: row-reverse;
+}
+
+/* =============================================================================
+   17. ERROR / EMPTY / STATE COMPONENTS
+   ============================================================================= */
+[dir="rtl"] .eds-empty-state,
+[dir="rtl"] .eds-state,
+[dir="rtl"] .err-actions,
+[dir="rtl"] .err-grid {
+    text-align: center; /* these are already center-aligned in LTR - explicit
+    no-op rule here documents that this component was checked and needs no
+    change, rather than leaving an unexplained gap in RTL coverage */
+}
+
+[dir="rtl"] .err-actions {
+    flex-direction: row-reverse;
+}
+
+/* =============================================================================
+   RESPONSIVE - RTL rules follow the same 4-tier breakpoint scale as the
+   rest of the site (rules.txt Section 4)
+   ============================================================================= */
+@media screen and (max-width: 768px) {
+    [dir="rtl"] .eds-filter-bar {
+        flex-direction: row-reverse; /* still reversed, but the bar itself
+        already scrolls horizontally on mobile per event-discovery-
+        components.css - RTL just changes which end the scroll starts from */
+    }
+
+    [dir="rtl"] .eds-event-card--horizontal {
+        direction: ltr; /* on mobile this variant stacks vertically
+        (image on top, text below - see event-discovery-components.css's
+        768px breakpoint), so the horizontal-specific RTL swap no longer
+        applies and would only cause confusing text alignment if left on */
+    }
+
+    [dir="rtl"] .eds-event-card--horizontal .eds-related-card-body {
+        direction: rtl;
+    }
+}
+
+/* =============================================================================
+   18. LIGHTBOX (added post-Phase-13 bugfix pass, alongside event-components.css's
+   EdsLightbox/.eds-lightbox-overlay). Close button is the one element whose
+   position genuinely needs to mirror - the image/caption are already
+   centered and direction-agnostic.
+   ============================================================================= */
+[dir="rtl"] .eds-lightbox-close {
+    right: auto;
+    left: 24px;
+}
+
+@media screen and (max-width: 768px) {
+    [dir="rtl"] .eds-lightbox-close {
+        right: auto;
+        left: 16px;
+    }
+}
+
+/* =============================================================================
+   19. HUB INTRO SECTIONS - mobile text-align fix (bugfix pass). Six Hub pages'
+   page-specific CSS (industries.css, international-projects.css, insights.css,
+   gallery.css, media.css, blog.css) each hardcode text-align:left on their
+   .xxx-intro block at the 768px breakpoint (matching this project's own
+   convention of left-aligning intro copy on mobile once centered desktop
+   layout no longer fits) - but none of those 6 files had a matching RTL
+   override, so the intro paragraph stayed left-aligned on mobile even in
+   Urdu while every other mobile-breakpoint element correctly flips right.
+   One rule here covers all 6 pages at once since they share the same
+   text-align:left pattern and page-specific CSS load before this file.
+   ============================================================================= */
+@media screen and (max-width: 768px) {
+    [dir="rtl"] .ind-intro,
+    [dir="rtl"] .ipr-intro,
+    [dir="rtl"] .insg-intro,
+    [dir="rtl"] .gal-intro,
+    [dir="rtl"] .med-intro,
+    [dir="rtl"] .blg-intro {
+        text-align: right;
+    }
+}
