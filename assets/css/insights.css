@@ -1,0 +1,43 @@
+/* =============================================================================
+   INSIGHTS HUB (insights.html) - Phase 12
+   ============================================================================= 
+   PAGE-SPECIFIC layout only, prefixed "insg-" per rules.txt Section 2. All
+   visual components (cards, badges, buttons, grid, empty states) come from
+   event-components.css (Phase 3) - this file only positions them. No
+   colors/radii/shadows/typography redefined here.
+   ============================================================================= */
+
+#insg-page {
+    background: var(--white);
+}
+
+.insg-intro {
+    padding: 56px 0 32px;
+    text-align: center;
+    border-bottom: 1px solid var(--border-light);
+}
+
+.insg-featured-sec,
+.insg-preview-sec {
+    padding: 64px 0;
+}
+
+.insg-preview-sec--alt {
+    background: var(--bg-light);
+}
+
+.insg-cta-sec {
+    padding: 0 0 64px;
+}
+
+@media screen and (max-width: 768px) {
+    .insg-intro {
+        padding: 40px 0 24px;
+        text-align: left;
+    }
+
+    .insg-featured-sec,
+    .insg-preview-sec {
+        padding: 48px 0;
+    }
+}

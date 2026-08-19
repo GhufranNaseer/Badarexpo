@@ -1,0 +1,34 @@
+/* =============================================================================
+   GALLERY HUB (gallery.html) - Phase 13
+   ============================================================================= 
+   PAGE-SPECIFIC layout only, prefixed "gal-" per rules.txt Section 2. All
+   visual components (search, filters, masonry grid, album cards, empty
+   state, load more) come from event-components.css / event-discovery-
+   components.css (Phase 3/5) - this file only positions them. No colors/
+   radii/shadows/typography redefined here.
+   ============================================================================= */
+
+#gal-page {
+    background: var(--white);
+}
+
+.gal-intro {
+    padding: 56px 0 32px;
+    text-align: center;
+    border-bottom: 1px solid var(--border-light);
+}
+
+.gal-discovery-sec {
+    padding: 56px 0 80px;
+}
+
+@media screen and (max-width: 768px) {
+    .gal-intro {
+        padding: 40px 0 24px;
+        text-align: left;
+    }
+
+    .gal-discovery-sec {
+        padding: 40px 0 56px;
+    }
+}

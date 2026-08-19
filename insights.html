@@ -1,0 +1,913 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- ================================================================
+         INSIGHTS HUB (insights.html) - Phase 12.
+         The enterprise knowledge-center PARENT page per
+         site-information-architecture.md (Phase 9, Section 3). This is
+         NOT a Blog/Gallery/Media implementation - those systems don't
+         exist yet (Phase 9's own implementation order builds them later).
+         This page is the reusable parent ecosystem they will plug into:
+         Featured Insights (real content, mirrors the homepage's existing
+         card grid), three honest "Coming Soon" preview sections for
+         Blog/Gallery/Media, and two REAL cross-link sections (Industry
+         Insights, Event Insights) into systems that already exist.
+         ================================================================ -->
+    <title>Insights | Badar Expo Solutions</title>
+    <meta name="description"
+        content="News, industry insights, and event highlights from Badar Expo Solutions - the knowledge center connecting our blog, gallery, and media coverage.">
+    <meta name="keywords"
+        content="Badar Expo Solutions Insights, Exhibition Industry News Pakistan, BXSS Newsroom, Event Management Insights">
+
+    <link rel="canonical" href="https://badarexpo.com/insights.html">
+
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://badarexpo.com/insights.html">
+    <meta property="og:title" content="Insights | Badar Expo Solutions">
+    <meta property="og:description"
+        content="News, industry insights, and event highlights from Badar Expo Solutions.">
+    <meta property="og:image" content="assets/images/portfolio/global-sme-banner.webp">
+
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:title" content="Insights | Badar Expo Solutions">
+    <meta property="twitter:description"
+        content="News, industry insights, and event highlights from Badar Expo Solutions.">
+    <meta property="twitter:image" content="assets/images/portfolio/global-sme-banner.webp">
+
+    <!-- Apple Touch Icon for iOS Homescreen -->
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/images/logo/favicon.webp">
+
+    <!-- PERFORMANCE: DNS Prefetch & Preconnect -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+
+    <!-- Favicon / Title Icon -->
+    <link rel="icon" type="image/webp" href="assets/images/logo/favicon.webp">
+
+    <!-- Google Fonts with Swap for Fast Text Rendering -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <!-- ========================= GLOBAL STYLES ========================= -->
+    <link rel="stylesheet" href="assets/css/navbar.css">
+    <link rel="stylesheet" href="assets/css/tokens.css">
+    <link rel="stylesheet" href="assets/css/footer.css">
+    <link rel="stylesheet" href="assets/css/page-hero.css">
+
+    <!-- ========================= EVENT DESIGN SYSTEM LIBRARY (Phase 3) ========================= -->
+    <link rel="stylesheet" href="assets/css/event-components.css">
+
+    <!-- ========================= PAGE SPECIFIC STYLES ========================= -->
+    <link rel="stylesheet" href="assets/css/insights.css">
+    <!-- Phase 8: RTL overrides - additive only, zero effect unless dir="rtl" -->
+    <link rel="stylesheet" href="assets/css/comm-widget.css">
+    <link rel="stylesheet" href="assets/css/rtl-overrides.css">
+</head>
+
+<body>
+    <!-- ========================= [TEMPLATE: header.php START] ========================= -->
+    <!-- TOP BAR -->
+    <header class="topbar">
+        <div class="topbar-left">
+            <span><i class="fas fa-phone"></i> +92 21 3482 1159</span>
+            <span><i class="fas fa-envelope"></i> info@badarexpo.com</span>
+        </div>
+        <div class="topbar-right">
+            <div class="lang-dropdown">
+                <button class="lang-btn" id="lang-btn">
+                    <i class="fas fa-globe"></i> <span id="current-lang">EN</span> <i class="fas fa-chevron-down"></i>
+                </button>
+                <ul class="lang-list">
+                    <li data-lang="en">English</li>
+                    <li data-lang="ur">اردو (Urdu)</li>
+                    <li data-lang="ar">العربية (Arabic)</li>
+                </ul>
+            </div>
+            <a href="https://www.facebook.com/BXSSpakistan/" target="_blank" rel="noopener noreferrer"
+                aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://www.linkedin.com/company/bxsspakistan" target="_blank" rel="noopener noreferrer"
+                aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+            <a href="https://www.instagram.com/bxsspakistan/" target="_blank" rel="noopener noreferrer"
+                aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="https://www.youtube.com/@BXSSpakistan" target="_blank" rel="noopener noreferrer"
+                aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+            <a href="https://x.com/BXSSpakistan" target="_blank" rel="noopener noreferrer" aria-label="X (Twitter)"><i
+                    class="fab fa-x-twitter"></i></a>
+            <a href="https://www.tiktok.com/@badarexpo" target="_blank" rel="noopener noreferrer" aria-label="TikTok"><i
+                    class="fab fa-tiktok"></i></a>
+        </div>
+    </header>
+
+    <!-- NAVIGATION -->
+    <nav class="navbar">
+        <div class="logo">
+            <a href="index.html"><img src="assets/images/logo/favicon.webp" alt="Badar Expo Logo" class="logo-img" width="140" height="140" fetchpriority="high"></a>
+        </div>
+
+        <!-- Hamburger Icon -->
+        <div class="nav-toggle" id="mobile-menu-toggle">
+            <i class="fas fa-bars"></i>
+        </div>
+
+        <div class="menu" id="nav-menu">
+
+            <!-- MOBILE UTILITY SUB-HEADER (language + Socials + Contact us, horizontal scrollable structure) -->
+            <div class="mobile-menu-subheader">
+                <div class="mobile-subheader-scroll-wrapper">
+                    <button class="mobile-lang-btn" id="mobile-lang-btn" type="button" aria-label="Change language">
+                        <i class="fas fa-globe"></i>
+                        <span id="mobile-current-lang">English</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="mobile-subheader-links">
+                        <a href="services.html">Services</a>
+                        <a href="contact.html">Contact us</a>
+                    </div>
+                    <div class="mobile-subheader-socials">
+                        <a href="https://www.facebook.com/BXSSpakistan/" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="https://www.linkedin.com/company/bxsspakistan" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="https://www.instagram.com/bxsspakistan/" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="https://www.youtube.com/@BXSSpakistan" target="_blank" rel="noopener noreferrer" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                        <a href="https://x.com/BXSSpakistan" target="_blank" rel="noopener noreferrer" aria-label="X (Twitter)"><i class="fab fa-x-twitter"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="nav-item"><a href="index.html"><span data-i18n="nav.home">Home</span></a></div>
+            <div class="nav-item dropdown" data-target="about">
+                <a href="about.html"><span><span data-i18n="nav.aboutUs">About Us</span> <i class="fas fa-chevron-down"></i></span></a>
+                <ul class="mobile-submenu">
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="our-leaders-executives.html">Our Leaders &amp; Executives</a></li>
+                    <li><a href="badar-engineering.html">Badar Engineering Company</a></li>
+                    <li><a href="sports-entertainment.html">Sports &amp; Entertainment</a></li>
+                </ul>
+            </div>
+
+            <div class="nav-item dropdown" data-target="services">
+                <a href="services.html"><span><span data-i18n="nav.services">Services</span> <i class="fas fa-chevron-down"></i></span></a>
+                <ul class="mobile-submenu">
+                    <li><a href="exhibitionmanagement.html">Exhibition Management</a></li>
+                    <li><a href="exhibitionmanagement.html#conference">Conference Management</a></li>
+                    <li><a href="exhibitionmanagement.html#corporate">Corporate Events</a></li>
+                    <li><a href="construction-design.html">Construction &amp; Design</a></li>
+                    <li><a href="growthservices.html">Growth Services</a></li>
+                </ul>
+            </div>
+            <div class="nav-item dropdown" data-target="events">
+                <a href="events.html"><span><span data-i18n="nav.events">Events</span> <i class="fas fa-chevron-down"></i></span></a>
+                <ul class="mobile-submenu">
+                    <li><a href="events-calendar.html" data-i18n="nav.eventCalendar">Event Calendar</a></li>
+                    <li><a href="events.html#our-role" data-i18n="nav.ownedEvents">Owned Events</a></li>
+                    <li><a href="events.html#our-role" data-i18n="nav.coOrganized">Co-Organized</a></li>
+                    <li><a href="events.html#our-role" data-i18n="nav.managedEvents">Managed Events</a></li>
+                </ul>
+            </div>
+
+            <div class="nav-item"><a href="industries.html"><span data-i18n="nav.industries">Industries</span></a></div>
+            <div class="nav-item"><a href="international-projects.html"><span data-i18n="nav.internationalProjects">International Projects</span></a></div>
+
+            <div class="nav-item dropdown active-nav" data-target="insights">
+                <a href="insights.html"><span><span data-i18n="nav.insights">Insights</span> <i class="fas fa-chevron-down"></i></span></a>
+                <ul class="mobile-submenu">
+                    <li><a href="blog.html" data-i18n="pages.insights.blogLabel">Blog</a></li>
+                    <li><a href="gallery.html" data-i18n="eventsUi.gallery">Gallery</a></li>
+                    <li><a href="media.html" data-i18n="pages.insights.mediaLabel">Media</a></li>
+                    <li><a href="videos.html" data-i18n="pages.videos.navLabel">Videos</a></li>
+                </ul>
+            </div>
+            <div class="nav-item contact-item"><a href="contact.html"><span data-i18n="nav.contact">Contact</span></a></div>
+
+            <!-- ACTION BUTTONS (Moved inside menu for mobile) -->
+            <div class="mobile-actions">
+                <button class="btn btn-dark" data-i18n="buttons.visitor">Visitor</button>
+                <button class="btn btn-light" data-i18n="buttons.partner">Partner</button>
+            </div>
+        </div>
+
+        <!-- MOBILE FULL-CANVAS MEGA MENU -->
+        <div class="mobile-mega-panel" id="mobileMegaPanel">
+            <div class="mmp-header">
+                <button class="mmp-back" id="mmpBack" aria-label="Back to menu" type="button">
+                    <i class="fas fa-arrow-left"></i>
+                </button>
+                <h3 class="mmp-title" id="mmpTitle">Menu</h3>
+            </div>
+            <div class="mmp-body" id="mmpBody"></div>
+        </div>
+
+        <!-- MEGA MENU WRAPPER -->
+        <div class="mega-menu-wrapper" id="shared-mega-menu">
+            <!-- ABOUT US CONTENT -->
+            <div id="content-about" class="mega-content">
+                <a href="about.html" class="insight-card">
+                    <img src="assets/images/Images%20Website%20Badarexpo/Facebook/Events%20Banner/GLOBAL-SME-SUMMIT-07-06-2026.jpeg" alt="About Badar Expo Solutions" loading="lazy">
+                    <h4>About Us</h4>
+                    <p>Our story, milestones &amp; the scale of what we deliver.</p>
+                </a>
+                <a href="our-leaders-executives.html" class="insight-card">
+                    <img src="assets/images/Images%20Website%20Badarexpo/Facebook/Events%20Banner/PIMEC-15-09-2027.jpeg" alt="Our Leaders and Executives" loading="lazy">
+                    <h4>Our Leaders &amp; Executives</h4>
+                    <p>The founder, directors &amp; executive board behind BXSS.</p>
+                </a>
+                <a href="badar-engineering.html" class="insight-card">
+                    <img src="assets/images/portfolio/b2b-industrial-generated.webp" alt="Badar Engineering Company engineering legacy" loading="lazy">
+                    <h4>Badar Engineering Company</h4>
+                    <p>Engineering legacy, technical capability &amp; EPC execution since 1965.</p>
+                </a>
+                <a href="sports-entertainment.html" class="insight-card">
+                    <img src="assets/images/portfolio/ptpl-champions.webp" alt="Sports and entertainment experiences by Badar Expo Solutions" loading="lazy">
+                    <h4>Sports &amp; Entertainment</h4>
+                    <p>Cricket league platforms, live concerts &amp; large-scale audience events.</p>
+                </a>
+            </div>
+            <!-- SERVICES CONTENT -->
+            <div id="content-services" class="mega-content">
+                <div class="column dynamic-links">
+                    <h4><a href="exhibitionmanagement.html"><span data-i18n="nav.exhibitionManagement">Exhibition Management</span> <i class="fas fa-chevron-right"
+                                style="font-size: 10px; opacity: 0.6;"></i></a></h4>
+                    <a href="exhibitionmanagement.html" data-title="Exhibition Management"
+                        data-desc="Complete exhibition solutions from concept to execution for B2B and B2C platforms."
+                        data-image="assets/images/portfolio/ieee-exhibition.webp">Management</a>
+                    <a href="exhibitionmanagement.html#conference" data-title="Conference Management"
+                        data-desc="Organizing world-class summits, technical seminars, and international conferences."
+                        data-image="assets/images/portfolio/ieee-seminar.webp">Conferences</a>
+                    <a href="exhibitionmanagement.html#corporate" data-title="Corporate Events"
+                        data-desc="Bespoke events tailored to meet corporate objectives and brand positioning."
+                        data-image="assets/images/portfolio/ziauddin-convocation.webp">Corporate</a>
+                </div>
+                <div class="column dynamic-links">
+                    <h4><a href="construction-design.html"><span data-i18n="nav.constructionDesign">Construction &amp; Design</span> <i class="fas fa-chevron-right"
+                                style="font-size: 10px; opacity: 0.6;"></i></a></h4>
+                    <ul class="bullet-list">
+                        <li><a href="construction-design.html#canopy" data-title="Canopy Octanorm Building"
+                                data-desc="Standardized modular shell schemes for professional exhibitions and trade shows."
+                                data-image="assets/images/portfolio/ieee-booth.webp">Canopy Octanorm Building</a></li>
+                        <li><a href="construction-design.html#stall" data-title="Stall Design &amp; Fabrication"
+                                data-desc="Custom-built creative booths and designer stalls that make your brand stand out."
+                                data-image="assets/images/portfolio/ieee-booth.webp">Stall Design &amp; Fabrication</a>
+                        </li>
+                        <li><a href="construction-design.html#led" data-title="LED Screens"
+                                data-desc="High-definition LED walls and display panels for impactful visual storytelling."
+                                data-image="assets/images/portfolio/concert-stage.webp">LED Screens</a></li>
+                        <li><a href="construction-design.html#av" data-title="Audio Visual Equipment"
+                                data-desc="Professional sound, lighting, and projection systems tailored for any event size."
+                                data-image="assets/images/portfolio/concert-stage.webp">Audio Visual Equipment</a></li>
+                        <li><a href="construction-design.html#furniture" data-title="Rental of Furniture"
+                                data-desc="Premium lounge sets, sleek corporate furniture, and event seating solutions."
+                                data-image="assets/images/portfolio/ieee-exhibition.webp">Rental of Furniture</a></li>
+                        <li><a href="construction-design.html#kiosks" data-title="Interactive Kiosks"
+                                data-desc="Engage your audience with touch-screen technology and digital information points."
+                                data-image="assets/images/portfolio/ieee-kiosk.webp">Interactive Kiosks</a></li>
+                        <li><a href="construction-design.html#branding" data-title="Indoor Outdoor Advertising"
+                                data-desc="Strategic billboard placement and large-format signage to maximize brand reach."
+                                data-image="assets/images/portfolio/global-sme-banner.webp">Branding &amp;
+                                Production</a></li>
+                    </ul>
+                </div>
+                <div class="column dynamic-links">
+                    <h4><a href="growthservices.html"><span data-i18n="nav.growthServices">Growth Services</span> <i class="fas fa-chevron-right"
+                                style="font-size: 10px; opacity: 0.6;"></i></a></h4>
+                    <a href="growthservices.html#pillars" data-title="B2B Matchmaking"
+                        data-desc="Connecting global buyers with suppliers through strategic high-level networking."
+                        data-image="assets/images/portfolio/china-embassy.webp">B2B Matchmaking</a>
+                    <a href="growthservices.html#pillars" data-title="Event Marketing"
+                        data-desc="Innovative PR and media strategies designed to drive maximum event attendance."
+                        data-image="assets/images/portfolio/global-sme-banner.webp">Event Marketing</a>
+                    <a href="growthservices.html#pillars" data-title="Digital Production"
+                        data-desc="Creative content, live streaming, and digital solutions for the modern event landscape."
+                        data-image="assets/images/portfolio/concert-stage.webp">Digital Production</a>
+                </div>
+                <div class="column highlight">
+                    <div class="highlight-content-box">
+                        <img src="assets/images/portfolio/ieee-exhibition.webp" alt="Services Highlight"
+                            class="dynamic-img" loading="lazy" width="300" height="160">
+                        <strong class="dynamic-title">End-to-End Solutions</strong>
+                        <p class="dynamic-desc">We design and scale exhibitions &amp; industry platforms across
+                            Pakistan.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- EVENTS CONTENT -->
+            <div id="content-events" class="mega-content">
+                <div class="column dynamic-links">
+                    <h4><a href="events.html#our-role"><span data-i18n="nav.ourRole">Our Role</span> <i class="fas fa-chevron-right"
+                                style="font-size: 10px; opacity: 0.6;"></i></a></h4>
+                    <a href="events.html#our-role" data-title="Owned Events"
+                        data-desc="Flagship trade fairs and industry-leading exhibitions fully conceptualized by Badar Expo."
+                        data-image="assets/images/portfolio/ieee-exhibition.webp">Owned Events</a>
+                    <a href="events.html#our-role" data-title="Co-Organized"
+                        data-desc="Strategic partnerships with industry bodies to deliver high-impact global events."
+                        data-image="assets/images/portfolio/ideas-exhibition.webp">Co-Organized</a>
+                    <a href="events.html#our-role" data-title="Managed Events"
+                        data-desc="Complete end-to-end event management solutions for third-party corporate and government clients."
+                        data-image="assets/images/portfolio/ziauddin-convocation.webp">Managed Events</a>
+                </div>
+                <div class="column dynamic-links">
+                    <h4><a href="events.html#formats"><span data-i18n="nav.formats">Formats</span> <i class="fas fa-chevron-right"
+                                style="font-size: 10px; opacity: 0.6;"></i></a></h4>
+                    <a href="events.html#formats" data-title="Exhibitions"
+                        data-desc="Creating massive B2B and B2C platforms that connect global suppliers with buyers."
+                        data-image="assets/images/portfolio/dalfa-cattle-show.webp">Exhibitions</a>
+                    <a href="events.html#formats" data-title="Conferences"
+                        data-desc="Organizing world-class summits, technical seminars, and international conferences."
+                        data-image="assets/images/portfolio/ieee-seminar.webp">Conferences</a>
+                    <a href="events.html#formats" data-title="Industrial Forums"
+                        data-desc="Facilitating high-level dialogue between government and industry leaders."
+                        data-image="assets/images/portfolio/saudi-delegation.webp">Industrial Forums</a>
+                </div>
+                <div class="column dynamic-links">
+                    <h4><a href="events-calendar.html"><span data-i18n="nav.eventCalendar">Event Calendar</span> <i class="fas fa-chevron-right"
+                                style="font-size: 10px; opacity: 0.6;"></i></a></h4>
+                    <a href="events-calendar.html" data-title="Browse All Events" data-i18n="nav.allEvents"
+                        data-desc="Search, filter, and browse every upcoming, ongoing, and past BXSS event in one place."
+                        data-image="assets/images/portfolio/exhibition-floor-premium.webp">All Events</a>
+                    <a href="events-calendar.html?status=upcoming" data-title="Upcoming Events"
+                        data-desc="See what's coming up next across every category and city."
+                        data-image="assets/images/portfolio/global-sme-banner.webp">Upcoming Events</a>
+                    <a href="events-calendar.html?status=past" data-title="Past Events"
+                        data-desc="Browse our archive of completed exhibitions and conferences."
+                        data-image="assets/images/portfolio/ieee-exhibition.webp">Past Events</a>
+                </div>
+                <div class="column highlight">
+                    <div class="highlight-content-box">
+                        <img src="assets/images/portfolio/ideas-seminar.webp" alt="Events Highlight" class="dynamic-img"
+                            loading="lazy" width="300" height="160">
+                        <strong class="dynamic-title">1500+ Events Delivered</strong>
+                        <p class="dynamic-desc">Connecting industries, governments &amp; global partners.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- INSIGHTS CONTENT -->
+            <div id="content-insights" class="mega-content">
+                <a href="blog.html" class="insight-card">
+                    <img src="assets/images/portfolio/global-sme-banner.webp" alt="Blog" loading="lazy">
+                    <h4 data-i18n="pages.insights.blogLabel">Blog</h4>
+                    <p>Industry insights, event strategies &amp; updates.</p>
+                </a>
+                <a href="media.html" class="insight-card">
+                    <img src="assets/images/portfolio/china-embassy.webp" alt="Media" loading="lazy">
+                    <h4 data-i18n="pages.insights.mediaLabel">Media</h4>
+                    <p>Press coverage, interviews &amp; event highlights.</p>
+                </a>
+                <a href="gallery.html" class="insight-card">
+                    <img src="assets/images/portfolio/concert-audience.webp" alt="Gallery" loading="lazy">
+                    <h4 data-i18n="eventsUi.gallery">Gallery</h4>
+                    <p>Moments captured from our mega events.</p>
+                </a>
+                <a href="videos.html" class="insight-card">
+                    <img src="assets/images/portfolio/exhibition-floor-premium.webp" alt="Videos" loading="lazy">
+                    <h4 data-i18n="pages.videos.navLabel">Videos</h4>
+                    <p data-i18n="pages.videos.megaMenuDesc">Watch highlights from our flagship events.</p>
+                </a>
+            </div>
+        </div>
+
+        <!-- ACTION BUTTONS (Desktop Only) -->
+        <div class="nav-right-icons">
+            <div class="search-trigger" id="search-toggle">
+                <i class="fas fa-magnifying-glass"></i>
+                <span class="search-text">Search</span>
+            </div>
+
+            <div class="actions">
+                <button class="btn btn-dark" data-i18n="buttons.visitor">Visitor</button>
+                <button class="btn btn-light" data-i18n="buttons.partner">Partner</button>
+            </div>
+        </div>
+    </nav>
+    <!-- Mobile drawer backdrop -->
+    <div class="menu-backdrop" id="menu-backdrop"></div>
+    <!-- ========================= [TEMPLATE: header.php END] ========================= -->
+
+    <!-- SEARCH OVERLAY -->
+    <div class="search-overlay" id="search-overlay">
+        <div class="search-close" id="search-close"><i class="fas fa-xmark"></i></div>
+        <div class="search-container">
+            <div class="search-box">
+                <input type="text" placeholder="Search events, services, or insights..." id="search-input" data-i18n-placeholder="forms.siteSearchPlaceholder">
+                <i class="fas fa-magnifying-glass search-icon-inner"></i>
+            </div>
+            <div class="search-suggestions">
+                <h4>Quick Links</h4>
+                <div class="suggestion-tags">
+                    <span>#IDEAS2024</span>
+                    <span>#Exhibitions</span>
+                    <span>#Conferences</span>
+                    <span>#CorporateEvents</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ========================= [TEMPLATE PART: page-breadcrumb.php START] ========================= -->
+    <div class="page-breadcrumb-bar">
+        <nav class="page-breadcrumb" aria-label="Breadcrumb">
+            <a href="index.html" data-i18n="nav.home">Home</a>
+            <span class="crumb-sep">/</span>
+            <span class="crumb-current" data-i18n="nav.insights">Insights</span>
+        </nav>
+    </div>
+    <!-- ========================= [TEMPLATE PART: page-breadcrumb.php END] ========================= -->
+
+    <div id="insg-page" class="eds-scope">
+
+        <!-- ========================= [TEMPLATE PART: insg-intro.php START] ========================= -->
+        <section class="insg-intro">
+            <div class="eds-container">
+                <span class="eds-badge-label" data-i18n="pages.insights.badgeLabel">Insights</span>
+                <h1 class="eds-section-title" style="margin-bottom:8px;" data-i18n="pages.insights.title">The BXSS Knowledge Center</h1>
+                <p class="eds-section-desc" style="margin:0;" data-i18n="pages.insights.description">News, industry insights, and event highlights - the connected home for our Blog, Gallery, and Media coverage.</p>
+            </div>
+        </section>
+        <!-- ========================= [TEMPLATE PART: insg-intro.php END] ========================= -->
+
+        <!-- ========================= [TEMPLATE PART: insg-featured.php START] ========================= -->
+        <!-- FEATURED INSIGHTS. Reuses the SAME real content already live on the homepage's
+             "Featured Insights" section (content-insights.php, index.html) - not
+             duplicated markup, the same editorial decisions (Newsroom / Blog / Case
+             Study tags) carried over into this hub via .eds-related-card + .eds-badge,
+             so a visitor who saw this grid on the homepage recognizes it here instead of
+             meeting a second, different-looking "insights" concept. -->
+        <section class="insg-featured-sec">
+            <div class="eds-container">
+                <div class="eds-section-head--left">
+                    <span class="eds-badge-label" data-i18n="pages.insights.featuredBadge">Featured Insights</span>
+                    <h2 class="eds-section-title" data-i18n="pages.insights.featuredTitle">From the Newsroom</h2>
+                </div>
+                <div class="eds-related-grid">
+                    <div class="eds-related-card" style="cursor:default;">
+                        <div style="position:relative;">
+                            <div class="eds-event-card-badges" style="position:absolute; top:14px; left:14px; z-index:2;">
+                                <span class="eds-badge eds-badge--danger eds-badge--on-dark" data-i18n="pages.insights.tagNewsroom">Newsroom</span>
+                            </div>
+                            <img src="assets/images/portfolio/ideas-exhibition.webp" alt="IDEAS 2024" loading="lazy">
+                        </div>
+                        <div class="eds-related-card-body">
+                            <h3>Pakistan's Premier Defense Exhibition IDEAS 2024 Successfully Organized by Badar Expo</h3>
+                        </div>
+                    </div>
+                    <div class="eds-related-card" style="cursor:default;">
+                        <div style="position:relative;">
+                            <div class="eds-event-card-badges" style="position:absolute; top:14px; left:14px; z-index:2;">
+                                <span class="eds-badge eds-badge--danger eds-badge--on-dark" data-i18n="pages.insights.tagNewsroom">Newsroom</span>
+                            </div>
+                            <img src="assets/images/portfolio/ieee-exhibition.webp" alt="ITCN Asia 2024" loading="lazy">
+                        </div>
+                        <div class="eds-related-card-body">
+                            <h3>ITCN Asia 2024: Badar Expo Sets New Benchmark for Tech Exhibitions in the Region</h3>
+                        </div>
+                    </div>
+                    <div class="eds-related-card" style="cursor:default;">
+                        <div style="position:relative;">
+                            <div class="eds-event-card-badges" style="position:absolute; top:14px; left:14px; z-index:2;">
+                                <span class="eds-badge eds-badge--info eds-badge--on-dark" data-i18n="pages.insights.tagBlog">Blog</span>
+                            </div>
+                            <img src="assets/images/portfolio/global-sme-banner.webp" alt="B2B exhibitions blog" loading="lazy">
+                        </div>
+                        <div class="eds-related-card-body">
+                            <h3>The Strategic Role of B2B Exhibitions in Boosting Pakistan's Industrial Growth</h3>
+                        </div>
+                    </div>
+                    <div class="eds-related-card" style="cursor:default;">
+                        <div style="position:relative;">
+                            <div class="eds-event-card-badges" style="position:absolute; top:14px; left:14px; z-index:2;">
+                                <span class="eds-badge eds-badge--warning eds-badge--on-dark" data-i18n="pages.insights.tagCaseStudy">Case Study</span>
+                            </div>
+                            <img src="assets/images/portfolio/textile-asia-generated.webp" alt="Textile Asia case study" loading="lazy">
+                        </div>
+                        <div class="eds-related-card-body">
+                            <h3>Empowering the Textile Sector: Insights from the 20th Textile Asia International Expo</h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- ========================= [TEMPLATE PART: insg-featured.php END] ========================= -->
+
+        <!-- ========================= [TEMPLATE PART: insg-blog-preview.php START] ========================= -->
+        <!-- LATEST BLOG POSTS (PREVIEW ONLY). Honest Empty State - the Blog system is
+             not built yet (last in Phase 9's implementation order). This section's
+             markup/heading/CTA structure is the reusable "preview section" pattern a
+             future blog.html would plug real post cards into - no structural change
+             will be needed when that happens, only swapping .eds-empty-state for a
+             populated .eds-related-grid, same as Session 31 did for Industry Detail's
+             Featured Projects the moment Projects went live. -->
+        <!-- UPDATED Phase 15: the Blog now exists (blog.html) - the LAST of the three
+             Insights sub-systems (Gallery, Media, Blog) to go live, so this section's
+             Empty State is retired for good, matching the exact pattern already proven
+             for Gallery (Session 33) and Media (Session 34). -->
+        <section class="insg-preview-sec" id="insights-blog">
+            <div class="eds-container">
+                <div class="eds-section-head--left" style="display:flex; align-items:flex-end; justify-content:space-between; text-align:left; max-width:none;">
+                    <div>
+                        <span class="eds-badge-label" data-i18n="pages.insights.blogPreviewBadge">Latest Blog Posts</span>
+                        <h2 class="eds-section-title" style="margin-bottom:0;" data-i18n="pages.insights.blogPreviewTitle">From the Blog</h2>
+                    </div>
+                    <a href="blog.html" class="eds-link-arrow"><span data-i18n="pages.insights.viewBlogLink">View Blog</span> <i class="fas fa-arrow-right" aria-hidden="true"></i></a>
+                </div>
+                <div class="eds-related-grid">
+                    <a href="blog-post.html" class="eds-related-card">
+                        <img src="assets/images/portfolio/global-sme-banner.webp" alt="B2B exhibitions article" loading="lazy">
+                        <div class="eds-related-card-body">
+                            <span class="eds-related-card-date" data-i18n="pages.insights.tagBlog">Blog</span>
+                            <h3>The Strategic Role of B2B Exhibitions in Boosting Pakistan's Industrial Growth</h3>
+                        </div>
+                    </a>
+                    <a href="blog.html" class="eds-related-card">
+                        <img src="assets/images/portfolio/textile-asia-generated.webp" alt="Textile Asia case study article" loading="lazy">
+                        <div class="eds-related-card-body">
+                            <span class="eds-related-card-date" data-i18n="pages.insights.tagCaseStudy">Case Study</span>
+                            <h3>Empowering the Textile Sector: Insights from the 20th Textile Asia International Expo</h3>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </section>
+        <!-- ========================= [TEMPLATE PART: insg-blog-preview.php END] ========================= -->
+
+        <!-- ========================= [TEMPLATE PART: insg-gallery-preview.php START] ========================= -->
+        <!-- UPDATED Phase 13: the Gallery system now exists (gallery.html), so this
+             section shows real featured albums instead of the Phase 12 Empty State -
+             the exact "ready to receive real content, no structural change needed"
+             moment anticipated when this section was first built. -->
+        <section class="insg-preview-sec insg-preview-sec--alt" id="insights-gallery">
+            <div class="eds-container">
+                <div class="eds-section-head--left" style="display:flex; align-items:flex-end; justify-content:space-between; text-align:left; max-width:none;">
+                    <div>
+                        <span class="eds-badge-label" data-i18n="pages.insights.galleryPreviewBadge">Latest Gallery Albums</span>
+                        <h2 class="eds-section-title" style="margin-bottom:0;" data-i18n="pages.insights.galleryPreviewTitle">From the Gallery</h2>
+                    </div>
+                    <a href="gallery.html" class="eds-link-arrow"><span data-i18n="pages.insights.viewGalleryLink">View Gallery</span> <i class="fas fa-arrow-right" aria-hidden="true"></i></a>
+                </div>
+                <div class="eds-related-grid">
+                    <a href="gallery-album.html" class="eds-related-card">
+                        <img src="assets/images/portfolio/china-embassy.webp" alt="China Trade Delegation Partnership album" loading="lazy">
+                        <div class="eds-related-card-body">
+                            <span class="eds-related-card-date">China &middot; 2025</span>
+                            <h3>China Trade Delegation Partnership</h3>
+                        </div>
+                    </a>
+                    <a href="gallery.html" class="eds-related-card">
+                        <img src="assets/images/portfolio/textile-asia-generated.webp" alt="Textile Asia Expo album" loading="lazy">
+                        <div class="eds-related-card-body">
+                            <span class="eds-related-card-date">Pakistan &middot; 2026</span>
+                            <h3>Textile Asia Expo 2026</h3>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </section>
+        <!-- ========================= [TEMPLATE PART: insg-gallery-preview.php END] ========================= -->
+
+        <!-- ========================= [TEMPLATE PART: insg-media-preview.php START] ========================= -->
+        <!-- UPDATED Phase 14: the Media Center now exists (media.html), so this
+             section shows real press items instead of the Empty State - same
+             "ready to receive real content" moment already proven for Projects
+             (Session 31), Featured Insights (Session 32), and Gallery (Session 33). -->
+        <section class="insg-preview-sec" id="insights-media">
+            <div class="eds-container">
+                <div class="eds-section-head--left" style="display:flex; align-items:flex-end; justify-content:space-between; text-align:left; max-width:none;">
+                    <div>
+                        <span class="eds-badge-label" data-i18n="pages.insights.mediaPreviewBadge">Latest Media Coverage</span>
+                        <h2 class="eds-section-title" style="margin-bottom:0;" data-i18n="pages.insights.mediaPreviewTitle">In the Press</h2>
+                    </div>
+                    <a href="media.html" class="eds-link-arrow"><span data-i18n="pages.insights.viewMediaLink">View Media Center</span> <i class="fas fa-arrow-right" aria-hidden="true"></i></a>
+                </div>
+                <div class="eds-related-grid">
+                    <a href="media-detail.html" class="eds-related-card">
+                        <img src="assets/images/portfolio/ideas-exhibition.webp" alt="IDEAS 2024 press release" loading="lazy">
+                        <div class="eds-related-card-body">
+                            <span class="eds-related-card-date" data-i18n="pages.mediaDetail.categoryValue">Press Release</span>
+                            <h3>Pakistan's Premier Defense Exhibition IDEAS 2024 Successfully Organized</h3>
+                        </div>
+                    </a>
+                    <a href="media.html" class="eds-related-card">
+                        <img src="assets/images/portfolio/ieee-exhibition.webp" alt="ITCN Asia 2024 news" loading="lazy">
+                        <div class="eds-related-card-body">
+                            <span class="eds-related-card-date" data-i18n="pages.insights.tagNewsroom">Newsroom</span>
+                            <h3>ITCN Asia 2024: Badar Expo Sets New Benchmark for Tech Exhibitions</h3>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </section>
+        <!-- ========================= [TEMPLATE PART: insg-media-preview.php END] ========================= -->
+
+        <!-- ========================= [TEMPLATE PART: insg-industry-insights.php START] ========================= -->
+        <!-- INDUSTRY INSIGHTS. A REAL cross-link section - the Industries system
+             (Phase 10) already exists, so this reuses .eds-related-card exactly like
+             the Industries Hub grid, pointing straight back into it. -->
+        <section class="insg-preview-sec insg-preview-sec--alt">
+            <div class="eds-container">
+                <div class="eds-section-head--left">
+                    <span class="eds-badge-label" data-i18n="pages.insights.industryInsightsBadge">Industry Insights</span>
+                    <h2 class="eds-section-title" data-i18n="pages.insights.industryInsightsTitle">Explore by Industry</h2>
+                </div>
+                <div class="eds-related-grid">
+                    <a href="industry-landing.html" class="eds-related-card">
+                        <img src="assets/images/portfolio/textile-asia-generated.webp" alt="Textile &amp; Apparel" loading="lazy">
+                        <div class="eds-related-card-body"><h3>Textile &amp; Apparel</h3></div>
+                    </a>
+                    <a href="industries.html" class="eds-related-card">
+                        <img src="assets/images/portfolio/service-conferences-seminars.webp" alt="All industries" loading="lazy">
+                        <div class="eds-related-card-body"><h3 data-i18n="pages.industryDetail.viewAllIndustries">View All Industries</h3></div>
+                    </a>
+                </div>
+            </div>
+        </section>
+        <!-- ========================= [TEMPLATE PART: insg-industry-insights.php END] ========================= -->
+
+        <!-- ========================= [TEMPLATE PART: insg-event-insights.php START] ========================= -->
+        <!-- EVENT INSIGHTS. Also REAL - the Event System (Phase 1-6) already exists,
+             so this reuses .eds-related-card exactly like Event Detail's own Related
+             Events section, pointing into it. -->
+        <section class="insg-preview-sec">
+            <div class="eds-container">
+                <div class="eds-section-head--left">
+                    <span class="eds-badge-label" data-i18n="pages.insights.eventInsightsBadge">Event Insights</span>
+                    <h2 class="eds-section-title" data-i18n="pages.insights.eventInsightsTitle">Explore by Event</h2>
+                </div>
+                <div class="eds-related-grid">
+                    <a href="event-landing.html" class="eds-related-card">
+                        <img src="assets/images/portfolio/exhibition-floor-premium.webp" alt="Pakistan International Trade &amp; Industry Summit 2026" loading="lazy">
+                        <div class="eds-related-card-body">
+                            <span class="eds-related-card-date">Sep 14&ndash;16, 2026</span>
+                            <h3>Pakistan International Trade &amp; Industry Summit 2026</h3>
+                        </div>
+                    </a>
+                    <a href="events-calendar.html" class="eds-related-card">
+                        <img src="assets/images/portfolio/global-sme-banner.webp" alt="All events" loading="lazy">
+                        <div class="eds-related-card-body"><h3 data-i18n="buttons.viewAllEvents">View All Events</h3></div>
+                    </a>
+                </div>
+            </div>
+        </section>
+        <!-- ========================= [TEMPLATE PART: insg-event-insights.php END] ========================= -->
+
+        <!-- ========================= [TEMPLATE PART: insg-cta.php START] ========================= -->
+        <section class="insg-cta-sec" id="insg-cta">
+            <div class="eds-container">
+                <div class="eds-inquiry-cta" style="border-top:none;">
+                    <p data-i18n="pages.insights.ctaText">Have a story, press inquiry, or partnership idea to share?</p>
+                    <a href="contact.html" class="eds-link-arrow"><span data-i18n="buttons.contactUs">Contact Us</span> <i class="fas fa-arrow-right" aria-hidden="true"></i></a>
+                </div>
+            </div>
+        </section>
+        <!-- ========================= [TEMPLATE PART: insg-cta.php END] ========================= -->
+
+    </div>
+
+    <!-- ========================= [TEMPLATE: footer.php START] ========================= -->
+    <!-- ========================= GLOBAL FOOTER ========================= -->
+    <footer class="footer-shell">
+        <div class="footer">
+
+            <!-- TOP -->
+            <div class="footer-top">
+
+                <button type="button" class="footer-aws-btn"
+                   >
+                    Get a Free Quote
+                </button>
+
+                <button type="button" class="footer-language-btn">
+                    <svg fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+                        <circle cx="12" cy="12" r="9"></circle>
+                        <path d="M3 12h18"></path>
+                        <path d="M12 3c3 3 4.5 6 4.5 9s-1.5 6-4.5 9c-3-3-4.5-6-4.5-9s1.5-6 4.5-9z"></path>
+                    </svg>
+                    English
+                    <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                        <path d="M6 9l6 6 6-6" />
+                    </svg>
+                </button>
+
+            </div>
+
+            <!-- LINKS -->
+            <div class="footer-grid">
+
+                <div class="footer-column">
+                    <h3 data-i18n="nav.footerOurServices">Our Services</h3>
+                    <ul>
+                        <li><a href="exhibitionmanagement.html">Exhibition Management</a></li>
+                        <li><a href="exhibitionmanagement.html">Trade Show Organizing</a></li>
+                        <li><a href="exhibitionmanagement.html#corporate">Corporate Events</a></li>
+                        <li><a href="exhibitionmanagement.html#corporate">Product Launches</a></li>
+                        <li><a href="construction-design.html">Government Pavilions</a></li>
+                        <li><a href="international-projects.html">International Expos</a></li>
+                        <li><a href="exhibitionmanagement.html#conference">Conference &amp; Summits</a></li>
+                        <li><a href="exhibitionmanagement.html#corporate">Award Ceremonies</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-column">
+                    <h3 data-i18n="nav.footerIndustries">Industries</h3>
+                    <ul>
+                        <li><a href="industry-landing.html">Textile &amp; Apparel</a></li>
+                        <li><a href="events-calendar.html?industry=Food%20%26%20Beverage">Food &amp; Beverage</a></li>
+                        <li><a href="events-calendar.html?industry=Technology%20%26%20Innovation">Technology &amp; Innovation</a></li>
+                        <li><a href="events-calendar.html?industry=Healthcare%20%26%20Pharma">Healthcare &amp; Pharma</a></li>
+                        <li><a href="events-calendar.html?industry=Agriculture%20%26%20Livestock">Agriculture &amp; Livestock</a></li>
+                        <li><a href="events-calendar.html?industry=Construction%20%26%20Real%20Estate">Construction &amp; Real Estate</a></li>
+                        <li><a href="events-calendar.html?industry=Defence%20%26%20Security">Defence &amp; Security</a></li>
+                        <li><a href="events-calendar.html?industry=Education%20%26%20Training">Education &amp; Training</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-column">
+                    <h3 data-i18n="nav.footerCompany">Company</h3>
+                    <ul>
+                        <li><a href="about.html">About BXSS</a></li>
+                        <li><a href="events.html">Our Portfolio</a></li>
+                        <li><a href="events-calendar.html" data-i18n="nav.eventCalendar">Event Calendar</a></li>
+                        <li><a href="events-calendar.html?status=upcoming" data-i18n="nav.upcomingEvents">Upcoming Events</a></li>
+                        <li><a href="gallery.html">Gallery</a></li>
+                        <li><a href="media.html">Media</a></li>
+                        <li><a href="#">Client Testimonials</a></li>
+                        <li><a href="#">Our Partners</a></li>
+                        <li><a href="#">Careers</a></li>
+                        <li><a href="#">News &amp; Updates</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-column">
+                    <h3 data-i18n="nav.footerContactUs">Contact Us</h3>
+                    <ul>
+                        <li><a href="contact.html">Get a Quote</a></li>
+                        <li><a href="contact.html">Request a Callback</a></li>
+                        <li><a href="tel:+922134821159">+92-21-3482-1159</a></li>
+                        <li><a href="mailto:info@badarexpo.com">info@badarexpo.com</a></li>
+                        <li><a href="#">Karachi Head Office</a></li>
+                        <li><a href="#">Lahore Office</a></li>
+                        <li><a href="privacy-policy.html">Privacy Policy</a></li>
+                        <li><a href="terms-of-service.html">Terms &amp; Conditions</a></li>
+                    </ul>
+                </div>
+
+            </div>
+
+            <!-- BACK TOP -->
+            <div class="footer-back-top" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+                <span data-i18n="common.backToTop">Back to top</span>
+                <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                    <path d="M12 19V5" />
+                    <path d="M5 12l7-7 7 7" />
+                </svg>
+            </div>
+
+            <!-- BOTTOM -->
+            <div class="footer-bottom">
+
+                <div class="footer-left-bottom">
+
+                    <div class="footer-equal-text">
+                        Badar Expo Solutions (BXSS) - Event & Exhibition Management, serving clients since 2000
+                        across South Asia and internationally.
+                    </div>
+
+                    <div class="download-buttons">
+                        <!-- APPLE -->
+                        <a href="https://apps.apple.com/pk/app/badar-expo/id6751605684" class="store-btn"
+                            target="_blank" rel="noopener noreferrer">
+                            <i class="fa-brands fa-apple store-btn-apple-icon"></i>
+                            <div class="store-btn-text">
+                                <div class="store-btn-small">Download on the</div>
+                                <div class="store-btn-big">App Store</div>
+                            </div>
+                        </a>
+
+                        <!-- GOOGLE -->
+                        <a href="https://play.google.com/store/apps/details?id=com.badarexpo.app"
+                            class="store-btn google-play" target="_blank" rel="noopener noreferrer">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/d/d0/Google_Play_Arrow_logo.svg"
+                                alt="Google Play logo">
+                            <div class="store-btn-text">
+                                <div class="store-btn-small">GET IT ON</div>
+                                <div class="store-btn-big">Google Play</div>
+                            </div>
+                        </a>
+                    </div>
+
+                    <div class="footer-bottom-links">
+                        <a href="privacy-policy.html">Privacy Policy</a>
+                        <a href="terms-of-service.html">Terms of Service</a>
+                        <a href="privacy-policy.html#cookies">Cookie Preferences</a>
+                    </div>
+
+                    <div class="footer-copyright">
+                        © 2026, Badar Expo Solutions (BXSS). All rights reserved.
+                    </div>
+
+                </div>
+
+                <!-- SOCIALS -->
+                <div class="footer-socials">
+
+                    <!-- Facebook -->
+                    <a href="https://www.facebook.com/BXSSpakistan/" target="_blank" rel="noopener noreferrer"
+                        class="footer-social" aria-label="Facebook">
+                        <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
+                            <path
+                                d="M13.5 22v-8h2.7l.4-3h-3.1V9.1c0-.9.3-1.5 1.6-1.5H17V4.9c-.3 0-1.3-.1-2.5-.1-2.5 0-4.2 1.5-4.2 4.3V11H7.5v3h2.8v8h3.2z" />
+                        </svg>
+                    </a>
+
+                    <!-- LinkedIn -->
+                    <a href="https://www.linkedin.com/company/bxsspakistan" target="_blank" rel="noopener noreferrer"
+                        class="footer-social" aria-label="LinkedIn">
+                        <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
+                            <path
+                                d="M4.98 3.5A2.48 2.48 0 1 1 5 8.46a2.48 2.48 0 0 1-.02-4.96zM3 9h4v12H3zm7 0h3.8v1.7h.1c.53-1 1.82-2.1 3.74-2.1 4 0 4.76 2.63 4.76 6.05V21h-4v-5.6c0-1.33-.02-3.05-1.86-3.05-1.86 0-2.14 1.45-2.14 2.95V21h-4z" />
+                        </svg>
+                    </a>
+
+                    <!-- Instagram -->
+                    <a href="https://www.instagram.com/bxsspakistan/" target="_blank" rel="noopener noreferrer"
+                        class="footer-social" aria-label="Instagram">
+                        <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
+                            <path d="M12 7a5 5 0 100 10 5 5 0 000-10zm0 8.2A3.2 3.2 0 1112 8.8a3.2 3.2 0 010 6.4z" />
+                            <path
+                                d="M17.5 2h-11A4.5 4.5 0 002 6.5v11A4.5 4.5 0 006.5 22h11a4.5 4.5 0 004.5-4.5v-11A4.5 4.5 0 0017.5 2zm2.7 15.5a2.7 2.7 0 01-2.7 2.7h-11a2.7 2.7 0 01-2.7-2.7v-11a2.7 2.7 0 012.7-2.7h11a2.7 2.7 0 012.7 2.7z" />
+                            <circle cx="18" cy="6" r="1" />
+                        </svg>
+                    </a>
+
+                    <!-- X (Twitter) -->
+                    <a href="https://x.com/BXSSpakistan" target="_blank" rel="noopener noreferrer" class="footer-social"
+                        aria-label="X (Twitter)">
+                        <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
+                            <path
+                                d="M18.9 2H22l-6.76 7.72L23 22h-6.12l-4.8-6.27L6.58 22H3.46l7.23-8.26L1 2h6.28l4.34 5.72L18.9 2z" />
+                        </svg>
+                    </a>
+
+                    <!-- YouTube -->
+                    <a href="https://www.youtube.com/@BXSSpakistan" target="_blank" rel="noopener noreferrer"
+                        class="footer-social" aria-label="YouTube">
+                        <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
+                            <path
+                                d="M23 12s0-3.5-.45-5.18a2.9 2.9 0 00-2.04-2.05C18.82 4.3 12 4.3 12 4.3s-6.82 0-8.51.47A2.9 2.9 0 001.45 6.8C1 8.5 1 12 1 12s0 3.5.45 5.18a2.9 2.9 0 002.04 2.05c1.69.47 8.51.47 8.51.47s6.82 0 8.51-.47a2.9 2.9 0 002.04-2.05C23 15.5 23 12 23 12zm-13 3.7V8.3l6.3 3.7z" />
+                        </svg>
+                    </a>
+
+                    <!-- TikTok -->
+                    <a href="https://www.tiktok.com/@badarexpo" target="_blank" rel="noopener noreferrer"
+                        class="footer-social" aria-label="TikTok">
+                        <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
+                            <path
+                                d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.27 6.27 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.84a8.2 8.2 0 004.79 1.52V6.9a4.85 4.85 0 01-1.02-.21z" />
+                        </svg>
+                    </a>
+
+
+
+                </div>
+
+            </div>
+
+        </div>
+    </footer>
+
+    <!-- Scroll to Top Button -->
+    <button id="scrollTopBtn" class="scroll-top-btn" aria-label="Scroll to top">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+        <!-- ========================= COMMUNICATION WIDGET (Phase 17) ========================= -->
+    <div class="comm-widget" id="comm-widget">
+        <div class="comm-widget-panel" id="comm-widget-panel" role="dialog" aria-label="Chat with us" aria-hidden="true">
+            <div class="comm-widget-panel-header">
+                <span class="comm-widget-panel-title" data-i18n="pages.commWidget.title">Chat with Badar Expo</span>
+                <button class="comm-widget-panel-close" id="comm-widget-close" data-i18n-aria-label="pages.commWidget.closeLabel" aria-label="Close chat panel">
+                    <i class="fas fa-xmark" aria-hidden="true"></i>
+                </button>
+            </div>
+            <p class="comm-widget-panel-desc" data-i18n="pages.commWidget.desc">Have a question about an event or service? Message us on WhatsApp and we'll get back to you shortly.</p>
+            <a href="#" class="comm-widget-channel-btn" id="comm-widget-whatsapp-link" target="_blank" rel="noopener noreferrer">
+                <i class="fab fa-whatsapp" aria-hidden="true"></i>
+                <span data-i18n="pages.commWidget.startChat">Start WhatsApp Chat</span>
+            </a>
+        </div>
+        <button class="comm-widget-fab" id="comm-widget-toggle" type="button" aria-expanded="false" aria-controls="comm-widget-panel" data-i18n-aria-label="pages.commWidget.openLabel" aria-label="Open chat widget">
+            <i class="fab fa-whatsapp" aria-hidden="true"></i>
+        </button>
+    </div>
+    <script src="assets/js/comm-widget.js"></script>
+    <script src="assets/js/main.js"></script>
+    <script src="assets/js/language-manager.js"></script>
+    <script src="assets/js/event-components.js"></script>
+    <script src="assets/js/mobile-mega-menu.js"></script>
+    <script src="assets/js/insights.js"></script>
+    <!-- ========================= [TEMPLATE: footer.php END] ========================= -->
+</body>
+
+</html>

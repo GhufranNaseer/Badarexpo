@@ -1,0 +1,57 @@
+/* =============================================================================
+   MEDIA DETAIL - MASTER TEMPLATE (media-detail.html) - Phase 14
+   ============================================================================= 
+   PAGE-SPECIFIC layout only, prefixed "medd-" per rules.txt Section 2 -
+   distinct from "med-" (the Hub) since this is a different page/
+   duplication lifecycle, same pattern as gala- vs. gal- (Phase 13). All
+   visual components come from event-components.css / event-discovery-
+   components.css unchanged.
+   ============================================================================= */
+
+#medd-page {
+    background: var(--white);
+}
+
+.medd-meta-sec,
+.medd-description-sec,
+.medd-downloads-sec,
+.medd-related-sec,
+.medd-blog-sec {
+    padding: 64px 0;
+}
+
+.medd-downloads-sec,
+.medd-blog-sec {
+    background: var(--bg-light);
+}
+
+.medd-cta-sec,
+.medd-contact-sec {
+    padding: 0 0 64px;
+}
+
+.medd-downloads-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+}
+
+@media screen and (max-width: 768px) {
+
+    .medd-meta-sec,
+    .medd-description-sec,
+    .medd-downloads-sec,
+    .medd-related-sec,
+    .medd-blog-sec {
+        padding: 48px 0;
+    }
+
+    .medd-cta-sec,
+    .medd-contact-sec {
+        padding: 0 0 48px;
+    }
+
+    .medd-downloads-grid {
+        grid-template-columns: 1fr;
+    }
+}

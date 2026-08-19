@@ -1,0 +1,70 @@
+/* =============================================================================
+   BLOG DETAIL - MASTER TEMPLATE (blog-post.html) - Phase 15
+   ============================================================================= 
+   PAGE-SPECIFIC layout only, prefixed "blgp-" per rules.txt Section 2 -
+   distinct from "blg-" (the Hub), same pattern as medd- vs. med- (Phase
+   14). All visual components come from event-components.css unchanged.
+   The only new layout concern here is constraining the article body to a
+   readable measure (~720px) - a layout decision, not a new typography or
+   color rule; font-family/size/color/line-height all inherit the site's
+   existing tokens (--font-primary, --text-dark, etc.) unchanged.
+   ============================================================================= */
+
+#blgp-page {
+    background: var(--white);
+}
+
+.blgp-meta-sec,
+.blgp-content-sec,
+.blgp-author-sec,
+.blgp-related-sec,
+.blgp-related-articles-sec {
+    padding: 64px 0;
+}
+
+.blgp-author-sec {
+    background: var(--bg-light);
+}
+
+.blgp-cta-sec,
+.blgp-contact-sec {
+    padding: 0 0 64px;
+}
+
+/* Readable measure for article body text - a layout constraint, not a
+   typography redefinition. Reuses the existing .eds-container as the
+   outer wrapper and just narrows/centers the inner column. */
+.blgp-content-container {
+    max-width: 720px;
+    margin: 0 auto;
+}
+
+.blgp-article p {
+    margin-bottom: 20px;
+    line-height: 1.75;
+}
+
+.blgp-article h2 {
+    margin-top: 40px;
+    margin-bottom: 16px;
+}
+
+.blgp-article h2:first-child {
+    margin-top: 0;
+}
+
+@media screen and (max-width: 768px) {
+
+    .blgp-meta-sec,
+    .blgp-content-sec,
+    .blgp-author-sec,
+    .blgp-related-sec,
+    .blgp-related-articles-sec {
+        padding: 48px 0;
+    }
+
+    .blgp-cta-sec,
+    .blgp-contact-sec {
+        padding: 0 0 48px;
+    }
+}

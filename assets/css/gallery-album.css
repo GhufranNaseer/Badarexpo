@@ -1,0 +1,47 @@
+/* =============================================================================
+   ALBUM DETAIL - MASTER TEMPLATE (gallery-album.html) - Phase 13
+   ============================================================================= 
+   PAGE-SPECIFIC layout only, prefixed "gala-" per rules.txt Section 2 -
+   distinct from "gal-" (the Hub) since this is a different page/
+   duplication lifecycle, same pattern as indl- vs. ind- (Phase 10) and
+   prjl- vs. ipr- (Phase 11). All visual components come from
+   event-components.css / event-discovery-components.css unchanged.
+   ============================================================================= */
+
+#gala-page {
+    background: var(--white);
+}
+
+.gala-info-sec,
+.gala-grid-sec,
+.gala-featured-sec,
+.gala-related-sec,
+.gala-blog-sec {
+    padding: 64px 0;
+}
+
+.gala-featured-sec,
+.gala-blog-sec {
+    background: var(--bg-light);
+}
+
+.gala-cta-sec,
+.gala-contact-sec {
+    padding: 0 0 64px;
+}
+
+@media screen and (max-width: 768px) {
+
+    .gala-info-sec,
+    .gala-grid-sec,
+    .gala-featured-sec,
+    .gala-related-sec,
+    .gala-blog-sec {
+        padding: 48px 0;
+    }
+
+    .gala-cta-sec,
+    .gala-contact-sec {
+        padding: 0 0 48px;
+    }
+}

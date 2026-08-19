@@ -1,0 +1,58 @@
+/* =============================================================================
+   MEDIA CENTER HUB (media.html) - Phase 14
+   ============================================================================= 
+   PAGE-SPECIFIC layout only, prefixed "med-" per rules.txt Section 2. All
+   visual components (search, filters, grid, media cards, download cards,
+   empty state, load more) come from event-components.css / event-
+   discovery-components.css (Phase 3/5/13) - this file only positions them.
+   No colors/radii/shadows/typography redefined here.
+   ============================================================================= */
+
+#med-page {
+    background: var(--white);
+}
+
+.med-intro {
+    padding: 56px 0 32px;
+    text-align: center;
+    border-bottom: 1px solid var(--border-light);
+}
+
+.med-discovery-sec {
+    padding: 56px 0 64px;
+}
+
+.med-assets-sec {
+    padding: 0 0 64px;
+}
+
+.med-assets-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+@media screen and (max-width: 1024px) {
+    .med-assets-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .med-intro {
+        padding: 40px 0 24px;
+        text-align: left;
+    }
+
+    .med-discovery-sec {
+        padding: 40px 0 48px;
+    }
+
+    .med-assets-sec {
+        padding: 0 0 48px;
+    }
+
+    .med-assets-grid {
+        grid-template-columns: 1fr;
+    }
+}
