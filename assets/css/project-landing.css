@@ -1,0 +1,75 @@
+/* =============================================================================
+   INTERNATIONAL PROJECT DETAIL - MASTER TEMPLATE (project-landing.html)
+   Phase 11
+   ============================================================================= 
+   PAGE-SPECIFIC layout only, prefixed "prjl-" per rules.txt Section 2 -
+   distinct from "ipr-" (the Hub) since this is a different page/duplication
+   lifecycle, same pattern as indl- vs. ind- (Phase 10). All visual
+   components come from event-components.css (Phase 3) unchanged.
+   ============================================================================= */
+
+#prjl-page {
+    background: var(--white);
+}
+
+.prjl-overview-sec,
+.prjl-services-sec,
+.prjl-objectives-sec,
+.prjl-challenges-sec,
+.prjl-solutions-sec,
+.prjl-related-events-sec,
+.prjl-testimonial-sec,
+.prjl-related-projects-sec {
+    padding: 80px 0;
+}
+
+.prjl-services-sec,
+.prjl-solutions-sec,
+.prjl-related-events-sec {
+    background: var(--bg-light);
+}
+
+.prjl-gallery-sec {
+    padding: 80px 0;
+}
+
+.prjl-cta-sec,
+.prjl-contact-sec {
+    padding: 0 0 80px;
+}
+
+.ind-benefit-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+}
+
+@media screen and (max-width: 1024px) {
+    .ind-benefit-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media screen and (max-width: 768px) {
+
+    .prjl-overview-sec,
+    .prjl-services-sec,
+    .prjl-objectives-sec,
+    .prjl-challenges-sec,
+    .prjl-solutions-sec,
+    .prjl-related-events-sec,
+    .prjl-testimonial-sec,
+    .prjl-related-projects-sec,
+    .prjl-gallery-sec {
+        padding: 56px 0;
+    }
+
+    .prjl-cta-sec,
+    .prjl-contact-sec {
+        padding: 0 0 56px;
+    }
+
+    .ind-benefit-grid {
+        grid-template-columns: 1fr;
+    }
+}

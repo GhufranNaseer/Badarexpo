@@ -1,0 +1,82 @@
+/* =============================================================================
+   INDUSTRY DETAIL - MASTER TEMPLATE (industry-landing.html) - Phase 10
+   ============================================================================= 
+   PAGE-SPECIFIC layout only, prefixed "indl-" per rules.txt Section 2 -
+   distinct from "ind-" (the Industries Hub) since this is a different page
+   with its own duplication lifecycle (this file gets duplicated per
+   industry alongside the HTML, exactly like event-landing.css does per
+   event conceptually, even though in practice one shared template file is
+   reused - see site-information-architecture.md Section 10). All visual
+   components come from event-components.css (Phase 3) - this file only
+   positions them on this template.
+   ============================================================================= */
+
+#indl-page {
+    background: var(--white);
+}
+
+.indl-overview-sec,
+.indl-challenges-sec,
+.indl-solutions-sec,
+.indl-related-events-sec,
+.indl-projects-sec,
+.indl-gallery-sec,
+.indl-insights-sec,
+.indl-related-ind-sec {
+    padding: 80px 0;
+}
+
+.indl-challenges-sec,
+.indl-related-events-sec,
+.indl-insights-sec {
+    background: var(--bg-light);
+}
+
+.indl-cta-sec {
+    padding: 0 0 80px;
+}
+
+.indl-contact-sec {
+    padding: 0 0 80px;
+}
+
+.ind-benefit-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+}
+
+.indl-solutions-sec .ind-benefit-grid {
+    grid-template-columns: repeat(3, 1fr);
+}
+
+@media screen and (max-width: 1024px) {
+    .ind-benefit-grid,
+    .indl-solutions-sec .ind-benefit-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media screen and (max-width: 768px) {
+
+    .indl-overview-sec,
+    .indl-challenges-sec,
+    .indl-solutions-sec,
+    .indl-related-events-sec,
+    .indl-projects-sec,
+    .indl-gallery-sec,
+    .indl-insights-sec,
+    .indl-related-ind-sec {
+        padding: 56px 0;
+    }
+
+    .indl-cta-sec,
+    .indl-contact-sec {
+        padding: 0 0 56px;
+    }
+
+    .ind-benefit-grid,
+    .indl-solutions-sec .ind-benefit-grid {
+        grid-template-columns: 1fr;
+    }
+}
