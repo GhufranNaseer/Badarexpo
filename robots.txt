@@ -1,4 +1,3 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://badarexpo.com/sitemap.xml
